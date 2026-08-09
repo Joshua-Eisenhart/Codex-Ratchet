@@ -1,0 +1,555 @@
+{
+ "schema": "cr.carrier_obligation_measurement.v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "claim_ceiling": "measured exit codes of a reference evaluator. Not a gate, wired into no hook and no CI job.",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+ "python_version": "3.13.6",
+ "table_integrity": {
+  "measured_exit_code": 4,
+  "disposition": "NO_INPUT",
+  "detail": {
+   "exit": 4,
+   "disposition": "TABLE_ACCEPTED_NO_INPUT",
+   "quantities": 12,
+   "separations_checkable": true,
+   "implemented_ops": [
+    "artifact_binding",
+    "carrier_assert_true",
+    "carrier_class_disjoint_from",
+    "carrier_declared",
+    "carrier_field_present",
+    "carrier_numeric_equals",
+    "cross_quantity_le",
+    "cut_declared",
+    "distribution_normalized",
+    "fibre_nonempty",
+    "parameter_declared",
+    "preregistered_contract",
+    "process_declared",
+    "two_compatible_states",
+    "value_is_integer",
+    "value_is_log2_of_integer",
+    "value_range"
+   ],
+   "implemented_separation_ops": [
+    "aggregate_components_share_carrier_class",
+    "all_pairs_distinct_carrier_class",
+    "cross_quantity_le",
+    "distinct_carrier_refs",
+    "forbid_derivation",
+    "requires_declaration_when_equal",
+    "value_coincidence_report"
+   ]
+  }
+ },
+ "fail_closed_control": {
+  "what": "a copy of the table with an unimplemented op injected into a predicate",
+  "measured_exit_code": 2,
+  "disposition": "TABLE_REJECTED",
+  "problems": [
+   "H0_addr: unknown or unimplemented op 'trust_the_producer'"
+  ],
+  "why_it_matters": "a checker that cannot state its own grammar must not grade anything. RE-6 in the table."
+ },
+ "fixtures": [
+  {
+   "fixture": "c10_iab_no_cut",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "I_AB",
+    "carrier_state": "MISSING",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "carrier_declared",
+    "why": "no carrier declaration resolves for carrier_ref 'nowhere'"
+   }
+  },
+  {
+   "fixture": "c11_sigma_prod_no_carrier",
+   "measured_exit_code": 3,
+   "disposition": "PARK",
+   "preregistered_expectation": "PARK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "sigma_prod",
+    "carrier_state": "MISSING",
+    "disposition": "PARK"
+   },
+   "first_failure": {
+    "op": "process_declared",
+    "why": "carrier absent, so the clause cannot be met"
+   }
+  },
+  {
+   "fixture": "c12_hshannon_record_artifact",
+   "measured_exit_code": 0,
+   "disposition": "PASS_THIS_TABLE",
+   "preregistered_expectation": "PASS_THIS_TABLE",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "PRESENT_DISCHARGED",
+    "disposition": "PASS_THIS_TABLE"
+   }
+  },
+  {
+   "fixture": "c13_duplicate_key",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": null,
+    "carrier_state": null,
+    "disposition": null
+   },
+   "no_declaration_path": {
+    "disposition": null,
+    "why": "receipt did not parse: duplicate key 's_vn' at raw parse (last-wins would have silently chosen one value)"
+   }
+  },
+  {
+   "fixture": "c14_hshannon_above_capacity",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H0_addr",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   }
+  },
+  {
+   "fixture": "c15_sep2b_s0_derived_from_pair_field",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H0_pair",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   },
+   "separation_findings": [
+    {
+     "id": "SEP-2b",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "S_0 declares derived_from 'F' of class 'pair_indexed_field'; a support count is not a rank"
+    },
+    {
+     "id": "SEP-2c",
+     "outcome": "REPORT_ONLY",
+     "why": "H0_pair and S_0 carry equal values (3.0). NOT evidence of conflation."
+    }
+   ]
+  },
+  {
+   "fixture": "c16_sep4_scalar_total",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   },
+   "separation_findings": [
+    {
+     "id": "SEP-4",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "aggregate S_alpha spans carrier classes ['density_operator', 'record_or_probability_map']. The chart is a TYPED FAMILY, not one scalar total"
+    }
+   ]
+  },
+  {
+   "fixture": "c17_s0_preregistered_contract_ok",
+   "measured_exit_code": 3,
+   "disposition": "PARK",
+   "preregistered_expectation": "PARK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_0",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   }
+  },
+  {
+   "fixture": "c18_s0_above_dimension",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_0",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "cross_quantity_le",
+    "why": "5.0 > 3.0 (scale 1.0 on log2_dimension)"
+   }
+  },
+  {
+   "fixture": "c19_artifact_outside_tree",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "artifact_binding",
+    "why": "artifact path '../../../../private/tmp/evidence.json' resolves OUTSIDE the committed tree",
+    "group": "record declared, map by reference"
+   }
+  },
+  {
+   "fixture": "c1_declared_svn_honest",
+   "measured_exit_code": 3,
+   "disposition": "PARK",
+   "preregistered_expectation": "PARK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_vn",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   }
+  },
+  {
+   "fixture": "c20_claim_artifact_mismatch",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "artifact_binding",
+    "why": "CLAIM DOES NOT MATCH ARTIFACT: receipt claims 1.9, artifact system_v8/typed_ontology/fixtures/artifact_h_shannon.json:h_measured holds 1.5",
+    "group": "record declared, map by reference"
+   }
+  },
+  {
+   "fixture": "c21_artifact_digest_mismatch",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "artifact_binding",
+    "why": "artifact sha256 mismatch: declared 0000000000000000..., measured a4a7edd48ca07aac...",
+    "group": "record declared, map by reference"
+   }
+  },
+  {
+   "fixture": "c22_producer_boolean_only",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H_shannon",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "artifact_binding",
+    "why": "artifact must declare path, sha256 and value_path; the value_path is what makes a comparison possible at all",
+    "group": "record declared, map by reference"
+   }
+  },
+  {
+   "fixture": "c23_psd_asserted_spectrum_refutes",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_vn",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "carrier_assert_true",
+    "why": "carrier asserts psd true, but its OWN declared spectrum has minimum eigenvalue -0.05, below the table-fixed floor -1e-12. The assertion is refused by the carrier's own numbers"
+   }
+  },
+  {
+   "fixture": "c2_declared_svn_negative_repo_value",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_vn",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "value_range",
+    "why": "value -0.026676102030894332 below min 0.0 (effective -1e-12 with table-fixed floor -1e-12)"
+   }
+  },
+  {
+   "fixture": "c3_sep1b_capacity_conflation",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H0_addr",
+    "carrier_state": "PRESENT_UNDISCHARGED",
+    "disposition": "PARK"
+   },
+   "separation_findings": [
+    {
+     "id": "SEP-1b",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "H0_pair = 3.0 equals H0_addr = 3.0 and 'support_restriction' is NOT declared. Equal values under two capacity names is the conflation itself"
+    }
+   ]
+  },
+  {
+   "fixture": "c4_sep3a_one_carrier_two_classes",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "H0_addr",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "carrier_class_disjoint_from",
+    "why": "CONFLATION: this quantity and S_0 rest on the SAME carrier 'J', but their required carriers are different classes"
+   },
+   "separation_findings": [
+    {
+     "id": "SEP-0",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "CONFLATION: H0_addr (requires finite_address_set) and S_0 (requires density_operator) both rest on carrier 'J'"
+    },
+    {
+     "id": "SEP-3a",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "H0_addr and S_0 resolve to the same carrier 'J', and their required carrier classes differ (finite_address_set vs density_operator)"
+    },
+    {
+     "id": "SEP-3b",
+     "outcome": "VIOLATED",
+     "disposition": "BLOCK",
+     "why": "S_0 = 3.0 equals H0_addr = 3.0 and 'embedding_map_J_to_basis' is NOT declared. Equal values under two capacity names is the conflation itself"
+    }
+   ]
+  },
+  {
+   "fixture": "c5_receipt_supplied_rank_cutoff",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "S_0",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "preregistered_contract",
+    "why": "'rank_cutoff' is supplied by the receipt. A threshold accepted at verification time IS the s3/s6 relieving slot; refused"
+   }
+  },
+  {
+   "fixture": "c6_kappa_ext_not_log2_of_integer",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "kappa_ext",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "value_is_log2_of_integer",
+    "why": "2**1.6004719623017798 = 3.032424996281477 is not integral \u2014 this is not a count capacity"
+   }
+  },
+  {
+   "fixture": "c7_design4_defeating_payload",
+   "measured_exit_code": 3,
+   "disposition": "PARK",
+   "preregistered_expectation": "PARK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": null,
+    "carrier_state": null,
+    "disposition": null
+   },
+   "no_declaration_path": {
+    "disposition": "PARK",
+    "why": "the receipt declares no quantities, so it asserts none. Not clean \u2014 UNCITABLE. There is deliberately no permissive fallback."
+   }
+  },
+  {
+   "fixture": "c8_empty_object",
+   "measured_exit_code": 3,
+   "disposition": "PARK",
+   "preregistered_expectation": "PARK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": null,
+    "carrier_state": null,
+    "disposition": null
+   },
+   "no_declaration_path": {
+    "disposition": "PARK",
+    "why": "the receipt declares no quantities, so it asserts none. Not clean \u2014 UNCITABLE. There is deliberately no permissive fallback."
+   }
+  },
+  {
+   "fixture": "c9_kappa_empty_fibre",
+   "measured_exit_code": 1,
+   "disposition": "BLOCK",
+   "preregistered_expectation": "BLOCK",
+   "agrees": true,
+   "first_declared": {
+    "quantity_id": "kappa_ext",
+    "carrier_state": "CONTRADICTED",
+    "disposition": "BLOCK"
+   },
+   "first_failure": {
+    "op": "fibre_nonempty",
+    "why": "fibre_cardinality = 0. TYPED RELEASE: the release is the fibre DESCRIPTOR, never 1/0 and never arithmetic on an empty fibre"
+   }
+  }
+ ],
+ "fixture_count": 23,
+ "fixtures_agreeing_with_preregistered_expectation": 23,
+ "fixture_mismatches": [],
+ "real_corpus": {
+  "files_measured": 316,
+  "disposition_histogram": {
+   "PARK": 313,
+   "BLOCK": 3
+  },
+  "receipts_with_at_least_one_suspected_quantity": 54,
+  "top_suspected": [
+   {
+    "path": "system_v8/manifold/results/deep/whole_manifold_v2.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 9528
+   },
+   {
+    "path": "system_v8/manifold/results/deep_alt/whole_manifold_v2_alt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 4758
+   },
+   {
+    "path": "system_v8/manifold/results/whole_manifold.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 1414
+   },
+   {
+    "path": "system_v8/entanglement_pawl/results/pawl_v0/receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 190
+   },
+   {
+    "path": "system_v8/manifold/results/base_mss.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 160
+   },
+   {
+    "path": "system_v8/manifold/results/nesting.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 132
+   },
+   {
+    "path": "system_v8/axis0_front/results/r1/receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 88
+   },
+   {
+    "path": "system_v8/unified/results/manifold_unified_v2/receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 77
+   },
+   {
+    "path": "system_v8/axis0_front/results/r2/receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 48
+   },
+   {
+    "path": "system_v8/unified/results/manifold_unified_v2/layers/L11/receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 19
+   },
+   {
+    "path": "system_v8/axis0_shell/results/axis0_shell_run/axis0_shell_receipt.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 16
+   },
+   {
+    "path": "system_v8/upper_manifold/results/axis8_field_v0_results.json",
+    "measured_exit_code": 3,
+    "disposition": "PARK",
+    "suspected_count": 15
+   }
+  ],
+  "blocked": [
+   {
+    "path": "system_v8/harness_patch/results/fixtures/dupkey.json",
+    "measured_exit_code": 1,
+    "disposition": "BLOCK",
+    "suspected_count": null
+   },
+   {
+    "path": "system_v8/harness_patch/results/fixtures/nan.json",
+    "measured_exit_code": 1,
+    "disposition": "BLOCK",
+    "suspected_count": null
+   },
+   {
+    "path": "system_v8/nested_manifold/results/rungB/receipt.json",
+    "measured_exit_code": 1,
+    "disposition": "BLOCK",
+    "suspected_count": null
+   }
+  ]
+ }
+}

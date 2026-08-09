@@ -90,7 +90,11 @@ POISONER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "operation_poisoner.py"
 # run; it is never silently reinterpreted as success on a different estate.
 PROFILE_PINS = {
     "fixture": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f",
-    "estate_controller": "563d1afd505e3deecd4105da8cf8915fc206acf63afc697c4246e96102f271eb",
+    # Repinned 2026-08-08. Was 563d1afd50…, which predates the initial git import
+    # of the package (5378aeb6d); estate.py hashes its own source, so every
+    # `constraintbox run` was PARKing on PROFILE_INPUT_DRIFT against the box's own
+    # shipped controller. The other four pins already matched.
+    "estate_controller": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e",
     "worker": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257",
     "import_blocker": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
     "operation_poisoner": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0",

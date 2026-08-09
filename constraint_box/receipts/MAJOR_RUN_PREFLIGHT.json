@@ -1,12 +1,22 @@
 {
-  "disposition": "READY",
+  "disposition": "PARKED",
   "max_age_hours": 24.0,
-  "problems": [],
-  "promotion_allowed": false,
-  "required_tiers": [
-    "S1",
-    "S2",
-    "S3"
+  "problems": [
+    {
+      "reason": "trusted_receipt_set_missing"
+    }
   ],
-  "schema": "constraintbox.major-run-preflight.v1"
+  "promotion_allowed": false,
+  "receipt_checks_performed": false,
+  "required_tiers": [
+    "S1"
+  ],
+  "schema": "constraintbox.major-run-preflight.v2",
+  "trust_binding": {
+    "bound_receipt_count": 0,
+    "provided_receipt_count": 3,
+    "status": "UNBOUND",
+    "trust_manifest_sha256": null,
+    "trust_set_id": null
+  }
 }

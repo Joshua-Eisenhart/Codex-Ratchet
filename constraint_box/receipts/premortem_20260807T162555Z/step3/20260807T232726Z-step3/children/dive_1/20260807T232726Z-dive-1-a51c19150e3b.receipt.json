@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:27:44.984726+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 12563,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "## THE FAILURE STORY\n\nBy February 2026, the team had pushed both `system_v5-consolidation` and `system_v7-bridge` worktrees to origin, each claiming HEAD at f0afdc36a (a shared commit from July 17 that unified CB library wiring). The two worktrees had diverged locally after that point \u2014 one added system_v5 schema fixes, the other rewired v7 imports \u2014 but both carried the same merge-base. When the release lead tried to fast-forward merge both branches into main in sequence, git accepted the first (no new commits to replay). The second merge appeared clean but actually contained dead code paths: the v7 bridge changes assumed the v5 fixes were already in scope, but git had no way to detect this cross-branch coupling. The merge commit landed. Three days later, in integration testing, the CB library loader failed silently on v5 schemas because the assumed v5 fix never actually executed \u2014 it was in the first worktree's diff, not in main's history. The team discovered the problem only when CB",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0115324
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

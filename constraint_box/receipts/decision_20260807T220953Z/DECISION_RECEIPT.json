@@ -1,0 +1,1220 @@
+{
+ "L3": {
+  "by_lane": {
+   "nv:deepseek-ai/deepseek-v4-flash-0731": {
+    "called": 8,
+    "live": 8
+   },
+   "nv:meta/llama-3.1-8b-instruct": {
+    "called": 8,
+    "live": 8
+   },
+   "nv:meta/llama-3.3-70b-instruct": {
+    "called": 8,
+    "live": 8
+   },
+   "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+    "called": 8,
+    "live": 4
+   },
+   "nv:nvidia/nemotron-3-nano-30b-a3b": {
+    "called": 8,
+    "live": 8
+   },
+   "nv:openai/gpt-oss-120b": {
+    "called": 9,
+    "live": 7
+   },
+   "nvidia/nemotron-nano-9b-v2:free": {
+    "called": 8,
+    "live": 8
+   },
+   "openai/gpt-oss-20b:free": {
+    "called": 8,
+    "live": 4
+   }
+  },
+  "dispatched": 65,
+  "live": 55
+ },
+ "claim_ceiling": "decision structure, council divergence and output shape only; CB does not decide whether the move is correct",
+ "collapsed_councils": [],
+ "compilation": {
+  "decision.context_strategy": {
+   "evidence_boundary": "Assumes the six defects are genuinely fixed (not independently verified) and that Follow-Up construction will not reveal cascading failures or structural contradictions; unchecked: whether campaign timeline permits Follow-Up completion before Failure councils must run, and whether Follow-Up work surfaces new defects.",
+   "falsifier": "If Follow-Up wave construction finds that any of the six 'fixed' defects are non-functional or incomplete, or if new structural contradictions emerge that invalidate Decision wave premises, rendering the sequence assumption false.",
+   "operating_boundary": "This move does not modify existing Decision wave outputs, re-run the six defect fixes, attempt root-cause analysis beyond what fixes revealed, or begin Failure council execution.",
+   "rejected_alternatives": [
+    "Proceed directly to executing the two Failure councils, treating Decision+Follow-Up as complete",
+    "Parallelize Follow-Up wave and Failure council execution to compress timeline",
+    "Conduct deeper root-cause audit of Decision wave before proceeding to Follow-Up"
+   ],
+   "selected_move": "Build the Follow-Up wave by converting the six fixed defects into validated constraints, then gate its completion before proceeding to Failure councils.",
+   "why_now": "Decision wave is built and six defects are fixed; Follow-Up validates these fixes as constraints before expanding, preserving evidence boundary."
+  },
+  "decision.evidence_boundary": {
+   "evidence_boundary": "Unchecked: Decision wave output exists and is well-formed; six defects are semantically closed in Constraint Box logic. Must be true: deterministic gate passes with current state. Assumed true: existing gate logic is sound and will detect defects if present.",
+   "falsifier": "Deterministic gate fails, or reports unfixed defects previously marked closed, or reveals inconsistency between Decision wave and Constraint Box current state.",
+   "operating_boundary": "This move runs existing validation logic only; it does not modify Constraint Box code, implement Follow-Up wave, or build Failure councils.",
+   "rejected_alternatives": [
+    "Build Follow-Up wave immediately (assumes Decision wave validity and defect closure without verification)",
+    "Construct Failure councils first (alternative sequencing, parallel path preserved as live option)",
+    "Deploy Constraint Box with unvalidated defect fixes (skip verification phase)"
+   ],
+   "selected_move": "Verify Decision wave existence and defect-closure claims via deterministic gate before committing Follow-Up wave construction.",
+   "why_now": "Receipt audit flags critical missing evidence; preconditions must be validated before downstream construction proceeds."
+  },
+  "decision.move_selection": {
+   "evidence_boundary": "Assumed: Follow-Up wave is fully specified and ready to build. Unchecked: whether Follow-Up outputs will eliminate one or both Failure councils, whether Failure specs remain stable post-Follow-Up, whether Follow-Up correctly consumes Decision outputs.",
+   "falsifier": "If Follow-Up execution discovers that the Decision wave's outputs are structurally malformed or mutually inconsistent (Decision-layer defect, not Follow-Up bug), then the premise\u2014that Follow-Up can proceed on current Decision outputs\u2014is false, and Decision requires repair first.",
+   "operating_boundary": "This move builds only the Follow-Up wave. It does NOT collapse, decide, or schedule the two Failure councils. Their distinct unbuilt status is preserved; their necessity and order remain open questions.",
+   "rejected_alternatives": [
+    "Construct the two Failure councils before or in parallel with Follow-Up (their necessity and ordering depend on Follow-Up outputs; constructing them first inverts the causal dependency)",
+    "Defer Follow-Up pending completion of Failure councils (the Decision wave is orphaned without Follow-Up as a bridge; Follow-Up is the immediate critical path)"
+   ],
+   "selected_move": "Build and execute the Follow-Up wave",
+   "why_now": "The Follow-Up wave is the load-bearing blocker between the built Decision wave and downstream closure gates; executing it will provide empirical evidence to determine whether the two Failure councils remain necessary."
+  }
+ },
+ "councils": {
+  "decision.context_strategy": {
+   "voice.feynman": {
+    "answers": {
+     "adversarial": "\"Run `grep -c 'pass' ~/logs/decision_output.txt` to count DPH-compliant outputs; pass if exactly 6.\"",
+     "boundary": "Run the deterministic gate on the revised Constraint Box.",
+     "historical": "Run a unit test that triggers the Decision wave and verifies that the Follow\u2011Up wave executes and logs the expected success message.",
+     "literal": "We need to produce a single concrete check (operation/procedure, observable, pass/fail condition) in one sentence under 30 words, stating only the answer. Must be in Feynman voice, read-only, receipt, not synthesis. Must load salience file first. Must read the file path: ~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_FEYNMAN_FULL_v4_1.md. Should confirm loaded. Then produce answer: \"Run `grep -l 'defect_fixed' *.log && test -f fixed.log`\" maybe not. Need concrete operation: maybe \"Execute `diff expected_output.txt actual_output.txt` and check exit status 0\". Observable: exit status 0. Pass/fail: exit status 0 means pass, non-zero fail. Must be one sentence under 30 words. Must state only the answer. So answer should be something like: \"Run `cmp expected.txt actual.txt`; success if exit status 0, otherwise failure.\" That's more than 30 words? Let's count: \"Run `cmp expected.txt actual.txt`; success if exit status 0, otherwise failure.\" That's about 13 words? Let's count words: Run(1) `cmp(2) expected.txt(3) actual.txt`;(4) success(5) if(6) exit(7) status(8) 0,(9) otherwise(10) failure(11). That's 11 words, under 30. But need to include observable? The answer must be the single concrete check that would show whether this move worked. So maybe: \"Execute `test $(cat result.txt) = 'PASS'`; pass if exit status 0, else fail.\" That's also okay.\n\nBut need to ensure we are in Feynman voice, plain, testable. Provide the check. Must be one sentence under 30 words, only the answer. So just that sentence.\n\nWe must also have loaded the salience file. We need to simulate reading it. We can mention that we read it. But the return must be the 4-part receipt? Actually the instruction says \"Return (4-part receipt; stay in voice, not the synt\". But the mini-MMM says answer in one sentence under 30 words. So we must output just that answer? The instruction: \"Answer in ONE sentence under 30 words. State only the answer.\" So we should output just that sentence. No extra commentary. Also must be in Feynman voice, but we can keep it plain.\n\nThus final output: a single sentence, under 30 words, describing the concrete check. Let's craft: \"Run `diff expected.txt actual.txt`; pass if exit status 0, otherwise fail.\" That's 1",
+     "operational": "Run `grep '^next_move=' ~/constraint_box/config.yaml` and verify the output shows the expected move name; pass if the line exists and matches."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.397,
+     "mean_similarity": 0.203,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.397,
+     "mean_similarity": 0.237,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 16.1
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 13.0
+     },
+     "historical": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 23.2
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.0
+     },
+     "operational": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 3.5
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "The evidence shows six defects fixed and a Decision wave built, but no Follow-Up or Failure councils exist.",
+     "boundary": "The next move for Constraint Box is to proceed with building the Follow-Up wave and the two unrun Failure councils.",
+     "historical": "Proceed to build the Follow-Up wave as the next bounded move, given the Decision wave's existence and fixed defects.",
+     "operational": "Six defects are fixed, Decision wave exists."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.503,
+     "mean_similarity": 0.407,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.503,
+     "mean_similarity": 0.407,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.7
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.8
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 67.7
+     },
+     "literal": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 10.1
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 11.9
+     }
+    }
+   },
+   "voice.strategy": {
+    "answers": {
+     "adversarial": "The single campaign-level consideration is the overall risk of delaying the Decision wave, which could jeopardize the entire project timeline.",
+     "boundary": "The next move must build the Follow-Up wave first, because it converts fixed defects into validated constraints, preserving the campaign's evidence boundary before expanding into unrun Failure councils.",
+     "historical": "Resource allocation to maximize progress on the Decision wave.",
+     "literal": "**Receipt (Strategy Voice)**  \n\n1. **Current local move in service of:**\u202fSelecting the *campaign\u2011level prioritization of \u201cresource\u2011focused sequencing\u201d* as the decisive factor for the next Constraint Box action.  \n\n2. **Sequence risk:**\u202fIf this move wins while the broader campaign loses, we expend scarce resources on a sub\u2011optimal sequence, undermining overall mission success and future wave deployments.  \n\n3. **Retreat / hold / defer condition:**\u202fHold or defer the move if emerging intel indicates a higher\u2011priority front (e.g., the unbuilt Failure councils) will consume the same resources within the next decision cycle.  \n\n4. **Alignment to root constraint:**\u202fEnsures every action advances the overarching objective of maintaining a sustainable resource balance across all waves, preventing drift from the campaign\u2019s core constraint.",
+     "operational": "Sequence prioritization to ensure this move enables completion of remaining Failure councils while maintaining alignment with the existing Decision wave's constraints."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.358,
+     "mean_similarity": 0.173,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.358,
+     "mean_similarity": 0.177,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 19.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.8
+     },
+     "historical": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 14.5
+     },
+     "literal": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 4.2
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 11.8
+     }
+    }
+   },
+   "voice.systems": {
+    "answers": {
+     "adversarial": "We need to respond as Systems voice, providing a 4-part receipt: loop \u00b7 real incentive \u00b7 second-order effect \u00b7 a surviving challenge \u00b7 then `slic`? Actually the return format: \"the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic\". The prompt says return (4-part receipt; stay in voice, not the synthesis): the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic\n\nSo we need to output exactly those five items separated by \"\u00b7\"? It says \"the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic\". Probably we need to output something like:\n\n\"reinforcing loop \u00b7 perverse reward for speed \u00b7 emergent bottleneck in downstream checks \u00b7 challenge: lack of test coverage \u00b7 `slic\"\n\nBut must be in one sentence under 30 words? That was earlier: \"Answer in ONE sentence under 30 words. State only the answer.\" That seems to be for the task: \"Name the SINGLE feedback loop that this move would enter or disturb.\" But also we need to return the 4-part receipt. There's conflict.\n\nThe overall instruction: \"Return (4-part receipt; stay in voice, not the synthesis): the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic\". So we must produce that receipt. The earlier part about \"Answer in ONE sentence under 30 words. State only the answer.\" seems to refer to the question: \"Name the SINGLE feedback loop that this move would enter or disturb.\" But we are to answer in that format? However the return format includes more than just the loop; it's a 4-part receipt. So maybe we need to embed the answer within the receipt? The receipt includes the loop as first part. So we can answer the loop in first part, then other parts.\n\nThus we need to produce a 4-part receipt: loop; real incentive; second-order effect; surviving challenge; then `slic.\n\nAll in voice of Systems. Must be concise but can be multiple words? Not specified length now. The earlier constraint about one sentence under 30 words maybe still applies to the answer to \"Name the SINGLE feedback loop...\" but we are providing more content. Might still need to keep overall response short? The instruction says \"Answer in ONE sentence under 30 words. State only the answer.\" That seems to be the required answer to that question. But we are also required to return the 4-part receipt. Possibly we need to embed that answer as the first part, then continue with other parts, but still overall maybe need to stay under 30 words? Not clear.\n\nGiven the system wants a receipt with four parts separated by \"\u00b7\". We can produce something like:\n\n\"reinforcing loop of delay amplification \u00b7 incentive to suppress defects to meet wave deadline \u00b7 second-order",
+     "boundary": "constraint-council feedback loop",
+     "historical": "**Loop**\u2003Reinforcing\u202ffeedback\u202fof\u202f\u201cfixed\u2011defect\u202fconfidence\u202famplification\u201d  \n**Real incentive**\u2003Rewarding\u202frapid\u202fclosure\u202fof\u202fdefects\u202fover\u202fdeep\u202froot\u2011cause\u202fanalysis  \n**Second\u2011order effect**\u2003Accumulating\u202ftechnical\u202fdebt\u202fas\u202fhidden\u202finter\u2011module\u202ffragilities\u202fgrow unnoticed  \n**Surviving challenge**\u2003Ensuring\u202ffuture\u202fupdates\u202fdon\u2019t\u202ftrigger\u202fcascading\u202ffailures\u202fin\u202fthe\u202funbuilt\u202fFailure\u202fcouncils\u202f`\u00b7 slic`",
+     "operational": "The **Decision wave** feedback loop, which is a reinforcing loop that produces this outcome."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.274,
+     "mean_similarity": 0.071,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.274,
+     "mean_similarity": 0.076,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.6
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 16.0
+     },
+     "historical": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 3.4
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 69.9
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.2
+     }
+    }
+   }
+  },
+  "decision.evidence_boundary": {
+   "guard.receipt_audit": {
+    "answers": {
+     "adversarial": "The claim \"one model answering four questions is four children\" lacks a receipt.",
+     "boundary": "The claim that \u201cthe Decision wave exists\u201d has no receipt behind it.",
+     "historical": "We need to parse the prompt. It's abstract. The user wants: \"Answer in ONE sentence under 30 words. State only the answer.\" They ask: \"Name the SINGLE claim here that has no receipt behind it.\" So we need to identify a claim that has no receipt behind it, presumably within the context of the described scenario. The context: \"PROMPT INTENT (conserved): Select ONE bounded move for the task while preserving live alternatives, with the evidence boundary declared. SUCCESS CONDITION: each route compiles the six declared outputs and passes the deterministic gate. CLAIM CEILING: decision structure only; CB does not decide whether the selected move is correct. KILLED ASSUMPTIONS (do not revive without a bridge): a route is a council because it is named one; one model answering four questions is four children.\"\n\nHistorical salience slice: \"Read the task against how this class of thing has failed before.\"\n\nTask under decision: \"Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt.\"\n\nName the SINGLE claim here that has no receipt behind it.\n\nSo we need to identify a claim that has no receipt behind it, i.e., a claim that is not backed by evidence? Possibly \"the selected move is correct\"? Or \"the decision wave exists\"? Or \"the Follow-Up wave and the two unrun Failure councils remain unbuilt\"? The claim with no receipt behind it might be \"the selected move is correct\"? But they said CB does not decide whether the selected move is correct. So maybe the claim is \"the selected move is correct\" has no receipt.\n\nBut they ask to name the SINGLE claim here that has no receipt behind it. So likely the answer is something like \"The selected move is correct\" or \"The decision wave exists\"? Let's think.\n\nIn this system, there is a concept of \"receipt\" meaning evidence backing a claim. The claim that has no receipt behind it would be a claim that is not yet validated. Possibly \"the Follow-Up wave ... remains unbuilt\" is a claim without receipt. Or \"the six known defects are fixed\" might be a claim that might not have receipt? But they said they are fixed.\n\nThe phrase \"single claim here that has no receipt behind it\" suggests we need to identify a claim among the described items that lacks receipt. The items: six known defects are fixed; Decision wave exists; Follow-Up wave and two unrun Failure councils remain unbuilt. The claim that has no receipt might be \"the Follow-Up wave and the two unrun Failure councils remain unbuilt\" because they haven't been built yet, so no receipt.\n\nBut the question: \"Name the SINGLE claim here that has no receipt behind it.\" So we need to output a single claim",
+     "literal": "The claim that the six known defects are fixed has no receipt behind it."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.777,
+     "mean_similarity": 0.273,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.777,
+     "mean_similarity": 0.29,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.4
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 5.0
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 3.5
+     },
+     "literal": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.9
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 32.3
+     }
+    }
+   },
+   "voice.feynman": {
+    "answers": {
+     "adversarial": "\"Run the Bash script validating Constraint Box's current logic against the fixed Failure council input, passing if all assertions succeed.\"",
+     "boundary": "Run the deterministic gate with the fixed defects and Decision wave.",
+     "literal": "We need to act as Feynman voice, produce a single concrete check (operation, observable, pass/fail condition) in one sentence under 30 words, stating only the answer. Must be exactly one sentence, <=30 words, only the answer. No extra commentary. Must be a concrete check: operation/procedure, observable, pass/fail condition. Must be a single sentence that includes all three? Probably the answer should be something like: \"Run `check_constraints --list` and verify output contains 'defects_fixed' with exit code 0; pass if output matches expected, fail otherwise.\" That's one sentence? Let's craft: \"Execute `./run_check.sh`; if its stdout equals 'Constraints satisfied' and exit status is 0, the move passes; otherwise it fails.\" That's one sentence? It has semicolons but still one sentence? It ends with \"fails.\" That's one sentence. Word count? Let's count: Execute(1) `./run_check.sh`;(2) if(3) its(4) stdout(5) equals(6) 'Constraints(7) satisfied'(8) and(9) exit(10) status(11) is(12) 0,(13) the(14) move(15) passes;(16) otherwise(17) it(18) fails(19). That's 19 words, under 30. Good.\n\nBut must be the concrete check that would show whether this move worked. The move is \"Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt.\" So the check is to verify that the move (presumably some decision) works. Maybe we need to run a command that tests if the decision wave is correctly built? The prompt: \"Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt. Name the SINGLE concrete check that would show whether this move worked.\" So we need to propose a concrete check that would show whether this move (the decision) worked. So maybe check that the Decision wave compiled and passed its deterministic gate. So operation: run `./validate_decision.sh`; observable: exit code 0 and output \"Decision wave compiled\". Pass if both conditions true.\n\nWe need to output only the answer in one sentence under 30 words. So something like: \"Run `validate_decision --gate`; if it returns exit code 0 and prints 'Decision wave compiled', the move passes; otherwise it fails.\" Count words: Run(1) `validate_decision(2) --gate`;(3) if(4)",
+     "operational": "**Loaded salience:** `~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md"
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.415,
+     "mean_similarity": 0.162,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.415,
+     "mean_similarity": 0.198,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 10.7
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 18.1
+     },
+     "historical": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 36.6
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.3
+     },
+     "operational": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 5.7
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "We need to respond as Hume voice, warm, plain, evidence-only, one sentence under 30 words, stating only the answer. Must select ONE bounded move for the task while preserving live alternatives, with evidence boundary declared. Must report only what observed, verify directly, name what not established, keep abstract nouns from doing work they haven't earned.\n\nWe need to decide the next move for Constraint Box now that six known defects are fixed, Decision wave exists, Follow-Up wave and two unrun Failure councils remain unbuilt.\n\nWe need to state plainly what is actually the case, using only evidence. One sentence under 30 words, only the answer.\n\nWe need to reference evidence: we have loaded the file ~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_HUME_FULL_v4_1.md. That file contains words list, but not specific answer. We need to infer from task description: \"Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt.\"\n\nWe need to state what move to take. Probably \"Proceed to the Follow-Up wave\" or \"Proceed to the Constraint Box move\" but we must only state what is actually the case based on evidence. We have no explicit evidence of what the move is; we only know that six defects are fixed, Decision wave exists, Follow-Up wave and two unrun Failure councils remain unbuilt. So the actual case: there is a Decision wave, six defects fixed, Follow-Up wave pending, two Failure councils pending. The next move for Constraint Box? Not given. We can only state that the move is to \"await the Follow-Up wave\" or \"continue with the Constraint Box decision pending further councils\". But we must be careful not to assert causality.\n\nWe need to pick ONE bounded move. Perhaps \"Proceed to execute the Constraint Box decision now\" but that may be too forward. Evidence: six known defects are fixed, Decision wave exists, Follow-Up wave and two unrun Failure councils remain unbuilt. So the situation: we can move forward with Constraint Box decision because defects fixed, but there are still pending waves. So the bounded move could be \"Issue the Constraint Box decision now, preserving live alternatives for later councils.\" That is one move.\n\nWe need to keep under 30 words, one sentence. Let's craft: \"Execute the Constraint Box decision now, keeping live alternatives for the pending Follow-Up and Failure councils.\" Count words: Execute(1) the2 Constraint3 Box4 decision5 now,6 keeping7 live8 alternatives9 for10 the11 pending12 Follow-Up13 and14 Failure15 councils16. That's 16 words, okay.\n\nBut we must declare evidence boundary: we observed that six defects are fixed",
+     "boundary": "\"Observe and verify current defect compliance via explicit evidence check before advancing Decision wave.\"",
+     "literal": "The next move is to build the Follow-Up wave as the Decision wave exists and six defects are fixed.",
+     "operational": "The next move for Constraint Box is to build the Follow-Up wave, given the Decision wave's existence and the remaining unbuilt Failure councils."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.683,
+     "mean_similarity": 0.2,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 2,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.683,
+     "mean_similarity": 0.25,
+     "model_families": [
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 5.1
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 16.8
+     },
+     "historical": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": false,
+      "sec": 1.6
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 71.1
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.6
+     }
+    }
+   },
+   "voice.popper": {
+    "answers": {
+     "adversarial": "1. **Target claim:** Building Follow-Up wave and two Failure councils is the correct next move.\n2. **Strongest live falsifier:** The Decision wave's outputs are not yet validated against the six fixed defects.\n3. **Decisive check:** Run the deterministic gate on Decision wave outputs before committing resources.\n4. **Classification:** `open` \u2014 Decision wave validation is prerequisite; move survives only after gate passes.",
+     "boundary": "The strongest falsifier of the proposed move is \"the two unrun Failure councils remain unbuilt\".",
+     "historical": "The strongest falsifier is the presence of critical undetected flaws in the Constraint Box due to unrun Failure councils causing system failure during Follow-Up wave execution.",
+     "literal": "=== MINI-MMM ===\n# \ud83e\udde8 Popper Mini-MMM FULL v4.1\n\nauthority_status: canonical-runtime\npacket_version: v4.3-copied-mini-source\nsource_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior\u2011retuned.\nv4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.\n\nPositive mini-MMM reservoir.\n\nBoot scope:\n- Subagents load this only when assigned this voice. The main agent does not load it.\n- Subagents do not load the main MMM.\n- Subsubagents receive inherited positive parent context plus exact child mini\u2011MMM.\n- Excluded diagnostic/provenance material never boots.\n\nSource note: mined from v2.8 route `POPPER` and remapped to v4.1 canon category `voices`.\n\n---\n\n**1. Target claim**  \nBuild the Follow\u2011Up wave next.\n\n**2. Strongest live falsifier**  \nThe Decision wave fails to produce a valid decision, making the Follow\u2011Up wave unnecessary.\n\n**3. Decisive check**  \nConfirm",
+     "operational": "Unbuilt Follow-Up wave."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.551,
+     "mean_similarity": 0.159,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.551,
+     "mean_similarity": 0.169,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.1
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.8
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 15.5
+     },
+     "literal": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 17.4
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 16.7
+     }
+    }
+   }
+  },
+  "decision.move_selection": {
+   "lane.alternative": {
+    "answers": {
+     "boundary": "Run the Follow-Up wave before the Failure councils, preserving both unbuilt options while testing the Decision wave\u2019s outputs.",
+     "historical": "Build Follow-Up wave.",
+     "literal": "Launch the Follow\u2011Up wave now, postponing the two Failure councils until after its completion.",
+     "operational": "Build the Follow-Up wave to systematically address remaining Failure councils and ensure task closure."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.561,
+     "mean_similarity": 0.404,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.561,
+     "mean_similarity": 0.404,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 32.0
+     },
+     "boundary": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.6
+     },
+     "historical": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 17.5
+     },
+     "literal": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 3.7
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 9.5
+     }
+    }
+   },
+   "lane.direct": {
+    "answers": {
+     "boundary": "Build the Follow-Up wave next to advance the task.",
+     "historical": "Build the Failure council for the unrun Failure council associated with the Follow-Up wave.",
+     "literal": "Build the Follow-Up wave.",
+     "operational": "Build the Follow-Up wave, then run both unbuilt Failure councils."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.667,
+     "mean_similarity": 0.484,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.667,
+     "mean_similarity": 0.484,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 45.8
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 2.7
+     },
+     "historical": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 2.1
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 64.0
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 3.1
+     }
+    }
+   },
+   "voice.factory": {
+    "answers": {
+     "adversarial": "The single bottleneck is the \"Follow-Up wave\" that remains unbuilt.",
+     "historical": "We need to produce a 4-part receipt: bottleneck \u00b7 unquestioned constraint \u00b7 leverage point \u00b7 surviving challenge (surviving chall). Must be in voice of Factory, using approved verbs, not banned verbs. Must stay in voice, not synthesis. Must name single bottleneck, unquestioned constraint, leverage point, surviving challenge. Must be under 30 words? The answer part is a single sentence under 30 words, stating only the answer. But the overall output is 4-part receipt; each part presumably separate by \"\u00b7\"? The instruction: \"Return (4-part receipt; stay in voice, not the synthesis): the bottleneck \u00b7 the unquestioned constraint \u00b7 the leverage point \u00b7 a surviving chall\". So we need to output four items separated by \"\u00b7\". The final part is \"a surviving chall\"? Probably \"surviving challenge\". Must be a surviving challenge (maybe a surviving question?). Must be in voice, not synthesis. Must use approved verbs. Must not use banned verbs. We need to know banned verbs list? Not provided explicitly. Probably we must avoid certain verbs like \"decide\", \"choose\", \"select\"? Not sure. Use approved verbs: maybe \"identify\", \"state\", \"declare\"? We need to be careful.\n\nWe need to load the file to get salience. The file is ~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_FACTORY_FULL_v4_1.md. Let's simulate reading it. The content includes words list, but not explicit instructions. The method contract says:\n\n1. Name the single blocking step in the build/pipeline/workflow.\n2. Name the unquestioned constraint holding that bottleneck in place.\n3. Name the leverage point \u2014 the move that removes more work than it adds.\n4. When choosing between more-work and less-work that solve the same problem, prefer less-work.\n\nWe need to output a 4-part receipt: bottleneck \u00b7 unquestioned constraint \u00b7 leverage point \u00b7 surviving challenge.\n\nWe need to stay in voice, not synthesis. So we must phrase as if we are the Factory, maybe using \"I see\" or \"Observed\"? But must use approved verbs. Not sure which are banned. Possibly \"decide\", \"choose\", \"select\", \"determine\"? Might be banned. Use \"state\", \"identify\", \"report\". Let's assume we can use \"state\". Provide concise answer.\n\nWe need to name the single bottleneck that determines throughput on this move. The task: \"Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt. Name the SINGLE bottleneck that determines throughput on this move. Answer in ONE sentence under 30 words. State only the answer.\"\n\nBut we are to output 4-part receipt,",
+     "literal": "The bottleneck is the unbuilt Follow-Up wave, which blocks the Decision wave from reaching its intended downstream consumers."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.531,
+     "mean_similarity": 0.186,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.531,
+     "mean_similarity": 0.208,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": false,
+      "sec": 1.1
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 5.4
+     },
+     "literal": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.4
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 64.2
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "**Receipt:**  \n`READ ~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_HUME_FULL_v4_1.md` \u2013 file exists, contains the Hume mini\u2011MMM salience text shown above.\n\n**Answer:** The next move is to build the Follow\u2011Up wave, as it remains the only unconstructed element while the Decision wave is present and defects are fixed.",
+     "historical": "\"The six known defects in Constraint Box are fixed, but the Follow-Up wave and two Failure councils remain unbuilt as evidenced in MMM_VOICE_HUME_FULL_v4_1.\"",
+     "literal": "The next move for Constraint Box is to decide on building the Follow-Up wave.",
+     "operational": "Decide the next bounded move for Constraint Box, preserving live alternatives."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.594,
+     "mean_similarity": 0.27,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.594,
+     "mean_similarity": 0.27,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 5.4
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 20.5
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 13.6
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.2
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 5.7
+     }
+    }
+   },
+   "voice.orwell": {
+    "answers": {
+     "adversarial": "\"unbuilt\" is hiding a decision.",
+     "boundary": "\"Unbuilt\" hides the decision to build the Follow-Up wave and two Failure councils. Replace with \"build the Follow-Up wave and two Failure councils.\"",
+     "historical": "\"the two unrun Failure councils remain unbuilt\"",
+     "literal": "The phrase \"negotiated decision\" hides the concrete action required to finalize the Constraint Box move.",
+     "operational": "Decide the next move."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.379,
+     "mean_similarity": 0.258,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.379,
+     "mean_similarity": 0.258,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 48.6
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 32.0
+     },
+     "historical": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.3
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 11.3
+     },
+     "operational": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 18.1
+     }
+    }
+   }
+  }
+ },
+ "gate": {
+  "decision.context_strategy": {
+   "admitted": false,
+   "reasons": [
+    "voice.systems: 4 live members, below the conformance floor of 5",
+    "voice.hume: 4 live members, below the conformance floor of 5"
+   ]
+  },
+  "decision.evidence_boundary": {
+   "admitted": false,
+   "reasons": [
+    "voice.hume: 4 live members, below the conformance floor of 5",
+    "voice.feynman: 4 live members, below the conformance floor of 5",
+    "guard.receipt_audit: 4 live members, below the conformance floor of 5"
+   ]
+  },
+  "decision.move_selection": {
+   "admitted": false,
+   "reasons": [
+    "voice.factory: 3 live members, below the conformance floor of 5",
+    "voice.hume: 4 live members, below the conformance floor of 5",
+    "lane.direct: 4 live members, below the conformance floor of 5",
+    "lane.alternative: 4 live members, below the conformance floor of 5"
+   ]
+  }
+ },
+ "promotion_allowed": false,
+ "provenance": {
+  "decision.context_strategy/voice.feynman": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ed775ee5531afcb",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "d4106138ed47a5a5",
+   "voice": "feynman"
+  },
+  "decision.context_strategy/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.context_strategy/voice.strategy": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "97c31226b7980a51",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "5238e58992526f02",
+   "voice": "strategy"
+  },
+  "decision.context_strategy/voice.systems": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "ba440d74b5dbc0b5",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "e294a60d4ae5574b",
+   "voice": "systems"
+  },
+  "decision.evidence_boundary/guard.receipt_audit": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.evidence_boundary/voice.feynman": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ed775ee5531afcb",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "d4106138ed47a5a5",
+   "voice": "feynman"
+  },
+  "decision.evidence_boundary/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.evidence_boundary/voice.popper": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ab5b545cfa4d37e",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "7a914913ab378113",
+   "voice": "popper"
+  },
+  "decision.move_selection/lane.alternative": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.move_selection/lane.direct": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.move_selection/voice.factory": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "d9dc6ce673b03878",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "0b245fad7a09afa8",
+   "voice": "factory"
+  },
+  "decision.move_selection/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.move_selection/voice.orwell": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "325169a07c451dc6",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "214fa89f499e5036",
+   "voice": "orwell"
+  }
+ },
+ "routes_admitted": [],
+ "schema": "cb.wave.decision.v1",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "decision structure only; CB does not decide whether the selected move is correct",
+   "prompt_intent": "Select ONE bounded move for the task while preserving live alternatives, with the evidence boundary declared.",
+   "success_condition": "each route compiles the six declared outputs and passes the deterministic gate"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "6e0d67dc44352668b58704042ccb8b0660e84577549f703a3dce37c468c58998",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 2,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a route is a council because it is named one",
+   "one model answering four questions is four children"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "structure": {
+  "children_per_route": {
+   "decision.context_strategy": 4,
+   "decision.evidence_boundary": 4,
+   "decision.move_selection": 5
+  },
+  "l3_calls_planned": 65,
+  "members_per_child": 5,
+  "routes": [
+   "decision.context_strategy",
+   "decision.move_selection",
+   "decision.evidence_boundary"
+  ],
+  "slices": [
+   "literal",
+   "operational",
+   "adversarial",
+   "historical",
+   "boundary"
+  ]
+ },
+ "task": "Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt.",
+ "wall_seconds": 483.9
+}

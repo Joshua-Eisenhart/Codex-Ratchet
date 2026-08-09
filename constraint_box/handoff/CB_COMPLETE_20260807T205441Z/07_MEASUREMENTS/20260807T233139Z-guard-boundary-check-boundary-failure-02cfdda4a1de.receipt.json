@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:32:13.515707+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 31791,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "Salience file not present at path; proceeding with receipt.\n\n**Fog:** \"block a clean merge\" and \"git aborts\" \u2014 which git operation (merge/rebase/pull)? Conflates dirty-tree rejection of worktree-update with rejection of merge-commit application. Git merge lands commits to index despite dirty tree.\n\n**Cut + replacement:**\n- \"block a clean merge\" \u2192 \"which operation halts, and at which step (before or after commit-application)?\"\n\n**Hidden bad state:** \"git aborts without applying\" assumes the abort happens before commits are applied, not after. Evidence missing: exit code, error message, state of `.git/MERGE_HEAD`.\n\n**Surviving challenge:** Dirty files may block *checkout* of merge result but not *merge-commit application*. Claim needs: operation name + stderr + git status at abort point.\n\n---\n\n**agent_id:** failure-orwell-001 | **slices_loaded:** false (salience unavailable) | **receipt_status:** incomplete-per-contract",
+    "result_subtype": "success",
+    "total_cost_usd": 0.031569
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

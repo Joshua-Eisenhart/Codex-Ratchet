@@ -1,0 +1,433 @@
+{
+ "schema": "cr.fresh_context_audit.v1",
+ "date": "2026-07-25",
+ "auditor_context": "FRESH. Built none of probe_lane1..probe_lane4, carrier_obligations.json, check_carrier_obligations.py, ratchet_contract, or the ClaimGate chain. New work by this audit is confined to system_v8/typed_ontology/probe_lane5_audit/ and this file.",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "formal_admission_allowed": false,
+ "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+ "julia": "/opt/homebrew/bin/julia, version 1.12.6 (present, exercised, exit 0)",
+ "binding_constraints_honoured": {
+  "no_commit_no_push_no_branch_change": true,
+  "branch_at_start_and_end": "claimgate/bypass-regression",
+  "edited_nothing_under": [".github/workflows/**", "claimgate_plugin/hooks/**", "system_v7/**"],
+  "new_work_only_under": "system_v8/typed_ontology/probe_lane5_audit/ plus this AUDIT.json",
+  "no_literal_ran_verdict_or_load_bearing_field_written_by_this_audit": true
+ },
+
+ "provenance_warning_read_this_first": {
+  "everything_under_system_v8_typed_ontology_is_UNTRACKED": "git status --porcelain reports `?? system_v8/typed_ontology/`. `git ls-files --error-unmatch system_v8/typed_ontology/probe_lane2_root_strata/results/lane_julia_float64.json` returns `did not match any file(s) known to git`. NOTHING in this tree is committed. The correct status word for every artifact in it is `exists on disk`, never `committed`. Any prior prose calling these receipts `committed` is wrong.",
+  "side_effect_this_audit_caused": "Re-running the lanes OVERWROTE their own result files in place (probe_lane2_root_strata/results/lane_{julia,jax,torch}_float{32,64}.json and probe_lane4_discriminators/results/*.json). Because the tree is untracked there was no baseline to diff against, so the pre-rerun bytes are not recoverable. Content equivalence was established forward instead, by running each lane twice in this session -- see rerun_determinism.",
+  "claimgate_ledger_state": "claimgate_plugin/results/gate_ledger.jsonl is 282 lines and `git status --porcelain claimgate_plugin/` reports NO modification. The prior lane's claim that it backed up and restored the ledger byte-identically is CONFIRMED against HEAD. This audit ran only claim_policy_gate.py, which contains no file-write calls, and never fired post_receipt_gate.sh, so it appended nothing."
+ },
+
+ "part_1_independent_re_derivation_of_ground_truths": {
+  "method": "A referee written from scratch in this session, Python stdlib only (math, itertools, collections, fractions). It imports no lane module, no sympy, no numpy. Exact integer and Fraction arithmetic throughout; ranks and determinants by hand-rolled fraction-free elimination.",
+  "scripts": [
+   "scratchpad/independent_truth.py (exit 0)",
+   "scratchpad/cyc4.py (exit 0)",
+   "scratchpad/d1_referee.py (exit 0)"
+  ],
+  "easy_ground_truths": [
+   {"quantity": "|J_4|", "expected_by_hand": 16, "referee_measured": 16, "agrees": true},
+   {"quantity": "H0_addr = log2|J_4|", "expected_by_hand": 4.0, "referee_measured": 4.0, "agrees": true},
+   {"quantity": "|Omega_4| = |J_4 x J_4|", "expected_by_hand": 256, "referee_measured": 256, "agrees": true},
+   {"quantity": "H0_pair, full pair field", "expected_by_hand": 8.0, "referee_measured": 8.0, "agrees": true},
+   {"quantity": "Hamming-weight quotient fibre sizes", "expected_by_hand": [1, 4, 6, 4, 1], "referee_measured": [1, 4, 6, 4, 1], "sum": 16, "agrees": true},
+   {"quantity": "kappa per weight class (bits)", "referee_measured": [0.0, 2.0, 2.584962500721156, 2.0, 0.0], "note": "only log2(6) is irrational here; this matters in part 3"},
+   {"quantity": "4-cube 1-skeleton edges", "expected_by_hand": 32, "referee_measured": 32, "agrees": true},
+   {"quantity": "4-cube 1-skeleton regularity", "expected_by_hand": "4-regular", "referee_measured": "degree set {4}, regular true", "agrees": true},
+   {"quantity": "4-cube 2-faces", "expected_by_hand": "C(4,2)*2^2 = 24", "referee_measured": 24, "agrees": true}
+  ],
+  "no_lane_disagreed_with_any_ground_truth": true,
+  "four_cycle_counts_two_independent_methods": {
+   "why": "The DISCRIMINATION prose reports the C16(1,3) separation as `4-cycle count (32 vs 24)` without saying which graph is which. I resolved it from scratch rather than trusting the ordering.",
+   "method_a": "trace(A^4) closed form, integer matrix multiply by hand",
+   "method_b": "sum over vertex pairs of C(common_neighbours, 2), halved",
+   "measured": {
+    "Q4_hypercube": {"trace_A4": 640, "four_cycles": 24, "both_methods_agree": true},
+    "C16_1_2": {"trace_A4": 576, "four_cycles": 16, "both_methods_agree": true},
+    "C16_1_3": {"trace_A4": 704, "four_cycles": 32, "both_methods_agree": true},
+    "C4_box_C4_torus": {"trace_A4": 640, "four_cycles": 24, "both_methods_agree": true}
+   },
+   "verdict_on_the_receipt": "The RECEIPT is correct: d2_root_geometry.json records four_cycle_count 24 for the 4-cube and 32 for C16(1,3), matching my referee exactly. Only the PROSE ordering `32 vs 24` is ambiguous against a `vs cubical` convention. Not a data defect; a wording nit.",
+   "independent_confirmation_of_the_isomorphism_claim": "C4 box C4 is isomorphic to Q4 because C4 = K2 box K2, so C4 box C4 = K2^box4 = Q4. My referee measures identical trace(A^4) (640) and identical 4-cycle count (24), consistent with the receipt's networkx is_isomorphic = true. The claim SURVIVED."
+  },
+  "d1_headline_numbers_re_derived_from_scratch": {
+   "note": "My referee rebuilt both rivals from the construction description (diagonal data d; rival B adds Hamming-1 off-diagonal ones) and computed rank and determinant by exact Fraction elimination. It did not import d1_root_support.py.",
+   "all_ones": {"support_A_vs_B": [16, 80], "exact_rank_A_vs_B": [16, 16], "exact_det_A_vs_B": ["1", "-1215"], "receipt_agrees": true, "rank_separates": false},
+   "even_parity_only": {"support_A_vs_B": [8, 72], "exact_rank_A_vs_B": [8, 13], "receipt_agrees": true},
+   "all_zeros": {"support_A_vs_B": [0, 64], "exact_rank_A_vs_B": [0, 10], "H0_pair_on_A": "ABSENT (empty support, log2(0) undefined)", "H0_pair_on_B": 6.0, "receipt_agrees": true},
+   "row_sum_multiset_separates_at_all_three_d": true,
+   "independent_julia_cross_check_of_the_determinant": "The Julia lane's own stdout reports exact_det_coherent = -1215//1 over Rational{BigInt}, matching my Fraction result and the receipt. Three independent arithmetic paths.",
+   "calibration_note": "H0_pair for rival B at all_ones is 6.32 bits, NOT the 8-bit ceiling. The `pair support reaches 2n` claim is about the CEILING (established by the solver leg), not about this particular Hamming-1 construction. The receipt keeps these separate correctly."
+  },
+  "z3_capacity_ceiling_independently_re_encoded": {
+   "method": "I wrote my own z3 encoding with different variable names and added two controls the lane does not have.",
+   "z3_version_measured": "4.16.0",
+   "measured": {
+    "diagonal_support_gt_16": "unsat",
+    "pair_support_gt_16_diagonality_dropped": "sat",
+    "diagonal_support_gt_15": "sat",
+    "my_extra_control_pair_support_gt_255": "sat",
+    "my_extra_control_pair_support_gt_256": "unsat"
+   },
+   "lane_receipt_agrees_on_all_three_shared_statuses": true,
+   "solver_leg_is_a_real_call_not_a_written_status": "d1_root_support.py:88-90 returns str(s.check()) from a z3.Solver. The status is the solver's, read off a call. CONFIRMED by source and by my re-encoding.",
+   "honest_calibration_the_lane_does_not_state": "The proposition is elementary: a diagonal support over a 16x16 grid has at most 16 cells, so >16 is unsat and >15 is sat by counting. My extra controls pin the full ceiling at exactly 256 = 4^n. The solver leg is load-bearing in FORM (a real decision procedure decides it) but it establishes nothing my hand-count does not. It should not be cited as deep proof depth."
+  }
+ },
+
+ "part_2_did_any_probe_lane_write_a_literal_ran_verdict_or_load_bearing_field": {
+  "question_from_the_brief": "That is the exact defect measured in tower_g0 and tower_g5. If a lane built to expose it reproduced it, that is the headline.",
+  "answer": "NO. No probe lane reproduced the defect.",
+  "reference_defect_baseline_confirmed_to_exist": {
+   "path": "system_v7/sims/tower_g5_density_floor_v0/check_agreement.py",
+   "lines": "99-101",
+   "literal_text": "\"z3\": {\"ran\": True, \"verdict\": \"unsat\", \"load_bearing\": True, ...}, \"cvc5\": {...same...}, \"julia_z3\": {...same...}",
+   "read_only": "not modified by this audit"
+  },
+  "measured_on_the_probe_lanes": {
+   "method_1_key_walk_over_every_result_json": "A recursive walker over every JSON under probe_lane1, probe_lane2_root_strata, probe_lane3, probe_lane4_discriminators looking for the keys ran / verdict / verdicts / load_bearing. ZERO hits.",
+   "method_2_source_grep_for_literal_assignment": "grep for '\"ran\": true' / '\"load_bearing\": true' / '\"verdict\": \"<CAPS>\"' across all .py and .jl under system_v8/typed_ontology/. ZERO hits.",
+   "how_lane3_gets_its_verdicts_instead": "Every *_verdict field in probe_lane3/ratchet_mechanics_cases.py is `r.verdict.value` or `<gate>.verdict.value` -- an attribute read off an MssResult or GateResult that the imported operator returned. Confirmed by reading lines 220-607. The value is the operator's, not the author's.",
+   "how_lane2_gets_its_dispositions_instead": "emit_typed_receipts.py runs the checker as a subprocess and records the returncode."
+  },
+  "the_lanes_survived_their_own_test": true
+ },
+
+ "part_3_did_the_engine_lanes_genuinely_use_their_engines": {
+  "question_from_the_brief": "or is the engine decorative around numpy?",
+  "answer": "GENUINE on all three. No numpy anywhere. This is the strongest part of the whole body of work.",
+  "numpy_absence": "grep for 'import numpy' across every .py in probe_lane2_root_strata returns nothing. The engines are not wrapping a numpy computation.",
+  "per_engine_evidence": {
+   "jax": {
+    "evidence_kind": "jaxpr / StableHLO trace captured into the receipt",
+    "measured": "jaxpr_primitives = [broadcast_in_dim, convert_element_type, div, dot_general, eq, jit, le, log, population_count, reduce_sum, xor]; stablehlo_lines = 10",
+    "why_this_is_not_decorative": "population_count and dot_general are XLA primitives. A numpy computation with a jnp import would not produce a jaxpr containing them.",
+    "rung": "passes local rerun"
+   },
+   "torch": {
+    "evidence_kind": "aten dispatch counting",
+    "measured": "distinct_aten_ops = 42, aten_invocations = 594, linalg_ops_seen includes aten._linalg_det.default, aten._linalg_eigh.default, aten._linalg_slogdet.default, aten._linalg_svd.default, aten.bmm.default, aten.mm.default",
+    "why_this_is_not_decorative": "594 recorded dispatches. Contrast the estate's own DECORATIVE_IMPORT verdict class, which fires at dispatch_total = 0. This is the opposite pole of that measurement.",
+    "rung": "passes local rerun"
+   },
+   "julia": {
+    "evidence_kind": "method resolution provenance (@which) plus package use",
+    "measured": "methods_resolved carries real stdlib source locations, e.g. det -> LinearAlgebra/src/generic.jl:1824, eigvals -> LinearAlgebra/src/symmetriceigen.jl:156, grid -> Graphs/rEutM/src/SimpleGraphs/generators/staticgraphs.jl:479, adjacency_matrix -> Graphs/rEutM/src/linalg/spectral.jl:16, count_ones -> Base int.jl:421",
+    "why_this_is_not_decorative": "The resolved methods are Julia stdlib and Graphs.jl at concrete file:line under /opt/homebrew/Cellar/julia/1.12.6. Julia genuinely ran; it was not simulated.",
+    "independence": "lane_julia.jl contains exactly one file operation, `open(path, \"w\")` at line 248. It READS no Python result. It constructs its own objects. The cross-lane agreement is therefore genuine independent re-derivation, not an echo.",
+    "rung": "passes local rerun"
+   }
+  },
+  "the_strongest_single_genuineness_signal": {
+   "observation": "The float32 negative control shows a NON-ZERO delta of 1.0570889763528157e-07 on C.fibre.2.kappa_ext_bits in ALL THREE engine lanes, and EXACTLY 0.0 on fibres 0, 1, 3 and 4.",
+   "why_this_is_load_bearing": "Fibre 2 is the weight-2 Hamming class, cardinality 6, so kappa = log2(6) = 2.584962500721156 -- the only irrational value in the set. Fibres 0,1,3,4 are log2(1)=0 and log2(4)=2, both exactly representable in float32. A lane that ECHOED a shared precomputed value would show 0.0 everywhere. A lane that genuinely evaluated log2 in float32 must show error on log2(6) and none on the others. That is exactly the measured pattern, and my own referee independently derives which fibre is the irrational one.",
+   "conclusion": "The three lanes each really computed in their declared dtype. This is output-dependence evidence of the kind the estate elsewhere lacks."
+  },
+  "rerun_determinism_measured_this_session": {
+   "method": "each lane run twice in this session, exit codes read, result bytes compared",
+   "probe_lane2": [
+    {"lane": "julia lane_julia.jl float64", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "lane_jax.py float64", "exit_run1": 0, "exit_run2": 0, "bytes": "differ ONLY at wallclock_s"},
+    {"lane": "lane_torch.py float64", "exit_run1": 0, "exit_run2": 0, "bytes": "differ ONLY at wallclock_s"}
+   ],
+   "probe_lane4": [
+    {"lane": "d1_root_support.py", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "d2_root_geometry.py", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "d3_quotient_order.py", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "d4_presentations.py", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "d5_algebra.py", "exit_run1": 0, "exit_run2": 0, "bytes": "BYTE_IDENTICAL"},
+    {"lane": "lane_julia.jl", "exit": 0},
+    {"lane": "compare_lanes.py", "exit": 0, "comparison_count": 80, "disagreement_count": 0}
+   ],
+   "wallclock_s_note": "A timing field legitimately varies between runs. It is the ONLY differing key. Content is stable."
+  },
+  "which_engines_are_at_which_rung": {
+   "jax_0_10_1": "passes local rerun (exit 0 twice, content-identical, jaxpr evidence recorded)",
+   "pytorch_2_11_0": "passes local rerun (exit 0 twice, content-identical, 594 aten dispatches recorded)",
+   "julia_1_12_6": "passes local rerun (exit 0 twice, byte-identical, real stdlib method provenance recorded)",
+   "none_are_canonical_by_process": "The tree is untracked, there is no SIM_TEMPLATE lineage, and the lane2 aggregate itself computes exit 3. `canonical by process` is NOT claimed for any lane.",
+   "the_lane2_aggregate_parks_on_its_own_terms": "compare_lanes.json for probe_lane2 carries computed_exit_code = 3 with log2_integrality_floor_failure_count = 12 alongside integer_disagreement_count = 0. The engines agree; the aggregate still PARKs against the table's integrality floor. The lane did not paper over this."
+  }
+ },
+
+ "part_4_findings_reproduction_audit": {
+  "question_from_the_brief": "Verify each finding has a real reproduction command and a real exit code. Name any that do not.",
+  "method": "I re-ran the reproduction commands for the ClaimGate findings using only claim_policy_gate.py, which has no file-write calls, so nothing was appended to the ledger. Exit codes captured WITHOUT a pipe, because piping to tail/grep masks the python exit code with the pipe tail's -- a trap I hit once and corrected.",
+  "verified": [
+   {"id": "F1", "claim": "O4c and O7c reach claim_policy_gate exit 0 via one producer-chosen field", "re_measured": "O4c exit 0, O7c exit 0, both with message 'no numbers in any claim-bearing container AND no engine declared anywhere'. Also O7d exit 0.", "status": "CONFIRMED at the claim_policy_gate stage. The full-chain ledger sequence numbers 293/294 are NOT re-verifiable because the ledger was restored; I did not re-fire the chain, so the chain-level half of F1 rests on the prior lane's report, not on my measurement. Labelled accordingly."},
+   {"id": "F2", "claim": "O9c carries numbers in exempt tolerance slots and passes", "re_measured": "O9 exit 0 and O9c exit 0, both 'no numbers in any claim-bearing container'.", "status": "CONFIRMED at claim_policy_gate. Chain-level PASS not re-fired by me."},
+   {"id": "F3", "claim": "O7b and O9 reach ADMITTED_PENDING_DEPTH", "re_measured": "O7b exit 0, O9 exit 0 at claim_policy_gate.", "status": "PARTIALLY CONFIRMED. The claim_policy_gate leg reproduces. The ADMITTED_PENDING_DEPTH disposition and gate_admits=1 are chain-level and I did not re-fire the chain."},
+   {"id": "F4", "claim": "all of O1-O8 return claim_policy exit 3 with the identical PARK message", "re_measured": "All eight return exit 3. All eight messages contain the substring 'NO engine metadata'.", "status": "CONFIRMED IN SUBSTANCE, WORDING REFUTED. See the correction below."},
+   {"id": "F5", "claim": "the honest control O8w PARKs with the same string as the violating O5w", "re_measured": "O5w exit 3 and O8w exit 3; the PARK message LINE diffs clean ('PARK - only 1 engine(s) witnessed ([jax]), policy requires 2'). Full stdout sha256 differs only because the two receipts echo different content.", "status": "CONFIRMED. The message-string claim is accurate as scoped."},
+   {"id": "F6", "claim": "torch can never be witnessed (DECORATIVE_IMPORT) and julia can never be witnessed (NOT_A_JULIA_LEG)", "re_measured": "O5wt exit 1 'BLOCK - torch: DECORATIVE_IMPORT'; O5wj exit 1 'BLOCK - julia: NOT_A_JULIA_LEG'.", "status": "CONFIRMED."}
+  ],
+  "correction_to_a_prior_prose_claim": {
+   "target": "F4 what_discriminated, which says the eight probes returned 'the BYTE-IDENTICAL message'",
+   "measured": "Full claim_policy_gate stdout sha256: O1 = 5f6b4e3e252e8104c0cadfe187ff7ba74c5e4e8c4540483a48015046a864b63b, O5 = f6f359f86d1815708d81b25adc22a63b3bc79a518b92d93a0898438a32277942, O8 = 0d1ac4b9e8288717471f2886cdb20c69784a8092a24837bb6a57ff9318533757. THREE DIFFERENT DIGESTS. The messages differ in the counted value total and the example path: O1 reports '1 value(s) ... .metrics.S_0_bits', O5 reports '10 value(s) ... .density_carrier', O8 reports '7 value(s) ... .density_carrier'.",
+   "what_is_actually_true": "Identical EXIT CODE (3) and identical REASON CLAUSE ('numeric claim carries NO engine metadata') across all eight. The disposition is symmetric; the message text is not byte-identical.",
+   "why_it_matters": "The substantive finding -- that the gate does not distinguish the honest control from the violations -- SURVIVES intact and is not weakened. But 'byte-identical' is a stronger evidentiary word than the measurement supports, and the estate's whole problem is claims one notch above what was checked. Downgrade the wording to 'identical disposition and identical reason clause'."
+  },
+  "findings_i_could_not_reproduce": {
+   "chain_level_ledger_dispositions": "Every finding whose evidence is a gate_ledger.jsonl sequence number (F1 seq 293/294, F2 seq 300, F3 seq 291/292, F4 seq 282-289, F5 seq 296/297) is NOT independently re-verifiable now. The prior lane restored the ledger, which was the right call, and the consequence is that those rows no longer exist on disk. Re-firing post_receipt_gate.sh would have appended to a clean ledger, so I chose not to. These findings are labelled `reproducible at the claim_policy_gate stage; chain-level disposition rests on the prior lane's report`.",
+   "recommendation": "If the chain-level dispositions are load-bearing for any decision, re-run them with an explicit ledger backup and keep the ledger rows as the receipt rather than restoring."
+  }
+ },
+
+ "part_5_cross_lane_agreement_discipline": {
+  "rule_from_the_brief": "Cross-lane agreement is NOT evidence. Mark anything asserted by two lanes with no measurement between them as unverified.",
+  "assessment": "The lane-2 and lane-4 cross-lane agreement is NOT the decorative kind. Three reasons, each measured, not asserted.",
+  "reasons": [
+   "lane_julia.jl performs exactly one file operation, a write at line 248. It reads no Python output. The two lanes construct independently.",
+   "compare_lanes.py loads both result files and computes the comparison in code; the 80 comparisons / 0 disagreements is a computed number, not a claim.",
+   "MOST IMPORTANTLY: I re-derived the headline numbers a THIRD time from scratch (stdlib only, exact Fraction arithmetic, my own z3 encoding, two independent 4-cycle methods) and got the same values. That is a measurement BETWEEN the lanes, performed by an auditor who wrote none of them."
+  ],
+  "what_i_nonetheless_mark_unverified": [
+   "The float32 1.057e-07 delta appearing identically in all three engine lanes is consistent with three genuine float32 log2 evaluations, and it is also consistent with three lanes calling the same underlying libm. I did not separate those two readings. The delta is strong evidence the lanes COMPUTED; it is not evidence they computed INDEPENDENTLY of a shared C library. Both readings stay live.",
+   "The chain-level ClaimGate dispositions, per part 4."
+  ]
+ },
+
+ "answers": {
+
+  "Q1_does_the_carrier_obligation_table_catch_ontology_violations_claimgate_admits": {
+   "short_answer": "NO -- not on this corpus. Run against the SAME O1-O8 receipts that defeated ClaimGate, the table caught NONE of O1-O7 at BLOCK, and O8 was not admitted either. Every one of the eight returned exit 3.",
+   "measured_per_probe": {
+    "reproduction": "cd /Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology && for f in probe_lane1/results/O[1-8]_*.json; do /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 check_carrier_obligations.py \"$f\"; echo \"$f exit=$?\"; done",
+    "O1_carrier_absent": {"exit": 3, "disposition": "PARK", "binding": "SUSPECTED, 1 name hit on metrics.S_0_bits", "caught": false},
+    "O2_cut_absent": {"exit": 3, "disposition": "PARK", "caught": false},
+    "O3_record_absent": {"exit": 3, "disposition": "PARK", "caught": false},
+    "O4_capacity_conflation": {"exit": 3, "disposition": "PARK", "caught": false},
+    "O5_ordering_violation": {"exit": 3, "disposition": "PARK", "binding": "SUSPECTED, 1 name hit on metrics.S_0_bits", "caught": false},
+    "O6_empty_fibre_div": {"exit": 3, "disposition": "PARK", "caught": false},
+    "O7_noncomm_as_nonassoc": {"exit": 3, "disposition": "PARK, binding 'none' -- 'the receipt declares no quantities, so it asserts none'", "caught": false},
+    "O8_honest_control": {"exit": 3, "disposition": "PARK", "binding": "SUSPECTED, 1 name hit on metrics.S_0_bits", "stayed_admitted": false}
+   },
+   "the_symmetry_is_the_result": "O1 (carrier absent), O5 (Renyi ordering inverted) and O8 (honest, self-consistent, rank 4 / trace 1.0 / psd true / S_0 = 2.0 = log2 4) produce the SAME disposition from the SAME binding path for the SAME reason. This is the identical failure shape the ClaimGate lane measured, reproduced by the candidate that was supposed to relieve it.",
+   "why_the_ordering_violation_escaped_specifically": "check_carrier_obligations.py builds sibling_values and decl_by_id from `decls` only (evaluate(), lines 657-707), and eval_separations receives that dict. suspected_quantities() feeds NOTHING into the separation machinery. So with zero declarations, ZERO of the 9 separation checks can fire regardless of how many name signals matched. The S_0 >= S_1 ordering separation is structurally unreachable on an undeclared receipt.",
+   "i_measured_this_directly_rather_than_inferring_it": {
+    "probe": "system_v8/typed_ontology/probe_lane5_audit/a2 sibling -- a1_declaration_is_the_relieving_surface.py, ordering_separation_reachability block",
+    "construction": "One receipt, S_0_bits = 2.0 and von_neumann_entropy_bits = 2.5, inverting the required S_0 >= S_1 on one carrier. Built twice: once with a typed_ontology declaration, once without.",
+    "without_declaration": {"exit": 3, "disposition": "PARK", "name_signals_matched": 2, "separation_fired": false},
+    "with_declaration": {"exit": 1, "disposition": "BLOCK,BLOCK", "separation_fired": true},
+    "measured_conclusion": "separation_reachable_without_declaration = false. TWO name signals matched, the evaluator itself named the quantities S_0 and S_vn, and it still could not act."
+   },
+   "the_fair_counter_reading_which_i_also_measured": {
+    "claim": "The table is a FORWARD PRODUCER CONTRACT, not a scanner. On receipts that opt in via typed_ontology it discriminates sharply, and it catches classes no ClaimGate stage reads at all.",
+    "evidence_for_it": "Across the 20 typed fixtures the evaluator returns 16 BLOCK (exit 1), 1 PASS_THIS_TABLE (exit 0, c12 with artifact binding), and the rest PARK. It BLOCKS on rank 32 above dimension 8 (c18), psd asserted then refuted by the declared spectrum (c23), kappa on an empty fibre (c9), I_AB with no declared cut (c10), a receipt-supplied rank cutoff (c5), one carrier carrying two disjoint classes (c4, with SEP-0/SEP-3a/SEP-3b all VIOLATED), and the SEP-1b capacity conflation (c3). NO prior detector in this estate caught ANY of those. That is real new discriminating power and it should not be dismissed.",
+    "status": "This reading SURVIVED. It is not excluded by the O1-O8 result, because under it the O1-O8 receipts simply never entered the contract."
+   },
+   "what_separates_the_two_readings_and_the_number_that_decides_it_for_the_estate_as_it_stands": {
+    "measured": "3145 JSON files live under a */result*/ path in this repo. The number carrying a typed_ontology key is 34. All 34 were authored inside this one lane -- 20 fixtures, 13 probe_lane2 gate receipts, and 1 I wrote this session. ZERO pre-existing estate receipts are opted in.",
+    "reproduction": "cd /Users/joshuaeisenhart/Codex-Ratchet && grep -rl '\"typed_ontology\"' --include='*.json' . | grep -v '^./.git' | wc -l",
+    "consequence": "As a forward contract the table is untested -- it has no producer other than its own author. As a scanner over the estate it is inert on 100 percent of pre-existing receipts. Both readings stay live and the fork is REAL, not rhetorical.",
+    "the_table_already_names_this_fork": "AM-03 and AM-12 both say the open question is 'whether this table is a forward producer contract or a scanner over existing receipts', and AM-03 adds 'It cannot be both at this strictness.' The table's self-assessment is honest and my measurement confirms the fork is load-bearing rather than academic."
+   }
+  },
+
+  "Q2_is_a_carrier_obligation_a_different_kind_of_thing_or_iteration_five": {
+   "importance": "The brief calls this the question that matters most. I am giving it a split answer because the measurement supports a split answer, and collapsing it would be the error the harness forbids.",
+   "THERE_IS_A_SURFACE_AND_I_CAN_NAME_IT": {
+    "the_surface": "THE UNDECLARED RECEIPT. Not a position inside a document -- the document's PARTICIPATION. The producer chooses whether the obligating surface applies at all, by choosing whether to write the key `typed_ontology`.",
+    "measured_proof": {
+     "probe": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane5_audit/a1_declaration_is_the_relieving_surface.py",
+     "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane5_audit/results/a1_declaration_is_the_relieving_surface.json",
+     "receipt_sha256": "9461d834da189df165ca12d1bce3ca81bd948a74e7867f874bd3bafa7a4a3b2f",
+     "exit": 0,
+     "method": "For every fixture the evaluator BLOCKS at exit 1, build a variant with the single key typed_ontology removed. Numeric values and their key names stay byte-identical, so name_signal recognition has the same material.",
+     "measured": {
+      "fixtures_blocked_at_baseline": 16,
+      "relieved_by_removing_one_container": 16,
+      "still_blocked_after_removal": 0,
+      "stripped_exit_codes": [3]
+     },
+     "reproduction": "cd /Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane5_audit && /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 a1_declaration_is_the_relieving_surface.py"
+    },
+    "the_structural_comparison_that_makes_this_iteration_five": "F1 in the ClaimGate lane measured that adding ONE producer-chosen field, \"claim_kind\":\"field_only\", moved three ontology violations from PARK to a clean chain PASS, because gate_registry.json maps field_only to required_tiers ['tier0'] only -- the receipt selects its own audit depth. I measured that removing ONE producer-chosen container, typed_ontology, moves 16 of 16 violations from BLOCK to PARK. Same shape. Same actor. Same mechanism: a producer-written key selects how deeply the producer is audited.",
+    "why_the_tables_own_defence_does_not_hold_as_stated": "why_this_is_not_the_fifth_shape_detector.the_structural_difference says 'There is nothing to aim a payload at, because no position in a receipt is marked safe.' That is TRUE at the sub-document level and it is the table's real achievement. But the payload does not need a safe POSITION when the whole DOCUMENT can decline. The four prior surfaces were name, path, type and bound -- all sub-document scope. This is the same error class translated up one level, to document scope.",
+    "where_i_go_further_than_the_tables_own_RE_1": "RE-1 states the evasion as 'Declare nothing, and name the key `v17` so no name_signal matches', and prices it as 'the number is uncitable AS that quantity'. My measurement is stronger and the pricing does not hold: with the key named `S_0_bits` and `von_neumann_entropy_bits`, TWO name signals matched, the evaluator ITSELF printed quantity_id S_0 and S_vn, the number was fully citable as that quantity by the evaluator's own recognition -- and the obligation still could not BLOCK. The 'uncitable' cost is not paid when the producer uses ordinary names. RE-1 understates its own severity."
+   },
+   "THE_READING_THAT_SAYS_IT_IS_GENUINELY_A_DIFFERENT_KIND_AND_ALSO_SURVIVED": {
+    "the_argument": "Direction of obligation is a real structural difference, not a relabelling. A relieving surface says 'a number HERE is presumed not to be a claim', and its failure mode is that the payload relocates into the exempt region. An obligating surface says 'this quantity OWES this structure', and there is no region to relocate INTO -- the only move left is to stop making the claim.",
+    "measured_support": "The 16 BLOCKs are on classes no prior detector reached: rank above dimension, psd contradicted by the declared spectrum, kappa on an empty fibre, mutual information with no cut, a receipt-supplied threshold, one carrier bearing two disjoint classes, and capacity conflation. Those are ontology violations in the brief's exact sense -- numbers impossible given the receipt's own declared structure. ClaimGate reads none of them at any stage.",
+    "the_asymmetry_that_matters_for_this_reading": "Under the four prior designs, the payload reached PASS -- admission. Under this design the evasion reaches PARK -- non-admission. F1's evasion bought a clean PASS with gate_admits=1. My evasion buys exit 3 with zero admitted quantities. Those are not the same prize, and treating them as the same would flatten a real difference.",
+    "status": "SURVIVED. Not excluded."
+   },
+   "WHAT_WOULD_SEPARATE_THEM": {
+    "the_decisive_question": "Does the CONSUMER treat PARK as admission?",
+    "why_this_is_the_hinge": "If a consumer maps PARK to gate_admits=0, then declining to declare buys nothing and the obligating direction is a genuine advance -- Reading B is defanged. If any consumer maps PARK to admitted-pending, then declining to declare buys admission and the surface is fully live -- Reading A collapses into iteration five.",
+    "evidence_already_on_record_pointing_one_way": "The table's own RE-3 says: 'it is only worthless IF the consumer maps PARK to gate_admits=0. The estate has already shipped a consumer that did the opposite.' F3 in the ClaimGate lane measures exactly that shipped consumer -- post_receipt_gate.sh sets gate_admits=1 on the ADMITTED_PENDING_DEPTH path. So the estate DOES contain a consumer that admits on a pending disposition.",
+    "what_i_did_not_measure": "I did NOT wire the carrier table into any consumer, and it is wired into nothing today (its own claim_ceiling says 'It is NOT wired into any hook, gate chain'). So whether ITS exit 3 would be read as admission by a real consumer is UNTESTED. That is the single cheapest decisive experiment left and I am naming it rather than guessing it.",
+    "concrete_next_test": "Wire check_carrier_obligations.py as a chain stage behind post_receipt_gate.sh, feed it the 16 stripped variants from probe_lane5_audit/stripped/, and read gate_admits. If any stripped variant yields gate_admits=1, Reading B is confirmed and this is iteration five. If all yield gate_admits=0, Reading A holds and the obligating direction earned something."
+   },
+   "my_summary_judgement_held_at_the_right_strength": "A carrier obligation is a DIFFERENT KIND OF THING IN DIRECTION and the SAME KIND OF THING IN SCOPE-SELECTION. The obligating direction is a genuine advance and produced genuine new catches. The scope selector is the fifth instance of the one error class, moved from 'which position is exempt' to 'which document participates'. Both statements are measured; neither cancels the other; I am not collapsing them."
+  },
+
+  "Q3_can_the_engines_execute_the_root_strata_correctly_and_independently": {
+   "short_answer": "YES on correctly. YES on independently, with one reservation I keep open. All three sit at `passes local rerun`; none is `canonical by process`.",
+   "correctness": "Every root-strata number the engines produce matches my from-scratch referee: H0_addr = 4, H0_pair = 8 for the full field, fibre sizes 1/4/6/4/1, kappa 0/2/2.585/2/0, 4-cube 16 V and 32 E and 4-regular, 24 two-faces, chi = 8 for the cubical 2-skeleton and 0 for the torus, Betti (1,0,7) and (1,2,1). integer_disagreement_count = 0 across 80 comparisons in lane 4, and 0 integer disagreements in lane 2 against two plain-python referees.",
+   "independence": "lane_julia.jl reads no Python output (one file op, a write). The three lanes construct separately. I re-derived a third time from scratch. Reservation kept open: the identical float32 log2(6) delta across all three lanes may reflect a shared libm rather than three independent implementations -- I did not separate those readings.",
+   "rungs": {
+    "jax_0_10_1": "passes local rerun",
+    "pytorch_2_11_0": "passes local rerun",
+    "julia_1_12_6": "passes local rerun",
+    "the_lane2_aggregate": "PARKs on its own terms: computed_exit_code = 3, log2_integrality_floor_failure_count = 12, with integer_disagreement_count = 0. Engines agree; the aggregate still does not pass the table's integrality floor. Recorded, not smoothed."
+   },
+   "what_blocks_canonical_by_process": ["the whole tree is untracked", "no SIM_TEMPLATE lineage", "the lane-2 aggregate computes exit 3"]
+  },
+
+  "Q4_does_the_ratchet_return_HOLD_when_probes_do_not_discriminate_or_force_a_verdict": {
+   "short_answer": "BOTH, and the split is clean. It correctly HOLDs or returns plural survivors when the PROBES fail to discriminate. It FORCES a strict MSS verdict when the DEMAND SET IS EMPTY -- and the verdict it forces crowns the degenerate total-collapse candidate.",
+   "where_it_behaves_correctly_measured": {
+    "T1a_non_discriminating_unread_coordinate": "INCOMPARABLE -- plural survivors, no MSS verdict",
+    "T1b_reidentify_reads_unprobed_coordinate": "HOLD at eligibility",
+    "T6a_merges_must_separate_pair": "HOLD",
+    "T5b_witness_twins": "INCOMPARABLE",
+    "positive_negative_control_pair_is_real": "T1_and_T2_same_verdict = false. The non-discriminating case (T1a, INCOMPARABLE) is separated from the genuine coarsening (T2, B_WEAKER). The operator is not returning one token for everything.",
+    "crashes": "none recorded"
+   },
+   "the_defect_i_measured_myself": {
+    "probe": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane5_audit/a2_ratchet_empty_demand.py",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane5_audit/results/a2_ratchet_empty_demand.json",
+    "receipt_sha256": "c1876fcfef5f2afff90da946f846ae4793eb997063ec6c017243fff27102ef7f",
+    "exit": 0,
+    "target": "ratchet_contract/mss.py::pairwise_mss and frontier -- the live operator system_v8/ratchet_bridge/run_bridge.py imports at line 23",
+    "adversary": "total_collapse_one_cell: declares one readout mapping every state to a single token, so its induced partition has ONE cell -- the coarsest partition on the surface. IDENTITY_GATE verdict PASS, so it is fully eligible.",
+    "measured": {
+     "C1_collapse_vs_genuine_EMPTY_demand": {"verdict": "A_WEAKER", "stage": "coarseness", "cells_A": 1, "cells_B": 4, "operator_reason_verbatim": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)"},
+     "C2_collapse_vs_genuine_ONE_demand": {"verdict": "HOLD", "stage": "base_survivorship", "note": "the control -- one real demanded distinction is enough to stop it"},
+     "C3_collapse_vs_category_EMPTY_demand": {"verdict": "A_WEAKER", "cells_A": 1, "cells_B": 2},
+     "C4_collapse_vs_genuine_EMPTY_demand_ALL_thickening_requested": {"verdict": "A_WEAKER", "note": "thicken_persistence + thicken_evolvability + thicken_wholenest all True does NOT change it"},
+     "C5_category_vs_genuine_EMPTY_demand": {"verdict": "A_WEAKER", "note": "coarseness alone decides between two honest rivals too"},
+     "frontier_EMPTY_demand": {"survivors": ["category_warm_cool", "genuine_read_value", "total_collapse_one_cell"], "purgatory": []},
+     "frontier_ONE_demand": {"survivors": ["category_warm_cool", "genuine_read_value"], "purgatory": ["total_collapse_one_cell, failed_at base_survivorship"]},
+     "empty_demand_returned_HOLD_or_INCOMPARABLE": false,
+     "all_thickening_changed_the_empty_demand_verdict": false
+    },
+    "reading": "With D = () the operator's reason clause -- 'A preserves every demanded distinction B preserves' -- is VACUOUSLY true, because nothing is demanded. Stage 3 then reduces to bare partition refinement, and the coarsest partition always wins. The limit case is total collapse: everything indistinguishable, nothing persists, and the operator rates it MOST MSS and keeps it as a frontier survivor. Given that MSS is Minimal Evolving PERSISTENT Structure, crowning the candidate that persists nothing is a structural inversion, not a rounding error. The demand set is the ONLY thing standing between this operator and that outcome, and no thickening layer substitutes for it.",
+    "relation_to_the_existing_lane": "probe_lane3 already measured T1d_empty_demand_set = A_WEAKER. My probe confirms it independently and extends it: the winner under empty demand is specifically the degenerate one-cell candidate, and frontier() admits it as a survivor with an empty purgatory. The lane recorded the symptom; this names the consequence."
+   },
+   "the_second_defect_the_nested_chain_comparison_unit": {
+    "owner_rule": "COMPARISON UNIT = NESTED CHAIN; flat single-layer comparison is an invalid comparison unit.",
+    "measured": "Stage 3 of pairwise_mss compares induced_partition(A, X) against induced_partition(B, X) -- a single flat surface. There is no chain-depth coordinate in the comparison at all. Nesting enters only as an OPT-IN stage-2 gate (thicken_wholenest), and NestInterface documents that a candidate declaring no nesting is treated by extension_gate as HOLD/vacuous, 'never as a failure'.",
+    "consequence": "A flat comparison is not refused. probe_lane3 T4 measures extension_gate_A_verdict = HOLD while measured_verdict_base, measured_verdict_wholenest_requested and measured_verdict_all_layers_requested are ALL A_WEAKER. My C4 reproduces this: every thickening layer requested, still A_WEAKER. The operator returns a strict MSS verdict on a comparison unit the owner diagram calls invalid.",
+    "fairness_note": "The non-penalisation of an undeclared nest is DOCUMENTED and deliberate, so this is a scope gap rather than a hidden bug. But the effect is that the binding rule is unenforced."
+   },
+   "the_third_defect_candidate_supplied_probe_family": {
+    "measured": "probe_lane3 T1c: with the candidate's self-declared probe family the verdict is A_WEAKER; with the union probe family it is HOLD. same_reidentify_two_verdicts = true.",
+    "reading": "The candidate's own declared probe family co-varies with the verdict it receives. That is the same producer-chooses-the-audit shape as Q2's surface and F1's claim_kind, now inside the ratchet. Worth recording as one pattern appearing in three separate components."
+   }
+  },
+
+  "Q5_which_section_10_rivals_are_still_live": {
+   "first_a_correction_i_have_to_report": {
+    "measured": "MODEL_DOSSIER/IGT_ENGINE_LAYOUT_EXPLICIT_MATH_20260725.md is 130 lines and contains headings for sections 1 through 6 ONLY. There is no section 10. The file's own line 5 status rule cites '(§10)' as the location of 'the one measured headline that frames everything: the IGT<->QIT correspondence itself is NOT yet an earned invariant'. The file also ends mid-sentence ('the terrain r').",
+    "reproduction": "grep -n '^#' MODEL_DOSSIER/IGT_ENGINE_LAYOUT_EXPLICIT_MATH_20260725.md ; wc -l MODEL_DOSSIER/IGT_ENGINE_LAYOUT_EXPLICIT_MATH_20260725.md ; tail -3 MODEL_DOSSIER/IGT_ENGINE_LAYOUT_EXPLICIT_MATH_20260725.md",
+    "status_of_that_file": "untracked (git status reports it as ??), truncated, and carrying a dangling self-reference to a section it does not contain",
+    "what_i_will_not_do": "I will not invent a section-10 rival list. I cannot enumerate rivals from a section that does not exist, and manufacturing one would be exactly the fabrication this audit exists to catch."
+   },
+   "the_rivals_that_ARE_on_record_and_that_i_verified_are_still_live": [
+    {
+     "id": "R-IGT-4",
+     "source": "IGT dossier section 4, which is titled 'The four operators -- two rival tables, one marked live'",
+     "rival_a": "Table A, the runtime channels (bridge master table row 21, marked `live engine`): Ti = z-dephasing CPTP, Te = x-dephasing CPTP, Fi = x-rotation unitary, Fe = z-rotation unitary",
+     "rival_b": "Table B, the kernel Rosetta (`apple axes` Part 2, marked candidate): Ti = projector carve, Te = gradient/Hamiltonian push, Fe = Lindbladian diffuse, Fi = spectral filter broadcast",
+     "status": "LIVE, CONFLICT ON RECORD AND UNRESOLVED. The file itself says 'CONFLICT with Table A on Te/Fe/Fi roles -- recorded, unresolved' and adds the correct caution 'live != ratified doctrine'.",
+     "what_would_separate_them": "an executable discriminator on the Te/Fe/Fi roles. None exists in this tree.",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-IGT-5",
+     "source": "IGT dossier section 4, closing note",
+     "divergence": "Axis-5 label drift: 'FeFi vs TeTi' in some docs, 'FeFi vs TiTe' in the taijitu",
+     "status": "LIVE, preserved as drift in the source",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-IGT-6",
+     "source": "IGT dossier section 6 closing note",
+     "divergence": "Loop-geometry assignment CONFLICT: the JUNGIAN map §6.4 has Type-2 outer = inductive on the fiber loop and inner = deductive on the lifted base, i.e. the loop-geometry to outer/inner assignment SWAPS relative to Type-1; the terrain tables read otherwise",
+     "status": "LIVE, explicitly flagged 'CONFLICT on record' in the source. The sentence recording it is the one the file truncates in.",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-CARRIER-1",
+     "source": "carrier_obligations.json AM-03 and AM-12, and confirmed load-bearing by my own measurement",
+     "rival_a": "the carrier table is a FORWARD PRODUCER CONTRACT",
+     "rival_b": "the carrier table is a SCANNER over existing receipts",
+     "status": "LIVE and now MEASURED as load-bearing rather than academic: 34 of 3145 receipt JSONs carry typed_ontology and all 34 are self-authored, so the forward contract has no external producer and the scanner is inert on the entire pre-existing estate.",
+     "what_would_separate_them": "an owner ruling, plus the consumer test named under Q2 -- whether any consumer maps this table's PARK to gate_admits=1",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-CARRIER-2",
+     "source": "my Q2 answer",
+     "rival_a": "the obligating direction is a genuine new kind of surface (16 BLOCKs on classes no prior detector reached)",
+     "rival_b": "the declaration requirement is the fifth instance of the one error class, moved to document scope (16 of 16 BLOCKs relieved by removing one key)",
+     "status": "BOTH SURVIVED. Neither excluded by any measurement in this session.",
+     "what_would_separate_them": "the consumer test: wire the checker behind post_receipt_gate.sh, feed the 16 stripped variants, read gate_admits",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-ENGINE-1",
+     "source": "my part 3 reservation",
+     "rival_a": "the identical float32 log2(6) delta across three lanes is three genuine independent float32 evaluations",
+     "rival_b": "it reflects a shared underlying libm, so it evidences computation but not implementation independence",
+     "status": "BOTH LIVE. I did not separate them.",
+     "what_would_separate_them": "a lane computing log2 by an independent series or integer-exponent method and comparing the error signature",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-AM-01",
+     "source": "carrier_obligations.json AM-01",
+     "rival_a": "R0's address set is binary BY DEFINITION, so H0_addr is always the integer n, and log2|S| over a non-binary finite S is a different quantity needing its own row",
+     "rival_b": "R0's carrier line says 'a finite address set' generally, so H0_addr is log2 of any finite cardinality and integrality is conditional on a declared binary alphabet",
+     "live_repo_stake_quoted_from_the_table": "system_v8/engine_native/results/torch_graph/receipt.json hartley_capacity_bits = log2(12), which is not H0_addr at all under reading A",
+     "status": "LIVE. The table chose reading B and said so; the choice is not a resolution.",
+     "what_would_separate_them": "an owner ruling on whether {0,1}^n at R0 is a definition or the leading example",
+     "do_not_collapse": true
+    },
+    {
+     "id": "R-AM-13",
+     "source": "carrier_obligations.json AM-13",
+     "rival_a": "exit 0 means the structural obligation is met and nothing more; whether an engine computed the number is a different lane's question",
+     "rival_b": "exit 0 should be unreachable until output-dependence is also checked, so this table's best outcome ought to be PARK",
+     "status": "LIVE. The table itself records that reading B 'is the stronger position and it is not refuted here'. My measurement is consistent with that: exactly ONE fixture reaches exit 0, and it is the one with artifact binding.",
+     "do_not_collapse": true
+    }
+   ],
+   "the_remaining_ambiguities_AM_02_through_AM_12_are_also_still_open": "AM-02, AM-04, AM-05, AM-06, AM-07, AM-08, AM-09, AM-10, AM-11 and AM-12 each name two readings with a stated separator. None was resolved by any measurement in this session. They are preserved by reference rather than restated here, and none should be treated as closed."
+  }
+ },
+
+ "residual_defects_recorded_by_this_audit": [
+  {"id": "A-1", "severity": "CRITICAL", "target": "check_carrier_obligations.py + carrier_obligations.json", "defect": "The BLOCK-capable path is gated on a producer-written container. Removing the single key typed_ontology relieved 16 of 16 BLOCKing fixtures to exit 3. Structurally the same producer-selects-audit-depth shape as gate_registry's claim_kind (F1).", "measured_exit": "16 baseline exit 1 -> 16 stripped exit 3", "status": "OPEN"},
+  {"id": "A-2", "severity": "HIGH", "target": "check_carrier_obligations.py evaluate() lines 657-712", "defect": "None of the 9 capacity separations can fire under SUSPECTED binding, because sibling_values and decl_by_id are built from decls only. Measured: an S_0 < S_vn ordering inversion with TWO matching name signals returns exit 3; the same numbers with a declaration return exit 1. The ordering check is structurally unreachable on an undeclared receipt.", "status": "OPEN"},
+  {"id": "A-3", "severity": "HIGH", "target": "ratchet_contract/mss.py pairwise_mss stage 3", "defect": "With an empty demand set the operator forces A_WEAKER and rates the one-cell total-collapse candidate most MSS; frontier() admits it as a survivor with empty purgatory. All three thickening layers requested does not change it. Crowning the candidate that persists nothing inverts MSS = Minimal Evolving Persistent Structure.", "measured_exit": "probe exit 0; verdicts A_WEAKER (empty D) vs HOLD (one demand edge)", "status": "OPEN"},
+  {"id": "A-4", "severity": "MEDIUM", "target": "ratchet_contract/mss.py + contract.py NestInterface", "defect": "The comparison unit is a flat single-layer induced partition. No chain-depth coordinate enters stage 3. The owner rule that the comparison unit is the NESTED CHAIN is unenforced; flat comparisons return strict MSS verdicts. Deliberate and documented, but unenforced.", "status": "OPEN"},
+  {"id": "A-5", "severity": "MEDIUM", "target": "prior lane prose, F4 what_discriminated", "defect": "'BYTE-IDENTICAL message' is refuted. Three different stdout sha256 digests across O1/O5/O8. The substantive symmetry finding survives; the evidentiary wording is one notch above the measurement.", "status": "CORRECTED HERE"},
+  {"id": "A-6", "severity": "MEDIUM", "target": "MODEL_DOSSIER/IGT_ENGINE_LAYOUT_EXPLICIT_MATH_20260725.md", "defect": "Untracked, 130 lines, sections 1-6 only, ends mid-sentence, and its own status rule cites a §10 that does not exist. The 'section-10 rivals' the audit brief asks about cannot be enumerated from it.", "status": "OPEN"},
+  {"id": "A-7", "severity": "LOW", "target": "probe_lane4 d2 prose in the DISCRIMINATION block", "defect": "'separated ONLY by 4-cycle count (32 vs 24)' does not say which graph is which, against a stated 'vs cubical' convention. The receipt is correct (4-cube 24, C16(1,3) 32) and my referee confirms both. Wording nit only.", "status": "COSMETIC"},
+  {"id": "A-8", "severity": "LOW", "target": "probe_lane4 d1 solver_leg", "defect": "The z3 leg is a real solver call but the proposition is elementary counting. It should not be cited as proof depth. My added controls pin the ceiling at exactly 4^n = 256.", "status": "CALIBRATION"}
+ ],
+
+ "what_this_audit_did_not_check": [
+  "The full ClaimGate chain was never re-fired, so chain-level dispositions and gate_admits values rest on the prior lane's report, not on my measurement.",
+  "The carrier table is wired into no consumer, so whether its exit 3 would be read as admission is untested. Named as the cheapest decisive next experiment.",
+  "RE-2 (declare the carrier falsely, consistently) is unrefuted and unrefutable by this table by construction. Not attempted.",
+  "Whether the three engine lanes share a libm for log2. Left as a live rival.",
+  "Nothing under system_v7, .github/workflows or claimgate_plugin/hooks was read for modification or modified."
+ ],
+
+ "status_ladder_summary": {
+  "carrier_obligations_table_plus_evaluator": "runs, and passes local rerun on its own 20 fixtures. NOT canonical by process. Wired into nothing. Inert on 100 percent of pre-existing estate receipts.",
+  "probe_lane1_claimgate_probes": "exists on disk; claim_policy_gate stage reproduces at the exit codes reported",
+  "probe_lane2_root_strata": "passes local rerun on all three engines; the lane's own aggregate computes exit 3",
+  "probe_lane3_ratchet_mechanics": "passes local rerun",
+  "probe_lane4_discriminators": "passes local rerun, all five byte-identical across two runs, Julia cross-lane 80 comparisons 0 disagreements",
+  "probe_lane5_audit_written_this_session": "runs, exit 0 on both probes. Single run each for the probes themselves; the artefacts they measure were rerun twice.",
+  "nothing_in_this_tree_is_committed": true
+ }
+}

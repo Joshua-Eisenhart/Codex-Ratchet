@@ -1,0 +1,78 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "NON-circular level-4 semiconjugacy test between the QIT-engine view and the reaction-network (classical master-equation) view. Projection Q (rho->populations) is FORCED by the domain (a reaction network sees concentrations, not coherences); the classical generator K is NOT installed but RECONSTRUCTED from the real engine Liouvillian and VALIDATED as an admissible master-equation generator (off-diagonals>=0, columns sum 0). Load-bearing cases are the NON-TRIVIAL dissipative terrains (damping = decay chain, depolarizing = two-state exchange) whose reconstructed K is a genuine non-zero classical network. Two controls flip: a non-population-aligned jump does NOT close, and the engine Hamiltonian breaks closure. Pure dephasing is reported but EXCLUDED from the verdict because its K is the zero matrix (vacuous).",
+  "gate1_nontrivial_dissipative_semiconjugate": {
+    "damp_closure_defect": 0.0,
+    "damp_K": {
+      "K": [
+        [
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "offdiag_nonneg": true,
+      "colsum_zero": true,
+      "max_colsum": 0.0
+    },
+    "damp_K_nonvacuous": true,
+    "damp_semiconj_residual": 3.219646771412954e-15,
+    "damp_is_semiconjugate": true,
+    "depol_closure_defect": 0.0,
+    "depol_K": {
+      "K": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "offdiag_nonneg": true,
+      "colsum_zero": true,
+      "max_colsum": 0.0
+    },
+    "depol_K_nonvacuous": true,
+    "depol_semiconj_residual": 3.3306690738754696e-16,
+    "depol_is_semiconjugate": true
+  },
+  "degenerate_dephasing_excluded": {
+    "closure_defect": 0.0,
+    "K": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "K_is_zero_vacuous": true,
+    "note": "pure dephasing IS population-basis-diagonal so it closes with K=0 (frozen populations); kept for honesty, NOT counted toward the verdict (panel-flagged as vacuous)."
+  },
+  "control1_nonaligned_dissipator_breaks": {
+    "closure_defect": 0.24999999999999994,
+    "breaks": true,
+    "note": "a jump operator NOT aligned to the population basis couples populations to coherences -> QL does not vanish on coherences -> no classical network. Shows the dissipative side is genuinely failable, not automatic for any dissipator."
+  },
+  "control2_hamiltonian_breaks": {
+    "damp+H_closure_defect": 0.28577380332470415,
+    "breaks": true,
+    "note": "engine H0=(sx+sy+sz)/sqrt3 is transverse; adding it to the damping terrain re-couples populations to coherences -> no classical reaction network reproduces the driven engine."
+  },
+  "cross_lens_conjecture": "CONJECTURE (NOT computed here): the boundary 'population-basis-compatible generator closes / transverse Hamiltonian breaks' plausibly relates to the detailed-balance boundary the separate FEP-IGT Carlen-Maas instrument found. This sim does NOT compute any FEP-IGT quantity; treat as a lead to test, not a corroboration.",
+  "honest_scope": "Non-circular (Q domain-forced; K discovered from the real engine generator and validated, never installed), failable on BOTH sides (a non-aligned dissipator fails to close; the Hamiltonian breaks closure), with the exact obstruction (population-coherence coupling) measured. The precise earned statement: the engine's canonical DISSIPATIVE terrains are population-basis-compatible, so their population dynamics ARE a genuine classical reaction network (level-4 semiconjugate); the engine's coherent drive is not, so it has no classical shadow. This is ONE real pair of views, not a claim that all domains are one basin.",
+  "pass": true,
+  "policy_eval": {
+    "nontrivial_dissipative_views_one_basin": true,
+    "dissipative_side_failable": true,
+    "coherent_drive_breaks_classical_view": true
+  }
+}

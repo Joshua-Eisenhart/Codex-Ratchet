@@ -1,0 +1,1204 @@
+{
+ "L3": {
+  "by_lane": {
+   "nv:deepseek-ai/deepseek-v4-flash-0731": {
+    "called": 13,
+    "live": 13
+   },
+   "nv:meta/llama-3.3-70b-instruct": {
+    "called": 13,
+    "live": 13
+   },
+   "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+    "called": 13,
+    "live": 5
+   },
+   "nvidia/nemotron-nano-9b-v2:free": {
+    "called": 13,
+    "live": 9
+   },
+   "openai/gpt-oss-20b:free": {
+    "called": 13,
+    "live": 4
+   }
+  },
+  "dispatched": 65,
+  "live": 44
+ },
+ "claim_ceiling": "decision structure, council divergence and output shape only; CB does not decide whether the move is correct",
+ "collapsed_councils": [],
+ "compilation": {
+  "decision.context_strategy": {
+   "evidence_boundary": "Checked: Decision wave runs with six defects fixed; all six declared outputs compile; deterministic gate passes. Unchecked: Whether Decision wave's outcomes are actually binding (non-negotiable for Follow-Up sequence) \u2014 that is a framing assumption, not yet validated. Assumed: The deterministic gate is the reliable pass/fail criterion for lock-in.",
+   "falsifier": "If executing Decision wave with six defects fixed produces new defects not previously encountered, or if the deterministic gate fails on the updated Constraint Box, then the move was wrong \u2014 indicating either the six fixes missed the root cause or the sequence order (lock-in before Follow-Up) matters more than we credited.",
+   "operating_boundary": "This move executes and locks Decision wave outcomes only. It does NOT design, build, or run Follow-Up or Failure councils. It does NOT resolve the root cause of the reinforcing loop (that is a systems integration question, not a Decision wave concern). It does NOT finalize or promote any result beyond lock-in.",
+   "rejected_alternatives": [
+    "Run unbuilt Follow-Up and Failure councils immediately to get full council coverage before locking Decision outcomes (voice.feynman's operational, but sequencing risk from voice.strategy)",
+    "Diagnose root causes of the reinforcing loop before advancing (voice.systems' adversarial path, but delays Decision wave lock-in and leaves outcomes provisional)",
+    "Execute Decision wave while tracking unbuilt councils as async pending work (voice.hume's empirical path, but does not secure binding outcomes as prerequisite)"
+   ],
+   "selected_move": "Execute the Decision wave with the six defects fixed, lock in its binding outcomes, then verify all six outputs compile and pass the deterministic gate before building Follow-Up or Failure councils.",
+   "why_now": "Decision wave's binding outcomes must be locked in first to break the reinforcing loop of iterative defect fixes and to provide the stable foundation Follow-Up councils require."
+  },
+  "decision.evidence_boundary": {
+   "evidence_boundary": "Assumes the six fixed defects are correctly implemented and the deterministic gate is runnable. UNCHECKED: whether Follow-Up will require new constraints not in the current boundary; UNCHECKED: whether the gate will pass; UNCHECKED: the actual achievable ceiling of Follow-Up's six declared outputs under current constraints alone.",
+   "falsifier": "The deterministic gate fails due to Follow-Up requiring constraints outside the six fixed defects\u2014revealing that prerequisites are insufficient, not that the move itself was malformed.",
+   "operating_boundary": "This move does not revise the six fixed defects, does not construct Failure councils, does not iterate the Decision wave, and does not add constraints outside the current set.",
+   "rejected_alternatives": [
+    "Build Failure councils first to map failure modes before testing Follow-Up",
+    "Re-iterate Decision wave further to harden it before Follow-Up exposure",
+    "Defer Follow-Up and declare CB provisionally complete pending Failure councils",
+    "Halt and re-scope Follow-Up's constraint surface independently"
+   ],
+   "selected_move": "Instantiate and run the Follow-Up wave council with the six fixed defects; advance to Failure councils only if the deterministic gate passes without new constraints.",
+   "why_now": "The Decision wave exists and six defects are fixed\u2014the prerequisites to test whether the CB pipeline can proceed; delaying Follow-Up risks iterating Decision indefinitely without testing the next boundary."
+  },
+  "decision.move_selection": {
+   "evidence_boundary": "True: Six defects fixed, Decision wave exists. Unchecked: whether Follow-Up completion actually unblocks Decision propagation; whether Failure councils will identify Follow-Up design flaws; sequencing dependency between Follow-Up and Failure work.",
+   "falsifier": "If Follow-Up wave completion does not unblock Decision propagation, contradicting Factory's boundary claim that it is the single bottleneck; or if Failure councils reveal Follow-Up wave cannot be built as designed, showing the move created rework.",
+   "operating_boundary": "This move does not evaluate Decision wave correctness, does not run Failure councils, and does not determine whether to advance beyond Follow-Up completion.",
+   "rejected_alternatives": [
+    "Run both Failure councils first (sequentially or parallel), then build Follow-Up wave",
+    "Defer Follow-Up wave pending Failure council analysis",
+    "Build Failure councils concurrently with Follow-Up wave"
+   ],
+   "selected_move": "Build the Follow-Up wave now",
+   "why_now": "Factory identifies the Follow-Up wave as the single bottleneck determining throughput; Decision wave exists and can propagate once Follow-Up wave is complete."
+  }
+ },
+ "councils": {
+  "decision.context_strategy": {
+   "voice.feynman": {
+    "answers": {
+     "historical": "**Answer:** Run `grep -c \"output1 output2 output3 output4 output5 output6\" ~/logs/decision_v4_3.log` to verify all six outputs are present and pass if count=6.",
+     "literal": "Run the deterministic gate on the updated Constraint Box.",
+     "operational": "Run the unbuilt Failure councils and Follow-Up wave, then verify all six declared outputs compile and pass the deterministic gate."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.388,
+     "mean_similarity": 0.272,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.388,
+     "mean_similarity": 0.272,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 79.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 18.3
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 24.0
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 14.4
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 4.1
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "The next move is to execute the Decision wave as it exists, while the unbuilt Follow-Up and Failure councils remain pending.",
+     "literal": "Six defects are fixed, Decision wave exists, Follow-Up and two Failure councils remain unbuilt.",
+     "operational": "The six defects are fixed, the Decision wave exists, and the Follow-Up wave plus two Failure councils remain unbuilt."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.877,
+     "mean_similarity": 0.736,
+     "members": 3,
+     "verdict": "CONVERGENT (agree, not identical)"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.877,
+     "mean_similarity": 0.736,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 88.7
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 14.1
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": false,
+      "sec": 25.0
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 60.9
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 6.4
+     }
+    }
+   },
+   "voice.strategy": {
+    "answers": {
+     "historical": "The next move must prioritize securing the Decision wave's binding outcomes to ensure Follow-Up councils can be reliably built before advancing to Failure councils, preventing sequence collapse from unresolved dependencies.",
+     "literal": "Resource allocation for remaining waves and councils.",
+     "operational": "The campaign-level consideration is whether the unbuilt Follow-Up wave and Failure councils serve the root constraint more than building them now."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.332,
+     "mean_similarity": 0.16,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.332,
+     "mean_similarity": 0.16,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 73.5
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 25.7
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 19.0
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 43.5
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.7
+     }
+    }
+   },
+   "voice.systems": {
+    "answers": {
+     "adversarial": "The move enters a **reinforcing loop** where resolving defects without systemic council integration perpetuates recurring instability, as short-term fixes mask root causes.",
+     "literal": "Reinforcing loop of iterative wave development.",
+     "operational": "The loop: fixing defects triggers new defects, as each fix shifts the system's attractor, making the unbuilt councils the balancing force that prevents infinite regress."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.346,
+     "mean_similarity": 0.29,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.346,
+     "mean_similarity": 0.29,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 38.8
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 4.1
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": false,
+      "sec": 24.4
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 43.5
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.1
+     }
+    }
+   }
+  },
+  "decision.evidence_boundary": {
+   "guard.receipt_audit": {
+    "answers": {
+     "historical": "The deadline set for the Follow-Up wave lacks receipt, as no evidence confirms its achievability.",
+     "literal": "The claim that a route is a council because it is named one.",
+     "operational": "The next move is to build the Follow-Up wave, as no receipt exists for its construction."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.53,
+     "mean_similarity": 0.39,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.53,
+     "mean_similarity": 0.39,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 68.0
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 12.2
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 12.9
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 36.1
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 7.4
+     }
+    }
+   },
+   "voice.feynman": {
+    "answers": {
+     "historical": "Run a bash script to output fixed defect metrics; verify if the output file contains \"success\" string. If found, pass; else fail.",
+     "literal": "Run the deterministic gate with the six declared outputs.",
+     "operational": "The check: run the Follow-Up wave council with the six fixed defects, and confirm it compiles all six declared outputs and passes the deterministic gate."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.383,
+     "mean_similarity": 0.281,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.383,
+     "mean_similarity": 0.281,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 43.2
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 44.6
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 19.0
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 115.2
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 11.4
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "historical": "\"The six fixed defects permit the CB to proceed, but Follow-Up and Failure councils must be constructed before declaring success.\"",
+     "literal": "Six defects are fixed, Decision wave exists, Follow-Up and Failure councils remain unbuilt.",
+     "operational": "The Decision wave exists; Follow-Up and two Failure councils remain unbuilt, so the next move is to build them."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.683,
+     "mean_similarity": 0.561,
+     "members": 3,
+     "verdict": "CONVERGENT (agree, not identical)"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.683,
+     "mean_similarity": 0.561,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 117.6
+     },
+     "boundary": {
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 0.3
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 11.9
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 34.3
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.2
+     }
+    }
+   },
+   "voice.popper": {
+    "answers": {
+     "adversarial": "1. **Target claim**: The Constraint Box should proceed with the proposed next move.  \n2. **Strongest falsifier**: The move fails to address unresolved risks from unbuilt Follow-Up and Failure councils.  \n3. **Decisive check**: Verify if the move explicitly incorporates safeguards or dependencies for the missing councils.  \n4. **Status**: `open`",
+     "historical": "The move fails under high-stress scenarios where unaddressed defects resurface.",
+     "literal": "Unbuilt Follow-Up wave.",
+     "operational": "**The proposed move survives only if the unbuilt Follow-Up wave and two Failure councils require no new constraints; any required addition kills it.**"
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.314,
+     "mean_similarity": 0.191,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.314,
+     "mean_similarity": 0.191,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 10.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 99.5
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 11.5
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 23.8
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.4
+     }
+    }
+   }
+  },
+  "decision.move_selection": {
+   "lane.alternative": {
+    "answers": {
+     "boundary": "Deploy the Follow-Up wave; the strongest alternative is to build the first Failure council.",
+     "historical": "Initiate building the Failure councils sequentially instead of concurrently to prioritize clarity.",
+     "literal": "Build the Follow-Up wave.",
+     "operational": "Run the Follow-Up wave now, then build both Failure councils, preserving all live alternatives."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.538,
+     "mean_similarity": 0.386,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.538,
+     "mean_similarity": 0.386,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 70.6
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 36.0
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 10.8
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 26.2
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.5
+     }
+    }
+   },
+   "lane.direct": {
+    "answers": {
+     "boundary": "Start the Follow\u2011Up wave to begin post\u2011Decision evaluation.",
+     "historical": "Initiate the Follow-Up wave to advance the task directly.",
+     "literal": "Build the Follow-Up wave.",
+     "operational": "Run the two unrun Failure councils, then build the Follow-Up wave."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.549,
+     "mean_similarity": 0.457,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.549,
+     "mean_similarity": 0.457,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 50.2
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 28.4
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 6.8
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 67.5
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 5.4
+     }
+    }
+   },
+   "voice.factory": {
+    "answers": {
+     "boundary": "The Follow\u2011Up wave is the single bottleneck that determines throughput for the next move of Constraint Box.",
+     "literal": "Unbuilt Follow-Up wave.",
+     "operational": "The unbuilt Follow-Up wave and two Failure councils are the bottleneck, blocking the Decision wave from propagating."
+    },
+    "collapse": {
+     "distinct_answers": 3,
+     "max_similarity": 0.493,
+     "mean_similarity": 0.357,
+     "members": 3,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 3,
+     "max_similarity": 0.493,
+     "mean_similarity": 0.357,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": false,
+      "sec": 62.5
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 33.3
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": false,
+      "sec": 33.7
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 24.2
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 4.3
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "Six defects fixed, Decision wave exists, Follow-Up wave and two Failure councils unbuilt.",
+     "historical": "The six defects are fixed in the Decision wave, but the Follow-Up wave and two Failure councils remain unbuilt\u2014this is the current evidence.",
+     "literal": "Six defects are fixed, Decision wave exists, Follow-Up and Failure councils remain unbuilt.",
+     "operational": "The evidence shows six defects fixed, Decision wave built, but Follow-Up and two Failure councils unbuilt \u2014 so the next move is building them."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.889,
+     "mean_similarity": 0.729,
+     "members": 4,
+     "verdict": "CONVERGENT (agree, not identical)"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.889,
+     "mean_similarity": 0.729,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 54.7
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": false,
+      "sec": 23.7
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 18.2
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 36.7
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.6
+     }
+    }
+   },
+   "voice.orwell": {
+    "answers": {
+     "adversarial": "Decision wave",
+     "boundary": "Decide the next move.",
+     "literal": "\"unbuilt\" is hiding a decision.",
+     "operational": "\"unbuilt\" \u2014 the decision is whether to build Follow-Up and Failure councils now or defer them."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.412,
+     "mean_similarity": 0.29,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.412,
+     "mean_similarity": 0.29,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 48.0
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 22.9
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": false,
+      "sec": 20.6
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 34.2
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 14.0
+     }
+    }
+   }
+  }
+ },
+ "gate": {
+  "decision.context_strategy": {
+   "admitted": false,
+   "reasons": [
+    "voice.strategy: 3 live members, below the conformance floor of 5",
+    "voice.systems: 3 live members, below the conformance floor of 5",
+    "voice.hume: 3 live members, below the conformance floor of 5",
+    "voice.feynman: 3 live members, below the conformance floor of 5"
+   ]
+  },
+  "decision.evidence_boundary": {
+   "admitted": false,
+   "reasons": [
+    "voice.hume: 3 live members, below the conformance floor of 5",
+    "voice.popper: 4 live members, below the conformance floor of 5",
+    "voice.feynman: 3 live members, below the conformance floor of 5",
+    "guard.receipt_audit: 3 live members, below the conformance floor of 5"
+   ]
+  },
+  "decision.move_selection": {
+   "admitted": false,
+   "reasons": [
+    "voice.factory: 3 live members, below the conformance floor of 5",
+    "voice.orwell: 4 live members, below the conformance floor of 5",
+    "voice.hume: 4 live members, below the conformance floor of 5",
+    "lane.direct: 4 live members, below the conformance floor of 5",
+    "lane.alternative: 4 live members, below the conformance floor of 5"
+   ]
+  }
+ },
+ "promotion_allowed": false,
+ "provenance": {
+  "decision.context_strategy/voice.feynman": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ed775ee5531afcb",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "d4106138ed47a5a5",
+   "voice": "feynman"
+  },
+  "decision.context_strategy/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.context_strategy/voice.strategy": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "97c31226b7980a51",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "5238e58992526f02",
+   "voice": "strategy"
+  },
+  "decision.context_strategy/voice.systems": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "ba440d74b5dbc0b5",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "e294a60d4ae5574b",
+   "voice": "systems"
+  },
+  "decision.evidence_boundary/guard.receipt_audit": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.evidence_boundary/voice.feynman": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ed775ee5531afcb",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "d4106138ed47a5a5",
+   "voice": "feynman"
+  },
+  "decision.evidence_boundary/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.evidence_boundary/voice.popper": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ab5b545cfa4d37e",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "7a914913ab378113",
+   "voice": "popper"
+  },
+  "decision.move_selection/lane.alternative": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.move_selection/lane.direct": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "decision.move_selection/voice.factory": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "d9dc6ce673b03878",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "0b245fad7a09afa8",
+   "voice": "factory"
+  },
+  "decision.move_selection/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "decision.move_selection/voice.orwell": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "325169a07c451dc6",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "214fa89f499e5036",
+   "voice": "orwell"
+  }
+ },
+ "routes_admitted": [],
+ "schema": "cb.wave.decision.v1",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "decision structure only; CB does not decide whether the selected move is correct",
+   "prompt_intent": "Select ONE bounded move for the task while preserving live alternatives, with the evidence boundary declared.",
+   "success_condition": "each route compiles the six declared outputs and passes the deterministic gate"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "6e0d67dc44352668b58704042ccb8b0660e84577549f703a3dce37c468c58998",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 2,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a route is a council because it is named one",
+   "one model answering four questions is four children"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "structure": {
+  "children_per_route": {
+   "decision.context_strategy": 4,
+   "decision.evidence_boundary": 4,
+   "decision.move_selection": 5
+  },
+  "l3_calls_planned": 65,
+  "members_per_child": 5,
+  "routes": [
+   "decision.context_strategy",
+   "decision.move_selection",
+   "decision.evidence_boundary"
+  ],
+  "slices": [
+   "literal",
+   "operational",
+   "adversarial",
+   "historical",
+   "boundary"
+  ]
+ },
+ "task": "Decide the next move for Constraint Box now that the six known defects are fixed, the Decision wave exists, and the Follow-Up wave and the two unrun Failure councils remain unbuilt.",
+ "wall_seconds": 492.7
+}

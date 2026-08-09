@@ -1,0 +1,28 @@
+{
+  "disposition": "PARKED",
+  "max_age_hours": 24.0,
+  "problems": [
+    {
+      "reason": "tier_not_ready:DRIFT",
+      "required_unready": "numpy_density,scipy_channel,z3_finite",
+      "tier_id": "S1"
+    },
+    {
+      "reason": "tier_not_ready:DRIFT",
+      "required_unready": "jax_density,cotengra_path",
+      "tier_id": "S2"
+    },
+    {
+      "reason": "tier_not_ready:DRIFT",
+      "required_unready": "",
+      "tier_id": "S3"
+    }
+  ],
+  "promotion_allowed": false,
+  "required_tiers": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "schema": "constraintbox.major-run-preflight.v1"
+}

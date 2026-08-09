@@ -16,6 +16,51 @@ This file is Claude-facing project guidance and reference doctrine. It is not Co
 7. Standing goal: get the QIT engines running on the corrected foundation (drive at the front, Phi_0 late). First step: baseline `python3 run_all.py` in system_v7/constraint_core and `validate_engines.py` in constraint_core/engines (Julia engine there has never been run).
 8. A0_raw is an unfused LIST, not a vector — no component mixing; no unearned algebra anywhere.
 
+## CB WORK — BINDING 2026-08-08 (fires every session; read before touching constraint_box/)
+
+**START HERE: `constraint_box/CB_READ_THIS_FIRST.md`** — the reading order, with what each
+document gives you. Read it before touching anything under `constraint_box/`.
+
+**There is already a working ConstraintBox.** Packaged at `constraint_box/src/constraintbox/`:
+929 passing tests, 33 CLI subcommands, mini-LevOS flow kernel, the S1-S4 estate ladder,
+ClaimGate integration. Install it: `pip install -e constraint_box/src`. Then `constraintbox --help`.
+
+Six rules. Each one exists because it was broken.
+
+1. **FIND BEFORE BUILD.** Before writing any new script, search the package for the
+   capability: `grep -rl "<thing>" constraint_box/src/constraintbox/` and
+   `constraintbox --help`. If it exists, use it. `cb_heavy_gate.py` duplicated
+   `constraintbox estate` and was worse. Twenty `cb_*.py` scripts were written that
+   never import the package.
+
+2. **A SCRIPT THAT DOES NOT IMPORT `constraintbox` IS NOT CB WORK.** The kernel is
+   `mini_levos.py` — MiniLevRuntime, FlowPolicy, typed hook nodes, six budgets,
+   hash-chained ledger, five terminals, 30 construction + 30 runtime invariants.
+   A wave IS a FlowPolicy. A council IS nodes. A member IS a registered hook. A gate
+   IS a GATE-kind node. Looping back IS a transition. A dead loop IS the HOLD terminal.
+   Do not re-implement sequencing, budgets, receipts or terminals outside the kernel.
+
+3. **LAYER ORDER, NO SKIPPING.** CB -> sim engines -> manifold -> DOFs -> engines ->
+   holodeck. Running holodeck while CB is unfinished is a violation, not progress.
+   State the layer before starting. If the task is not at the current layer, refuse it.
+
+4. **DO NOT RUN A TOOL BLINDLY.** A tool with no fixture, no negative control and no
+   declared expected output is not ready to be pointed at real material. Widening a
+   pattern until it matches 16x more is noise, not extraction.
+
+5. **REPORT THE WHOLE STATE, NOT THE FAVOURABLE SUBSET.** If the ladder reads DRIFT
+   overall, the headline is DRIFT. Required-only counts go after the overall number,
+   never instead of it. `exists < runs < passes local rerun < canonical by process` —
+   never imply a higher rung from a lower one.
+
+6. **RESOLVE WHAT YOU CAN LOOK UP.** A question answerable by reading the repo is not
+   an owner decision. Ask the owner only for rulings that require his intent.
+
+**Scope discipline:** new builds, refactors and research are out of scope unless asked.
+When a ranked list suggests work, check it against rule 3 before acting on it.
+
+---
+
 ## Harness Preamble (priming — read first, every session)
 
 You are working under a nominalist constraint-admissibility harness.

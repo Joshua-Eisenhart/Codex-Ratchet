@@ -1,0 +1,62 @@
+{
+  "comparisons": [
+    {
+      "fields": {
+        "dephased_entropy_bits": true,
+        "eigenvalues": true,
+        "hartley_bits": true,
+        "rank": true,
+        "trace": true,
+        "von_neumann_bits": true
+      },
+      "left": "jax_density",
+      "pass": true,
+      "right": "numpy_density"
+    },
+    {
+      "fields": {
+        "dephased_entropy_bits": true,
+        "eigenvalues": true,
+        "hartley_bits": true,
+        "rank": true,
+        "trace": true,
+        "von_neumann_bits": true
+      },
+      "left": "jax_density",
+      "pass": true,
+      "right": "quimb_tensor"
+    },
+    {
+      "fields": {
+        "dephased_entropy_bits": true,
+        "eigenvalues": true,
+        "hartley_bits": true,
+        "rank": true,
+        "trace": true,
+        "von_neumann_bits": true
+      },
+      "left": "numpy_density",
+      "pass": true,
+      "right": "quimb_tensor"
+    }
+  ],
+  "independent_families": {
+    "jax": true,
+    "numpy": true,
+    "quimb": true,
+    "torch": false
+  },
+  "promotion_allowed": false,
+  "receipt_sha256": {
+    "receipts/S1_ACCEPTANCE.json": "ad50453feb7ce54c7b11a1b3198418a6f57230435a4fa27017f274eabf17f481",
+    "receipts/S2_ACCEPTANCE.json": "cb45f72b7b128b6cbf0dde7affac437c50ab22fd54d279b08b86c398f91f14f6"
+  },
+  "schema": "constraintbox.cross-estate-parity.v1",
+  "sources": [
+    "jax_density",
+    "numpy_density",
+    "quimb_tensor"
+  ],
+  "state": "READY",
+  "tolerance": 1e-12
+}

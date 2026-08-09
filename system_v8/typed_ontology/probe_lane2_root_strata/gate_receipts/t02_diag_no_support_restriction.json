@@ -1,0 +1,34 @@
+{
+ "note": "the owner diagram's DIAG pair field, declared honestly and with no support_restriction field. AM-03 live stake.",
+ "data": {
+  "h0_addr_bits": 4.0,
+  "h0_pair_diag_bits": 4.0
+ },
+ "typed_ontology": {
+  "carriers": {
+   "J4": {
+    "class": "finite_address_set",
+    "cardinality": 16,
+    "n_bits": 4,
+    "alphabet": "binary"
+   },
+   "F_diag": {
+    "class": "pair_indexed_field",
+    "support_cardinality": 16,
+    "index_set_ref": "J4"
+   }
+  },
+  "quantities": [
+   {
+    "id": "H0_addr",
+    "at": "data.h0_addr_bits",
+    "carrier_ref": "J4"
+   },
+   {
+    "id": "H0_pair",
+    "at": "data.h0_pair_diag_bits",
+    "carrier_ref": "F_diag"
+   }
+  ]
+ }
+}

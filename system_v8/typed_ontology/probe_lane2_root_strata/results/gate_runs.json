@@ -1,0 +1,782 @@
+{
+ "gate": "../check_carrier_obligations.py",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "value_provenance": {
+  "h0_addr_bits": "results/lane_jax_float64.json R0.H0_addr_bits",
+  "h0_pair_diag_bits": "results/lane_jax_float64.json R1.DIAG.H0_pair_bits",
+  "h0_pair_coherent_bits": "results/lane_jax_float64.json R1.COHERENT.H0_pair_bits",
+  "h0_pair_coherent_bits_float32": "results/lane_jax_float32.json R1.COHERENT.H0_pair_bits",
+  "kappa_cell_bits": "results/lane_jax_float64.json R3.FULL_FIELD.per_dim.4.kappa_bits",
+  "kappa_ext_bits": "results/lane_jax_float64.json C1_C3.kappa_ext_bits.2",
+  "enum_cross_check": "enum_reference H0_pair COHERENT = 6.321928094887363"
+ },
+ "expected_exit_codes": {
+  "t01_h0addr_only": 3,
+  "t02_diag_no_support_restriction": 1,
+  "t03_diag_with_support_restriction": 3,
+  "t04_coherent_float64": 3,
+  "t05_coherent_float32_NEGATIVE_CONTROL": 1,
+  "t06_r3_full_field_equality_witness": 3,
+  "t07a_two_pair_fields_diag_last": 1,
+  "t07b_two_pair_fields_coherent_last": 1,
+  "t11a_flip_probe_diag_last": 1,
+  "t11b_flip_probe_coherent_last": 3,
+  "t08_kappa_ext_u2": 3,
+  "t09_kappa_ext_on_empty_fibre_NEGATIVE_CONTROL": 1,
+  "t10_honest_empty_release_descriptor": 3
+ },
+ "unexpected_exit_codes": {},
+ "missing_expected_receipts": [],
+ "runs": {
+  "t01_h0addr_only": {
+   "receipt_path": "gate_receipts/t01_h0addr_only.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t01_h0addr_only.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t01_h0addr_only.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_addr",
+       "at": "data.h0_addr_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t02_diag_no_support_restriction": {
+   "receipt_path": "gate_receipts/t02_diag_no_support_restriction.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t02_diag_no_support_restriction.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t02_diag_no_support_restriction.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_addr",
+       "at": "data.h0_addr_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": [
+      {
+       "id": "SEP-1b",
+       "outcome": "VIOLATED",
+       "disposition": "BLOCK",
+       "why": "H0_pair = 4.0 equals H0_addr = 4.0 and 'support_restriction' is NOT declared. Equal values under two capacity names is the conflation itself"
+      }
+     ],
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t03_diag_with_support_restriction": {
+   "receipt_path": "gate_receipts/t03_diag_with_support_restriction.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t03_diag_with_support_restriction.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t03_diag_with_support_restriction.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_addr",
+       "at": "data.h0_addr_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "7 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t04_coherent_float64": {
+   "receipt_path": "gate_receipts/t04_coherent_float64.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t04_coherent_float64.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t04_coherent_float64.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_addr",
+       "at": "data.h0_addr_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928094887362,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "7 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t05_coherent_float32_NEGATIVE_CONTROL": {
+   "receipt_path": "gate_receipts/t05_coherent_float32_NEGATIVE_CONTROL.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t05_coherent_float32_NEGATIVE_CONTROL.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t05_coherent_float32_NEGATIVE_CONTROL.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_addr",
+       "at": "data.h0_addr_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928024291992,
+       "carrier_state": "CONTRADICTED",
+       "disposition": "BLOCK",
+       "detail": {
+        "outcome": "FAILS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [
+         {
+          "op": "value_is_log2_of_integer",
+          "why": "2**6.321928024291992 = 79.99999608536156 is not integral \u2014 this is not a count capacity"
+         }
+        ],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "7 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t06_r3_full_field_equality_witness": {
+   "receipt_path": "gate_receipts/t06_r3_full_field_equality_witness.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t06_r3_full_field_equality_witness.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t06_r3_full_field_equality_witness.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_full_bits",
+       "value": 8.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_cell",
+       "at": "data.kappa_cell_bits",
+       "value": 8.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t07a_two_pair_fields_diag_last": {
+   "receipt_path": "gate_receipts/t07a_two_pair_fields_diag_last.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t07a_two_pair_fields_diag_last.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t07a_two_pair_fields_diag_last.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_cell",
+       "at": "data.kappa_cell_bits",
+       "value": 8.0,
+       "carrier_state": "CONTRADICTED",
+       "disposition": "BLOCK",
+       "detail": {
+        "outcome": "FAILS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [
+         {
+          "op": "cross_quantity_le",
+          "why": "8.0 > 4.0 (scale 1.0 on H0_pair)"
+         }
+        ],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928094887362,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t07b_two_pair_fields_coherent_last": {
+   "receipt_path": "gate_receipts/t07b_two_pair_fields_coherent_last.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t07b_two_pair_fields_coherent_last.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t07b_two_pair_fields_coherent_last.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_cell",
+       "at": "data.kappa_cell_bits",
+       "value": 8.0,
+       "carrier_state": "CONTRADICTED",
+       "disposition": "BLOCK",
+       "detail": {
+        "outcome": "FAILS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [
+         {
+          "op": "cross_quantity_le",
+          "why": "8.0 > 6.321928094887362 (scale 1.0 on H0_pair)"
+         }
+        ],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928094887362,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t11a_flip_probe_diag_last": {
+   "receipt_path": "gate_receipts/t11a_flip_probe_diag_last.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t11a_flip_probe_diag_last.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t11a_flip_probe_diag_last.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_cell",
+       "at": "data.kappa_cell_bits",
+       "value": 5.0,
+       "carrier_state": "CONTRADICTED",
+       "disposition": "BLOCK",
+       "detail": {
+        "outcome": "FAILS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [
+         {
+          "op": "cross_quantity_le",
+          "why": "5.0 > 4.0 (scale 1.0 on H0_pair)"
+         }
+        ],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928094887362,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t11b_flip_probe_coherent_last": {
+   "receipt_path": "gate_receipts/t11b_flip_probe_coherent_last.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t11b_flip_probe_coherent_last.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t11b_flip_probe_coherent_last.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_cell",
+       "at": "data.kappa_cell_bits",
+       "value": 5.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [],
+        "vacuous": []
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_diag_bits",
+       "value": 4.0,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      },
+      {
+       "binding": "DECLARED",
+       "quantity_id": "H0_pair",
+       "at": "data.h0_pair_coherent_bits",
+       "value": 6.321928094887362,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 6,
+        "failures": [],
+        "vacuous": [
+         {
+          "op": "cross_quantity_le",
+          "why": "VACUOUS: sibling quantity 'H0_addr' absent from this receipt"
+         }
+        ]
+       }
+      }
+     ],
+     "separations": "8 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t08_kappa_ext_u2": {
+   "receipt_path": "gate_receipts/t08_kappa_ext_u2.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t08_kappa_ext_u2.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t08_kappa_ext_u2.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_ext",
+       "at": "data.kappa_ext_bits",
+       "value": 2.584962500721156,
+       "carrier_state": "PRESENT_UNDISCHARGED",
+       "disposition": "PARK",
+       "detail": {
+        "outcome": "HOLDS",
+        "discharged": false,
+        "clauses_held": 8,
+        "failures": [],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "9 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t09_kappa_ext_on_empty_fibre_NEGATIVE_CONTROL": {
+   "receipt_path": "gate_receipts/t09_kappa_ext_on_empty_fibre_NEGATIVE_CONTROL.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t09_kappa_ext_on_empty_fibre_NEGATIVE_CONTROL.json"
+   ],
+   "measured_exit_code": 1,
+   "exit_name_in_estate_convention": "BLOCK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 1,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t09_kappa_ext_on_empty_fibre_NEGATIVE_CONTROL.json",
+    "result": {
+     "declared": [
+      {
+       "binding": "DECLARED",
+       "quantity_id": "kappa_ext",
+       "at": "data.kappa_ext_bits",
+       "value": 0.0,
+       "carrier_state": "CONTRADICTED",
+       "disposition": "BLOCK",
+       "detail": {
+        "outcome": "FAILS",
+        "discharged": false,
+        "clauses_held": 7,
+        "failures": [
+         {
+          "op": "fibre_nonempty",
+          "why": "fibre_cardinality = 0. TYPED RELEASE: the release is the fibre DESCRIPTOR, never 1/0 and never arithmetic on an empty fibre"
+         }
+        ],
+        "vacuous": []
+       }
+      }
+     ],
+     "separations": "9 separation check(s), none violated",
+     "suspected": [],
+     "suspected_count": 0,
+     "suspected_disposition": "PARK (name recognition cannot carry a BLOCK)"
+    }
+   }
+  },
+  "t10_honest_empty_release_descriptor": {
+   "receipt_path": "gate_receipts/t10_honest_empty_release_descriptor.json",
+   "argv": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/check_carrier_obligations.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t10_honest_empty_release_descriptor.json"
+   ],
+   "measured_exit_code": 3,
+   "exit_name_in_estate_convention": "PARK",
+   "stderr_head": "",
+   "gate_stdout": {
+    "exit": 3,
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/typed_ontology/probe_lane2_root_strata/gate_receipts/t10_honest_empty_release_descriptor.json",
+    "result": {
+     "binding": "none",
+     "declared": [],
+     "suspected": [],
+     "disposition": "PARK",
+     "why": "the receipt declares no quantities, so it asserts none. Not clean \u2014 UNCITABLE. There is deliberately no permissive fallback."
+    }
+   }
+  }
+ }
+}

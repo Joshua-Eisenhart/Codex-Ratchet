@@ -1,0 +1,17 @@
+{
+ "schema": "cb.layer-violation.v1",
+ "what_happened": "Ran system_v4/probes/sim_holodeck_atom_1..7 on 2026-08-08 and reported the seven receipts as progress.",
+ "why_it_is_a_violation": "The owner's binding layer order is CB -> sim engines -> manifold -> DOFs -> engines -> holodeck, and layers cannot be skipped. Holodeck is four layers below the current one. The run came from a ranked integration worklist that carried no layer gate.",
+ "receipts_produced": [
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_1_carrier_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_2_structure_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_3_reduction_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_4_admissibility_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_5_distinguishability_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_6_chirality_results.json",
+  "system_v4/probes/a2_state/sim_results/holodeck_atom_7_coupling_results.json"
+ ],
+ "status": "WITHDRAWN as progress. The runs executed and the receipts exist, but they are out-of-layer and must not be cited as advancing the current stage.",
+ "promotion_allowed": false,
+ "claim_ceiling": "record of a process violation; no scientific or progress claim"
+}

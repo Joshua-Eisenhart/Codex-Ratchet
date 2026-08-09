@@ -49,7 +49,7 @@
     {
       "name": "L13.vmap_speedup",
       "pass": true,
-      "details": "numpy loop 1.336s vs vmap 0.0171s -> 78x"
+      "details": "numpy loop 1.334s vs vmap 0.0172s -> 77x"
     },
     {
       "name": "L8.gksl_vs_analytic",
@@ -84,12 +84,12 @@
     {
       "name": "L7.cotengra_load_bearing",
       "pass": true,
-      "details": "HyperOptimizer tree: cost 9.19e+03, width 12, path length 23 (cotengra searched the tree; quimb executed along its path \u2014 cotengra's own executor is broken in this env, see lane note)"
+      "details": "HyperOptimizer tree: cost 9.27e+03, width 12, path length 23 (cotengra searched the tree; quimb executed along its path \u2014 cotengra's own executor is broken in this env, see lane note)"
     },
     {
       "name": "L7.product_control",
       "pass": true,
-      "details": "product |+>^12 control: S = 1.071e-13"
+      "details": "product |+>^12 control: S = 1.079e-13"
     },
     {
       "name": "L12.lineax_residual",
@@ -136,21 +136,17 @@
   "checks_total": 22,
   "blocked": [],
   "timings": {
-    "L13_census_numpy_loop_s": 1.3357794999610633,
-    "L13_census_jax_vmap_s": 0.01710445899516344,
-    "L13_census_speedup_x": 78.09539607997986,
+    "L13_census_numpy_loop_s": 1.3338316248264164,
+    "L13_census_jax_vmap_s": 0.017246542032808065,
+    "L13_census_speedup_x": 77.33907598920821,
     "L13_census_shape": [
       384,
       256
     ],
-    "L8_diffrax_512traj_s": 0.008648999966681004,
-    "L7_tn_contract_ghz_s": 0.20659858302678913,
-    "L12_lineax_chol_256rhs_s": 0.0001799589954316616,
-    "L12_jaxopt_cg_256rhs_s": 0.020376625005155802,
-    "L12_numpy_loop_256rhs_s": 0.01821595907676965
-  },
-  "findings": [
-    "cotengra 0.8.0 own contraction executor broken in this env: HyperOptimizer passed directly to quimb tn.contract raises IndexError in _parse_tensordot_axes_to_matmul; tree.contract(arrays) killed (exit 137). Workaround used: cotengra HyperOptimizer.search finds the tree (load-bearing path search), quimb executes along tree.get_path(). quimb built-in 'auto'/'auto-hq' paths also work.",
-    "ott Sinkhorn tail convergence is slow at small epsilon: threshold 1e-6 not reached in 20000 iters at eps=0.05; threshold 1e-4 converges in 8840 iters with transport cost 4.009 vs analytic 4.0."
-  ]
+    "L8_diffrax_512traj_s": 0.008756999857723713,
+    "L7_tn_contract_ghz_s": 0.2159247910603881,
+    "L12_lineax_chol_256rhs_s": 0.00022887485101819038,
+    "L12_jaxopt_cg_256rhs_s": 0.020426000002771616,
+    "L12_numpy_loop_256rhs_s": 0.01752341608516872
+  }
 }

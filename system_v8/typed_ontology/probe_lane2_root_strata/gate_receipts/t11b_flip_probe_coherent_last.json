@@ -1,0 +1,45 @@
+{
+ "note": "FLIP PROBE. Identical carriers and identical values; the two H0_pair declarations are in opposite order. kappa_cell = log2 32 = 5.0 lies strictly between H0_pair(DIAG) = 4.0 and H0_pair(COHERENT) = log2 80. Every number here is an honest measurement of this probe lane's own R1 and R3 structures.",
+ "data": {
+  "kappa_cell_bits": 5.0,
+  "h0_pair_diag_bits": 4.0,
+  "h0_pair_coherent_bits": 6.321928094887362
+ },
+ "typed_ontology": {
+  "carriers": {
+   "F_diag": {
+    "class": "pair_indexed_field",
+    "support_cardinality": 16,
+    "index_set_ref": "J4"
+   },
+   "F_coh": {
+    "class": "pair_indexed_field",
+    "support_cardinality": 80,
+    "index_set_ref": "J4"
+   },
+   "cell_dim3": {
+    "class": "fibred_pair_relation",
+    "cell_id": "(1,*,*,*)",
+    "relation_cardinality": 32,
+    "projection_ref": "pi : E -> K over {0,1,*}^4"
+   }
+  },
+  "quantities": [
+   {
+    "id": "kappa_cell",
+    "at": "data.kappa_cell_bits",
+    "carrier_ref": "cell_dim3"
+   },
+   {
+    "id": "H0_pair",
+    "at": "data.h0_pair_diag_bits",
+    "carrier_ref": "F_diag"
+   },
+   {
+    "id": "H0_pair",
+    "at": "data.h0_pair_coherent_bits",
+    "carrier_ref": "F_coh"
+   }
+  ]
+ }
+}

@@ -1,0 +1,265 @@
+{
+ "probe": "A1_is_declaration_a_relieving_surface",
+ "evaluator": "system_v8/typed_ontology/check_carrier_obligations.py",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+ "cases": [
+  {
+   "fixture": "c10_iab_no_cut.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c10_iab_no_cut__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "mi": 0.31
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c13_duplicate_key.json",
+   "baseline_exit": 1,
+   "skipped": "no typed_ontology key to remove"
+  },
+  {
+   "fixture": "c14_hshannon_above_capacity.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "PARK,BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c14_hshannon_above_capacity__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "n": 2.0,
+     "h": 3.7
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c15_sep2b_s0_derived_from_pair_field.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "PARK,PARK | SEP-2b:VIOLATED,SEP-2c:REPORT_ONLY",
+   "stripped_path": "probe_lane5_audit/stripped/c15_sep2b_s0_derived_from_pair_field__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "pair_bits": 3.0,
+     "s0": 3.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c16_sep4_scalar_total.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "PARK,PARK,PARK | SEP-4:VIOLATED",
+   "stripped_path": "probe_lane5_audit/stripped/c16_sep4_scalar_total__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "h": 1.0,
+     "svn": 1.0,
+     "total": 2.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c18_s0_above_dimension.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c18_s0_above_dimension__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "s0": 5.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c19_artifact_outside_tree.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c19_artifact_outside_tree__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "h": 1.5
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c20_claim_artifact_mismatch.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c20_claim_artifact_mismatch__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "h": 1.9
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c21_artifact_digest_mismatch.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c21_artifact_digest_mismatch__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "h": 1.5
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c22_producer_boolean_only.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c22_producer_boolean_only__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "h": 1.5
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c23_psd_asserted_spectrum_refutes.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c23_psd_asserted_spectrum_refutes__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_suspected_only(1 name hits)",
+   "numbers_unchanged": {
+    "data": {
+     "s_vn": 1.5
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c2_declared_svn_negative_repo_value.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c2_declared_svn_negative_repo_value__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_suspected_only(1 name hits)",
+   "numbers_unchanged": {
+    "data": {
+     "s_vn": -0.026676102030894332
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c3_sep1b_capacity_conflation.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "PARK,PARK | SEP-1b:VIOLATED",
+   "stripped_path": "probe_lane5_audit/stripped/c3_sep1b_capacity_conflation__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_suspected_only(1 name hits)",
+   "numbers_unchanged": {
+    "data": {
+     "addr_bits": 3.0,
+     "pair_bits": 3.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c4_sep3a_one_carrier_two_classes.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK,BLOCK | SEP-0:VIOLATED,SEP-3a:VIOLATED,SEP-3b:VIOLATED",
+   "stripped_path": "probe_lane5_audit/stripped/c4_sep3a_one_carrier_two_classes__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "n": 3.0,
+     "s0": 3.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c5_receipt_supplied_rank_cutoff.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c5_receipt_supplied_rank_cutoff__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "s0": 2.0
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c6_kappa_ext_not_log2_of_integer.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c6_kappa_ext_not_log2_of_integer__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "kappa": 1.6004719623017798
+    }
+   },
+   "relieved": true
+  },
+  {
+   "fixture": "c9_kappa_empty_fibre.json",
+   "baseline_exit": 1,
+   "baseline_disposition": "BLOCK",
+   "stripped_path": "probe_lane5_audit/stripped/c9_kappa_empty_fibre__typed_ontology_removed.json",
+   "stripped_exit": 3,
+   "stripped_disposition": "PARK_no_quantities_declared",
+   "numbers_unchanged": {
+    "data": {
+     "kappa": 0.0
+    }
+   },
+   "relieved": true
+  }
+ ],
+ "summary": {
+  "fixtures_blocked_at_baseline": 16,
+  "relieved_by_removing_one_container": 16,
+  "still_blocked_after_removal": 0,
+  "stripped_exit_codes": [
+   3
+  ]
+ },
+ "ordering_separation_reachability": {
+  "violation": "S_0 = 2.0 < S_vn = 2.5 on one declared density carrier; the table requires S_0 >= S_1 for a fixed state",
+  "without_declaration": {
+   "path": "probe_lane5_audit/stripped/A1_ordering_inverted_no_declaration.json",
+   "exit": 3,
+   "disposition": "PARK_suspected_only(2 name hits)",
+   "name_signals_matched": 2
+  },
+  "with_declaration": {
+   "path": "probe_lane5_audit/stripped/A1_ordering_inverted_with_declaration.json",
+   "exit": 1,
+   "disposition": "BLOCK,BLOCK"
+  },
+  "separation_reachable_without_declaration": false
+ }
+}

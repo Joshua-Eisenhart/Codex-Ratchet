@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:27:47.099738+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 15973,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "## THE FAILURE STORY\n\nIt started cleanly enough. You merged the first batch of commits from claimgate/bypass-regression into a feature branch, expecting to sequence them by date. Commits 1\u20138 landed without file conflicts. system_v5 tests passed. But when you merged commit 12 (from worktree 7, modifying CB library initialization), the code compiled, the linter passed, and git declared it clean. You committed it.\n\nThen the integration tests failed. Commit 9 (from worktree 3, which you'd already merged) called `CBLibrary.init_boundary()` with three arguments. But commit 12 had rewritten that function to take five arguments and moved it to a different module. No file conflict meant git saw no problem\u2014the two changes were in different files. But the dependency was real, and it was now broken. By the time you discovered this, you'd already merged commits 14\u201319, each of which layered more assumptions on top of the broken state. Unwinding meant reverting six commits and re-merging in a differe",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0129894
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

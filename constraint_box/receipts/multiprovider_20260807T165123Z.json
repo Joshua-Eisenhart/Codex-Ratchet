@@ -1,0 +1,197 @@
+{
+ "claim": "The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.",
+ "claim_ceiling": "provider diversity and lane liveness only",
+ "diversity": {
+  "families": 2,
+  "lanes_called": 6,
+  "lanes_live": 5,
+  "max_similarity": 0.625,
+  "mean_similarity": 0.45,
+  "provider_families": [
+   "anthropic",
+   "openrouter"
+  ],
+  "verdict": "REAL_SWARM: multiple families, diverse receipts"
+ },
+ "lanes": [
+  "haiku",
+  "nvidia/nemotron-3-super-120b-a12b:free",
+  "nvidia/nemotron-nano-9b-v2:free",
+  "openai/gpt-oss-20b:free",
+  "inclusionai/ling-3.0-tiny:free",
+  "cohere/north-mini-code:free"
+ ],
+ "promotion_allowed": false,
+ "results": [
+  {
+   "cost_usd": 0.058683200000000005,
+   "model": "haiku",
+   "ok": true,
+   "provider": "anthropic",
+   "sec": 13.3,
+   "text": "A successful merge applying all 43 July commits with 180 dirty files still present."
+  },
+  {
+   "finish": "stop",
+   "model": "nvidia/nemotron-3-super-120b-a12b:free",
+   "ok": true,
+   "provider": "openrouter",
+   "reasoning_chars": 1087,
+   "sec": 10.3,
+   "text": "Git merge finishes without error and applies all 43 July commits while 180 files remain dirty in the primary worktree.",
+   "usage": {
+    "completion_tokens": 309,
+    "completion_tokens_details": {
+     "audio_tokens": 0,
+     "image_tokens": 0,
+     "reasoning_tokens": 274
+    },
+    "cost": 0,
+    "cost_details": {
+     "upstream_inference_completions_cost": 0,
+     "upstream_inference_cost": 0,
+     "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 93,
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cache_write_tokens": 0,
+     "cached_tokens": 0,
+     "video_tokens": 0
+    },
+    "total_tokens": 402
+   }
+  },
+  {
+   "finish": "stop",
+   "model": "nvidia/nemotron-nano-9b-v2:free",
+   "ok": true,
+   "provider": "openrouter",
+   "reasoning_chars": 681,
+   "sec": 5.7,
+   "text": "The primary worktree has zero dirty files, allowing a clean merge to proceed.",
+   "usage": {
+    "completion_tokens": 164,
+    "completion_tokens_details": {
+     "audio_tokens": 0,
+     "image_tokens": 0,
+     "reasoning_tokens": 171
+    },
+    "cost": 0,
+    "cost_details": {
+     "upstream_inference_completions_cost": 0,
+     "upstream_inference_cost": 0,
+     "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 89,
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cache_write_tokens": 0,
+     "cached_tokens": 0,
+     "video_tokens": 0
+    },
+    "total_tokens": 253
+   }
+  },
+  {
+   "finish": "stop",
+   "model": "openai/gpt-oss-20b:free",
+   "ok": true,
+   "provider": "openrouter",
+   "reasoning_chars": 1921,
+   "sec": 23.7,
+   "text": "Git successfully merges all 43 July commits into the primary worktree, leaving the 180 dirty files unchanged.",
+   "usage": {
+    "completion_tokens": 462,
+    "completion_tokens_details": {
+     "audio_tokens": 0,
+     "image_tokens": 0,
+     "reasoning_tokens": 429
+    },
+    "cost": 0,
+    "cost_details": {
+     "upstream_inference_completions_cost": 3.234e-05,
+     "upstream_inference_cost": 3.43265e-05,
+     "upstream_inference_prompt_cost": 1.9865e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 137,
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cache_write_tokens": 0,
+     "cached_tokens": 0,
+     "video_tokens": 0
+    },
+    "total_tokens": 599
+   }
+  },
+  {
+   "finish": "length",
+   "model": "inclusionai/ling-3.0-tiny:free",
+   "ok": false,
+   "provider": "openrouter",
+   "reasoning_chars": 2626,
+   "sec": 25.0,
+   "text": "",
+   "usage": {
+    "completion_tokens": 600,
+    "completion_tokens_details": {
+     "audio_tokens": 0,
+     "image_tokens": 0,
+     "reasoning_tokens": 666
+    },
+    "cost": 0,
+    "cost_details": {
+     "upstream_inference_completions_cost": 0,
+     "upstream_inference_cost": 0,
+     "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 97,
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cache_write_tokens": 0,
+     "cached_tokens": 0,
+     "video_tokens": 0
+    },
+    "total_tokens": 697
+   }
+  },
+  {
+   "finish": "stop",
+   "model": "cohere/north-mini-code:free",
+   "ok": true,
+   "provider": "openrouter",
+   "reasoning_chars": 1227,
+   "sec": 8.9,
+   "text": "Git applied at least one of the 43 July commits while the 180 files remained dirty.",
+   "usage": {
+    "completion_tokens": 286,
+    "completion_tokens_details": {
+     "audio_tokens": 0,
+     "image_tokens": 0,
+     "reasoning_tokens": 309
+    },
+    "cost": 0,
+    "cost_details": {
+     "upstream_inference_completions_cost": 0,
+     "upstream_inference_cost": 0,
+     "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 69,
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cache_write_tokens": 0,
+     "cached_tokens": 0,
+     "video_tokens": 0
+    },
+    "total_tokens": 355
+   }
+  }
+ ],
+ "schema": "cb.multi-provider.v1",
+ "wall_seconds": 25.0
+}

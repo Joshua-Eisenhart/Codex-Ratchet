@@ -1,0 +1,783 @@
+{
+ "L3": {
+  "by_lane": {
+   "nv:deepseek-ai/deepseek-v4-flash-0731": {
+    "called": 7,
+    "live": 7
+   },
+   "nv:meta/llama-3.1-8b-instruct": {
+    "called": 5,
+    "live": 5
+   },
+   "nv:meta/llama-3.3-70b-instruct": {
+    "called": 4,
+    "live": 4
+   },
+   "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+    "called": 9,
+    "live": 9
+   },
+   "nv:nvidia/nemotron-3-nano-30b-a3b": {
+    "called": 5,
+    "live": 5
+   },
+   "nv:openai/gpt-oss-120b": {
+    "called": 5,
+    "live": 5
+   },
+   "nvidia/nemotron-nano-9b-v2:free": {
+    "called": 4,
+    "live": 4
+   },
+   "openai/gpt-oss-20b:free": {
+    "called": 1,
+    "live": 1
+   }
+  },
+  "dispatched": 40,
+  "live": 40
+ },
+ "claim_ceiling": "failure-wave structure, council divergence and output shape only; CB does not decide whether the findings are correct",
+ "collapsed_councils": [],
+ "compilation": {
+  "earliest_warning_sign": "No integration log, read timestamp, or dependency record exists for sim_engines/holodeck/system_v9 folders despite being marked landed",
+  "failure_modes": [
+   "sim_engines/holodeck/system_v9 folders landed but never read, leaving critical configuration and dependency data unprocessed and unintegrated",
+   "Six defects marked fixed without independent verification against the unread system_v9 code, allowing stale logic to ship in live waves",
+   "Handoff failure between deployment and execution: folder landing is not the same as integration into active processes",
+   "Decision and Follow-Up waves execute against unverified/stale logic when run on free lanes, producing false-positive validations",
+   "Data Visibility feedback loop broken: newly landed simulation artifacts are not propagated to dependent processes that need them"
+  ],
+  "falsifier": "Full end-to-end re-execution of integrated system_v9 code in live waves produces the same defect-free outcome as claimed, while simultaneously revealing that the six original defects WERE actually present in the unread folders \u2014 proving both the stale-logic and false-verification claims wrong",
+  "gate_that_cannot_fail": "Decision and Follow-Up waves run live on free lanes (running them is measured as execution, not as verification that they produce correct results)",
+  "loopholes": [
+   "Folder existence alone satisfies 'landed' condition without requiring proof that contents were read or processed",
+   "Six defects declared fixed without triggering independent verification against integrated system_v9 code, allowing closure without truth",
+   "Running Decision and Follow-Up waves on free lanes counts as execution/closure, skipping verification that wave outputs are correct",
+   "Defect-fix status propagates without the required Decision/Follow-Up verification sequence, converting velocity signal into false completion",
+   "Marked as 'landed' by mere file-system presence check, not by actual consumption or integration into dependent subsystems"
+  ]
+ },
+ "councils": {
+  "failure.loophole_auditor": {
+   "skill.loophole_auditor": {
+    "answers": {
+     "adversarial": "The target could be marked satisfied without actually being true if the Decision and Follow-Up waves are run on free lanes instead of live lanes.",
+     "boundary": "The audit marks success if the required log file exists, even when its contents are never read, allowing the target to be falsely satisfied.",
+     "historical": "The six\u2011defect count can be declared fixed without actual verification, allowing a false sense of completion.",
+     "literal": "The unread folders mean the six defects could be marked fixed without verification, satisfying the target falsely.",
+     "operational": "The loophole is that \"sim_engines/holodeck/system_v9 folders landed but unread\" could be marked satisfied by merely confirming folder existence, not whether they were actually read or integrated."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.61,
+     "mean_similarity": 0.375,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.61,
+     "mean_similarity": 0.375,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.5
+     },
+     "boundary": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 4.4
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 6.4
+     },
+     "literal": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.6
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 22.2
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "The control measuring \"sim_engines/holodeck/system_v9 folders landed\" exists but does not verify content or usage, rendering it a hollow metric.",
+     "boundary": "We need to answer: \"State plainly, using only what is in evidence, the ONE control in the target that measures nothing.\"\n\nWe have constraints: answer in ONE sentence under 30 words. Only the answer. Must be warm, plain, evidence-only, no speculation. Must name what is NOT established. Must not use banned verbs? Not sure. Use approved verbs. Must cite proving path. Must refer to the target: \"Constraint Box: six defects fixed, Decision and Follow-Up waves run live on free lanes, sim_engines/holodeck/system_v9 folders landed but unread.\"\n\nWe need to identify the ONE control in the target that measures nothing. Likely \"sim_engines/holodeck/system_v9 folders landed but unread\" maybe? Or \"Decision and Follow-Up waves run live on free lanes\"? The control that measures nothing is perhaps \"Decision and Follow-Up waves run live on free lanes\" because they are run but measure nothing? Or \"six defects fixed\" maybe? The phrase \"measures nothing\" suggests a control that has no effect, maybe \"Decision and Follow-Up waves run live on free lanes\" is just running but not measuring anything.\n\nWe need to answer in one sentence under 30 words, only the answer. Must be warm, plain, evidence-only. Must name what is NOT established. Must cite proving path. Must respect status ladder.\n\nWe need to produce a single sentence answer, referencing the control that measures nothing, based on evidence. The evidence: \"sim_engines/holodeck/system_v9 folders landed but unread.\" That suggests they are landed but unread, so they measure nothing because not read. Also \"Decision and Follow-Up waves run live on free lanes\" maybe measure nothing? The phrase \"free lanes\" maybe indicates they are not constrained.\n\nProbably the ONE control that measures nothing is \"Decision and Follow-Up waves run live on free lanes\". But the question: \"State plainly, using only what is in evidence, the ONE control in the target that measures nothing.\" So we need to identify that control. The evidence includes \"Decision and Follow-Up waves run live on free lanes\". That seems like a control that measures nothing because it's just run, not measuring.\n\nThus answer: \"The Decision and Follow\u2011Up waves running on free lanes measure nothing.\" That's 13 words? Let's count: The(1) Decision(2) and(3) Follow\u2011Up(4) waves(5) running(6) on(7) free(8) lanes(9) measure(10) nothing(11). That's 11 words. Under 30 words. One sentence.\n\nWe need to name what is NOT established: maybe we need to add a clause like \"This is not established as effective.\" But we must name what is NOT established by the evidence. Could be \"It is not established that",
+     "historical": "The Decision and Follow-Up waves run live on free lanes, which indicates that their control measures nothing.",
+     "literal": "The unread `sim_engines/holodeck/system_v9` folders are the control measuring nothing, as their contents remain unverified.",
+     "operational": "The six-defect-fixed gate measures nothing because no independent verification reads the landed folders or live wave outputs."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.584,
+     "mean_similarity": 0.207,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.584,
+     "mean_similarity": 0.24,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 38.1
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 3.0
+     },
+     "historical": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.1
+     },
+     "literal": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 9.8
+     },
+     "operational": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 9.9
+     }
+    }
+   },
+   "voice.strategy": {
+    "answers": {
+     "adversarial": "Unread folders satisfy the \"landed\" condition without ensuring actual review or implementation.",
+     "boundary": "Landing folders without verifying read/access confirms presence but not utilization, satisfying the letter without achieving the actual goal of processing system_v9 updates.",
+     "historical": "Fixing six defects while unread folders carry the real risk skips validation, prioritizing closure over learning.",
+     "literal": "The loophole is claiming \"six defects fixed\" without triggering required Decision/Follow-Up waves, misrepresenting completion without actual sequence execution.",
+     "operational": "Landing the sim_engines/holodeck/system_v9 folders without reading them satisfies the letter but skips the actual goal."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.5,
+     "mean_similarity": 0.373,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.5,
+     "mean_similarity": 0.373,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 16.0
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 17.8
+     },
+     "historical": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.8
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 10.4
+     },
+     "operational": {
+      "error": "",
+      "family": "openai",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 21.3
+     }
+    }
+   },
+   "voice.systems": {
+    "answers": {
+     "adversarial": "The \u201cunread\u2011folder acknowledgment\u201d reinforcing loop, where file\u2011landing triggers a completion flag without verification, can be gamed to appear fixed while nothing actually changes.",
+     "boundary": "**loop**: Defect closure signaling loop (reinforcing) \u2014 \"fixed\" status propagates without verification, creating illusion of progress.  \n**real incentive**: Rewarding defect resolution velocity over root-cause elimination or functional validation.  \n**second-order effect**: Unread system_v9 folders accumulate latent defects, eroding simulation fidelity over time.  \n**surviving challenge**: The Constraint Box cannot distinguish between *declared* fixes and *functional* fixes.  \n`slic`",
+     "historical": "The unread-folder landing loops back as \"delivered,\" so the defect-fix gate passes while the loop's actual output stays zero.",
+     "literal": "The reinforcing loop of \"Decision and Follow-Up waves run live on free lanes\" can be gamed to appear closed.",
+     "operational": "The loop where executing Decision and Follow\u2011Up waves on free lanes is treated as closure, rewarding the act without ensuring defects are truly resolved."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.498,
+     "mean_similarity": 0.232,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.498,
+     "mean_similarity": 0.232,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 4.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 15.2
+     },
+     "historical": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 5.9
+     },
+     "literal": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.2
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.7
+     }
+    }
+   }
+  },
+  "failure.premortem": {
+   "skill.premortem": {
+    "answers": {
+     "adversarial": "The system_v9 updates were never integrated due to unread folders, causing six defects to persist and Decision waves to fail when executed on untested free lanes.",
+     "boundary": "The decision wave ran on a free lane, but the six defects were fixed against unread system_v9 code, so the holodeck sim silently validated stale logic.",
+     "historical": "Unread sim_engines folder caused critical system updates to be missed.",
+     "literal": "The release crashed because the newly landed\u202fsim_engines/holodeck/system_v9\u202ffolders were never read, leaving critical configuration missing despite six defect fixes and live wave deployments.",
+     "operational": "The target failed when the unread sim_engines, holodeck, and system_v9 files caused dependency gaps to appear after six defects were fixed."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.509,
+     "mean_similarity": 0.323,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.509,
+     "mean_similarity": 0.323,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 26.4
+     },
+     "boundary": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.8
+     },
+     "historical": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 14.0
+     },
+     "literal": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 3.5
+     },
+     "operational": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 9.0
+     }
+    }
+   },
+   "voice.factory": {
+    "answers": {
+     "adversarial": "The unread sim_engines/holodeck/system_v9 folders bottlenecked validation, as no handoff read them before defects shipped.",
+     "boundary": "The single bottleneck is the Decision and Follow-Up waves running live on free lanes.",
+     "historical": "**bottleneck**: The handoff of unread `sim_engines/holodeck/system_v9` folders to dependent processes.  \n**unquestioned constraint**: Assumption that \"landing\" folders equates to successful integration without validation.  \n**leverage point**: Add a mandatory checksum/validation step post-folder landing to enforce read confirmation.  \n**surviving chall**: Defects fixed in prior waves may not address systemic unread-data handoff failures in new deployments.",
+     "literal": "**Bottleneck:** sim_engines/holodeck/system_v9 folders landed but unread \u2014 a handoff failure between deployment and execution.  \n**Unquestioned constraint:** Assumption that \"landed\" equals \"active\" without verification.  \n**Leverage point:** Add a checksum/validation gate post-landing to force read-before-proceed.  \n**Surviving chall:** No automated alert when files stagnate in \"landed\" state, requiring manual detection.",
+     "operational": "Decision wave."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.348,
+     "mean_similarity": 0.175,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.348,
+     "mean_similarity": 0.175,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "deepseek",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.2
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.9
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 48.5
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 23.3
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 85.6
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "The sim_engines/holodeck/system_v9 folders have been landed but remain unread.",
+     "boundary": "The folders sim_engines/holodeck/system_v9 have landed but remain unread, leaving",
+     "historical": "**Answer:**  \nThe target\u2019s failure is most likely due to the \u201csim_engines/holodeck/system_v9\u201d folders having been landed but never read.",
+     "literal": "The system_v9 folders were landed but unread, leaving critical configuration or data unprocessed for live wave execution.",
+     "operational": "The failure is most likely due to the six defects not being fixed in the Constraint Box."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.805,
+     "mean_similarity": 0.457,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.805,
+     "mean_similarity": 0.457,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 5.3
+     },
+     "boundary": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 13.3
+     },
+     "historical": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 2.6
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 30.3
+     },
+     "operational": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.0
+     }
+    }
+   },
+   "voice.systems": {
+    "answers": {
+     "adversarial": "**Feedback Loop:** The decision/execution loop where unread simulation data (sim_engines/holodeck/system_v9) isn't being integrated into follow-up actions.  \n**Real Incentive:** The system prioritizes closing defect counts over validating fixes via simulation, creating perverse rewards for superficial repairs.  \n**Second-Order Effect:** Accumulated simulation debt from unread v9 folders causing cascading errors in live decision waves.  \n**Surviving Challenge:** Prove the loop exists despite six \"fixed\" defects\u2014demonstrate how unread data maintains the",
+     "boundary": "Unread sim_engines/holodeck/system_v9 folders created an unchecked update loop.",
+     "historical": "The feedback loop breakdown: **Unread System Updates Balancing Loop Collapse** \u2014 system_v9 folders landed but were never integrated into active processes due to a failed feedback mechanism ensuring review and incorporation of new components post-defect fixes.",
+     "literal": "The breakdown of the reinforcing loop where unread sim_engine artifacts accumulate, causing decision paralysis and further backlog.",
+     "operational": "The breakdown of the Data Visibility feedback loop, which propagates newly landed simulation outputs to the decision engine, explains the failure."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.477,
+     "mean_similarity": 0.178,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.477,
+     "mean_similarity": 0.178,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 15.1
+     },
+     "boundary": {
+      "error": "",
+      "family": "meta-llama",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 37.6
+     },
+     "historical": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 24.8
+     },
+     "literal": {
+      "error": "",
+      "family": "nvidia",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.5
+     },
+     "operational": {
+      "error": "",
+      "family": "openai",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 3.8
+     }
+    }
+   }
+  }
+ },
+ "gate": {
+  "admitted": true,
+  "reasons": []
+ },
+ "promotion_allowed": false,
+ "provenance": {
+  "failure.loophole_auditor/skill.loophole_auditor": {
+   "kind": "skill",
+   "loaded": true,
+   "mini_mmm_sha256_16": "",
+   "source": "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/skills/council-members/loophole-auditor/SKILL.md",
+   "spec_sha256_16": "d22bf2107c4a1a49"
+  },
+  "failure.loophole_auditor/voice.hume": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "c8145a731a6521cf",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-hume.md",
+   "spec_sha256_16": "71071841620d78d9"
+  },
+  "failure.loophole_auditor/voice.strategy": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "5238e58992526f02",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-strategy.md",
+   "spec_sha256_16": "97c31226b7980a51"
+  },
+  "failure.loophole_auditor/voice.systems": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "e294a60d4ae5574b",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-systems.md",
+   "spec_sha256_16": "ba440d74b5dbc0b5"
+  },
+  "failure.premortem/skill.premortem": {
+   "kind": "skill",
+   "loaded": true,
+   "mini_mmm_sha256_16": "",
+   "source": "/Users/joshuaeisenhart/.codex/skills/premortem/SKILL.md",
+   "spec_sha256_16": "b8d8b42cb132a6bc"
+  },
+  "failure.premortem/voice.factory": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "0b245fad7a09afa8",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-factory.md",
+   "spec_sha256_16": "d9dc6ce673b03878"
+  },
+  "failure.premortem/voice.hume": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "c8145a731a6521cf",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-hume.md",
+   "spec_sha256_16": "71071841620d78d9"
+  },
+  "failure.premortem/voice.systems": {
+   "kind": "voice",
+   "loaded": true,
+   "mini_mmm_sha256_16": "e294a60d4ae5574b",
+   "source": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-systems.md",
+   "spec_sha256_16": "ba440d74b5dbc0b5"
+  }
+ },
+ "required_children_provenance": {
+  "docs_named_in_build_card": [
+   "docs/NESTED_COUNCILS_FULL_ENUMERATION_20260806.md",
+   "docs/COUNCIL_MEMBER_CATALOG_20260806.md"
+  ],
+  "note": "those two enumerate members by kind but carry no per-route required-children table; the table used here is read from sibling same-day docs WIZARD_V4_3_ACTUAL_STRUCTURE_20260806.md and WIZARD_V4_3_READ_FROM_PACKET_20260806.md, which agree with each other and diverge from the packet-local agent specs at wiki/wizard/packet-v4-3-current/agents/parents/failure.premortem.md and failure.loophole_auditor.md (unreconciled, named as an open finding)"
+ },
+ "schema": "cb.wave.failure_routes.v1",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "failure-wave structure, council divergence and output shape only; CB does not decide whether the failure modes or loopholes found are correct",
+   "prompt_intent": "Run failure.premortem and failure.loophole_auditor as ROUTES \u2014 councils of required children, not the premortem SKILL's own procedure \u2014 against one target, and compile the wave's declared findings.",
+   "success_condition": "both routes' councils meet the member floor and the compiled packet passes the deterministic gate"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "0d2f25606e43bd9fc49d50449db9bc346e9f70fae5a815721d780cd12a9e9baf",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 3,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a route is a council because it is named one",
+   "an empty failure_modes or loopholes list is a clean audit result",
+   "running the premortem SKILL's own contract is the same as running the failure.premortem ROUTE"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "structure": {
+  "children_per_route": {
+   "failure.loophole_auditor": 4,
+   "failure.premortem": 4
+  },
+  "l3_calls_planned": 40,
+  "members_per_child": 5,
+  "routes": [
+   "failure.premortem",
+   "failure.loophole_auditor"
+  ],
+  "slices": [
+   "literal",
+   "operational",
+   "adversarial",
+   "historical",
+   "boundary"
+  ]
+ },
+ "target": "Constraint Box: six defects fixed, Decision and Follow-Up waves run live on free lanes, sim_engines/holodeck/system_v9 folders landed but unread.",
+ "wall_seconds": 380.7
+}

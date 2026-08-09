@@ -46,8 +46,8 @@
   "controls": {
     "derivation_invariance_J2O": {
       "group_surface": "G2/Spin(9)-type for J2(O), F4-type Albert automorphism for J3(O), sampled by exp([L_a,L_b])",
-      "max_distance_covariance_error": 0.0,
-      "max_entropy_diff": 0.0,
+      "max_distance_covariance_error": 1.1102230246251565e-16,
+      "max_entropy_diff": 1.1102230246251565e-16,
       "pass": true,
       "sample_count": 32
     },
@@ -61,8 +61,8 @@
     "simplex_reproduction": {
       "curvature_gate": {
         "fraction_above_threshold": 0.0,
-        "max_curvature": 4.044098861743674e-16,
-        "median_curvature": 1.4242914014994627e-16,
+        "max_curvature": 3.772305008925842e-16,
+        "median_curvature": 1.386370175721994e-16,
         "pass": false
       },
       "definition": "3-outcome commutative simplex with the same target filter but no off-diagonal Peirce geometry and no nonzero derivations",
@@ -77,7 +77,7 @@
           "direction_tested": "none",
           "max_decrease": 1.092769375994975,
           "max_increase": 0.0,
-          "net_delta_max": -0.47919601939426726,
+          "net_delta_max": -0.47919601939426704,
           "net_delta_min": -1.0986122886681096,
           "pawl": true,
           "violation_count": 0,
@@ -93,7 +93,7 @@
           "direction_tested": "decreasing",
           "max_decrease": 13.346991223429605,
           "max_increase": 6.643837516797288e-07,
-          "net_delta_max": -1.4795754904280596,
+          "net_delta_max": -1.4795754904280587,
           "net_delta_min": -14.18866138788928,
           "pawl": false,
           "violation_count": 117,
@@ -141,12 +141,12 @@
         "worst_decrease": {
           "delta": -8.881784197001252e-16,
           "state_index": 31,
-          "step": 21
+          "step": 13
         },
         "worst_increase": {
           "delta": 8.881784197001252e-16,
-          "state_index": 31,
-          "step": 31
+          "state_index": 40,
+          "step": 12
         }
       },
       "definition": "derivation automorphism only: rho -> exp(t[L_a,L_b])rho, no pinch, no quadratic filter",
@@ -154,16 +154,16 @@
       "raw_spectral_entropy": {
         "classification": "hold",
         "direction_tested": "none",
-        "max_decrease": 1.6653345369377348e-16,
+        "max_decrease": 2.220446049250313e-16,
         "max_increase": 2.220446049250313e-16,
         "net_delta_max": 2.7755575615628914e-16,
         "net_delta_min": 0.0,
         "pawl": true,
         "violation_count": 0,
         "worst_decrease": {
-          "delta": -1.6653345369377348e-16,
-          "state_index": 24,
-          "step": 12
+          "delta": -2.220446049250313e-16,
+          "state_index": 35,
+          "step": 3
         },
         "worst_increase": {
           "delta": 2.220446049250313e-16,
@@ -176,21 +176,21 @@
       "U_J_to_target_shadow": {
         "classification": "hold",
         "direction_tested": "decreasing",
-        "max_decrease": 5.329070518200751e-15,
+        "max_decrease": 3.552713678800501e-15,
         "max_increase": 5.329070518200751e-15,
         "net_delta_max": 0.0,
         "net_delta_min": -5.329070518200751e-15,
         "pawl": true,
         "violation_count": 0,
         "worst_decrease": {
-          "delta": -5.329070518200751e-15,
+          "delta": -3.552713678800501e-15,
           "state_index": 0,
-          "step": 40
+          "step": 23
         },
         "worst_increase": {
           "delta": 5.329070518200751e-15,
-          "state_index": 0,
-          "step": 39
+          "state_index": 1,
+          "step": 30
         }
       },
       "definition": "derivation automorphism only: rho -> exp(t[L_a,L_b])rho, no pinch, no quadratic filter",
@@ -223,12 +223,12 @@
   },
   "eligible_consumers": [],
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-11T09:01:54Z",
+  "generated_at": "2026-07-27T20:47:46Z",
   "object_id": "jordan_dissipator_pawl_v2",
   "octonion_static_controls_reused": {
     "octonion_verification": {
       "alternative_identity_holds_seeded": true,
-      "alternative_max_residual_seeded": 2.2817716744798718e-14,
+      "alternative_max_residual_seeded": 1.5164199743867955e-14,
       "basis_associator_e1_e2_e4_norm": 2.0,
       "basis_associator_e1_e2_e4_terms": [
         {
@@ -285,7 +285,7 @@
       }
     },
     "sedenion_kill_control": {
-      "alternative_max_residual_seeded": 61.34914510143701,
+      "alternative_max_residual_seeded": 61.34914510143702,
       "attempted_object": "J3(S) Hermitian-like Albert analogue one Cayley-Dickson rung past O",
       "break_status": "construction_breaks",
       "entropy_construction_allowed": false,
@@ -339,7 +339,7 @@
   },
   "promotion_allowed": false,
   "promotion_status": "diagnostic_only",
-  "result_path": "/workspace/scratch/46e785e505be/work/131_preservation_complete_work/sims_and_scripts/jordan_dissipator_pawl_v2_sim_results.json",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/jordan_dissipator_pawl_v2_sim_results.json",
   "result_summary": {
     "all_nontrivial_or_reportable": true,
     "all_pass": true,
@@ -351,7 +351,7 @@
     "J2O": {
       "automorphism_gate": {
         "construction": "D_{a,b}=[L_a,L_b], A=exp(tD)",
-        "max_product_preservation_error": 5.551115123125783e-17,
+        "max_product_preservation_error": 5.551284527130373e-17,
         "max_unit_error": 0.0,
         "pass": true,
         "sample_rows": [
@@ -364,11 +364,11 @@
             "sample": 1
           },
           {
-            "product_error": 1.734723475976807e-17,
+            "product_error": 1.0408340855860843e-17,
             "sample": 2
           },
           {
-            "product_error": 6.938893903907228e-18,
+            "product_error": 1.5515838457795457e-17,
             "sample": 3
           }
         ],
@@ -377,8 +377,8 @@
       "curvature_gate": {
         "flow_is_effectively_mixing": false,
         "fraction_above_threshold": 1.0,
-        "max_curvature": 0.023090153942246065,
-        "median_curvature": 0.004419742438987439,
+        "max_curvature": 0.02309015394224607,
+        "median_curvature": 0.004419742438987454,
         "pass": true,
         "pass_count": 120,
         "sample_count": 120,
@@ -386,15 +386,15 @@
       },
       "derivation_matrix_norm": 1.4142135623730951,
       "fixed_point_computation": {
-        "distance_to_intended_target": 0.004494809234129997,
+        "distance_to_intended_target": 0.0044948092341300155,
         "is_density": true,
         "iterations": 8,
-        "last_delta": 3.591726524740287e-15,
+        "last_delta": 3.609932461376776e-15,
         "trace": 1.0
       },
       "fixed_point_coordinates_head": [
         0.5,
-        0.00449427299013349,
+        0.004494272990133508,
         0.0,
         0.0,
         0.0,
@@ -418,9 +418,9 @@
           "classification": "non-monotone",
           "direction_tested": "decreasing",
           "max_decrease": 9.639749328108335,
-          "max_increase": 1.1680422978659066e-09,
+          "max_increase": 1.1680418026023542e-09,
           "net_delta_max": -0.08550544470093778,
-          "net_delta_min": -9.647205510116594,
+          "net_delta_min": -9.647205510116596,
           "pawl": false,
           "violation_count": 2,
           "worst_decrease": {
@@ -429,7 +429,7 @@
             "step": 0
           },
           "worst_increase": {
-            "delta": 1.1680422978659066e-09,
+            "delta": 1.1680418026023542e-09,
             "state_index": 18,
             "step": 2
           }
@@ -439,7 +439,7 @@
           "direction_tested": "none",
           "max_decrease": 0.6902208116994605,
           "max_increase": 2.5226674776890334e-07,
-          "net_delta_max": -0.08760565622162277,
+          "net_delta_max": -0.08760565622162227,
           "net_delta_min": -0.6926096609436031,
           "pawl": false,
           "violation_count": 0,
@@ -458,8 +458,8 @@
           "classification": "monotone-decreasing",
           "direction_tested": "decreasing",
           "max_decrease": 0.9593070843336969,
-          "max_increase": 1.1919204086428744e-16,
-          "net_delta_max": -0.018000647385833256,
+          "max_increase": 1.0169294015933237e-16,
+          "net_delta_max": -0.018000647385833263,
           "net_delta_min": -0.9824408511239243,
           "pawl": true,
           "violation_count": 0,
@@ -469,27 +469,27 @@
             "step": 0
           },
           "worst_increase": {
-            "delta": 1.1919204086428744e-16,
-            "state_index": 0,
+            "delta": 1.0169294015933237e-16,
+            "state_index": 24,
             "step": 8
           }
         },
         "trace_distance_to_wrong_target_decreasing_control": {
           "classification": "non-monotone",
           "direction_tested": "decreasing",
-          "max_decrease": 0.15086095616165862,
-          "max_increase": 0.4099303783013208,
+          "max_decrease": 0.1508609561616585,
+          "max_increase": 0.4099303783013209,
           "net_delta_max": 0.4102220466079987,
           "net_delta_min": -0.15787885243219302,
           "pawl": false,
           "violation_count": 110,
           "worst_decrease": {
-            "delta": -0.15086095616165862,
+            "delta": -0.1508609561616585,
             "state_index": 115,
             "step": 0
           },
           "worst_increase": {
-            "delta": 0.4099303783013208,
+            "delta": 0.4099303783013209,
             "state_index": 78,
             "step": 0
           }
@@ -497,14 +497,14 @@
         "wrong_fixed_point_U_J_control": {
           "classification": "non-monotone",
           "direction_tested": "decreasing",
-          "max_decrease": 4.0237949161585265,
+          "max_decrease": 4.023794916158525,
           "max_increase": 5.086919807160696,
           "net_delta_max": 5.092133324766909,
           "net_delta_min": -4.170011159864725,
           "pawl": false,
           "violation_count": 97,
           "worst_decrease": {
-            "delta": -4.0237949161585265,
+            "delta": -4.023794916158525,
             "state_index": 115,
             "step": 0
           },
@@ -526,25 +526,25 @@
       "verdict": "pawl_fails",
       "witness_paths": [
         {
-          "curvature": 0.004491803887683879,
-          "end_distance_to_fixed": 1.1887919617546994e-16,
+          "curvature": 0.004491803887683897,
+          "end_distance_to_fixed": 1.1364755910069911e-16,
           "relative_entropy_end": 2.521783018624886e-09,
           "relative_entropy_start": 4.261351475208569,
           "start_distance_to_fixed": 0.49995077220832973,
           "state_index": 0
         },
         {
-          "curvature": 0.004491803887683879,
-          "end_distance_to_fixed": 1.1887919617546994e-16,
+          "curvature": 0.004491803887683897,
+          "end_distance_to_fixed": 1.1364755910069911e-16,
           "relative_entropy_end": 2.521783018624886e-09,
           "relative_entropy_start": 4.261351475208569,
           "start_distance_to_fixed": 0.49995077220832973,
           "state_index": 1
         },
         {
-          "curvature": 0.0038844953995087303,
-          "end_distance_to_fixed": 1.1887919617546994e-16,
-          "relative_entropy_end": 2.521783018624886e-09,
+          "curvature": 0.0038844953995087485,
+          "end_distance_to_fixed": 6.024887181797867e-17,
+          "relative_entropy_end": 2.521782523578174e-09,
           "relative_entropy_start": 3.830581733206675,
           "start_distance_to_fixed": 0.4560890786367401,
           "state_index": 2
@@ -554,24 +554,24 @@
     "J3O": {
       "automorphism_gate": {
         "construction": "D_{a,b}=[L_a,L_b], A=exp(tD)",
-        "max_product_preservation_error": 2.0434424045405772e-16,
+        "max_product_preservation_error": 1.689463927668373e-16,
         "max_unit_error": 0.0,
         "pass": true,
         "sample_rows": [
           {
-            "product_error": 1.0809794708299535e-16,
+            "product_error": 1.0655583960706474e-16,
             "sample": 0
           },
           {
-            "product_error": 7.802881839404627e-17,
+            "product_error": 7.242860035442932e-17,
             "sample": 1
           },
           {
-            "product_error": 1.0485036636598986e-16,
+            "product_error": 1.176450786311509e-16,
             "sample": 2
           },
           {
-            "product_error": 1.184194975819842e-16,
+            "product_error": 1.116709290276899e-16,
             "sample": 3
           }
         ],
@@ -581,7 +581,7 @@
         "flow_is_effectively_mixing": false,
         "fraction_above_threshold": 1.0,
         "max_curvature": 0.03726619057194576,
-        "median_curvature": 0.003213219209589462,
+        "median_curvature": 0.0032132192095894615,
         "pass": true,
         "pass_count": 120,
         "sample_count": 120,
@@ -621,8 +621,8 @@
           "classification": "non-monotone",
           "direction_tested": "decreasing",
           "max_decrease": 13.57110166397097,
-          "max_increase": 1.6026686574039143e-05,
-          "net_delta_max": -0.060226405618463305,
+          "max_increase": 1.602668657459065e-05,
+          "net_delta_max": -0.06022640561846354,
           "net_delta_min": -14.01503196241557,
           "pawl": false,
           "violation_count": 235,
@@ -632,7 +632,7 @@
             "step": 0
           },
           "worst_increase": {
-            "delta": 1.6026686574039143e-05,
+            "delta": 1.602668657459065e-05,
             "state_index": 110,
             "step": 2
           }
@@ -641,8 +641,8 @@
           "classification": "non-monotone",
           "direction_tested": "none",
           "max_decrease": 1.0919370218601874,
-          "max_increase": 0.16751655258972198,
-          "net_delta_max": -0.06272076457262085,
+          "max_increase": 0.1675165525897222,
+          "net_delta_max": -0.06272076457262062,
           "net_delta_min": -1.0972132072179122,
           "pawl": false,
           "violation_count": 0,
@@ -652,7 +652,7 @@
             "step": 0
           },
           "worst_increase": {
-            "delta": 0.16751655258972198,
+            "delta": 0.1675165525897222,
             "state_index": 116,
             "step": 0
           }
@@ -737,7 +737,7 @@
           "state_index": 0
         },
         {
-          "curvature": 0.0035789684661873267,
+          "curvature": 0.0035789684661873254,
           "end_distance_to_fixed": 1.5277360970095075e-16,
           "relative_entropy_end": 0.00011232981417632007,
           "relative_entropy_start": 7.328441602583596,
@@ -761,11 +761,11 @@
   "sim_execution_kind": "classical",
   "sim_id": "jordan_dissipator_pawl_v2",
   "source_conventions_reused": {
-    "J2O_source_path": "/workspace/scratch/46e785e505be/work/131_preservation_complete_work/sims_and_scripts/jordan_octonion_entropy_pawl_sim.py",
-    "J3O_source_path": "/workspace/scratch/46e785e505be/work/131_preservation_complete_work/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim.py",
+    "J2O_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/jordan_octonion_entropy_pawl_sim.py",
+    "J3O_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim.py",
     "octonion_statics": "reused Fano table, Albert spectral machinery, and sedenion kill controls from prior octonion-rung sims"
   },
-  "source_path": "/workspace/scratch/46e785e505be/work/131_preservation_complete_work/sims_and_scripts/jordan_dissipator_pawl_v2_sim.py",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/jordan_dissipator_pawl_v2_sim.py",
   "tol": 1e-10,
   "tool_integration_depth": {
     "numpy": "load_bearing",

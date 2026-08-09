@@ -1,0 +1,451 @@
+{
+ "lane": "jax_float64",
+ "engine": "jax",
+ "jax_version": "0.10.1",
+ "jax_devices": [
+  "cpu:0"
+ ],
+ "x64_enabled": true,
+ "requested_float_mode": "float64",
+ "measured_float_dtypes": {
+  "DIAG": {
+   "F": "int32",
+   "F_float": "float64",
+   "eigvals": "float64"
+  },
+  "COHERENT": {
+   "F": "int32",
+   "F_float": "float64",
+   "eigvals": "float64"
+  }
+ },
+ "measured_log2_output_dtype": "float64",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "engine_ops_from_jaxpr": {
+  "field_coherent": {
+   "broadcast_in_dim": 2,
+   "xor": 1,
+   "population_count": 1,
+   "le": 1,
+   "convert_element_type": 1
+  },
+  "field_diag": {
+   "broadcast_in_dim": 2,
+   "eq": 1,
+   "convert_element_type": 1
+  },
+  "support_count": {
+   "convert_element_type": 1,
+   "reduce_sum": 1
+  },
+  "fibre_counts": {
+   "broadcast_in_dim": 2,
+   "eq": 1,
+   "convert_element_type": 2,
+   "reduce_sum": 1
+  },
+  "matrix_rank": {
+   "jit": 1
+  },
+  "det": {
+   "jit": 1
+  },
+  "slogdet": {
+   "jit": 1
+  },
+  "eigvalsh": {
+   "jit": 1
+  },
+  "matmul_int": {
+   "dot_general": 1
+  },
+  "log2": {
+   "log": 2,
+   "div": 1
+  }
+ },
+ "engine_ops_from_lowered_stablehlo": [
+  "stablehlo.broadcast_in_dim %0, dims = [0, 1] :",
+  "stablehlo.broadcast_in_dim %1, dims = [0, 1] :",
+  "stablehlo.broadcast_in_dim %arg0, dims = [0] :",
+  "stablehlo.broadcast_in_dim %arg0, dims = [1] :",
+  "stablehlo.broadcast_in_dim %c, dims = [] :",
+  "stablehlo.compare LE, %5, %6, UNSIGNED :",
+  "stablehlo.constant dense<1> : tensor<ui32>",
+  "stablehlo.convert %7 :",
+  "stablehlo.popcnt %4 : tensor<16x16xui32>",
+  "stablehlo.xor %2, %3 : tensor<16x16xui32>"
+ ],
+ "other_engine_modules_at_exit": {
+  "torch": false,
+  "julia": false
+ },
+ "n": 4,
+ "R0": {
+  "index_set": "J_4 = {0,1}^4 as uint32 0..15",
+  "alphabet": "binary",
+  "n_bits": 4,
+  "cardinality": 16,
+  "distinct_addresses_measured": 16,
+  "H0_addr_bits": 4.0,
+  "bits_matrix_row_sums": [
+   0,
+   1,
+   1,
+   2,
+   1,
+   2,
+   2,
+   3,
+   1,
+   2,
+   2,
+   3,
+   2,
+   3,
+   3,
+   4
+  ]
+ },
+ "R1": {
+  "DIAG": {
+   "index_set_ref": "R0.J_4",
+   "omega_cardinality": 256,
+   "support_cardinality": 16,
+   "H0_pair_bits": 4.0,
+   "integer_matrix_rank": 16,
+   "determinant_from_jnp_linalg_det": 1.0,
+   "determinant_from_slogdet": 1.0,
+   "slogdet_sign": 1.0,
+   "slogdet_logabsdet": 0.0,
+   "trace": 16.0,
+   "eigenvalues_sorted": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "COHERENT": {
+   "index_set_ref": "R0.J_4",
+   "omega_cardinality": 256,
+   "support_cardinality": 80,
+   "H0_pair_bits": 6.321928094887362,
+   "integer_matrix_rank": 16,
+   "determinant_from_jnp_linalg_det": -1215.000000000001,
+   "determinant_from_slogdet": -1215.000000000001,
+   "slogdet_sign": -1.0,
+   "slogdet_logabsdet": 7.10249935577465,
+   "trace": 16.0,
+   "eigenvalues_sorted": [
+    -2.9999999999999996,
+    -1.000000000000001,
+    -1.0000000000000009,
+    -1.0000000000000002,
+    -0.9999999999999987,
+    0.9999999999999993,
+    0.9999999999999998,
+    1.0,
+    1.0000000000000004,
+    1.0000000000000007,
+    1.0000000000000009,
+    2.999999999999998,
+    2.999999999999999,
+    2.9999999999999996,
+    3.0000000000000004,
+    5.0
+   ]
+  },
+  "discrimination": {
+   "support_cardinality": {
+    "DIAG": 16,
+    "COHERENT": 80,
+    "separates": true
+   },
+   "H0_pair_bits": {
+    "DIAG": 4.0,
+    "COHERENT": 6.321928094887362,
+    "separates": true
+   },
+   "integer_matrix_rank": {
+    "DIAG": 16,
+    "COHERENT": 16,
+    "separates": false
+   },
+   "determinant_from_jnp_linalg_det": {
+    "DIAG": 1.0,
+    "COHERENT": -1215.000000000001,
+    "separates": true
+   },
+   "trace": {
+    "DIAG": 16.0,
+    "COHERENT": 16.0,
+    "separates": false
+   },
+   "H0_addr_bits": {
+    "DIAG": 4.0,
+    "COHERENT": 4.0,
+    "separates": false
+   },
+   "log2_integer_matrix_rank": {
+    "DIAG": 4.0,
+    "COHERENT": 4.0,
+    "separates": false
+   }
+  }
+ },
+ "R2": {
+  "cell_counts_by_dim": {
+   "0": 16,
+   "1": 32,
+   "2": 24,
+   "3": 8,
+   "4": 1
+  },
+  "total_cells": 81,
+  "boundary_matrix_shapes": {
+   "d1": [
+    16,
+    32
+   ],
+   "d2": [
+    32,
+    24
+   ],
+   "d3": [
+    24,
+    8
+   ],
+   "d4": [
+    8,
+    1
+   ]
+  },
+  "boundary_composition": {
+   "d1_o_d2": {
+    "shape": [
+     16,
+     24
+    ],
+    "max_abs_entry": 0,
+    "dtype": "int32"
+   },
+   "d2_o_d3": {
+    "shape": [
+     32,
+     8
+    ],
+    "max_abs_entry": 0,
+    "dtype": "int32"
+   },
+   "d3_o_d4": {
+    "shape": [
+     24,
+     1
+    ],
+    "max_abs_entry": 0,
+    "dtype": "int32"
+   }
+  }
+ },
+ "R3": {
+  "projection_ref": "pi : E -> K, cell label over {0,1,*}^4",
+  "subcube_sizes_by_dim": {
+   "0": [
+    1
+   ],
+   "1": [
+    2
+   ],
+   "2": [
+    4
+   ],
+   "3": [
+    8
+   ],
+   "4": [
+    16
+   ]
+  },
+  "FULL_FIELD": {
+   "per_dim": {
+    "0": {
+     "relation_cardinality": 256,
+     "kappa_bits": 8.0
+    },
+    "1": {
+     "relation_cardinality": 256,
+     "kappa_bits": 8.0
+    },
+    "2": {
+     "relation_cardinality": 256,
+     "kappa_bits": 8.0
+    },
+    "3": {
+     "relation_cardinality": 256,
+     "kappa_bits": 8.0
+    },
+    "4": {
+     "relation_cardinality": 256,
+     "kappa_bits": 8.0
+    }
+   },
+   "E_cardinality": 20736
+  },
+  "RESTRICTED": {
+   "per_dim": {
+    "0": {
+     "relation_cardinality": 1,
+     "kappa_bits": 0.0
+    },
+    "1": {
+     "relation_cardinality": 4,
+     "kappa_bits": 2.0
+    },
+    "2": {
+     "relation_cardinality": 12,
+     "kappa_bits": 3.584962500721156
+    },
+    "3": {
+     "relation_cardinality": 32,
+     "kappa_bits": 5.0
+    },
+    "4": {
+     "relation_cardinality": 80,
+     "kappa_bits": 6.321928094887362
+    }
+   },
+   "E_cardinality": 768
+  }
+ },
+ "C1_C3": {
+  "quotient": "q(j) = lax.population_count(j), Q = {0,1,2,3,4}",
+  "probe_family": [
+   "p_popcount"
+  ],
+  "fibre_cardinalities": {
+   "0": 1,
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "fibre_cardinality_sum": 16,
+  "kappa_ext_bits": {
+   "0": 0.0,
+   "1": 2.0,
+   "2": 2.584962500721156,
+   "3": 2.0,
+   "4": 0.0
+  },
+  "releases": {
+   "0": {
+    "quotient_class_id": 0,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 1,
+    "fibre_members": [
+     0
+    ],
+    "kappa_ext_bits": 0.0
+   },
+   "1": {
+    "quotient_class_id": 1,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 4,
+    "fibre_members": [
+     1,
+     2,
+     4,
+     8
+    ],
+    "kappa_ext_bits": 2.0
+   },
+   "2": {
+    "quotient_class_id": 2,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 6,
+    "fibre_members": [
+     3,
+     5,
+     6,
+     9,
+     10,
+     12
+    ],
+    "kappa_ext_bits": 2.584962500721156
+   },
+   "3": {
+    "quotient_class_id": 3,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 4,
+    "fibre_members": [
+     7,
+     11,
+     13,
+     14
+    ],
+    "kappa_ext_bits": 2.0
+   },
+   "4": {
+    "quotient_class_id": 4,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 1,
+    "fibre_members": [
+     15
+    ],
+    "kappa_ext_bits": 0.0
+   }
+  },
+  "empty_fibre_case": {
+   "quotient_value_probed": 5,
+   "engine_measured_count": 0,
+   "descriptor": {
+    "quotient_class_id": 5,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)",
+    "fibre_cardinality": 0,
+    "fibre_members": []
+   },
+   "descriptor_keys": [
+    "constraint_set_ref",
+    "fibre_cardinality",
+    "fibre_members",
+    "probe_family",
+    "quotient_class_id"
+   ],
+   "kappa_key_present": false
+  },
+  "log2_calls_across_5_nonempty_and_1_empty_release": 5
+ },
+ "log2_calls_total": 20,
+ "wallclock_s": 1.3
+}

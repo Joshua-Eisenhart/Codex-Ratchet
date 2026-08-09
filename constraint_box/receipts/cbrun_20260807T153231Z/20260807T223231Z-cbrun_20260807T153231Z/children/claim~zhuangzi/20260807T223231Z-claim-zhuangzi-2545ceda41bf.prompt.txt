@@ -1,0 +1,57 @@
+PROMPT INTENT (conserved): The Codex-Ratchet repo has 43 unmerged commits across 10 worktrees, dated July 15-18, touching 492 files mostly under system_v5 and system_v7. Assess the risk of merging them to main.
+SUCCESS CONDITION: each voice returns a typed claim that survives the deterministic gate stack
+CLAIM CEILING: machinery and format only; CB never decides truth
+KILLED ASSUMPTIONS (do not revive without a bridge): a model may set its own verdict
+
+--- SKILL FRAME ---
+---
+name: premortem
+description: Run a premortem on any plan, launch, product, hire, strategy, partnership, pricing change, or high-cost decision by assuming it failed six months later and working backward to expose blind spots, failure causes, early warnings, and a revised plan. Mandatory triggers include "premortem this", "premortem my", "run a premortem", "what could kill this", "future-proof this", "stress test this plan", "what am i missing here", and "find the blind spots". Strong triggers include "what could go wrong", "am i missing anything", "poke holes in this", "where will this break", and "devil's advocate this" when the user has a concrete plan or commitment where being wrong is costly. Do not trigger for simple feedback requests, factual questions, vague ideas with no concrete plan, irreversible past decisions, or LLM Council requests.
+---
+
+# Premortem
+
+Use this skill to run Gary Klein-style prospective hindsight: imagine the user's plan already failed six months from now, then work backward to identify why. The goal is not polite risk assessment. The goal is a specific, unsentimental failure analysis that produces a more resilient plan.
+
+Every completed premortem produces:
+
+```text
+premortem-report-[timestamp].html
+premortem-transcript-[timestamp].md
+```
+
+Save both files in the current workspace unless the user specifies another location. Open the HTML report after generating it.
+
+## Context Minimum
+
+Before running the premortem, gather only enough context to satisfy these three requirements:
+
+1. What is being premortemed? State it in one sentence.
+2. Who is it for or who does it affect? Identify customers, audience, team, or stakeholders.
+3. What does success look like? Define the intended outcome so failure can be meaningfully inverted.
+
+### Scan First
+
+Before asking the user anything, scan context already available:
+
+- Current conversation.
+- Files explicitly referenced or attached by the user.
+- Workspace files likely to contain plans, briefs, business context, or constraints.
+- `CLAUDE.md`, `claude.md`, `AGENTS.md`, `CODEX.md`, and any `memory/` folder when they plausibly contain relevant context.
+
+Keep the scan quick. Use fast file search and read only likely anchors. Do not spend more than about 30 seconds looking for context unless the user asked for a deeper audit.
+
+### Ask Only For Missing Context
+
+If the three requirements are met, proceed. If not, ask the single most important missing question, then re-evaluate. Examples:
+
+- "Wha
+--- END SKILL FRAME ---
+
+Terms: live reading, alternate interpretation, exclusion condition.
+
+TASK: The Codex-Ratchet repo has 43 unmerged commits across 10 worktrees, dated July 15-18, touching 492 files mostly under system_v5 and system_v7. Assess the risk of merging them to main.
+
+Return ONLY a JSON object with exactly these keys and no prose:
+{"verdict": "PARKED", "promotion_allowed": false, "claim_ceiling": "<what this claim does not cover>", "confidence": 0.5, "finding": "<one sentence>"}
+verdict must be one of PARKED, BLOCKED, ADMIT_FOR_TESTING. promotion_allowed must be false. claim_ceiling must be at least 10 characters. confidence must be a number between 0 and 1.

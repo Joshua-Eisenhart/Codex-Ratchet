@@ -1,6 +1,7 @@
 {
   "name": "sim_cl6_spin_group_embedding",
   "classification": "classical_baseline",
+  "divergence_log": "Classical Clifford-algebra baseline for Spin(6) rotor preservation and Cl(3) embedding; compares valid rotor preservation against a scaled-rotor failure mode without promoting a nonclassical bridge claim.",
   "positive": {
     "rotor_preserves_quadratic_form": true,
     "rotor_preserves_grade1": true,
@@ -17,62 +18,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this Clifford spin-group baseline"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "not needed: no graph layer"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "numeric"
+      "reason": "not needed: no SMT claim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "numeric"
+      "reason": "not needed: no SMT claim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not needed: Clifford runtime computes rotor products"
     },
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: Spin(6) sandwich + Cl(3) subalgebra check"
+      "reason": "load-bearing Spin(6) sandwich action and Cl(3) subalgebra embedding check"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not needed: no manifold-distance computation"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not needed: no equivariant neural layer"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "not needed: no graph algorithm"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph"
+      "reason": "not needed: no hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no cells"
+      "reason": "not needed: no cell-complex computation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistence"
+      "reason": "not needed: no persistence computation"
     }
   },
   "tool_integration_depth": {

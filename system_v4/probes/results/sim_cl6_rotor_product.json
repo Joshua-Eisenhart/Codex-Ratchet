@@ -1,6 +1,7 @@
 {
   "name": "sim_cl6_rotor_product",
   "classification": "classical_baseline",
+  "divergence_log": "Classical baseline: this probe uses bounded algebraic/numeric checks as a comparison control; it is not a canonical nonclassical claim.",
   "positive": {
     "R1_unitary": true,
     "R2_unitary": true,
@@ -19,62 +20,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this Cl(6,0) rotor baseline"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "not needed: no graph layer"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "numeric"
+      "reason": "not needed: no SMT claim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "numeric"
+      "reason": "not needed: no SMT claim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not used: Clifford runtime computes rotor products"
     },
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: Cl(6,0) rotor algebra"
+      "reason": "load-bearing Cl(6,0) rotor algebra"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not needed: no manifold-distance computation"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not used"
+      "reason": "not needed: no equivariant neural layer"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "not needed: no graph algorithm"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph"
+      "reason": "not needed: no hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no cells"
+      "reason": "not needed: no cell-complex computation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistence"
+      "reason": "not needed: no persistence computation"
     }
   },
   "tool_integration_depth": {

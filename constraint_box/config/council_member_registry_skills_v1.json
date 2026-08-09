@@ -1,0 +1,92 @@
+{
+ "schema": "cb.council-member-registry.skills.v1",
+ "created": "2026-08-06",
+ "promotion_allowed": false,
+ "note": "Skill members, split by runtime. The asymmetry is the finding: Codex carries the full estate; Claude Code has no council-member skills installed, only the nine wizard-loop agents. That is why the stable swarm path is Codex-parent to Claude-child via claude_child_fanout.py.",
+ "members": [
+  {"id": "three-council-wizard", "kind": "skill", "runtime": "codex", "family": "wizard-lineage"},
+  {"id": "three-council-wizard-v4", "kind": "skill", "runtime": "codex", "family": "wizard-lineage"},
+  {"id": "three-council-wizard-v4-1", "kind": "skill", "runtime": "codex", "family": "wizard-lineage"},
+  {"id": "three-council-wizard-v4-2", "kind": "skill", "runtime": "codex", "family": "wizard-lineage"},
+  {"id": "three-council-wizard-v4-3", "kind": "skill", "runtime": "codex", "family": "wizard-lineage"},
+
+  {"id": "wizard-factory-handoff", "kind": "skill", "runtime": "codex", "family": "council-member"},
+  {"id": "wizard-follow-up-selector", "kind": "skill", "runtime": "codex", "family": "council-member"},
+  {"id": "wizard-loophole-auditor", "kind": "skill", "runtime": "codex", "family": "council-member"},
+  {"id": "wizard-strategy-loop", "kind": "skill", "runtime": "codex", "family": "council-member"},
+  {"id": "wizard-systems-strategy", "kind": "skill", "runtime": "codex", "family": "council-member"},
+
+  {"id": "claude-bridge", "kind": "skill", "runtime": "codex", "family": "fanout", "scripts": ["claude_bridge.py", "claude_child_fanout.py", "gemini_child_fanout.py", "fanout_receipt_summary.py"]},
+  {"id": "claude-pattern-intake", "kind": "skill", "runtime": "codex", "family": "fanout"},
+
+  {"id": "jax-sim", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "julia-sim", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "pytorch-sim", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "three-engine-sim", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "lego-sim-classifier", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "sim-stack-maintenance", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "codex-ratchet-sim-audit-spine", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+  {"id": "terrain-operator-math-lock", "kind": "skill", "runtime": "codex", "family": "sim-lane"},
+
+  {"id": "thread-dispatch-controller", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "thread-run-monitor", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "thread-closeout-auditor", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "codex-automation-controller", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "codex-primary-runtime", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "safe-run-maintenance", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "codex-ratchet-env-agent-coordination", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "codex-ratchet-deep-stack-stress", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+  {"id": "codex-ratchet-tool-status-auditor", "kind": "skill", "runtime": "codex", "family": "thread-control"},
+
+  {"id": "a1-from-a2-distillation", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "a2-a1-memory-admission-guard", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "a2-brain-refresh", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "ratchet-a2-a1", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "brain-delta-consolidation", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "chronicle", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "bounded-hermes-intake", "kind": "skill", "runtime": "codex", "family": "memory"},
+  {"id": "closeout-result-ingest", "kind": "skill", "runtime": "codex", "family": "memory"},
+
+  {"id": "external-research-refinery-launcher", "kind": "skill", "runtime": "codex", "family": "research"},
+  {"id": "external-research-return-ingest", "kind": "skill", "runtime": "codex", "family": "research"},
+  {"id": "pro-return-instant-audit", "kind": "skill", "runtime": "codex", "family": "research"},
+  {"id": "karpathy-bounded-improve", "kind": "skill", "runtime": "codex", "family": "research"},
+  {"id": "codex-skill-agent-upgrader", "kind": "skill", "runtime": "codex", "family": "research"},
+  {"id": "premortem", "kind": "skill", "runtime": "codex", "family": "council-member"},
+  {"id": "brev-cli", "kind": "skill", "runtime": "codex", "family": "infra"},
+
+  {"id": "aligned-mmm", "kind": "skill", "runtime": "claude-code", "family": "mmm"},
+  {"id": "claude-wizard-loop-engineering", "kind": "skill", "runtime": "claude-code", "family": "wizard"},
+  {"id": "codebase-memory", "kind": "skill", "runtime": "claude-code", "family": "retrieval"},
+  {"id": "codex-first", "kind": "skill", "runtime": "claude-code", "family": "routing"},
+
+  {"id": "packet.claude-bridge", "kind": "skill", "runtime": "packet-v4-3", "family": "fanout"},
+  {"id": "packet.claude-pattern-intake", "kind": "skill", "runtime": "packet-v4-3", "family": "intake"},
+  {"id": "packet.premortem", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.sim-audit-spine", "kind": "skill", "runtime": "packet-v4-3", "family": "sim-lane"},
+  {"id": "packet.source-math-lock", "kind": "skill", "runtime": "packet-v4-3", "family": "sim-lane"},
+  {"id": "packet.council-members.collapse-auditor", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.council-members.factory-handoff", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.council-members.follow-up-selector", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.council-members.loophole-auditor", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.council-members.strategy-loop", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"},
+  {"id": "packet.council-members.systems-strategy", "kind": "skill", "runtime": "packet-v4-3", "family": "council-member"}
+ ],
+ "mmm_slices": [
+  {"id": "mmm.claimgate", "job": "judge completion from checks, receipts, mechanically computed verdicts"},
+  {"id": "mmm.cr-ratchet", "job": "compare probe-honest candidates; retain an antichain of survivors"},
+  {"id": "mmm.lev-os", "job": "replay-grade execution evidence, mechanically enforced admission"},
+  {"id": "mmm.constraint-programming", "job": "declare finite variables, domains, constraints; separate modelling from solver defects"},
+  {"id": "mmm.smt", "job": "fix theories and encodings before interpreting SAT/UNSAT/unknown"},
+  {"id": "mmm.nominalist", "job": "probe-relative identity, admissibility, quotient"},
+  {"id": "mmm.constraint-box", "job": "admissibility and custody voice; PARKED/BLOCKED ladder; owner philosophy vocabulary"},
+  {"id": "mmm.full_v4_3", "job": "wizard packet full MMM"},
+  {"id": "mmm.member_mini_registry_v4_3", "job": "per-member salience profiles: family, job, phraselets, question_stems, return_shape, avoid, compile_relevance"}
+ ],
+ "rules": [
+  "Every non-deterministic member is primed with its OWN MMM slice. Deterministic members take none.",
+  "Many MMMs, genuinely diverse from each other, coupled to the operationalist/nominalist/sentimentalist bias.",
+  "A member named here is a DESCRIBED member. It becomes a RUN member only when a receipt names its spec, task card, MMM/slice preload, runtime target, output, and proof depth.",
+  "Coverage, staleness and liveness are audited by member_coverage_auditor.py. That auditor never judges content."
+ ]
+}

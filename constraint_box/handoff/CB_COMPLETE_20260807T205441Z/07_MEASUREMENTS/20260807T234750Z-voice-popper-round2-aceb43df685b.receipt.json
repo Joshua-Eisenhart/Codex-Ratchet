@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:48:12.500861+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 17620,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"Git merge succeeds and applies all 43 July commits despite the 180 dirty files present\",\n  \"why_it_beats_the_others\": \"It falsifies both clauses of the target claim at once\u2014dirty files do not block the merge AND git does not abort\u2014rather than addressing them separately or hedging one part.\",\n  \"retained_rival\": \"Dirty files block merge only in specific index-conflict scenarios (staged changes, unresolved conflicts); the claim wrongly generalizes from a conditional to a universal.\"\n}\n```",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0151464
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

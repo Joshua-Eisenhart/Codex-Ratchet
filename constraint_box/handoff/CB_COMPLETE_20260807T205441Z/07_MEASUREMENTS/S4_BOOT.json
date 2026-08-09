@@ -1,0 +1,94 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "nvidia_device",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {
+        "executable": null
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "nvidia_smi_absent",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": null
+    },
+    {
+      "capability_id": "jax_cuda_parity",
+      "controls": {
+        "positive": false
+      },
+      "elapsed_seconds": 0.9401836250908673,
+      "evidence": {
+        "controls_timed_out": [],
+        "exit_code": 1,
+        "stderr": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 398, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 394, in main\n    dispatch[capability](fixture)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 382, in <lambda>\n    \"jax_cuda_parity\": lambda value: jax_density(value, \"jax_cuda_parity\"),\n                                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 178, in jax_density\n    raise RuntimeError(\"JAX CUDA witness requested but execution device is not GPU\")\nRuntimeError: JAX CUDA witness requested but execution device is not GPU\n",
+        "stderr_sha256": "0fe52fbeff2d9838bb58f176261f386441bfd05dabd39c27d54a2b22b195948a",
+        "stdout": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "expected_version": "0.11.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "positive_witness_failed",
+      "required": false,
+      "state": "FAILED",
+      "worker_sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
+    },
+    {
+      "capability_id": "torch_cuda_parity",
+      "controls": {
+        "positive": false
+      },
+      "elapsed_seconds": 0.8572698328644037,
+      "evidence": {
+        "controls_timed_out": [],
+        "exit_code": 1,
+        "stderr": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 398, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 394, in main\n    dispatch[capability](fixture)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 387, in <lambda>\n    \"torch_cuda_parity\": lambda value: torch_density(value, \"torch_cuda_parity\"),\n                                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/workers/estate/capability_worker.py\", line 259, in torch_density\n    raise RuntimeError(\"Torch CUDA witness requested but CUDA is unavailable\")\nRuntimeError: Torch CUDA witness requested but CUDA is unavailable\n",
+        "stderr_sha256": "e8b425e245597bec7e630e0396e8cf6bff05735c65c8d7980fdc59f2d1d8743a",
+        "stdout": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "positive_witness_failed",
+      "required": false,
+      "state": "FAILED",
+      "worker_sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
+    },
+    {
+      "capability_id": "cuquantum_tensor",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {},
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "acceptance_profile_not_implemented",
+      "required": false,
+      "state": "UNTESTED",
+      "worker_sha256": null
+    }
+  ],
+  "controller_sha256": "ff1fb8d1b9bbd5f52e034e0ad33a62000a50148944844d9032564baadb3256a7",
+  "elapsed_seconds": 2.073473999975249,
+  "environment": {
+    "distribution_count": 370,
+    "observed_sha256": "5b666fe715cf567ce5f8e318d415ef78cdb3d32ce95ef83582edea7a544e256c",
+    "state": "UNPINNED"
+  },
+  "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+  "generated_at_utc": "2026-07-27T08:07:46.056680+00:00",
+  "layer_id": "S4",
+  "layer_name": "cloud GPU acceleration and parity",
+  "manifest_sha256": "90ccb6cc9504ce6efc74603f219b169df43656b4726b75eef2e2373abb15427c",
+  "mode": "boot",
+  "promotion_allowed": false,
+  "python_executable": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+  "python_version": "3.13.6",
+  "schema": "constraintbox.sim-tier-receipt.v2",
+  "state": "FAILED"
+}

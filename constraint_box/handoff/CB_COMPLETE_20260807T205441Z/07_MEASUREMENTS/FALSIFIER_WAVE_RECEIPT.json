@@ -1,0 +1,156 @@
+{
+ "L2": {
+  "completed": 4,
+  "gated": {
+   "guard.boundary_check": {
+    "admitted": true,
+    "packet": {
+     "boundary_failure": "Claim assumes all 180 dirty files are of the same type (staged/modified/untracked) and block identically. Untracked files do not block merge at all. Staged and modified files block only checkout, not the merge-commit. File-state heterogeneity breaks the universal claim.",
+     "decisive_check": "Run: `git merge <remote-branch>` with 180 dirty files present. Capture stderr, exit code, and `git status` output. Then check: (a) does `.git/MERGE_HEAD` exist? (b) does `git log --oneline -1` show the new merge-commit? If MERGE_HEAD exists and merge-commit is in log, commits *were* applied despite abort\u2014claim is killed. If neither exists before abort, claim survives pending clarification of file types.",
+     "minimal_fix": "Specify: (1) which git operation (merge/pull/rebase); (2) file states (how many staged vs modified vs untracked); (3) the exact error message and exit code; (4) state of `.git/MERGE_HEAD` and `.git/MERGE_MSG` at abort; (5) whether the merge-commit was created before or after the abort. Replace 'applying commits' with 'checkout of merge result'.",
+     "overclaim_correction": "Git merge lands commits to the index (and creates a merge-commit in MERGE_HEAD) despite dirty worktree. Dirty files block the checkout step only, not merge-commit application. The claim conflates checkout failure with commit application failure.",
+     "status": "open"
+    },
+    "reasons": []
+   },
+   "voice.feynman": {
+    "admitted": true,
+    "packet": {
+     "boundary_failure": "The claim assumes the 180-file count and 43-commit count are facts in hand. Neither has been named or verified. The pass_fail subagent flags this as 'Unresolved' \u2014 the decisive check cannot run until branch identity and dirt-file inventory are confirmed independently of the claim itself.",
+     "decisive_check": "`git merge <branch>` exits with non-zero code, zero commits applied to HEAD, and all 180 dirty files remain unchanged (identical before/after git status). If any of these fail, the claim is falsified: merge either succeeded or partially applied commits despite dirty worktree.",
+     "minimal_fix": "Before merge: run `git status --porcelain | wc -l` to verify dirty count; name the exact branch and run `git rev-list --count <branch>` to verify commit count. Then execute `git merge <branch>` and capture exit code, pre/post git log -n 43, and pre/post git status. Only then can pass/fail be scored.",
+     "overclaim_correction": "The claim conflates three separable assertions: (1) a dirty worktree state with exactly 180 uncommitted files exists, (2) a specific branch exists with exactly 43 July commits, and (3) git merge will abort with zero commits applied. The mechanism subagent confirms #3's logic is sound, but #1 and #2 remain unverified. Claim survives mechanism check; empirical test is required.",
+     "reasoning": "Mechanism is not killed \u2014 git's behavior is as claimed. But the claim's factual anchors (180 files, 43 commits, branch name) are unresolved. The claim survives as *conditional* (if those facts hold, the merge will abort), but remains empirically untested. Survival requires the decisive check to run and return pass.",
+     "status": "open"
+    },
+    "reasons": []
+   },
+   "voice.popper": {
+    "admitted": true,
+    "packet": {
+     "boundary_failure": "Boundary lies between 'git enforces abort with dirty files' (true, testable) and 'therefore the merge cannot be completed' (incomplete \u2014 worktree changes can be stashed/committed/discarded). The claim confuses 'git refuses this attempt' with 'this operation is impossible.'",
+     "decisive_check": "git status --short | wc -l; git merge origin/<branch> 2>&1; EC=$?; echo $EC; git log --oneline --since='2026-07-01' HEAD; [ $EC -eq 0 ] && echo 'FALSIFIED' || echo 'CHECK_LOG'. Killed if exit code 0 or any July commit in HEAD. Survives if exit code 1 and clean log.",
+     "minimal_fix": "Run the decisive check (both agents agree on the test). If merge exit code is 0, or if any July commit SHA appears in `git log` post-merge, claim is killed. If merge fails with exit code 1 and no July commits appear in HEAD, claim survives as technically accurate (but operationally imprecise without remedy path).",
+     "overclaim_correction": "Claim treats the condition as a binary blocker, not acknowledging that worktree state is mutable. Git's refusal is predictable safety behavior, not a hard block on merging. The claim would need qualification: 'blocks until worktree is cleaned.'",
+     "status": "open"
+    },
+    "reasons": []
+   },
+   "voice.pushback": {
+    "admitted": true,
+    "packet": {
+     "boundary_failure": "Assumes merge was attempted after stashing (unobserved). No error message, exit code, or git state shown. Critical terms undefined: what is 'dirty' (modified, staged, untracked)? When does 'abort' occur\u2014before processing commits, during, or after? Missing observable evidence.",
+     "decisive_check": "git stash; git merge <branch>; echo $?; git log --oneline -n 5. If merge succeeds, dirty files were precondition only (claim falsified). If merge fails, provide exact error message and show commit state before and after.",
+     "minimal_fix": "Dirty files must be stashed before merging. Merge outcome after stashing has not been characterized. No evidence the merge was attempted with a clean working tree.",
+     "overclaim_correction": "Dirty files pause merges (precondition), not block them causally. Stashing resolves the precondition; blocking occurs only if merge fails after cleaning the tree. The claim conflates precondition with causation.",
+     "status": "open"
+    },
+    "reasons": []
+   }
+  },
+  "spawned": 4
+ },
+ "L3": {
+  "completed": 8,
+  "returns": {
+   "guard.boundary_check~boundary_failure": "Salience file not present at path; proceeding with receipt.\n\n**Fog:** \"block a clean merge\" and \"git aborts\" \u2014 which git operation (merge/rebase/pull)? Conflates dirty-tree rejection of worktree-update with rejection of merge-commit application. Git merge lands commits to index despite dirty tree.\n\n**Cut + replacement:**\n- \"block a clean merge\" \u2192 \"which operation halts, and at which step (before or after commit-application)?\"\n\n**Hidden bad state:** \"git aborts without applying\" assumes the abort happens before commits are applied, not after. Evidence missing: exit code, error message, state of `.git/MERGE_HEAD`.\n\n**Surviving challenge:** Dirty files may block *checkout* of merge result but not *merge-commit application*. Claim needs: operation name + stderr + git status at abort point.\n\n---\n\n**agent_id:** failure-orwell-001 | **slices_loaded:** false (salience unavailable) | **receipt_status:** incomplete-per-contract",
+   "guard.boundary_check~minimal_fix": "**fog found**: \"dirty files\" (state unspecified\u2014staged? modified? untracked?), \"block\" (mechanism undefined), \"apply\" (wrong term; merges don't apply commits), \"clean merge\" (reference undefined)\n\n**cuts + replacements**: \"180 dirty files\" \u2192 \"180 {staged|modified|untracked} files\"; \"block\" \u2192 \"prevent: git error [name it]\"; \"applying\" \u2192 \"merging\"\n\n**hidden bad-state**: No error message cited. Claim assumes all 180 files block identically\u2014false if mixed states. Untracked files don't block merge at all.\n\n**surviving challenge**: Claim holds only if file state is constrained. Mixed states need separate analysis.\n\n**minimal fix** (33 words): Specify file states (staged/modified/untracked). Name the git error. Replace \"apply commits\" with \"merge commits\". State which branch is \"clean\" relative to. Cite the exit behavior.\n\n**slices_loaded**: yes  \n**agent_id**: `failure-orwell-001`",
+   "voice.feynman~mechanism": "**Operation:** `git merge <branch>` with dirty worktree\n\n**Mechanism:** git compares the index against the working tree for differences before entering merge logic. If uncommitted changes are detected, merge exits with error before HEAD is moved or commits applied.\n\n(24 words)",
+   "voice.feynman~pass_fail": "Slices loaded: v4.1-reference.\n\n**Operation \u00b7 Observable:** `git merge july-branch` on current worktree (180 dirty files present). Measure: exit code, applied commits count, files touched before/after.\n\n**Pass/Fail:** Pass if merge aborts (non-zero exit) + zero commits applied + dirty files unchanged. Fail if merge succeeds or applies any commits.\n\n**Unresolved:** Exact branch name containing 43 July commits; method to verify dirt-file count matches 180.",
+   "voice.popper~decisive_check": "**Target claim (exact):** The 180 dirty files on the primary worktree block a clean merge; git aborts without applying any of the 43 July commits.\n\n**Strongest falsifier:** If `git merge <branch>` succeeds, or if any July commit is applied to HEAD despite dirty files or git's error status.\n\n**Decisive check (runnable):**\n```\ngit status --short | wc -l\ngit merge origin/branch 2>&1; echo $?\ngit log --oneline --since=\"2026-07-01\" | wc -l\n```\nIf exit code is 0 or HEAD advances: claim is **killed**.\n\n**Classification:** `open` \u2014 depends on actual worktree state and branch target.\n\n**Agent ID:** `voice-popper::falsifier-merge-dirty-files`",
+   "voice.popper~strongest_falsifier": "Git applies \u22651 of the 43 commits despite 180 dirty files present. This directly falsifies the claim's core prediction: \"aborts without applying any.\" Decisive test: git log post-merge shows \u22651 of the 43 commit SHAs, claim is killed.",
+   "voice.pushback~corrected_claim": "I cannot locate the salience reference file in the indexed projects. Without it, I'm proceeding from the receipt contract alone.\n\n**Stated position:** 180 dirty files block a clean merge; git aborts without applying the 43 July commits.\n\n**Strongest falsifier:** Dirty files don't block merges\u2014they pause them. `git stash` resolves it in one step. A merge failure after stashing points to a commit conflict, not the dirty state.\n\n**Overclaim:** Framing a workflow constraint as a blocker. Dirty files are a precondition, not a blocker.\n\n**What I'd check to kill the claim:** Run `git stash` and attempt the merge. If it succeeds, the \"blocking\" characterization is false. If it fails, the real problem is downstream (bad commit, bad base).\n\n**Restated claim at evidence strength:**\n\nDirty files prevent merge until stashed. No evidence shows the merge itself fails after cleaning the tree.",
+   "voice.pushback~overclaim_boundary": "**Position:** 180 dirty files block merge; git aborts without applying July commits.\n\n**Characteristic test:** Attempt the merge; show actual error message and pre/post commit state.\n\n**Overclaim:** \"Aborts without applying any\" masks timing\u2014does error occur before processing commits, during, or after? \"Dirty\" undefined: modified, staged, or untracked? Conflates precondition (files exist) with causation (they block).\n\n**Open:** Was merge attempted? Did git error before or after commit processing?\n\n**Surviving challenge:** Claim assumes unobserved behavior."
+  },
+  "spawned": 8
+ },
+ "claim_ceiling": "falsification structure and packet shape only",
+ "composition": {
+  "guard.boundary_check": {
+   "agent_spec": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-orwell.md",
+    "sha256": "325169a07c451dc676797a9883e38d6bcb05a24367778142be538031818451d8"
+   },
+   "mini_mmm": {
+    "path": "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_ORWELL_FULL_v4_1.md",
+    "sha256": "214fa89f499e50361a707fc698cf10bc2942fa6b7a5669a32d3f1efc92503c6a"
+   }
+  },
+  "voice.feynman": {
+   "agent_spec": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-feynman.md",
+    "sha256": "8ed775ee5531afcb93a23ee514914bcb8fac22e507b3fee970153ac74537475b"
+   },
+   "mini_mmm": {
+    "path": "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_FEYNMAN_FULL_v4_1.md",
+    "sha256": "d4106138ed47a5a59036b9eaa3510462da23a21552a9a7723e2878f7df82fdd1"
+   }
+  },
+  "voice.popper": {
+   "agent_spec": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-popper.md",
+    "sha256": "8ab5b545cfa4d37e3b0eedb1db546141eaa1a139d99f6bc4b32b3abb5df2b6e6"
+   },
+   "mini_mmm": {
+    "path": "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_POPPER_FULL_v4_1.md",
+    "sha256": "7a914913ab378113b42647cb16b67067f032cfbf437aa872ccb1c39e6f95131c"
+   }
+  },
+  "voice.pushback": {
+   "agent_spec": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/agents/voice-pushback.md",
+    "sha256": "e7871d5de2143a704cf76592c54ee18475c5aabf1753da65602c7ef04a9717b6"
+   },
+   "mini_mmm": {
+    "path": "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_PUSHBACK_FULL_v4_1.md",
+    "sha256": "22c115eac2f7e70e548748723511735b154cf6d002834e4916e32e26a82e3f22"
+   }
+  }
+ },
+ "declared_outputs": [
+  "status",
+  "overclaim_correction",
+  "boundary_failure",
+  "minimal_fix",
+  "decisive_check"
+ ],
+ "promotion_allowed": false,
+ "required_children": [
+  "voice.popper",
+  "voice.pushback",
+  "voice.feynman",
+  "guard.boundary_check"
+ ],
+ "route": "failure.falsifier",
+ "route_verdict": "OPEN",
+ "schema": "cb.wave.failure-falsifier.v1",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "falsification structure only; CB does not decide whether the claim is true",
+   "prompt_intent": "Falsify the target claim: name the strongest falsifier, the overclaim boundary, the boundary failure, the minimal fix.",
+   "success_condition": "each required child returns a packet carrying every declared route output, with status in killed|open|survived"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "3001d64b2241f47f63e9216b569579f4be107d4c6b9222282a73c0a336e863af",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 1,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 1
+  },
+  "killed_assumptions": [
+   "a claim survives because no one objected"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "tally": {
+  "killed": 0,
+  "open": 4,
+  "survived": 0
+ },
+ "target_claim": "The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.",
+ "wall_seconds": 114.0
+}

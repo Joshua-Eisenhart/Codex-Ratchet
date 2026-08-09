@@ -365,14 +365,18 @@ telegram-log:
 # Run every ClaimGate gate suite against its recorded expectation
 gates:
 	$(PYTHON) claimgate_plugin/run_all_gates.py
+	$(PYTHON) -m unittest claimgate_plugin.tests.test_ratchet_floor_smt claimgate_plugin.tests.test_canfail_smt
+	$(PYTHON) claimgate_plugin/gate_ledger.py verify
+	$(PYTHON) claimgate_plugin/run_all_gates.py --json claimgate_plugin/results/all_gates_report_v1.json
 
 # Run the ConstraintBox unittest suite
 cb-suite:
 	cd constraint_box && PYTHONPATH=src $(PYTHON) -m unittest discover -s tests
 
 # Run the ConstraintBox S1 acceptance tier
+TIER ?= S1
 cb-estate:
-	cd constraint_box && PYTHONPATH=src $(PYTHON) -m constraintbox estate --pack-root . --manifest config/sim_estate_v2.json --fixture fixtures/manifold/manifold_fixture_v1.json --tier S1 --mode acceptance --python $(PYTHON) --enforce
+	cd constraint_box && PYTHONPATH=src $(PYTHON) -m constraintbox estate --pack-root . --manifest config/sim_estate_v2.json --fixture fixtures/manifold/manifold_fixture_v1.json --tier $(TIER) --mode acceptance --python $(PYTHON) --enforce
 
 # Run the ClaimGate gates, ConstraintBox tests, and S1 acceptance tier in order
 cb-check:

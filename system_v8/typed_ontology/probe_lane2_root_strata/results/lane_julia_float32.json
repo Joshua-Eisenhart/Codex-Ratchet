@@ -1,0 +1,533 @@
+{
+ "wallclock_s": 0.357,
+ "measured_log2_output_type": "Float32",
+ "loaded_modules": [
+  "ArnoldiMethod",
+  "Artifacts",
+  "Base",
+  "Base64",
+  "Compat",
+  "CompatLinearAlgebraExt",
+  "Core",
+  "DataStructures",
+  "Dates",
+  "Distributed",
+  "FileWatching",
+  "Graphs",
+  "Inflate",
+  "InteractiveUtils",
+  "JSON",
+  "JuliaSyntaxHighlighting",
+  "Libdl",
+  "LinearAlgebra",
+  "MacroTools",
+  "Main",
+  "Markdown",
+  "Mmap",
+  "OpenBLAS_jll",
+  "OrderedCollections",
+  "Parsers",
+  "PrecompileTools",
+  "Preferences",
+  "Printf",
+  "Random",
+  "SHA",
+  "Serialization",
+  "SharedArrays",
+  "SimpleTraits",
+  "Sockets",
+  "SparseArrays",
+  "SparseArraysExt",
+  "StaticArrays",
+  "StaticArraysCore",
+  "StaticArraysStatisticsExt",
+  "Statistics",
+  "StyledStrings",
+  "SuiteSparse_jll",
+  "TOML",
+  "UUIDs",
+  "Unicode",
+  "libblastrampoline_jll"
+ ],
+ "requested_float_mode": "float32",
+ "R1": {
+  "independent_construction_agreement": {
+   "trace": {
+    "equal": true,
+    "graphs_grid": 16,
+    "count_ones": 16
+   },
+   "support_cardinality": {
+    "equal": true,
+    "graphs_grid": 80,
+    "count_ones": 80
+   },
+   "float_rank": {
+    "equal": true,
+    "graphs_grid": 16,
+    "count_ones": 16
+   },
+   "eigenvalues_sorted": {
+    "equal": true,
+    "graphs_grid": [
+     -2.9999992847442627,
+     -1.0000007152557373,
+     -0.9999998211860657,
+     -0.9999997615814209,
+     -0.9999994039535522,
+     0.999999463558197,
+     0.9999997615814209,
+     0.9999997615814209,
+     0.9999998211860657,
+     1.0,
+     1.0000001192092896,
+     3.0,
+     3.000000238418579,
+     3.000000476837158,
+     3.0000007152557373,
+     4.999999523162842
+    ],
+    "count_ones": [
+     -2.9999992847442627,
+     -1.0000007152557373,
+     -0.9999998211860657,
+     -0.9999997615814209,
+     -0.9999994039535522,
+     0.999999463558197,
+     0.9999997615814209,
+     0.9999997615814209,
+     0.9999998211860657,
+     1.0,
+     1.0000001192092896,
+     3.0,
+     3.000000238418579,
+     3.000000476837158,
+     3.0000007152557373,
+     4.999999523162842
+    ]
+   },
+   "exact_determinant_over_rationals": {
+    "equal": true,
+    "graphs_grid": "-1215//1",
+    "count_ones": "-1215//1"
+   },
+   "H0_pair_bits": {
+    "equal": true,
+    "graphs_grid": 6.321928024291992,
+    "count_ones": 6.321928024291992
+   }
+  },
+  "DIAG": {
+   "trace": 16,
+   "support_cardinality": 16,
+   "float_determinant": 1.0,
+   "float_rank": 16,
+   "eigenvalues_sorted": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "exact_determinant_over_rationals": "1//1",
+   "index_set_ref": "R0.J_4",
+   "omega_cardinality": 256,
+   "H0_pair_bits": 4.0
+  },
+  "COHERENT": {
+   "trace": 16,
+   "support_cardinality": 80,
+   "float_determinant": -1215.0,
+   "float_rank": 16,
+   "eigenvalues_sorted": [
+    -2.9999992847442627,
+    -1.0000007152557373,
+    -0.9999998211860657,
+    -0.9999997615814209,
+    -0.9999994039535522,
+    0.999999463558197,
+    0.9999997615814209,
+    0.9999997615814209,
+    0.9999998211860657,
+    1.0,
+    1.0000001192092896,
+    3.0,
+    3.000000238418579,
+    3.000000476837158,
+    3.0000007152557373,
+    4.999999523162842
+   ],
+   "exact_determinant_over_rationals": "-1215//1",
+   "index_set_ref": "R0.J_4",
+   "omega_cardinality": 256,
+   "H0_pair_bits": 6.321928024291992
+  },
+  "discrimination": {
+   "float_determinant": {
+    "DIAG": 1.0,
+    "COHERENT": -1215.0,
+    "separates": true
+   },
+   "support_cardinality": {
+    "DIAG": 16,
+    "COHERENT": 80,
+    "separates": true
+   },
+   "float_rank": {
+    "DIAG": 16,
+    "COHERENT": 16,
+    "separates": false
+   },
+   "trace": {
+    "DIAG": 16,
+    "COHERENT": 16,
+    "separates": false
+   },
+   "log2_float_rank": {
+    "DIAG": 4.0,
+    "COHERENT": 4.0,
+    "separates": false
+   },
+   "exact_determinant_over_rationals": {
+    "DIAG": "1//1",
+    "COHERENT": "-1215//1",
+    "separates": true
+   },
+   "H0_addr_bits": {
+    "DIAG": 4.0,
+    "COHERENT": 4.0,
+    "separates": false
+   },
+   "H0_pair_bits": {
+    "DIAG": 4.0,
+    "COHERENT": 6.321928024291992,
+    "separates": true
+   }
+  },
+  "COHERENT_from_Graphs_grid": {
+   "graph_nv": 16,
+   "trace": 16,
+   "support_cardinality": 80,
+   "float_determinant": -1215.0,
+   "float_rank": 16,
+   "eigenvalues_sorted": [
+    -2.9999992847442627,
+    -1.0000007152557373,
+    -0.9999998211860657,
+    -0.9999997615814209,
+    -0.9999994039535522,
+    0.999999463558197,
+    0.9999997615814209,
+    0.9999997615814209,
+    0.9999998211860657,
+    1.0,
+    1.0000001192092896,
+    3.0,
+    3.000000238418579,
+    3.000000476837158,
+    3.0000007152557373,
+    4.999999523162842
+   ],
+   "exact_determinant_over_rationals": "-1215//1",
+   "graph_ne": 32,
+   "H0_pair_bits": 6.321928024291992
+  }
+ },
+ "lane": "julia_float32",
+ "R0": {
+  "index_set": "J_4 = {0,1}^4 as Int 0..15",
+  "distinct_addresses_measured": 16,
+  "bits_matrix_row_sums": [
+   0,
+   1,
+   1,
+   2,
+   1,
+   2,
+   2,
+   3,
+   1,
+   2,
+   2,
+   3,
+   2,
+   3,
+   3,
+   4
+  ],
+  "cardinality": 16,
+  "n_bits": 4,
+  "H0_addr_bits": 4.0,
+  "alphabet": "binary"
+ },
+ "engine": "julia",
+ "measured_float_type": "Float32",
+ "julia_version": "1.12.6",
+ "log2_calls_total": 21,
+ "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+ "julia_binary": "/opt/homebrew/Cellar/julia/1.12.6/bin/julia",
+ "R3": {
+  "RESTRICTED": {
+   "per_dim": {
+    "4": {
+     "kappa_bits": 6.321928024291992,
+     "relation_cardinality": 80
+    },
+    "1": {
+     "kappa_bits": 2.0,
+     "relation_cardinality": 4
+    },
+    "0": {
+     "kappa_bits": 0.0,
+     "relation_cardinality": 1
+    },
+    "2": {
+     "kappa_bits": 3.5849626064300537,
+     "relation_cardinality": 12
+    },
+    "3": {
+     "kappa_bits": 5.0,
+     "relation_cardinality": 32
+    }
+   },
+   "E_cardinality": 768
+  },
+  "FULL_FIELD": {
+   "per_dim": {
+    "4": {
+     "kappa_bits": 8.0,
+     "relation_cardinality": 256
+    },
+    "1": {
+     "kappa_bits": 8.0,
+     "relation_cardinality": 256
+    },
+    "0": {
+     "kappa_bits": 8.0,
+     "relation_cardinality": 256
+    },
+    "2": {
+     "kappa_bits": 8.0,
+     "relation_cardinality": 256
+    },
+    "3": {
+     "kappa_bits": 8.0,
+     "relation_cardinality": 256
+    }
+   },
+   "E_cardinality": 20736
+  },
+  "projection_ref": "pi : E -> K, cell label over {0,1,*}^4",
+  "subcube_sizes_by_dim": {
+   "4": [
+    16
+   ],
+   "1": [
+    2
+   ],
+   "0": [
+    1
+   ],
+   "2": [
+    4
+   ],
+   "3": [
+    8
+   ]
+  }
+ },
+ "engine_method_provenance_from_which": {
+  "det_rational": "det(A::AbstractMatrix{T}) where T @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/generic.jl:1824",
+  "rank": "rank(A::AbstractMatrix; atol, rtol) @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/generic.jl:1097",
+  "matmul_int": "*(A::AbstractMatrix, B::AbstractMatrix) @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/matmul.jl:114",
+  "det_float": "det(A::AbstractMatrix{T}) where T @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/generic.jl:1824",
+  "tr": "tr(A::StridedMatrix{T}) where T @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/dense.jl:428",
+  "log2": "log2(x::Float32) @ Base.Math special/log.jl:257",
+  "eigvals": "eigvals(A::Union{Hermitian{T, S}, Hermitian{Complex{T}, S}, Symmetric{T, S}} where {T<:Real, S}; alg, sortby) @ LinearAlgebra /opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/symmetriceigen.jl:156",
+  "grid": "grid(dims::AbstractVector{T}; periodic) where T<:Integer @ Graphs.SimpleGraphs ~/.julia/packages/Graphs/rEutM/src/SimpleGraphs/generators/staticgraphs.jl:479",
+  "count_ones": "count_ones(x::Union{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8}) @ Base int.jl:421",
+  "adjacency_matrix": "adjacency_matrix(g::AbstractGraph; ...) @ Graphs.LinAlg ~/.julia/packages/Graphs/rEutM/src/linalg/spectral.jl:16"
+ },
+ "R2": {
+  "cell_counts_by_dim": {
+   "4": 1,
+   "1": 32,
+   "0": 16,
+   "2": 24,
+   "3": 8
+  },
+  "total_cells": 81,
+  "boundary_matrix_shapes": {
+   "d3": [
+    24,
+    8
+   ],
+   "d1": [
+    16,
+    32
+   ],
+   "d4": [
+    8,
+    1
+   ],
+   "d2": [
+    32,
+    24
+   ]
+  },
+  "boundary_composition": {
+   "d2_o_d3": {
+    "max_abs_entry": 0,
+    "shape": [
+     32,
+     8
+    ],
+    "eltype": "Int64"
+   },
+   "d1_o_d2": {
+    "max_abs_entry": 0,
+    "shape": [
+     16,
+     24
+    ],
+    "eltype": "Int64"
+   },
+   "d3_o_d4": {
+    "max_abs_entry": 0,
+    "shape": [
+     24,
+     1
+    ],
+    "eltype": "Int64"
+   }
+  }
+ },
+ "C1_C3": {
+  "kappa_ext_bits": {
+   "4": 0.0,
+   "1": 2.0,
+   "0": 0.0,
+   "2": 2.5849626064300537,
+   "3": 2.0
+  },
+  "empty_fibre_case": {
+   "quotient_value_probed": 5,
+   "descriptor_keys": [
+    "constraint_set_ref",
+    "fibre_cardinality",
+    "fibre_members",
+    "probe_family",
+    "quotient_class_id"
+   ],
+   "engine_measured_count": 0,
+   "kappa_key_present": false,
+   "descriptor": {
+    "fibre_members": [],
+    "fibre_cardinality": 0,
+    "quotient_class_id": 5,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   }
+  },
+  "log2_calls_across_5_nonempty_and_1_empty_release": 5,
+  "quotient": "q(j) = Base.count_ones(j), Q = {0,1,2,3,4}",
+  "probe_family": [
+   "p_popcount"
+  ],
+  "fibre_cardinality_sum": 16,
+  "releases": {
+   "4": {
+    "fibre_members": [
+     15
+    ],
+    "kappa_ext_bits": 0.0,
+    "fibre_cardinality": 1,
+    "quotient_class_id": 4,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   },
+   "1": {
+    "fibre_members": [
+     1,
+     2,
+     4,
+     8
+    ],
+    "kappa_ext_bits": 2.0,
+    "fibre_cardinality": 4,
+    "quotient_class_id": 1,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   },
+   "0": {
+    "fibre_members": [
+     0
+    ],
+    "kappa_ext_bits": 0.0,
+    "fibre_cardinality": 1,
+    "quotient_class_id": 0,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   },
+   "2": {
+    "fibre_members": [
+     3,
+     5,
+     6,
+     9,
+     10,
+     12
+    ],
+    "kappa_ext_bits": 2.5849626064300537,
+    "fibre_cardinality": 6,
+    "quotient_class_id": 2,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   },
+   "3": {
+    "fibre_members": [
+     7,
+     11,
+     13,
+     14
+    ],
+    "kappa_ext_bits": 2.0,
+    "fibre_cardinality": 4,
+    "quotient_class_id": 3,
+    "probe_family": [
+     "p_popcount"
+    ],
+    "constraint_set_ref": "C0 = identity constraint (E_C = E)"
+   }
+  },
+  "fibre_cardinalities": {
+   "4": 1,
+   "1": 4,
+   "0": 1,
+   "2": 6,
+   "3": 4
+  }
+ },
+ "n": 4
+}

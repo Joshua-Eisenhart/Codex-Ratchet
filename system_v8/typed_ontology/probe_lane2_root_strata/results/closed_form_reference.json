@@ -1,0 +1,92 @@
+{
+ "lane": "closed_form_reference",
+ "engine": "none (math.comb + hypercube spectrum theorem)",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "n": 4,
+ "R0": {
+  "cardinality": 16,
+  "H0_addr_bits": 4.0
+ },
+ "R1": {
+  "DIAG": {
+   "support_cardinality": 16,
+   "H0_pair_bits": 4.0,
+   "integer_matrix_rank": 16,
+   "integer_determinant": 1,
+   "trace": 16,
+   "eigenvalue_multiplicities": {
+    "1": 16
+   }
+  },
+  "COHERENT": {
+   "support_cardinality": 80,
+   "H0_pair_bits": 6.321928094887363,
+   "integer_matrix_rank": 16,
+   "integer_determinant": -1215,
+   "trace": 16,
+   "eigenvalue_multiplicities": {
+    "5": 1,
+    "3": 4,
+    "1": 6,
+    "-1": 4,
+    "-3": 1
+   }
+  },
+  "why_coherent_support": "each j has 1 + N partners within Hamming distance 1, so |supp F| = 2^N (1+N) with no matrix built"
+ },
+ "R2": {
+  "cell_counts_by_dim": {
+   "0": 16,
+   "1": 32,
+   "2": 24,
+   "3": 8,
+   "4": 1
+  },
+  "total_cells": 81,
+  "boundary_composition_max_abs_entry_expected": 0,
+  "why": "cubical chain complex identity d o d = 0"
+ },
+ "R3": {
+  "FULL_FIELD": {
+   "kappa_bits": 8.0,
+   "relation_cardinality": 256,
+   "E_cardinality": 20736
+  },
+  "RESTRICTED": {
+   "relation_cardinality_by_dim": {
+    "0": 1,
+    "1": 4,
+    "2": 12,
+    "3": 32,
+    "4": 80
+   },
+   "kappa_bits_by_dim": {
+    "0": 0.0,
+    "1": 2.0,
+    "2": 3.584962500721156,
+    "3": 5.0,
+    "4": 6.321928094887363
+   },
+   "E_cardinality": 768
+  }
+ },
+ "C1_C3": {
+  "fibre_cardinalities": {
+   "0": 1,
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "fibre_cardinality_sum": 16,
+  "kappa_ext_bits": {
+   "0": 0.0,
+   "1": 2.0,
+   "2": 2.584962500721156,
+   "3": 2.0,
+   "4": 0.0
+  },
+  "empty_fibre_quotient_value": 5,
+  "empty_fibre_cardinality": 0
+ }
+}

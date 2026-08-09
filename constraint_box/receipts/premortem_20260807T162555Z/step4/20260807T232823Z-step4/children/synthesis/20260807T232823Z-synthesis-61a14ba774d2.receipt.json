@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:49.164495+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 23324,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# PREMORTEM REPORT: Codex-Ratchet Merge Consolidation\n\n## 1. The Most Likely Failure\n\nChronological merge (commits replayed in July 15\u201318 order) lands consumer commits before provider commits. A system_v7 commit on July 16 will import a schema that system_v5 doesn't define until July 18. On that commit, main compiles and all unit tests pass (each worktree's snapshot is valid). But the merged state itself\u2014a path no worktree ever tested\u2014carries broken imports. The error surfaces only at runtime integration or when dependent code tries to instantiate missing objects.\n\n**Why it's likely:** The 43 commits form a dependency graph, but the visible order is chronological, not topological. Three-way merge preserves order by date, not by logic. No one has mapped the actual dependency order yet.\n\n## 2. The Most Dangerous Failure\n\nSilent semantic breakage passing all tests. A system_v5 worktree deletes `validators/base.py` and rewires imports to `validation_core.py`. A system_v7 worktree adds new ",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0249784
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

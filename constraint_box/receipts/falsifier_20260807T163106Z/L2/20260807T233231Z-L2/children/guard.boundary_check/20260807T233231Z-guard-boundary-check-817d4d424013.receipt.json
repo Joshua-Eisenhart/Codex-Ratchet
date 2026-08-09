@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:32:52.553484+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 16885,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Git merge lands commits to the index (and creates a merge-commit in MERGE_HEAD) despite dirty worktree. Dirty files block the checkout step only, not merge-commit application. The claim conflates checkout failure with commit application failure.\",\n  \"boundary_failure\": \"Claim assumes all 180 dirty files are of the same type (staged/modified/untracked) and block identically. Untracked files do not block merge at all. Staged and modified files block only checkout, not the merge-commit. File-state heterogeneity breaks the universal claim.\",\n  \"minimal_fix\": \"Specify: (1) which git operation (merge/pull/rebase); (2) file states (how many staged vs modified vs untracked); (3) the exact error message and exit code; (4) state of `.git/MERGE_HEAD` and `.git/MERGE_MSG` at abort; (5) whether the merge-commit was created before or after the abort. Replace 'applying commits' with 'checkout of merge result'.\",\n  \"decisive_check\": \"Run: `git m",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0176524
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

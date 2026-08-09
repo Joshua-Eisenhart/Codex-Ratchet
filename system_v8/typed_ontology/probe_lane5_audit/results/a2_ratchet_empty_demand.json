@@ -1,0 +1,182 @@
+{
+ "probe": "A2_ratchet_under_empty_demand_and_flat_comparison",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "target_operator": "ratchet_contract/mss.py::pairwise_mss / frontier",
+ "observation_surface_X": [
+  [
+   "0",
+   "'red'",
+   "0"
+  ],
+  [
+   "1",
+   "'blue'",
+   "1"
+  ],
+  [
+   "2",
+   "'red'",
+   "2"
+  ],
+  [
+   "3",
+   "'green'",
+   "3"
+  ],
+  [
+   "4",
+   "'yellow'",
+   "4"
+  ]
+ ],
+ "declared_verdict_tokens": [
+  "A_WEAKER",
+  "B_WEAKER",
+  "HOLD",
+  "INCOMPARABLE"
+ ],
+ "induced_partitions": {
+  "genuine_read_value": {
+   "partition": [
+    "0",
+    "1",
+    "0",
+    "2",
+    "3"
+   ],
+   "cells": 4,
+   "identity_gate_verdict": "PASS"
+  },
+  "category_warm_cool": {
+   "partition": [
+    "0",
+    "1",
+    "0",
+    "1",
+    "0"
+   ],
+   "cells": 2,
+   "identity_gate_verdict": "PASS"
+  },
+  "total_collapse_one_cell": {
+   "partition": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "cells": 1,
+   "identity_gate_verdict": "PASS"
+  }
+ },
+ "cases": {
+  "C1_collapse_vs_genuine_EMPTY_demand": {
+   "A": "total_collapse_one_cell",
+   "B": "genuine_read_value",
+   "demand_edges": 0,
+   "kwargs": {},
+   "measured_verdict": "A_WEAKER",
+   "measured_stage": "coarseness",
+   "measured_reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)",
+   "cells_A": 1,
+   "cells_B": 4
+  },
+  "C2_collapse_vs_genuine_ONE_demand": {
+   "A": "total_collapse_one_cell",
+   "B": "genuine_read_value",
+   "demand_edges": 1,
+   "kwargs": {},
+   "measured_verdict": "HOLD",
+   "measured_stage": "base_survivorship",
+   "measured_reason": "does not preserve every demanded distinction in the base demand set D",
+   "cells_A": null,
+   "cells_B": null
+  },
+  "C3_collapse_vs_category_EMPTY_demand": {
+   "A": "total_collapse_one_cell",
+   "B": "category_warm_cool",
+   "demand_edges": 0,
+   "kwargs": {},
+   "measured_verdict": "A_WEAKER",
+   "measured_stage": "coarseness",
+   "measured_reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)",
+   "cells_A": 1,
+   "cells_B": 2
+  },
+  "C4_collapse_vs_genuine_EMPTY_demand_all_thickening": {
+   "A": "total_collapse_one_cell",
+   "B": "genuine_read_value",
+   "demand_edges": 0,
+   "kwargs": {
+    "thicken_persistence": true,
+    "thicken_evolvability": true,
+    "thicken_wholenest": true
+   },
+   "measured_verdict": "A_WEAKER",
+   "measured_stage": "coarseness",
+   "measured_reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)",
+   "cells_A": 1,
+   "cells_B": 4
+  },
+  "C5_category_vs_genuine_EMPTY_demand": {
+   "A": "category_warm_cool",
+   "B": "genuine_read_value",
+   "demand_edges": 0,
+   "kwargs": {},
+   "measured_verdict": "A_WEAKER",
+   "measured_stage": "coarseness",
+   "measured_reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)",
+   "cells_A": 2,
+   "cells_B": 4
+  }
+ },
+ "frontier_empty_demand": {
+  "purgatory": [],
+  "survivors": [
+   "category_warm_cool",
+   "genuine_read_value",
+   "total_collapse_one_cell"
+  ],
+  "branches": [
+   "{'partition_digest': '3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81', 'members': ['category_warm_cool'], 'cells': 2}",
+   "{'partition_digest': 'fd76db5c8ad0929aeca788d3e83adb863069b1dc11c4c707e9c14286388dc970', 'members': ['total_collapse_one_cell'], 'cells': 1}",
+   "{'partition_digest': 'ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21', 'members': ['genuine_read_value'], 'cells': 4}"
+  ],
+  "dominated": [
+   "category_warm_cool",
+   "genuine_read_value"
+  ],
+  "antichain": [
+   "total_collapse_one_cell"
+  ],
+  "pairwise": "{'total_collapse_one_cell__vs__category_warm_cool': {'candidate_a': 'total_collapse_one_cell', 'candidate_b': 'category_warm_cool', 'verdict': 'A_WEAKER', 'reasons': {'stage': 'coarseness', 'pi_A': [0, 0, 0, 0, 0], 'pi_B': [0, 1, 0, 1, 0], 'cells_A': 1, 'cells_B': 2, 'partition_digest_A': 'fd76db5c8ad0929aeca788d3e83adb863069b1dc11c4c707e9c14286388dc970', 'partition_digest_B': '3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81', 'reason': \"A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)\"}}, 'total_collapse_one_cell__vs__genuine_read_value': {'candidate_a': 'total_collapse_one_cell', 'candidate_b': 'genuine_read_value', 'verdict': 'A_WEAKER', 'reasons': {'stage': 'coarseness', 'pi_A': [0, 0, 0, 0, 0], 'pi_B': [0, 1, 0, 2, 3], 'cells_A': 1, 'cells_B': 4, 'partition_digest_A': 'fd76db5c8ad0929aeca788d3e83adb863069b1dc11c4c707e9c14286388dc970', 'partition_digest_B': 'ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21', 'reason': \"A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)\"}}, 'category_warm_cool__vs__genuine_read_value': {'candidate_a': 'category_warm_cool', 'candidate_b': 'genuine_read_value', 'verdict': 'A_WEAKER', 'reasons': {'stage': 'coarseness', 'pi_A': [0, 1, 0, 1, 0], 'pi_B': [0, 1, 0, 2, 3], 'cells_A': 2, 'cells_B': 4, 'partition_digest_A': '3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81', 'partition_digest_B': 'ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21', 'reason': \"A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)\"}}}"
+ },
+ "frontier_one_demand": {
+  "purgatory": [
+   "{'candidate': 'total_collapse_one_cell', 'failed_at': 'base_survivorship', 'reason': {'collapsed_edges': [[\"(0, 'red', 0)\", \"(1, 'blue', 1)\"]]}, 're_entry_condition': \"the candidate's own induced partition must not collapse any pair in D\"}"
+  ],
+  "survivors": [
+   "category_warm_cool",
+   "genuine_read_value"
+  ],
+  "branches": [
+   "{'partition_digest': '3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81', 'members': ['category_warm_cool'], 'cells': 2}",
+   "{'partition_digest': 'ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21', 'members': ['genuine_read_value'], 'cells': 4}"
+  ],
+  "dominated": [
+   "genuine_read_value"
+  ],
+  "antichain": [
+   "category_warm_cool"
+  ],
+  "pairwise": "{'category_warm_cool__vs__genuine_read_value': {'candidate_a': 'category_warm_cool', 'candidate_b': 'genuine_read_value', 'verdict': 'A_WEAKER', 'reasons': {'stage': 'coarseness', 'pi_A': [0, 1, 0, 1, 0], 'pi_B': [0, 1, 0, 2, 3], 'cells_A': 2, 'cells_B': 4, 'partition_digest_A': '3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81', 'partition_digest_B': 'ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21', 'reason': \"A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)\"}}}"
+ },
+ "measured_summary": {
+  "empty_demand_verdict_collapse_vs_genuine": "A_WEAKER",
+  "one_demand_verdict_collapse_vs_genuine": "HOLD",
+  "empty_demand_returned_HOLD_or_INCOMPARABLE": false,
+  "all_thickening_changed_the_empty_demand_verdict": false
+ }
+}

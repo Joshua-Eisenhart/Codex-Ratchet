@@ -1,0 +1,101 @@
+{
+ "schema": "cb.tiered-dispatch.v1",
+ "seed": 20260807,
+ "tiers": {
+  "t1": [
+   "mpmath",
+   "numpy",
+   "rfc8785",
+   "xxhash",
+   "portion",
+   "rustworkx",
+   "maude",
+   "pysat"
+  ],
+  "t2": [
+   "msgspec",
+   "zstandard",
+   "lmdb",
+   "cvc5",
+   "z3",
+   "icontract",
+   "jsonschema",
+   "beartype"
+  ],
+  "t3": [
+   "celpy",
+   "pygit2",
+   "networkx",
+   "sympy",
+   "pint",
+   "deepdiff"
+  ]
+ },
+ "sweep": [
+  {
+   "p": 0.0,
+   "gross": 0.0,
+   "subtle": 1.0,
+   "ms": 62.53450000000005,
+   "t3_calls": 0.0
+  },
+  {
+   "p": 0.02,
+   "gross": 0.14285714285714285,
+   "subtle": 1.0,
+   "ms": 84.73592499999995,
+   "t3_calls": 0.095
+  },
+  {
+   "p": 0.05,
+   "gross": 0.2571428571428571,
+   "subtle": 1.0,
+   "ms": 125.94947499999931,
+   "t3_calls": 0.285
+  },
+  {
+   "p": 0.1,
+   "gross": 0.5428571428571428,
+   "subtle": 1.0,
+   "ms": 182.9987749999991,
+   "t3_calls": 0.5325
+  },
+  {
+   "p": 0.2,
+   "gross": 0.7714285714285715,
+   "subtle": 1.0,
+   "ms": 316.56109999999927,
+   "t3_calls": 1.1225
+  },
+  {
+   "p": 0.35,
+   "gross": 0.9142857142857143,
+   "subtle": 1.0,
+   "ms": 514.9055500000001,
+   "t3_calls": 2.0025
+  },
+  {
+   "p": 0.5,
+   "gross": 1.0,
+   "subtle": 1.0,
+   "ms": 714.7599999999999,
+   "t3_calls": 2.9025
+  },
+  {
+   "p": 0.75,
+   "gross": 1.0,
+   "subtle": 1.0,
+   "ms": 1079.2746750000008,
+   "t3_calls": 4.5425
+  },
+  {
+   "p": 1.0,
+   "gross": 1.0,
+   "subtle": 1.0,
+   "ms": 1403.724500000013,
+   "t3_calls": 6.0
+  }
+ ],
+ "replayable": true,
+ "promotion_allowed": false
+}

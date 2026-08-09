@@ -1,0 +1,60 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "PLACES the attachments' HoTT/braid-group trajectory topology vs the model's FORCED Z2 spinor double cover. Nonabelian braiding is realizable on a >=2-dim fusion space (computed B_3->SL(2,Z)); the single {F01,N01} carrier's exchange is abelian and its forced path-topology is Z2. So braid topology is constructible-not-forced -- an upper (anyonic/TQC) layer, not a new foundation.",
+  "gate_nonabelian_braid_needs_degenerate_fusion_space": {
+    "B3_YangBaxter_s1s2s1_eq_s2s1s2": true,
+    "B3_nonabelian_s1s2_ne_s2s1": true,
+    "single_carrier_exchange_abelian": true,
+    "pass": true,
+    "s1s2": [
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "s2s1": [
+      [
+        1,
+        1
+      ],
+      [
+        -1,
+        0
+      ]
+    ],
+    "braid_word": [
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        0
+      ]
+    ],
+    "note": "COMPUTED: a concrete nonabelian B_3 rep (B_3->SL(2,Z)) satisfies Yang-Baxter and is nonabelian; the single 2-level carrier's 1-dim exchange sector is a scalar phase -> abelian, no knot invariants. Control flips: nonabelian braiding needs a >=2-dim fusion space the carrier lacks."
+  },
+  "supporting_identities_nongating": {
+    "forced_Z2_spinor_double_cover": {
+      "R2pi_is_minus_I": true,
+      "R4pi_is_I": true,
+      "pi1_SO3_is_Z2": true,
+      "note": "the already-earned 720deg closure (spinor_lift_is_forced, double_720_loop_closes_360); the forced carrier path-topology, not re-derived here"
+    },
+    "CP1_simply_connected": {
+      "pi1_is_trivial": true,
+      "note": "single-qubit projective state space CP^1=S^2 has pi_1=0; Bloch loops are contractible, Berry phase is a 2-form (pi_2/curvature), not a pi_1 braid class. Standard topology, non-gating."
+    }
+  },
+  "placement": "Nonabelian braid-group topology (HoTT trajectories, knots, deadlocks) is CONSTRUCTIBLE -- the anyonic/topological-quantum-computation layer needing a multi-anyon degenerate fusion space -- but NOT forced by the single carrier, whose forced path-topology is the abelian Z2 spinor double cover. Same live-but-unforced status as octonions/T01 and E8/Penrose. The field-of-engines / many-carrier regime may host it; it is not a foundation.",
+  "honest_scope": "Earns: nonabelian braiding realizable on a >=2-dim fusion space (computed), single-carrier exchange abelian, forced carrier topology = Z2 double cover -> braids constructible-not-forced. Does NOT re-derive the spinor lift, does NOT claim braids useless (TQC layer), does NOT build a braid/anyon layer, does NOT claim the model HAS anyons.",
+  "policy_eval": {
+    "nonabelian_braid_needs_degenerate_fusion_carrier_exchange_abelian_FAILABLE": true,
+    "BRAID_HOTT_TOPOLOGY_CONSTRUCTIBLE_NOT_FORCED": true
+  }
+}

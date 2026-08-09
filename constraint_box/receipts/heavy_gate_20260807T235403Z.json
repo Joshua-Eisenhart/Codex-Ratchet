@@ -1,0 +1,157 @@
+{
+ "admitted": false,
+ "claim_ceiling": "installation, capability and call-site integration of the sim-engine lanes only; says nothing about whether any sim result is correct",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "lanes": {
+  "lane.diffrax": {
+   "call_sites": [
+    "cb_heavy_gate.py:import diffrax"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 2.46,
+   "capability_stdout": "ODE solve matches exp(-1) ok 0.7.2",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "diffrax"
+  },
+  "lane.jax": {
+   "call_sites": [
+    "cb_heavy_gate.py:import jax",
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 0.69,
+   "capability_stdout": "jit+vmap+grad ok 0.10.1",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "jax"
+  },
+  "lane.julia": {
+   "call_sites": [
+    "cb_heavy_gate.py:\"lane.julia\""
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.19,
+   "capability_stdout": "julia LinearAlgebra density matrix ok 1.12.6",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "julia (binary)"
+  },
+  "lane.pydmd": {
+   "call_sites": [
+    "cb_heavy_gate.py:from pydmd",
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 3.65,
+   "capability_stdout": "DMD rank-1 fit ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pydmd"
+  },
+  "lane.pykoopman": {
+   "call_sites": [
+    "cb_heavy_gate.py:\"lane.pykoopman\"",
+    "src/external_pykoopman_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 9.07,
+   "capability_stdout": "Koopman operator square ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pykoopman"
+  },
+  "lane.pymdp": {
+   "call_sites": [
+    "cb_heavy_gate.py:from pymdp",
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": false,
+   "capability_reason": "AttributeError: module 'pymdp.utils' has no attribute 'random_A_matrix'. Did you mean: 'random_A_array'?",
+   "capability_sec": 1.8,
+   "capability_stdout": "",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pymdp"
+  },
+  "lane.pysindy": {
+   "call_sites": [
+    "cb_heavy_gate.py:\"lane.pysindy\"",
+    "src/external_pysindy_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 4.04,
+   "capability_stdout": "SINDy recovered dx/dt=-x ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pysindy"
+  },
+  "lane.pytorch": {
+   "call_sites": [
+    "cb_heavy_gate.py:import torch",
+    "src/external_e3nn_capability.py",
+    "src/graph_topology_worker.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.49,
+   "capability_stdout": "autograd+linalg ok 2.11.0",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "torch"
+  },
+  "lane.quimb_cotengra": {
+   "call_sites": [
+    "cb_heavy_gate.py:import quimb"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.45,
+   "capability_stdout": "MPS contraction norm ok cotengra",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "quimb"
+  },
+  "lane.qutip_numpy": {
+   "call_sites": [
+    "cb_heavy_gate.py:import qutip"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 2.93,
+   "capability_stdout": "density matrix + von Neumann entropy ok 5.2.3",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "qutip"
+  }
+ },
+ "promotion_allowed": false,
+ "refusals": [
+  "lane.pymdp: installed but NOT CAPABLE \u2014 AttributeError: module 'pymdp.utils' has no attribute 'random_A_matrix'. Did you mean: 'random_A_array'?"
+ ],
+ "schema": "cb.heavy-gate.v1",
+ "totals": {
+  "capable": 9,
+  "declared": 10,
+  "installed": 10,
+  "integrated": 10
+ },
+ "wall_seconds": 29.2,
+ "what_this_is": "CB light's verification of the CB heavy sim-engine estate. The sim engines are a separate estate; this gate does not make them part of CB light."
+}

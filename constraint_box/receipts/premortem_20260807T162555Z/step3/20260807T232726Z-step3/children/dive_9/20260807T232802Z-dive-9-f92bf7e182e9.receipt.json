@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:23.020299+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 16377,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "## THE FAILURE STORY\n\nThe v5/v7 refactor was tightly coupled\u2014v5 defined shared schemas and import paths, v7 consumed them. The 43 commits came from 10 worktrees running in parallel, each with a complete local picture but no global view of dependencies. When merging to main chronologically (July 15\u201318 order), a v7 consumer commit (July 16) landed before the v5 provider commit (July 18) it depended on. Python import resolution broke silently; the symbol simply didn't exist yet on main. Subsequent commits in the queue landed on top of broken code. By the time the actual v5 definition arrived four commits later, downstream code had already layered invalid assumptions on top\u2014assignments to undefined names, circular imports where v7 now imported v5 which imported utilities that now imported v7. Each worktree's tests passed locally (they were testing their own snapshot). Main was broken in the middle, in a state no worktree had ever actually validated. The CB light integration assumed clean b",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0165844
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

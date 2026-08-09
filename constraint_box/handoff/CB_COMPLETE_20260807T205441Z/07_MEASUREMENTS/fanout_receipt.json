@@ -1,0 +1,42 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.receipt.json",
+      "completed_at": "2026-08-07T23:28:49.171129+00:00",
+      "cost_usd": 0.0249784,
+      "duration_ms": 26068,
+      "id": "synthesis",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:49.164495+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step4/20260807T232823Z-step4/children/synthesis/20260807T232823Z-synthesis-61a14ba774d2.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 23324,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# PREMORTEM REP",
+      "result_preview": "# PREMORTEM REPORT: Codex-Ratchet Merge Consolidation\n\n## 1. The Most Likely Failure\n\nChronological merge (commits replayed in July 15\u201318 order) lands consumer commits before provider commits. A system_v7 commit on July 16 will import a schema that system_v5 doesn't define until July 18. On that commit, main compiles and all unit tests pass (each worktree's snapshot is valid). But the merged state itself\u2014a path no worktree ever tested\u2014carries broken imports. The error surfaces only at runtime integration or when dependent code tries to instantiate missing objects.\n\n**Why it's likely:** The 43 commits form a dependency graph, but the visible order is chronological, not topological. Three-way merge preserves order by date, not by logic. No one has mapped the actual dependency order yet.\n\n## ",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:28:23.102300+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T23:28:49.171613+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 1,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 1
+  },
+  "duration_ms": 26071,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 1,
+  "model": "haiku",
+  "route": "step4",
+  "started_at": "2026-08-07T23:28:23.099680+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 180.0
+}

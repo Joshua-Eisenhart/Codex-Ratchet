@@ -1,0 +1,195 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.receipt.json",
+      "completed_at": "2026-08-07T23:27:46.608353+00:00",
+      "cost_usd": 0.0129564,
+      "duration_ms": 19797,
+      "id": "dive_0",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:27:46.599015+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 14232,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# THE FAILURE STORY\\n",
+      "result_preview": "# THE FAILURE STORY\n\nIt's late July. The team has 43 commits across 10 worktrees, with the primary branch sitting on claimgate/bypass-regression\u2014meant to be the integration point. During testing and debugging from July 15-18, someone made 180 local edits: test data files, config tweaks, logging patches, one-off boundary checks. Nobody committed these. When merge day arrives, the first attempt hits git's safety wall: \"Your local changes to system_v5/handler.py would be overwritten by merge.\" The team stashes the dirty state and tries again. But now they discover the 43 commits have hidden cross-dependencies. A commit in worktree-3 rewrites a schema that worktree-7's commit also modifies; both expect different incoming state. Merge aborts with a conflict. They stash again. By now the dirty f",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:26.811145+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.receipt.json",
+      "completed_at": "2026-08-07T23:27:44.991774+00:00",
+      "cost_usd": 0.0115324,
+      "duration_ms": 18176,
+      "id": "dive_1",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:27:44.984726+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_1/20260807T232726Z-dive-1-a51c19150e3b.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 12563,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"## THE FAILURE STORY\\",
+      "result_preview": "## THE FAILURE STORY\n\nBy February 2026, the team had pushed both `system_v5-consolidation` and `system_v7-bridge` worktrees to origin, each claiming HEAD at f0afdc36a (a shared commit from July 17 that unified CB library wiring). The two worktrees had diverged locally after that point \u2014 one added system_v5 schema fixes, the other rewired v7 imports \u2014 but both carried the same merge-base. When the release lead tried to fast-forward merge both branches into main in sequence, git accepted the first (no new commits to replay). The second merge appeared clean but actually contained dead code paths: the v7 bridge changes assumed the v5 fixes were already in scope, but git had no way to detect this cross-branch coupling. The merge commit landed. Three days later, in integration testing, the CB li",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:26.815580+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.receipt.json",
+      "completed_at": "2026-08-07T23:27:46.717893+00:00",
+      "cost_usd": 0.013198399999999999,
+      "duration_ms": 19902,
+      "id": "dive_2",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:27:46.711711+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 14805,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# THE FAILURE STORY\\n",
+      "result_preview": "# THE FAILURE STORY\n\nThe ten worktrees created July 15-18 were assigned to different component leads: three on system_v5 serialization, two on system_v7 boundary logic, two on CB light integration, and three on infrastructure. By July 16, developers were committing independently. system_v5 worktree-1 refactored the config schema handler; system_v5 worktree-2, unaware, added validation logic that assumed the old structure. system_v7 worktree-1 deleted a middleware module; system_v7 worktree-2 committed a patch that imported from it. No one synced with main or each other\u2014there was no shared rebase point, no integration branch.\n\nBy July 18, 43 commits sat across the ten worktrees with overlapping changes to at least 89 of the 367 system_v5 files and 47 of the 116 system_v7 files. The two work",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:26.815524+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.receipt.json",
+      "completed_at": "2026-08-07T23:27:47.107459+00:00",
+      "cost_usd": 0.0129894,
+      "duration_ms": 20293,
+      "id": "dive_3",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:27:47.099738+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_3/20260807T232726Z-dive-3-700f4cfb8188.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 15973,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"## THE FAILURE STORY\\",
+      "result_preview": "## THE FAILURE STORY\n\nIt started cleanly enough. You merged the first batch of commits from claimgate/bypass-regression into a feature branch, expecting to sequence them by date. Commits 1\u20138 landed without file conflicts. system_v5 tests passed. But when you merged commit 12 (from worktree 7, modifying CB library initialization), the code compiled, the linter passed, and git declared it clean. You committed it.\n\nThen the integration tests failed. Commit 9 (from worktree 3, which you'd already merged) called `CBLibrary.init_boundary()` with three arguments. But commit 12 had rewritten that function to take five arguments and moved it to a different module. No file conflict meant git saw no problem\u2014the two changes were in different files. But the dependency was real, and it was now broken. B",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:26.813610+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.receipt.json",
+      "completed_at": "2026-08-07T23:28:01.982980+00:00",
+      "cost_usd": 0.0151044,
+      "duration_ms": 16989,
+      "id": "dive_4",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:01.976868+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 13346,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# THE FAILURE STORY\\n",
+      "result_preview": "# THE FAILURE STORY\n\nBy late January, the symptom was unmistakable: v9's bootstrapper imported `system_v5.auth.credential_gate` but found only `system_v5.auth.gates.credential`. The v5 worktree had renamed the module during a refactor on July 16 (commit e2f4a91), moving it under a `gates/` subpackage to match organizational conventions. Meanwhile, v7's worktree had kept the old import path and added a wrapper layer (`system_v7.adapters.v5_shim`) expecting the original API. When these merged to main, the v7 code tried to import from a path that no longer existed. CI caught it immediately\u2014but by then, 12 commits of scaffolding had been layered on top, and the root cause was buried under 180 files of changes. Rolling back wasn't viable; the v9 boundary work depended on both systems being pres",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:44.993864+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.receipt.json",
+      "completed_at": "2026-08-07T23:28:01.866762+00:00",
+      "cost_usd": 0.012029399999999999,
+      "duration_ms": 15255,
+      "id": "dive_5",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:01.858599+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 11565,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# THE PREMORTEM: Why ",
+      "result_preview": "# THE PREMORTEM: Why Origin/Main Broke\n\n## THE FAILURE STORY\n\nBy February, six months after the July work was committed, the first integration test against origin/main failed silently. The 43 unmerged commits from the 10 worktrees\u2014the real implementation of system_v5 and system_v7 refactoring\u2014never made it to main. Instead, what landed was the v9 scaffolding commit: 6,637 lines of JSON configuration stubs defining class signatures, function names, import paths. The Python beneath it was hollow: 1,234 lines of `pass`, empty methods, stub return values. The July work\u2014real business logic, database adapters, validation pipelines\u2014lived in the worktrees at f0afdc36a and claimgate/bypass-regression. Nobody integrated them before the v9 scaffolding became canonical.\n\nBy March, when teams tried to ",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:46.611234+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.receipt.json",
+      "completed_at": "2026-08-07T23:28:03.061208+00:00",
+      "cost_usd": 0.0140914,
+      "duration_ms": 16341,
+      "id": "dive_6",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:03.053522+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 11177,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"## THE FAILURE STORY\\",
+      "result_preview": "## THE FAILURE STORY\n\nDevelopment ran hot across the 10 worktrees during July 15-18. Three worktrees (branched from system_v5) began importing from CB.cache, CB.validation, CB.metrics, CB.async_queue, and CB.security\u2014libraries that were documented in the CB integration spec and appeared in early design discussions. No one on those teams realized only 28 of the 33 CB libraries had actually been wired into the codebase. The integration tracker showed green because it counted \"specifications written\" as \"implemented.\" By July 18, across 43 commits touching 492 files, the system_v5 subsystem alone had 87 new imports from the five unwired libraries.\n\nThe first merge attempt to main happened in early August. Tests ran locally on individual branches without issue (each branch existed in isolation",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:46.720193+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.receipt.json",
+      "completed_at": "2026-08-07T23:28:09.290943+00:00",
+      "cost_usd": 0.0142587,
+      "duration_ms": 22182,
+      "id": "dive_7",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:09.284044+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 16073,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"# Premortem: Codex-Ra",
+      "result_preview": "# Premortem: Codex-Ratchet Merge-Base Failure\n\n## THE FAILURE STORY\n\nOn merge day, when the team attempted to consolidate the 43 unmerged commits across the 10 worktrees back into origin/main, git's three-way merge algorithm silently used the wrong ancestor. Each worktree had been created from claimgate/bypass-regression (6e362506a), but origin/main had advanced beyond that point (a9909489 is 6,637 lines of scaffolding commits ahead). The automatic merge-base detection should have found the true common ancestor, but instead it used 6e362506a as the baseline\u2014the very point from which the worktrees had split.\n\nThis meant that when consolidating changes from system_v5 and system_v7 worktrees, the three-way merge algorithm couldn't see that certain refactorings in main had already happened. Co",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:27:47.108347+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.receipt.json",
+      "completed_at": "2026-08-07T23:28:21.493234+00:00",
+      "cost_usd": 0.0134844,
+      "duration_ms": 19625,
+      "id": "dive_8",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:21.486340+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 15732,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"## THE FAILURE STORY\\",
+      "result_preview": "## THE FAILURE STORY\n\nOn July 16, the system_v5 track decided to deprecate and delete `validators/base.py`, moving all validation logic into a new consolidated `validation_core.py`. Seven files had their imports rewritten. That same day, system_v7 was adding new constraint-checking methods to `base.py`\u2014the same file\u2014without knowing deprecation was underway. When the time came to merge the 43 commits into main, Git's three-way merge faithfully kept both the deletions and the new method definitions. The result: `validation_core.py` existed as intended, but fifteen downstream files still imported from the deleted `base.py`, and the newly-added methods existed in a file that no longer belonged to the build. Python runtime errors cascaded through the test suite. A merge that looked clean in con",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:28:01.868194+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.receipt.json",
+      "completed_at": "2026-08-07T23:28:23.026074+00:00",
+      "cost_usd": 0.0165844,
+      "duration_ms": 21042,
+      "id": "dive_9",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:28:23.020299+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_9/20260807T232802Z-dive-9-f92bf7e182e9.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 16377,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"## THE FAILURE STORY\\",
+      "result_preview": "## THE FAILURE STORY\n\nThe v5/v7 refactor was tightly coupled\u2014v5 defined shared schemas and import paths, v7 consumed them. The 43 commits came from 10 worktrees running in parallel, each with a complete local picture but no global view of dependencies. When merging to main chronologically (July 15\u201318 order), a v7 consumer commit (July 16) landed before the v5 provider commit (July 18) it depended on. Python import resolution broke silently; the symbol simply didn't exist yet on main. Subsequent commits in the queue landed on top of broken code. By the time the actual v5 definition arrived four commits later, downstream code had already layered invalid assumptions on top\u2014assignments to undefined names, circular imports where v7 now imported v5 which imported utilities that now imported v7. ",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:28:01.983939+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T23:28:23.026429+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 10,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 10
+  },
+  "duration_ms": 56219,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 4,
+  "model": "haiku",
+  "route": "step3",
+  "started_at": "2026-08-07T23:27:26.806976+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 180.0
+}

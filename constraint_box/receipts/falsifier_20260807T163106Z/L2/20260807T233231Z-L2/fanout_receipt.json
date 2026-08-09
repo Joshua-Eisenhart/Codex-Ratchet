@@ -1,0 +1,93 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.receipt.json",
+      "completed_at": "2026-08-07T23:32:52.559095+00:00",
+      "cost_usd": 0.0176524,
+      "duration_ms": 21138,
+      "id": "guard.boundary_check",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:52.553484+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/guard.boundary_check/20260807T233231Z-guard-boundary-check-817d4d424013.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 16885,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": ",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Git merge lands commits to the index (and creates a merge-commit in MERGE_HEAD) despite dirty worktree. Dirty files block the checkout step only, not merge-commit application. The claim conflates checkout failure with commit application failure.\",\n  \"boundary_failure\": \"Claim assumes all 180 dirty files are of the same type (staged/modified/untracked) and block identically. Untracked files do not block merge at all. Staged and modified files block only checkout, not the merge-commit. File-state heterogeneity breaks the universal claim.\",\n  \"minimal_fix\": \"Specify: (1) which git operation (merge/pull/rebase); (2) file states (how many staged vs modified vs untracked); (3) the exact error message and exit code; (4) state of `.git/MERGE",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:32:31.420299+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.receipt.json",
+      "completed_at": "2026-08-07T23:32:50.528249+00:00",
+      "cost_usd": 0.016108400000000002,
+      "duration_ms": 19109,
+      "id": "voice.feynman",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:50.522309+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 14510,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"```json\\n{\\n ",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"The claim conflates three separable assertions: (1) a dirty worktree state with exactly 180 uncommitted files exists, (2) a specific branch exists with exactly 43 July commits, and (3) git merge will abort with zero commits applied. The mechanism subagent confirms #3's logic is sound, but #1 and #2 remain unverified. Claim survives mechanism check; empirical test is required.\",\n  \"boundary_failure\": \"The claim assumes the 180-file count and 43-commit count are facts in hand. Neither has been named or verified. The pass_fail subagent flags this as 'Unresolved' \u2014 the decisive check cannot run until branch identity and dirt-file inventory are confirmed independently of the claim itself.\",\n  \"minimal_fix\": \"Before merge: run `git status ",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:32:31.419012+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.receipt.json",
+      "completed_at": "2026-08-07T23:33:00.570368+00:00",
+      "cost_usd": 0.0189114,
+      "duration_ms": 29153,
+      "id": "voice.popper",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:33:00.564829+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 25854,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"```json\\n{\\n  \\",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Claim treats the condition as a binary blocker, not acknowledging that worktree state is mutable. Git's refusal is predictable safety behavior, not a hard block on merging. The claim would need qualification: 'blocks until worktree is cleaned.'\",\n  \"boundary_failure\": \"Boundary lies between 'git enforces abort with dirty files' (true, testable) and 'therefore the merge cannot be completed' (incomplete \u2014 worktree changes can be stashed/committed/discarded). The claim confuses 'git refuses this attempt' with 'this operation is impossible.'\",\n  \"minimal_fix\": \"Run the decisive check (both agents agree on the test). If merge exit code is 0, or if any July commit SHA appears in `git log` post-merge, claim is killed. If merge fails with ex",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:32:31.417216+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.receipt.json",
+      "completed_at": "2026-08-07T23:32:58.017903+00:00",
+      "cost_usd": 0.0202964,
+      "duration_ms": 26602,
+      "id": "voice.pushback",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:58.012167+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 22175,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"```json\\n{\\",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Dirty files pause merges (precondition), not block them causally. Stashing resolves the precondition; blocking occurs only if merge fails after cleaning the tree. The claim conflates precondition with causation.\",\n  \"boundary_failure\": \"Assumes merge was attempted after stashing (unobserved). No error message, exit code, or git state shown. Critical terms undefined: what is 'dirty' (modified, staged, untracked)? When does 'abort' occur\u2014before processing commits, during, or after? Missing observable evidence.\",\n  \"minimal_fix\": \"Dirty files must be stashed before merging. Merge outcome after stashing has not been characterized. No evidence the merge was attempted with a clean working tree.\",\n  \"decisive_check\": \"git stash; git merge <",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:32:31.415759+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T23:33:00.570763+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 4,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 4
+  },
+  "duration_ms": 29157,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 4,
+  "model": "haiku",
+  "route": "L2",
+  "started_at": "2026-08-07T23:32:31.412801+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 150.0
+}

@@ -39,7 +39,7 @@
  "source_bundle": "constraint_core_unified v56 (audit_engines lane)",
  "source_envelope_path": "lev_qit_engine_perception_evidence_v56.json",
  "source_envelope_schema": "constraint_core.lev_qit_engine_perception_evidence.v1",
- "source_envelope_sha256": "39496f3b8d0077636838babc67d6557eceaece75661c5b2a7febbb6649729e69",
+ "source_envelope_sha256": "8b010b62d5ccc61455f996b75920103f3090dbd016419577cc7d063e70eeab2e",
  "tool_intent": {
   "note": "no z3/cvc5 gate in this packet",
   "numpy_scipy": "control-lane oracle dynamics only"
@@ -48,43 +48,27 @@
   "binding_accuracy_on_non_degenerate": 1.0,
   "binding_all_misses_are_degeneracies": true,
   "candidate_object": "qit_engine_perception_state",
-  "failed_stage_pairs": [
-   [
-    "t1:Ti",
-    "t5:Ti"
-   ],
-   [
-    "t1:Fi",
-    "t5:Fi"
-   ],
-   [
-    "t3:Fe",
-    "t7:Fe"
-   ],
-   [
-    "t5:Ti",
-    "t1:Ti"
-   ],
-   [
-    "t5:Fi",
-    "t1:Fi"
-   ]
-  ],
-  "formation_loss_sum": 1.7059485335024294,
-  "missing_for_eval_admission": [
-   "recall_ratio",
-   "anti_key_penalty",
-   "attention_leak_check",
-   "cross_node_mesh_convergence"
-  ],
+  "eval_admission_fields": {
+   "anti_key_penalty": 0.0,
+   "anti_key_real_self_bind_rate": 0.875,
+   "attention_leak": 0.4054,
+   "attention_leak_shuffled_ratio": 1.0248,
+   "cross_node_mesh_convergence": 1.0,
+   "cross_node_mesh_separation_over_shuffled": 0.875,
+   "recall_ratio": 0.75,
+   "recall_separation_over_shuffled": 0.6875
+  },
+  "failed_stage_pairs": [],
+  "formation_loss_sum": 43.546185436758485,
+  "missing_for_eval_admission": [],
   "object_binding_accuracy": 0.7916666666666666,
   "schedule_source_fidelity": {
    "control_catches_corruption": true,
    "running_sims_consume_source_slots": true,
    "table_is_source_faithful": true
   },
-  "stage_reid_rate": 0.6875,
-  "stage_reid_separation_over_shuffled": 0.6203125,
+  "stage_reid_rate": 1.0,
+  "stage_reid_separation_over_shuffled": 0.9271875,
   "type1_type2_comparison": {
    "not_relabeling_of_type1": true,
    "polarity_readout": "density signed-volume through full flow (non-circular); chirality-flip-in-flow + Bloch-relabeling controls",
@@ -95,5 +79,5 @@
    "type2_polarity": 0.01094
   }
  },
- "written_at": "2026-07-07T22:44:22Z"
+ "written_at": "2026-07-27T20:48:03Z"
 }

@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:27:26.700995+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step2/20260807T232555Z-step2/children/raw_reasons/20260807T232555Z-raw-reasons-bcb972c28232.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 86532,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n[\n  \"180 dirty files on the primary worktree block clean merge; git aborts without applying any of the 43 commits.\",\n  \"Two worktrees with identical HEAD (f0afdc36a) introduce duplicate or conflicting commit IDs; git cannot merge both without creating redundant or broken changes.\",\n  \"Ten worktrees created independently across July 15-18 with no synchronization have divergent histories; three-way merge cannot resolve overlapping file edits.\",\n  \"492 files touched by 43 commits with no declared merge order; commits with transitive dependencies fail to resolve cleanly, creating broken intermediate states.\",\n  \"system_v5 and system_v7 commits modify shared code incompatibly (renamed modules, API changes, moved imports); merged result contains broken references.\",\n  \"origin/main is 85% JSON scaffolding (6,637 lines) with only 1,234 lines of Python stubs; July commits are real implementation expecting working classes/functions, merge succeeds but code is non-functional.\",\n  \"Five of",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0494907
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step2/20260807T232555Z-step2/children/raw_reasons/20260807T232555Z-raw-reasons-bcb972c28232.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step2/20260807T232555Z-step2/children/raw_reasons/20260807T232555Z-raw-reasons-bcb972c28232.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

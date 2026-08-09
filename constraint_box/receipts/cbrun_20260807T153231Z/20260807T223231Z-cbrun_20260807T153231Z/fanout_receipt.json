@@ -1,0 +1,110 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.receipt.json",
+      "completed_at": "2026-08-07T22:34:28.766574+00:00",
+      "cost_usd": 0.1371386,
+      "duration_ms": 117257,
+      "id": "claim~feynman",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T22:34:28.760719+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 112130,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": ",
+      "result_preview": "Based on the indexed codebase analysis, I cannot verify the merge readiness. Here's my assessment:\n\n**Observable facts:**\n- system_v5: 16,773 functions across clustered modules (cohesion 0.887)\n- system_v7: Additional ~7,500+ functions (102-member cluster, cohesion 0.846)\n- High-complexity hotspots: 3,806 functions with transitive loop depth \u22655 (max depth: 15)\n- Touched files: 492 (~12.4% of v5/v7 codebase)\n- Multiple interdependent systems (v4\u2013v8 call graph)\n\n**Critical blockers:**\n1. Cannot access git worktree state, commit DAG, or merge conflict status\n2. Cannot verify that 43 commits across 10 worktrees have been tested together\n3. Cannot confirm pre-merge verification (test results, integration test runs)\n4. No visibility into which files were actually modified (cannot distinguish cod",
+      "returncode": 0,
+      "started_at": "2026-08-07T22:32:31.508720+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~hume/20260807T223231Z-claim-hume-28babcb12a8d.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~hume/20260807T223231Z-claim-hume-28babcb12a8d.receipt.json",
+      "completed_at": "2026-08-07T22:33:28.254796+00:00",
+      "cost_usd": 0.1551031,
+      "duration_ms": 56748,
+      "id": "claim~hume",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T22:33:28.246404+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~hume/20260807T223231Z-claim-hume-28babcb12a8d.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 52015,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"Let me",
+      "result_preview": "Let me check the git repository state directly:\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git status --short | head -20\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git log --oneline -20\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git worktree list\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git branch -a | head -30\n```\n\nThese commands will show me the current state of unmerged commits and worktrees. Rather than wait for each result separately, I need to understand:\n\n1. What branches are tracking the 43 unmerged commits?\n2. What's the merge base with main?\n3. Are there conflict markers or integration issues?\n4. What's the scope of changes in system_v5 vs system_v7?\n\nGiven the scale (492 files, 43 commits, 10 worktrees from July 15-18), and the f",
+      "returncode": 0,
+      "started_at": "2026-08-07T22:32:31.505995+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~popper/20260807T223231Z-claim-popper-da270ee6ba4d.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~popper/20260807T223231Z-claim-popper-da270ee6ba4d.receipt.json",
+      "completed_at": "2026-08-07T22:33:50.832845+00:00",
+      "cost_usd": 0.09072550000000001,
+      "duration_ms": 79321,
+      "id": "claim~popper",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T22:33:50.826474+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~popper/20260807T223231Z-claim-popper-da270ee6ba4d.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 74376,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\": \"Le",
+      "result_preview": "Let me check git state directly in the repo.\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git status && echo \"---\" && git log --oneline -n 20 && echo \"---\" && git worktree list\n```\n\nThis will show me the current branch state, recent commits, and worktrees.\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git rev-list --count main..HEAD 2>/dev/null || echo \"not a branch check\"\n```\n\nThis will count commits ahead of main.\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git log --all --oneline --graph --decorate -20\n```\n\nThis will show the commit graph to understand the merge state.\n\nI need to verify these three things to assess merge risk properly. Given the constraints (promotion_allowed must be false, I must return only JSON), let me construct the assessment based on what we k",
+      "returncode": 0,
+      "started_at": "2026-08-07T22:32:31.511013+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.receipt.json",
+      "completed_at": "2026-08-07T22:33:51.762951+00:00",
+      "cost_usd": 0.0836203,
+      "duration_ms": 55730,
+      "id": "claim~pushback",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T22:33:51.756912+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 51343,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\":",
+      "result_preview": "Based on the repository state and commit distribution, I'm issuing this assessment:\n\n```json\n{\n  \"verdict\": \"PARKED\",\n  \"promotion_allowed\": false,\n  \"claim_ceiling\": \"Does not assess actual merge conflicts, CI test passes, or cross-worktree dependency consistency. Assesses only risk profile from structural signals: fragmentation, scale, version coverage.\",\n  \"confidence\": 0.72,\n  \"finding\": \"10 worktrees with 43 commits touching 492 files across system_v5 and system_v7 over July 15-18 signal parallel work without integration gate; fragmentation and cross-version scope indicate unresolved coordination risk before merge.\"\n}\n```",
+      "returncode": 0,
+      "started_at": "2026-08-07T22:32:56.032913+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~zhuangzi/20260807T223231Z-claim-zhuangzi-2545ceda41bf.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~zhuangzi/20260807T223231Z-claim-zhuangzi-2545ceda41bf.receipt.json",
+      "completed_at": "2026-08-07T22:32:56.030996+00:00",
+      "cost_usd": 0.061522600000000004,
+      "duration_ms": 24523,
+      "id": "claim~zhuangzi",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T22:32:56.017552+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~zhuangzi/20260807T223231Z-claim-zhuangzi-2545ceda41bf.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 20050,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview\":",
+      "result_preview": "Let me examine the git state directly. I'll check worktrees and the merge baseline.\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git worktree list\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git log --oneline -20\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git status\n```\n\n```bash\ncd /Users/joshuaeisenhart/Codex-Ratchet && git log --graph --oneline --all --simplify-by-decoration | head -50\n```",
+      "returncode": 0,
+      "started_at": "2026-08-07T22:32:31.507342+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T22:34:28.766947+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 5,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 5
+  },
+  "duration_ms": 117264,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 4,
+  "model": "haiku",
+  "route": "cbrun_20260807T153231Z",
+  "started_at": "2026-08-07T22:32:31.502411+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 120.0
+}

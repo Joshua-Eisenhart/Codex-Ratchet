@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:32:08.538096+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 25192,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "**fog found**: \"dirty files\" (state unspecified\u2014staged? modified? untracked?), \"block\" (mechanism undefined), \"apply\" (wrong term; merges don't apply commits), \"clean merge\" (reference undefined)\n\n**cuts + replacements**: \"180 dirty files\" \u2192 \"180 {staged|modified|untracked} files\"; \"block\" \u2192 \"prevent: git error [name it]\"; \"applying\" \u2192 \"merging\"\n\n**hidden bad-state**: No error message cited. Claim assumes all 180 files block identically\u2014false if mixed states. Untracked files don't block merge at all.\n\n**surviving challenge**: Claim holds only if file state is constrained. Mixed states need separate analysis.\n\n**minimal fix** (33 words): Specify file states (staged/modified/untracked). Name the git error. Replace \"apply commits\" with \"merge commits\". State which branch is \"clean\" relative to. Cite the exit behavior.\n\n**slices_loaded**: yes  \n**agent_id**: `failure-orwell-001`",
+    "result_subtype": "success",
+    "total_cost_usd": 0.023522400000000002
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

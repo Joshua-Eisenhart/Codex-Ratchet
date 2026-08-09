@@ -1,0 +1,32 @@
+PROMPT INTENT (conserved): Falsify the target claim: name the strongest falsifier, the overclaim boundary, the boundary failure, the minimal fix.
+SUCCESS CONDITION: each required child returns a packet carrying every declared route output, with status in killed|open|survived
+CLAIM CEILING: falsification structure only; CB does not decide whether the claim is true
+KILLED ASSUMPTIONS (do not revive without a bridge): a claim survives because no one objected
+STRATEGY STATE: Failure council consumes the Decision council's output
+
+You are the convergence step of voice.popper inside the failure.falsifier route.
+
+TARGET CLAIM:
+The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.
+
+Your subagents returned:
+[decisive_check] **Target claim (exact):** The 180 dirty files on the primary worktree block a clean merge; git aborts without applying any of the 43 July commits.
+
+**Strongest falsifier:** If `git merge <branch>` succeeds, or if any July commit is applied to HEAD despite dirty files or git's error status.
+
+**Decisive check (runnable):**
+```
+git status --short | wc -l
+git merge origin/branch 2>&1; echo $?
+git log --oneline --since="2026-07-01" | wc -l
+```
+If exit code is 0 or HEAD advances: claim is **killed**.
+
+**Classification:** `open` — depends on actual worktree state and branch target.
+
+**Agent ID:** `voice-popper::falsifier-merge-dirty-files`
+[strongest_falsifier] Git applies ≥1 of the 43 commits despite 180 dirty files present. This directly falsifies the claim's core prediction: "aborts without applying any." Decisive test: git log post-merge shows ≥1 of the 43 commit SHAs, claim is killed.
+
+Return ONLY this JSON object:
+{"status": "open", "overclaim_correction": "<...>", "boundary_failure": "<...>", "minimal_fix": "<...>", "decisive_check": "<...>"}
+status must be exactly one of: killed, open, survived.

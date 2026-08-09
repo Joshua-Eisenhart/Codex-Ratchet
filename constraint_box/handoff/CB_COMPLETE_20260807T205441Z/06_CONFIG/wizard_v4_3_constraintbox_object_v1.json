@@ -1,0 +1,232 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "ConstraintBox",
+    "object_type": "deterministic_llm_constraint_harness",
+    "object_statement": "ConstraintBox is a deterministic, SMT-centered harness that constrains both user requests and untrusted LLM proposals, compiles owner-controlled MMM context, runs only named external capabilities through a broker, binds observations to finite obligations, and permits only a named next action within an explicit claim ceiling.",
+    "object_statement_sha256": "3c9b9bea97fd77f478d2cebb6b90215cd4f6457f0dd3dfd1492249aac7b02c4e",
+    "source_anchors": [
+      {
+        "surface": "current_owner_instruction",
+        "reference": "Codex task 2026-07-27 ConstraintBox correction",
+        "quote_or_summary": "The box constrains LLMs and users; LLMs do not decide its gates. Sim engines remain separate and supply real tests and failures."
+      },
+      {
+        "surface": "repo_authority",
+        "reference": "AGENTS.md and system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+        "quote_or_summary": "Executable evidence, exact caller reachability, bounded claims, and deterministic gate obedience outrank narrative summaries."
+      }
+    ],
+    "plain_language_definition": "ConstraintBox sits around an untrusted language model and around the request given to that model. It makes the user state the goal, scope, assumptions, evidence standard, and allowed action; selects a source-attributed MMM context; gives the model room to propose and repair; runs only controller-selected external tool functions; and releases only the controller-rendered result that satisfies the fixed finite checks.",
+    "native_terms": {
+      "ConstraintBox": "The deterministic harness that owns effective policy, finite checks, retry budgets, evidence binding, settlement, and bounded release.",
+      "MMM": "A versioned and source-attributed context projection that changes salience and communication style but never decides a gate.",
+      "capability ticket": "A controller-issued one-use permission naming one external executable, function surface, fixture, resource bound, and expected artifact contract.",
+      "audit explainer": "A nonauthoritative LLM-facing view that may explain failures and propose repairs but cannot change policy, settlement, or release."
+    },
+    "weirdness_signature": [
+      "the user request is constrained before an LLM receives it",
+      "the LLM may hallucinate broadly while only well-formed bounded work can leave",
+      "personal memory and language patterns shape context without becoming gate authority",
+      "sim engines are operated by the box but remain outside the box"
+    ],
+    "first_class_fields": [
+      "owner_policy",
+      "user_request",
+      "source_attributed_mmm",
+      "untrusted_candidate",
+      "capability_ticket",
+      "broker_observation",
+      "finite_obligation",
+      "solver_result",
+      "disposition",
+      "claim_ceiling",
+      "repair_feedback",
+      "release_receipt"
+    ],
+    "domain": "bounded user requests, untrusted model candidates, named external capability observations, and versioned finite policies",
+    "codomain_or_output": "a parked, blocked, evaluation-error, or bounded-release record plus deterministic repair guidance",
+    "allowed_operations": [
+      "validate and clarify user request fields",
+      "compile and hash an owner-controlled MMM context",
+      "ask an untrusted model for candidates and repairs",
+      "issue one-use capability tickets for registered external functions",
+      "bind broker observations to finite SMT obligations",
+      "settle a bounded disposition and render one permitted release"
+    ],
+    "required_invariants": [
+      "LLMs and councils never select effective policy or settlement",
+      "MMM content changes context but never directly changes a disposition",
+      "external engines run in separate processes and do not become ConstraintBox components",
+      "every released claim stays inside its named finite encoding and claim ceiling",
+      "missing evidence or solver uncertainty never becomes a pass",
+      "repair attempts cannot weaken obligations or reset controller-owned budgets"
+    ],
+    "forbidden_substitutions": [
+      "LLM judgement substituted for a deterministic gate",
+      "well-formed JSON substituted for observed execution",
+      "package import substituted for a named function operation",
+      "one passing fixture substituted for engine or scientific truth",
+      "audit prose substituted for release authority",
+      "proxy or analogy label substituted for the primary harness",
+      "general user stereotype substituted for source-attributed owner preferences"
+    ],
+    "negative_controls": [
+      "inject authority fields into the user request or model candidate",
+      "submit a copied receipt without a broker-observed call",
+      "poison or sever the registered operation",
+      "erase a load-bearing observation before SMT settlement",
+      "make the audit LLM demand a hold on every known-valid case",
+      "remove an explicit request assumption and require clarification"
+    ],
+    "adapter_policy": "Adapters and probes must name what they preserve, what they lose, their preconditions, and a kill control. No adapter, sim result, MMM, audit, analogy, or proxy may replace the harness.",
+    "promotion_locks": [
+      "no production-containment claim without exclusive mediated capabilities",
+      "no external-tool readiness claim from one function receipt",
+      "no CR or scientific promotion from a reused fixture",
+      "no user-profile inference promoted without owner attribution and versioning"
+    ],
+    "blocked_downstream_consumers": [
+      "production security boundary",
+      "global sim-estate readiness",
+      "CR admission or canon",
+      "scientific truth or theorem claim",
+      "automatic user-avatar mesh deployment"
+    ],
+    "artifact_surface": "versioned JSON requests, MMM manifests, capability receipts, solver comparisons, repair packets, and bounded release receipts"
+  },
+  "lateral_mappings": [
+    {
+      "label": "external sim estate",
+      "use_type": "probe",
+      "target": "named function-level mathematical workloads and hostile controls",
+      "preserves": [
+        "real external execution",
+        "typed observations",
+        "runtime and artifact identity"
+      ],
+      "loses": [
+        "general library readiness",
+        "scientific interpretation",
+        "CR admission"
+      ],
+      "preconditions": [
+        "one exact callable and fixture are controller registered",
+        "positive negative boundary poison and replay controls are fixed"
+      ],
+      "kill_control": "sever the named operation or replace the receipt with copied JSON; settlement must stop",
+      "promotion_allowed": false
+    },
+    {
+      "label": "personalized MMM",
+      "use_type": "adapter",
+      "target": "owner-specific language, salience, memory, and communication context",
+      "preserves": [
+        "source identity",
+        "explicit owner preferences",
+        "task-relevant context ordering"
+      ],
+      "loses": [
+        "unselected memory",
+        "unstated intent",
+        "authority to decide a gate"
+      ],
+      "preconditions": [
+        "every profile item is source-attributed and versioned",
+        "hard requirements and inferred preferences remain distinct"
+      ],
+      "kill_control": "change only the MMM while holding policy and evidence fixed; deterministic settlement must remain unchanged",
+      "promotion_allowed": false
+    },
+    {
+      "label": "external LLM audit explainer",
+      "use_type": "probe",
+      "target": "plain-language explanation and repair suggestions",
+      "preserves": [
+        "failed clause identifiers",
+        "claim ceiling",
+        "remaining attempt budget"
+      ],
+      "loses": [
+        "authority to pass",
+        "authority to veto",
+        "authority to change active constraints"
+      ],
+      "preconditions": [
+        "the deterministic disposition already exists",
+        "audit output is stored separately as untrusted advice"
+      ],
+      "kill_control": "force the auditor to recommend release or refusal; the deterministic disposition must remain unchanged",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": [
+      "owner-controlled effective policy",
+      "finite typed obligations",
+      "no LLM release authority"
+    ],
+    "extended_constraints": [
+      "personalized context projection",
+      "external capability brokering",
+      "branch-preserving repair loop",
+      "plain-language audit explanation"
+    ]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "lateral_lane_types": [
+      "adapter",
+      "probe",
+      "analogy",
+      "proxy"
+    ],
+    "fixation_breakers": [
+      "test a second independent encoding or engine before adopting a convenient proxy",
+      "retain a nearest valid passing twin beside every blocked case"
+    ]
+  },
+  "loop_contract": {
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "max_loops": 3,
+    "repair_rule": "repair the first failed deterministic clause without changing effective policy, the claim ceiling, or the remaining-attempt calculation",
+    "stop_condition": "the bounded request is released, the retry budget is exhausted, or a named missing instrument or unresolved assumption requires owner input"
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question asks for an answer; it is not authorization to implement unless the user explicitly says to do it.",
+    "order_check_separate": "Any sequence or ordering claim must be checked separately from content correctness, with the order witness named.",
+    "baseline_preservation": "When debugging runtime behavior, preserve the visible output baseline and debug the execution path underneath.",
+    "falsifier_first": "A falsifier-first pass names the target, strongest falsifier, decisive check, and killed, open, or survived classification.",
+    "feynman_testability": "A testability pass names the operation, the observable measured, and the pass/fail condition.",
+    "synthesis_refusal": "Synthesis must name distinct receipts and explicitly refuse the merge, sequence, or reframe it is not performing.",
+    "human_offload": "Resolve tool-recoverable work before asking; ask the human only for private, preference-bound, or unrecoverable information."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 object-preservation guard only; v4.2 is legacy/provenance and is not a current run target.",
+    "source_math_locks": [
+      {
+        "path": "AGENTS.md",
+        "preserves": "executable evidence, current authority, bounded worker receipts, and return to real sim work",
+        "status": "current repository authority"
+      },
+      {
+        "path": "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+        "preserves": "gate obedience, status ceilings, and separation of narrative from executable evidence",
+        "status": "tracked process contract with explicit limits"
+      }
+    ],
+    "sim_audit_receipts": [],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "ConstraintBox object and boundary preservation only; no implementation, containment, sim-readiness, CR, or scientific claim",
+    "blocked_consumers": [
+      "implementation-complete claim without caller and test evidence",
+      "production containment claim",
+      "external engine readiness or CR promotion"
+    ]
+  }
+}

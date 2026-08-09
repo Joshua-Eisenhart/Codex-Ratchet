@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:21.486340+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 15732,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "## THE FAILURE STORY\n\nOn July 16, the system_v5 track decided to deprecate and delete `validators/base.py`, moving all validation logic into a new consolidated `validation_core.py`. Seven files had their imports rewritten. That same day, system_v7 was adding new constraint-checking methods to `base.py`\u2014the same file\u2014without knowing deprecation was underway. When the time came to merge the 43 commits into main, Git's three-way merge faithfully kept both the deletions and the new method definitions. The result: `validation_core.py` existed as intended, but fifteen downstream files still imported from the deleted `base.py`, and the newly-added methods existed in a file that no longer belonged to the build. Python runtime errors cascaded through the test suite. A merge that looked clean in conflict markers was syntactically broken.\n\nThe secondary failure came from a file rename. system_v5 moved `pipeline/config.py` to `pipeline/config_v5.py` as part of its scaffolding refactor. system_v7 a",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0134844
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_8/20260807T232801Z-dive-8-d54098fdc70a.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:31:34.043408+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 22882,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "I cannot locate the salience reference file in the indexed projects. Without it, I'm proceeding from the receipt contract alone.\n\n**Stated position:** 180 dirty files block a clean merge; git aborts without applying the 43 July commits.\n\n**Strongest falsifier:** Dirty files don't block merges\u2014they pause them. `git stash` resolves it in one step. A merge failure after stashing points to a commit conflict, not the dirty state.\n\n**Overclaim:** Framing a workflow constraint as a blocker. Dirty files are a precondition, not a blocker.\n\n**What I'd check to kill the claim:** Run `git stash` and attempt the merge. If it succeeds, the \"blocking\" characterization is false. If it fails, the real problem is downstream (bad commit, bad base).\n\n**Restated claim at evidence strength:**\n\nDirty files prevent merge until stashed. No evidence shows the merge itself fails after cleaning the tree.",
+    "result_subtype": "success",
+    "total_cost_usd": 0.033854800000000004
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

@@ -137,14 +137,33 @@ class ContainedProviderHarnessTests(unittest.TestCase):
             box_dir.mkdir()
             run_dir = root / "agent-run"
             stub = root / "local_provider_stub.py"
+            # A faithful codex stand-in: real codex emits thread.started and
+            # writes a session rollout naming the model it actually ran (the
+            # enforced -m argument).  The model-binding gate recomputes the
+            # answering model from those rollout bytes, so a stub without them
+            # would be honestly unverifiable and could never release.
             stub.write_text(
                 "#!" + sys.executable + "\n"
                 "import json\n"
+                "import os\n"
                 "import re\n"
                 "import sys\n"
                 "match = re.search(r'evidence_ref=([0-9a-f]{64})', sys.argv[-1])\n"
                 "if match is None:\n"
                 "    raise SystemExit('missing controller evidence reference')\n"
+                "thread_id = 'stub-thread-local-0001'\n"
+                "model = (sys.argv[sys.argv.index('-m') + 1]\n"
+                "         if '-m' in sys.argv else 'stub-default')\n"
+                "day = os.path.join(os.environ['CODEX_HOME'],\n"
+                "                   'sessions', '2026', '01', '01')\n"
+                "os.makedirs(day, exist_ok=True)\n"
+                "rollout = os.path.join(\n"
+                "    day, 'rollout-2026-01-01T00-00-00-' + thread_id + '.jsonl')\n"
+                "with open(rollout, 'w', encoding='utf-8') as handle:\n"
+                "    handle.write(json.dumps({'type': 'turn_context',\n"
+                "                             'payload': {'model': model}}) + '\\n')\n"
+                "print(json.dumps({'type': 'thread.started', "
+                "'thread_id': thread_id}))\n"
                 "proposal = {'proposal_id': 'local-subprocess-proposal', "
                 "'candidate': {'requested_claim': 'bounded_tool_execution', "
                 "'evidence_ref': match.group(1)}, "
@@ -189,7 +208,10 @@ class ContainedProviderHarnessTests(unittest.TestCase):
                 ),
                 patch.dict(
                     "os.environ",
-                    {"CONSTRAINTBOX_RUNTIME_DIR": str(root / "runtime")},
+                    {
+                        "CONSTRAINTBOX_RUNTIME_DIR": str(root / "runtime"),
+                        "CODEX_HOME": str(root / "codex-home"),
+                    },
                 ),
             ):
                 result, code = agentrun._run_agent_for_test(
@@ -225,14 +247,30 @@ class ContainedProviderHarnessTests(unittest.TestCase):
             box_dir.mkdir()
             run_dir = root / "public-agent-run"
             codex_stub = root / "codex"
+            # Faithful codex stand-in (thread.started + rollout naming the -m
+            # model); see test_default_local_provider_reaches_full_minilev.
             codex_stub.write_text(
                 "#!" + sys.executable + "\n"
                 "import json\n"
+                "import os\n"
                 "import re\n"
                 "import sys\n"
                 "match = re.search(r'evidence_ref=([0-9a-f]{64})', sys.argv[-1])\n"
                 "if match is None:\n"
                 "    raise SystemExit('missing controller evidence reference')\n"
+                "thread_id = 'stub-thread-public-0001'\n"
+                "model = (sys.argv[sys.argv.index('-m') + 1]\n"
+                "         if '-m' in sys.argv else 'stub-default')\n"
+                "day = os.path.join(os.environ['CODEX_HOME'],\n"
+                "                   'sessions', '2026', '01', '01')\n"
+                "os.makedirs(day, exist_ok=True)\n"
+                "rollout = os.path.join(\n"
+                "    day, 'rollout-2026-01-01T00-00-00-' + thread_id + '.jsonl')\n"
+                "with open(rollout, 'w', encoding='utf-8') as handle:\n"
+                "    handle.write(json.dumps({'type': 'turn_context',\n"
+                "                             'payload': {'model': model}}) + '\\n')\n"
+                "print(json.dumps({'type': 'thread.started', "
+                "'thread_id': thread_id}))\n"
                 "proposal = {'proposal_id': 'public-local-provider-proposal', "
                 "'candidate': {'requested_claim': 'outside_claim_ceiling', "
                 "'evidence_ref': match.group(1)}, "
@@ -280,6 +318,7 @@ class ContainedProviderHarnessTests(unittest.TestCase):
                     {
                         "CONSTRAINTBOX_RUNTIME_DIR": str(root / "runtime"),
                         "PATH": str(root),
+                        "CODEX_HOME": str(root / "codex-home"),
                     },
                     clear=True,
                 ),

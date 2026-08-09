@@ -60,6 +60,73 @@ def _hash_artifacts(artifact_paths: list[str]) -> dict[str, str]:
     return out
 
 
+def _codex_rollout_model(
+    stdout_text: str,
+    codex_home: Path,
+) -> tuple[Optional[str], Optional[str]]:
+    """Recompute the answering model from codex's own session rollout bytes.
+
+    ``codex exec --json`` emits NO model field in its event stream (measured
+    2026-08-08: the only event types are thread.started, turn.started,
+    turn.completed, item.completed).  The one byte-level observation of which
+    model actually ran is the rollout codex itself writes at
+    ``<CODEX_HOME>/sessions/<YYYY>/<MM>/<DD>/rollout-<ISO>-<thread_id>.jsonl``:
+    its ``turn_context`` record carries the model under ``payload.model``
+    (measured 2026-08-08 against a real rollout; the model is NOT at the record
+    top level).  ``--ephemeral`` suppresses the rollout entirely (also
+    measured), so an ephemeral dispatch is unverifiable by construction.
+
+    Returns ``(model, rollout_path)`` on success and ``(None, None)``
+    otherwise.  NEVER falls back to the requested model: a fallback would turn
+    the observation back into a declaration, which is the exact defect this
+    function exists to close.
+    """
+
+    thread_id: Optional[str] = None
+    for line in stdout_text.splitlines():
+        if not line.strip():
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(event, dict) and event.get("type") == "thread.started":
+            candidate = event.get("thread_id")
+            if isinstance(candidate, str) and candidate:
+                thread_id = candidate
+            break
+    if thread_id is None:
+        return None, None
+    sessions_dir = codex_home / "sessions"
+    if not sessions_dir.is_dir():
+        return None, None
+    pattern = f"*/*/*/rollout-*-{thread_id}.jsonl"
+    for rollout_file in sorted(sessions_dir.glob(pattern)):
+        try:
+            rollout_text = rollout_file.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        for line in rollout_text.splitlines():
+            if '"turn_context"' not in line:
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if not isinstance(record, dict):
+                continue
+            if record.get("type") != "turn_context":
+                continue
+            payload = record.get("payload")
+            model = payload.get("model") if isinstance(payload, dict) else None
+            if model is None:
+                # Older rollout shape kept the model at the record top level.
+                model = record.get("model")
+            if isinstance(model, str) and model:
+                return model, str(rollout_file)
+    return None, None
+
+
 class Provider(abc.ABC):
     """Abstract base: run a job -> receipt."""
 
@@ -100,7 +167,14 @@ class Provider(abc.ABC):
 
 
 class FakeSuccessProvider(Provider):
-    """Writes a deterministic successful output and a success receipt."""
+    """Writes a deterministic successful output and a success receipt.
+
+    The fake simulates a COMPLIANT provider, so ``model_resolved`` echoes the
+    requested model the way a well-behaved backend would.  This is test-double
+    simulation, not a real-route fallback: real providers must recompute
+    ``model_resolved`` from provider bytes.  Substitution tests override the
+    field on the returned receipt.
+    """
 
     name = "fake_success"
 
@@ -120,6 +194,7 @@ class FakeSuccessProvider(Provider):
             artifact_paths=artifacts,
             status="success",
             returncode=0,
+            model_resolved=job.model,
             started_at=s,
             completed_at=c,
             success_or_error_discriminator="choices_present",
@@ -223,6 +298,13 @@ class LocalToolProvider(Provider):
       * returncode == 0          -> success
       * subprocess.TimeoutExpired -> timed_out
       * nonzero returncode       -> error
+
+    When the subprocess is ``codex exec --json`` (the default proposal route),
+    the answering model is recomputed from codex's own rollout bytes exactly
+    as on the codex_* routes -- the most-used route is checked, never
+    exempted.  A command that emits no ``thread.started`` event yields
+    ``model_resolved=None`` and the run stays visibly unverifiable downstream;
+    there is no fallback to the declared ``job.model``.
     """
 
     name = "local_tool"
@@ -264,6 +346,17 @@ class LocalToolProvider(Provider):
             Path(job.output_path).write_text(stdout_text, encoding="utf-8")
             artifacts = [job.output_path]
 
+        model_resolved: Optional[str] = None
+        if status == "success" and stdout_text:
+            codex_home = Path(
+                os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))
+            )
+            model_resolved, rollout_path = _codex_rollout_model(
+                stdout_text, codex_home
+            )
+            if rollout_path is not None:
+                artifacts.append(rollout_path)
+
         return ModelReceipt(
             **self._base_receipt_kwargs(job, launch_surface="local_tool"),
             artifact_paths=artifacts,
@@ -271,6 +364,7 @@ class LocalToolProvider(Provider):
             returncode=returncode,
             started_at=s,
             completed_at=c,
+            model_resolved=model_resolved,
             stdout_sha256=sha256_text(stdout_text),
             stderr_sha256=sha256_text(stderr_text),
             artifact_sha256=_hash_artifacts(artifacts),
@@ -568,3 +662,126 @@ class NvidiaProvider(_OpenAICompatibleProvider):
     name = "nvidia"
     credential_env = "NVIDIA_API_KEY"
     default_endpoint = NVIDIA_ENDPOINT
+
+
+class CodexCliProvider(Provider):
+    """Real ``codex exec`` route. Model comes from ``job.model`` via ``-m``.
+
+    The Codex CLI authenticates from its own ``CODEX_HOME``; there is no API
+    key for this box to hold, so ``credential_env`` is None on the route.
+
+    ``-m`` is enforced by the CLI -- an unknown slug returns HTTP 400 -- so the
+    requested model is a real selection. ``-p``/``--profile`` is NOT: it accepts
+    any string and silently falls back to the default model, which would make
+    every receipt name a lane that does not exist. This provider therefore
+    binds the model, never a profile.
+
+    This provider records the model that ACTUALLY answered, recomputed from
+    codex's own rollout file bytes, plus honest timestamps from real subprocess
+    measurement. The event stream (--json output) is written to job.output_path
+    and parsed by the harness's _extract_proposal, which enforces exactly-one
+    agent_message as a structural check.
+    """
+
+    name = "codex_cli"
+
+    def run(self, job, *, timeout=None, started_at=None, completed_at=None):  # noqa: D102
+        import time
+
+        s, c = _now_pair(started_at, completed_at)
+        prompt = getattr(job.task, "prompt", None) or getattr(job.task, "text", "")
+        if not prompt:
+            raise ProviderError("CodexCliProvider requires a prompt on job.task")
+
+        argv = ["codex", "exec", "-m", job.model, "--skip-git-repo-check", "--json", prompt]
+        env = dict(os.environ, CODEX_HOME=os.environ.get(
+            "CODEX_HOME", str(Path.home() / ".codex")))
+
+        stdout_text = ""
+        stderr_text = ""
+        status = "success"
+        returncode: Optional[int] = None
+        model_resolved: Optional[str] = None
+        duration_ms: Optional[int] = None
+
+        # Measure real subprocess time
+        t0 = time.monotonic()
+        try:
+            proc = subprocess.run(
+                argv, cwd=job.cwd or "/tmp", capture_output=True, text=True,
+                timeout=timeout, stdin=subprocess.DEVNULL, env=env,
+            )
+            stdout_text = proc.stdout or ""
+            stderr_text = proc.stderr or ""
+            returncode = proc.returncode
+            status = "success" if returncode == 0 else "error"
+        except subprocess.TimeoutExpired as exc:
+            stdout_text = exc.stdout.decode() if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+            stderr_text = exc.stderr.decode() if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+            status = "timed_out"
+        except FileNotFoundError as exc:
+            stderr_text = f"codex CLI not found: {exc}"
+            status = "error"
+            returncode = 127
+        finally:
+            duration_ms = int((time.monotonic() - t0) * 1000)
+
+        artifacts: list[str] = []
+        if job.output_path:
+            Path(job.output_path).parent.mkdir(parents=True, exist_ok=True)
+            Path(job.output_path).write_text(stdout_text, encoding="utf-8")
+            artifacts = [job.output_path]
+
+        # Recompute the answering model from codex's own rollout bytes.  The
+        # previous inline parser read the model from the rollout record's top
+        # level; the real record keeps it under payload.model (measured
+        # 2026-08-08), so it never resolved.  _codex_rollout_model reads the
+        # measured shape and never falls back to job.model.
+        if status == "success" and stdout_text:
+            codex_home = Path(env.get("CODEX_HOME", str(Path.home() / ".codex")))
+            model_resolved, rollout_path = _codex_rollout_model(
+                stdout_text, codex_home
+            )
+            if rollout_path is not None:
+                artifacts.append(rollout_path)
+
+        # Set content=None so _extract_proposal parses the event stream instead.
+        # This adds the structural check: exactly-one agent_message is enforced.
+        return ModelReceipt(
+            **self._base_receipt_kwargs(job, launch_surface="codex_cli"),
+            artifact_paths=artifacts,
+            status=status,
+            returncode=returncode,
+            started_at=s,
+            completed_at=c,
+            model_resolved=model_resolved,
+            duration_ms=duration_ms,
+            success_or_error_discriminator=(
+                "choices_present" if status == "success" else "top_level_error"
+            ),
+            content=None,  # Force _extract_proposal to parse the event stream
+            content_empty=True,
+            message_role="assistant",
+            finish_reason="stop" if status == "success" else None,
+            native_finish_reason="stop" if status == "success" else None,
+            stdout_sha256=sha256_text(stdout_text),
+            stderr_sha256=sha256_text(stderr_text),
+            artifact_sha256=_hash_artifacts(artifacts),
+        )
+
+
+class CodexLunaProvider(CodexCliProvider):
+    """codex exec -m gpt-5.6-luna.
+
+    One subclass per route because select_proposal_provider requires
+    provider.name == route.route, so a provider can never be bound to a route
+    it does not itself claim.
+    """
+
+    name = "codex_luna"
+
+
+class CodexSolProvider(CodexCliProvider):
+    """codex exec -m gpt-5.6-sol."""
+
+    name = "codex_sol"

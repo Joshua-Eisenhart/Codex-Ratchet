@@ -24,18 +24,25 @@ from io import StringIO
 from pathlib import Path
 from typing import Dict, Tuple
 
-import blake3
-import charset_normalizer
-import fasteners
-import grimp
-import patch_ng
-import platformdirs
-import plumbum
-import stamina
-import structlog
-import tabulate
-import xxhash
-from packaging import version, requirements
+import pytest
+
+# These are CANDIDATE libraries, listed in requirements/candidates/cb-candidates-passing.in
+# as "clear the CB light bar, not yet adopted". They are not in the pinned core, so they are
+# not guaranteed present. Import them through importorskip: a missing candidate skips this
+# module only. An unguarded import here fails collection for the whole suite.
+blake3 = pytest.importorskip("blake3")
+charset_normalizer = pytest.importorskip("charset_normalizer")
+fasteners = pytest.importorskip("fasteners")
+grimp = pytest.importorskip("grimp")
+patch_ng = pytest.importorskip("patch_ng")
+platformdirs = pytest.importorskip("platformdirs")
+plumbum = pytest.importorskip("plumbum")
+stamina = pytest.importorskip("stamina")
+structlog = pytest.importorskip("structlog")
+tabulate = pytest.importorskip("tabulate")
+xxhash = pytest.importorskip("xxhash")
+pytest.importorskip("packaging")
+from packaging import version, requirements  # noqa: E402
 
 
 class TestGrimpImportGraph(unittest.TestCase):

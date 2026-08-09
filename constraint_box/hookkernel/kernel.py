@@ -57,19 +57,25 @@ def _date(value):
 
 
 def _estate_rows(payload, root):
+    # The authoritative registry wins whenever it exists. A caller-supplied
+    # estate_rows override must NOT be able to resolve a real currentness HOLD
+    # on the production chain — that is a gate bypass (a forged fresh fixture
+    # clears a genuinely stale estate). The override is honored only in an
+    # isolated root that has no authoritative config, which is how tests drive
+    # the fact both ways.
+    config = root.parent / "config" / "cb_light_library_candidates.json"
+    if config.exists():
+        data = json.loads(config.read_text(encoding="utf-8"))
+        rows = []
+        for candidate in data.get("candidates", []):
+            verified = candidate.get("verified", {})
+            if verified.get("release_date"):
+                rows.append({"id": candidate.get("pypi_name"), "date": verified["release_date"]})
+        return rows, data.get("stale_days_max", STALE_DAYS_MAX)
     rows = payload.get("estate_rows")
     if rows is not None:
         return rows, payload.get("stale_days_max", STALE_DAYS_MAX)
-    config = root.parent / "config" / "cb_light_library_candidates.json"
-    if not config.exists():
-        return [], STALE_DAYS_MAX
-    data = json.loads(config.read_text(encoding="utf-8"))
-    rows = []
-    for candidate in data.get("candidates", []):
-        verified = candidate.get("verified", {})
-        if verified.get("release_date"):
-            rows.append({"id": candidate.get("pypi_name"), "date": verified["release_date"]})
-    return rows, data.get("stale_days_max", STALE_DAYS_MAX)
+    return [], STALE_DAYS_MAX
 
 
 def _evaluate(event, payload, root, registry):

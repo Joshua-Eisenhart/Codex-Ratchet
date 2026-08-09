@@ -57,7 +57,16 @@ def test_wrong_interpreter_refuses_specific_reason(tmp_path):
 
 def test_expired_fixture_is_currentness_negative(tmp_path):
     root = make_root(tmp_path)
-    result = run(root, "session_start", {"today": "2026-08-09", "stale_days_max": 548, "estate_rows": [{"id": "tabulate", "date": "2024-12-01"}]})
+    # Currentness derives from the AUTHORITATIVE config, so control the config,
+    # not a payload override. A payload override is correctly ignored when a
+    # config exists — that binding closes the forged-fixture bypass and is
+    # itself probed in test_hook_currentness_authority.py.
+    config = root.parent / "config" / "cb_light_library_candidates.json"
+    config.write_text(json.dumps({
+        "stale_days_max": 548,
+        "candidates": [{"pypi_name": "tabulate", "verified": {"release_date": "2024-12-01"}}],
+    }), encoding="utf-8")
+    result = run(root, "session_start", {"today": "2026-08-09"})
     assert result.returncode == 2
     body = last(root)["payload"]
     assert body["reason_code"] == "CURRENTNESS_EXPIRED"

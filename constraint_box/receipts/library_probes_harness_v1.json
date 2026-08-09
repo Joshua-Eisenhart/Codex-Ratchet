@@ -9,12 +9,13 @@
   "order_dependence": {
     "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 -m pytest constraint_box/tests -q --randomly-seed SEED",
     "failures": [],
+    "full_suite_terminal": "passes local rerun: 1015 passed, 1 skipped, 13 warnings, 344 subtests passed in 652.99s (0:10:52)",
     "seeds": [
       101,
       202,
       303
     ],
-    "status": "not-run-inside-probe"
+    "status": "unavailable"
   },
   "schema": "cb.library_probe_receipt.v1",
   "tools": [
@@ -439,13 +440,18 @@
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "tomli"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "cfb4b61abf5c9e5fbc05b878277d8cf3f9d15bdf6990eeb939b246b71fd369b9",
+      "raw_output_hash": "a1fd67058cb72383b7bcf51953b527c8e5984652344d7cf2b54c6df6d16e64c4",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "tomli",
-      "version": null
+      "version": "2.4.0"
     },
     {
       "boundary_mutation_probes": [],

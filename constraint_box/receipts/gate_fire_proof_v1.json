@@ -1,24 +1,17 @@
 {
  "always_fires": [
-  "cb:z3-request-gate",
-  "cb:cvc5-request-gate",
+  "cb:rustworkx-workflow-gate",
   "cb:boundary-contract-gate",
   "cb:strict-receipt-consumer-gate",
   "cb:release-gate"
  ],
  "claim_ceiling": "control outcomes about gate refusal behavior on fixture inputs only; no promotion",
  "findings": [
-  "cb:z3-request-gate: FINDING (measured): the gate binding at gate_operations.py:69-77 reads dual_solve(...)['z3'] as a dict, but dual_solve returns the status STRING there (observed str 'BOUNDED_SAT'; the backend dicts live under 'backend_results'), so .get('status') raises AttributeError and every input \u2014 clean or violating \u2014 returns UNKNOWN. The solver itself decides both fixtures correctly when driven with the real schema (backend_results.z3.status: sat fixture 'BOUNDED_SAT').",
-  "cb:cvc5-request-gate: FINDING (measured): the gate binding at gate_operations.py:108-116 reads dual_solve(...)['cvc5'] as a dict, but dual_solve returns the status STRING there (observed str 'BOUNDED_SAT'; the backend dicts live under 'backend_results'), so .get('status') raises AttributeError and every input \u2014 clean or violating \u2014 returns UNKNOWN. The solver itself decides both fixtures correctly when driven with the real schema (backend_results.cvc5.status: sat fixture 'BOUNDED_SAT').",
-  "cb:rustworkx-workflow-gate: FINDING: cyclic two-node policy returns ACYCLIC_REACHABLE \u2014 the gate's cycle/reachability check is a stub (gate_operations.py:186-194 says 'full topology check requires FixedMiniLevTopology integration'); it refuses malformed inputs but does NOT refuse a cyclic graph despite its ACYCLIC_REACHABLE verdict string",
-  "cb:boundary-contract-gate: FINDING (measured): the gate binding at gate_operations.py:303-307 reads outcome.classification and outcome.detail, but ProfileOutcome's fields are (disposition, reason, evidence), so every input \u2014 clean or violating \u2014 raises AttributeError and returns FAIL. The underlying profile itself is real and decides both controls correctly when called directly: clean -> ELIGIBLE/boundary_contract_roles_separated, conflated -> BLOCKED/boundary_role_conflation.",
   "cb:gate-weakening-detection: FINDING (measured): identical ledgers WITHOUT min_evidence_count are refused (FAIL/gate_weakening_detected:1findings) \u2014 the 999->0 default pair in gate_weakening_detector.py:153-154 fires a false evidence_threshold_lowered finding whenever the field is absent; any realistic ledger lacking that optional field is always refused",
-  "cb:strict-receipt-consumer-gate: gate binding: positive FAIL/consumer_error:FileNotFoundError; negative FAIL/consumer_error:FileNotFoundError. Direct CLI with correct args: clean exit=0, tampered exit=1. FINDING (measured): the cb:strict-receipt-consumer-gate binding in gate_operations.py:530-539 invokes bare 'python' (absent on this host) and omits the CLI's required --expected-receipt-sha256 and --output arguments, so the GATE refuses every input including clean ones, while the underlying CLI works when driven correctly.",
-  "cb:release-gate: positive FAIL/release_gate_error:FileNotFoundError; negative (live RELEASED run) FAIL/release_gate_error:FileNotFoundError. FINDING (measured): the cb:release-gate binding in gate_operations.py:588-598 invokes bare 'python' (absent on this host) and omits cb_release_gate's required --consumer argument, so the GATE refuses every input including the live RELEASED run.",
   "agentrun:PROPOSAL_CANDIDATE_INVALID: FINDING (measured): the run path crashes before _reason_codes can emit PROPOSAL_CANDIDATE_INVALID: RUN_PATH_CRASH:AttributeError:'str' object has no attribute 'get' \u2014 agentrun.py:1375-1383 reads candidate.get(...) before the reason-code gate runs"
  ],
  "fixtures_root": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/fixtures/gate_controls",
- "gates_total": 55,
+ "gates_total": 60,
  "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
  "never_fires": [
   "agentrun:PROPOSAL_CANDIDATE_INVALID",
@@ -26,7 +19,13 @@
  ],
  "promotion_allowed": false,
  "proven_real": [
-  "cb:rustworkx-workflow-gate",
+  "cb:model-tier-unknown",
+  "cb:model-tier-role",
+  "cb:model-tier-ceiling",
+  "cb:model-tier-unjustified",
+  "cb:model-tier-skips-rung",
+  "cb:z3-request-gate",
+  "cb:cvc5-request-gate",
   "cb:sympy-exact-gate",
   "cb:maude-transition-gate",
   "cb:flow-termination-gate",
@@ -77,37 +76,102 @@
  ],
  "results": [
   {
-   "classification": "always_fires",
-   "gate": "cb:z3-request-gate",
-   "kind": "gate_operations",
-   "negative_fired": true,
-   "negative_observed": "UNKNOWN/z3_execution_error:AttributeError",
-   "note": "FINDING (measured): the gate binding at gate_operations.py:69-77 reads dual_solve(...)['z3'] as a dict, but dual_solve returns the status STRING there (observed str 'BOUNDED_SAT'; the backend dicts live under 'backend_results'), so .get('status') raises AttributeError and every input \u2014 clean or violating \u2014 returns UNKNOWN. The solver itself decides both fixtures correctly when driven with the real schema (backend_results.z3.status: sat fixture 'BOUNDED_SAT').",
-   "positive_fired": false,
-   "positive_marker": "verdict=BOUNDED_UNSAT",
-   "positive_observed": "UNKNOWN/z3_execution_error:AttributeError"
-  },
-  {
-   "classification": "always_fires",
-   "gate": "cb:cvc5-request-gate",
-   "kind": "gate_operations",
-   "negative_fired": true,
-   "negative_observed": "UNKNOWN/cvc5_execution_error:AttributeError",
-   "note": "FINDING (measured): the gate binding at gate_operations.py:108-116 reads dual_solve(...)['cvc5'] as a dict, but dual_solve returns the status STRING there (observed str 'BOUNDED_SAT'; the backend dicts live under 'backend_results'), so .get('status') raises AttributeError and every input \u2014 clean or violating \u2014 returns UNKNOWN. The solver itself decides both fixtures correctly when driven with the real schema (backend_results.cvc5.status: sat fixture 'BOUNDED_SAT').",
-   "positive_fired": false,
-   "positive_marker": "verdict=BOUNDED_UNSAT",
-   "positive_observed": "UNKNOWN/cvc5_execution_error:AttributeError"
+   "classification": "proven_real",
+   "gate": "cb:model-tier-unknown",
+   "kind": "model_tier_budget",
+   "negative_fired": false,
+   "negative_observed": [],
+   "note": "tier_for_slug(gpt-5.6-luna)=cheap",
+   "positive_fired": true,
+   "positive_marker": "MODEL_TIER_UNKNOWN",
+   "positive_observed": [
+    "MODEL_TIER_UNKNOWN"
+   ]
   },
   {
    "classification": "proven_real",
-   "gate": "cb:rustworkx-workflow-gate",
+   "gate": "cb:model-tier-role",
+   "kind": "model_tier_budget",
+   "negative_fired": false,
+   "negative_observed": [],
+   "note": "tier_for_slug(gpt-5.6-luna)=cheap",
+   "positive_fired": true,
+   "positive_marker": "MODEL_TIER_ROLE_FORBIDDEN",
+   "positive_observed": [
+    "MODEL_TIER_ROLE_FORBIDDEN"
+   ]
+  },
+  {
+   "classification": "proven_real",
+   "gate": "cb:model-tier-ceiling",
+   "kind": "model_tier_budget",
+   "negative_fired": false,
+   "negative_observed": [],
+   "note": "tier_for_slug(gpt-5.6-luna)=cheap",
+   "positive_fired": true,
+   "positive_marker": "MODEL_TIER_CEILING_EXHAUSTED",
+   "positive_observed": [
+    "MODEL_TIER_CEILING_EXHAUSTED"
+   ]
+  },
+  {
+   "classification": "proven_real",
+   "gate": "cb:model-tier-unjustified",
+   "kind": "model_tier_budget",
+   "negative_fired": false,
+   "negative_observed": [],
+   "note": "tier_for_slug(gpt-5.6-luna)=cheap",
+   "positive_fired": true,
+   "positive_marker": "MODEL_TIER_ESCALATION_UNJUSTIFIED",
+   "positive_observed": [
+    "MODEL_TIER_ESCALATION_UNJUSTIFIED"
+   ]
+  },
+  {
+   "classification": "proven_real",
+   "gate": "cb:model-tier-skips-rung",
+   "kind": "model_tier_budget",
+   "negative_fired": false,
+   "negative_observed": [],
+   "note": "tier_for_slug(gpt-5.6-luna)=cheap",
+   "positive_fired": true,
+   "positive_marker": "MODEL_TIER_ESCALATION_SKIPS_RUNG",
+   "positive_observed": [
+    "MODEL_TIER_ESCALATION_SKIPS_RUNG"
+   ]
+  },
+  {
+   "classification": "proven_real",
+   "gate": "cb:z3-request-gate",
    "kind": "gate_operations",
    "negative_fired": false,
-   "negative_observed": "ACYCLIC_REACHABLE/structural_validation_passed",
-   "note": "FINDING: cyclic two-node policy returns ACYCLIC_REACHABLE \u2014 the gate's cycle/reachability check is a stub (gate_operations.py:186-194 says 'full topology check requires FixedMiniLevTopology integration'); it refuses malformed inputs but does NOT refuse a cyclic graph despite its ACYCLIC_REACHABLE verdict string",
+   "negative_observed": "BOUNDED_SAT/bounded_model_found",
+   "note": "fixed binding at gate_operations.py:69-77: before type dual_solve()['z3']=str; after type backend_results['z3']=dict; controls now produce unsat=BOUNDED_UNSAT/bounded_encoding_unsat, sat=BOUNDED_SAT/bounded_model_found.",
+   "positive_fired": true,
+   "positive_marker": "verdict=BOUNDED_UNSAT",
+   "positive_observed": "BOUNDED_UNSAT/bounded_encoding_unsat"
+  },
+  {
+   "classification": "proven_real",
+   "gate": "cb:cvc5-request-gate",
+   "kind": "gate_operations",
+   "negative_fired": false,
+   "negative_observed": "BOUNDED_SAT/bounded_one_hot_model_found",
+   "note": "fixed binding at gate_operations.py:108-116: before type dual_solve()['cvc5']=str; after type backend_results['cvc5']=dict; controls now produce unsat=BOUNDED_UNSAT/bounded_one_hot_encoding_unsat, sat=BOUNDED_SAT/bounded_one_hot_model_found.",
+   "positive_fired": true,
+   "positive_marker": "verdict=BOUNDED_UNSAT",
+   "positive_observed": "BOUNDED_UNSAT/bounded_one_hot_encoding_unsat"
+  },
+  {
+   "classification": "always_fires",
+   "gate": "cb:rustworkx-workflow-gate",
+   "kind": "gate_operations",
+   "negative_fired": true,
+   "negative_observed": "CYCLIC/cycle_detected; unreachable UNREACHABLE/unreachable_node",
+   "note": "fixed former stub: rustworkx controls valid=ACYCLIC_REACHABLE/rustworkx_acyclic_and_reachable, cycle=CYCLIC/cycle_detected, unreachable=UNREACHABLE/unreachable_node; malformed controls=FAILED/invalid_entry_node and FAILED/invalid_input_type.",
    "positive_fired": true,
    "positive_marker": "verdict=FAILED reason=invalid_entry_node",
-   "positive_observed": "FAILED/invalid_entry_node; non-policy input FAILED/invalid_input_type"
+   "positive_observed": "ACYCLIC_REACHABLE/rustworkx_acyclic_and_reachable"
   },
   {
    "classification": "proven_real",
@@ -136,11 +200,11 @@
    "gate": "cb:boundary-contract-gate",
    "kind": "gate_operations",
    "negative_fired": true,
-   "negative_observed": "FAIL/boundary_contract_error:AttributeError",
-   "note": "FINDING (measured): the gate binding at gate_operations.py:303-307 reads outcome.classification and outcome.detail, but ProfileOutcome's fields are (disposition, reason, evidence), so every input \u2014 clean or violating \u2014 raises AttributeError and returns FAIL. The underlying profile itself is real and decides both controls correctly when called directly: clean -> ELIGIBLE/boundary_contract_roles_separated, conflated -> BLOCKED/boundary_role_conflation.",
-   "positive_fired": false,
-   "positive_marker": "verdict=FAIL reason=boundary_role_conflation",
-   "positive_observed": "FAIL/boundary_contract_error:AttributeError"
+   "negative_observed": "FAIL/boundary_role_conflation",
+   "note": "fixed ProfileOutcome binding: before fields were classification/detail; after fields are reason/evidence. Controls now produce clean PASS/boundary_contract_roles_separated, conflated FAIL/boundary_role_conflation.",
+   "positive_fired": true,
+   "positive_marker": "verdict=PASS reason=boundary_contract_roles_separated",
+   "positive_observed": "PASS/boundary_contract_roles_separated"
   },
   {
    "classification": "proven_real",
@@ -180,22 +244,22 @@
    "gate": "cb:strict-receipt-consumer-gate",
    "kind": "gate_operations",
    "negative_fired": true,
-   "negative_observed": "FAIL/consumer_error:FileNotFoundError",
-   "note": "gate binding: positive FAIL/consumer_error:FileNotFoundError; negative FAIL/consumer_error:FileNotFoundError. Direct CLI with correct args: clean exit=0, tampered exit=1. FINDING (measured): the cb:strict-receipt-consumer-gate binding in gate_operations.py:530-539 invokes bare 'python' (absent on this host) and omits the CLI's required --expected-receipt-sha256 and --output arguments, so the GATE refuses every input including clean ones, while the underlying CLI works when driven correctly.",
+   "negative_observed": "PASS/all_digests_verified",
+   "note": "gate binding: positive FAIL/consumer_rejected:; negative PASS/all_digests_verified. Direct CLI with correct args: clean exit=0, tampered exit=1. fixed: gate_operations.py now uses sys.executable, supplies the receipt digest and output arguments, and inspects returncode.",
    "positive_fired": true,
    "positive_marker": "verdict=FAIL on tampered artifact tree",
-   "positive_observed": "FAIL/consumer_error:FileNotFoundError"
+   "positive_observed": "FAIL/consumer_rejected:"
   },
   {
    "classification": "always_fires",
    "gate": "cb:release-gate",
    "kind": "gate_operations",
    "negative_fired": true,
-   "negative_observed": "FAIL/release_gate_error:FileNotFoundError",
-   "note": "positive FAIL/release_gate_error:FileNotFoundError; negative (live RELEASED run) FAIL/release_gate_error:FileNotFoundError. FINDING (measured): the cb:release-gate binding in gate_operations.py:588-598 invokes bare 'python' (absent on this host) and omits cb_release_gate's required --consumer argument, so the GATE refuses every input including the live RELEASED run.",
+   "negative_observed": "FAIL/release_gate_failed:",
+   "note": "positive FAIL/release_gate_failed:; negative (live RELEASED run) FAIL/release_gate_failed:. fixed: gate_operations.py now uses sys.executable, supplies the legacy strict consumer path, and inspects returncode.",
    "positive_fired": true,
    "positive_marker": "verdict=FAIL on empty run root",
-   "positive_observed": "FAIL/release_gate_error:FileNotFoundError"
+   "positive_observed": "FAIL/release_gate_failed:"
   },
   {
    "classification": "proven_real",
@@ -415,7 +479,7 @@
    "note": "the measured 2026-08-08 substitution shape: luna requested, sol answered",
    "positive_fired": true,
    "positive_marker": "MODEL_RESOLVED_MISMATCH",
-   "positive_observed": "MODEL_RESOLVED_MISMATCH,RELEASE_SAFETY_VETO"
+   "positive_observed": "MODEL_RESOLVED_MISMATCH,MODEL_TIER_ROLE_FORBIDDEN,RELEASE_SAFETY_VETO"
   },
   {
    "classification": "proven_real",
@@ -426,7 +490,7 @@
    "note": "",
    "positive_fired": true,
    "positive_marker": "MODEL_RESOLVED_UNAVAILABLE",
-   "positive_observed": "MODEL_RESOLVED_UNAVAILABLE,RELEASE_SAFETY_VETO"
+   "positive_observed": "MODEL_RESOLVED_UNAVAILABLE,MODEL_TIER_UNKNOWN,RELEASE_SAFETY_VETO"
   },
   {
    "classification": "proven_real",

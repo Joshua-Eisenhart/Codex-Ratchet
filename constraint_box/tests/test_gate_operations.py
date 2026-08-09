@@ -17,6 +17,7 @@ from constraintbox.gate_operations import (
     gate_maude_transition,
     gate_z3_request,
 )
+from constraintbox.mini_levos import FlowNode, FlowPolicy, FlowTransition, HookSignal
 from constraintbox.intake import canonical_json
 
 
@@ -129,6 +130,53 @@ class TestGateRustworkxWorkflow(unittest.TestCase):
         self.assertEqual(result.verdict, "FAILED")
         self.assertIn("invalid", result.reason.lower())
 
+    def test_rustworkx_gate_distinguishes_cycle_and_unreachable_controls(self) -> None:
+        common = dict(
+            flow_id="test-flow",
+            entry_node="a",
+            terminal_nodes=("HOLD",),
+            required_nodes=(),
+            max_steps=10,
+            max_visits_per_node=2,
+            max_retries=1,
+            max_context_bytes=100,
+            max_event_bytes=100,
+            max_receipt_bytes=100,
+            claim_ceiling="test",
+        )
+        cyclic = FlowPolicy(
+            nodes=(FlowNode("a", "hook"), FlowNode("b", "hook")),
+            transitions=(
+                FlowTransition("a", HookSignal.PASS, "b"),
+                FlowTransition("b", HookSignal.PASS, "a"),
+            ),
+            **common,
+        )
+        unreachable = FlowPolicy(
+            nodes=(FlowNode("a", "hook"), FlowNode("b", "hook")),
+            transitions=(FlowTransition("a", HookSignal.PASS, "HOLD"),),
+            **common,
+        )
+        valid = FlowPolicy(
+            nodes=(FlowNode("a", "hook"), FlowNode("b", "hook")),
+            transitions=(
+                FlowTransition("a", HookSignal.PASS, "b"),
+                FlowTransition("b", HookSignal.PASS, "HOLD"),
+            ),
+            **common,
+        )
+
+        cycle_result = gate_rustworkx_workflow(cyclic)
+        unreachable_result = gate_rustworkx_workflow(unreachable)
+        valid_result = gate_rustworkx_workflow(valid)
+
+        self.assertEqual(valid_result.verdict, "ACYCLIC_REACHABLE")
+        self.assertEqual(valid_result.reason, "rustworkx_acyclic_and_reachable")
+        self.assertEqual(cycle_result.verdict, "CYCLIC")
+        self.assertEqual(cycle_result.reason, "cycle_detected")
+        self.assertEqual(unreachable_result.verdict, "UNREACHABLE")
+        self.assertEqual(unreachable_result.reason, "unreachable_node")
+
 
 class TestGateSympyExact(unittest.TestCase):
     """Test sympy gate operation."""
@@ -175,7 +223,7 @@ class TestGateBoundaryContract(unittest.TestCase):
 
         self.assertEqual(result.gate_id, "cb:boundary-contract-gate")
         self.assertEqual(result.verdict, "FAIL")
-        self.assertIn("error", result.reason.lower())
+        self.assertEqual(result.reason, "boundary_contract_intake_failed")
 
     def test_boundary_contract_gate_produces_receipt(self) -> None:
         """Boundary contract gate must produce a valid execution receipt."""

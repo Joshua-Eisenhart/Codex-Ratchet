@@ -1,0 +1,537 @@
+{
+  "claim_ceiling": "finite partition and boundary evidence only; no universal property",
+  "fixture": "fixtures/probe_families/probe_families_v1.json",
+  "gates": [
+    {
+      "agreement": [
+        {
+          "agree": true,
+          "deciders": {
+            "fraction": "admitted",
+            "sympy": "admitted"
+          },
+          "probe_id": "sympy-ok"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "fraction": "zero_denominator",
+            "sympy": "zero_denominator"
+          },
+          "probe_id": "sympy-zero-denom"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "fraction": "exact_mismatch",
+            "sympy": "exact_mismatch"
+          },
+          "probe_id": "sympy-mismatch"
+        }
+      ],
+      "boundary": [
+        {
+          "actual_differing_fields": [
+            "denominator"
+          ],
+          "differing_field": "denominator",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "sympy-ok",
+          "probe_b": "sympy-zero-denom",
+          "side_a": "admitted",
+          "side_b": "zero_denominator",
+          "single_field": true
+        },
+        {
+          "actual_differing_fields": [
+            "expected"
+          ],
+          "differing_field": "expected",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "sympy-ok",
+          "probe_b": "sympy-mismatch",
+          "side_a": "admitted",
+          "side_b": "exact_mismatch",
+          "single_field": true
+        }
+      ],
+      "boundary_mapped": true,
+      "coverage": {
+        "admitted": 1,
+        "boundary_pairs": 2,
+        "deciders": 2,
+        "probes": 3,
+        "reason_codes_exercised": 2,
+        "refused": 2
+      },
+      "disagreements": [],
+      "expected_mismatches": [],
+      "gate_id": "cb:sympy-exact-gate",
+      "non_constant": true,
+      "partition": {
+        "admitted": [
+          "sympy-ok"
+        ],
+        "refused": {
+          "exact_mismatch": [
+            "sympy-mismatch"
+          ],
+          "zero_denominator": [
+            "sympy-zero-denom"
+          ]
+        }
+      },
+      "quotient": [
+        {
+          "probes": [
+            "sympy-ok"
+          ],
+          "verdict": "admitted"
+        },
+        {
+          "probes": [
+            "sympy-mismatch"
+          ],
+          "verdict": "exact_mismatch"
+        },
+        {
+          "probes": [
+            "sympy-zero-denom"
+          ],
+          "verdict": "zero_denominator"
+        }
+      ],
+      "unmapped_reason_codes": []
+    },
+    {
+      "agreement": [
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "admitted",
+            "maude": "admitted"
+          },
+          "probe_id": "maude-ok"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "unknown_source",
+            "maude": "unknown_source"
+          },
+          "probe_id": "maude-missing-source"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "self_loop",
+            "maude": "self_loop"
+          },
+          "probe_id": "maude-self-loop"
+        }
+      ],
+      "boundary": [
+        {
+          "actual_differing_fields": [
+            "from"
+          ],
+          "differing_field": "from",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "maude-ok",
+          "probe_b": "maude-missing-source",
+          "side_a": "admitted",
+          "side_b": "unknown_source",
+          "single_field": true
+        },
+        {
+          "actual_differing_fields": [
+            "to"
+          ],
+          "differing_field": "to",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "maude-ok",
+          "probe_b": "maude-self-loop",
+          "side_a": "admitted",
+          "side_b": "self_loop",
+          "single_field": true
+        }
+      ],
+      "boundary_mapped": true,
+      "coverage": {
+        "admitted": 1,
+        "boundary_pairs": 2,
+        "deciders": 2,
+        "probes": 3,
+        "reason_codes_exercised": 2,
+        "refused": 2
+      },
+      "disagreements": [],
+      "expected_mismatches": [],
+      "gate_id": "cb:maude-transition-gate",
+      "non_constant": true,
+      "partition": {
+        "admitted": [
+          "maude-ok"
+        ],
+        "refused": {
+          "self_loop": [
+            "maude-self-loop"
+          ],
+          "unknown_source": [
+            "maude-missing-source"
+          ]
+        }
+      },
+      "quotient": [
+        {
+          "probes": [
+            "maude-ok"
+          ],
+          "verdict": "admitted"
+        },
+        {
+          "probes": [
+            "maude-self-loop"
+          ],
+          "verdict": "self_loop"
+        },
+        {
+          "probes": [
+            "maude-missing-source"
+          ],
+          "verdict": "unknown_source"
+        }
+      ],
+      "unmapped_reason_codes": []
+    },
+    {
+      "agreement": [
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "admitted",
+            "rustworkx": "admitted"
+          },
+          "probe_id": "graph-ok"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "cycle",
+            "rustworkx": "cycle"
+          },
+          "probe_id": "graph-cycle"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "enumeration": "entry_missing",
+            "rustworkx": "entry_missing"
+          },
+          "probe_id": "graph-entry-missing"
+        }
+      ],
+      "boundary": [
+        {
+          "actual_differing_fields": [
+            "edges"
+          ],
+          "differing_field": "edges",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "graph-ok",
+          "probe_b": "graph-cycle",
+          "side_a": "admitted",
+          "side_b": "cycle",
+          "single_field": true
+        },
+        {
+          "actual_differing_fields": [
+            "entry"
+          ],
+          "differing_field": "entry",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "graph-ok",
+          "probe_b": "graph-entry-missing",
+          "side_a": "admitted",
+          "side_b": "entry_missing",
+          "single_field": true
+        }
+      ],
+      "boundary_mapped": true,
+      "coverage": {
+        "admitted": 1,
+        "boundary_pairs": 2,
+        "deciders": 2,
+        "probes": 3,
+        "reason_codes_exercised": 2,
+        "refused": 2
+      },
+      "disagreements": [],
+      "expected_mismatches": [],
+      "gate_id": "cb:rustworkx-workflow-gate",
+      "non_constant": true,
+      "partition": {
+        "admitted": [
+          "graph-ok"
+        ],
+        "refused": {
+          "cycle": [
+            "graph-cycle"
+          ],
+          "entry_missing": [
+            "graph-entry-missing"
+          ]
+        }
+      },
+      "quotient": [
+        {
+          "probes": [
+            "graph-ok"
+          ],
+          "verdict": "admitted"
+        },
+        {
+          "probes": [
+            "graph-cycle"
+          ],
+          "verdict": "cycle"
+        },
+        {
+          "probes": [
+            "graph-entry-missing"
+          ],
+          "verdict": "entry_missing"
+        }
+      ],
+      "unmapped_reason_codes": []
+    },
+    {
+      "agreement": [
+        {
+          "agree": true,
+          "deciders": {
+            "constructor": "admitted",
+            "enumeration": "admitted"
+          },
+          "probe_id": "mini-ok"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "constructor": "entry_missing",
+            "enumeration": "entry_missing"
+          },
+          "probe_id": "mini-entry-missing"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "constructor": "dead_end",
+            "enumeration": "dead_end"
+          },
+          "probe_id": "mini-dead-end"
+        }
+      ],
+      "boundary": [
+        {
+          "actual_differing_fields": [
+            "entry"
+          ],
+          "differing_field": "entry",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "mini-ok",
+          "probe_b": "mini-entry-missing",
+          "side_a": "admitted",
+          "side_b": "entry_missing",
+          "single_field": true
+        },
+        {
+          "actual_differing_fields": [
+            "edges"
+          ],
+          "differing_field": "edges",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "mini-ok",
+          "probe_b": "mini-dead-end",
+          "side_a": "admitted",
+          "side_b": "dead_end",
+          "single_field": true
+        }
+      ],
+      "boundary_mapped": true,
+      "coverage": {
+        "admitted": 1,
+        "boundary_pairs": 2,
+        "deciders": 2,
+        "probes": 3,
+        "reason_codes_exercised": 2,
+        "refused": 2
+      },
+      "disagreements": [],
+      "expected_mismatches": [],
+      "gate_id": "mini_levos:construction-invariant",
+      "non_constant": true,
+      "partition": {
+        "admitted": [
+          "mini-ok"
+        ],
+        "refused": {
+          "dead_end": [
+            "mini-dead-end"
+          ],
+          "entry_missing": [
+            "mini-entry-missing"
+          ]
+        }
+      },
+      "quotient": [
+        {
+          "probes": [
+            "mini-ok"
+          ],
+          "verdict": "admitted"
+        },
+        {
+          "probes": [
+            "mini-dead-end"
+          ],
+          "verdict": "dead_end"
+        },
+        {
+          "probes": [
+            "mini-entry-missing"
+          ],
+          "verdict": "entry_missing"
+        }
+      ],
+      "unmapped_reason_codes": []
+    },
+    {
+      "agreement": [
+        {
+          "agree": true,
+          "deciders": {
+            "ledger": "admitted",
+            "raw-bytes": "admitted"
+          },
+          "probe_id": "chain-ok"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "ledger": "chain_break",
+            "raw-bytes": "chain_break"
+          },
+          "probe_id": "chain-break"
+        },
+        {
+          "agree": true,
+          "deciders": {
+            "ledger": "head_missing",
+            "raw-bytes": "head_missing"
+          },
+          "probe_id": "chain-head-missing"
+        }
+      ],
+      "boundary": [
+        {
+          "actual_differing_fields": [
+            "records[0].previous"
+          ],
+          "differing_field": "records[0].previous",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "chain-ok",
+          "probe_b": "chain-break",
+          "side_a": "admitted",
+          "side_b": "chain_break",
+          "single_field": true
+        },
+        {
+          "actual_differing_fields": [
+            "head"
+          ],
+          "differing_field": "head",
+          "expected_flip": true,
+          "flipped": true,
+          "passes": true,
+          "probe_a": "chain-ok",
+          "probe_b": "chain-head-missing",
+          "side_a": "admitted",
+          "side_b": "head_missing",
+          "single_field": true
+        }
+      ],
+      "boundary_mapped": true,
+      "coverage": {
+        "admitted": 1,
+        "boundary_pairs": 2,
+        "deciders": 2,
+        "probes": 3,
+        "reason_codes_exercised": 2,
+        "refused": 2
+      },
+      "disagreements": [],
+      "expected_mismatches": [],
+      "gate_id": "claimgate:chain-gate",
+      "non_constant": true,
+      "partition": {
+        "admitted": [
+          "chain-ok"
+        ],
+        "refused": {
+          "chain_break": [
+            "chain-break"
+          ],
+          "head_missing": [
+            "chain-head-missing"
+          ]
+        }
+      },
+      "quotient": [
+        {
+          "probes": [
+            "chain-ok"
+          ],
+          "verdict": "admitted"
+        },
+        {
+          "probes": [
+            "chain-break"
+          ],
+          "verdict": "chain_break"
+        },
+        {
+          "probes": [
+            "chain-head-missing"
+          ],
+          "verdict": "head_missing"
+        }
+      ],
+      "unmapped_reason_codes": []
+    }
+  ],
+  "schema": "constraintbox.probe-family.v1",
+  "summary": {
+    "boundary_mapped": 5,
+    "gates": 5,
+    "non_constant": 5
+  }
+}

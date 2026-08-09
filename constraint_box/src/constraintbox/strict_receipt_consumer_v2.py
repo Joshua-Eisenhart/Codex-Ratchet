@@ -25,6 +25,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from .ledger import HashChainLedger
+
 
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 IGNORE_DIRS = {"__pycache__", ".git", "mplconfig", "numba_cache"}
@@ -131,6 +133,29 @@ def files_beneath(root: Path) -> tuple[set[str], list[str]]:
     return found, escaping_links
 
 
+def verify_receipt_ledger(receipt: object, root: Path) -> tuple[bool, str, set[str]]:
+    """Verify a retained receipt ledger with the canonical chain implementation."""
+    if not isinstance(receipt, dict) or not isinstance(receipt.get("ledger"), dict):
+        return True, "no ledger declaration", set()
+    ledger = receipt["ledger"]
+    path_text = ledger.get("path")
+    head_text = ledger.get("head_path")
+    if not isinstance(path_text, str) or not isinstance(head_text, str):
+        return False, "ledger binding is incomplete", set()
+    path = Path(path_text).resolve()
+    head = Path(head_text).resolve()
+    try:
+        path.relative_to(root)
+        head.relative_to(root)
+    except ValueError:
+        return False, "ledger binding escapes artifact root", set()
+    valid, reason = HashChainLedger(path, head).verify()
+    retained = ledger.get("retained_head_sha256")
+    if valid and isinstance(retained, str) and head.read_text(encoding="ascii").strip() != retained:
+        return False, "retained ledger head differs from receipt", set()
+    return valid, reason, {str(path.relative_to(root)), str(head.relative_to(root))}
+
+
 def write_output(path: Path, result: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
@@ -183,6 +208,7 @@ def main() -> int:
 
     declarations: list[dict[str, str]] = []
     collect_manifest_entries(receipt, declarations)
+    ledger_valid, ledger_reason, ledger_files = verify_receipt_ledger(receipt, root)
     producer_verdicts: list[str] = []
     collect_producer_verdicts(receipt, producer_verdicts)
 
@@ -252,7 +278,7 @@ def main() -> int:
     except ValueError:
         pass
     all_files, escaping_links = files_beneath(root)
-    undeclared = sorted(all_files - seen - control_files)
+    undeclared = sorted(all_files - seen - control_files - ledger_files)
 
     defects: list[str] = []
     if unreadable:
@@ -277,6 +303,8 @@ def main() -> int:
         defects.append(f"artifact root contains paths that escape through symlinks: {len(escaping_links)}")
     if undeclared:
         defects.append(f"present-but-undeclared: {len(undeclared)}")
+    if not ledger_valid:
+        defects.append(f"invalid-ledger-chain: {ledger_reason}")
 
     declared_artifacts_intact = not any(
         [
@@ -315,6 +343,8 @@ def main() -> int:
         "present_but_undeclared_count": len(undeclared),
         "present_but_undeclared": undeclared[:40],
         "artifact_root_escape_paths": escaping_links[:20],
+        "ledger_verified": ledger_valid,
+        "ledger_verification": ledger_reason,
         "producer_verdicts_refused_as_evidence_count": len(set(producer_verdicts)),
         "producer_verdicts_refused_as_evidence": sorted(set(producer_verdicts))[:40],
         "declared_artifacts_intact": declared_artifacts_intact,

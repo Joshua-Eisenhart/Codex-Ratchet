@@ -1,0 +1,106 @@
+{
+  "schema": "cb.decider_registry.v1",
+  "question_kinds": {
+    "graph.is_acyclic": {
+      "deciders": [
+        {"id": "rustworkx", "module": "rustworkx", "how": "PyDiGraph plus is_directed_acyclic_graph"},
+        {"id": "networkx", "module": "networkx", "how": "DiGraph plus is_directed_acyclic_graph"},
+        {"id": "igraph", "module": "igraph", "how": "Graph directed plus is_dag"},
+        {"id": "enumeration", "module": null, "how": "explicit DFS over the finite node set"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"nodes": ["a", "b", "c"], "edges": [["a", "b"], ["b", "c"]]},
+        "negative": {"nodes": ["a", "b", "c"], "edges": [["a", "b"], ["b", "c"], ["c", "a"]]}
+      }
+    },
+    "graph.reaches_all": {
+      "deciders": [
+        {"id": "rustworkx", "module": "rustworkx", "how": "has_path for every required pair"},
+        {"id": "networkx", "module": "networkx", "how": "has_path for every required pair"},
+        {"id": "igraph", "module": "igraph", "how": "get_shortest_paths for every required pair"},
+        {"id": "enumeration", "module": null, "how": "explicit DFS for every required pair"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"nodes": ["a", "b", "c"], "edges": [["a", "b"], ["b", "c"]], "required": [["a", "c"], ["a", "b"]]},
+        "negative": {"nodes": ["a", "b", "c"], "edges": [["a", "b"]], "required": [["a", "c"]]}
+      }
+    },
+    "graph.has_cycle": {
+      "deciders": [
+        {"id": "rustworkx", "module": "rustworkx", "how": "negate is_directed_acyclic_graph"},
+        {"id": "networkx", "module": "networkx", "how": "find_cycle"},
+        {"id": "igraph", "module": "igraph", "how": "negate is_dag"},
+        {"id": "enumeration", "module": null, "how": "explicit DFS cycle detection"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"nodes": ["a", "b"], "edges": [["a", "b"], ["b", "a"]]},
+        "negative": {"nodes": ["a", "b"], "edges": [["a", "b"]]}
+      }
+    },
+    "hash.content_digest": {
+      "deciders": [
+        {"id": "hashlib_sha256", "module": "hashlib", "how": "hashlib.sha256 expected_sha256"},
+        {"id": "blake3", "module": "blake3", "how": "blake3.blake3 expected_blake3"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"content": "cb-decider-v1", "expected_sha256": "f82e4adcb3868e19c6d426cbae00f9d61cd6c4bf81f4a1479a33ba3afbfb7aa2", "expected_blake3": "96f255631db2de3aad20ab2f12c5451f009860afbbca7e96d570305b4f53690a"},
+        "negative": {"content": "cb-decider-v1-tampered", "expected_sha256": "f82e4adcb3868e19c6d426cbae00f9d61cd6c4bf81f4a1479a33ba3afbfb7aa2", "expected_blake3": "96f255631db2de3aad20ab2f12c5451f009860afbbca7e96d570305b4f53690a"}
+      }
+    },
+    "chain.verify": {
+      "deciders": [
+        {"id": "hashlib_chain", "module": "hashlib", "how": "independent SHA-256 chain walk"},
+        {"id": "blake3_chain", "module": "blake3", "how": "independent BLAKE3 chain walk"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"records": [{"data": "a", "prev_sha256": "", "prev_blake3": ""}, {"data": "b", "prev_sha256": "4aeb57b7c5857fabfa619ceb3d7a06b0bdfeca8dcece0bfdae370a8f9b6479b1", "prev_blake3": "cce13bf779c4e26f5b7eb4b1c304c2a38c1876c2395d635b78084b3d9c3d6b94"}], "final_sha256": "3fb2d090d798ac205f9abf21132bedf61224c828d847dc459f881932f026cbe2", "final_blake3": "7ad76229b017e0c0e5c1ae82911388ac135de19ae131f13debe5833101d26bb6"},
+        "negative": {"records": [{"data": "a", "prev_sha256": "", "prev_blake3": ""}, {"data": "tampered", "prev_sha256": "4aeb57b7c5857fabfa619ceb3d7a06b0bdfeca8dcece0bfdae370a8f9b6479b1", "prev_blake3": "cce13bf779c4e26f5b7eb4b1c304c2a38c1876c2395d635b78084b3d9c3d6b94"}], "final_sha256": "3fb2d090d798ac205f9abf21132bedf61224c828d847dc459f881932f026cbe2", "final_blake3": "7ad76229b017e0c0e5c1ae82911388ac135de19ae131f13debe5833101d26bb6"}
+      }
+    },
+    "arith.exact_equal": {
+      "deciders": [
+        {"id": "sympy", "module": "sympy", "how": "sympy simplify equality"},
+        {"id": "fractions", "module": "fractions", "how": "Fraction expression evaluator"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {"positive": {"left": "1/3+1/6", "right": "1/2"}, "negative": {"left": "1/3", "right": "1/2"}}
+    },
+    "schema.validates": {
+      "deciders": [
+        {"id": "jsonschema", "module": "jsonschema", "how": "jsonschema.validate"},
+        {"id": "pydantic", "module": "pydantic", "how": "strict BaseModel validation"},
+        {"id": "attrs", "module": "attrs", "how": "attrs class plus explicit field checks"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"schema": {"type": "object", "required": ["name", "age"], "properties": {"name": {"type": "string"}, "age": {"type": "integer"}}, "additionalProperties": false}, "instance": {"name": "Ada", "age": 36}},
+        "negative": {"schema": {"type": "object", "required": ["name", "age"], "properties": {"name": {"type": "string"}, "age": {"type": "integer"}}, "additionalProperties": false}, "instance": {"name": "Ada", "age": "36"}}
+      }
+    },
+    "sat.decide": {
+      "deciders": [
+        {"id": "z3", "module": "z3", "how": "Z3 finite integer constraints"},
+        {"id": "cvc5", "module": "cvc5", "how": "CVC5 finite integer constraints"},
+        {"id": "enumeration", "module": null, "how": "bounded product enumeration"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {
+        "positive": {"variables": {"x": [0, 1]}, "constraints": [{"op": "eq", "left": {"var": "x"}, "right": 1}]},
+        "negative": {"variables": {"x": [0, 1]}, "constraints": [{"op": "eq", "left": {"var": "x"}, "right": 0}, {"op": "eq", "left": {"var": "x"}, "right": 1}]}
+      }
+    },
+    "order.is_sorted": {
+      "deciders": [
+        {"id": "builtin_sorted", "module": null, "how": "sorted(value) equality"},
+        {"id": "sortedcontainers", "module": "sortedcontainers", "how": "SortedList equality"}
+      ],
+      "minimum_agreeing": 2,
+      "cases": {"positive": {"value": [1, 2, 2, 3]}, "negative": {"value": [1, 3, 2]}}
+    }
+  }
+}

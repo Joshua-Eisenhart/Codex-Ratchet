@@ -36,6 +36,7 @@ from .dualsolve import dual_solve
 from .estate import CapabilityState, EstateRunner
 from .gate import run_gate
 from .intake import IntakeError, canonical_json, parse_json_object
+from .model_tier_budget import model_tier_reasons
 from .proposal_minilev_flow import (
     ClaimGateCallbackResult,
     ClaimGateSignal,
@@ -85,6 +86,8 @@ MMM_PACKS_DIR = BOX_ROOT / "mmm" / "packs"
 WORKER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "capability_worker.py"
 BLOCKER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "import_blocker.py"
 POISONER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "operation_poisoner.py"
+MODEL_TIER_POLICY_PATH = BOX_ROOT / "config" / "model_tier_policy.json"
+MODEL_TIER_POLICY = json.loads(MODEL_TIER_POLICY_PATH.read_text(encoding="utf-8"))
 
 # This first live profile is intentionally exact and local.  Drift parks the
 # run; it is never silently reinterpreted as success on a different estate.
@@ -877,6 +880,26 @@ def _model_binding_reasons(
     return []
 
 
+def _gate_reasons(
+    model_requested: Any,
+    model_resolved: Any,
+    *,
+    role: str = "build",
+    spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
+) -> list[str]:
+    """Controller-owned model price-class and cumulative-budget reasons."""
+
+    return model_tier_reasons(
+        model_requested,
+        model_resolved,
+        role,
+        MODEL_TIER_POLICY,
+        spend or {},
+        task_id=task_id,
+    )
+
+
 def _reason_codes(
     *,
     receipt: Any,
@@ -891,12 +914,29 @@ def _reason_codes(
     discharge_status: str,
     release_safety: bool,
     model_requested: str,
+    model_resolved: Any = None,
+    model_tier_role: str = "build",
+    model_tier_spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
 ) -> list[str]:
     reasons = list(extraction_errors)
     reasons.extend(
         _model_binding_reasons(
             model_requested,
-            getattr(receipt, "model_resolved", None),
+            model_resolved
+            if model_resolved is not None
+            else getattr(receipt, "model_resolved", None),
+        )
+    )
+    reasons.extend(
+        _gate_reasons(
+            model_requested,
+            model_resolved
+            if model_resolved is not None
+            else getattr(receipt, "model_resolved", None),
+            role=model_tier_role,
+            spend=model_tier_spend,
+            task_id=task_id,
         )
     )
     if getattr(receipt, "status", None) != "success":
@@ -941,6 +981,9 @@ def _release_safety(
     smt: dict[str, Any],
     model_requested: str,
     model_resolved: Any,
+    model_tier_role: str = "build",
+    model_tier_spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
 ) -> bool:
     """Independent final recomputation; no prior boolean verdict is trusted.
 
@@ -962,6 +1005,13 @@ def _release_safety(
         and decision.disposition is Disposition.ELIGIBLE
         and not tool_errors
         and not _model_binding_reasons(model_requested, model_resolved)
+        and not _gate_reasons(
+            model_requested,
+            model_resolved,
+            role=model_tier_role,
+            spend=model_tier_spend,
+            task_id=task_id,
+        )
         and candidate["requested_claim"] == ALLOWED_CLAIM
         and candidate["evidence_ref"] == evidence_ref
         and bool(proposal["falsifiers"])
@@ -1418,6 +1468,7 @@ def _run_mini_lev_proposal_loop(
             smt=smt,
             model_requested=model_requested,
             model_resolved=model_resolved,
+            task_id=task.task_id,
         )
         reasons = _reason_codes(
             receipt=latest["receipt"],
@@ -1432,6 +1483,7 @@ def _run_mini_lev_proposal_loop(
             discharge_status=settlement.status,
             release_safety=release_safety,
             model_requested=model_requested,
+            task_id=task.task_id,
         )
         eligible = settlement.status == PASS and release_safety and not reasons
         provider_or_solver_parked = (
@@ -1560,6 +1612,7 @@ def _run_mini_lev_proposal_loop(
             smt=accepted["smt"],
             model_requested=accepted["model_requested"],
             model_resolved=accepted["model_resolved"],
+            task_id=task.task_id,
         )
         if not release_safety:
             _, artifact_sha256 = write_attempt_artifact(
@@ -1858,6 +1911,16 @@ def _run_agent_for_test(
         provider_policy = selected_provider.public_binding()
     else:
         provider_policy = _injected_provider_policy(provider)
+    # The machine's unqualified local route is deliberately the cheap rung.
+    # Explicit operator routes retain their declared model; only the default
+    # local dispatch follows the machine default.
+    if (
+        provider_policy.get("route") == "local_tool"
+        and provider_policy.get("operator_selected") is False
+    ):
+        provider_policy = dict(provider_policy)
+        provider_policy["requested_model"] = "gpt-5.6-luna"
+        provider_policy["selection_basis"] = "default_machine_model_gpt-5.6-luna"
     notary = components["Notary"]()
     schema_path = run_dir / "proposal_schema.json"
     _write_json(schema_path, _proposal_schema())

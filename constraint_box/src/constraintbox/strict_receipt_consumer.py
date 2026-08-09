@@ -37,11 +37,13 @@ from __future__ import annotations
 import argparse, hashlib, json, os, re, sys
 from pathlib import Path
 
+from .ledger import HashChainLedger
+
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 IGNORE_DIRS = {"__pycache__", ".git", "mplconfig", "numba_cache"}
 # names that are self-referential digests, not artifact digests
 SELF_KEYS = {"result_sha256_self", "self_sha256", "receipt_sha256",
-             "audited_result_sha256"}
+             "audited_result_sha256", "retained_head_sha256"}
 
 def sha_file(p: Path) -> str:
     h = hashlib.sha256()
@@ -52,6 +54,29 @@ def sha_file(p: Path) -> str:
 
 BIND_CTX = ("source_bindings", "provenance", "candidate_patch",
             "inputs_sealed", "package_root", "source_files")
+
+
+def verify_receipt_ledger(receipt: object, root: Path) -> tuple[bool, str, set[str]]:
+    """Verify the controller-retained ledger using the canonical ledger primitive."""
+    if not isinstance(receipt, dict) or not isinstance(receipt.get("ledger"), dict):
+        return True, "no ledger declaration", set()
+    ledger = receipt["ledger"]
+    path_text = ledger.get("path")
+    head_text = ledger.get("head_path")
+    if not isinstance(path_text, str) or not isinstance(head_text, str):
+        return False, "ledger binding is incomplete", set()
+    path = Path(path_text).resolve()
+    head = Path(head_text).resolve()
+    try:
+        path.relative_to(root)
+        head.relative_to(root)
+    except ValueError:
+        return False, "ledger binding escapes run root", set()
+    valid, reason = HashChainLedger(path, head).verify()
+    retained = ledger.get("retained_head_sha256")
+    if valid and isinstance(retained, str) and head.read_text(encoding="ascii").strip() != retained:
+        return False, "retained ledger head differs from receipt", set()
+    return valid, reason, {str(path.relative_to(root)), str(head.relative_to(root))}
 
 
 def harvest(node, out, keyhint=None, ctx=""):
@@ -101,7 +126,7 @@ def main() -> int:
     ap.add_argument("--strict-cleanliness", action="store_true",
                     help="treat present-but-undeclared files as defects")
     a = ap.parse_args()
-    root: Path = a.run_root
+    root: Path = a.run_root.resolve()
     receipts = ([a.receipt] if a.receipt else
                 sorted(p for p in root.glob("*.json")
                        if "RECEIPT" in p.name.upper()))
@@ -114,6 +139,15 @@ def main() -> int:
         except Exception as e:
             declared.append((f"<unreadable:{r.name}>", "0" * 64, ""))
     idx = index_files(root)
+    ledger_valid, ledger_reason, ledger_files = (True, "no ledger declaration", set())
+    for r in receipts:
+        try:
+            ledger_valid, ledger_reason, declared_ledger_files = verify_receipt_ledger(
+                json.loads(r.read_text()), root
+            )
+        except Exception as exc:
+            ledger_valid, ledger_reason, declared_ledger_files = False, f"ledger unreadable: {exc}", set()
+        ledger_files.update(declared_ledger_files)
     seen_rel = set()
     match, mismatch, absent, nonartifact = [], [], [], []
     STREAM = ("stdout", "stderr", "argv", "command", "source", "input",
@@ -162,7 +196,12 @@ def main() -> int:
         dirnames[:] = [d for d in dirnames if d not in IGNORE_DIRS]
         for fn in filenames:
             all_rel.add(str((Path(dirpath) / fn).relative_to(root)))
-    undeclared = sorted(all_rel - seen_rel)
+    receipt_files = {
+        str(r.resolve().relative_to(root))
+        for r in receipts
+        if r.resolve().is_relative_to(root)
+    }
+    undeclared = sorted(all_rel - seen_rel - ledger_files - receipt_files)
     # recomputable aggregates + refused stored verdicts
     refused, recomputed = [], []
     for r in receipts:
@@ -206,6 +245,8 @@ def main() -> int:
     if bad_agg:
         defects.append(f"CBIMP-3 stored aggregate disagrees with "
                        f"recomputation: {len(bad_agg)}")
+    if not ledger_valid:
+        defects.append(f"invalid-ledger-chain: {ledger_reason}")
     out = {"schema": "cb.strict-recomputing-consumer.v1",
            "run_root": str(root),
            "receipts_read": [r.name for r in receipts],
@@ -222,6 +263,8 @@ def main() -> int:
            "aggregates_recomputed": recomputed[:20],
            "stored_verdicts_refused_as_evidence": sorted(set(refused))[:20],
            "stored_verdicts_refused_count": len(set(refused)),
+           "ledger_verified": ledger_valid,
+           "ledger_verification": ledger_reason,
            "defects": defects,
            "passed": not defects,
            "promotion_allowed": False,

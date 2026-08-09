@@ -14,6 +14,15 @@ Codex-Ratchet (CR). The sim engines and CR supply difficult external workloads
 that ConstraintBox can run and constrain. They are not the ConstraintBox
 kernel.
 
+## v9 default CLI
+
+The v9 default entrypoint is intentionally small. Its supported core commands
+are `python -m constraintbox doctor --json` and `python -m constraintbox
+exercise --json`; these are the independent acceptance routes declared by
+`PRODUCT_BOUNDARY.v9.json`. Historical wide-CLI commands are retained behind
+the named `constraintbox-legacy` entrypoint. `python -m constraintbox gate
+<receipt>` remains the ClaimGate receipt entrypoint.
+
 The boundary is enforced by role-bearing identifiers, not a flat library list:
 `cb:*` is contained controller/gate/mini-Lev/adapter code; `sim:*` is one
 external operation profile used as a test subject; `formal-runtime:*` is an

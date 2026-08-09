@@ -52,7 +52,6 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -62,6 +61,13 @@ from .ledger import HashChainLedger
 from .ratchet import _is_prefix
 
 RUNG_RECEIPT_SCHEMA = "constraintbox.process-rung-receipt.v1"
+RATCHET_EVENT_SCHEMA = "constraintbox.process-ratchet-event.v1"
+
+RATCHET_BACKWARD_STEP = "RATCHET_BACKWARD_STEP"
+RATCHET_RUNG_SKIPPED = "RATCHET_RUNG_SKIPPED"
+RATCHET_RUNG_UNEARNED = "RATCHET_RUNG_UNEARNED"
+RATCHET_SELF_VALIDATION_FAILED = "RATCHET_SELF_VALIDATION_FAILED"
+RATCHET_STALLED = "RATCHET_STALLED"
 
 ADVANCED = "ADVANCED"
 PARKED = "PARKED"
@@ -78,6 +84,7 @@ GATE_VERDICTS = ("PASS", "FAIL")
 _LEDGER_DOMAIN = ("intact", "broken")
 _CHAIN_DOMAIN = ("prefix_of_ladder", "diverged")
 _EXTENSION_DOMAIN = ("next", "already_recorded", "out_of_order")
+_RATCHET_DOMAIN = ("next", "backward", "skipped", "uneearned")
 _RUNG_DOMAIN = ("validated", "missing", "drifted")
 _GATE_DOMAIN = ("executed_pass", "executed_fail", "declared_only")
 _EVIDENCE_DOMAIN = ("present", "absent")
@@ -198,6 +205,7 @@ class ProcessRatchet:
         ladder: tuple[RungSpec, ...],
         ledger: HashChainLedger,
         evidence_root: Path,
+        stall_limit: int = 3,
     ):
         if not ladder:
             raise ValueError("ladder must be nonempty")
@@ -217,6 +225,10 @@ class ProcessRatchet:
         self.evidence_root = Path(evidence_root)
         self._by_id = {rung.rung_id: rung for rung in self.ladder}
         self._declared_ids = tuple(identifiers)
+        if not isinstance(stall_limit, int) or stall_limit < 1:
+            raise ValueError("stall_limit must be a positive integer")
+        self.stall_limit = stall_limit
+        self._consecutive_refusals = 0
 
     # -- recorded state -----------------------------------------------------
 
@@ -251,6 +263,44 @@ class ProcessRatchet:
         if len(recorded_ids) == len(self._declared_ids):
             return None
         return self._declared_ids[len(recorded_ids)]
+
+    def _next_sequence(self) -> int:
+        if not self.ledger.path.exists():
+            return 0
+        count = len(self.ledger.path.read_text(encoding="utf-8").splitlines())
+        return count
+
+    def _append_event(self, event: dict[str, Any]) -> str:
+        """Append a deterministic event to the existing chain."""
+        record = {"schema": RATCHET_EVENT_SCHEMA, "sequence": self._next_sequence(), **event}
+        return self.ledger.append(record)
+
+    def _self_validation_spec(
+        self,
+        measured: dict[str, tuple[tuple[str, ...], str]],
+        required: dict[str, str],
+    ) -> dict[str, Any]:
+        return {
+            "variables": {
+                name: list(domain) for name, (domain, _value) in measured.items()
+            },
+            "constraints": [
+                {
+                    "op": "eq",
+                    "left": {"var": name},
+                    "right": {"const": value},
+                }
+                for name, (_domain, value) in measured.items()
+            ]
+            + [
+                {
+                    "op": "eq",
+                    "left": {"var": name},
+                    "right": {"const": value},
+                }
+                for name, value in required.items()
+            ],
+        }
 
     # -- measurement (operations in Python, outcomes enumerated) ------------
 
@@ -383,6 +433,13 @@ class ProcessRatchet:
         else:
             extension_state = "out_of_order"
 
+        if target.ordinal < len(recorded_ids):
+            ratchet_state = "backward"
+        elif target.ordinal > len(recorded_ids) + 1:
+            ratchet_state = "skipped"
+        else:
+            ratchet_state = "next"
+
         rung_states: dict[str, str] = {}
         missing_rungs: list[str] = []
         drifted: list[tuple[str, str, str, str]] = []
@@ -426,6 +483,7 @@ class ProcessRatchet:
             "ledger": (_LEDGER_DOMAIN, ledger_state),
             "chain": (_CHAIN_DOMAIN, chain_state),
             "extension": (_EXTENSION_DOMAIN, extension_state),
+            "ratchet": (_RATCHET_DOMAIN, ratchet_state),
             "evidence": (_EVIDENCE_DOMAIN, evidence_state),
         }
         for rung_id, state in rung_states.items():
@@ -436,6 +494,7 @@ class ProcessRatchet:
             "ledger": "intact",
             "chain": "prefix_of_ladder",
             "extension": "next",
+            "ratchet": "next",
             "evidence": "present",
         }
         for rung_id in rung_states:
@@ -443,30 +502,43 @@ class ProcessRatchet:
         for gate_id in gate_states:
             required[f"gate::{gate_id}"] = "executed_pass"
 
-        spec: dict[str, Any] = {
-            "variables": {
-                name: list(domain) for name, (domain, _value) in measured.items()
-            },
-            "constraints": [
-                {
-                    "op": "eq",
-                    "left": {"var": name},
-                    "right": {"const": value},
-                }
-                for name, (_domain, value) in measured.items()
-            ]
-            + [
-                {
-                    "op": "eq",
-                    "left": {"var": name},
-                    "right": {"const": value},
-                }
-                for name, value in required.items()
-            ],
-        }
+        spec: dict[str, Any] = self._self_validation_spec(measured, required)
         decision = dual_solve(spec)
+        self_validation_passed = bool(
+            decision.get("agree", False) and decision.get("z3") == "BOUNDED_SAT"
+        )
+        self_validation_sha256: str | None = None
+        if ledger_ok:
+            self_validation_sha256 = self._append_event(
+                {
+                    "event": "self_validation",
+                    "rung_id": to_rung_id,
+                    "ratchet_state": ratchet_state,
+                    "passed": self_validation_passed,
+                    "failed_gates": list(failed_gates),
+                    "decision": decision,
+                    "decision_spec_sha256": _sha256_bytes(canonical_json(spec)),
+                }
+            )
 
         def refusal(state: str, reason: str) -> AdvanceResult:
+            nonlocal self_validation_sha256
+            self._consecutive_refusals += 1
+            if self._consecutive_refusals >= self.stall_limit:
+                state = HOLD
+                reason = RATCHET_STALLED
+            refusal_sha256: str | None = None
+            if ledger_ok:
+                refusal_sha256 = self._append_event(
+                    {
+                        "event": "refusal",
+                        "rung_id": to_rung_id,
+                        "state": state,
+                        "reason": reason,
+                        "self_validation_line_sha256": self_validation_sha256,
+                        "decision": decision,
+                    }
+                )
             return AdvanceResult(
                 state=state,
                 rung_id=to_rung_id,
@@ -478,7 +550,7 @@ class ProcessRatchet:
                 drifted=tuple(drifted),
                 decision=decision,
                 spec=spec,
-                receipt_line_sha256=None,
+                receipt_line_sha256=refusal_sha256,
             )
 
         if not decision.get("agree", False):
@@ -508,21 +580,26 @@ class ProcessRatchet:
                 return refusal(
                     INVARIANT_VIOLATION, f"RUNG_EVIDENCE_DRIFT:{names}"
                 )
+            if ratchet_state == "backward":
+                return refusal(BLOCKED, RATCHET_BACKWARD_STEP)
+            if ratchet_state == "skipped":
+                return refusal(PARKED, RATCHET_RUNG_SKIPPED)
             if missing_rungs:
                 return refusal(
-                    PARKED, "MISSING_RUNG_RECEIPT:" + ",".join(missing_rungs)
+                    PARKED, RATCHET_RUNG_UNEARNED + ":" + ",".join(missing_rungs)
                 )
             if missing_evidence:
                 return refusal(
-                    PARKED, "MISSING_EVIDENCE:" + ",".join(missing_evidence)
+                    PARKED, RATCHET_RUNG_UNEARNED + ":" + ",".join(missing_evidence)
+                )
+            if failed_gates:
+                return refusal(
+                    BLOCKED,
+                    RATCHET_SELF_VALIDATION_FAILED + ":" + ",".join(failed_gates),
                 )
             if missing_gates:
                 return refusal(
                     PARKED, "GATE_NOT_EXECUTED:" + ",".join(missing_gates)
-                )
-            if failed_gates:
-                return refusal(
-                    BLOCKED, "GATE_EXECUTED_FAIL:" + ",".join(failed_gates)
                 )
             if extension_state == "already_recorded":
                 return refusal(BLOCKED, "RUNG_ALREADY_RECORDED")
@@ -539,6 +616,7 @@ class ProcessRatchet:
             or ledger_state != "intact"
             or chain_state != "prefix_of_ladder"
             or extension_state != "next"
+            or ratchet_state != "next"
         ):
             return refusal(HOLD, "DECISION_MEASUREMENT_MISMATCH")
 
@@ -556,10 +634,15 @@ class ProcessRatchet:
             "decision": decision,
             "decision_spec": spec,
             "decision_spec_sha256": _sha256_bytes(canonical_json(spec)),
-            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+            "sequence": self._next_sequence(),
+            "self_validation": {
+                "passed": True,
+                "line_sha256": self_validation_sha256,
+            },
             "promotion_allowed": False,
         }
         line_sha256 = self.ledger.append(record)
+        self._consecutive_refusals = 0
         return AdvanceResult(
             state=ADVANCED,
             rung_id=to_rung_id,

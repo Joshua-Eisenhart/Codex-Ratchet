@@ -31,7 +31,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -65,16 +67,21 @@ def gate_z3_request(spec: dict[str, Any]) -> GateExecution:
 
     try:
         result = dual_solve(spec, max_states=100_000)
-        # Extract z3 result only
-        z3_backend = result.get("z3")
-        if z3_backend is None:
-            output = {"error": "no z3 result in dual_solve output"}
-            verdict = "UNKNOWN"
-            reason = "z3_unavailable_or_error"
+        disagreement = result.get("disagreement", {})
+        if disagreement.get("reason") == "definite_status_disagreement":
+            output = disagreement
+            verdict = "DISAGREEMENT"
+            reason = "definite_status_disagreement"
         else:
-            output = z3_backend
-            verdict = z3_backend.get("status", "UNKNOWN")
-            reason = z3_backend.get("reason", "z3_executed")
+            z3_backend = result.get("backend_results", {}).get("z3")
+            if z3_backend is None:
+                output = {"error": "no z3 result in dual_solve output"}
+                verdict = "UNKNOWN"
+                reason = "z3_unavailable_or_error"
+            else:
+                output = z3_backend
+                verdict = z3_backend.get("status", "UNKNOWN")
+                reason = z3_backend.get("reason", "z3_executed")
     except Exception as exc:
         output = {"error": str(exc), "type": type(exc).__name__}
         verdict = "UNKNOWN"
@@ -104,16 +111,21 @@ def gate_cvc5_request(spec: dict[str, Any]) -> GateExecution:
 
     try:
         result = dual_solve(spec, max_states=100_000)
-        # Extract cvc5 result only
-        cvc5_backend = result.get("cvc5")
-        if cvc5_backend is None:
-            output = {"error": "no cvc5 result in dual_solve output"}
-            verdict = "UNKNOWN"
-            reason = "cvc5_unavailable_or_error"
+        disagreement = result.get("disagreement", {})
+        if disagreement.get("reason") == "definite_status_disagreement":
+            output = disagreement
+            verdict = "DISAGREEMENT"
+            reason = "definite_status_disagreement"
         else:
-            output = cvc5_backend
-            verdict = cvc5_backend.get("status", "UNKNOWN")
-            reason = cvc5_backend.get("reason", "cvc5_executed")
+            cvc5_backend = result.get("backend_results", {}).get("cvc5")
+            if cvc5_backend is None:
+                output = {"error": "no cvc5 result in dual_solve output"}
+                verdict = "UNKNOWN"
+                reason = "cvc5_unavailable_or_error"
+            else:
+                output = cvc5_backend
+                verdict = cvc5_backend.get("status", "UNKNOWN")
+                reason = cvc5_backend.get("reason", "cvc5_executed")
     except Exception as exc:
         output = {"error": str(exc), "type": type(exc).__name__}
         verdict = "UNKNOWN"
@@ -141,6 +153,8 @@ def gate_rustworkx_workflow(policy: Any) -> GateExecution:
     The rustworkx library (via mini_lev_topology and workflow_graph) proves
     graph acyclicity and reachability properties on the real FlowPolicy object.
     """
+    import rustworkx
+
     from .mini_levos import FlowPolicy
 
     if not isinstance(policy, FlowPolicy):
@@ -168,10 +182,8 @@ def gate_rustworkx_workflow(policy: Any) -> GateExecution:
     input_sha = hashlib.sha256(input_bytes).hexdigest()
 
     try:
-        # Perform basic topology checks using the flow's structure
-        # A full check would delegate to mini_lev_topology.FixedMiniLevTopology.evaluate()
-        # For now, verify the policy is structurally sound
-        entry_nodes = {node.node_id for node in policy.nodes}
+        node_ids = [node.node_id for node in policy.nodes]
+        entry_nodes = set(node_ids)
         terminals = set(policy.terminal_nodes)
 
         if policy.entry_node not in entry_nodes:
@@ -183,16 +195,70 @@ def gate_rustworkx_workflow(policy: Any) -> GateExecution:
             verdict = "FAILED"
             reason = "invalid_terminals"
         else:
-            # Minimal structural validation passed
-            # Full rustworkx cycle/reachability check would go here
-            output = {
-                "policy_id": policy.flow_id,
-                "nodes": len(policy.nodes),
-                "terminals": len(policy.terminal_nodes),
-                "note": "full topology check requires FixedMiniLevTopology integration",
+            graph = rustworkx.PyDiGraph()
+            graph_nodes = [*node_ids, *sorted(terminals)]
+            graph_indices = {
+                node_id: graph.add_node(node_id) for node_id in graph_nodes
             }
-            verdict = "ACYCLIC_REACHABLE"  # Provisional; full check pending
-            reason = "structural_validation_passed"
+            for transition in policy.transitions:
+                graph.add_edge(
+                    graph_indices[transition.from_node],
+                    graph_indices[transition.to_node],
+                    transition.signal.value,
+                )
+
+            if not rustworkx.is_directed_acyclic_graph(graph):
+                output = {"policy_id": policy.flow_id, "nodes": len(node_ids)}
+                verdict = "CYCLIC"
+                reason = "cycle_detected"
+            else:
+                entry_index = graph_indices[policy.entry_node]
+                unreachable = sorted(
+                    node_id
+                    for node_id in node_ids
+                    if node_id != policy.entry_node
+                    and not rustworkx.has_path(
+                        graph, entry_index, graph_indices[node_id]
+                    )
+                )
+                terminal_unreachable = sorted(
+                    node_id
+                    for node_id in node_ids
+                    if not any(
+                        node_id == terminal
+                        or rustworkx.has_path(
+                            graph,
+                            graph_indices[node_id],
+                            graph_indices[terminal],
+                        )
+                        for terminal in terminals
+                    )
+                )
+                if unreachable:
+                    output = {
+                        "policy_id": policy.flow_id,
+                        "unreachable_nodes": unreachable,
+                    }
+                    verdict = "UNREACHABLE"
+                    reason = "unreachable_node"
+                elif terminal_unreachable:
+                    output = {
+                        "policy_id": policy.flow_id,
+                        "terminal_unreachable_nodes": terminal_unreachable,
+                    }
+                    verdict = "UNREACHABLE"
+                    reason = "unreachable_terminal"
+                else:
+                    output = {
+                        "policy_id": policy.flow_id,
+                        "nodes": len(policy.nodes),
+                        "terminals": len(policy.terminal_nodes),
+                        "acyclic": True,
+                        "entry_reaches_all_nodes": True,
+                        "all_nodes_reach_terminal": True,
+                    }
+                    verdict = "ACYCLIC_REACHABLE"
+                    reason = "rustworkx_acyclic_and_reachable"
     except Exception as exc:
         output = {"error": str(exc), "type": type(exc).__name__}
         verdict = "FAILED"
@@ -302,8 +368,8 @@ def gate_boundary_contract(payload: bytes) -> GateExecution:
         outcome = profile.evaluate(payload, Path("/tmp"))
         output = {
             "disposition": outcome.disposition.value,
-            "classification": outcome.classification,
-            "detail": outcome.detail,
+            "reason": outcome.reason,
+            "evidence": outcome.evidence,
         }
         # Map ProfileOutcome disposition to gate verdict
         verdict_map = {
@@ -313,7 +379,7 @@ def gate_boundary_contract(payload: bytes) -> GateExecution:
             "RELEASED": "PASS",
         }
         verdict = verdict_map.get(outcome.disposition.value, "UNKNOWN")
-        reason = outcome.classification
+        reason = outcome.reason
     except Exception as exc:
         output = {"error": str(exc), "type": type(exc).__name__}
         verdict = "FAIL"
@@ -527,11 +593,14 @@ def gate_strict_receipt_consumer(receipt_path: str, artifact_root: str) -> GateE
     try:
         from .strict_receipt_consumer_v2 import main as consumer_main
         # The v2 consumer runs via command line; capture output
+        receipt_digest = hashlib.sha256(Path(receipt_path).read_bytes()).hexdigest()
         result = subprocess.run(
             [
-                "python", "-m", "constraintbox.strict_receipt_consumer_v2",
+                sys.executable, "-m", "constraintbox.strict_receipt_consumer_v2",
                 "--receipt", str(receipt_path),
                 "--artifact-root", str(artifact_root),
+                "--expected-receipt-sha256", receipt_digest,
+                "--output", os.devnull,
             ],
             capture_output=True,
             text=True,
@@ -588,9 +657,12 @@ def gate_release(run_root: str, package_root: str, output_path: str) -> GateExec
         # The release gate runs via command line
         result = subprocess.run(
             [
-                "python", "-m", "constraintbox.cb_release_gate",
+                sys.executable, "-m", "constraintbox.cb_release_gate",
                 "--run-root", str(run_root),
                 "--package-root", str(package_root),
+                "--consumer", str(
+                    Path(__file__).with_name("strict_receipt_consumer.py")
+                ),
                 "--output", str(output_path),
             ],
             capture_output=True,

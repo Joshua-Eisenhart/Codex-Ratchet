@@ -12,6 +12,12 @@ from constraintbox.process_ratchet import (
     HOLD,
     INVARIANT_VIOLATION,
     PARKED,
+    RATCHET_BACKWARD_STEP,
+    RATCHET_EVENT_SCHEMA,
+    RATCHET_RUNG_SKIPPED,
+    RATCHET_RUNG_UNEARNED,
+    RATCHET_SELF_VALIDATION_FAILED,
+    RATCHET_STALLED,
     RUNG_RECEIPT_SCHEMA,
     GateExecution,
     ProcessRatchet,
@@ -48,6 +54,14 @@ class ProcessRatchetTests(unittest.TestCase):
             for line in path.read_text(encoding="utf-8").splitlines()
         ]
 
+    def _rung_records(self) -> list[dict]:
+        return [row["record"] for row in self._ledger_lines()
+                if row["record"].get("schema") == RUNG_RECEIPT_SCHEMA]
+
+    def _events(self) -> list[dict]:
+        return [row["record"] for row in self._ledger_lines()
+                if row["record"].get("schema") == RATCHET_EVENT_SCHEMA]
+
     def test_chain_extends_in_declared_order(self) -> None:
         first = self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
         self.assertEqual(first.state, ADVANCED)
@@ -65,23 +79,24 @@ class ProcessRatchetTests(unittest.TestCase):
 
         valid, reason = self.ledger.verify()
         self.assertTrue(valid, reason)
-        self.assertEqual(len(self._ledger_lines()), 3)
+        self.assertEqual(len(self._rung_records()), 3)
+        self.assertEqual(len(self._events()), 3)
 
     def test_skip_ahead_is_parked_naming_the_missing_rung(self) -> None:
         result = self.ratchet.advance("r1")
         self.assertEqual(result.state, PARKED)
         self.assertIn("r0", result.missing_rungs)
-        self.assertTrue(result.reason.startswith("MISSING_RUNG_RECEIPT:"))
+        self.assertTrue(result.reason.startswith(RATCHET_RUNG_UNEARNED + ":"))
         self.assertIn("r0", result.reason)
         self.assertTrue(result.decision["agree"])
         self.assertEqual(result.decision["z3"], "BOUNDED_UNSAT")
-        self.assertEqual(self._ledger_lines(), [])
+        self.assertEqual(len(self._events()), 2)
 
     def test_deep_skip_names_every_missing_rung(self) -> None:
         result = self.ratchet.advance("r2")
         self.assertEqual(result.state, PARKED)
         self.assertEqual(set(result.missing_rungs), {"r0", "r1"})
-        self.assertEqual(self._ledger_lines(), [])
+        self.assertEqual(len(self._events()), 2)
 
     def test_lower_rung_byte_drift_is_invariant_violation(self) -> None:
         self.assertEqual(
@@ -99,7 +114,7 @@ class ProcessRatchetTests(unittest.TestCase):
         self.assertIn("e0.json", drifted_paths)
         self.assertEqual(result.decision["z3"], "BOUNDED_UNSAT")
         # No repair, no append: the chain still holds exactly one receipt.
-        self.assertEqual(len(self._ledger_lines()), 1)
+        self.assertEqual(len(self._rung_records()), 1)
 
     def test_deleted_lower_evidence_is_invariant_violation(self) -> None:
         self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
@@ -114,7 +129,7 @@ class ProcessRatchetTests(unittest.TestCase):
         self.assertEqual(result.state, PARKED)
         self.assertIn("cb:z3-request-gate", result.missing_gates)
         self.assertTrue(result.reason.startswith("GATE_NOT_EXECUTED:"))
-        self.assertEqual(self._ledger_lines(), [])
+        self.assertEqual(len(self._events()), 2)
 
     def test_failed_gate_is_blocked(self) -> None:
         result = self.ratchet.advance(
@@ -122,15 +137,15 @@ class ProcessRatchetTests(unittest.TestCase):
         )
         self.assertEqual(result.state, BLOCKED)
         self.assertIn("cb:z3-request-gate", result.failed_gates)
-        self.assertTrue(result.reason.startswith("GATE_EXECUTED_FAIL:"))
-        self.assertEqual(self._ledger_lines(), [])
+        self.assertTrue(result.reason.startswith(RATCHET_SELF_VALIDATION_FAILED + ":"))
+        self.assertEqual(len(self._events()), 2)
 
     def test_readvance_of_recorded_rung_is_blocked(self) -> None:
         self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
         result = self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
         self.assertEqual(result.state, BLOCKED)
-        self.assertEqual(result.reason, "RUNG_ALREADY_RECORDED")
-        self.assertEqual(len(self._ledger_lines()), 1)
+        self.assertEqual(result.reason, RATCHET_BACKWARD_STEP)
+        self.assertEqual(len(self._rung_records()), 1)
 
     def test_missing_own_evidence_is_parked(self) -> None:
         self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
@@ -138,7 +153,7 @@ class ProcessRatchetTests(unittest.TestCase):
         result = self.ratchet.advance("r1")
         self.assertEqual(result.state, PARKED)
         self.assertIn("e1.json", result.missing_evidence)
-        self.assertTrue(result.reason.startswith("MISSING_EVIDENCE:"))
+        self.assertTrue(result.reason.startswith(RATCHET_RUNG_UNEARNED + ":"))
 
     def test_tampered_ledger_is_invariant_violation(self) -> None:
         self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
@@ -154,7 +169,7 @@ class ProcessRatchetTests(unittest.TestCase):
         self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
         self.ratchet.advance("r1")
         rows = self._ledger_lines()
-        record = rows[1]["record"]
+        record = self._rung_records()[1]
         self.assertEqual(record["schema"], RUNG_RECEIPT_SCHEMA)
         self.assertEqual(record["rung_id"], "r1")
         self.assertEqual(record["ordinal"], 1)
@@ -168,7 +183,7 @@ class ProcessRatchetTests(unittest.TestCase):
         self.assertFalse(record["promotion_allowed"])
         first_gate = record["gate_executions"]
         self.assertEqual(first_gate, [])
-        r0_gates = rows[0]["record"]["gate_executions"]
+        r0_gates = self._rung_records()[0]["gate_executions"]
         self.assertEqual(r0_gates[0]["gate_id"], "cb:z3-request-gate")
         self.assertEqual(r0_gates[0]["verdict"], "PASS")
         self.assertEqual(len(r0_gates[0]["input_sha256"]), 64)
@@ -184,6 +199,55 @@ class ProcessRatchetTests(unittest.TestCase):
         self.assertIn("rung::r0", variables)
         for domain in variables.values():
             self.assertTrue(all(isinstance(value, str) for value in domain))
+
+    def test_reason_controls_are_specific_and_refusals_are_chained(self) -> None:
+        backward = self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
+        self.assertEqual(backward.state, ADVANCED)
+        backward = self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
+        self.assertEqual(backward.reason, RATCHET_BACKWARD_STEP)
+        forward = self.ratchet.advance("r1")
+        self.assertEqual(forward.state, ADVANCED)
+        self.assertNotIn(forward.reason, {RATCHET_BACKWARD_STEP, RATCHET_RUNG_SKIPPED, RATCHET_RUNG_UNEARNED})
+
+        skipped = ProcessRatchet(self.ladder, HashChainLedger(self.root / "skip.jsonl"), self.root)
+        self.assertEqual(skipped.advance("r2").reason, RATCHET_RUNG_SKIPPED)
+
+        unearned = ProcessRatchet(self.ladder, HashChainLedger(self.root / "unearned.jsonl"), self.root)
+        self.assertTrue(unearned.advance("r1").reason.startswith(RATCHET_RUNG_UNEARNED + ":"))
+        earned = ProcessRatchet(self.ladder, HashChainLedger(self.root / "earned.jsonl"), self.root)
+        self.assertEqual(earned.advance("r0", (_gate("cb:z3-request-gate"),)).state, ADVANCED)
+
+        self.assertTrue(any(event["event"] == "refusal" for event in self._events()))
+        self.assertTrue(all("reason" in event for event in self._events() if event["event"] == "refusal"))
+
+    def test_self_validation_controls_name_failed_gate(self) -> None:
+        failed = self.ratchet.advance("r0", (_gate("cb:z3-request-gate", "FAIL"),))
+        self.assertEqual(failed.reason, RATCHET_SELF_VALIDATION_FAILED + ":cb:z3-request-gate")
+        passed = ProcessRatchet(self.ladder, HashChainLedger(self.root / "pass.jsonl"), self.root)
+        result = passed.advance("r0", (_gate("cb:z3-request-gate"),))
+        self.assertEqual(result.state, ADVANCED)
+        pass_events = [json.loads(line)["record"] for line in (self.root / "pass.jsonl").read_text().splitlines()]
+        self.assertTrue(pass_events[0]["passed"])
+
+    def test_stall_control_ends_at_hold_with_specific_reason(self) -> None:
+        ratchet = ProcessRatchet(
+            self.ladder, HashChainLedger(self.root / "stall.jsonl"), self.root, stall_limit=2
+        )
+        self.assertNotEqual(ratchet.advance("r0").reason, RATCHET_STALLED)
+        stalled = ratchet.advance("r0")
+        self.assertEqual(stalled.state, HOLD)
+        self.assertEqual(stalled.reason, RATCHET_STALLED)
+        stall_events = [json.loads(line)["record"] for line in (self.root / "stall.jsonl").read_text().splitlines()]
+        self.assertEqual(stall_events[-1]["reason"], RATCHET_STALLED)
+        control = ProcessRatchet(self.ladder, HashChainLedger(self.root / "control.jsonl"), self.root, stall_limit=2)
+        self.assertNotEqual(control.advance("r0").reason, RATCHET_STALLED)
+
+    def test_chained_content_is_deterministic_without_wall_clock(self) -> None:
+        first = self.ratchet.advance("r0", (_gate("cb:z3-request-gate"),))
+        self.assertEqual(first.state, ADVANCED)
+        records = self._rung_records()
+        self.assertNotIn("generated_at_utc", records[0])
+        self.assertIn("sequence", records[0])
 
     def test_malformed_gate_execution_is_rejected(self) -> None:
         with self.assertRaises(ValueError):

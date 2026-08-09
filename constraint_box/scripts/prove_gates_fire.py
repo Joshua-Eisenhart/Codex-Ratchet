@@ -48,6 +48,10 @@ from constraintbox.discharge import Observation, PASS, discharge  # noqa: E402
 from constraintbox.flow_termination import spinning_control_policy  # noqa: E402
 from constraintbox.gate import run_gate  # noqa: E402
 from constraintbox.intake import IntakeError, parse_json_object  # noqa: E402
+from constraintbox.model_tier_budget import (  # noqa: E402
+    model_tier_reasons,
+    tier_for_slug,
+)
 from constraintbox.mini_levos import (  # noqa: E402
     FlowNode,
     FlowPolicy,
@@ -349,6 +353,112 @@ def main() -> int:
     findings: list[str] = []
 
     # =====================================================================
+    # SECTION 0: model-tier budget gate
+    # =====================================================================
+    model_tier_policy = json.loads(
+        (BOX_ROOT / "config" / "model_tier_policy.json").read_text()
+    )
+    tier_clean = {"cheap": {"dispatches": 0, "output_tokens": 0}}
+    task_id = "prove-gates-fire-task"
+    tier_cases = (
+        (
+            "cb:model-tier-unknown",
+            "MODEL_TIER_UNKNOWN",
+            dict(
+                model_requested="gpt-5.6-luna",
+                model_resolved="model-not-listed",
+                role="swarm",
+                spend={},
+                task_id=task_id,
+            ),
+        ),
+        (
+            "cb:model-tier-role",
+            "MODEL_TIER_ROLE_FORBIDDEN",
+            dict(
+                model_requested="gpt-5.6-sol",
+                model_resolved="gpt-5.6-sol",
+                role="swarm",
+                spend={},
+                task_id=task_id,
+            ),
+        ),
+        (
+            "cb:model-tier-ceiling",
+            "MODEL_TIER_CEILING_EXHAUSTED",
+            dict(
+                model_requested="gpt-5.6-sol",
+                model_resolved="gpt-5.6-sol",
+                role="audit",
+                spend={"premium": {"dispatches": 250, "output_tokens": 0}},
+                task_id=task_id,
+            ),
+        ),
+        (
+            "cb:model-tier-unjustified",
+            "MODEL_TIER_ESCALATION_UNJUSTIFIED",
+            dict(
+                model_requested="gpt-5.6-terra",
+                model_resolved="gpt-5.6-terra",
+                role="build",
+                spend={},
+                task_id=task_id,
+            ),
+        ),
+        (
+            "cb:model-tier-skips-rung",
+            "MODEL_TIER_ESCALATION_SKIPS_RUNG",
+            dict(
+                model_requested="gpt-5.6-sol",
+                model_resolved="gpt-5.6-sol",
+                role="audit",
+                spend={"_attempts": [{"task_id": task_id, "tier": "cheap", "outcome": "failed"}]},
+                task_id=task_id,
+            ),
+        ),
+    )
+    for gate_id, expected, kwargs in tier_cases:
+        positive = model_tier_reasons(policy=model_tier_policy, **kwargs)
+        if expected == "MODEL_TIER_ESCALATION_UNJUSTIFIED":
+            negative = model_tier_reasons(
+                "gpt-5.6-terra", "gpt-5.6-terra", "build", model_tier_policy,
+                {"_attempts": [{"task_id": task_id, "tier": "cheap", "outcome": "failed"}]}, task_id=task_id,
+            )
+        elif expected == "MODEL_TIER_ESCALATION_SKIPS_RUNG":
+            negative = model_tier_reasons(
+                "gpt-5.6-sol", "gpt-5.6-sol", "audit", model_tier_policy,
+                {"_attempts": [{"task_id": task_id, "tier": "standard", "outcome": "failed"}]}, task_id=task_id,
+            )
+        elif expected == "MODEL_TIER_CEILING_EXHAUSTED":
+            negative = model_tier_reasons(
+                "gpt-5.6-sol", "gpt-5.6-sol", "audit", model_tier_policy,
+                {"premium": {"dispatches": 249, "output_tokens": 0},
+                 "_attempts": [{"task_id": task_id, "tier": "standard", "outcome": "failed"}]}, task_id=task_id,
+            )
+        elif expected == "MODEL_TIER_ROLE_FORBIDDEN":
+            negative = model_tier_reasons(
+                "gpt-5.6-luna", "gpt-5.6-luna", "swarm", model_tier_policy,
+                tier_clean, task_id=task_id,
+            )
+        else:
+            negative = model_tier_reasons(
+                "gpt-5.6-luna", "gpt-5.6-luna", "swarm", model_tier_policy,
+                tier_clean, task_id=task_id,
+            )
+        record(
+            gate_id,
+            "model_tier_budget",
+            expected,
+            positive == [expected],
+            positive,
+            negative != [],
+            negative,
+            note=(
+                f"tier_for_slug(gpt-5.6-luna)={tier_for_slug('gpt-5.6-luna', model_tier_policy)}"
+            ),
+        )
+
+    # =====================================================================
     # SECTION A: gate_operations cb:* gates
     # =====================================================================
 
@@ -375,21 +485,14 @@ def main() -> int:
     ):
         pos = fn(json.loads((FIXTURES / "smt/unsat_spec.json").read_text()))
         neg = fn(json.loads((FIXTURES / "smt/sat_spec.json").read_text()))
-        note = ""
-        if neg.verdict != "BOUNDED_SAT":
-            note = (
-                f"FINDING (measured): the gate binding at gate_operations.py:"
-                f"{lines} reads dual_solve(...)['{key}'] as a dict, but "
-                f"dual_solve returns the status STRING there (observed "
-                f"{type(schema_probe[key]).__name__} {schema_probe[key]!r}; "
-                f"the backend dicts live under 'backend_results'), so "
-                f".get('status') raises AttributeError and every input — "
-                f"clean or violating — returns UNKNOWN. The solver itself "
-                f"decides both fixtures correctly when driven with the real "
-                f"schema (backend_results.{key}.status: sat fixture "
-                f"{schema_probe['backend_results'][key]['status']!r})."
-            )
-            findings.append(f"{name}: {note}")
+        note = (
+            f"fixed binding at gate_operations.py:{lines}: before type "
+            f"dual_solve()['{key}']={type(schema_probe[key]).__name__}; "
+            f"after type backend_results['{key}']="
+            f"{type(schema_probe['backend_results'][key]).__name__}; "
+            f"controls now produce unsat={pos.verdict}/{pos.reason}, "
+            f"sat={neg.verdict}/{neg.reason}."
+        )
         record(
             name,
             "gate_operations",
@@ -402,6 +505,15 @@ def main() -> int:
         )
 
     # --- cb:rustworkx-workflow-gate ---------------------------------------
+    good_policy = _policy(
+        (FlowNode("gate", "control-pass"), FlowNode("terminal", "control-pass")),
+        (FlowTransition("gate", HookSignal.PASS, "terminal"),
+         FlowTransition("terminal", HookSignal.PASS, "HOLD")),
+        ("HOLD",),
+        entry="gate",
+        required=(),
+    )
+    valid = gops.gate_rustworkx_workflow(good_policy)
     bad_entry_policy = _policy(
         (FlowNode("gate", "control-pass"),),
         (FlowTransition("gate", HookSignal.PASS, "RELEASED"),
@@ -410,9 +522,8 @@ def main() -> int:
         entry="missing-node",
         required=(),
     )
-    pos = gops.gate_rustworkx_workflow(bad_entry_policy)
-    pos2 = gops.gate_rustworkx_workflow({"not": "a policy"})
-    neg = gops.gate_rustworkx_workflow(reference_flow_policy())
+    bad_entry = gops.gate_rustworkx_workflow(bad_entry_policy)
+    invalid = gops.gate_rustworkx_workflow({"not": "a policy"})
     cyclic_policy = _policy(
         (FlowNode("a", "control-pass"), FlowNode("b", "control-pass")),
         (FlowTransition("a", HookSignal.PASS, "b"),
@@ -422,23 +533,28 @@ def main() -> int:
         required=(),
     )
     cyc = gops.gate_rustworkx_workflow(cyclic_policy)
-    cyc_note = (
-        f"FINDING: cyclic two-node policy returns {cyc.verdict} — the gate's "
-        "cycle/reachability check is a stub (gate_operations.py:186-194 says "
-        "'full topology check requires FixedMiniLevTopology integration'); it "
-        "refuses malformed inputs but does NOT refuse a cyclic graph despite "
-        "its ACYCLIC_REACHABLE verdict string"
+    unreachable_policy = _policy(
+        (FlowNode("a", "control-pass"), FlowNode("b", "control-pass")),
+        (FlowTransition("a", HookSignal.PASS, "HOLD"),),
+        ("HOLD",),
+        entry="a",
+        required=(),
     )
-    findings.append(f"cb:rustworkx-workflow-gate: {cyc_note}")
+    unr = gops.gate_rustworkx_workflow(unreachable_policy)
+    cyc_note = (
+        f"fixed former stub: rustworkx controls valid={valid.verdict}/{valid.reason}, "
+        f"cycle={cyc.verdict}/{cyc.reason}, unreachable={unr.verdict}/{unr.reason}; "
+        f"malformed controls={bad_entry.verdict}/{bad_entry.reason} and "
+        f"{invalid.verdict}/{invalid.reason}."
+    )
     record(
         "cb:rustworkx-workflow-gate",
         "gate_operations",
-        "verdict=FAILED reason=invalid_entry_node",
-        pos.verdict == "FAILED" and pos.reason == "invalid_entry_node"
-        and pos2.verdict == "FAILED" and pos2.reason == "invalid_input_type",
-        f"{pos.verdict}/{pos.reason}; non-policy input {pos2.verdict}/{pos2.reason}",
-        neg.verdict != "ACYCLIC_REACHABLE",
-        f"{neg.verdict}/{neg.reason}",
+        "verdict=CYCLIC reason=cycle_detected",
+        cyc.verdict == "CYCLIC" and cyc.reason == "cycle_detected",
+        f"{cyc.verdict}/{cyc.reason}",
+        valid.verdict != "ACYCLIC_REACHABLE",
+        f"{valid.verdict}/{valid.reason}; unreachable {unr.verdict}/{unr.reason}",
         note=cyc_note,
     )
 
@@ -516,27 +632,11 @@ def main() -> int:
     conflated_path = _write_fixture("boundary/conflated_contract.json", conflated)
     pos = gops.gate_boundary_contract(conflated_path.read_bytes())
     neg = gops.gate_boundary_contract(clean_path.read_bytes())
-    boundary_note = ""
-    if neg.verdict != "PASS":
-        from constraintbox.boundary_contract import BoundaryContractProfile
-        direct_clean = BoundaryContractProfile().evaluate(
-            clean_path.read_bytes(), SCRATCH
-        )
-        direct_conflated = BoundaryContractProfile().evaluate(
-            conflated_path.read_bytes(), SCRATCH
-        )
-        boundary_note = (
-            "FINDING (measured): the gate binding at gate_operations.py:"
-            "303-307 reads outcome.classification and outcome.detail, but "
-            "ProfileOutcome's fields are (disposition, reason, evidence), so "
-            "every input — clean or violating — raises AttributeError and "
-            "returns FAIL. The underlying profile itself is real and "
-            f"decides both controls correctly when called directly: clean -> "
-            f"{direct_clean.disposition.value}/{direct_clean.reason}, "
-            f"conflated -> {direct_conflated.disposition.value}/"
-            f"{direct_conflated.reason}."
-        )
-        findings.append(f"cb:boundary-contract-gate: {boundary_note}")
+    boundary_note = (
+        "fixed ProfileOutcome binding: before fields were classification/detail; "
+        "after fields are reason/evidence. Controls now produce clean "
+        f"{neg.verdict}/{neg.reason}, conflated {pos.verdict}/{pos.reason}."
+    )
     record(
         "cb:boundary-contract-gate",
         "gate_operations",
@@ -674,15 +774,10 @@ def main() -> int:
         f"{neg.verdict}/{neg.reason}. Direct CLI with correct args: clean "
         f"exit={direct_clean}, tampered exit={direct_tampered}."
     )
-    if neg.verdict != "PASS":
-        binding_note += (
-            " FINDING (measured): the cb:strict-receipt-consumer-gate binding "
-            "in gate_operations.py:530-539 invokes bare 'python' (absent on "
-            "this host) and omits the CLI's required --expected-receipt-sha256 "
-            "and --output arguments, so the GATE refuses every input including "
-            "clean ones, while the underlying CLI works when driven correctly."
-        )
-        findings.append(f"cb:strict-receipt-consumer-gate: {binding_note}")
+    binding_note += (
+        " fixed: gate_operations.py now uses sys.executable, supplies the "
+        "receipt digest and output arguments, and inspects returncode."
+    )
     record(
         "cb:strict-receipt-consumer-gate",
         "gate_operations",
@@ -709,14 +804,10 @@ def main() -> int:
         f"positive {pos.verdict}/{pos.reason[:60]}; negative (live RELEASED "
         f"run) {neg.verdict}/{neg.reason[:60]}."
     )
-    if neg.verdict != "PASS":
-        release_note += (
-            " FINDING (measured): the cb:release-gate binding in "
-            "gate_operations.py:588-598 invokes bare 'python' (absent on this "
-            "host) and omits cb_release_gate's required --consumer argument, "
-            "so the GATE refuses every input including the live RELEASED run."
-        )
-        findings.append(f"cb:release-gate: {release_note}")
+    release_note += (
+        " fixed: gate_operations.py now uses sys.executable, supplies the "
+        "legacy strict consumer path, and inspects returncode."
+    )
     record(
         "cb:release-gate",
         "gate_operations",

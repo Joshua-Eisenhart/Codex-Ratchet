@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import platform
 import subprocess
 import sys
 import unittest
@@ -121,7 +120,7 @@ class PythonRuntimeTests(unittest.TestCase):
         finally:
             python_runtime.itertools.product = original
 
-    def test_cli_reports_active_runtime_without_an_interpreter_override(self) -> None:
+    def test_cli_reports_v9_core_tools_without_an_interpreter_override(self) -> None:
         root = Path(__file__).resolve().parents[1]
         environment = {
             **dict(__import__("os").environ),
@@ -129,7 +128,7 @@ class PythonRuntimeTests(unittest.TestCase):
             "PYTHONDONTWRITEBYTECODE": "1",
         }
         completed = subprocess.run(
-            [sys.executable, "-m", "constraintbox", "runtime", "verify"],
+            [sys.executable, "-m", "constraintbox", "doctor", "--json"],
             cwd=root,
             env=environment,
             capture_output=True,
@@ -139,8 +138,14 @@ class PythonRuntimeTests(unittest.TestCase):
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
         result = json.loads(completed.stdout)
-        self.assertEqual(result["state"], "ELIGIBLE")
-        self.assertEqual(result["implementation"], platform.python_implementation())
+        self.assertEqual(result["schema"], "constraintbox.core-doctor.v9")
+        self.assertEqual(result["core_tool_ids"], [
+            "python.z3",
+            "python.cvc5",
+            "python.sympy",
+            "python.rustworkx",
+            "python.maude",
+        ])
 
     def test_doctor_exposes_profile_status_but_does_not_grant_it_authority(self) -> None:
         report = build_report()

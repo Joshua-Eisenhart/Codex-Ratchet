@@ -68,3 +68,44 @@ Three habits, none specific to ConstraintBox:
 `MODEL_DOSSIER/owner_authority/` now holds `01_FABLE_THREAD_OWNER_PROMPTS_VERBATIM.md` and
 `02_OWNER_CORRECTIONS_AND_DISTINCTIONS_LEDGER.md`, previously only in `Documents/Codex`.
 23 further owner-authority files remain outside the repo.
+
+## ConstraintBox doc consolidation — 2026-08-08
+
+CLAUDE.md's binding entry point `constraint_box/CB_READ_THIS_FIRST.md` did not exist at
+session start; every session obeying the instruction hit a dead link. Three reading lanes
+read 56 CB documents across `constraint_box/` and `MODEL_DOSSIER/`; the entry point was then
+written from their verified one-liners. No file was moved, renamed or deleted.
+
+What the entry point records:
+
+- 56 documents indexed by audience (read first, owner canon, operator, builder, auditor,
+  historical), each with a one-line description from an actual read.
+- The `docs/` numbering collision resolved as two series: current 2026-08-06/08
+  (`00_READ_FIRST` + `01_THEORY`..`05_FINDING_SLOP`, continued by `07`-`10`) versus the
+  inherited 2026-07-25 handoff pack (`01_ARCHITECTURE`, `02_SIM_SETUP_TIERS`,
+  `03_CLAIMGATE_FOUNDATION_FROM_MANIFOLD`, `04_INSTALL_BOOT_MAINTENANCE`,
+  `05_CR_MANIFOLD_FIXTURES`, `06_LIMITS_AND_DEFERRED`). Current series is authority for
+  current behavior; inherited pack is design context.
+- 7 supersessions named: the five inherited 01-05 files (superseded for current behavior),
+  `WIZARD_NESTED_COUNCIL_WAVE_MODEL_20260806.md` (superseded by the owner-canon wave model),
+  and `PROJECT_STATE.md` (stale snapshot, predates commit 5ab8fd26d; regenerate first).
+- 3 owner-canon-versus-machine contradictions held open, not collapsed (wave model,
+  association-floor sweep incomplete outside CB, May/July readiness index conflict per
+  CB-CON-005).
+- Coverage limits stated: 17 `docs/` files plus most of `doctrine/`, `handoff/`,
+  `recovered_specs/` and `owner_authority/` remain unread and unverified.
+
+Moves recommended for owner approval, not performed:
+
+1. Rename or relocate the six inherited 2026-07-25 files (for example into
+   `docs/inherited_20260725/`) to end the prefix collision; update inbound references first.
+2. Name a primary copy of `CB_DEFINITION_OWNER_CANON_20260806.md` (`constraint_box/docs/`
+   versus `MODEL_DOSSIER/`) and make the other a pointer.
+3. Hash-compare `constraint_box/docs/OWNER_RULINGS_VERBATIM_20260806.md` against
+   `MODEL_DOSSIER/owner_authority/CB_OWNER_RULINGS_VERBATIM_20260806.md`; name a primary.
+4. Move `SESSION_WORK_INDEX_20260807.md` and `SESSION_SAVE_20260807.md` out of `docs/` into a
+   session-notes location so `docs/` holds product documentation only.
+5. Either create `doctrine/06_MANIFEST/` and move `ESTATE_VERIFICATION.md` into it, or fix
+   the broken path in `doctrine/00_START_HERE/README.md` line 62.
+6. Rule on which ClaimGate copy is canonical: repo-root `claimgate_plugin/` versus
+   `constraint_box/claimgate_plugin/` (8 files diverged).

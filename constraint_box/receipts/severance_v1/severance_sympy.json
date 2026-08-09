@@ -1,0 +1,106 @@
+{
+  "claim_ceiling": "severance of one import name on one real run-path operation under this interpreter and environment; LOAD_BEARING means removal changed this operation's decision here; no platform, resolver, or whole-suite claim",
+  "decision_delta": [
+    "reason",
+    "verdict"
+  ],
+  "decision_moved": true,
+  "decision_present": {
+    "reason": "exact_budget_facts_recomputed_and_consistent",
+    "verdict": "VERIFIED"
+  },
+  "decision_severed": {
+    "reason": "sympy_unavailable",
+    "verdict": "HOLD"
+  },
+  "dependency": "sympy",
+  "executions": [
+    {
+      "gate_id": "cb:severance-test:sympy:present",
+      "input_sha256": "8293192fb3483b8aa3062a480088521cfb1e0002c5c358a2ca5aaf08ac711e0d",
+      "output_sha256": "296cdf8afbacb039004d67aa0d3d4d894b7958106c42f63ee69fe5a96cbf7a93",
+      "reason": "exact_budget_facts_recomputed_and_consistent",
+      "verdict": "VERIFIED"
+    },
+    {
+      "gate_id": "cb:severance-test:sympy:severed",
+      "input_sha256": "8293192fb3483b8aa3062a480088521cfb1e0002c5c358a2ca5aaf08ac711e0d",
+      "output_sha256": "b3a7999054e6bd730f7a7d64e340e5f6e479bed0523ba5d793b487c3cf36fa29",
+      "reason": "sympy_unavailable",
+      "verdict": "HOLD"
+    },
+    {
+      "gate_id": "cb:severance-test-gate",
+      "input_sha256": "8293192fb3483b8aa3062a480088521cfb1e0002c5c358a2ca5aaf08ac711e0d",
+      "output_sha256": "15798c98f2f8c1552153d9fc96f738eeed6fdb5fffee20ad55c3af636a5933fc",
+      "reason": "decision_moved:2_fields",
+      "verdict": "LOAD_BEARING"
+    }
+  ],
+  "import_name": "sympy",
+  "operation": "constraintbox.gate_operations.gate_sympy_flow_budgets(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:sympy-exact-gate run-path wiring on the real FlowPolicy",
+  "present": {
+    "decision": {
+      "reason": "exact_budget_facts_recomputed_and_consistent",
+      "verdict": "VERIFIED"
+    },
+    "dependency": "sympy",
+    "elapsed_seconds": 0.942,
+    "import_name": "sympy",
+    "instrument_control": {
+      "control_error": null,
+      "dependency_present_confirmed": true
+    },
+    "mode": "present",
+    "operation": "constraintbox.gate_operations.gate_sympy_flow_budgets(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:sympy-exact-gate run-path wiring on the real FlowPolicy",
+    "operation_reason": "exact_budget_facts_recomputed_and_consistent",
+    "operation_verdict": "VERIFIED",
+    "probe": "sympy",
+    "probe_transport": "OK",
+    "raw": {
+      "gate_id": "cb:sympy-exact-gate",
+      "input_sha256": "7971569f56eb9c6393b23a9e05ed88fa77e8075220877cb998b4a0ee6300a6ae",
+      "output_sha256": "83198cf096f633c9f8304ee9c74d18a1dc7b1afe6eb11d6578241775f414d6b2",
+      "reason": "exact_budget_facts_recomputed_and_consistent",
+      "verdict": "VERIFIED"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "promotion_allowed": false,
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "reason": "decision_moved:2_fields",
+  "schema": "constraintbox.severance-test.v1",
+  "severance_mechanism": "meta_path_module_not_found_installed_before_constraintbox_import",
+  "severed": {
+    "decision": {
+      "reason": "sympy_unavailable",
+      "verdict": "HOLD"
+    },
+    "dependency": "sympy",
+    "elapsed_seconds": 0.381,
+    "import_name": "sympy",
+    "instrument_control": {
+      "control_error": "ModuleNotFoundError: No module named 'sympy' (severed by severance_test)",
+      "severance_confirmed": true
+    },
+    "mode": "severed",
+    "operation": "constraintbox.gate_operations.gate_sympy_flow_budgets(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:sympy-exact-gate run-path wiring on the real FlowPolicy",
+    "operation_reason": "sympy_unavailable",
+    "operation_verdict": "HOLD",
+    "probe": "sympy",
+    "probe_transport": "OK",
+    "raw": {
+      "gate_id": "cb:sympy-exact-gate",
+      "input_sha256": "7971569f56eb9c6393b23a9e05ed88fa77e8075220877cb998b4a0ee6300a6ae",
+      "output_sha256": "bce7639191a6671e48dac4b650f36ed991c76875e08f567760b8521d8048c0e0",
+      "reason": "sympy_unavailable",
+      "verdict": "HOLD"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "verdict": "LOAD_BEARING"
+}

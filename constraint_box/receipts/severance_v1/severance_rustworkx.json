@@ -1,0 +1,610 @@
+{
+  "claim_ceiling": "severance of one import name on one real run-path operation under this interpreter and environment; LOAD_BEARING means removal changed this operation's decision here; no platform, resolver, or whole-suite claim",
+  "decision_delta": [
+    "disposition",
+    "reason",
+    "signal"
+  ],
+  "decision_moved": true,
+  "decision_present": {
+    "disposition": "ELIGIBLE",
+    "evaluation_executed": true,
+    "reason": "workflow_graph_obligations_satisfied",
+    "signal": "PASS"
+  },
+  "decision_severed": {
+    "disposition": "PARKED",
+    "evaluation_executed": true,
+    "reason": "rustworkx_unavailable",
+    "signal": "PARKED"
+  },
+  "dependency": "rustworkx",
+  "executions": [
+    {
+      "gate_id": "cb:severance-test:rustworkx:present",
+      "input_sha256": "cb9af334b56339221419c29757a06d9572b277becdeff3a397fa4378202b4041",
+      "output_sha256": "d37b49eb2659dcb497f3d55e5e3214c8013fdacfbba0cad0871252d56ceebe4b",
+      "reason": "workflow_graph_obligations_satisfied",
+      "verdict": "PASS"
+    },
+    {
+      "gate_id": "cb:severance-test:rustworkx:severed",
+      "input_sha256": "cb9af334b56339221419c29757a06d9572b277becdeff3a397fa4378202b4041",
+      "output_sha256": "6199224416e04cf9f2375c1591b69cd81c9972da51204f8394244c01cd0efef0",
+      "reason": "rustworkx_unavailable",
+      "verdict": "PARKED"
+    },
+    {
+      "gate_id": "cb:severance-test-gate",
+      "input_sha256": "cb9af334b56339221419c29757a06d9572b277becdeff3a397fa4378202b4041",
+      "output_sha256": "01b36a64530594708dc58b2401d730a5108ef74064618016914331c44e8d556e",
+      "reason": "decision_moved:3_fields",
+      "verdict": "LOAD_BEARING"
+    }
+  ],
+  "import_name": "rustworkx",
+  "operation": "constraintbox.proposal_minilev_flow._TOPOLOGY.evaluate(reference_flow_policy(), run_dir) \u2014 the run path's own FixedMiniLevTopology rustworkx preflight",
+  "present": {
+    "decision": {
+      "disposition": "ELIGIBLE",
+      "evaluation_executed": true,
+      "reason": "workflow_graph_obligations_satisfied",
+      "signal": "PASS"
+    },
+    "dependency": "rustworkx",
+    "elapsed_seconds": 0.421,
+    "import_name": "rustworkx",
+    "instrument_control": {
+      "control_error": null,
+      "dependency_present_confirmed": true
+    },
+    "mode": "present",
+    "operation": "constraintbox.proposal_minilev_flow._TOPOLOGY.evaluate(reference_flow_policy(), run_dir) \u2014 the run path's own FixedMiniLevTopology rustworkx preflight",
+    "operation_reason": "workflow_graph_obligations_satisfied",
+    "operation_verdict": "PASS",
+    "probe": "topology",
+    "probe_transport": "OK",
+    "raw": {
+      "evaluation_executed": true,
+      "profile_outcome": {
+        "disposition": "ELIGIBLE",
+        "evidence": {
+          "canonical_graph": {
+            "edges": [
+              [
+                "proposal-gate",
+                "claim-gate"
+              ],
+              [
+                "proposal-observation",
+                "proposal-gate"
+              ],
+              [
+                "topology-preflight",
+                "proposal-observation"
+              ]
+            ],
+            "nodes": [
+              "claim-gate",
+              "proposal-gate",
+              "proposal-observation",
+              "topology-preflight"
+            ]
+          },
+          "canonical_graph_sha256": "0731233ce75e6b645e209dc5394923497048b55aae90748f635a567be34d82f4",
+          "canonical_result": {
+            "reference": {
+              "acyclic": true,
+              "canonical_topological_order": [
+                "topology-preflight",
+                "proposal-observation",
+                "proposal-gate",
+                "claim-gate"
+              ],
+              "required_reachability": [
+                {
+                  "reachable": true,
+                  "source": "proposal-gate",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "proposal-observation",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "proposal-observation",
+                  "target": "proposal-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "proposal-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "proposal-observation"
+                }
+              ]
+            },
+            "rustworkx": {
+              "acyclic": true,
+              "required_reachability": [
+                {
+                  "reachable": true,
+                  "source": "proposal-gate",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "proposal-observation",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "proposal-observation",
+                  "target": "proposal-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "claim-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "proposal-gate"
+                },
+                {
+                  "reachable": true,
+                  "source": "topology-preflight",
+                  "target": "proposal-observation"
+                }
+              ],
+              "topological_order_valid": true
+            }
+          },
+          "canonical_result_sha256": "57dbf269e8698211799a64f9369a4dd9ed1a22a24d61b2956921056122fce649",
+          "claim_ceiling": "one finite declared workflow dependency graph was checked for acyclicity and controller-required reachability; no semantic node or general workflow-correctness claim",
+          "limits": {
+            "hard_max_edges": 4096,
+            "hard_max_nodes": 256,
+            "hard_max_required_reachability": 1024,
+            "max_edges": 3,
+            "max_nodes": 4
+          },
+          "profile_source_sha256": "97f017cada9480d8869f7160e79c43ec0a0290631a3a53e097032e1f6aec5cd0",
+          "reference_result": {
+            "acyclic": true,
+            "canonical_topological_order": [
+              "topology-preflight",
+              "proposal-observation",
+              "proposal-gate",
+              "claim-gate"
+            ],
+            "required_reachability": [
+              {
+                "reachable": true,
+                "source": "proposal-gate",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "proposal-observation",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "proposal-observation",
+                "target": "proposal-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "proposal-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "proposal-observation"
+              }
+            ]
+          },
+          "required_reachability": [
+            [
+              "proposal-gate",
+              "claim-gate"
+            ],
+            [
+              "proposal-observation",
+              "claim-gate"
+            ],
+            [
+              "proposal-observation",
+              "proposal-gate"
+            ],
+            [
+              "topology-preflight",
+              "claim-gate"
+            ],
+            [
+              "topology-preflight",
+              "proposal-gate"
+            ],
+            [
+              "topology-preflight",
+              "proposal-observation"
+            ]
+          ],
+          "runtime_identity": {
+            "api_bindings": {
+              "PyDiGraph": {
+                "callable_type": "type",
+                "methods": [
+                  "add_nodes_from",
+                  "add_edges_from",
+                  "nodes",
+                  "edge_list"
+                ],
+                "module": "rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              },
+              "has_path": {
+                "callable_type": "function",
+                "module": "rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py"
+              },
+              "is_directed_acyclic_graph": {
+                "callable_type": "builtin_function_or_method",
+                "module": "rustworkx.rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              },
+              "topological_sort": {
+                "callable_type": "builtin_function_or_method",
+                "module": "rustworkx.rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              }
+            },
+            "artifact_sha256_is_policy_input": false,
+            "compatible_version_window": {
+              "maximum_exclusive": "0.18.0",
+              "minimum_inclusive": "0.17.0"
+            },
+            "compiled_module_artifact": {
+              "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so",
+              "sha256": "db8592df733725b4e56a0a298426d7f6953a786e49537aeb64a8e72ee6884471",
+              "size_bytes": 5623808,
+              "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+            },
+            "compiled_module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so",
+            "distribution": "rustworkx",
+            "distribution_version": "0.17.1",
+            "module_artifact": {
+              "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+              "sha256": "5681c5c3dfa576e0c91edaf52fb2eda1903a7828055f7111bea202b97e6e53b8",
+              "size_bytes": 99073,
+              "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py"
+            },
+            "runtime_profile_id": "core-cpython313-r1",
+            "schema": "constraintbox.workflow-graph-runtime.v2",
+            "semantic_probe": {
+              "acyclic_graph_is_dag": true,
+              "acyclic_topological_order_length": 2,
+              "backward_path": false,
+              "cycle_graph_is_dag": false,
+              "forward_path": true
+            },
+            "version": "0.17.1"
+          },
+          "runtime_identity_post_operation": {
+            "api_bindings": {
+              "PyDiGraph": {
+                "callable_type": "type",
+                "methods": [
+                  "add_nodes_from",
+                  "add_edges_from",
+                  "nodes",
+                  "edge_list"
+                ],
+                "module": "rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              },
+              "has_path": {
+                "callable_type": "function",
+                "module": "rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py"
+              },
+              "is_directed_acyclic_graph": {
+                "callable_type": "builtin_function_or_method",
+                "module": "rustworkx.rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              },
+              "topological_sort": {
+                "callable_type": "builtin_function_or_method",
+                "module": "rustworkx.rustworkx",
+                "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+              }
+            },
+            "artifact_sha256_is_policy_input": false,
+            "compatible_version_window": {
+              "maximum_exclusive": "0.18.0",
+              "minimum_inclusive": "0.17.0"
+            },
+            "compiled_module_artifact": {
+              "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so",
+              "sha256": "db8592df733725b4e56a0a298426d7f6953a786e49537aeb64a8e72ee6884471",
+              "size_bytes": 5623808,
+              "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so"
+            },
+            "compiled_module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/rustworkx.abi3.so",
+            "distribution": "rustworkx",
+            "distribution_version": "0.17.1",
+            "module_artifact": {
+              "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+              "sha256": "5681c5c3dfa576e0c91edaf52fb2eda1903a7828055f7111bea202b97e6e53b8",
+              "size_bytes": 99073,
+              "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py"
+            },
+            "runtime_profile_id": "core-cpython313-r1",
+            "schema": "constraintbox.workflow-graph-runtime.v2",
+            "semantic_probe": {
+              "acyclic_graph_is_dag": true,
+              "acyclic_topological_order_length": 2,
+              "backward_path": false,
+              "cycle_graph_is_dag": false,
+              "forward_path": true
+            },
+            "version": "0.17.1"
+          },
+          "schema": "constraintbox.workflow-graph.evidence.v1",
+          "tool": {
+            "apis": [
+              "PyDiGraph",
+              "PyDiGraph.add_nodes_from",
+              "PyDiGraph.add_edges_from",
+              "PyDiGraph.nodes",
+              "PyDiGraph.edge_list",
+              "is_directed_acyclic_graph",
+              "topological_sort",
+              "has_path"
+            ],
+            "compatible_version_window": {
+              "maximum_exclusive": "0.18.0",
+              "minimum_inclusive": "0.17.0"
+            },
+            "name": "rustworkx",
+            "required_version": "0.17.1",
+            "runtime_profile_id": "core-cpython313-r1",
+            "version": "0.17.1",
+            "version_matches_legacy_baseline": true,
+            "version_matches_policy": true
+          }
+        },
+        "evidence_sha256": "ebe3f21f70a65457bceed9c1fa22ec52af774a825d1abfff0661415c25dab5dd",
+        "reason": "workflow_graph_obligations_satisfied"
+      },
+      "projection": {
+        "edges": [
+          [
+            "proposal-gate",
+            "claim-gate"
+          ],
+          [
+            "proposal-observation",
+            "proposal-gate"
+          ],
+          [
+            "topology-preflight",
+            "proposal-observation"
+          ]
+        ],
+        "nodes": [
+          "claim-gate",
+          "proposal-gate",
+          "proposal-observation",
+          "topology-preflight"
+        ]
+      },
+      "projection_sha256": "0731233ce75e6b645e209dc5394923497048b55aae90748f635a567be34d82f4",
+      "signal": "PASS"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "promotion_allowed": false,
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "reason": "decision_moved:3_fields",
+  "schema": "constraintbox.severance-test.v1",
+  "severance_mechanism": "meta_path_module_not_found_installed_before_constraintbox_import",
+  "severed": {
+    "decision": {
+      "disposition": "PARKED",
+      "evaluation_executed": true,
+      "reason": "rustworkx_unavailable",
+      "signal": "PARKED"
+    },
+    "dependency": "rustworkx",
+    "elapsed_seconds": 0.367,
+    "import_name": "rustworkx",
+    "instrument_control": {
+      "control_error": "ModuleNotFoundError: No module named 'rustworkx' (severed by severance_test)",
+      "severance_confirmed": true
+    },
+    "mode": "severed",
+    "operation": "constraintbox.proposal_minilev_flow._TOPOLOGY.evaluate(reference_flow_policy(), run_dir) \u2014 the run path's own FixedMiniLevTopology rustworkx preflight",
+    "operation_reason": "rustworkx_unavailable",
+    "operation_verdict": "PARKED",
+    "probe": "topology",
+    "probe_transport": "OK",
+    "raw": {
+      "evaluation_executed": true,
+      "profile_outcome": {
+        "disposition": "PARKED",
+        "evidence": {
+          "canonical_graph": {
+            "edges": [
+              [
+                "proposal-gate",
+                "claim-gate"
+              ],
+              [
+                "proposal-observation",
+                "proposal-gate"
+              ],
+              [
+                "topology-preflight",
+                "proposal-observation"
+              ]
+            ],
+            "nodes": [
+              "claim-gate",
+              "proposal-gate",
+              "proposal-observation",
+              "topology-preflight"
+            ]
+          },
+          "canonical_graph_sha256": "0731233ce75e6b645e209dc5394923497048b55aae90748f635a567be34d82f4",
+          "claim_ceiling": "one finite declared workflow dependency graph was checked for acyclicity and controller-required reachability; no semantic node or general workflow-correctness claim",
+          "error": "No module named 'rustworkx' (severed by severance_test)",
+          "exception_type": "ModuleNotFoundError",
+          "limits": {
+            "hard_max_edges": 4096,
+            "hard_max_nodes": 256,
+            "hard_max_required_reachability": 1024,
+            "max_edges": 3,
+            "max_nodes": 4
+          },
+          "missing_module": "rustworkx",
+          "phase": "module_import",
+          "profile_source_sha256": "97f017cada9480d8869f7160e79c43ec0a0290631a3a53e097032e1f6aec5cd0",
+          "reference_result": {
+            "acyclic": true,
+            "canonical_topological_order": [
+              "topology-preflight",
+              "proposal-observation",
+              "proposal-gate",
+              "claim-gate"
+            ],
+            "required_reachability": [
+              {
+                "reachable": true,
+                "source": "proposal-gate",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "proposal-observation",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "proposal-observation",
+                "target": "proposal-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "claim-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "proposal-gate"
+              },
+              {
+                "reachable": true,
+                "source": "topology-preflight",
+                "target": "proposal-observation"
+              }
+            ]
+          },
+          "required_reachability": [
+            [
+              "proposal-gate",
+              "claim-gate"
+            ],
+            [
+              "proposal-observation",
+              "claim-gate"
+            ],
+            [
+              "proposal-observation",
+              "proposal-gate"
+            ],
+            [
+              "topology-preflight",
+              "claim-gate"
+            ],
+            [
+              "topology-preflight",
+              "proposal-gate"
+            ],
+            [
+              "topology-preflight",
+              "proposal-observation"
+            ]
+          ],
+          "schema": "constraintbox.workflow-graph.evidence.v1",
+          "tool": {
+            "apis": [
+              "PyDiGraph",
+              "PyDiGraph.add_nodes_from",
+              "PyDiGraph.add_edges_from",
+              "PyDiGraph.nodes",
+              "PyDiGraph.edge_list",
+              "is_directed_acyclic_graph",
+              "topological_sort",
+              "has_path"
+            ],
+            "name": "rustworkx",
+            "required_version": "0.17.1",
+            "version": null
+          }
+        },
+        "evidence_sha256": "20695208e553ab0d6555c0b187455f871d1dc4c9ee7f553373c4e93b91f83f18",
+        "reason": "rustworkx_unavailable"
+      },
+      "projection": {
+        "edges": [
+          [
+            "proposal-gate",
+            "claim-gate"
+          ],
+          [
+            "proposal-observation",
+            "proposal-gate"
+          ],
+          [
+            "topology-preflight",
+            "proposal-observation"
+          ]
+        ],
+        "nodes": [
+          "claim-gate",
+          "proposal-gate",
+          "proposal-observation",
+          "topology-preflight"
+        ]
+      },
+      "projection_sha256": "0731233ce75e6b645e209dc5394923497048b55aae90748f635a567be34d82f4",
+      "signal": "PARKED"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "verdict": "LOAD_BEARING"
+}

@@ -18,7 +18,7 @@ import hashlib
 import os
 import secrets
 import threading
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import Enum
 from pathlib import Path
 from typing import Any, Callable
@@ -547,60 +547,26 @@ def _claim_gate_hook(context: dict[str, Any]) -> HookResult:
         )
 
 
-def _build_runtime(
-    *,
-    run_id: str,
-    ledger_path: Path,
-    execution_lease_store: ExecutionLeaseStore,
-    execution_lease_clock: ControllerMonotonicClock,
-    execution_lease_clock_id: str,
-) -> MiniLevRuntime:
-    topology_preflight = _source_registration(
-        hook_id=_TOPOLOGY_HOOK_ID,
-        kind=HookKind.GATE,
-        handler=_topology_preflight_hook,
-        allowed_signals=(
-            HookSignal.PASS,
-            HookSignal.BLOCKED,
-            HookSignal.PARKED,
-        ),
-        allowed_update_keys=(_TOPOLOGY_WITNESS_UPDATE_KEY,),
-    )
-    proposal = _source_registration(
-        hook_id="bounded-proposal-observation",
-        kind=HookKind.PROPOSAL,
-        handler=_proposal_hook,
-        allowed_signals=(HookSignal.OBSERVED, HookSignal.PARKED),
-    )
-    proposal_gate = _source_registration(
-        hook_id="bounded-proposal-gate",
-        kind=HookKind.GATE,
-        handler=_proposal_gate_hook,
-        allowed_signals=(
-            HookSignal.PASS,
-            HookSignal.RETRY,
-            HookSignal.BLOCKED,
-            HookSignal.PARKED,
-        ),
-    )
-    claim_gate = _source_registration(
-        hook_id="bounded-claim-gate",
-        kind=HookKind.GATE,
-        handler=_claim_gate_hook,
-        allowed_signals=(
-            HookSignal.PASS,
-            HookSignal.BLOCKED,
-            HookSignal.PARKED,
-        ),
-    )
-    policy = FlowPolicy(
+def reference_flow_policy() -> FlowPolicy:
+    """The exact fixed FlowPolicy that ``run_proposal_minilev_flow`` executes.
+
+    The only difference from the executed policy is the per-run
+    ``execution_lease`` requirement, which binds a run-specific durable store
+    slot and is attached by ``_build_runtime`` via ``dataclasses.replace``.
+    Nodes, transitions, terminals, and every budget are the run path's own
+    values; run-path formal gates (``cb:sympy-exact-gate`` and
+    ``cb:maude-transition-gate``) operate on this object so they check the
+    real flow, not a fixture.
+    """
+
+    return FlowPolicy(
         flow_id=FLOW_ID,
         entry_node=_TOPOLOGY_NODE_ID,
         nodes=(
-            FlowNode(_TOPOLOGY_NODE_ID, topology_preflight.hook_id),
-            FlowNode("proposal-observation", proposal.hook_id),
-            FlowNode("proposal-gate", proposal_gate.hook_id),
-            FlowNode("claim-gate", claim_gate.hook_id),
+            FlowNode(_TOPOLOGY_NODE_ID, _TOPOLOGY_HOOK_ID),
+            FlowNode("proposal-observation", "bounded-proposal-observation"),
+            FlowNode("proposal-gate", "bounded-proposal-gate"),
+            FlowNode("claim-gate", "bounded-claim-gate"),
         ),
         transitions=(
             FlowTransition(
@@ -648,6 +614,71 @@ def _build_runtime(
         max_event_bytes=65_536,
         max_receipt_bytes=524_288,
         claim_ceiling=_CLAIM_CEILING,
+        execution_lease=None,
+    )
+
+
+def _build_runtime(
+    *,
+    run_id: str,
+    ledger_path: Path,
+    execution_lease_store: ExecutionLeaseStore,
+    execution_lease_clock: ControllerMonotonicClock,
+    execution_lease_clock_id: str,
+) -> MiniLevRuntime:
+    topology_preflight = _source_registration(
+        hook_id=_TOPOLOGY_HOOK_ID,
+        kind=HookKind.GATE,
+        handler=_topology_preflight_hook,
+        allowed_signals=(
+            HookSignal.PASS,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+        allowed_update_keys=(_TOPOLOGY_WITNESS_UPDATE_KEY,),
+    )
+    proposal = _source_registration(
+        hook_id="bounded-proposal-observation",
+        kind=HookKind.PROPOSAL,
+        handler=_proposal_hook,
+        allowed_signals=(HookSignal.OBSERVED, HookSignal.PARKED),
+    )
+    proposal_gate = _source_registration(
+        hook_id="bounded-proposal-gate",
+        kind=HookKind.GATE,
+        handler=_proposal_gate_hook,
+        allowed_signals=(
+            HookSignal.PASS,
+            HookSignal.RETRY,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+    )
+    claim_gate = _source_registration(
+        hook_id="bounded-claim-gate",
+        kind=HookKind.GATE,
+        handler=_claim_gate_hook,
+        allowed_signals=(
+            HookSignal.PASS,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+    )
+    reference_policy = reference_flow_policy()
+    expected_hook_ids = {
+        _TOPOLOGY_NODE_ID: topology_preflight.hook_id,
+        "proposal-observation": proposal.hook_id,
+        "proposal-gate": proposal_gate.hook_id,
+        "claim-gate": claim_gate.hook_id,
+    }
+    if {
+        node.node_id: node.hook_id for node in reference_policy.nodes
+    } != expected_hook_ids:
+        raise MiniLevError(
+            "reference flow policy hooks drifted from the registered hooks"
+        )
+    policy = replace(
+        reference_policy,
         execution_lease=ExecutionLeaseRequirement(
             node_id="proposal-observation",
             hook_id=proposal.hook_id,

@@ -1004,6 +1004,7 @@ def _final_result(
     release_receipt_path: Path | None,
     proposal_flow: dict[str, Any] | None = None,
     provider_policy: dict[str, Any] | None = None,
+    formal_gates: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     return {
         "schema": SCHEMA,
@@ -1057,6 +1058,7 @@ def _final_result(
         },
         "claim_gate": claim_gate,
         "proposal_flow": proposal_flow,
+        "formal_gates": formal_gates,
         "release_receipt": (
             str(release_receipt_path)
             if release_receipt_path is not None
@@ -1069,6 +1071,44 @@ def _final_result(
             "parent_ratchet_checkout_imported": False,
         },
     }
+
+
+def _run_formal_run_path_gates(run_dir: Path) -> dict[str, Any]:
+    """Execute cb:sympy-exact-gate and cb:maude-transition-gate every run.
+
+    Both formal gates run unconditionally on the REAL proposal FlowPolicy
+    (proposal_minilev_flow.reference_flow_policy) — the same nodes,
+    transitions, and budgets `run_proposal_minilev_flow` executes — with no
+    usefulness heuristic.  The receipt is persisted next to the other run
+    artifacts.  A gate crash is recorded as an ERROR execution rather than
+    aborting the run; a MISMATCH verdict later excludes RELEASED.
+    """
+
+    from .gate_operations import FORMAL_RUN_GATES_SCHEMA, run_formal_flow_gates
+    from .proposal_minilev_flow import reference_flow_policy
+
+    try:
+        receipt = run_formal_flow_gates(reference_flow_policy())
+    except Exception as exc:  # noqa: BLE001 - recorded, never silently lost
+        receipt = {
+            "schema": FORMAL_RUN_GATES_SCHEMA,
+            "executions": [],
+            "error": f"{type(exc).__name__}: {exc}",
+            "any_mismatch": False,
+            "promotion_allowed": False,
+        }
+    _write_json(run_dir / "formal_gates_receipt.json", receipt)
+    return receipt
+
+
+def _formal_gates_mismatch(formal_gates: dict[str, Any]) -> bool:
+    executions = formal_gates.get("executions")
+    if not isinstance(executions, list):
+        return False
+    return any(
+        isinstance(execution, dict) and execution.get("verdict") == "MISMATCH"
+        for execution in executions
+    )
 
 
 def _run_mini_lev_proposal_loop(
@@ -1720,6 +1760,9 @@ def _run_agent_for_test(
 
     task_path = run_dir / "task.json"
     _write_json(task_path, task.to_dict())
+    # G1 wiring: both formal gates (sympy budgets, maude transitions) execute
+    # on the real proposal FlowPolicy on EVERY run, before any early return.
+    formal_gates = _run_formal_run_path_gates(run_dir)
     profile_inputs, profile_errors = _load_profile_inputs()
     branches = BranchLedger()
     if profile_errors:
@@ -1738,6 +1781,7 @@ def _run_agent_for_test(
             branch_ledger=branches,
             claim_gate=None,
             release_receipt_path=None,
+            formal_gates=formal_gates,
         )
         _write_json(run_dir / "run_receipt.json", result)
         return result, RUN_EXIT_CODES["PARKED"]
@@ -1772,6 +1816,7 @@ def _run_agent_for_test(
             branch_ledger=branches,
             claim_gate=None,
             release_receipt_path=None,
+            formal_gates=formal_gates,
         )
         _write_json(run_dir / "run_receipt.json", result)
         return result, RUN_EXIT_CODES[disposition]
@@ -1805,6 +1850,7 @@ def _run_agent_for_test(
                 claim_gate=None,
                 release_receipt_path=None,
                 provider_policy=provider_policy,
+                formal_gates=formal_gates,
             )
             _write_json(run_dir / "run_receipt.json", result)
             return result, RUN_EXIT_CODES["PARKED"]
@@ -1845,7 +1891,18 @@ def _run_agent_for_test(
     terminal = proposal_outcome["terminal"]
     observed_claim_gate = proposal_outcome["claim_gate"]
     release_receipt_path = proposal_outcome["release_receipt_path"]
-    if (
+    if terminal == "RELEASED" and _formal_gates_mismatch(formal_gates):
+        # An exact formal disagreement (sympy budget arithmetic or maude
+        # rewrite observation against the run's own FlowPolicy) refuses the
+        # release regardless of the ClaimGate outcome.  This only ever
+        # narrows the release condition; it never widens it.
+        disposition = "REFUSED"
+        release = None
+        reason = (
+            "run-path formal gate MISMATCH: sympy/maude disagreed with the "
+            "flow policy's own structure"
+        )
+    elif (
         terminal == "RELEASED"
         and isinstance(observed_claim_gate, dict)
         and _claim_gate_is_strong(observed_claim_gate)
@@ -1892,6 +1949,7 @@ def _run_agent_for_test(
         release_receipt_path=release_receipt_path,
         proposal_flow=proposal_outcome["flow"],
         provider_policy=provider_policy,
+        formal_gates=formal_gates,
     )
     _write_json(run_dir / "run_receipt.json", result)
     return result, RUN_EXIT_CODES[disposition]

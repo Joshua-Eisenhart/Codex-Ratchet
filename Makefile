@@ -390,3 +390,28 @@ cb-check:
 		echo "cb-check: cb-estate nonzero — documented Darwin-versus-Linux environment drift plus stale controller pin; not a capability pass"; \
 	fi; \
 	test "$$gates_rc" -eq 0 -a "$$cb_suite_rc" -eq 0 -a "$$cb_estate_rc" -eq 0
+
+# --- CB light library set: keep it fresh, standard, and cross-platform ---
+# CB light deliberately does NOT use $(PYTHON): that resolves to the sim-stack
+# interpreter, and CB light must not depend on the sim estate. The verifier is
+# stdlib-only, so the CB environment interpreter is enough.
+CB_PY ?= /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+# Re-resolves every candidate against its live PyPI record and rewrites the
+# verified fields in place. Run this every month or two; the bar is 548 days
+# since last release, so a library that stops being maintained falls out on
+# its own rather than lingering.
+cb-libs-refresh:
+	cd constraint_box && $(CB_PY) scripts/verify_library_candidates.py --write
+
+# Read-only: report what has drifted since the registry was last written.
+cb-libs-check:
+	cd constraint_box && $(CB_PY) scripts/verify_library_candidates.py
+
+# Prove the pinned set still resolves and imports on this platform, in a
+# throwaway venv so the working environment is never touched.
+cb-libs-install-test:
+	@t=$$(mktemp -d); $(CB_PY) -m venv $$t/v; \
+	$$t/v/bin/python -m pip install -q -r constraint_box/requirements/candidates/cb-light-extended.in \
+	  && echo "cb-libs-install-test: resolved clean, $$($$t/v/bin/python -m pip list --format=freeze | wc -l | tr -d ' ') packages, $$(du -sm $$t/v | cut -f1) MB" \
+	  || echo "cb-libs-install-test: FAILED to resolve"; \
+	rm -rf $$t

@@ -147,3 +147,33 @@ vendor from, never to depend on: `qclib`, `solvOR`, `Newt`.
 CB light measured: **183.5 MB, ~0.6 s import.**
 CB heavy (18 sim lanes, all present): **1,158.7 MB, ~10.6 s import.**
 Ratio **6.3x disk, 17x import time.**
+
+---
+
+## APPENDIX 2026-08-09 — expanded candidate registry (verified, not installed)
+
+A second discovery pass across six categories produced a machine-verified
+candidate registry:
+
+- Registry: `constraint_box/config/cb_light_library_candidates.json`
+- Verifier: `constraint_box/scripts/verify_library_candidates.py`
+  (stdlib-only, fetches live PyPI JSON, re-runnable)
+
+127 unique candidates were proposed; the verifier kept 80 and dropped 47
+(35 stale beyond 548 days, 15 missing requires-python, 6 with more than
+3 declared runtime deps, 1 over the 5 MB wheel budget). Bar: release
+within 548 days, requires-python admitting 3.12+3.13, wheels for
+linux+macos+windows or pure Python, wheel <= 5 MB, <= 3 runtime deps.
+
+Keeps by category: schema-contract-serialization 20/28,
+hash-sign-ledger-storage 14/21, test-repro-bounded 15/20,
+text-similarity-drift 16/34, solvers-logic-automata 8/14,
+static-analysis-drift 7/10.
+
+Total wheel weight of all 80 keeps: about 16.4 MB. Largest single keep
+is clingo at 3.46 MB; most keeps are under 0.1 MB pure Python.
+
+Status ceiling for every entry: exists (verified on PyPI). Nothing was
+installed or run. The PySMT rejection above stands — a discovery lane
+claimed it was maintained again; the verifier confirmed it is still
+stale (2024-06-24) with no requires-python.

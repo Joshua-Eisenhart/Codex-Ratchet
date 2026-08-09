@@ -1,0 +1,98 @@
+{
+  "schema": "codex-ratchet.bridge-registry.v9",
+  "version": "9.0.0.dev1",
+  "default_failure_semantics": "fail_closed_without_cross_product_promotion",
+  "bridges": [
+    {
+      "id": "cb-to-claimgate",
+      "producer": "constraint_box",
+      "consumer": "claimgate",
+      "purpose": "submit a CB decision or run receipt to an independent evidence gate",
+      "request_schema": "system_v9/bridges/schemas/artifact_submission.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": "claimgate_plugin/hooks/post_receipt_gate.sh",
+      "timeout_seconds": 60,
+      "status": "legacy_adapter_exercised_pre_v9",
+      "integration_level": "imported_in_source",
+      "test": "python3 -m pytest -q claimgate_plugin/tests"
+    },
+    {
+      "id": "cb-to-sim-engines",
+      "producer": "constraint_box",
+      "consumer": "sim_engines",
+      "purpose": "dispatch a bounded external computation without making the engine part of CB",
+      "request_schema": "system_v9/bridges/schemas/engine_job.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": "constraint_box/src/constraintbox/external_engine_packet.py",
+      "timeout_seconds": 300,
+      "status": "v9_live_external_packet_retest_passed_after_carrier_setup",
+      "integration_level": "api_smoke",
+      "test": "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_engine_packet.py"
+    },
+    {
+      "id": "cr-to-constraint-box",
+      "producer": "codex_ratchet",
+      "consumer": "constraint_box",
+      "purpose": "ask CB to evaluate a finite constraint object",
+      "request_schema": "constraint_box/config/schemas/constraint_object_v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": "constraint_box/src/constraintbox/adapters/cr.py",
+      "timeout_seconds": 60,
+      "status": "legacy_adapter_exercised_pre_v9",
+      "integration_level": "api_smoke",
+      "test": "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_semantic_and_adapters.py"
+    },
+    {
+      "id": "cr-to-sim-engines",
+      "producer": "codex_ratchet",
+      "consumer": "sim_engines",
+      "purpose": "run a selected engine profile on a CR fixture",
+      "request_schema": "system_v9/bridges/schemas/engine_job.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": "system_v8/engine_estate/integration_handoff_test.py",
+      "timeout_seconds": 900,
+      "status": "legacy_adapter_requires_v9_full_map_retest",
+      "integration_level": "function_level_receipt",
+      "test": "python3 system_v8/engine_estate/integration_handoff_test.py"
+    },
+    {
+      "id": "holodeck-to-sim-engines",
+      "producer": "holodeck",
+      "consumer": "sim_engines",
+      "purpose": "request trainable prediction or graph-network computation",
+      "request_schema": "system_v9/bridges/schemas/engine_job.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": null,
+      "timeout_seconds": 900,
+      "status": "declared_not_exercised_v9",
+      "integration_level": "installed_only",
+      "test": null
+    },
+    {
+      "id": "holodeck-to-qit-engines",
+      "producer": "holodeck",
+      "consumer": "sim_engines",
+      "purpose": "consume QIT or quantum-Hopfield state through a typed observation boundary",
+      "request_schema": "system_v9/bridges/schemas/engine_job.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": null,
+      "timeout_seconds": 900,
+      "status": "declared_blocked_on_qit_engine_reality_gate",
+      "integration_level": "installed_only",
+      "test": null
+    },
+    {
+      "id": "cr-to-holodeck",
+      "producer": "codex_ratchet",
+      "consumer": "holodeck",
+      "purpose": "submit a bounded predictive-world observation task",
+      "request_schema": "system_v9/bridges/schemas/engine_job.v1.schema.json",
+      "result_schema": "system_v9/bridges/schemas/bridge_result.v1.schema.json",
+      "adapter": null,
+      "timeout_seconds": 900,
+      "status": "declared_not_exercised_v9",
+      "integration_level": "installed_only",
+      "test": null
+    }
+  ]
+}

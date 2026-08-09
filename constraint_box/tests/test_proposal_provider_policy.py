@@ -50,7 +50,10 @@ class ProposalProviderPolicyTests(unittest.TestCase):
         self.assertFalse(selection.operator_selected)
         binding = selection.public_binding()
         self.assertEqual(binding["schema"], POLICY_SCHEMA)
-        self.assertEqual(binding["requested_model"], "codex-cli-default")
+        # The default route now requests the real measured default model and
+        # binds it with -m, so the rollout observation can confirm or refute
+        # the request; the old "codex-cli-default" named nothing checkable.
+        self.assertEqual(binding["requested_model"], "gpt-5.6-sol")
         self.assertFalse(binding["credential_configured"])
         self.assertFalse(binding["llm_decision_authority"])
         self.assertFalse(binding["promotion_allowed"])

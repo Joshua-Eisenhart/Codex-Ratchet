@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 
 from claimgate_plugin.ratchet_floor_smt import (
     RatchetVerdict,
@@ -36,6 +37,10 @@ def _eq(name: str, value: object) -> dict[str, object]:
 
 
 class RatchetFloorSMTVerdictTests(unittest.TestCase):
+    def test_smt_surface_does_not_import_constraintbox(self) -> None:
+        source = (Path(__file__).resolve().parents[1] / "ratchet_floor_smt.py").read_text(encoding="utf-8")
+        self.assertNotIn("from constraintbox", source)
+
     def test_all_five_verdicts_are_reachable(self) -> None:
         expected = {
             "tightened_floor_1_to_2": RatchetVerdict.TIGHTENED,

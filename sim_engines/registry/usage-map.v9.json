@@ -1,0 +1,236 @@
+{
+  "schema": "codex-ratchet.sim-tool-usage-map.v9",
+  "tools": {
+    "python.z3-solver": {
+      "required_apis": ["z3.Solver", "z3.Int", "z3.sat"],
+      "roles": ["finite_smt", "counterexample_witness"],
+      "source_paths": ["constraint_box/src/constraintbox/constraints.py", "claimgate_plugin/ratchet_floor_smt.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py", "python3 -m pytest -q claimgate_plugin/tests/test_ratchet_floor_smt.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.cvc5": {
+      "required_apis": ["cvc5.Solver", "cvc5.Kind", "Result.isSat"],
+      "roles": ["independent_finite_smt", "solver_disagreement_control"],
+      "source_paths": ["constraint_box/src/constraintbox/constraints.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.sympy": {
+      "required_apis": ["sympy.expand", "sympy.Poly", "sympy.Rational"],
+      "roles": ["exact_symbolic_check", "normal_form"],
+      "source_paths": ["constraint_box/src/constraintbox/symbolic.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_symbolic.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.rustworkx": {
+      "required_apis": ["rustworkx.PyDiGraph", "rustworkx.topological_sort"],
+      "roles": ["workflow_dag", "finite_graph_order"],
+      "source_paths": ["constraint_box/src/constraintbox/workflow_graph.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_workflow_graph.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.maude": {
+      "required_apis": ["maude.init", "maude.input", "maude.getModule", "Term.apply"],
+      "roles": ["finite_rewrite", "ordered_transition"],
+      "source_paths": ["constraint_box/src/constraintbox/maude_rewrite.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_maude_rewrite.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.numpy": {
+      "required_apis": ["numpy.asarray", "numpy.linalg"],
+      "roles": ["reference_numeric", "array_fixture"],
+      "source_paths": ["system_v8/manifold/prototypes/manifold_ijk_engine_prototype.py"],
+      "test_commands": ["python3 -m pytest -q system_v8/manifold/prototypes/test_manifold_ijk_engine_prototype.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.scipy": {
+      "required_apis": ["scipy.linalg.expm"],
+      "roles": ["matrix_exponential_reference", "numerical_control"],
+      "source_paths": ["system_v4/probes"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "imported_in_source"
+    },
+    "python.jax": {
+      "required_apis": ["jax.jit", "jax.vmap", "jax.numpy"],
+      "roles": ["batched_finite_sweep", "differentiable_engine_lane"],
+      "source_paths": ["system_v8/engine_estate/integration_stage_jax.py", "system_v8/manifold/prototypes/candidate_world_mstar_jax.py"],
+      "test_commands": ["python3 system_v8/engine_estate/jax_estate_test.py"],
+      "evidence_paths": ["system_v8/engine_estate/results/jax/receipt.json"],
+      "declared_integration_level": "function_level_receipt",
+      "note": "Existing receipt is pre-v9 and does not by itself satisfy full-map independence."
+    },
+    "python.torch": {
+      "required_apis": ["torch.einsum", "torch.func", "torch.autograd"],
+      "roles": ["trainable_engine_lane", "graph_network", "holodeck_support"],
+      "source_paths": ["system_v8/engine_estate/integration_stage_torch.py", "system_v8/manifold/prototypes/candidate_world_mstar_torch.py"],
+      "test_commands": ["python3 system_v8/engine_estate/torch_estate_test.py"],
+      "evidence_paths": ["system_v8/engine_estate/results/torch/receipt.json"],
+      "declared_integration_level": "function_level_receipt",
+      "note": "Existing receipt is pre-v9 and does not establish a complete Holodeck or QIT engine."
+    },
+    "python.torch-geometric": {
+      "required_apis": ["torch_geometric.data.Data", "torch_geometric.utils.degree"],
+      "roles": ["graph_network_fixture", "quantum_hopfield_support"],
+      "source_paths": ["system_v8/engine_estate/torch_estate_test.py"],
+      "test_commands": ["python3 system_v8/engine_estate/torch_estate_test.py"],
+      "evidence_paths": ["system_v8/engine_estate/results/torch/receipt.json"],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.quimb": {
+      "required_apis": ["quimb.tensor"],
+      "roles": ["tensor_network"],
+      "source_paths": ["constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.cotengra": {
+      "required_apis": ["cotengra.HyperOptimizer"],
+      "roles": ["tensor_contraction_path"],
+      "source_paths": ["constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.e3nn": {
+      "required_apis": ["e3nn.o3"],
+      "roles": ["equivariance_probe"],
+      "source_paths": ["constraint_box/src/constraintbox/external_e3nn_capability.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_e3nn_capability.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    "python.pysindy": {
+      "required_apis": ["pysindy.SINDy", "pysindy.STLSQ"],
+      "roles": ["system_identification_external_engine"],
+      "source_paths": ["constraint_box/src/constraintbox/external_pysindy_capability.py"],
+      "test_commands": ["PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_pysindy_capability.py"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt",
+      "note": "Sim Engines only. Not ConstraintBox core."
+    },
+    "python.pykoopman": {
+      "required_apis": ["pykoopman.Koopman"],
+      "roles": ["isolated_koopman_control"],
+      "source_paths": ["constraint_box/src/constraintbox/external_pykoopman_capability.py"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "quarantined",
+      "note": "Pinned Python 3.11 route only; neural and polynomial paths unresolved."
+    }
+  },
+  "static_runtime_tools": [
+    {
+      "id": "runtime.julia",
+      "runtime": "executable",
+      "executable": "julia",
+      "install_profiles": ["julia-strict-carrier"],
+      "required_apis": ["--startup-file=no", "--project"],
+      "roles": ["strict_carrier_runtime"],
+      "source_paths": ["system_v5/julia_carrier", "system_v8/engine_estate/integration_stage_julia.jl"],
+      "test_commands": ["julia --startup-file=no --project=sim_engines/install/julia -e 'using Pkg; Pkg.status()'"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    {
+      "id": "julia.Graphs",
+      "runtime": "julia_package",
+      "package": "Graphs",
+      "install_profiles": ["julia-strict-carrier"],
+      "required_apis": ["SimpleDiGraph", "add_edge!"],
+      "roles": ["finite_graph_carrier"],
+      "source_paths": ["system_v8/engine_estate/integration_stage_julia.jl"],
+      "test_commands": ["julia --startup-file=no --project=sim_engines/install/julia -e 'using Graphs; g=SimpleDiGraph(2); add_edge!(g,1,2); @assert ne(g)==1'"],
+      "evidence_paths": [],
+      "declared_integration_level": "function_level_receipt"
+    },
+    {
+      "id": "julia.QuantumOptics",
+      "runtime": "julia_package",
+      "package": "QuantumOptics",
+      "install_profiles": ["julia-strict-carrier"],
+      "required_apis": ["basis", "operator", "timeevolution"],
+      "roles": ["qit_engine"],
+      "source_paths": ["system_v5/julia_carrier"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "installed_only"
+    },
+    {
+      "id": "julia.Attractors",
+      "runtime": "julia_package",
+      "package": "Attractors",
+      "install_profiles": ["julia-strict-carrier"],
+      "required_apis": ["AttractorsViaRecurrences"],
+      "roles": ["basin_mapping"],
+      "source_paths": ["sim_engines/stress/attractors_basins_probe.jl"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "imported_in_source"
+    },
+    {
+      "id": "julia.JSON",
+      "runtime": "julia_package",
+      "package": "JSON",
+      "install_profiles": ["julia-strict-carrier"],
+      "required_apis": ["JSON.json"],
+      "roles": ["strict_probe_serialization"],
+      "source_paths": [
+        "sim_engines/stress/attractors_basins_probe.jl",
+        "sim_engines/stress/entropy_gradient_sweep_julia.jl",
+        "sim_engines/stress/itensors_mps_cut_probe.jl",
+        "sim_engines/stress/quantumclifford_orbit_probe.jl",
+        "sim_engines/serialized/catlab_ratchet.jl"
+      ],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "imported_in_source"
+    },
+    {
+      "id": "external.java",
+      "runtime": "executable",
+      "executable": "java",
+      "install_profiles": ["temporal-formal"],
+      "required_apis": ["-jar"],
+      "roles": ["optional_temporal_checker_host"],
+      "source_paths": ["constraint_box/src/constraintbox/formalcheck.py"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "quarantined",
+      "note": "External proof bridge only. Never ConstraintBox core."
+    },
+    {
+      "id": "external.tlc",
+      "runtime": "jar",
+      "executable": "java",
+      "install_profiles": ["temporal-formal"],
+      "required_apis": ["tlc2.TLC"],
+      "roles": ["optional_temporal_model_check"],
+      "source_paths": ["constraint_box/src/constraintbox/formalcheck.py"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "quarantined",
+      "note": "Legacy CB route to extract behind a Sim Engines bridge."
+    },
+    {
+      "id": "external.apalache",
+      "runtime": "jar",
+      "executable": "java",
+      "install_profiles": ["temporal-formal"],
+      "required_apis": ["apalache-mc check"],
+      "roles": ["optional_temporal_symbolic_check"],
+      "source_paths": ["constraint_box/src/constraintbox/formalcheck.py"],
+      "test_commands": [],
+      "evidence_paths": [],
+      "declared_integration_level": "quarantined",
+      "note": "Legacy CB route to extract behind a Sim Engines bridge."
+    }
+  ]
+}

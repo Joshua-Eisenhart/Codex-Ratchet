@@ -90,10 +90,12 @@ POISONER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "operation_poisoner.py"
 # run; it is never silently reinterpreted as success on a different estate.
 PROFILE_PINS = {
     "fixture": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f",
-    # Repinned 2026-08-08. Was 563d1afd50…, which predates the initial git import
-    # of the package (5378aeb6d); estate.py hashes its own source, so every
-    # `constraintbox run` was PARKing on PROFILE_INPUT_DRIFT against the box's own
-    # shipped controller. The other four pins already matched.
+    # Repinned 2026-08-08, for the second time: the first repin was reverted by an
+    # agent restoring an unrelated temporary edit.  estate.py hashes its own source,
+    # and 563d1afd50.. predates the v9 import at a99094897, so every `constraintbox
+    # run` PARKed on PROFILE_INPUT_DRIFT:estate_controller against the box's own
+    # shipped controller.  be2ef0c911.. is the sha256 of estate.py at BOTH HEAD and
+    # worktree, verified independently twice.  The other four pins match their files.
     "estate_controller": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e",
     "worker": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257",
     "import_blocker": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
@@ -436,6 +438,8 @@ def _harness_components() -> dict[str, Any]:
     from ._provider_harness.gates import gate as provider_gate
     from ._provider_harness.notary import Notary
     from ._provider_harness.providers import (
+        CodexLunaProvider,
+        CodexSolProvider,
         LocalToolProvider,
         NvidiaProvider,
         OpenRouterProvider,
@@ -446,6 +450,8 @@ def _harness_components() -> dict[str, Any]:
     return {
         "provider_gate": provider_gate,
         "Notary": Notary,
+        "CodexLunaProvider": CodexLunaProvider,
+        "CodexSolProvider": CodexSolProvider,
         "LocalToolProvider": LocalToolProvider,
         "NvidiaProvider": NvidiaProvider,
         "OpenRouterProvider": OpenRouterProvider,
@@ -483,6 +489,8 @@ def _build_prompt(
     task: AgentTask,
     *,
     attempt: int,
+    proposal_schema_text: str,
+    proposal_schema_sha256: str,
     personalized_context_text: str,
     personalized_context_sha256: str,
     tool_receipt_sha256: str,
@@ -500,7 +508,7 @@ def _build_prompt(
 You are an untrusted proposal generator inside ConstraintBox.
 You may not choose or claim a command, checker, verdict, policy, tolerance,
 profile, claim kind, promotion, or admission.
-Return only the JSON object required by the supplied output schema.
+Return only the JSON object matching the [PROPOSAL OUTPUT SCHEMA] block below.
 The only releasable requested_claim is {ALLOWED_CLAIM!r}.
 Copy the exact controller evidence reference into candidate.evidence_ref.
 Name at least one concrete falsifier.  No prose outside the JSON object.
@@ -525,6 +533,8 @@ state={capability.get("state")}
 controls={json.dumps(capability.get("controls", {}), sort_keys=True)}
 claim_ceiling={CLAIM_CEILING}
 
+[PROPOSAL OUTPUT SCHEMA sha256={proposal_schema_sha256}]
+{proposal_schema_text}
 [DETERMINISTIC FEEDBACK sha256={feedback_sha256 or "none"}]
 {feedback_block}
 
@@ -539,10 +549,17 @@ def _codex_command(
     attempt_dir: Path,
     schema_path: Path,
     codex_binary: str | None,
+    requested_model: str,
 ) -> list[str] | None:
     binary = codex_binary or shutil.which("codex")
     if binary is None:
         return None
+    # ``-m`` binds the model and the CLI enforces it (an unknown slug returns
+    # HTTP 400); without it codex silently picks its default and the receipt
+    # names a request that bound nothing.  ``--ephemeral`` is deliberately NOT
+    # passed: it suppresses the session rollout (measured 2026-08-08), which
+    # is the only byte-level observation of the model that actually answered,
+    # so an ephemeral dispatch is unverifiable by construction.
     return [
         binary,
         "exec",
@@ -553,7 +570,8 @@ def _codex_command(
         "-C",
         str(attempt_dir),
         "--skip-git-repo-check",
-        "--ephemeral",
+        "-m",
+        requested_model,
         "--json",
         "--output-schema",
         str(schema_path),
@@ -812,6 +830,53 @@ def _policy() -> Policy:
     )
 
 
+def _model_slug_refines(requested: str, resolved: str) -> bool:
+    """True iff the resolved slug is the requested slug or a dated/more-specific
+    refinement of it (``requested + "-…"``).
+
+    Justified from observed data, not assumption:
+      * codex rollout bytes resolve exactly (``gpt-5.6-luna`` -> ``gpt-5.6-luna``,
+        measured 2026-08-08), so equality passes.
+      * HTTP bodies may resolve a dated refinement (``x-ai/grok-4.3`` ->
+        ``x-ai/grok-4.3-20260430``, the receipt field's documented real
+        behavior), which strict equality would wrongly flag.
+      * the measured substitution (requested ``gpt-5.6-luna``, answered
+        ``gpt-5.6-sol``) fails this rule: ``gpt-5.6-sol`` does not extend
+        ``gpt-5.6-luna-``.
+
+    Risk taken: the LENIENT direction.  If a route ever requests a bare family
+    slug (e.g. ``gpt-5.6``) a sibling that extends it (``gpt-5.6-sol``) would
+    pass.  Every registered route therefore requests a fully-qualified slug;
+    the strict alternative would block every legitimately dated HTTP
+    resolution.
+    """
+
+    return resolved == requested or resolved.startswith(requested + "-")
+
+
+def _model_binding_reasons(
+    model_requested: Any,
+    model_resolved: Any,
+) -> list[str]:
+    """Deterministic check of the answering model against the requested one.
+
+    Two distinct conditions, two distinct codes:
+      * ``MODEL_RESOLVED_UNAVAILABLE`` -- the model that answered could not be
+        established from provider bytes at all (``model_resolved`` absent).
+        In CB vocabulary this is UNAVAILABLE: the run parks; it never passes.
+      * ``MODEL_RESOLVED_MISMATCH`` -- a real substitution: the resolved model
+        is neither the requested slug nor a refinement of it.
+    """
+
+    if not isinstance(model_requested, str) or not model_requested:
+        return ["MODEL_RESOLVED_UNAVAILABLE"]
+    if not isinstance(model_resolved, str) or not model_resolved:
+        return ["MODEL_RESOLVED_UNAVAILABLE"]
+    if not _model_slug_refines(model_requested, model_resolved):
+        return ["MODEL_RESOLVED_MISMATCH"]
+    return []
+
+
 def _reason_codes(
     *,
     receipt: Any,
@@ -825,8 +890,15 @@ def _reason_codes(
     smt: dict[str, Any],
     discharge_status: str,
     release_safety: bool,
+    model_requested: str,
 ) -> list[str]:
     reasons = list(extraction_errors)
+    reasons.extend(
+        _model_binding_reasons(
+            model_requested,
+            getattr(receipt, "model_resolved", None),
+        )
+    )
     if getattr(receipt, "status", None) != "success":
         reasons.append(f"PROVIDER_STATUS_{getattr(receipt, 'status', 'MISSING')}")
     if not provider_admitted:
@@ -867,8 +939,15 @@ def _release_safety(
     evidence_ref: str,
     tool_errors: list[str],
     smt: dict[str, Any],
+    model_requested: str,
+    model_resolved: Any,
 ) -> bool:
-    """Independent final recomputation; no prior boolean verdict is trusted."""
+    """Independent final recomputation; no prior boolean verdict is trusted.
+
+    The model binding is recomputed here from the raw requested/resolved
+    values so a proposal blocked by ``_reason_codes`` for a substituted or
+    unresolvable model can never still be judged release-safe.
+    """
 
     try:
         proposal = parse_json_object(raw)
@@ -882,6 +961,7 @@ def _release_safety(
         and not tool_use
         and decision.disposition is Disposition.ELIGIBLE
         and not tool_errors
+        and not _model_binding_reasons(model_requested, model_resolved)
         and candidate["requested_claim"] == ALLOWED_CLAIM
         and candidate["evidence_ref"] == evidence_ref
         and bool(proposal["falsifiers"])
@@ -1074,9 +1154,12 @@ def _run_mini_lev_proposal_loop(
         attempt_dir.mkdir()
         feedback = state["feedback"]
         feedback_sha256 = state["feedback_sha256"]
+        schema_text = schema_path.read_text(encoding="utf-8")
         prompt = _build_prompt(
             task,
             attempt=attempt_number,
+            proposal_schema_text=schema_text,
+            proposal_schema_sha256=schema_sha,
             personalized_context_text=box_run.context_text,
             personalized_context_sha256=box_run.context_sha256,
             tool_receipt_sha256=tool_sha,
@@ -1093,6 +1176,7 @@ def _run_mini_lev_proposal_loop(
                 attempt_dir=attempt_dir,
                 schema_path=schema_path,
                 codex_binary=codex_binary,
+                requested_model=provider_policy["requested_model"],
             )
             if provider_policy.get("route") == "local_tool"
             else None
@@ -1279,6 +1363,11 @@ def _run_mini_lev_proposal_loop(
             },
             now=decided_at,
         )
+        model_requested = provider_policy.get("requested_model")
+        model_resolved = getattr(latest["receipt"], "model_resolved", None)
+        model_binding_reasons = _model_binding_reasons(
+            model_requested, model_resolved
+        )
         release_safety = _release_safety(
             raw=raw,
             provider_admitted=latest["provider_gate"].admitted,
@@ -1287,6 +1376,8 @@ def _run_mini_lev_proposal_loop(
             evidence_ref=tool_sha,
             tool_errors=[],
             smt=smt,
+            model_requested=model_requested,
+            model_resolved=model_resolved,
         )
         reasons = _reason_codes(
             receipt=latest["receipt"],
@@ -1300,11 +1391,16 @@ def _run_mini_lev_proposal_loop(
             smt=smt,
             discharge_status=settlement.status,
             release_safety=release_safety,
+            model_requested=model_requested,
         )
         eligible = settlement.status == PASS and release_safety and not reasons
         provider_or_solver_parked = (
             getattr(latest["receipt"], "status", None) != "success"
             or not smt["settled"]
+            # An unresolvable answering model is UNAVAILABLE evidence, not a
+            # judged refusal: the attempt parks.  A MISMATCH (real
+            # substitution) stays a hard block, never a park.
+            or "MODEL_RESOLVED_UNAVAILABLE" in model_binding_reasons
         )
         attempt_disposition = (
             "ELIGIBLE"
@@ -1338,6 +1434,17 @@ def _run_mini_lev_proposal_loop(
             "smt_gate": smt,
             "discharge": _jsonable(settlement),
             "release_safety": release_safety,
+            "model_binding": {
+                "model_requested": model_requested,
+                "model_resolved": model_resolved,
+                "reason_codes": model_binding_reasons,
+                "missing_observation": (
+                    "receipt.model_resolved (codex rollout turn_context "
+                    "payload.model, or HTTP response body model)"
+                    if "MODEL_RESOLVED_UNAVAILABLE" in model_binding_reasons
+                    else None
+                ),
+            },
             "feedback": None,
             "feedback_sha256": None,
         }
@@ -1351,6 +1458,8 @@ def _run_mini_lev_proposal_loop(
                 "tool_use": latest["tool_use"],
                 "smt": smt,
                 "attempt": attempt_number,
+                "model_requested": model_requested,
+                "model_resolved": model_resolved,
             }
             signal = ProposalGateSignal.PASS
         elif attempt_number < MAX_ATTEMPTS:
@@ -1409,6 +1518,8 @@ def _run_mini_lev_proposal_loop(
             evidence_ref=tool_sha,
             tool_errors=[],
             smt=accepted["smt"],
+            model_requested=accepted["model_requested"],
+            model_resolved=accepted["model_resolved"],
         )
         if not release_safety:
             _, artifact_sha256 = write_attempt_artifact(

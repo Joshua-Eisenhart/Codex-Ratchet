@@ -1,0 +1,76 @@
+{
+  "schema": "codex-ratchet.stack-manifest.v9",
+  "stack_version": "9.0.0.dev1",
+  "release_state": "development_candidate",
+  "promotion_allowed": false,
+  "authority": "This manifest owns v9 product routing, not scientific truth or admission.",
+  "products": [
+    {
+      "id": "constraint_box",
+      "name": "ConstraintBox",
+      "root": "constraint_box",
+      "version": "0.4.0.dev1",
+      "version_file": "constraint_box/VERSION",
+      "manifest": "constraint_box/PRODUCT_BOUNDARY.v9.json",
+      "independent_test": "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_v9_core_boundary.py",
+      "default_runtime": "CPython",
+      "status": "candidate_boundary_repair"
+    },
+    {
+      "id": "claimgate",
+      "name": "ClaimGate",
+      "root": "claimgate_plugin",
+      "version": "0.1.0.dev1",
+      "version_file": "claimgate_plugin/VERSION",
+      "manifest": "claimgate_plugin/PRODUCT_BOUNDARY.v9.json",
+      "independent_test": "python3 -m pytest -q claimgate_plugin/tests",
+      "default_runtime": "CPython_and_Node",
+      "status": "candidate_first_explicit_version"
+    },
+    {
+      "id": "sim_engines",
+      "name": "Sim Engines",
+      "root": "sim_engines",
+      "version": "0.1.0.dev1",
+      "version_file": "sim_engines/VERSION",
+      "manifest": "sim_engines/PRODUCT_BOUNDARY.v9.json",
+      "independent_test": "python3 -m unittest discover -s sim_engines/tests -p 'test_*.py'",
+      "default_runtime": "profile_selected",
+      "status": "candidate_registry_and_installer"
+    },
+    {
+      "id": "codex_ratchet",
+      "name": "Codex Ratchet",
+      "root": "system_v9/codex_ratchet",
+      "version": "9.0.0.dev1",
+      "version_file": "system_v9/codex_ratchet/VERSION",
+      "manifest": "system_v9/codex_ratchet/PRODUCT_BOUNDARY.v9.json",
+      "independent_test": "python3 system_v9/verify_stack.py",
+      "default_runtime": "controller",
+      "status": "candidate_release_spine"
+    },
+    {
+      "id": "holodeck",
+      "name": "Holodeck",
+      "root": "holodeck",
+      "version": "0.1.0.dev1",
+      "version_file": "holodeck/VERSION",
+      "manifest": "holodeck/PRODUCT_BOUNDARY.v9.json",
+      "independent_test": "PYTHONPATH=holodeck/src python3 -m unittest discover -s holodeck/tests -p 'test_*.py'",
+      "default_runtime": "CPython_with_optional_PyTorch_profile",
+      "status": "independent_scaffold_not_world_model_claim"
+    }
+  ],
+  "bridge_registry": "system_v9/bridges/registry.v9.json",
+  "tool_status_vocabulary": "sim_engines/registry/integration-levels.v1.json",
+  "curation_policy": "system_v9/architecture/CURATION_POLICY.md",
+  "legacy_routes": {
+    "claimgate": {
+      "canonical": "claimgate_plugin",
+      "legacy": "claimgate"
+    },
+    "constraint_box_embedded_claimgate": "excluded_duplicate_not_authority",
+    "system_v4_to_v8": "working_reference_and_evidence_not_v9_product_roots",
+    "external_sim_estate": "source_seed_to_be_reached_through_sim_engines_registry"
+  }
+}

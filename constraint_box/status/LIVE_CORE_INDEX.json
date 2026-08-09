@@ -1,0 +1,167 @@
+{
+  "claim_ceiling": "five_tool_install_visibility_and_function_exercise_only",
+  "doctor": {
+    "core_tool_ids": [
+      "python.z3",
+      "python.cvc5",
+      "python.sympy",
+      "python.rustworkx",
+      "python.maude"
+    ],
+    "missing": [],
+    "product_version": "0.4.0.dev1",
+    "rows": [
+      {
+        "distribution": "z3-solver",
+        "id": "python.z3",
+        "import": "z3",
+        "import_visible": true,
+        "integration_level": "function_level_receipt",
+        "required_apis": [
+          "Solver",
+          "Int",
+          "sat"
+        ],
+        "version": "4.16.0.0"
+      },
+      {
+        "distribution": "cvc5",
+        "id": "python.cvc5",
+        "import": "cvc5",
+        "import_visible": true,
+        "integration_level": "function_level_receipt",
+        "required_apis": [
+          "Solver",
+          "Kind",
+          "Result.isSat"
+        ],
+        "version": "1.3.3"
+      },
+      {
+        "distribution": "sympy",
+        "id": "python.sympy",
+        "import": "sympy",
+        "import_visible": true,
+        "integration_level": "function_level_receipt",
+        "required_apis": [
+          "symbols",
+          "expand",
+          "Poly"
+        ],
+        "version": "1.14.0"
+      },
+      {
+        "distribution": "rustworkx",
+        "id": "python.rustworkx",
+        "import": "rustworkx",
+        "import_visible": true,
+        "integration_level": "function_level_receipt",
+        "required_apis": [
+          "PyDiGraph",
+          "topological_sort"
+        ],
+        "version": "0.17.1"
+      },
+      {
+        "distribution": "maude",
+        "id": "python.maude",
+        "import": "maude",
+        "import_visible": true,
+        "integration_level": "function_level_receipt",
+        "required_apis": [
+          "init",
+          "input",
+          "getModule",
+          "Module.parseTerm",
+          "Term.apply"
+        ],
+        "version": "1.6.0"
+      }
+    ],
+    "schema": "constraintbox.core-doctor.v9"
+  },
+  "excluded_runtimes": [
+    "jax",
+    "pytorch",
+    "julia",
+    "java",
+    "tlc",
+    "apalache",
+    "pysindy"
+  ],
+  "exercise": {
+    "claim_ceiling": "five_tool_function_exercise_only",
+    "fixture": "finite_two-witness_ordered-rewrite_v1",
+    "observation_sha256": "5c09bc21101c77c76f209ef34ce2154b89d1745419ef28493553bc16e76296b9",
+    "observations": {
+      "python.cvc5": {
+        "api": [
+          "Solver",
+          "mkConst",
+          "assertFormula",
+          "checkSat"
+        ],
+        "is_sat": true,
+        "status": "sat"
+      },
+      "python.maude": {
+        "api": [
+          "init",
+          "input",
+          "getModule",
+          "Module.parseTerm",
+          "Term.apply"
+        ],
+        "initialized": true,
+        "module_loaded": true,
+        "rewritten": "s1"
+      },
+      "python.rustworkx": {
+        "api": [
+          "PyDiGraph",
+          "add_nodes_from",
+          "add_edges_from_no_data",
+          "topological_sort"
+        ],
+        "edge_count": 4,
+        "order": [
+          "request",
+          "symbolic",
+          "solve",
+          "rewrite",
+          "decision"
+        ]
+      },
+      "python.sympy": {
+        "api": [
+          "symbols",
+          "expand",
+          "Poly.all_coeffs"
+        ],
+        "coefficients": [
+          1,
+          0,
+          -1
+        ],
+        "expanded": "x**2 - 1"
+      },
+      "python.z3": {
+        "api": [
+          "Int",
+          "Solver.add",
+          "Solver.check",
+          "ModelRef.__getitem__"
+        ],
+        "status": "sat",
+        "witness": 0
+      }
+    },
+    "product_version": "0.4.0.dev1",
+    "promotion_allowed": false,
+    "schema": "constraintbox.core-exercise.v9"
+  },
+  "generated_at": "2026-08-06T20:32:35.634607+00:00",
+  "promotion_allowed": false,
+  "schema": "constraintbox.core-status.v9",
+  "scope": "constraintbox_internal_core_only"
+}

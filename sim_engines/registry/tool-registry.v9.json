@@ -1,0 +1,1676 @@
+{
+  "generated_from": [
+    "sim_engines/install/profiles.v9.json",
+    "sim_engines/install/julia/Project.toml",
+    "sim_engines/registry/usage-map.v9.json",
+    "sim_engines/registry/integration-levels.v1.json"
+  ],
+  "schema": "codex-ratchet.sim-tool-registry.v9",
+  "tools": [
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.apalache",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "note": "Legacy CB route to extract behind a Sim Engines bridge.",
+      "required_apis": [
+        "apalache-mc check"
+      ],
+      "roles": [
+        "optional_temporal_symbolic_check"
+      ],
+      "runtime": "jar",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.java",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "note": "External proof bridge only. Never ConstraintBox core.",
+      "required_apis": [
+        "-jar"
+      ],
+      "roles": [
+        "optional_temporal_checker_host"
+      ],
+      "runtime": "executable",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.tlc",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "note": "Legacy CB route to extract behind a Sim Engines bridge.",
+      "required_apis": [
+        "tlc2.TLC"
+      ],
+      "roles": [
+        "optional_temporal_model_check"
+      ],
+      "runtime": "jar",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "evidence_paths": [],
+      "id": "julia.Attractors",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Attractors",
+      "required_apis": [
+        "AttractorsViaRecurrences"
+      ],
+      "roles": [
+        "basin_mapping"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/stress/attractors_basins_probe.jl"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ChaosTools",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "ChaosTools",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.CliffordAlgebras",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "CliffordAlgebras",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.DifferentialEquations",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "DifferentialEquations",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.DynamicalSystems",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "DynamicalSystems",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "evidence_paths": [],
+      "id": "julia.Graphs",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Graphs",
+      "required_apis": [
+        "SimpleDiGraph",
+        "add_edge!"
+      ],
+      "roles": [
+        "finite_graph_carrier"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_julia.jl"
+      ],
+      "test_commands": [
+        "julia --startup-file=no --project=sim_engines/install/julia -e 'using Graphs; g=SimpleDiGraph(2); add_edge!(g,1,2); @assert ne(g)==1'"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Grassmann",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Grassmann",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ITensorMPS",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "ITensorMPS",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ITensors",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "ITensors",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "evidence_paths": [],
+      "id": "julia.JSON",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "JSON",
+      "required_apis": [
+        "JSON.json"
+      ],
+      "roles": [
+        "strict_probe_serialization"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/stress/attractors_basins_probe.jl",
+        "sim_engines/stress/entropy_gradient_sweep_julia.jl",
+        "sim_engines/stress/itensors_mps_cut_probe.jl",
+        "sim_engines/stress/quantumclifford_orbit_probe.jl",
+        "sim_engines/serialized/catlab_ratchet.jl"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.JSON3",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "JSON3",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Manifolds",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Manifolds",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Octonions",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Octonions",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumClifford",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "QuantumClifford",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumOptics",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "QuantumOptics",
+      "required_apis": [
+        "basis",
+        "operator",
+        "timeevolution"
+      ],
+      "roles": [
+        "qit_engine"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "system_v5/julia_carrier"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumToolbox",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "QuantumToolbox",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Quaternions",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Quaternions",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.StaticArrays",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "StaticArrays",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Symbolics",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Symbolics",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Yao",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Yao",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Z3",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "package": "Z3",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "blackjax",
+      "evidence_paths": [],
+      "id": "python.blackjax",
+      "import": "blackjax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "blackjax==1.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "chex",
+      "evidence_paths": [],
+      "id": "python.chex",
+      "import": "chex",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "chex==0.1.91",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq",
+      "evidence_paths": [],
+      "id": "python.cirq",
+      "import": "cirq",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "cirq",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "clifford",
+      "evidence_paths": [],
+      "id": "python.clifford",
+      "import": "clifford",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "clifford",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "cotengra",
+      "evidence_paths": [],
+      "id": "python.cotengra",
+      "import": "cotengra",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "cotengra==0.8.0",
+      "required_apis": [
+        "cotengra.HyperOptimizer"
+      ],
+      "roles": [
+        "tensor_contraction_path"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "cvc5",
+      "evidence_paths": [],
+      "id": "python.cvc5",
+      "import": "cvc5",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "cvc5>=1.3.3,<1.4.0",
+      "required_apis": [
+        "cvc5.Solver",
+        "cvc5.Kind",
+        "Result.isSat"
+      ],
+      "roles": [
+        "independent_finite_smt",
+        "solver_disagreement_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/constraints.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cvxpylayers",
+      "evidence_paths": [],
+      "id": "python.cvxpylayers",
+      "import": "cvxpylayers",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "cvxpylayers==1.2.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "diffrax",
+      "evidence_paths": [],
+      "id": "python.diffrax",
+      "import": "diffrax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "diffrax==0.7.2",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dm-haiku",
+      "evidence_paths": [],
+      "id": "python.dm-haiku",
+      "import": "haiku",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dm-haiku==0.0.16",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dynamax",
+      "evidence_paths": [],
+      "id": "python.dynamax",
+      "import": "dynamax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dynamax==1.0.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dynamiqs",
+      "evidence_paths": [],
+      "id": "python.dynamiqs",
+      "import": "dynamiqs",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dynamiqs==0.3.4",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "e3nn",
+      "evidence_paths": [],
+      "id": "python.e3nn",
+      "import": "e3nn",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "e3nn==0.6.0",
+      "required_apis": [
+        "e3nn.o3"
+      ],
+      "roles": [
+        "equivariance_probe"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_e3nn_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_e3nn_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "e3nn-jax",
+      "evidence_paths": [],
+      "id": "python.e3nn-jax",
+      "import": "e3nn_jax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "e3nn-jax==0.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "equinox",
+      "evidence_paths": [],
+      "id": "python.equinox",
+      "import": "equinox",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "equinox==0.13.8",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "flax",
+      "evidence_paths": [],
+      "id": "python.flax",
+      "import": "flax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "flax==0.12.7",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "flowMC",
+      "evidence_paths": [],
+      "id": "python.flowmc",
+      "import": "flowMC",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "flowMC==0.6.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "geomstats",
+      "evidence_paths": [],
+      "id": "python.geomstats",
+      "import": "geomstats",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "geomstats==2.8.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "gudhi",
+      "evidence_paths": [],
+      "id": "python.gudhi",
+      "import": "gudhi",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "gudhi==3.12.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "gymnasium",
+      "evidence_paths": [],
+      "id": "python.gymnasium",
+      "import": "gymnasium",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "gymnasium",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "hdbscan",
+      "evidence_paths": [],
+      "id": "python.hdbscan",
+      "import": "hdbscan",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "hdbscan",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "igraph",
+      "evidence_paths": [],
+      "id": "python.igraph",
+      "import": "igraph",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "igraph==1.0.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "jax",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/jax/receipt.json"
+      ],
+      "id": "python.jax",
+      "import": "jax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jax==0.10.1",
+      "note": "Existing receipt is pre-v9 and does not by itself satisfy full-map independence.",
+      "required_apis": [
+        "jax.jit",
+        "jax.vmap",
+        "jax.numpy"
+      ],
+      "roles": [
+        "batched_finite_sweep",
+        "differentiable_engine_lane"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_jax.py",
+        "system_v8/manifold/prototypes/candidate_world_mstar_jax.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/jax_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxlib",
+      "evidence_paths": [],
+      "id": "python.jaxlib",
+      "import": "jaxlib",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxlib==0.10.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxlie",
+      "evidence_paths": [],
+      "id": "python.jaxlie",
+      "import": "jaxlie",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxlie",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxopt",
+      "evidence_paths": [],
+      "id": "python.jaxopt",
+      "import": "jaxopt",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxopt==0.8.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxtyping",
+      "evidence_paths": [],
+      "id": "python.jaxtyping",
+      "import": "jaxtyping",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxtyping==0.3.10",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jraph",
+      "evidence_paths": [],
+      "id": "python.jraph",
+      "import": "jraph",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jraph==0.0.6.dev0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "kahypar",
+      "evidence_paths": [],
+      "id": "python.kahypar",
+      "import": "kahypar",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "kahypar==1.3.7",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lightning",
+      "evidence_paths": [],
+      "id": "python.lightning",
+      "import": "lightning",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "lightning==2.6.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lineax",
+      "evidence_paths": [],
+      "id": "python.lineax",
+      "import": "lineax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "lineax==0.1.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "maude",
+      "evidence_paths": [],
+      "id": "python.maude",
+      "import": "maude",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "maude==1.6.0",
+      "required_apis": [
+        "maude.init",
+        "maude.input",
+        "maude.getModule",
+        "Term.apply"
+      ],
+      "roles": [
+        "finite_rewrite",
+        "ordered_transition"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/maude_rewrite.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_maude_rewrite.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "miniKanren",
+      "evidence_paths": [],
+      "id": "python.minikanren",
+      "import": "kanren",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "miniKanren==1.0.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "netket",
+      "evidence_paths": [],
+      "id": "python.netket",
+      "import": "netket",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "netket==3.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "networkx",
+      "evidence_paths": [],
+      "id": "python.networkx",
+      "import": "networkx",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "networkx==3.6.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "numpy",
+      "evidence_paths": [],
+      "id": "python.numpy",
+      "import": "numpy",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "numpy==2.3.4",
+      "required_apis": [
+        "numpy.asarray",
+        "numpy.linalg"
+      ],
+      "roles": [
+        "reference_numeric",
+        "array_fixture"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/manifold/prototypes/manifold_ijk_engine_prototype.py"
+      ],
+      "test_commands": [
+        "python3 -m pytest -q system_v8/manifold/prototypes/test_manifold_ijk_engine_prototype.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "numpyro",
+      "evidence_paths": [],
+      "id": "python.numpyro",
+      "import": "numpyro",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "numpyro==0.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "opt-einsum",
+      "evidence_paths": [],
+      "id": "python.opt-einsum",
+      "import": "opt_einsum",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "opt-einsum==3.4.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optax",
+      "evidence_paths": [],
+      "id": "python.optax",
+      "import": "optax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "optax==0.2.8",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optimistix",
+      "evidence_paths": [],
+      "id": "python.optimistix",
+      "import": "optimistix",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "optimistix==0.1.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "orbax-checkpoint",
+      "evidence_paths": [],
+      "id": "python.orbax-checkpoint",
+      "import": "orbax.checkpoint",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "orbax-checkpoint",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ott-jax",
+      "evidence_paths": [],
+      "id": "python.ott-jax",
+      "import": "ott",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "ott-jax==0.6.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pandas",
+      "evidence_paths": [],
+      "id": "python.pandas",
+      "import": "pandas",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "pandas==2.3.3",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pennylane",
+      "evidence_paths": [],
+      "id": "python.pennylane",
+      "import": "pennylane",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "pennylane",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pydmd",
+      "evidence_paths": [],
+      "id": "python.pydmd",
+      "import": "pydmd",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pydmd",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "distribution": "pykoopman",
+      "evidence_paths": [],
+      "id": "python.pykoopman",
+      "import": "pykoopman",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pykoopman==1.2.1",
+      "note": "Pinned Python 3.11 route only; neural and polynomial paths unresolved.",
+      "required_apis": [
+        "pykoopman.Koopman"
+      ],
+      "roles": [
+        "isolated_koopman_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_pykoopman_capability.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "pysindy",
+      "evidence_paths": [],
+      "id": "python.pysindy",
+      "import": "pysindy",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pysindy==2.1.0",
+      "note": "Sim Engines only. Not ConstraintBox core.",
+      "required_apis": [
+        "pysindy.SINDy",
+        "pysindy.STLSQ"
+      ],
+      "roles": [
+        "system_identification_external_engine"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_pysindy_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_pysindy_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qiskit",
+      "evidence_paths": [],
+      "id": "python.qiskit",
+      "import": "qiskit",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qiskit",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "quimb",
+      "evidence_paths": [],
+      "id": "python.quimb",
+      "import": "quimb",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "quimb==1.14.0",
+      "required_apis": [
+        "quimb.tensor"
+      ],
+      "roles": [
+        "tensor_network"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qutip",
+      "evidence_paths": [],
+      "id": "python.qutip",
+      "import": "qutip",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qutip",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qutip-jax",
+      "evidence_paths": [],
+      "id": "python.qutip-jax",
+      "import": "qutip_jax",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qutip-jax==0.1.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "rustworkx",
+      "evidence_paths": [],
+      "id": "python.rustworkx",
+      "import": "rustworkx",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "rustworkx>=0.17.0,<0.18.0",
+      "required_apis": [
+        "rustworkx.PyDiGraph",
+        "rustworkx.topological_sort"
+      ],
+      "roles": [
+        "workflow_dag",
+        "finite_graph_order"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/workflow_graph.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_workflow_graph.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scikit-learn",
+      "evidence_paths": [],
+      "id": "python.scikit-learn",
+      "import": "sklearn",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "scikit-learn==1.8.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "distribution": "scipy",
+      "evidence_paths": [],
+      "id": "python.scipy",
+      "import": "scipy",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "scipy==1.17.1",
+      "required_apis": [
+        "scipy.linalg.expm"
+      ],
+      "roles": [
+        "matrix_exponential_reference",
+        "numerical_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v4/probes"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "sympy",
+      "evidence_paths": [],
+      "id": "python.sympy",
+      "import": "sympy",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "sympy>=1.14.0,<1.15.0",
+      "required_apis": [
+        "sympy.expand",
+        "sympy.Poly",
+        "sympy.Rational"
+      ],
+      "roles": [
+        "exact_symbolic_check",
+        "normal_form"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/symbolic.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_symbolic.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "TopoNetX",
+      "evidence_paths": [],
+      "id": "python.toponetx",
+      "import": "toponetx",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "TopoNetX==0.4.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "torch",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/torch/receipt.json"
+      ],
+      "id": "python.torch",
+      "import": "torch",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch==2.11.0",
+      "note": "Existing receipt is pre-v9 and does not establish a complete Holodeck or QIT engine.",
+      "required_apis": [
+        "torch.einsum",
+        "torch.func",
+        "torch.autograd"
+      ],
+      "roles": [
+        "trainable_engine_lane",
+        "graph_network",
+        "holodeck_support"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_torch.py",
+        "system_v8/manifold/prototypes/candidate_world_mstar_torch.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/torch_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torch-ga",
+      "evidence_paths": [],
+      "id": "python.torch-ga",
+      "import": "torch_ga",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch-ga==0.0.6",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "torch-geometric",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/torch/receipt.json"
+      ],
+      "id": "python.torch-geometric",
+      "import": "torch_geometric",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch-geometric==2.7.0",
+      "required_apis": [
+        "torch_geometric.data.Data",
+        "torch_geometric.utils.degree"
+      ],
+      "roles": [
+        "graph_network_fixture",
+        "quantum_hopfield_support"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/torch_estate_test.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/torch_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchdiffeq",
+      "evidence_paths": [],
+      "id": "python.torchdiffeq",
+      "import": "torchdiffeq",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torchdiffeq==0.2.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchode",
+      "evidence_paths": [],
+      "id": "python.torchode",
+      "import": "torchode",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torchode==1.0.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "umap-learn",
+      "evidence_paths": [],
+      "id": "python.umap-learn",
+      "import": "umap",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "umap-learn",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xgi",
+      "evidence_paths": [],
+      "id": "python.xgi",
+      "import": "xgi",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "xgi==0.10.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xitorch",
+      "evidence_paths": [],
+      "id": "python.xitorch",
+      "import": "xitorch",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "xitorch==0.3.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "z3-solver",
+      "evidence_paths": [],
+      "id": "python.z3-solver",
+      "import": "z3",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "z3-solver>=4.16.0.0,<4.17.0.0",
+      "required_apis": [
+        "z3.Solver",
+        "z3.Int",
+        "z3.sat"
+      ],
+      "roles": [
+        "finite_smt",
+        "counterexample_witness"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/constraints.py",
+        "claimgate_plugin/ratchet_floor_smt.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py",
+        "python3 -m pytest -q claimgate_plugin/tests/test_ratchet_floor_smt.py"
+      ]
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "evidence_paths": [],
+      "executable": "julia",
+      "id": "runtime.julia",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "required_apis": [
+        "--startup-file=no",
+        "--project"
+      ],
+      "roles": [
+        "strict_carrier_runtime"
+      ],
+      "runtime": "executable",
+      "source_paths": [
+        "system_v5/julia_carrier",
+        "system_v8/engine_estate/integration_stage_julia.jl"
+      ],
+      "test_commands": [
+        "julia --startup-file=no --project=sim_engines/install/julia -e 'using Pkg; Pkg.status()'"
+      ]
+    }
+  ],
+  "version": "0.1.0.dev1"
+}

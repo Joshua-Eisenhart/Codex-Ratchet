@@ -1,0 +1,3729 @@
+{
+  "claim_ceiling": "installation_and_declared_source_integration_index_only",
+  "generated_at": "2026-08-06T20:51:35.182037+00:00",
+  "host": {
+    "executable": "$HOME/.local/share/codex-ratchet/envs/main/bin/python3",
+    "machine": "arm64",
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.6"
+  },
+  "julia_probe": "executed",
+  "registered_tools": [
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.apalache",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "live_install_state": "executable_visible",
+      "live_version": null,
+      "note": "Legacy CB route to extract behind a Sim Engines bridge.",
+      "required_apis": [
+        "apalache-mc check"
+      ],
+      "resolved_executable": "/usr/bin/java",
+      "roles": [
+        "optional_temporal_symbolic_check"
+      ],
+      "runtime": "jar",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.java",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "live_install_state": "executable_visible",
+      "live_version": null,
+      "note": "External proof bridge only. Never ConstraintBox core.",
+      "required_apis": [
+        "-jar"
+      ],
+      "resolved_executable": "/usr/bin/java",
+      "roles": [
+        "optional_temporal_checker_host"
+      ],
+      "runtime": "executable",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "evidence_paths": [],
+      "executable": "java",
+      "id": "external.tlc",
+      "install_profiles": [
+        "temporal-formal"
+      ],
+      "live_install_state": "executable_visible",
+      "live_version": null,
+      "note": "Legacy CB route to extract behind a Sim Engines bridge.",
+      "required_apis": [
+        "tlc2.TLC"
+      ],
+      "resolved_executable": "/usr/bin/java",
+      "roles": [
+        "optional_temporal_model_check"
+      ],
+      "runtime": "jar",
+      "source_paths": [
+        "constraint_box/src/constraintbox/formalcheck.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "evidence_paths": [],
+      "id": "julia.Attractors",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Attractors",
+      "required_apis": [
+        "AttractorsViaRecurrences"
+      ],
+      "roles": [
+        "basin_mapping"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/stress/attractors_basins_probe.jl"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ChaosTools",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "ChaosTools",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.CliffordAlgebras",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "CliffordAlgebras",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.DifferentialEquations",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "DifferentialEquations",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.DynamicalSystems",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "DynamicalSystems",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "evidence_paths": [],
+      "id": "julia.Graphs",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Graphs",
+      "required_apis": [
+        "SimpleDiGraph",
+        "add_edge!"
+      ],
+      "roles": [
+        "finite_graph_carrier"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_julia.jl"
+      ],
+      "test_commands": [
+        "julia --startup-file=no --project=sim_engines/install/julia -e 'using Graphs; g=SimpleDiGraph(2); add_edge!(g,1,2); @assert ne(g)==1'"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Grassmann",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Grassmann",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ITensorMPS",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "ITensorMPS",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.ITensors",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "ITensors",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "evidence_paths": [],
+      "id": "julia.JSON",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "JSON",
+      "required_apis": [
+        "JSON.json"
+      ],
+      "roles": [
+        "strict_probe_serialization"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/stress/attractors_basins_probe.jl",
+        "sim_engines/stress/entropy_gradient_sweep_julia.jl",
+        "sim_engines/stress/itensors_mps_cut_probe.jl",
+        "sim_engines/stress/quantumclifford_orbit_probe.jl",
+        "sim_engines/serialized/catlab_ratchet.jl"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.JSON3",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "JSON3",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Manifolds",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Manifolds",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Octonions",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Octonions",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumClifford",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "QuantumClifford",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumOptics",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "QuantumOptics",
+      "required_apis": [
+        "basis",
+        "operator",
+        "timeevolution"
+      ],
+      "roles": [
+        "qit_engine"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "system_v5/julia_carrier"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.QuantumToolbox",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "QuantumToolbox",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Quaternions",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Quaternions",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.StaticArrays",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "StaticArrays",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Symbolics",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Symbolics",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Yao",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Yao",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "evidence_paths": [],
+      "id": "julia.Z3",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "julia_depot_installed": true,
+      "live_install_state": "load_path_visible",
+      "live_version": null,
+      "package": "Z3",
+      "required_apis": [],
+      "roles": [
+        "strict_carrier_candidate"
+      ],
+      "runtime": "julia_package",
+      "source_paths": [
+        "sim_engines/install/julia/Project.toml"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "blackjax",
+      "evidence_paths": [],
+      "id": "python.blackjax",
+      "import": "blackjax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "blackjax==1.5",
+      "live_install_state": "import_visible",
+      "live_version": "1.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "chex",
+      "evidence_paths": [],
+      "id": "python.chex",
+      "import": "chex",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "chex==0.1.91",
+      "live_install_state": "import_visible",
+      "live_version": "0.1.91",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq",
+      "evidence_paths": [],
+      "id": "python.cirq",
+      "import": "cirq",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "cirq",
+      "live_install_state": "import_visible",
+      "live_version": "1.6.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "clifford",
+      "evidence_paths": [],
+      "id": "python.clifford",
+      "import": "clifford",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "clifford",
+      "live_install_state": "import_visible",
+      "live_version": "1.5.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "cotengra",
+      "evidence_paths": [],
+      "id": "python.cotengra",
+      "import": "cotengra",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "cotengra==0.8.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.8.0",
+      "required_apis": [
+        "cotengra.HyperOptimizer"
+      ],
+      "roles": [
+        "tensor_contraction_path"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "cvc5",
+      "evidence_paths": [],
+      "id": "python.cvc5",
+      "import": "cvc5",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "cvc5>=1.3.3,<1.4.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.3.3",
+      "required_apis": [
+        "cvc5.Solver",
+        "cvc5.Kind",
+        "Result.isSat"
+      ],
+      "roles": [
+        "independent_finite_smt",
+        "solver_disagreement_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/constraints.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cvxpylayers",
+      "evidence_paths": [],
+      "id": "python.cvxpylayers",
+      "import": "cvxpylayers",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "cvxpylayers==1.2.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.2.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "diffrax",
+      "evidence_paths": [],
+      "id": "python.diffrax",
+      "import": "diffrax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "diffrax==0.7.2",
+      "live_install_state": "import_visible",
+      "live_version": "0.7.2",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dm-haiku",
+      "evidence_paths": [],
+      "id": "python.dm-haiku",
+      "import": "haiku",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dm-haiku==0.0.16",
+      "live_install_state": "import_visible",
+      "live_version": "0.0.16",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dynamax",
+      "evidence_paths": [],
+      "id": "python.dynamax",
+      "import": "dynamax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dynamax==1.0.1",
+      "live_install_state": "import_visible",
+      "live_version": "1.0.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dynamiqs",
+      "evidence_paths": [],
+      "id": "python.dynamiqs",
+      "import": "dynamiqs",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "dynamiqs==0.3.4",
+      "live_install_state": "import_visible",
+      "live_version": "0.3.4",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "e3nn",
+      "evidence_paths": [],
+      "id": "python.e3nn",
+      "import": "e3nn",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "e3nn==0.6.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.6.0",
+      "required_apis": [
+        "e3nn.o3"
+      ],
+      "roles": [
+        "equivariance_probe"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_e3nn_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_e3nn_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "e3nn-jax",
+      "evidence_paths": [],
+      "id": "python.e3nn-jax",
+      "import": "e3nn_jax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "e3nn-jax==0.21.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "equinox",
+      "evidence_paths": [],
+      "id": "python.equinox",
+      "import": "equinox",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "equinox==0.13.8",
+      "live_install_state": "import_visible",
+      "live_version": "0.13.8",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "flax",
+      "evidence_paths": [],
+      "id": "python.flax",
+      "import": "flax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "flax==0.12.7",
+      "live_install_state": "import_visible",
+      "live_version": "0.12.7",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "flowMC",
+      "evidence_paths": [],
+      "id": "python.flowmc",
+      "import": "flowMC",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "flowMC==0.6.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.6.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "geomstats",
+      "evidence_paths": [],
+      "id": "python.geomstats",
+      "import": "geomstats",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "geomstats==2.8.0",
+      "live_install_state": "import_visible",
+      "live_version": "2.8.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "gudhi",
+      "evidence_paths": [],
+      "id": "python.gudhi",
+      "import": "gudhi",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "gudhi==3.12.0",
+      "live_install_state": "import_visible",
+      "live_version": "3.12.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "gymnasium",
+      "evidence_paths": [],
+      "id": "python.gymnasium",
+      "import": "gymnasium",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "gymnasium",
+      "live_install_state": "import_visible",
+      "live_version": "1.2.3",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "hdbscan",
+      "evidence_paths": [],
+      "id": "python.hdbscan",
+      "import": "hdbscan",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "hdbscan",
+      "live_install_state": "import_visible",
+      "live_version": "0.8.42",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "igraph",
+      "evidence_paths": [],
+      "id": "python.igraph",
+      "import": "igraph",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "igraph==1.0.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.0.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "jax",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/jax/receipt.json"
+      ],
+      "id": "python.jax",
+      "import": "jax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jax==0.10.1",
+      "live_install_state": "import_visible",
+      "live_version": "0.10.1",
+      "note": "Existing receipt is pre-v9 and does not by itself satisfy full-map independence.",
+      "required_apis": [
+        "jax.jit",
+        "jax.vmap",
+        "jax.numpy"
+      ],
+      "roles": [
+        "batched_finite_sweep",
+        "differentiable_engine_lane"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_jax.py",
+        "system_v8/manifold/prototypes/candidate_world_mstar_jax.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/jax_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxlib",
+      "evidence_paths": [],
+      "id": "python.jaxlib",
+      "import": "jaxlib",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxlib==0.10.1",
+      "live_install_state": "import_visible",
+      "live_version": "0.10.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxlie",
+      "evidence_paths": [],
+      "id": "python.jaxlie",
+      "import": "jaxlie",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxlie",
+      "live_install_state": "import_visible",
+      "live_version": "1.5.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxopt",
+      "evidence_paths": [],
+      "id": "python.jaxopt",
+      "import": "jaxopt",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxopt==0.8.5",
+      "live_install_state": "import_visible",
+      "live_version": "0.8.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxtyping",
+      "evidence_paths": [],
+      "id": "python.jaxtyping",
+      "import": "jaxtyping",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jaxtyping==0.3.10",
+      "live_install_state": "import_visible",
+      "live_version": "0.3.10",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jraph",
+      "evidence_paths": [],
+      "id": "python.jraph",
+      "import": "jraph",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "jraph==0.0.6.dev0",
+      "live_install_state": "import_visible",
+      "live_version": "0.0.6.dev0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "kahypar",
+      "evidence_paths": [],
+      "id": "python.kahypar",
+      "import": "kahypar",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "kahypar==1.3.7",
+      "live_install_state": "import_visible",
+      "live_version": "1.3.7",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lightning",
+      "evidence_paths": [],
+      "id": "python.lightning",
+      "import": "lightning",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "lightning==2.6.5",
+      "live_install_state": "import_visible",
+      "live_version": "2.6.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lineax",
+      "evidence_paths": [],
+      "id": "python.lineax",
+      "import": "lineax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "lineax==0.1.1",
+      "live_install_state": "import_visible",
+      "live_version": "0.1.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "maude",
+      "evidence_paths": [],
+      "id": "python.maude",
+      "import": "maude",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "maude==1.6.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.6.0",
+      "required_apis": [
+        "maude.init",
+        "maude.input",
+        "maude.getModule",
+        "Term.apply"
+      ],
+      "roles": [
+        "finite_rewrite",
+        "ordered_transition"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/maude_rewrite.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_maude_rewrite.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "miniKanren",
+      "evidence_paths": [],
+      "id": "python.minikanren",
+      "import": "kanren",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "miniKanren==1.0.5",
+      "live_install_state": "import_visible",
+      "live_version": "1.0.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "netket",
+      "evidence_paths": [],
+      "id": "python.netket",
+      "import": "netket",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "netket==3.21.0",
+      "live_install_state": "import_visible",
+      "live_version": "3.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "networkx",
+      "evidence_paths": [],
+      "id": "python.networkx",
+      "import": "networkx",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "networkx==3.6.1",
+      "live_install_state": "import_visible",
+      "live_version": "3.6.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "numpy",
+      "evidence_paths": [],
+      "id": "python.numpy",
+      "import": "numpy",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "numpy==2.3.4",
+      "live_install_state": "import_visible",
+      "live_version": "2.3.4",
+      "required_apis": [
+        "numpy.asarray",
+        "numpy.linalg"
+      ],
+      "roles": [
+        "reference_numeric",
+        "array_fixture"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/manifold/prototypes/manifold_ijk_engine_prototype.py"
+      ],
+      "test_commands": [
+        "python3 -m pytest -q system_v8/manifold/prototypes/test_manifold_ijk_engine_prototype.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "numpyro",
+      "evidence_paths": [],
+      "id": "python.numpyro",
+      "import": "numpyro",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "numpyro==0.21.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.21.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "opt-einsum",
+      "evidence_paths": [],
+      "id": "python.opt-einsum",
+      "import": "opt_einsum",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "opt-einsum==3.4.0",
+      "live_install_state": "import_visible",
+      "live_version": "3.4.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optax",
+      "evidence_paths": [],
+      "id": "python.optax",
+      "import": "optax",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "optax==0.2.8",
+      "live_install_state": "import_visible",
+      "live_version": "0.2.8",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optimistix",
+      "evidence_paths": [],
+      "id": "python.optimistix",
+      "import": "optimistix",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "optimistix==0.1.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.1.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "orbax-checkpoint",
+      "evidence_paths": [],
+      "id": "python.orbax-checkpoint",
+      "import": "orbax.checkpoint",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "orbax-checkpoint",
+      "live_install_state": "import_visible",
+      "live_version": "0.11.40",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ott-jax",
+      "evidence_paths": [],
+      "id": "python.ott-jax",
+      "import": "ott",
+      "install_profiles": [
+        "jax"
+      ],
+      "install_spec": "ott-jax==0.6.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.6.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pandas",
+      "evidence_paths": [],
+      "id": "python.pandas",
+      "import": "pandas",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "pandas==2.3.3",
+      "live_install_state": "import_visible",
+      "live_version": "2.3.3",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pennylane",
+      "evidence_paths": [],
+      "id": "python.pennylane",
+      "import": "pennylane",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "pennylane",
+      "live_install_state": "import_visible",
+      "live_version": "0.44.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pydmd",
+      "evidence_paths": [],
+      "id": "python.pydmd",
+      "import": "pydmd",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pydmd",
+      "live_install_state": "import_visible",
+      "live_version": "2025.8.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "quarantined",
+      "distribution": "pykoopman",
+      "evidence_paths": [],
+      "id": "python.pykoopman",
+      "import": "pykoopman",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pykoopman==1.2.1",
+      "live_install_state": "import_visible",
+      "live_version": "1.2.1",
+      "note": "Pinned Python 3.11 route only; neural and polynomial paths unresolved.",
+      "required_apis": [
+        "pykoopman.Koopman"
+      ],
+      "roles": [
+        "isolated_koopman_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_pykoopman_capability.py"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "pysindy",
+      "evidence_paths": [],
+      "id": "python.pysindy",
+      "import": "pysindy",
+      "install_profiles": [
+        "system-identification"
+      ],
+      "install_spec": "pysindy==2.1.0",
+      "live_install_state": "import_visible",
+      "live_version": "2.1.0",
+      "note": "Sim Engines only. Not ConstraintBox core.",
+      "required_apis": [
+        "pysindy.SINDy",
+        "pysindy.STLSQ"
+      ],
+      "roles": [
+        "system_identification_external_engine"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_pysindy_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_pysindy_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qiskit",
+      "evidence_paths": [],
+      "id": "python.qiskit",
+      "import": "qiskit",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qiskit",
+      "live_install_state": "import_visible",
+      "live_version": "2.4.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "quimb",
+      "evidence_paths": [],
+      "id": "python.quimb",
+      "import": "quimb",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "quimb==1.14.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.14.0",
+      "required_apis": [
+        "quimb.tensor"
+      ],
+      "roles": [
+        "tensor_network"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/external_quimb_cotengra_capability.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_external_quimb_cotengra_capability.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qutip",
+      "evidence_paths": [],
+      "id": "python.qutip",
+      "import": "qutip",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qutip",
+      "live_install_state": "import_visible",
+      "live_version": "5.2.3",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qutip-jax",
+      "evidence_paths": [],
+      "id": "python.qutip-jax",
+      "import": "qutip_jax",
+      "install_profiles": [
+        "qit-python"
+      ],
+      "install_spec": "qutip-jax==0.1.1",
+      "live_install_state": "import_visible",
+      "live_version": "0.1.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "rustworkx",
+      "evidence_paths": [],
+      "id": "python.rustworkx",
+      "import": "rustworkx",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "rustworkx>=0.17.0,<0.18.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.17.1",
+      "required_apis": [
+        "rustworkx.PyDiGraph",
+        "rustworkx.topological_sort"
+      ],
+      "roles": [
+        "workflow_dag",
+        "finite_graph_order"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/workflow_graph.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_workflow_graph.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scikit-learn",
+      "evidence_paths": [],
+      "id": "python.scikit-learn",
+      "import": "sklearn",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "scikit-learn==1.8.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.8.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "imported_in_source",
+      "distribution": "scipy",
+      "evidence_paths": [],
+      "id": "python.scipy",
+      "import": "scipy",
+      "install_profiles": [
+        "python-base"
+      ],
+      "install_spec": "scipy==1.17.1",
+      "live_install_state": "import_visible",
+      "live_version": "1.17.1",
+      "required_apis": [
+        "scipy.linalg.expm"
+      ],
+      "roles": [
+        "matrix_exponential_reference",
+        "numerical_control"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v4/probes"
+      ],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "sympy",
+      "evidence_paths": [],
+      "id": "python.sympy",
+      "import": "sympy",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "sympy>=1.14.0,<1.15.0",
+      "live_install_state": "import_visible",
+      "live_version": "1.14.0",
+      "required_apis": [
+        "sympy.expand",
+        "sympy.Poly",
+        "sympy.Rational"
+      ],
+      "roles": [
+        "exact_symbolic_check",
+        "normal_form"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/symbolic.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_symbolic.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "TopoNetX",
+      "evidence_paths": [],
+      "id": "python.toponetx",
+      "import": "toponetx",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "TopoNetX==0.4.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.4.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "torch",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/torch/receipt.json"
+      ],
+      "id": "python.torch",
+      "import": "torch",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch==2.11.0",
+      "live_install_state": "import_visible",
+      "live_version": "2.11.0",
+      "note": "Existing receipt is pre-v9 and does not establish a complete Holodeck or QIT engine.",
+      "required_apis": [
+        "torch.einsum",
+        "torch.func",
+        "torch.autograd"
+      ],
+      "roles": [
+        "trainable_engine_lane",
+        "graph_network",
+        "holodeck_support"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/integration_stage_torch.py",
+        "system_v8/manifold/prototypes/candidate_world_mstar_torch.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/torch_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torch-ga",
+      "evidence_paths": [],
+      "id": "python.torch-ga",
+      "import": "torch_ga",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch-ga==0.0.6",
+      "live_install_state": "import_visible",
+      "live_version": "0.0.6",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "torch-geometric",
+      "evidence_paths": [
+        "system_v8/engine_estate/results/torch/receipt.json"
+      ],
+      "id": "python.torch-geometric",
+      "import": "torch_geometric",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torch-geometric==2.7.0",
+      "live_install_state": "import_visible",
+      "live_version": "2.7.0",
+      "required_apis": [
+        "torch_geometric.data.Data",
+        "torch_geometric.utils.degree"
+      ],
+      "roles": [
+        "graph_network_fixture",
+        "quantum_hopfield_support"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "system_v8/engine_estate/torch_estate_test.py"
+      ],
+      "test_commands": [
+        "python3 system_v8/engine_estate/torch_estate_test.py"
+      ]
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchdiffeq",
+      "evidence_paths": [],
+      "id": "python.torchdiffeq",
+      "import": "torchdiffeq",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torchdiffeq==0.2.5",
+      "live_install_state": "import_visible",
+      "live_version": "0.2.5",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchode",
+      "evidence_paths": [],
+      "id": "python.torchode",
+      "import": "torchode",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "torchode==1.0.1",
+      "live_install_state": "import_visible",
+      "live_version": "1.0.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "umap-learn",
+      "evidence_paths": [],
+      "id": "python.umap-learn",
+      "import": "umap",
+      "install_profiles": [
+        "holodeck-world-model"
+      ],
+      "install_spec": "umap-learn",
+      "live_install_state": "import_visible",
+      "live_version": "0.5.12",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xgi",
+      "evidence_paths": [],
+      "id": "python.xgi",
+      "import": "xgi",
+      "install_profiles": [
+        "graph-topology"
+      ],
+      "install_spec": "xgi==0.10.1",
+      "live_install_state": "import_visible",
+      "live_version": "0.10.1",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xitorch",
+      "evidence_paths": [],
+      "id": "python.xitorch",
+      "import": "xitorch",
+      "install_profiles": [
+        "torch"
+      ],
+      "install_spec": "xitorch==0.3.0",
+      "live_install_state": "import_visible",
+      "live_version": "0.3.0",
+      "required_apis": [],
+      "roles": [],
+      "runtime": "python",
+      "source_paths": [],
+      "test_commands": []
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "distribution": "z3-solver",
+      "evidence_paths": [],
+      "id": "python.z3-solver",
+      "import": "z3",
+      "install_profiles": [
+        "cb-mirror"
+      ],
+      "install_spec": "z3-solver>=4.16.0.0,<4.17.0.0",
+      "live_install_state": "import_visible",
+      "live_version": "4.16.0.0",
+      "required_apis": [
+        "z3.Solver",
+        "z3.Int",
+        "z3.sat"
+      ],
+      "roles": [
+        "finite_smt",
+        "counterexample_witness"
+      ],
+      "runtime": "python",
+      "source_paths": [
+        "constraint_box/src/constraintbox/constraints.py",
+        "claimgate_plugin/ratchet_floor_smt.py"
+      ],
+      "test_commands": [
+        "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_constraints_backend_parity.py",
+        "python3 -m pytest -q claimgate_plugin/tests/test_ratchet_floor_smt.py"
+      ]
+    },
+    {
+      "declared_integration_level": "function_level_receipt",
+      "evidence_paths": [],
+      "executable": "julia",
+      "id": "runtime.julia",
+      "install_profiles": [
+        "julia-strict-carrier"
+      ],
+      "live_install_state": "executable_visible",
+      "live_version": null,
+      "required_apis": [
+        "--startup-file=no",
+        "--project"
+      ],
+      "resolved_executable": "/opt/homebrew/bin/julia",
+      "roles": [
+        "strict_carrier_runtime"
+      ],
+      "runtime": "executable",
+      "source_paths": [
+        "system_v5/julia_carrier",
+        "system_v8/engine_estate/integration_stage_julia.jl"
+      ],
+      "test_commands": [
+        "julia --startup-file=no --project=sim_engines/install/julia -e 'using Pkg; Pkg.status()'"
+      ]
+    }
+  ],
+  "registry_version": "0.1.0.dev1",
+  "schema": "codex-ratchet.live-tool-index.v9",
+  "summary": {
+    "julia_depot_installed_not_active_project_count": 0,
+    "registered_installed_or_visible_count": 89,
+    "registered_missing_count": 0,
+    "registered_tool_count": 89,
+    "registered_unchecked_count": 0,
+    "registered_visible_count": 89,
+    "unregistered_installed_python_distribution_count": 306
+  },
+  "unregistered_installed_python_distributions": [
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "about-time",
+      "live_install_state": "unregistered_installed",
+      "version": "4.2.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "absl-py",
+      "live_install_state": "unregistered_installed",
+      "version": "2.4.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "accelerate",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "aiofiles",
+      "live_install_state": "unregistered_installed",
+      "version": "25.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "aiohappyeyeballs",
+      "live_install_state": "unregistered_installed",
+      "version": "2.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "aiohttp",
+      "live_install_state": "unregistered_installed",
+      "version": "3.13.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "aiosignal",
+      "live_install_state": "unregistered_installed",
+      "version": "1.4.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "alembic",
+      "live_install_state": "unregistered_installed",
+      "version": "1.18.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "alive-progress",
+      "live_install_state": "unregistered_installed",
+      "version": "3.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "annotated-types",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "anyio",
+      "live_install_state": "unregistered_installed",
+      "version": "4.13.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "anywidget",
+      "live_install_state": "unregistered_installed",
+      "version": "0.11.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "appdirs",
+      "live_install_state": "unregistered_installed",
+      "version": "1.4.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "apsw",
+      "live_install_state": "unregistered_installed",
+      "version": "3.53.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "apswutils",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "array-api-compat",
+      "live_install_state": "unregistered_installed",
+      "version": "1.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "arro3-core",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "arviz",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "arviz-base",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "arviz-plots",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "arviz-stats",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "astroid",
+      "live_install_state": "unregistered_installed",
+      "version": "4.0.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "asttokens",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "astunparse",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "attrs",
+      "live_install_state": "unregistered_installed",
+      "version": "26.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "auto-lirpa",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "autograd",
+      "live_install_state": "unregistered_installed",
+      "version": "1.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "autoray",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "bayeux-ml",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.15"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "beartype",
+      "live_install_state": "unregistered_installed",
+      "version": "0.22.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "beautifulsoup4",
+      "live_install_state": "unregistered_installed",
+      "version": "4.14.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "bibtexparser",
+      "live_install_state": "unregistered_installed",
+      "version": "1.4.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cachetools",
+      "live_install_state": "unregistered_installed",
+      "version": "6.2.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "certifi",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.2.25"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cffi",
+      "live_install_state": "unregistered_installed",
+      "version": "2.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "charset-normalizer",
+      "live_install_state": "unregistered_installed",
+      "version": "3.4.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-aqt",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-core",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-google",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-ionq",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-pasqal",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cirq-web",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "clarabel",
+      "live_install_state": "unregistered_installed",
+      "version": "0.11.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "click",
+      "live_install_state": "unregistered_installed",
+      "version": "8.3.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cloudpickle",
+      "live_install_state": "unregistered_installed",
+      "version": "3.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cma",
+      "live_install_state": "unregistered_installed",
+      "version": "4.4.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cmap",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "colorama",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "colorlog",
+      "live_install_state": "unregistered_installed",
+      "version": "6.10.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "comm",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cons",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "contourpy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cramjam",
+      "live_install_state": "unregistered_installed",
+      "version": "2.11.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cryptography",
+      "live_install_state": "unregistered_installed",
+      "version": "46.0.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cvxpy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.9.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cycler",
+      "live_install_state": "unregistered_installed",
+      "version": "0.12.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cyclopts",
+      "live_install_state": "unregistered_installed",
+      "version": "4.10.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cython",
+      "live_install_state": "unregistered_installed",
+      "version": "3.2.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "cytoolz",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "datasketch",
+      "live_install_state": "unregistered_installed",
+      "version": "1.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "deap",
+      "live_install_state": "unregistered_installed",
+      "version": "1.4.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "decorator",
+      "live_install_state": "unregistered_installed",
+      "version": "5.3.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "deprecated",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "derivative",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "diastatic-malt",
+      "live_install_state": "unregistered_installed",
+      "version": "2.15.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "diffcp",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "diffusers",
+      "live_install_state": "unregistered_installed",
+      "version": "0.38.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dill",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dimod",
+      "live_install_state": "unregistered_installed",
+      "version": "0.12.22"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "distro",
+      "live_install_state": "unregistered_installed",
+      "version": "1.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dm-tree",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.10"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "docstring-parser",
+      "live_install_state": "unregistered_installed",
+      "version": "0.18.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "docutils",
+      "live_install_state": "unregistered_installed",
+      "version": "0.22.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "donfig",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.1.post1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "duet",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dwave-neal",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "dwave-samplers",
+      "live_install_state": "unregistered_installed",
+      "version": "1.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "einops",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "et-xmlfile",
+      "live_install_state": "unregistered_installed",
+      "version": "2.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "etils",
+      "live_install_state": "unregistered_installed",
+      "version": "1.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "etuples",
+      "live_install_state": "unregistered_installed",
+      "version": "0.3.10"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "evotorch",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "executing",
+      "live_install_state": "unregistered_installed",
+      "version": "2.2.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "farama-notifications",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fastcore",
+      "live_install_state": "unregistered_installed",
+      "version": "1.13.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fastlite",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fastparquet",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.5.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fastprogress",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "filelock",
+      "live_install_state": "unregistered_installed",
+      "version": "3.25.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fonttools",
+      "live_install_state": "unregistered_installed",
+      "version": "4.62.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "frozendict",
+      "live_install_state": "unregistered_installed",
+      "version": "2.4.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "frozenlist",
+      "live_install_state": "unregistered_installed",
+      "version": "1.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "fsspec",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "galois",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.11"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "gast",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "google-api-core",
+      "live_install_state": "unregistered_installed",
+      "version": "2.30.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "google-auth",
+      "live_install_state": "unregistered_installed",
+      "version": "2.49.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "google-crc32c",
+      "live_install_state": "unregistered_installed",
+      "version": "1.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "googleapis-common-protos",
+      "live_install_state": "unregistered_installed",
+      "version": "1.74.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "graphemeu",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "graphviz",
+      "live_install_state": "unregistered_installed",
+      "version": "0.21"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "grpcio",
+      "live_install_state": "unregistered_installed",
+      "version": "1.80.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "grpcio-status",
+      "live_install_state": "unregistered_installed",
+      "version": "1.71.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "h11",
+      "live_install_state": "unregistered_installed",
+      "version": "0.16.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "h5netcdf",
+      "live_install_state": "unregistered_installed",
+      "version": "1.8.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "h5py",
+      "live_install_state": "unregistered_installed",
+      "version": "3.16.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "hf-xet",
+      "live_install_state": "unregistered_installed",
+      "version": "1.5.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "highspy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "hoptorch",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "httpcore",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "httptools",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "httpx",
+      "live_install_state": "unregistered_installed",
+      "version": "0.28.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "huggingface-hub",
+      "live_install_state": "unregistered_installed",
+      "version": "0.36.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "humanize",
+      "live_install_state": "unregistered_installed",
+      "version": "4.15.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "hypothesis",
+      "live_install_state": "unregistered_installed",
+      "version": "6.151.12"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "icecream",
+      "live_install_state": "unregistered_installed",
+      "version": "2.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "idna",
+      "live_install_state": "unregistered_installed",
+      "version": "3.11"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "immutabledict",
+      "live_install_state": "unregistered_installed",
+      "version": "4.3.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "importlib-metadata",
+      "live_install_state": "unregistered_installed",
+      "version": "9.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "inferactively-pymdp",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "iniconfig",
+      "live_install_state": "unregistered_installed",
+      "version": "2.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ipython",
+      "live_install_state": "unregistered_installed",
+      "version": "9.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ipython-pygments-lexers",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ipywidgets",
+      "live_install_state": "unregistered_installed",
+      "version": "8.1.8"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "isort",
+      "live_install_state": "unregistered_installed",
+      "version": "8.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "itsdangerous",
+      "live_install_state": "unregistered_installed",
+      "version": "2.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jax-dataclasses",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jax-md",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.29"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jax-verify",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jaxga",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jedi",
+      "live_install_state": "unregistered_installed",
+      "version": "0.20.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jinja2",
+      "live_install_state": "unregistered_installed",
+      "version": "3.1.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jiter",
+      "live_install_state": "unregistered_installed",
+      "version": "0.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jmp",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "joblib",
+      "live_install_state": "unregistered_installed",
+      "version": "1.5.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jsonschema",
+      "live_install_state": "unregistered_installed",
+      "version": "4.26.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jsonschema-specifications",
+      "live_install_state": "unregistered_installed",
+      "version": "2025.9.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "jupyterlab-widgets",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0.16"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "kingdon",
+      "live_install_state": "unregistered_installed",
+      "version": "2.1.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "kiwisolver",
+      "live_install_state": "unregistered_installed",
+      "version": "1.5.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lazy-loader",
+      "live_install_state": "unregistered_installed",
+      "version": "0.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lightning-utilities",
+      "live_install_state": "unregistered_installed",
+      "version": "0.15.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "llvmlite",
+      "live_install_state": "unregistered_installed",
+      "version": "0.47.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "logical-unification",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "lxml",
+      "live_install_state": "unregistered_installed",
+      "version": "6.1.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "mako",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.11"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "markdown-it-py",
+      "live_install_state": "unregistered_installed",
+      "version": "4.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "markupsafe",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "matplotlib",
+      "live_install_state": "unregistered_installed",
+      "version": "3.10.8"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "matplotlib-inline",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "mccabe",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "mctx",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.71"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "mdurl",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ml-collections",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ml-dtypes",
+      "live_install_state": "unregistered_installed",
+      "version": "0.5.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "monty",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.7.16"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "moocore",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "more-itertools",
+      "live_install_state": "unregistered_installed",
+      "version": "11.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "mpmath",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "msgpack",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "msgspec",
+      "live_install_state": "unregistered_installed",
+      "version": "0.21.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "multidict",
+      "live_install_state": "unregistered_installed",
+      "version": "6.7.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "multimethod",
+      "live_install_state": "unregistered_installed",
+      "version": "2.0.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "multipledispatch",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "namex",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "narwhals",
+      "live_install_state": "unregistered_installed",
+      "version": "2.24.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ninja",
+      "live_install_state": "unregistered_installed",
+      "version": "1.13.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "numba",
+      "live_install_state": "unregistered_installed",
+      "version": "0.65.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "numcodecs",
+      "live_install_state": "unregistered_installed",
+      "version": "0.16.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "numpy-groupies",
+      "live_install_state": "unregistered_installed",
+      "version": "0.11.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "nutpie",
+      "live_install_state": "unregistered_installed",
+      "version": "0.16.10"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "oauthlib",
+      "live_install_state": "unregistered_installed",
+      "version": "3.3.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "obstore",
+      "live_install_state": "unregistered_installed",
+      "version": "0.10.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "openai",
+      "live_install_state": "unregistered_installed",
+      "version": "2.36.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "openpyxl",
+      "live_install_state": "unregistered_installed",
+      "version": "3.1.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "opt-einsum-fx",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optht",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optree",
+      "live_install_state": "unregistered_installed",
+      "version": "0.19.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "optuna",
+      "live_install_state": "unregistered_installed",
+      "version": "4.8.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "orjson",
+      "live_install_state": "unregistered_installed",
+      "version": "3.11.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "oryx",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "osqp",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "packaging",
+      "live_install_state": "unregistered_installed",
+      "version": "26.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "palettable",
+      "live_install_state": "unregistered_installed",
+      "version": "3.3.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "parso",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "patsy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pennylane-lightning",
+      "live_install_state": "unregistered_installed",
+      "version": "0.44.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pexpect",
+      "live_install_state": "unregistered_installed",
+      "version": "4.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pgmpy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pillow",
+      "live_install_state": "unregistered_installed",
+      "version": "12.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pip",
+      "live_install_state": "unregistered_installed",
+      "version": "26.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "platformdirs",
+      "live_install_state": "unregistered_installed",
+      "version": "4.9.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "plotly",
+      "live_install_state": "unregistered_installed",
+      "version": "6.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pluggy",
+      "live_install_state": "unregistered_installed",
+      "version": "1.6.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "plum-dispatch",
+      "live_install_state": "unregistered_installed",
+      "version": "2.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pooch",
+      "live_install_state": "unregistered_installed",
+      "version": "1.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "prometheus-client",
+      "live_install_state": "unregistered_installed",
+      "version": "0.25.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "prompt-toolkit",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0.52"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "propcache",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "proto-plus",
+      "live_install_state": "unregistered_installed",
+      "version": "1.27.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "protobuf",
+      "live_install_state": "unregistered_installed",
+      "version": "5.29.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "psutil",
+      "live_install_state": "unregistered_installed",
+      "version": "7.2.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "psygnal",
+      "live_install_state": "unregistered_installed",
+      "version": "0.15.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ptyprocess",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pure-eval",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyarrow",
+      "live_install_state": "unregistered_installed",
+      "version": "23.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyasn1",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyasn1-modules",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pycparser",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pydantic",
+      "live_install_state": "unregistered_installed",
+      "version": "2.12.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pydantic-core",
+      "live_install_state": "unregistered_installed",
+      "version": "2.41.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pygments",
+      "live_install_state": "unregistered_installed",
+      "version": "2.20.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pylint",
+      "live_install_state": "unregistered_installed",
+      "version": "4.0.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pymatgen",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.5.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pymatgen-core",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.7.16"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pymc",
+      "live_install_state": "unregistered_installed",
+      "version": "6.0.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pymoo",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.1.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pynndescent",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyparsing",
+      "live_install_state": "unregistered_installed",
+      "version": "3.3.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytensor",
+      "live_install_state": "unregistered_installed",
+      "version": "3.0.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytest",
+      "live_install_state": "unregistered_installed",
+      "version": "9.0.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytest-mock",
+      "live_install_state": "unregistered_installed",
+      "version": "3.15.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytest-order",
+      "live_install_state": "unregistered_installed",
+      "version": "1.4.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "python-dateutil",
+      "live_install_state": "unregistered_installed",
+      "version": "2.9.0.post0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "python-dotenv",
+      "live_install_state": "unregistered_installed",
+      "version": "1.2.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "python-fasthtml",
+      "live_install_state": "unregistered_installed",
+      "version": "0.14.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "python-multipart",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.29"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytorch-lightning",
+      "live_install_state": "unregistered_installed",
+      "version": "2.6.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pytz",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.1.post1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyvers",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyvista",
+      "live_install_state": "unregistered_installed",
+      "version": "0.47.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "pyyaml",
+      "live_install_state": "unregistered_installed",
+      "version": "6.0.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "qdldl",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.9.post1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ray",
+      "live_install_state": "unregistered_installed",
+      "version": "2.54.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "referencing",
+      "live_install_state": "unregistered_installed",
+      "version": "0.37.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "regex",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.5.9"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "requests",
+      "live_install_state": "unregistered_installed",
+      "version": "2.33.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ribs",
+      "live_install_state": "unregistered_installed",
+      "version": "0.10.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "rich",
+      "live_install_state": "unregistered_installed",
+      "version": "15.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "rich-rst",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "rpds-py",
+      "live_install_state": "unregistered_installed",
+      "version": "0.30.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "ruamel.yaml",
+      "live_install_state": "unregistered_installed",
+      "version": "0.19.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "safetensors",
+      "live_install_state": "unregistered_installed",
+      "version": "0.8.0rc0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scikit-base",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scipy-openblas32",
+      "live_install_state": "unregistered_installed",
+      "version": "0.3.31.188.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scooby",
+      "live_install_state": "unregistered_installed",
+      "version": "0.11.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "scs",
+      "live_install_state": "unregistered_installed",
+      "version": "3.2.11"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "seaborn",
+      "live_install_state": "unregistered_installed",
+      "version": "0.13.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sentencepiece",
+      "live_install_state": "unregistered_installed",
+      "version": "0.2.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "setuptools",
+      "live_install_state": "unregistered_installed",
+      "version": "81.0.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "simplejson",
+      "live_install_state": "unregistered_installed",
+      "version": "4.1.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "six",
+      "live_install_state": "unregistered_installed",
+      "version": "1.17.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sniffio",
+      "live_install_state": "unregistered_installed",
+      "version": "1.3.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sortedcontainers",
+      "live_install_state": "unregistered_installed",
+      "version": "2.4.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "soupsieve",
+      "live_install_state": "unregistered_installed",
+      "version": "2.8.4"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sparse",
+      "live_install_state": "unregistered_installed",
+      "version": "0.18.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sparsediffpy",
+      "live_install_state": "unregistered_installed",
+      "version": "0.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "spglib",
+      "live_install_state": "unregistered_installed",
+      "version": "2.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "sqlalchemy",
+      "live_install_state": "unregistered_installed",
+      "version": "2.0.49"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "stack-data",
+      "live_install_state": "unregistered_installed",
+      "version": "0.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "starlette",
+      "live_install_state": "unregistered_installed",
+      "version": "1.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "statsmodels",
+      "live_install_state": "unregistered_installed",
+      "version": "0.14.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "stevedore",
+      "live_install_state": "unregistered_installed",
+      "version": "5.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tabulate",
+      "live_install_state": "unregistered_installed",
+      "version": "0.10.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tensordict",
+      "live_install_state": "unregistered_installed",
+      "version": "0.13.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tensorflow-probability",
+      "live_install_state": "unregistered_installed",
+      "version": "0.25.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tensornetwork",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.6"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tensorstore",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.84"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "termcolor",
+      "live_install_state": "unregistered_installed",
+      "version": "3.3.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "texttable",
+      "live_install_state": "unregistered_installed",
+      "version": "1.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "threadpoolctl",
+      "live_install_state": "unregistered_installed",
+      "version": "3.6.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tokenizers",
+      "live_install_state": "unregistered_installed",
+      "version": "0.22.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tomlkit",
+      "live_install_state": "unregistered_installed",
+      "version": "0.14.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "toolz",
+      "live_install_state": "unregistered_installed",
+      "version": "1.1.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchmetrics",
+      "live_install_state": "unregistered_installed",
+      "version": "1.9.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchrl",
+      "live_install_state": "unregistered_installed",
+      "version": "0.13.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "torchtyping",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tqdm",
+      "live_install_state": "unregistered_installed",
+      "version": "4.67.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "traitlets",
+      "live_install_state": "unregistered_installed",
+      "version": "5.15.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "transformers",
+      "live_install_state": "unregistered_installed",
+      "version": "4.57.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "treescope",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.10"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "trimesh",
+      "live_install_state": "unregistered_installed",
+      "version": "4.11.5"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "typedunits",
+      "live_install_state": "unregistered_installed",
+      "version": "0.0.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "typeguard",
+      "live_install_state": "unregistered_installed",
+      "version": "2.13.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "typing-extensions",
+      "live_install_state": "unregistered_installed",
+      "version": "4.15.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "typing-inspection",
+      "live_install_state": "unregistered_installed",
+      "version": "0.4.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tyro",
+      "live_install_state": "unregistered_installed",
+      "version": "1.0.13"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "tzdata",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "uncertainties",
+      "live_install_state": "unregistered_installed",
+      "version": "3.2.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "urllib3",
+      "live_install_state": "unregistered_installed",
+      "version": "2.6.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "uvicorn",
+      "live_install_state": "unregistered_installed",
+      "version": "0.48.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "uvloop",
+      "live_install_state": "unregistered_installed",
+      "version": "0.22.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "vtk",
+      "live_install_state": "unregistered_installed",
+      "version": "9.6.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "wadler-lindig",
+      "live_install_state": "unregistered_installed",
+      "version": "0.1.7"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "watchfiles",
+      "live_install_state": "unregistered_installed",
+      "version": "1.2.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "wcwidth",
+      "live_install_state": "unregistered_installed",
+      "version": "0.7.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "websockets",
+      "live_install_state": "unregistered_installed",
+      "version": "16.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "wheel",
+      "live_install_state": "unregistered_installed",
+      "version": "0.46.3"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "widgetsnbextension",
+      "live_install_state": "unregistered_installed",
+      "version": "4.0.15"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "wrapt",
+      "live_install_state": "unregistered_installed",
+      "version": "2.1.2"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xarray",
+      "live_install_state": "unregistered_installed",
+      "version": "2026.4.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xarray-einstats",
+      "live_install_state": "unregistered_installed",
+      "version": "0.10.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "xxhash",
+      "live_install_state": "unregistered_installed",
+      "version": "3.6.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "yarl",
+      "live_install_state": "unregistered_installed",
+      "version": "1.23.0"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "zarr",
+      "live_install_state": "unregistered_installed",
+      "version": "3.2.1"
+    },
+    {
+      "declared_integration_level": "installed_only",
+      "distribution": "zipp",
+      "live_install_state": "unregistered_installed",
+      "version": "3.23.1"
+    }
+  ]
+}

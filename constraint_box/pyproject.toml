@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "constraintbox"
-version = "0.3.4"
-description = "Deterministic constraint controller for bounded LLM, formal-tool, and external-workload receipts"
+version = "0.4.0.dev1"
+description = "Lean deterministic finite-constraint and Mini-Lev controller"
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "z3-solver>=4.16.0.0,<4.17.0.0",
@@ -16,15 +16,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-symbolic = ["sympy>=1.14.0,<1.15.0"]
-graph = ["rustworkx>=0.17.0,<0.18.0"]
-rewrite = []
-formal = []
-numeric = ["numpy==2.3.4"]
 test = ["hypothesis==6.151.12"]
 
 [project.scripts]
-constraintbox = "constraintbox.cli:main"
+constraintbox = "constraintbox.core_cli:main"
+constraintbox-legacy = "constraintbox.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -2,8 +2,16 @@
 
 Done-ness is computed, never asserted. Two gates, exit codes are the interface.
 
-Dependency-free Node (>=18). Independent plugin: attaches to Lev at the boundary,
+The Node core is dependency-free (Node >=18). The optional Python SMT surface
+uses the locally versioned finite-constraint contract plus Z3/CVC5; it does not
+import ConstraintBox. Independent plugin: attaches to Lev at the boundary,
 never patches Lev core, expects rework per Lev release.
+
+```bash
+python3 -m venv .venv-claimgate
+.venv-claimgate/bin/python -m pip install -e 'claimgate_plugin[test]'
+.venv-claimgate/bin/python -m pytest claimgate_plugin/tests
+```
 
 ## 1. Claim-receipt linter — for "the agent says it's done"
 

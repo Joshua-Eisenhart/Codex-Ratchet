@@ -1,0 +1,158 @@
+{
+  "schema": "codex-ratchet.sim-install-profiles.v9",
+  "version": "0.1.0.dev1",
+  "profiles": [
+    {
+      "id": "cb-mirror",
+      "runtime": "python",
+      "default": false,
+      "includes": [],
+      "purpose": "Exact five-tool mirror used by ConstraintBox; installing it here does not make Sim Engines part of CB.",
+      "packages": [
+        {"distribution": "z3-solver", "import": "z3", "spec": "z3-solver>=4.16.0.0,<4.17.0.0"},
+        {"distribution": "cvc5", "import": "cvc5", "spec": "cvc5>=1.3.3,<1.4.0"},
+        {"distribution": "sympy", "import": "sympy", "spec": "sympy>=1.14.0,<1.15.0"},
+        {"distribution": "rustworkx", "import": "rustworkx", "spec": "rustworkx>=0.17.0,<0.18.0"},
+        {"distribution": "maude", "import": "maude", "spec": "maude==1.6.0"}
+      ]
+    },
+    {
+      "id": "python-base",
+      "runtime": "python",
+      "default": true,
+      "includes": [],
+      "purpose": "Portable numeric and reference graph base.",
+      "packages": [
+        {"distribution": "numpy", "import": "numpy", "spec": "numpy==2.3.4"},
+        {"distribution": "scipy", "import": "scipy", "spec": "scipy==1.17.1"},
+        {"distribution": "pandas", "import": "pandas", "spec": "pandas==2.3.3"},
+        {"distribution": "networkx", "import": "networkx", "spec": "networkx==3.6.1"},
+        {"distribution": "opt-einsum", "import": "opt_einsum", "spec": "opt-einsum==3.4.0"}
+      ]
+    },
+    {
+      "id": "jax",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base"],
+      "purpose": "Batched finite sweeps, differentiable dynamics, QIT, and candidate generation.",
+      "packages": [
+        {"distribution": "jax", "import": "jax", "spec": "jax==0.10.1"},
+        {"distribution": "jaxlib", "import": "jaxlib", "spec": "jaxlib==0.10.1"},
+        {"distribution": "equinox", "import": "equinox", "spec": "equinox==0.13.8"},
+        {"distribution": "diffrax", "import": "diffrax", "spec": "diffrax==0.7.2"},
+        {"distribution": "lineax", "import": "lineax", "spec": "lineax==0.1.1"},
+        {"distribution": "optimistix", "import": "optimistix", "spec": "optimistix==0.1.0"},
+        {"distribution": "blackjax", "import": "blackjax", "spec": "blackjax==1.5"},
+        {"distribution": "jaxopt", "import": "jaxopt", "spec": "jaxopt==0.8.5"},
+        {"distribution": "optax", "import": "optax", "spec": "optax==0.2.8"},
+        {"distribution": "flax", "import": "flax", "spec": "flax==0.12.7"},
+        {"distribution": "orbax-checkpoint", "import": "orbax.checkpoint", "spec": "orbax-checkpoint"},
+        {"distribution": "chex", "import": "chex", "spec": "chex==0.1.91"},
+        {"distribution": "jaxtyping", "import": "jaxtyping", "spec": "jaxtyping==0.3.10"},
+        {"distribution": "dynamiqs", "import": "dynamiqs", "spec": "dynamiqs==0.3.4"},
+        {"distribution": "netket", "import": "netket", "spec": "netket==3.21.0"},
+        {"distribution": "e3nn-jax", "import": "e3nn_jax", "spec": "e3nn-jax==0.21.0"},
+        {"distribution": "jraph", "import": "jraph", "spec": "jraph==0.0.6.dev0"},
+        {"distribution": "dm-haiku", "import": "haiku", "spec": "dm-haiku==0.0.16"},
+        {"distribution": "numpyro", "import": "numpyro", "spec": "numpyro==0.21.0"},
+        {"distribution": "ott-jax", "import": "ott", "spec": "ott-jax==0.6.0"},
+        {"distribution": "dynamax", "import": "dynamax", "spec": "dynamax==1.0.1"},
+        {"distribution": "flowMC", "import": "flowMC", "spec": "flowMC==0.6.0"},
+        {"distribution": "jaxlie", "import": "jaxlie", "spec": "jaxlie"}
+      ]
+    },
+    {
+      "id": "torch",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base"],
+      "purpose": "Trainable graph/network, autodiff, and Holodeck-facing computation.",
+      "packages": [
+        {"distribution": "torch", "import": "torch", "spec": "torch==2.11.0"},
+        {"distribution": "torch-geometric", "import": "torch_geometric", "spec": "torch-geometric==2.7.0"},
+        {"distribution": "torchdiffeq", "import": "torchdiffeq", "spec": "torchdiffeq==0.2.5"},
+        {"distribution": "torchode", "import": "torchode", "spec": "torchode==1.0.1"},
+        {"distribution": "xitorch", "import": "xitorch", "spec": "xitorch==0.3.0"},
+        {"distribution": "cvxpylayers", "import": "cvxpylayers", "spec": "cvxpylayers==1.2.0"},
+        {"distribution": "geomstats", "import": "geomstats", "spec": "geomstats==2.8.0"},
+        {"distribution": "e3nn", "import": "e3nn", "spec": "e3nn==0.6.0"},
+        {"distribution": "torch-ga", "import": "torch_ga", "spec": "torch-ga==0.0.6"},
+        {"distribution": "clifford", "import": "clifford", "spec": "clifford"}
+      ]
+    },
+    {
+      "id": "qit-python",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base"],
+      "purpose": "Open quantum, tensor-network, circuit, and quantum-Hopfield support.",
+      "packages": [
+        {"distribution": "qutip", "import": "qutip", "spec": "qutip"},
+        {"distribution": "qutip-jax", "import": "qutip_jax", "spec": "qutip-jax==0.1.1"},
+        {"distribution": "quimb", "import": "quimb", "spec": "quimb==1.14.0"},
+        {"distribution": "cotengra", "import": "cotengra", "spec": "cotengra==0.8.0"},
+        {"distribution": "cirq", "import": "cirq", "spec": "cirq"},
+        {"distribution": "qiskit", "import": "qiskit", "spec": "qiskit"},
+        {"distribution": "pennylane", "import": "pennylane", "spec": "pennylane"}
+      ]
+    },
+    {
+      "id": "graph-topology",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base"],
+      "purpose": "Finite graph, hypergraph, cell-complex, and persistent-topology work.",
+      "packages": [
+        {"distribution": "igraph", "import": "igraph", "spec": "igraph==1.0.0"},
+        {"distribution": "xgi", "import": "xgi", "spec": "xgi==0.10.1"},
+        {"distribution": "TopoNetX", "import": "toponetx", "spec": "TopoNetX==0.4.0"},
+        {"distribution": "gudhi", "import": "gudhi", "spec": "gudhi==3.12.0"},
+        {"distribution": "miniKanren", "import": "kanren", "spec": "miniKanren==1.0.5"},
+        {"distribution": "kahypar", "import": "kahypar", "spec": "kahypar==1.3.7"}
+      ]
+    },
+    {
+      "id": "system-identification",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base"],
+      "purpose": "System identification is a Sim Engines surface, never a CB core dependency.",
+      "packages": [
+        {"distribution": "pysindy", "import": "pysindy", "spec": "pysindy==2.1.0"},
+        {"distribution": "pydmd", "import": "pydmd", "spec": "pydmd"},
+        {"distribution": "pykoopman", "import": "pykoopman", "spec": "pykoopman==1.2.1", "quarantined": true}
+      ]
+    },
+    {
+      "id": "holodeck-world-model",
+      "runtime": "python",
+      "default": false,
+      "includes": ["python-base", "torch"],
+      "purpose": "Trainable world-model and perception support; owned by Holodeck when selected.",
+      "packages": [
+        {"distribution": "lightning", "import": "lightning", "spec": "lightning==2.6.5"},
+        {"distribution": "gymnasium", "import": "gymnasium", "spec": "gymnasium"},
+        {"distribution": "scikit-learn", "import": "sklearn", "spec": "scikit-learn==1.8.0"},
+        {"distribution": "umap-learn", "import": "umap", "spec": "umap-learn"},
+        {"distribution": "hdbscan", "import": "hdbscan", "spec": "hdbscan"}
+      ]
+    }
+  ],
+  "non_default_external_profiles": [
+    {
+      "id": "julia-strict-carrier",
+      "runtime": "julia",
+      "project": "sim_engines/install/julia/Project.toml",
+      "install": "julia --startup-file=no --project=sim_engines/install/julia -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'"
+    },
+    {
+      "id": "temporal-formal",
+      "runtime": "java_external",
+      "tools": ["java", "TLC", "Apalache"],
+      "default": false,
+      "owner": "sim_engines",
+      "note": "Optional external verification bridge; not ConstraintBox core."
+    }
+  ]
+}

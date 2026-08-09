@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Finite SMT implication decider for ratchet-floor transitions.
 
-The input language is the ``FiniteConstraintProblem.from_spec`` shape from
-``constraintbox.constraints``.  This module supports every operation accepted
+The input language is ClaimGate's versioned ``FiniteConstraintProblem`` shape
+from ``finite_constraint_contract``. This module supports every operation accepted
 by that language: ``eq``, ``neq``, ``lt``, ``le``, ``gt``, ``ge``, ``in``,
 ``not_in``, ``all_different``, ``table``, ``and``, ``or``, and ``not``.
 Anything else raises ``UnsupportedConstraintOpError`` before solving.
@@ -41,7 +41,10 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
-from constraintbox.constraints import ConstraintSpecError, FiniteConstraintProblem
+try:
+    from .finite_constraint_contract import ConstraintSpecError, FiniteConstraintProblem
+except ImportError:  # direct script-path compatibility; still ClaimGate-local
+    from finite_constraint_contract import ConstraintSpecError, FiniteConstraintProblem
 
 
 SUPPORTED_OPS = frozenset(

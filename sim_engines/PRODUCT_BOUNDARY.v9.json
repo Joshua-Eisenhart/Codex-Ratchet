@@ -1,0 +1,24 @@
+{
+  "schema": "codex-ratchet.product-boundary.v1",
+  "product_id": "sim_engines",
+  "version": "0.1.0.dev1",
+  "owns": [
+    "runtime_and_library_install_profiles",
+    "tool_api_and_function_probes",
+    "cross_runtime_computation",
+    "simulation_and_mathematical_results",
+    "live_tool_integration_index"
+  ],
+  "does_not_own": [
+    "constraintbox_control_policy",
+    "claimgate_admission_policy",
+    "codex_ratchet_stage_order",
+    "holodeck_product_policy"
+  ],
+  "independent_acceptance": [
+    "python3 sim_engines/registry/build_registry.py --check",
+    "python3 sim_engines/doctor.py --output-dir sim_engines/status",
+    "python3 -m unittest discover -s sim_engines/tests -p 'test_*.py'"
+  ],
+  "promotion_allowed": false
+}

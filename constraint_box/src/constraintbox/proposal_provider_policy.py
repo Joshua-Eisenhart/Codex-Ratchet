@@ -70,10 +70,18 @@ class ProposalProviderSelection:
 
 ROUTES: Mapping[str, ProposalProviderRoute] = MappingProxyType(
     {
+        # The old requested_model "codex-cli-default" was a placeholder that
+        # named no real model: the dispatch carried no ``-m``, codex silently
+        # picked its default, and the receipt's declaration could never be
+        # checked against bytes.  Measured 2026-08-08 on this machine: the
+        # unpinned default resolves to gpt-5.6-sol.  The route now REQUESTS
+        # that model explicitly and the dispatch binds it with ``-m`` (CLI
+        # enforced; an unknown slug returns HTTP 400), so the rollout
+        # observation can confirm or refute the request.
         "local_tool": ProposalProviderRoute(
             route="local_tool",
             component_key="LocalToolProvider",
-            requested_model="codex-cli-default",
+            requested_model="gpt-5.6-sol",
             credential_env=None,
             selection_basis="default_static_controller_route",
         ),
@@ -91,6 +99,32 @@ ROUTES: Mapping[str, ProposalProviderRoute] = MappingProxyType(
             component_key="NvidiaProvider",
             requested_model="nvidia/nemotron-3-nano-30b-a3b",
             credential_env="NVIDIA_API_KEY",
+            selection_basis=(
+                "explicit_operator_runtime_route_from_static_controller_registry"
+            ),
+        ),
+        # Codex CLI authenticates from its own CODEX_HOME, so this box holds no
+        # credential for it: credential_env is None and that is the honest value,
+        # not a missing one. The model is bound with `-m`, which the CLI enforces
+        # (an unknown slug returns HTTP 400). `-p`/`--profile` is deliberately NOT
+        # used: it accepts any string and silently falls back to the default
+        # model, which would put a lane name on a receipt for a lane that never
+        # ran. Measured 2026-08-08: `-p luna` and `-p <nonsense>` both returned
+        # gpt-5.6-sol.
+        "codex_luna": ProposalProviderRoute(
+            route="codex_luna",
+            component_key="CodexLunaProvider",
+            requested_model="gpt-5.6-luna",
+            credential_env=None,
+            selection_basis=(
+                "explicit_operator_runtime_route_from_static_controller_registry"
+            ),
+        ),
+        "codex_sol": ProposalProviderRoute(
+            route="codex_sol",
+            component_key="CodexSolProvider",
+            requested_model="gpt-5.6-sol",
+            credential_env=None,
             selection_basis=(
                 "explicit_operator_runtime_route_from_static_controller_registry"
             ),

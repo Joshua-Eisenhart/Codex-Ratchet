@@ -1,0 +1,23 @@
+{
+  "schema": "codex-ratchet.tool-integration-levels.v1",
+  "ordered_levels": [
+    "installed_only",
+    "imported_in_source",
+    "api_smoke",
+    "function_level_receipt",
+    "claim_load_bearing",
+    "proof_discharge",
+    "control_only",
+    "quarantined"
+  ],
+  "definitions": {
+    "installed_only": "Distribution or executable is present; no repository API exercise is asserted.",
+    "imported_in_source": "A current source file imports the tool, but no fresh bounded API receipt is named.",
+    "api_smoke": "A named public API executes on a bounded fixture.",
+    "function_level_receipt": "A named function changes or produces a recomputable bounded observation with a receipt.",
+    "claim_load_bearing": "Removing or changing the named function changes a bounded claim result.",
+    "proof_discharge": "The tool independently discharges a preregistered formal obligation in scope.",
+    "control_only": "The tool is deliberately used only as a baseline, ablation, or falsifier.",
+    "quarantined": "Known incompatible, unsafe, stale, or unresolved; excluded from default profiles."
+  }
+}

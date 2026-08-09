@@ -65,7 +65,31 @@ def _generic_probe(name: str) -> dict[str, Any]:
     elif name == "portion":
         m = importlib.import_module("portion"); interval = m.closed(0, 1); out["positive"] = {"contains": 1 in interval}; out["negative"] = {"fired": 2 not in interval, "assertion": "2 is outside the closed interval [0,1]"}
     elif name == "automaton":
-        m = importlib.import_module("automaton"); d = m.DFA(2, {0}, {(0, "a"): 1, (1, "a"): 1}); out["positive"] = {"accepts": d.accepts("a")}; out["negative"] = {"fired": d.accepts("") is False, "assertion": "empty word is rejected"}
+        # Independent second engine against maude for transition/reachability.
+        # The earlier probe here called a m.DFA API that does not exist; it was
+        # never caught because automaton was absent when the probe was written.
+        machines = importlib.import_module("automaton.machines")
+
+        def _machine():
+            fm = machines.FiniteMachine()
+            fm.add_state("start")
+            fm.add_state("done", terminal=True)
+            fm.add_transition("start", "done", "go")
+            fm.default_start_state = "start"
+            fm.initialize()
+            return fm
+
+        reached = _machine()
+        reached.process_event("go")
+        out["positive"] = {"reaches_terminal": reached.terminated,
+                           "final_state": reached.current_state}
+        fired, assertion = False, "undeclared event was accepted"
+        try:
+            _machine().process_event("undeclared")
+        except Exception as exc:  # noqa: BLE001 - the exception type IS the assertion
+            fired = type(exc).__name__ == "NotFound"
+            assertion = f"{type(exc).__name__}: undeclared event has no transition"
+        out["negative"] = {"fired": fired, "assertion": assertion}
     elif name in {"fastjsonschema", "cerberus", "marshmallow", "voluptuous", "validators", "cattrs", "typeguard", "annotated-types", "attrs"}:
         out = _schema_probe(name)
     elif name in {"msgpack", "cbor2", "protobuf", "tomli", "tomlkit", "ruamel.yaml", "xmltodict"}:

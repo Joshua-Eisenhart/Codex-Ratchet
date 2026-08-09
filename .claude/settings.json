@@ -7,6 +7,18 @@
     "PostCompact": [
       { "matcher": "",
         "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-compact-reinject.sh\"" } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Bash",
+        "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/cb_pretooluse_guard.sh\"" } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "",
+        "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/cb_posttooluse_record.sh\"" } ] }
+    ],
+    "Stop": [
+      { "matcher": "",
+        "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/cb_stop_completion_check.sh\"" } ] }
     ]
   }
 }

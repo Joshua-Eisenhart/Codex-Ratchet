@@ -1,0 +1,53 @@
+{
+  "schema": "constraintbox.user-request.v1",
+  "request_id": "cb-live-run-20260808",
+  "goal": "Run the ConstraintBox pipeline end to end from the repository checkout and record which model produced the proposal.",
+  "deliverable": "One run receipt under the run directory, carrying the proposal gate reason codes and a model_resolved value recomputed from the provider's own session bytes.",
+  "in_scope": [
+    "the bounded Mini-Lev proposal flow",
+    "the five core deterministic tools",
+    "the model-binding gate"
+  ],
+  "out_of_scope": [
+    "promoting any claim",
+    "editing any gate",
+    "external simulation beyond the bound packet"
+  ],
+  "assumption_state": "listed",
+  "assumptions": [
+    {
+      "statement": "The codex CLI is installed and authenticates from its own CODEX_HOME.",
+      "source": "measured on this host 2026-08-08 via which codex and codex --version",
+      "status": "working"
+    },
+    {
+      "statement": "The five core tools import and respond in the project interpreter.",
+      "source": "constraintbox doctor",
+      "status": "working"
+    },
+    {
+      "statement": "A gate identifier is admissible only with an execution receipt; a producer never sets its own ceiling.",
+      "source": "owner canon, CB_DEFINITION_OWNER_CANON_20260806.md",
+      "status": "owner_asserted"
+    }
+  ],
+  "evidence_required": [
+    "a run receipt written to disk",
+    "per-attempt proposal gate reason codes",
+    "model_resolved recomputed from bytes rather than from the requested slug"
+  ],
+  "allowed_actions": [
+    "read",
+    "run_external_tools",
+    "invoke_llm",
+    "write_receipts"
+  ],
+  "requested_external_tests": ["basic_packet_v1"],
+  "claim_boundary": "This run evidences only that the pipeline executed and what the gate decided. It evidences nothing about the correctness of the proposal's content.",
+  "unknowns": [
+    "whether the proposal will satisfy every field contract on the first attempt"
+  ],
+  "communication_needs": [
+    "report the disposition verbatim, including a refusal, without softening it"
+  ]
+}

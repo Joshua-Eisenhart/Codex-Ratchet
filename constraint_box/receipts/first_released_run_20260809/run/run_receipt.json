@@ -1,0 +1,1110 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "controller_decision": {
+        "claim_ceiling": "untrusted proposal recorded; no execution or admission",
+        "controller_emitted": true,
+        "disposition": "ELIGIBLE",
+        "evidence": {
+          "proposal_sha256": "c3e5609e4366811f33d82bd960d391bd4db922996922f3ae031d82d53801ecb6",
+          "python_runtime": {
+            "after": {
+              "claim_ceiling": "only that the active CPython runtime matched one declared portable ConstraintBox core profile and remained stable during this run; not host integrity, external sim-estate readiness, release, promotion, or scientific truth",
+              "identity_sha256": "feaef76457dcfd4c7e1d9643e1428f9d8619f6a7352b0798e38b47c8eb3d1022",
+              "operation_witnesses": {
+                "builtins.all": true,
+                "builtins.any": true,
+                "builtins.len": true,
+                "fractions.Fraction": true,
+                "hashlib.sha256": true,
+                "heapq.heappop": true,
+                "heapq.heappush": true,
+                "itertools.product": true,
+                "json.dumps": true,
+                "json.loads": true,
+                "math.prod": true,
+                "os.replace": "binding_only",
+                "subprocess.run": "binding_only"
+              },
+              "operations": {
+                "builtins.all": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "all",
+                  "qualname": "all",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "builtins.any": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "any",
+                  "qualname": "any",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "builtins.len": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "len",
+                  "qualname": "len",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "fractions.Fraction": {
+                  "code_sha256": null,
+                  "module": "fractions",
+                  "name": "Fraction",
+                  "qualname": "Fraction",
+                  "type": "abc.ABCMeta"
+                },
+                "hashlib.sha256": {
+                  "code_sha256": null,
+                  "module": "_hashlib",
+                  "name": "openssl_sha256",
+                  "qualname": "openssl_sha256",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "heapq.heappop": {
+                  "code_sha256": null,
+                  "module": "_heapq",
+                  "name": "heappop",
+                  "qualname": "heappop",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "heapq.heappush": {
+                  "code_sha256": null,
+                  "module": "_heapq",
+                  "name": "heappush",
+                  "qualname": "heappush",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "itertools.product": {
+                  "code_sha256": null,
+                  "module": "itertools",
+                  "name": "product",
+                  "qualname": "product",
+                  "type": "builtins.type"
+                },
+                "json.dumps": {
+                  "code_sha256": "27a52202f3b8855662b9fc70e1fb8b486e06e8d08674c3278471ab1bd115adba",
+                  "module": "json",
+                  "name": "dumps",
+                  "qualname": "dumps",
+                  "type": "builtins.function"
+                },
+                "json.loads": {
+                  "code_sha256": "1c396ec1d378793f6ac47adbdc2ba2ba2d09efbc20100aeeaf289ab938628ae1",
+                  "module": "json",
+                  "name": "loads",
+                  "qualname": "loads",
+                  "type": "builtins.function"
+                },
+                "math.prod": {
+                  "code_sha256": null,
+                  "module": "math",
+                  "name": "prod",
+                  "qualname": "prod",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "os.replace": {
+                  "code_sha256": null,
+                  "module": "posix",
+                  "name": "replace",
+                  "qualname": "replace",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "subprocess.run": {
+                  "code_sha256": "4483e7bc173fa70ebdad61392ade3ae2b94527df075dcc0fb843ffb5e4a58d4e",
+                  "module": "subprocess",
+                  "name": "run",
+                  "qualname": "run",
+                  "type": "builtins.function"
+                }
+              },
+              "policy_sha256": "a1ef1c3dfd042beeeb3932f3c37185eaa73737bba47a7021cf5d53dc7d4016e3",
+              "profile_id": "core-cpython313-r1",
+              "promotion_allowed": false,
+              "runtime_module_source_sha256": "e9a7df47d2b8f295a44b28c483e2c48fce72e19bef42ea490bb159c5d3c1a354",
+              "runtime_profile": {
+                "byteorder": "little",
+                "cache_tag": "cpython-313",
+                "claim_ceiling": "the active CPython 3.13 core runtime satisfied the declared ConstraintBox compatibility profile; this does not establish host integrity, external sim-estate readiness, release, promotion, or scientific truth",
+                "executable": {
+                  "realpath": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+                  "reported": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+                },
+                "flags": {
+                  "hash_randomization": 1,
+                  "ignore_environment": 0,
+                  "isolated": 0,
+                  "optimize": 0,
+                  "safe_path": false
+                },
+                "implementation": "CPython",
+                "libraries": [
+                  {
+                    "distribution": "cvc5",
+                    "import_name": "cvc5",
+                    "maximum_exclusive_version": "1.4.0",
+                    "minimum_version": "1.3.3",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvc5/cvc5_python_base.cpython-313-darwin.so",
+                    "module_sha256": "ef805cd11fdf8c1d27857134a5bd9f4f15d2e32546997052791106fc89c79a84",
+                    "observed_version": "1.3.3",
+                    "required_attributes": [
+                      "Kind",
+                      "Solver"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvc5/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "maude",
+                    "import_name": "maude",
+                    "maximum_exclusive_version": "1.7.0",
+                    "minimum_version": "1.6.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/maude/__init__.py",
+                    "module_sha256": "83ef78db2a330f4a59111682d4123eab53fa4032ea3fa6506e51b7ca81f1c79f",
+                    "observed_version": "1.6.0",
+                    "required_attributes": [
+                      "MAUDE_VERSION",
+                      "getModule",
+                      "init",
+                      "input"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/maude/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "rustworkx",
+                    "import_name": "rustworkx",
+                    "maximum_exclusive_version": "0.18.0",
+                    "minimum_version": "0.17.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+                    "module_sha256": "5681c5c3dfa576e0c91edaf52fb2eda1903a7828055f7111bea202b97e6e53b8",
+                    "observed_version": "0.17.1",
+                    "required_attributes": [
+                      "PyDiGraph",
+                      "has_path",
+                      "is_directed_acyclic_graph",
+                      "topological_sort"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "sympy",
+                    "import_name": "sympy",
+                    "maximum_exclusive_version": "1.15.0",
+                    "minimum_version": "1.14.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+                    "module_sha256": "4e9476348ba105feab28d82f5bcf6cdba2e3e84de6e059bbfe7a13728c0a4ab0",
+                    "observed_version": "1.14.0",
+                    "required_attributes": [
+                      "Add",
+                      "Poly",
+                      "QQ",
+                      "Rational",
+                      "Symbol"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "z3-solver",
+                    "import_name": "z3",
+                    "maximum_exclusive_version": "4.17.0.0",
+                    "minimum_version": "4.16.0.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py",
+                    "module_sha256": "53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd",
+                    "observed_version": "4.16.0.0",
+                    "required_attributes": [
+                      "Bool",
+                      "Solver",
+                      "sat",
+                      "unsat"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py",
+                    "state": "COMPATIBLE"
+                  }
+                ],
+                "machine": "arm64",
+                "platform": "macosx-15.0-arm64",
+                "profile_id": "core-cpython313-r1",
+                "promotion_allowed": false,
+                "reason": "core_runtime_profile_satisfied",
+                "registry_sha256": "a1ef1c3dfd042beeeb3932f3c37185eaa73737bba47a7021cf5d53dc7d4016e3",
+                "schema": "constraintbox.runtime-profile-receipt.v1",
+                "state": "ELIGIBLE",
+                "version": [
+                  3,
+                  13,
+                  6
+                ]
+              },
+              "schema": "constraintbox.python-runtime-receipt.v2"
+            },
+            "before": {
+              "claim_ceiling": "only that the active CPython runtime matched one declared portable ConstraintBox core profile and remained stable during this run; not host integrity, external sim-estate readiness, release, promotion, or scientific truth",
+              "identity_sha256": "feaef76457dcfd4c7e1d9643e1428f9d8619f6a7352b0798e38b47c8eb3d1022",
+              "operation_witnesses": {
+                "builtins.all": true,
+                "builtins.any": true,
+                "builtins.len": true,
+                "fractions.Fraction": true,
+                "hashlib.sha256": true,
+                "heapq.heappop": true,
+                "heapq.heappush": true,
+                "itertools.product": true,
+                "json.dumps": true,
+                "json.loads": true,
+                "math.prod": true,
+                "os.replace": "binding_only",
+                "subprocess.run": "binding_only"
+              },
+              "operations": {
+                "builtins.all": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "all",
+                  "qualname": "all",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "builtins.any": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "any",
+                  "qualname": "any",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "builtins.len": {
+                  "code_sha256": null,
+                  "module": "builtins",
+                  "name": "len",
+                  "qualname": "len",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "fractions.Fraction": {
+                  "code_sha256": null,
+                  "module": "fractions",
+                  "name": "Fraction",
+                  "qualname": "Fraction",
+                  "type": "abc.ABCMeta"
+                },
+                "hashlib.sha256": {
+                  "code_sha256": null,
+                  "module": "_hashlib",
+                  "name": "openssl_sha256",
+                  "qualname": "openssl_sha256",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "heapq.heappop": {
+                  "code_sha256": null,
+                  "module": "_heapq",
+                  "name": "heappop",
+                  "qualname": "heappop",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "heapq.heappush": {
+                  "code_sha256": null,
+                  "module": "_heapq",
+                  "name": "heappush",
+                  "qualname": "heappush",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "itertools.product": {
+                  "code_sha256": null,
+                  "module": "itertools",
+                  "name": "product",
+                  "qualname": "product",
+                  "type": "builtins.type"
+                },
+                "json.dumps": {
+                  "code_sha256": "27a52202f3b8855662b9fc70e1fb8b486e06e8d08674c3278471ab1bd115adba",
+                  "module": "json",
+                  "name": "dumps",
+                  "qualname": "dumps",
+                  "type": "builtins.function"
+                },
+                "json.loads": {
+                  "code_sha256": "1c396ec1d378793f6ac47adbdc2ba2ba2d09efbc20100aeeaf289ab938628ae1",
+                  "module": "json",
+                  "name": "loads",
+                  "qualname": "loads",
+                  "type": "builtins.function"
+                },
+                "math.prod": {
+                  "code_sha256": null,
+                  "module": "math",
+                  "name": "prod",
+                  "qualname": "prod",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "os.replace": {
+                  "code_sha256": null,
+                  "module": "posix",
+                  "name": "replace",
+                  "qualname": "replace",
+                  "type": "builtins.builtin_function_or_method"
+                },
+                "subprocess.run": {
+                  "code_sha256": "4483e7bc173fa70ebdad61392ade3ae2b94527df075dcc0fb843ffb5e4a58d4e",
+                  "module": "subprocess",
+                  "name": "run",
+                  "qualname": "run",
+                  "type": "builtins.function"
+                }
+              },
+              "policy_sha256": "a1ef1c3dfd042beeeb3932f3c37185eaa73737bba47a7021cf5d53dc7d4016e3",
+              "profile_id": "core-cpython313-r1",
+              "promotion_allowed": false,
+              "runtime_module_source_sha256": "e9a7df47d2b8f295a44b28c483e2c48fce72e19bef42ea490bb159c5d3c1a354",
+              "runtime_profile": {
+                "byteorder": "little",
+                "cache_tag": "cpython-313",
+                "claim_ceiling": "the active CPython 3.13 core runtime satisfied the declared ConstraintBox compatibility profile; this does not establish host integrity, external sim-estate readiness, release, promotion, or scientific truth",
+                "executable": {
+                  "realpath": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+                  "reported": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+                },
+                "flags": {
+                  "hash_randomization": 1,
+                  "ignore_environment": 0,
+                  "isolated": 0,
+                  "optimize": 0,
+                  "safe_path": false
+                },
+                "implementation": "CPython",
+                "libraries": [
+                  {
+                    "distribution": "cvc5",
+                    "import_name": "cvc5",
+                    "maximum_exclusive_version": "1.4.0",
+                    "minimum_version": "1.3.3",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvc5/cvc5_python_base.cpython-313-darwin.so",
+                    "module_sha256": "ef805cd11fdf8c1d27857134a5bd9f4f15d2e32546997052791106fc89c79a84",
+                    "observed_version": "1.3.3",
+                    "required_attributes": [
+                      "Kind",
+                      "Solver"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvc5/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "maude",
+                    "import_name": "maude",
+                    "maximum_exclusive_version": "1.7.0",
+                    "minimum_version": "1.6.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/maude/__init__.py",
+                    "module_sha256": "83ef78db2a330f4a59111682d4123eab53fa4032ea3fa6506e51b7ca81f1c79f",
+                    "observed_version": "1.6.0",
+                    "required_attributes": [
+                      "MAUDE_VERSION",
+                      "getModule",
+                      "init",
+                      "input"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/maude/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "rustworkx",
+                    "import_name": "rustworkx",
+                    "maximum_exclusive_version": "0.18.0",
+                    "minimum_version": "0.17.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+                    "module_sha256": "5681c5c3dfa576e0c91edaf52fb2eda1903a7828055f7111bea202b97e6e53b8",
+                    "observed_version": "0.17.1",
+                    "required_attributes": [
+                      "PyDiGraph",
+                      "has_path",
+                      "is_directed_acyclic_graph",
+                      "topological_sort"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/rustworkx/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "sympy",
+                    "import_name": "sympy",
+                    "maximum_exclusive_version": "1.15.0",
+                    "minimum_version": "1.14.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+                    "module_sha256": "4e9476348ba105feab28d82f5bcf6cdba2e3e84de6e059bbfe7a13728c0a4ab0",
+                    "observed_version": "1.14.0",
+                    "required_attributes": [
+                      "Add",
+                      "Poly",
+                      "QQ",
+                      "Rational",
+                      "Symbol"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+                    "state": "COMPATIBLE"
+                  },
+                  {
+                    "distribution": "z3-solver",
+                    "import_name": "z3",
+                    "maximum_exclusive_version": "4.17.0.0",
+                    "minimum_version": "4.16.0.0",
+                    "module_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py",
+                    "module_sha256": "53c4529a01f38e7c0d593b7548c79e0d7398aa09f7d7cbd1773470859ee2febd",
+                    "observed_version": "4.16.0.0",
+                    "required_attributes": [
+                      "Bool",
+                      "Solver",
+                      "sat",
+                      "unsat"
+                    ],
+                    "spec_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py",
+                    "state": "COMPATIBLE"
+                  }
+                ],
+                "machine": "arm64",
+                "platform": "macosx-15.0-arm64",
+                "profile_id": "core-cpython313-r1",
+                "promotion_allowed": false,
+                "reason": "core_runtime_profile_satisfied",
+                "registry_sha256": "a1ef1c3dfd042beeeb3932f3c37185eaa73737bba47a7021cf5d53dc7d4016e3",
+                "schema": "constraintbox.runtime-profile-receipt.v1",
+                "state": "ELIGIBLE",
+                "version": [
+                  3,
+                  13,
+                  6
+                ]
+              },
+              "schema": "constraintbox.python-runtime-receipt.v2"
+            },
+            "expected_policy_sha256": "a1ef1c3dfd042beeeb3932f3c37185eaa73737bba47a7021cf5d53dc7d4016e3",
+            "stable": true
+          }
+        },
+        "input_sha256": "47be3624c1190089dd2518c40cd8e28c2b1a952951b6f35f60d99bdf4e7a7749",
+        "policy_sha256": "c34078c8a82d8d064137c2b5a34105dd7264c1bdc03ea29db904e574b9195933",
+        "profile_id": "constraintbox.agent.proposal.v1",
+        "promotion_allowed": false,
+        "reason": "proposal_recorded",
+        "request_id": "cb-live-run-20260808-attempt-1",
+        "schema": "constraintbox.decision.v1",
+        "task_kind": "agent_proposal"
+      },
+      "discharge": {
+        "absent_optional": [],
+        "blocking": false,
+        "checks": [
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "provider_receipt_admitted"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "provider_tool_free"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "strict_intake_eligible"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "proposal_schema_valid"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "evidence_ref_matches"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "falsifier_present"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "tool_profile_ready"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "tool_controls_complete"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "tool_operation_bound"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "smt_settled"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": true,
+            "outcome": "PASS",
+            "threshold": true,
+            "variable": "smt_proposal_admitted"
+          },
+          {
+            "age_seconds": 0.0,
+            "comparator": "eq",
+            "observed": "bounded_tool_execution",
+            "outcome": "PASS",
+            "threshold": "bounded_tool_execution",
+            "variable": "requested_claim"
+          }
+        ],
+        "decided_at": 1786258975.170914,
+        "ill_typed": [],
+        "missing": [],
+        "policy_id": "constraintbox.agent-release.v1",
+        "reason_code": "policy_satisfied",
+        "stale": [],
+        "status": "PASS",
+        "undated": []
+      },
+      "disposition": "ELIGIBLE",
+      "feedback": null,
+      "feedback_input_sha256": null,
+      "feedback_sha256": null,
+      "model_binding": {
+        "missing_observation": null,
+        "model_requested": "gpt-5.6-luna",
+        "model_resolved": "gpt-5.6-luna",
+        "reason_codes": []
+      },
+      "prompt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/attempt-1/prompt.txt",
+      "prompt_sha256": "ef0fd9a85b8afb0b1ab883ed77bdc94ee87af65da0bee5d79aaa2003578353c5",
+      "proposal_sha256": "47be3624c1190089dd2518c40cd8e28c2b1a952951b6f35f60d99bdf4e7a7749",
+      "provider_event_errors": [],
+      "provider_event_warnings": [
+        "Under-development features enabled: chronicle. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/joshuaeisenhart/.codex/config.toml.",
+        "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+      ],
+      "provider_gate": {
+        "admitted": true,
+        "checks": [
+          {
+            "could_fail": true,
+            "detail": "schema+classification+status+rung valid",
+            "name": "receipt_schema_valid",
+            "passed": true
+          },
+          {
+            "could_fail": false,
+            "detail": "no .py artifacts to compile",
+            "name": "artifacts_py_compile",
+            "passed": true
+          },
+          {
+            "could_fail": true,
+            "detail": "status=success, returncode=0",
+            "name": "status_success",
+            "passed": true
+          },
+          {
+            "could_fail": true,
+            "detail": "signed+verified",
+            "name": "signature_valid_if_present",
+            "passed": true
+          },
+          {
+            "could_fail": false,
+            "detail": "gate_ceiling_rung=scratch_diagnostic: no audit required",
+            "name": "audit_required_satisfied_by_separate_auditor",
+            "passed": true
+          },
+          {
+            "could_fail": true,
+            "detail": "promotion_allowed=False, formal_admission_allowed=False",
+            "name": "promotion_flags_require_audit",
+            "passed": true
+          }
+        ],
+        "granted_rung": "scratch_diagnostic",
+        "reasons": [
+          "all_checks_passed"
+        ],
+        "receipt_sha256": "94e4abd8f8c35cc0b0878f0df4d895629195f57d74503ddc88e0a1a8d73172bb",
+        "schema": "codex_ratchet.llm_gate_result.v1",
+        "task_id": "cb-live-run-20260808-attempt-1",
+        "verdict": "admit"
+      },
+      "provider_receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/attempt-1/provider_receipt.json",
+      "provider_receipt_sha256": "94e4abd8f8c35cc0b0878f0df4d895629195f57d74503ddc88e0a1a8d73172bb",
+      "reason_codes": [],
+      "release_safety": true,
+      "smt_gate": {
+        "claim_constraint_erased_control": {
+          "agrees": true,
+          "all_definite": true,
+          "backend_settings": {
+            "cvc5": {
+              "state_count": 1536,
+              "timeout_ms": 5000
+            },
+            "enumeration": {
+              "max_states": 1536,
+              "timeout_ms": null
+            },
+            "z3": {
+              "max_states": 1536,
+              "timeout_ms": 5000
+            }
+          },
+          "cvc5": {
+            "explored": 0,
+            "reason": "bounded_one_hot_model_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "scientific_result",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          },
+          "disagreement": null,
+          "enumeration": {
+            "explored": 1535,
+            "reason": "finite_witness_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "scientific_result",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          },
+          "mandatory_deciders": [
+            "z3",
+            "cvc5",
+            "enumeration"
+          ],
+          "solver_source_sha256": {
+            "constraints.py": "91b6f052b50d3275388e0787a4ce11a7c9a736d6259ba21959b51b82bcc27cb8",
+            "dualsolve.py": "e1505e0fb5c4d50912fc0a5369e086b9b9bcf2aaf488f2bc57935df2e685ba75"
+          },
+          "spec_sha256": "9fb9d70e4d414560f5d58959ff0835fa1ba5a686a90c47d62e9868eac3a0ae8f",
+          "state_count": 1536,
+          "z3": {
+            "explored": 0,
+            "reason": "bounded_model_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "scientific_result",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          }
+        },
+        "control_expected": {
+          "hostile_erased": "BOUNDED_SAT",
+          "hostile_full": "BOUNDED_UNSAT",
+          "proposal": "BOUNDED_SAT"
+        },
+        "cvc5_version": "1.3.3",
+        "encoding": "finite addresses; equality is domain-address equality",
+        "hostile_overclaim": {
+          "agrees": true,
+          "all_definite": true,
+          "backend_settings": {
+            "cvc5": {
+              "state_count": 1536,
+              "timeout_ms": 5000
+            },
+            "enumeration": {
+              "max_states": 1536,
+              "timeout_ms": null
+            },
+            "z3": {
+              "max_states": 1536,
+              "timeout_ms": 5000
+            }
+          },
+          "cvc5": {
+            "explored": 1536,
+            "reason": "bounded_one_hot_encoding_unsat",
+            "status": "BOUNDED_UNSAT"
+          },
+          "disagreement": null,
+          "enumeration": {
+            "explored": 1536,
+            "reason": "finite_domain_exhausted",
+            "status": "BOUNDED_UNSAT"
+          },
+          "mandatory_deciders": [
+            "z3",
+            "cvc5",
+            "enumeration"
+          ],
+          "solver_source_sha256": {
+            "constraints.py": "91b6f052b50d3275388e0787a4ce11a7c9a736d6259ba21959b51b82bcc27cb8",
+            "dualsolve.py": "e1505e0fb5c4d50912fc0a5369e086b9b9bcf2aaf488f2bc57935df2e685ba75"
+          },
+          "spec_sha256": "7553651106dde93d83c040f453178f720cc0c9f67dfd90325941c7dd6eb50f6e",
+          "state_count": 1536,
+          "z3": {
+            "explored": 1536,
+            "reason": "bounded_encoding_unsat",
+            "status": "BOUNDED_UNSAT"
+          }
+        },
+        "promotion_allowed": false,
+        "proposal": {
+          "agrees": true,
+          "all_definite": true,
+          "backend_settings": {
+            "cvc5": {
+              "state_count": 1536,
+              "timeout_ms": 5000
+            },
+            "enumeration": {
+              "max_states": 1536,
+              "timeout_ms": null
+            },
+            "z3": {
+              "max_states": 1536,
+              "timeout_ms": 5000
+            }
+          },
+          "cvc5": {
+            "explored": 0,
+            "reason": "bounded_one_hot_model_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "bounded_tool_execution",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          },
+          "disagreement": null,
+          "enumeration": {
+            "explored": 1534,
+            "reason": "finite_witness_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "bounded_tool_execution",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          },
+          "mandatory_deciders": [
+            "z3",
+            "cvc5",
+            "enumeration"
+          ],
+          "solver_source_sha256": {
+            "constraints.py": "91b6f052b50d3275388e0787a4ce11a7c9a736d6259ba21959b51b82bcc27cb8",
+            "dualsolve.py": "e1505e0fb5c4d50912fc0a5369e086b9b9bcf2aaf488f2bc57935df2e685ba75"
+          },
+          "spec_sha256": "f6b21255c6b613c37d649f49c8e1cdd8f8b808c209f82a3fa2b23a677280a8a6",
+          "state_count": 1536,
+          "z3": {
+            "explored": 0,
+            "reason": "bounded_model_found",
+            "status": "BOUNDED_SAT",
+            "witness": {
+              "evidence_ref_matches": true,
+              "falsifier_present": true,
+              "proposal_schema_valid": true,
+              "provider_receipt_admitted": true,
+              "provider_tool_free": true,
+              "requested_claim": "bounded_tool_execution",
+              "strict_intake_eligible": true,
+              "tool_controls_complete": true,
+              "tool_operation_bound": true,
+              "tool_profile_ready": true
+            }
+          }
+        },
+        "proposal_admitted": true,
+        "schema": "constraintbox.agent-smt-gate.v1",
+        "settled": true,
+        "z3_version": "4.16.0"
+      }
+    }
+  ],
+  "box_input": {
+    "artifact_sha256s": {
+      "compiled_user_context.json": "64df53dc87327ff878012f36f4a452c9bdcc628b3ca38b877579e3dd63e075ab",
+      "compiled_user_context.txt": "a23d18c63672b2660323534ccf7296108071ef396f9332896ef3dff0469bb494",
+      "deterministic_explanation.json": "c34984dd85ba85014f841c27e0eb1438b41cee6765a17337b112572079127573",
+      "external_audit_brief.json": "c89af0e3d24240700cdd8716a2777865063eb0994c5606c6dd7d544f742f8410",
+      "external_engine_packet.json": "4b6950c20c60a977bdf8cbadc03acfebb30d1303beb8683b5429a0196169ded2",
+      "request_assessment.json": "dd4edbe3e860c29adc83466c5952409c87775ab08474d10adfc02c5e02455ab5",
+      "user_profile.json": "0d5bb4c29858f176d60c2bfaaace86a0c8a5133d55887c940379865861ef4ce3",
+      "user_request.json": "c97502165d2d063663e75c20bcb91e1efacf02290bfc0524b5535eb4e959f021"
+    },
+    "box_receipt_sha256": "507835208bf2749c551c13f369f737d5e3ae1cf58f201704d8b10c9a9d71170b",
+    "claim_ceiling": "captured local receipt and artifact integrity only; no authentication against another same-user process and no hostile-code containment",
+    "compiled_user_context_sha256": "a23d18c63672b2660323534ccf7296108071ef396f9332896ef3dff0469bb494",
+    "external_engine_packet_sha256": "4b6950c20c60a977bdf8cbadc03acfebb30d1303beb8683b5429a0196169ded2",
+    "profile_sha256": "0d5bb4c29858f176d60c2bfaaace86a0c8a5133d55887c940379865861ef4ce3",
+    "request_sha256": "c97502165d2d063663e75c20bcb91e1efacf02290bfc0524b5535eb4e959f021",
+    "run_directory": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/box",
+    "verified": true
+  },
+  "branch_ledger": {
+    "branches": {
+      "attempt-1": {
+        "branch_id": "attempt-1",
+        "parents": [],
+        "payload_sha256": "c3e5609e4366811f33d82bd960d391bd4db922996922f3ae031d82d53801ecb6",
+        "status": "LIVE"
+      }
+    },
+    "events": [
+      {
+        "branch_id": "attempt-1",
+        "event": "BRANCH_ADDED"
+      }
+    ]
+  },
+  "claim_ceiling": "one fixed local NumPy worker fixture and named controls; no promotion",
+  "claim_gate": {
+    "chain": "claimgate_plugin/claim_verify.py",
+    "chain_exit_code": 0,
+    "chain_root": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box",
+    "chain_root_inside_box": true,
+    "chain_verdict": "VERIFIED",
+    "claim_kind": "field_only",
+    "disposition": "ADMITTED",
+    "promotion_allowed": false,
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/release_receipt.json",
+    "receipt_sha256": "e010597d626f75fdc5b30b53989bc48d52874261c7299d3691d3727a7e19b13b",
+    "registry": "claimgate_plugin/gate_registry.json",
+    "registry_sha256": "3332ffd85cd254e694e8184ad1bebee53f200033e56b20546659a7ef3d75799f",
+    "required_tiers": [
+      "tier0"
+    ],
+    "required_unmet": [],
+    "schema": "constraintbox.gate.v1",
+    "tamper_events": [],
+    "tier0_checker": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/claimgate_plugin/claimgate.mjs",
+    "tier_results": [
+      {
+        "detail": "claimgate.mjs exit 0",
+        "evidence_ref": "claimgate.mjs",
+        "status": "PASS",
+        "tier": "tier0"
+      },
+      {
+        "detail": "no recompute contract declared",
+        "evidence_ref": null,
+        "status": "SKIP",
+        "tier": "tier1"
+      },
+      {
+        "detail": "claim_kind declares no tier2 gate",
+        "evidence_ref": null,
+        "status": "SKIP",
+        "tier": "tier2"
+      },
+      {
+        "detail": "claim_kind declares no tier3 gate",
+        "evidence_ref": null,
+        "status": "SKIP",
+        "tier": "tier3"
+      },
+      {
+        "detail": "no sibling audit (unaudited)",
+        "evidence_ref": null,
+        "status": "SKIP",
+        "tier": "tier4"
+      }
+    ],
+    "tier_source": "gate_registry.json",
+    "unverified_tiers": [
+      "tier1",
+      "tier2",
+      "tier3",
+      "tier4"
+    ],
+    "verified_tiers": [
+      "tier0"
+    ]
+  },
+  "contained_provider_harness": {
+    "inside_constraint_box": true,
+    "module": "constraintbox._provider_harness",
+    "parent_ratchet_checkout_imported": false,
+    "vendored_source_manifest": "_provider_harness/VENDORED_SOURCE_MANIFEST.json"
+  },
+  "disposition": "RELEASED",
+  "maximum_attempts": 2,
+  "profile_id": "constraintbox.cr-gksl-numpy-density.darwin.v1",
+  "profile_inputs": {
+    "controller_base_mmm_not_prompt_context": {
+      "packs": [
+        {
+          "name": "nominalist",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/nominalist.md",
+          "sha256": "380554750988c1af5959cc2e11e94a3c0de4b9bf66088f2edf5e8ac72c528edd"
+        },
+        {
+          "name": "constraint-programming",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/constraint-programming.md",
+          "sha256": "1ecd4162a42d86ed90d7512d99c2ea515eae0486060003cb9e2abe8b0f63dc6b"
+        },
+        {
+          "name": "smt",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/smt.md",
+          "sha256": "11a5074a5d4ae999ba41642eaee9748786aab00cc37b06464766fa9a11608886"
+        },
+        {
+          "name": "claimgate",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/claimgate.md",
+          "sha256": "07537fe62f4056d7fc8fd3a7708217fa925d9fa2f2e4ff1da97244d5b119b862"
+        },
+        {
+          "name": "cr-ratchet",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/cr-ratchet.md",
+          "sha256": "cff83646e32bae5c658935fb9fcb322ef1fc25e9c245a5e4c3b07d06ea0eca06"
+        },
+        {
+          "name": "lev-os",
+          "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/mmm/packs/lev-os.md",
+          "sha256": "66978f264fabe9da42d420681e2abd7caef22baf7aa7b89ca1bd527f612eb671"
+        }
+      ],
+      "sha256": "7314c2783d8d8697e7cdd89e13841dd091e8d51bcfa0053fdd7a49fe07e8b489"
+    },
+    "estate_controller": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/src/constraintbox/estate.py",
+      "sha256": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e"
+    },
+    "fixture": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/fixtures/cr/cr_gksl_fixture_v1.json",
+      "sha256": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f"
+    },
+    "import_blocker": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/external_sim_estate/legacy_estate_v2/workers/import_blocker.py",
+      "sha256": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418"
+    },
+    "operation_poisoner": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/external_sim_estate/legacy_estate_v2/workers/operation_poisoner.py",
+      "sha256": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0"
+    },
+    "worker": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/external_sim_estate/legacy_estate_v2/workers/capability_worker.py",
+      "sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
+    }
+  },
+  "promotion_allowed": false,
+  "proposal_flow": {
+    "binding": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_flow_binding.json",
+    "binding_artifact_sha256": "c4354bf35e718b728e8d9ff1fd767f3990ac57144da0e734473c9567d5f043fe",
+    "binding_sha256": "c4354bf35e718b728e8d9ff1fd767f3990ac57144da0e734473c9567d5f043fe",
+    "caller_replay_verified": true,
+    "claim_ceiling": "one controller-owned two-attempt untrusted proposal and ClaimGate check; no promotion or hostile-process containment",
+    "controller_state_root": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/.constraintbox-controller-state",
+    "execution_lease_slot_sha256": "c6acc1fccf3b849beca20c69215e080340a1079ba76afcc36571fcad8a4f2dfe",
+    "execution_lease_state": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/.constraintbox-controller-state/execution-leases/proposal-observation.v1.json",
+    "flow_ledger": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_minilev_flow/proposal_flow_ledger.jsonl",
+    "flow_ledger_head": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_minilev_flow/proposal_flow_ledger.jsonl.head",
+    "flow_policy_sha256": "4713cea1205218453eb594f7eba8040e6d902781a8bc6d97d6f2baadd2f3648b",
+    "flow_receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_minilev_flow/proposal_flow_receipt.json",
+    "flow_receipt_sha256": "0e177b42489f932244d1205b1d66e56bf429700ea090afe0ea3d888bb330eef3",
+    "flow_root": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_minilev_flow",
+    "promotion_allowed": false,
+    "run_id": "proposal-84711816b488b7c637c6c2fdd044ac7c",
+    "schema": "constraintbox.proposal-minilev-flow-result.v1",
+    "terminal": "RELEASED",
+    "topology_witness": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/proposal_minilev_flow/proposal_flow_topology_witness.json",
+    "topology_witness_sha256": "01e9e66ce246469d9c047503a19a32f839776e2d6fcd6a4150be5878344177ba"
+  },
+  "proposal_provider_policy": {
+    "component_key": "CodexLunaProvider",
+    "credential_configured": false,
+    "credential_env": null,
+    "llm_decision_authority": false,
+    "max_tokens": 768,
+    "operator_selected": true,
+    "policy_sha256": "3c8b85ae94c15ad637d7ad747234a2fc036d917c5fe5354fcbaee9349ff47072",
+    "policy_source_sha256": "21a828a2f46bf536eb598e63ae2427d8590b8670bb8e2aea8a4cbc1103576aa1",
+    "promotion_allowed": false,
+    "requested_model": "gpt-5.6-luna",
+    "route": "codex_luna",
+    "schema": "constraintbox.proposal-provider-policy.v1",
+    "selection_basis": "explicit_operator_runtime_route_from_static_controller_registry",
+    "temperature": 0.0
+  },
+  "reason": "fixed Mini-Lev proposal and ClaimGate gates passed",
+  "release": "ConstraintBox observed the registered NumPy density worker pass its fixed local fixture and the positive, dispatch, mutation, replay, import-severance, and operation-severance controls. Scope: bounded local tool execution only.",
+  "release_allowed": true,
+  "release_receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/release_receipt.json",
+  "run_directory": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run",
+  "schema": "constraintbox.agent-run.v2",
+  "task_id": "cb-live-run-20260808",
+  "tool_errors": [],
+  "tool_receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/tool_receipt.json",
+  "tool_receipt_sha256": "c8bbcf31045ed9c7983b90e299606133d2c134aef7d854a07f00fbc99ca1a831"
+}

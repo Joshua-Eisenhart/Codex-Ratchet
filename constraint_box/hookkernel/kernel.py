@@ -75,7 +75,10 @@ def _estate_rows(payload, root):
         rows = []
         for candidate in data.get("candidates", []):
             name = candidate.get("pypi_name")
-            if adopted and name not in adopted:
+            # _adopted_names is PEP 503 normalised, so normalise here too. Raw
+            # comparison would silently DROP a differently-cased adopted package
+            # from the currentness check, hiding a stale one.
+            if adopted and _normalize_dist(str(name)) not in adopted:
                 continue
             verified = candidate.get("verified", {})
             if verified.get("release_date"):
@@ -110,8 +113,14 @@ def _negatives_fired(body):
     return count
 
 
+def _normalize_dist(name):
+    """PEP 503 normalisation. Cerberus, cerberus and flake8_simplify vs
+    flake8-simplify are the SAME distribution; exact matching false-positives."""
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
 def _requirement_names(path):
-    """Distribution names declared in a pip requirements .in file."""
+    """Normalised distribution names declared in a pip requirements .in file."""
     if not path.exists():
         return set()
     names = set()
@@ -119,7 +128,7 @@ def _requirement_names(path):
         line = line.strip()
         if not line or line.startswith("#"):
             continue
-        names.add(re.split(r"[=<>#\s\[]", line)[0])
+        names.add(_normalize_dist(re.split(r"[=<>#\s\[]", line)[0]))
     return names
 
 
@@ -148,7 +157,7 @@ def _lock_covers_declared(root):
     locked = set()
     for lock in locks:
         locked |= {
-            re.split(r"[=<>#\s\[]", ln.strip())[0]
+            _normalize_dist(re.split(r"[=<>#\s\[]", ln.strip())[0])
             for ln in lock.read_text(encoding="utf-8").splitlines()
             if ln.strip() and not ln.strip().startswith("#")
         }

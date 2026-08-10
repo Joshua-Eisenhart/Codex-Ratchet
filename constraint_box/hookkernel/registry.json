@@ -1,22 +1,65 @@
 {
-  "events": {
-    "session_start": ["estate_currentness"],
-    "pip_command_observed": ["environment_identity"],
-    "dependency_file_changed": ["lock_validity"],
-    "cb_source_changed": ["integration_validity"],
-    "task_completion_claimed": [],
-    "post_tool_use_observed": []
+ "events": {
+  "session_start": [
+   "estate_currentness"
+  ],
+  "pip_command_observed": [
+   "environment_identity"
+  ],
+  "dependency_file_changed": [
+   "lock_validity"
+  ],
+  "cb_source_changed": [
+   "integration_validity"
+  ],
+  "task_completion_claimed": [],
+  "post_tool_use_observed": [],
+  "probes_recorded": [
+   "integration_validity"
+  ]
+ },
+ "facts": {
+  "estate_currentness": [
+   "estate_receipts_current"
+  ],
+  "environment_identity": [
+   "mandated_interpreter"
+  ],
+  "lock_validity": [
+   "declared_set_locked"
+  ],
+  "integration_validity": [
+   "probes_current"
+  ]
+ },
+ "constraints": {
+  "estate_receipts_current": {
+   "id": "estate_receipts_current",
+   "question": "Are all estate receipt dates within 548 days?",
+   "decider": "inline_date_arithmetic",
+   "expiry_seconds": 47347200,
+   "reason_code": "CURRENTNESS_EXPIRED"
   },
-  "facts": {
-    "estate_currentness": ["estate_receipts_current"],
-    "environment_identity": ["mandated_interpreter"],
-    "lock_validity": ["declared_set_locked"],
-    "integration_validity": ["probes_current"]
+  "mandated_interpreter": {
+   "id": "mandated_interpreter",
+   "question": "Did pip use the mandated interpreter?",
+   "decider": "inline_command_match",
+   "expiry_seconds": null,
+   "reason_code": "ENV_INTERPRETER_MISMATCH"
   },
-  "constraints": {
-    "estate_receipts_current": {"id": "estate_receipts_current", "question": "Are all estate receipt dates within 548 days?", "decider": "inline_date_arithmetic", "expiry_seconds": 47347200, "reason_code": "CURRENTNESS_EXPIRED"},
-    "mandated_interpreter": {"id": "mandated_interpreter", "question": "Did pip use the mandated interpreter?", "decider": "inline_command_match", "expiry_seconds": null, "reason_code": "ENV_INTERPRETER_MISMATCH"},
-    "declared_set_locked": {"id": "declared_set_locked", "question": "Does the lock cover the declared dependency set?", "decider": "receipt_metadata", "expiry_seconds": null, "reason_code": "LOCK_STALE"},
-    "probes_current": {"id": "probes_current", "question": "Are probes current for touched modules?", "decider": "probe_obligation", "expiry_seconds": null, "reason_code": "PROBES_REQUIRED"}
+  "declared_set_locked": {
+   "id": "declared_set_locked",
+   "question": "Does the lock cover the declared dependency set?",
+   "decider": "receipt_metadata",
+   "expiry_seconds": null,
+   "reason_code": "LOCK_STALE"
+  },
+  "probes_current": {
+   "id": "probes_current",
+   "question": "Are probes current for touched modules?",
+   "decider": "probe_obligation",
+   "expiry_seconds": null,
+   "reason_code": "PROBES_REQUIRED"
   }
+ }
 }

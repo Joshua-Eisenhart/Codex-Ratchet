@@ -11,6 +11,7 @@ import datetime
 import hashlib
 import json
 import os
+import re
 import sys
 import traceback
 from pathlib import Path
@@ -66,16 +67,98 @@ def _estate_rows(payload, root):
     config = root.parent / "config" / "cb_light_library_candidates.json"
     if config.exists():
         data = json.loads(config.read_text(encoding="utf-8"))
+        # Scope to the ADOPTED estate. The registry says of itself: "Candidate
+        # registry only, never an install manifest." Holding the whole system on
+        # a candidate we never adopted is a false positive — 35 of 36 stale rows
+        # were packages CB does not install. Currentness constrains what we ship.
+        adopted = _adopted_names(root)
         rows = []
         for candidate in data.get("candidates", []):
+            name = candidate.get("pypi_name")
+            if adopted and name not in adopted:
+                continue
             verified = candidate.get("verified", {})
             if verified.get("release_date"):
-                rows.append({"id": candidate.get("pypi_name"), "date": verified["release_date"]})
+                rows.append({"id": name, "date": verified["release_date"]})
         return rows, data.get("stale_days_max", STALE_DAYS_MAX)
     rows = payload.get("estate_rows")
     if rows is not None:
         return rows, payload.get("stale_days_max", STALE_DAYS_MAX)
     return [], STALE_DAYS_MAX
+
+
+def _negatives_fired(body):
+    """Count fired negatives anywhere in a probe receipt.
+
+    A probe receipt earns integration_validity only by showing negatives that
+    actually fired. A receipt full of passing positives proves non-constancy at
+    best, which is not the claim being made.
+    """
+    count = 0
+    stack = [body]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            neg = node.get("negative")
+            if isinstance(neg, dict) and neg.get("fired") is True:
+                count += 1
+            if node.get("signal") == "EXPECTED_NEGATIVE_OBSERVED":
+                count += 1
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return count
+
+
+def _requirement_names(path):
+    """Distribution names declared in a pip requirements .in file."""
+    if not path.exists():
+        return set()
+    names = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        names.add(re.split(r"[=<>#\s\[]", line)[0])
+    return names
+
+
+def _adopted_names(root):
+    """The estate CB actually installs: extended + passing candidates."""
+    req = root.parent / "requirements" / "candidates"
+    return (
+        _requirement_names(req / "cb-light-extended.in")
+        | _requirement_names(req / "cb-candidates-passing.in")
+    )
+
+
+def _lock_covers_declared(root):
+    """Recompute lock coverage from files. Never trust a caller's boolean.
+
+    Returns (covered, details). A caller-supplied lock_covers_declared_set was
+    forgeable in exactly the way the currentness override was: the thing being
+    judged supplied the verdict.
+    """
+    declared = _adopted_names(root)
+    if not declared:
+        return False, {"error": "no declared set found"}
+    locks = sorted((root.parent / "requirements" / "locks").glob("*.lock"))
+    if not locks:
+        return False, {"declared": len(declared), "locks": 0, "uncovered": sorted(declared)[:20]}
+    locked = set()
+    for lock in locks:
+        locked |= {
+            re.split(r"[=<>#\s\[]", ln.strip())[0]
+            for ln in lock.read_text(encoding="utf-8").splitlines()
+            if ln.strip() and not ln.strip().startswith("#")
+        }
+    uncovered = sorted(n for n in declared if n not in locked)
+    return (not uncovered), {
+        "declared": len(declared),
+        "locked": len(locked),
+        "uncovered_count": len(uncovered),
+        "uncovered": uncovered[:20],
+    }
 
 
 def _evaluate(event, payload, root, registry):
@@ -100,12 +183,30 @@ def _evaluate(event, payload, root, registry):
             return "REFUSE", "ENV_INTERPRETER_MISMATCH", {"environment_identity": "mismatch"}, {"command": command}
         return "ADMIT", "ENV_INTERPRETER_VALID", {"environment_identity": "valid"}, {}
     if event == "dependency_file_changed":
-        if payload.get("lock_covers_declared_set") is True:
-            return "ADMIT", "LOCK_VALID", {"lock_validity": "valid"}, {}
-        return "HOLD", "LOCK_STALE", {"lock_validity": "stale"}, {}
+        covered, details = _lock_covers_declared(root)
+        if covered:
+            return "ADMIT", "LOCK_VALID", {"lock_validity": "valid"}, details
+        return "HOLD", "LOCK_STALE", {"lock_validity": "stale"}, details
     if event == "cb_source_changed":
         modules = payload.get("modules", [])
         return "HOLD", "PROBES_REQUIRED", {"integration_validity": "stale"}, {"modules": modules}
+    if event == "probes_recorded":
+        # Resolution path for PROBES_REQUIRED. Recomputed, not asserted: the
+        # named probe receipt must exist on disk and report a fired negative.
+        # Without this event the fact had no way back to good and the gate
+        # deadlocked on it permanently.
+        name = str(payload.get("receipt", ""))
+        candidate = (root.parent / "receipts" / name) if name else None
+        if not name or candidate is None or not candidate.exists():
+            return "HOLD", "PROBES_REQUIRED", {"integration_validity": "stale"}, {"missing_receipt": name}
+        try:
+            body = json.loads(candidate.read_text(encoding="utf-8"))
+        except (ValueError, OSError) as exc:
+            return "HOLD", "PROBES_REQUIRED", {"integration_validity": "stale"}, {"unreadable": str(exc)}
+        fired = _negatives_fired(body)
+        if not fired:
+            return "HOLD", "PROBES_REQUIRED", {"integration_validity": "stale"}, {"receipt": name, "negatives_fired": 0}
+        return "ADMIT", "PROBES_CURRENT", {"integration_validity": "current"}, {"receipt": name, "negatives_fired": fired}
     if event == "task_completion_claimed":
         receipts = root / "receipts.jsonl"
         valid, problem = verify_chain(receipts)

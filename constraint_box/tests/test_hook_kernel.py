@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1] / "hookkernel"
 PYTHON = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
 
 
-def make_root(tmp_path):
+def make_root(tmp_path, *, declared=("alpha",), locked=("alpha",)):
     root = tmp_path / "hookkernel"
     root.mkdir(parents=True)
     for name in ("kernel.py", "receipts.py", "registry.json"):
@@ -25,6 +25,16 @@ def make_root(tmp_path):
     (root / "manifest.json").write_text(canonical(manifest), encoding="utf-8")
     (root.parent / "config").mkdir(exist_ok=True)
     shutil.copy(Path(__file__).resolve().parents[1] / "config" / "cb_light_library_candidates.json", root.parent / "config" / "cb_light_library_candidates.json")
+    # Lock coverage is RECOMPUTED from these files, never from a payload boolean
+    # (a caller-supplied lock_covers_declared_set was a forgeable clear). Tests
+    # therefore control the declared set and the lock, not the verdict.
+    req = root.parent / "requirements" / "candidates"
+    req.mkdir(parents=True, exist_ok=True)
+    (req / "cb-light-extended.in").write_text("\n".join(declared) + "\n", encoding="utf-8")
+    (req / "cb-candidates-passing.in").write_text("", encoding="utf-8")
+    locks = root.parent / "requirements" / "locks"
+    locks.mkdir(parents=True, exist_ok=True)
+    (locks / "test.lock").write_text("\n".join(f"{n}==1.0.0" for n in locked) + "\n", encoding="utf-8")
     return root
 
 
@@ -42,7 +52,7 @@ def last(root):
 
 def test_valid_event_admits_and_chain_verifies(tmp_path):
     root = make_root(tmp_path)
-    result = run(root, "dependency_file_changed", {"lock_covers_declared_set": True})
+    result = run(root, "dependency_file_changed", {})
     assert result.returncode == 0
     assert last(root)["payload"]["reason_code"] == "LOCK_VALID"
     assert verify_chain(root / "receipts.jsonl") == (True, None)
@@ -56,7 +66,9 @@ def test_wrong_interpreter_refuses_specific_reason(tmp_path):
 
 
 def test_expired_fixture_is_currentness_negative(tmp_path):
-    root = make_root(tmp_path)
+    # Currentness is scoped to the ADOPTED estate, so the stale package must be
+    # declared as adopted or it is correctly ignored as a mere candidate.
+    root = make_root(tmp_path, declared=("tabulate",), locked=("tabulate",))
     # Currentness derives from the AUTHORITATIVE config, so control the config,
     # not a payload override. A payload override is correctly ignored when a
     # config exists — that binding closes the forged-fixture bypass and is
@@ -109,7 +121,7 @@ def test_missing_registry_is_unavailable(tmp_path):
 def test_replay_payload_is_byte_identical_in_fresh_stores(tmp_path):
     first = make_root(tmp_path / "one")
     second = make_root(tmp_path / "two")
-    payload = {"lock_covers_declared_set": True}
+    payload = {}
     assert run(first, "dependency_file_changed", payload).returncode == 0
     assert run(second, "dependency_file_changed", payload).returncode == 0
     a = last(first)["payload"]
@@ -142,10 +154,34 @@ def test_kernel_ast_imports_stdlib_only():
     assert set(imports) <= allowed
 
 
-def test_real_registry_has_tabulate_negative(tmp_path):
-    root = make_root(tmp_path)
+def test_real_registry_scoped_to_adopted_estate_is_current(tmp_path):
+    """The real registry, scoped to what CB adopts, is current.
+
+    This replaces an earlier test that asserted tabulate fires from the real
+    registry. Two things changed, both deliberate: currentness is now scoped to
+    the ADOPTED estate rather than all 139 candidates (35 of the 36 stale rows
+    were packages CB never installs), and tabulate was DROPPED from the adopted
+    set for being 616 days old against a 548-day bar while imported by zero CB
+    source files. The bar was not moved; the failing package was removed.
+
+    The negative for this constraint is pinned by
+    test_expired_fixture_is_currentness_negative, which declares a stale package
+    as adopted and shows it fire.
+    """
+    root = tmp_path / "hookkernel"
+    root.mkdir(parents=True)
+    for name in ("kernel.py", "receipts.py", "registry.json"):
+        shutil.copy(ROOT / name, root / name)
+    manifest = {"files": {n: hashlib.sha256((root / n).read_bytes()).hexdigest() for n in ("kernel.py", "receipts.py", "registry.json")}}
+    (root / "manifest.json").write_text(canonical(manifest), encoding="utf-8")
+    # real config AND real requirement files, so this exercises production data
+    real = Path(__file__).resolve().parents[1]
+    (root.parent / "config").mkdir(exist_ok=True)
+    shutil.copy(real / "config" / "cb_light_library_candidates.json", root.parent / "config" / "cb_light_library_candidates.json")
+    shutil.copytree(real / "requirements", root.parent / "requirements")
+
     result = run(root, "session_start", {"today": "2026-08-09"})
-    assert result.returncode == 2
     body = last(root)["payload"]
-    assert body["reason_code"] == "CURRENTNESS_EXPIRED"
-    assert any(row["id"] == "tabulate" and row["age_days"] == 616 for row in body["details"]["stale"])
+    assert body["reason_code"] == "CURRENTNESS_VALID", body
+    assert result.returncode == 0
+    assert body["details"]["checked"] > 50, body

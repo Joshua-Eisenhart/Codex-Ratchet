@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import pathlib
 import shutil
 import subprocess
@@ -14,13 +15,17 @@ import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
+# This broker's source path is the authoritative checkout identity.  Bind it
+# before importing the installed wheel: when the command is invoked outside
+# the checkout, ``hookkernel.cb_light_runtime`` must not fall back to its
+# site-packages location and derive a nonexistent ``.venv`` below it.
+os.environ["CB_LIGHT_ROOT"] = str(ROOT)
 if str(ROOT) not in sys.path:
     # ``hookkernel`` must resolve from the contained Light wheel; the checkout
     # is appended only to make the hook wrapper importable under ``python -I``.
     sys.path.append(str(ROOT))
 
 from hooks.cb_light_hook import (  # noqa: E402
-    BOOTSTRAP_INTERPRETER,
     CLEAN_INSTALL_REPORT,
     CLEAN_RECEIPT,
     HookRefusal,
@@ -40,9 +45,35 @@ from hooks.cb_light_hook import (  # noqa: E402
 # its base interpreter only to build the local Light wheel; the wheel is then
 # installed and exercised solely by the contained interpreter.
 BUILD_INTERPRETER = pathlib.Path(
-    getattr(sys, "_base_executable", sys.executable)
+    getattr(sys, "_base_executable", None) or sys.executable
 ).resolve()
 CLEAN_RUNTIME = ROOT / ".venv-clean"
+
+
+def _venv_python(
+    venv_root: pathlib.Path, *, platform_name: str | None = None
+) -> pathlib.Path:
+    """Return a venv launcher without assuming a POSIX layout.
+
+    The current manifest still records its supported macOS profile separately.
+    This helper only keeps broker-created transient environments from baking
+    the POSIX ``bin/python`` spelling into lifecycle execution.
+    """
+
+    if (platform_name or os.name) == "nt":
+        return venv_root / "Scripts" / "python.exe"
+    return venv_root / "bin" / "python"
+
+
+def _create_venv(target: pathlib.Path) -> int:
+    """Create a lifecycle venv from the base builder, never site-packages."""
+
+    completed = subprocess.run(
+        [str(BUILD_INTERPRETER), "-m", "venv", "--clear", str(target)],
+        cwd=ROOT,
+        check=False,
+    )
+    return completed.returncode
 
 
 def _remove_generated_light_build_products() -> None:
@@ -85,7 +116,7 @@ def _rebuild_manifest_under_lifecycle_lock() -> int:
 
     completed = subprocess.run(
         [
-            str(BOOTSTRAP_INTERPRETER),
+            str(BUILD_INTERPRETER),
             "-I",
             str(ROOT / "scripts/build_cb_light_manifest.py"),
             "--root",
@@ -111,19 +142,9 @@ def install(*, rebuild_manifest: bool = False) -> int:
 def _install() -> int:
     verify_manifest()
     (ROOT / "receipts").mkdir(parents=True, exist_ok=True)
-    created_runtime = subprocess.run(
-        [
-            str(BOOTSTRAP_INTERPRETER),
-            "-m",
-            "venv",
-            "--clear",
-            str(ROOT / ".venv"),
-        ],
-        cwd=ROOT,
-        check=False,
-    )
-    if created_runtime.returncode != 0:
-        return created_runtime.returncode
+    created_runtime = _create_venv(ROOT / ".venv")
+    if created_runtime != 0:
+        return created_runtime
     completed = subprocess.run(
         [
             str(MANDATED_INTERPRETER),
@@ -204,14 +225,10 @@ def _install() -> int:
     # Keep the clean candidate environment separate *and persistent*.  A
     # deleted TemporaryDirectory can leave a receipt that appears complete
     # until a later verifier tries to replay or inspect its stated prefix.
-    created = subprocess.run(
-        [str(BOOTSTRAP_INTERPRETER), "-m", "venv", "--clear", str(CLEAN_RUNTIME)],
-        cwd=ROOT,
-        check=False,
-    )
-    if created.returncode != 0:
-        return created.returncode
-    clean_python = CLEAN_RUNTIME / "bin/python"
+    created = _create_venv(CLEAN_RUNTIME)
+    if created != 0:
+        return created
+    clean_python = _venv_python(CLEAN_RUNTIME)
     clean_install = subprocess.run(
         [
             str(clean_python),

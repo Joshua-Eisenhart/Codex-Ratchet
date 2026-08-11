@@ -1,7 +1,7 @@
 {
   "claim_ceiling": "contained CB Light installation, fresh-wheel Light/Heavy separation, and current-work selection only; no portable adoption, production integration, CB Heavy setup or bridge, simulation, promotion, or release",
   "completion_allowed": false,
-  "evaluated_at": "2026-08-11T07:50:42.671266+00:00",
+  "evaluated_at": "2026-08-11T09:36:47.614662+00:00",
   "evaluation_allowed": true,
   "hook_activation_claim": "project settings and executable hook sources are present; actual hook firing is evidenced separately by receipts/cb_light_hook_events.jsonl and requires Claude Code to start with this repository as its project root",
   "hook_config_errors": [],
@@ -10,9 +10,9 @@
     "passed": true,
     "reason_code": "LIGHT_HEAVY_SEPARATION_VERIFIED",
     "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cb_light_heavy_separation_audit_v2.json",
-    "receipt_sha256": "2839608d15939c920391a369aeb3a6eb844f3830a6342254fb38d3a979136552"
+    "receipt_sha256": "e494f73414fe83998978f38736c2a87018c8e87fc8f99b74066a835ef45864cf"
   },
-  "manifest_identity_sha256": "794ec93871da855c827a0a0848840928420d8a516d1495d017452e0967296fb3",
+  "manifest_identity_sha256": "cce3df81bcb2e85421678d4345538cb257a25510b73ab40bf9397b7ee8b47b39",
   "promotion_allowed": false,
   "runs": {
     "light_heavy_separation": {
@@ -120,12 +120,12 @@
   "runtime_postcondition": {
     "installed_light_package_source_integrity": {
       "evidence": {
-        "expected_file_count": 30,
-        "expected_hashes_sha256": "606596fc9d14a3b5d2bdb8da0d9a38821a4b5bd5dc017f118abed1e3ce0e7445",
+        "expected_file_count": 32,
+        "expected_hashes_sha256": "a0f1e4885966696ee49070fedb82a32134e07b48de7555aeb55b9538a4b66072",
         "hash_mismatch_paths": [],
         "missing_paths": [],
-        "observed_file_count": 30,
-        "observed_hashes_sha256": "606596fc9d14a3b5d2bdb8da0d9a38821a4b5bd5dc017f118abed1e3ce0e7445",
+        "observed_file_count": 32,
+        "observed_hashes_sha256": "a0f1e4885966696ee49070fedb82a32134e07b48de7555aeb55b9538a4b66072",
         "package_roots": {
           "constraintbox": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/lib/python3.13/site-packages/constraintbox",
           "hookkernel": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/lib/python3.13/site-packages/hookkernel"
@@ -152,14 +152,14 @@
     "selected_core": 5,
     "selected_for_work": 86
   },
-  "selection_receipt_sha256": "b8c491b9881ca5bea8faf5676d41e6ff896c36669d4da624ba6a6aac9a734b05",
+  "selection_receipt_sha256": "3da64f7e66b64ec093c47b926489cb2806b68d0e1d840d87ed37adea5ae72e43",
   "source_hashes": {
     ".gitignore": "06cba44f72be61e48af5859d96dc7902493c42469abdb6274df1fb56fcf38df3",
     "CB_FOUNDATION_REQUIREMENTS.md": "d56961d5cf9c5cb5995127cb991227a421ad3e4d75ef75749ae66849a902d0da",
     "bin/cb-claude": "52bd17011d87d06f109f2d4626ded43f6ae68080f1c706fa27b3e1efa0037a2b",
     "bin/cb-light": "5ccb4cee7cb9f834ed019db7664b5f60506f8e9654c0f550c1b9d83a0bfc21bf",
-    "config/cb_light_contract_v1.json": "443daabdb4369461e0019a9ce959c215924138a78b62ab785ced7d0ad5a07351",
-    "config/cb_light_tools_v1.json": "94070d20228b2e95e3fcf409f9d0cf0959d55b109afd5503d65dc15ab636bb0b",
+    "config/cb_light_contract_v1.json": "83928150972de3d8f4fdb14bf69e8434cd4c5dd7d789a4aea4a8a76fc95869c3",
+    "config/cb_light_tools_v1.json": "6d7cb5e053b670aa7cb4d3a7bd7db9698fe8cec82fe030aa81aed3ba86ae5f2a",
     "config/core_tool_registry_v9.json": "7dfcbf29c572fdc4420d63f4405f0148c6ca370d72649c258af5bd196444dfb2",
     "hooks/__init__.py": "4318184b190c4afbb29d723ea63a78a532d64725f4778165186ef78ba354ad67",
     "hooks/cb_light_command_guard.py": "75faef86bf87a78332b1fa68b2d4a8cb5413c1c03a3c45c47f5b67e24943d52f",
@@ -184,10 +184,12 @@
     "light_runtime/src/constraintbox/cb_light_tool_probes.py": "4c9782d7e59b2e4073db292465b50ccfd17c157e6a1e02af0ae1d1eb6261d5b7",
     "light_runtime/src/constraintbox/constraints.py": "91b6f052b50d3275388e0787a4ce11a7c9a736d6259ba21959b51b82bcc27cb8",
     "light_runtime/src/constraintbox/control_plane.py": "bf38801f04b58053b5e0f3332b79de1f79faa286bb76ca0aea36f50405b0425a",
-    "light_runtime/src/constraintbox/core_cli.py": "2957af8b2b74d237558dff422742885030bd09a20690371916004c1c4fab1926",
+    "light_runtime/src/constraintbox/core_cli.py": "8fa20f67a075c5b69f13e30634843e1839db30e9d0c35a485f3802c4af197ef9",
     "light_runtime/src/constraintbox/core_tool_registry_v9.json": "7dfcbf29c572fdc4420d63f4405f0148c6ca370d72649c258af5bd196444dfb2",
     "light_runtime/src/constraintbox/core_tools.py": "55834704da76aa698cafa33fc8e81ccd799e95ff0993d27d0fd08e636e82bf8a",
     "light_runtime/src/constraintbox/dualsolve.py": "e1505e0fb5c4d50912fc0a5369e086b9b9bcf2aaf488f2bc57935df2e685ba75",
+    "light_runtime/src/constraintbox/premortem_contracts.py": "4fe82a409551a64a549d2c051caac1fa87b18eeb8e118e86ade6c932b608cc23",
+    "light_runtime/src/constraintbox/premortem_remediation.py": "af961bd7af36a067b200197fbb178ebc8192ae8c24b5cba04b32a418b8800b42",
     "light_runtime/src/constraintbox/wave_adapters.py": "247f3147631efc575b243fcb77e2bc296856259fd97a0603bec0e44e580520e3",
     "light_runtime/src/constraintbox/wave_contracts.py": "900e4aeab547ad0bc441745b4140feba19dfc8048f921216d98b68f1a287c00f",
     "light_runtime/src/constraintbox/wave_controller.py": "803f6d78ff49282e8d2b637bdbb965fb848efa1b906f15c3dd0985f90fa842c1",
@@ -215,11 +217,11 @@
     "runtime:hook_launcher_interpreter": "0d1fc12cf4887074b3eb257241f152cb85ca5a135879120b7e8e3b9aa57d5094",
     "scripts/audit_cb_light_heavy_separation.py": "ca6038a005c0a307373ea8381a32646169bbafe2df5647187496fb97393ac0f4",
     "scripts/build_cb_light_manifest.py": "7a405189d5fa80007ad7ccdba2173e9ad8013247e27e2a8336e2a7b6fd6bd983",
-    "scripts/cb_light_cli.py": "0b3f95af7b8f217d7921c9551f9d455a31f43a5a712008c867686900a32916a3",
+    "scripts/cb_light_cli.py": "b94ad98a9a598453bbce9839907c9f0aaa1e841669b4deebea4b22ad09cda29d",
     "scripts/cb_light_install_probe.py": "2ed81287235c06127c0c6eb047aa3dfd7f818b0ac14222b1896c33c53b906f6e",
     "scripts/cb_light_metadata_probe.py": "f61b6d79d241251069ed33265add0e81c18c43a7684470860e28d5ab1e809e82",
     "scripts/cb_light_select.py": "8c114796a353ac3843f4c2279912b7f0c384414fb6f7e9b8bf1329e785483771"
   },
-  "source_set_sha256": "ed6882811f00241209945be5325d4fb9829e2244e6f07195fd493925ceb8f553",
+  "source_set_sha256": "fbba2295573ef66ed8b3c8aaa79d098b2cb580cfe2d777206379cd9c717e7604",
   "system_completion_reason": "LOCAL_CB_LIGHT_EVALUATION_DOES_NOT_EARN_SYSTEM_COMPLETION"
 }

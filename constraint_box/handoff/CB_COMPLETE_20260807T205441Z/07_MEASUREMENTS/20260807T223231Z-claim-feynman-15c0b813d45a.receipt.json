@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T22:34:28.760719+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 112130,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "Based on the indexed codebase analysis, I cannot verify the merge readiness. Here's my assessment:\n\n**Observable facts:**\n- system_v5: 16,773 functions across clustered modules (cohesion 0.887)\n- system_v7: Additional ~7,500+ functions (102-member cluster, cohesion 0.846)\n- High-complexity hotspots: 3,806 functions with transitive loop depth \u22655 (max depth: 15)\n- Touched files: 492 (~12.4% of v5/v7 codebase)\n- Multiple interdependent systems (v4\u2013v8 call graph)\n\n**Critical blockers:**\n1. Cannot access git worktree state, commit DAG, or merge conflict status\n2. Cannot verify that 43 commits across 10 worktrees have been tested together\n3. Cannot confirm pre-merge verification (test results, integration test runs)\n4. No visibility into which files were actually modified (cannot distinguish code, config, docs changes)\n\n**Risk surface:**\n- Multi-system changes with tight cohesion (0.84\u20130.89) suggest tightly coupled logic\n- High complexity concentration (15-level nesting) makes blind merges r",
+    "result_subtype": "success",
+    "total_cost_usd": 0.1371386
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~feynman/20260807T223231Z-claim-feynman-15c0b813d45a.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 120.0
+}

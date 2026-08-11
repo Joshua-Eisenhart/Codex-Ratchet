@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:32:50.522309+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 14510,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"The claim conflates three separable assertions: (1) a dirty worktree state with exactly 180 uncommitted files exists, (2) a specific branch exists with exactly 43 July commits, and (3) git merge will abort with zero commits applied. The mechanism subagent confirms #3's logic is sound, but #1 and #2 remain unverified. Claim survives mechanism check; empirical test is required.\",\n  \"boundary_failure\": \"The claim assumes the 180-file count and 43-commit count are facts in hand. Neither has been named or verified. The pass_fail subagent flags this as 'Unresolved' \u2014 the decisive check cannot run until branch identity and dirt-file inventory are confirmed independently of the claim itself.\",\n  \"minimal_fix\": \"Before merge: run `git status --porcelain | wc -l` to verify dirty count; name the exact branch and run `git rev-list --count <branch>` to verify commit count. Then execute `git merge <branch>` and capture exit code, pre/post git ",
+    "result_subtype": "success",
+    "total_cost_usd": 0.016108400000000002
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.feynman/20260807T233231Z-voice-feynman-97e156f60c37.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

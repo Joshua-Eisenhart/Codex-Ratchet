@@ -1,0 +1,107 @@
+{
+  "claim_ceiling": "severance of one import name on one real run-path operation under this interpreter and environment; LOAD_BEARING means removal changed this operation's decision here; no platform, resolver, or whole-suite claim",
+  "decision_delta": [
+    "reason",
+    "verdict"
+  ],
+  "decision_moved": true,
+  "decision_present": {
+    "reason": "every_transition_observed_as_one_maude_rewrite_application",
+    "verdict": "VERIFIED"
+  },
+  "decision_severed": {
+    "reason": "maude_runtime_or_worker_unavailable",
+    "verdict": "HOLD"
+  },
+  "dependency": "maude",
+  "executions": [
+    {
+      "gate_id": "cb:severance-test:maude:present",
+      "input_sha256": "c9782971561c106d2bc93d7cc0d734c5e704f7bad9ac290c746c8b56684a3277",
+      "output_sha256": "b66f67e4a85f7099b0cc5155d1e8330b6acba428628bc7296e2d01aab8e2d622",
+      "reason": "every_transition_observed_as_one_maude_rewrite_application",
+      "verdict": "VERIFIED"
+    },
+    {
+      "gate_id": "cb:severance-test:maude:severed",
+      "input_sha256": "c9782971561c106d2bc93d7cc0d734c5e704f7bad9ac290c746c8b56684a3277",
+      "output_sha256": "e4a4378f621c153741d73c64c09ef42d475f35fadba53f89fd4a2362cd71a598",
+      "reason": "maude_runtime_or_worker_unavailable",
+      "verdict": "HOLD"
+    },
+    {
+      "gate_id": "cb:severance-test-gate",
+      "input_sha256": "c9782971561c106d2bc93d7cc0d734c5e704f7bad9ac290c746c8b56684a3277",
+      "output_sha256": "e5ad5ad0c3ff829f40dc478d677f08414d9ea276bf40cd81dfad4e570a7669f9",
+      "reason": "decision_moved:2_fields",
+      "verdict": "LOAD_BEARING"
+    }
+  ],
+  "import_name": "maude",
+  "instrument_limit": "the maude rewrite executes in a sys.executable -I isolated worker that re-imports maude independently; this severance reaches the parent-process runtime-identity binding (maude_rewrite._controller_runtime_identity), which fails closed to PARKED before any worker is spawned; the worker's own import-failure path was NOT exercised (it would require site-packages mutation, deliberately not performed)",
+  "operation": "constraintbox.gate_operations.gate_maude_flow_transitions(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:maude-transition-gate run-path wiring on the real FlowPolicy",
+  "present": {
+    "decision": {
+      "reason": "every_transition_observed_as_one_maude_rewrite_application",
+      "verdict": "VERIFIED"
+    },
+    "dependency": "maude",
+    "elapsed_seconds": 1.498,
+    "import_name": "maude",
+    "instrument_control": {
+      "control_error": null,
+      "dependency_present_confirmed": true
+    },
+    "mode": "present",
+    "operation": "constraintbox.gate_operations.gate_maude_flow_transitions(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:maude-transition-gate run-path wiring on the real FlowPolicy",
+    "operation_reason": "every_transition_observed_as_one_maude_rewrite_application",
+    "operation_verdict": "VERIFIED",
+    "probe": "maude",
+    "probe_transport": "OK",
+    "raw": {
+      "gate_id": "cb:maude-transition-gate",
+      "input_sha256": "7971569f56eb9c6393b23a9e05ed88fa77e8075220877cb998b4a0ee6300a6ae",
+      "output_sha256": "77e974fdb562985e0ffcf0ed42fe2071055d950abaff8ec33a0e00561ad25bfb",
+      "reason": "every_transition_observed_as_one_maude_rewrite_application",
+      "verdict": "VERIFIED"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "promotion_allowed": false,
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "reason": "decision_moved:2_fields",
+  "schema": "constraintbox.severance-test.v1",
+  "severance_mechanism": "meta_path_module_not_found_installed_before_constraintbox_import",
+  "severed": {
+    "decision": {
+      "reason": "maude_runtime_or_worker_unavailable",
+      "verdict": "HOLD"
+    },
+    "dependency": "maude",
+    "elapsed_seconds": 0.379,
+    "import_name": "maude",
+    "instrument_control": {
+      "control_error": "ModuleNotFoundError: No module named 'maude' (severed by severance_test)",
+      "severance_confirmed": true
+    },
+    "mode": "severed",
+    "operation": "constraintbox.gate_operations.gate_maude_flow_transitions(proposal_minilev_flow.reference_flow_policy()) \u2014 cb:maude-transition-gate run-path wiring on the real FlowPolicy",
+    "operation_reason": "maude_runtime_or_worker_unavailable",
+    "operation_verdict": "HOLD",
+    "probe": "maude",
+    "probe_transport": "OK",
+    "raw": {
+      "gate_id": "cb:maude-transition-gate",
+      "input_sha256": "7971569f56eb9c6393b23a9e05ed88fa77e8075220877cb998b4a0ee6300a6ae",
+      "output_sha256": "22e4663006f6e6a2e2daad24574e93adf408fe3856d1fff7d3d63101810704bc",
+      "reason": "maude_runtime_or_worker_unavailable",
+      "verdict": "HOLD"
+    },
+    "refusal": null,
+    "returncode": 0,
+    "stderr_tail": ""
+  },
+  "verdict": "LOAD_BEARING"
+}

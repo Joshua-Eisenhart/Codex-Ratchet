@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T22:37:11.485385+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/popper~failure.falsifier/20260807T223647Z-popper-failure-falsifier-bad41adc572b.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 19720,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"verdict\": \"PARKED\",\n  \"promotion_allowed\": false,\n  \"claim_ceiling\": \"Cannot verify assertion that 43 commits exist, 492 files touched, system_v5/v7 structure, or dual identical HEADs without repository access path. Salience file (MMM_VOICE_POPPER_FULL_v4_1.md) unlocated. Method contract and JSON-only output format in conflict.\",\n  \"confidence\": 0.15,\n  \"finding\": \"Task prerequisites unmet: repository location ambiguous (/private/tmp is non-repo; Codex-Ratchet path unclear); no git evidence gathered; no worktree state verified.\"\n}\n```\n\n**Falsifier that survives:** The strongest path to break this task is that the repository path is not specified or accessible. I cannot run `git log --all --oneline`, `git worktree list`, or `git diff main..` without a valid repository location and confirmation of write access. Until that path is named and proven to be a valid git repository with the stated worktrees extant, all claims about the 43 commits and 492 files remain asserted, not ",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0197064
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/popper~failure.falsifier/20260807T223647Z-popper-failure-falsifier-bad41adc572b.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/popper~failure.falsifier/20260807T223647Z-popper-failure-falsifier-bad41adc572b.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

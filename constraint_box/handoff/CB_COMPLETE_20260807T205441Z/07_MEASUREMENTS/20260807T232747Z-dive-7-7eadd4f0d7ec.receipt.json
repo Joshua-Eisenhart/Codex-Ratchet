@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:09.284044+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 16073,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# Premortem: Codex-Ratchet Merge-Base Failure\n\n## THE FAILURE STORY\n\nOn merge day, when the team attempted to consolidate the 43 unmerged commits across the 10 worktrees back into origin/main, git's three-way merge algorithm silently used the wrong ancestor. Each worktree had been created from claimgate/bypass-regression (6e362506a), but origin/main had advanced beyond that point (a9909489 is 6,637 lines of scaffolding commits ahead). The automatic merge-base detection should have found the true common ancestor, but instead it used 6e362506a as the baseline\u2014the very point from which the worktrees had split.\n\nThis meant that when consolidating changes from system_v5 and system_v7 worktrees, the three-way merge algorithm couldn't see that certain refactorings in main had already happened. Code that bridged the system boundaries\u2014the \"boundary scaffolding\" keeping v5 and v7 wired together\u2014was already present in main but invisible to the merge logic. When a worktree had touched the same cod",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0142587
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_7/20260807T232747Z-dive-7-7eadd4f0d7ec.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

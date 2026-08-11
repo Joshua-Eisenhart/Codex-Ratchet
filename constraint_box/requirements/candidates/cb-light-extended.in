@@ -1,0 +1,99 @@
+# CB light — extended lean library set
+# Generated from config/cb_light_library_candidates.json by the verified registry.
+# Every entry publishes for linux, macos and windows, or is pure python.
+# Bar: <=548 days since release, requires-python admitting 3.12 and 3.13,
+#      largest wheel <=5 MB, <=3 declared runtime dependencies.
+# Regenerate:  python3 scripts/emit_extended_requirements.py
+
+
+# --- hash-sign-ledger-storage ---
+argon2-cffi==25.1.0    # Argon2 key derivation binding credentials to ledger entries
+cachetools==7.1.7    # Memoization of receipt validation results on hot paths
+checksumdir==1.3.0    # Deterministic directory-tree hash binding receipts to artifact collect
+dictdiffer==0.10.0    # Structural dict diff for receipt change detection
+ecdsa==0.19.2    # ECDSA signing for receipt attestation without the full cryptography st
+GitPython==3.1.58    # Read git objects to audit evidence-tree commit hashes without subproce
+mmh3==5.2.1    # MurmurHash3 non-cryptographic hashing for manifest-scale tree hashing
+peewee==4.3.0    # Small ORM for SQL ledger persistence
+pickledb==1.6    # JSON key-value store for receipt index and registry
+PyJWT==2.13.0    # JWT sign and verify for lightweight receipt attestation
+python-ulid==4.0.1    # Sortable ULIDs for chronologically ordered ledger entry IDs
+ruamel.yaml==0.19.1    # Round-trip YAML preserving comments for byte-identical config replay
+tinydb==4.9.0    # Embedded JSON document store for append-only receipt logs
+uuid6==2025.0.1    # RFC 9562 v6/v7 sortable UUIDs for receipt entry ordering
+
+# --- schema-contract-serialization ---
+annotated-types==0.8.0    # Reusable constraint markers (Range, Len, MultipleOf, Pattern) for typi
+attrs==26.1.0    # Typed receipt classes with validators and no boilerplate
+cattrs==26.1.0    # Typed structure/unstructure converters for attrs receipt classes
+cbor2==6.1.4    # CBOR binary serialization with canonical encoding; receipt hashes stab
+cerberus==1.3.8    # Dict schema validation for gate proposals before admission
+email-validator==2.3.0    # RFC-compliant email validation for receipt author fields
+fastjsonschema==2.22.1    # Compiles JSON Schema to fast validators; refuses receipts that violate
+frozendict==2.4.7    # Immutable dict for receipt content after validation and hashing
+lark==1.3.1    # Parser generator for bounded gate-rule DSLs
+marshmallow==4.3.1    # Schema validation and deserialization; receipts conform to declared st
+msgpack==1.2.1    # Compact binary receipt serialization without JSON canonicalization ove
+parso==0.8.7    # Python parser with error recovery for static gate-code and prompt-code
+portion==2.6.2    # Interval membership testing; computed values fall within declared admi
+protobuf==7.35.1    # Binary protocol buffers for compact versioned receipt serialization; s
+tomli==2.4.1    # Pure-Python TOML reading backport for pinned manifests
+tomlkit==0.15.1    # Round-trip TOML preserving structure and comments for inspectable cano
+typeguard==4.6.0    # Runtime type checking at gate function boundaries; rejects mistyped pr
+typing-extensions==4.16.0    # Typing backports enabling constraint annotations across supported Pyth
+validators==0.35.0    # Composable field validators (URL, IP, email) for receipt fields
+voluptuous==0.16.0    # Declarative dict/list validation; refuses malformed receipts before wr
+
+# --- solvers-logic-automata ---
+automaton==3.4.0    # Finite state machine constraints on gate sequencing and state validity
+bitarray==3.10.1    # Compact boolean arrays for SAT/CSP assignment and clause bookkeeping
+clingo==5.8.1    # Answer Set Programming decider orthogonal to SMT and enumeration
+formula==6.0.0    # Formula parsing and solving with exact arithmetic for constraint expre
+gmpy2==2.3.1    # Exact arbitrary-precision arithmetic for gates that refuse rounding er
+# pddl==0.4.8  DROPPED: requires lark<1.2.0, conflicts with lark==1.3.1 which CB keeps for gate-rule DSLs    # PDDL parsing; planning problems as standardized constraint specificati
+regex==2026.7.19    # Enhanced regex engine for formal-language membership constraints
+satispy==1.4    # Unified wrapper over SAT solvers; extra verifier lane for satisfiabili
+
+# --- static-analysis-drift ---
+asttokens==3.0.2    # AST-to-token mapping for precise source locations in drift reports
+flake8-simplify==0.30.0    # Flags complexity-increasing patterns in gate submissions
+isort==8.0.1    # Import order and boundary checking for module layout drift
+pyflakes==3.4.0    # Detects unused names, imports, redefinitions; no dead logic paths in g
+rope==1.14.0    # Static import and usage analysis via refactoring engine
+unidiff==1.0.0    # Unified-diff parsing; reject patches that touch gate rules or assertio
+vulture==2.16    # Dead code detection; unreferenced definitions rejected
+
+# --- test-repro-bounded ---
+coverage==7.15.4    # Path coverage measurement as evidence of gate test adequacy
+dirty-equals==0.11    # Structural equality tolerant of field order for receipt assertions
+# faker==40.36.0    # Synthetic diverse inputs for fuzzing gate boundaries  DROPPED: 19 MB; hypothesis already generates adversarial input and is wired
+freezegun==1.5.5    # Frozen time for reproducible time-sensitive gate tests
+more-itertools==11.1.0    # Deterministic batching and windowing iteration utilities
+pluggy==1.6.0    # Minimal hook and plugin framework for extending gate behavior
+pyfakefs==6.2.0    # Hermetic in-memory filesystem for I/O gate tests
+pytest-benchmark==5.2.3    # Reproducible timing statistics for gate latency regressions
+pytest-randomly==4.1.0    # Seed control and test-order randomization to expose order dependence
+pytest-timeout==2.4.0    # Hard time ceilings; bounded-execution proof for gate tests
+pytest-xdist==3.8.0    # Parallel test execution; gates behave under concurrency
+python-Levenshtein==0.27.4    # Fast edit distance for near-duplicate receipt and claim comparison
+responses==0.26.2    # HTTP mocking for deterministic gate tests
+testfixtures==12.3.0    # Fixtures (TempDirectory, LogCapture, ShouldRaise) for deterministic sc
+vcrpy==8.3.0    # Record and replay HTTP for hermetic tests of network-touching gates
+
+# --- text-similarity-drift ---
+arrow==1.4.0    # Timestamp parsing and normalization for time-sensitive claim drift
+ast-comments==1.3.0    # AST parse preserving comments for prompt-code analysis
+beautifulsoup4==4.15.0    # HTML and XML parsing for complex prompt extraction
+bleach==6.4.0    # Tag stripping and sanitization before HTML claim comparison
+# datasketch==2.0.0    # MinHash and LSH near-duplicate detection at scale  DROPPED: pulls scipy+numpy = 132 MB; stdlib difflib covers near-duplicate
+# html-sanitizer==2.6.0    # Sanitize or refuse malformed HTML before comparison  DROPPED: pulls lxml = 20 MB
+html2text==2025.4.15    # HTML-to-text so markup noise cannot disguise drift
+markdown-it-py==4.2.0    # CommonMark-strict markdown parsing for markup drift
+markdown2==2.5.5    # Markdown variant conversion where mistune misses extensions
+mistune==3.3.4    # Markdown parsing for structural change detection
+# pdfplumber==0.11.10    # PDF text and table extraction preserving layout for comparison  DROPPED: pulls pdfminer.six+pillow = 25 MB; CB gates receipts, not PDFs
+soupsieve==2.9.2    # CSS selectors for targeted HTML prompt comparison
+tinycss2==1.5.1    # CSS parsing to detect style changes without whitespace false positives
+Unidecode==1.4.0    # ASCII transliteration so accented variants compare equal
+w3lib==2.4.1    # URL and percent-encoding normalization for comparison
+xmltodict==1.0.4    # XML-to-dict for element-wise structural comparison

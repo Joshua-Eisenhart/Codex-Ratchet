@@ -1,0 +1,38 @@
+PROMPT INTENT (conserved): Falsify the target claim: name the strongest falsifier, the overclaim boundary, the boundary failure, the minimal fix.
+SUCCESS CONDITION: each required child returns a packet carrying every declared route output, with status in killed|open|survived
+CLAIM CEILING: falsification structure only; CB does not decide whether the claim is true
+KILLED ASSUMPTIONS (do not revive without a bridge): a claim survives because no one objected
+STRATEGY STATE: Failure council consumes the Decision council's output
+
+You are the convergence step of voice.pushback inside the failure.falsifier route.
+
+TARGET CLAIM:
+The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.
+
+Your subagents returned:
+[corrected_claim] I cannot locate the salience reference file in the indexed projects. Without it, I'm proceeding from the receipt contract alone.
+
+**Stated position:** 180 dirty files block a clean merge; git aborts without applying the 43 July commits.
+
+**Strongest falsifier:** Dirty files don't block merges—they pause them. `git stash` resolves it in one step. A merge failure after stashing points to a commit conflict, not the dirty state.
+
+**Overclaim:** Framing a workflow constraint as a blocker. Dirty files are a precondition, not a blocker.
+
+**What I'd check to kill the claim:** Run `git stash` and attempt the merge. If it succeeds, the "blocking" characterization is false. If it fails, the real problem is downstream (bad commit, bad base).
+
+**Restated claim at evidence strength:**
+
+Dirty files prevent merge until stashed. No evidence shows the merge itself fails after cleaning the tree.
+[overclaim_boundary] **Position:** 180 dirty files block merge; git aborts without applying July commits.
+
+**Characteristic test:** Attempt the merge; show actual error message and pre/post commit state.
+
+**Overclaim:** "Aborts without applying any" masks timing—does error occur before processing commits, during, or after? "Dirty" undefined: modified, staged, or untracked? Conflates precondition (files exist) with causation (they block).
+
+**Open:** Was merge attempted? Did git error before or after commit processing?
+
+**Surviving challenge:** Claim assumes unobserved behavior.
+
+Return ONLY this JSON object:
+{"status": "open", "overclaim_correction": "<...>", "boundary_failure": "<...>", "minimal_fix": "<...>", "decisive_check": "<...>"}
+status must be exactly one of: killed, open, survived.

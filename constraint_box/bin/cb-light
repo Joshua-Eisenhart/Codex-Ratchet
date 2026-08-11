@@ -1,0 +1,13 @@
+#!/bin/bash
+set -u
+bin_dir=${0%/*}
+interpreter="$bin_dir/../.venv/bin/python"
+if [ ! -x "$interpreter" ]; then
+  echo "CB Light contained interpreter missing: $interpreter" >&2
+  exit 2
+fi
+"$interpreter" -I "$bin_dir/../scripts/cb_light_cli.py" "$@"
+code=$?
+if [ "$code" -eq 0 ] || [ "$code" -eq 1 ] || [ "$code" -eq 2 ]; then exit "$code"; fi
+echo "CB Light broker execution failed closed: rc=$code" >&2
+exit 2

@@ -1,0 +1,106 @@
+{
+  "schema": "constraintbox.claim-profiles.v1",
+  "version": "1.0.0",
+  "description": "Claim-profile matrix for ConstraintBox: claim types with required tools, negative controls, independent recompute, ceiling, and failure disposition.",
+  "profiles": [
+    {
+      "claim_type": "finite_constraint_settlement",
+      "description": "All three backends (z3, cvc5, enumeration) reach definite agreement on constraint satisfaction status for proposal spec, hostile full spec, and hostile erased spec.",
+      "tools": ["z3-solver", "cvc5"],
+      "negative_control": "When z3 unavailable: z3_version becomes None and z3 backend returns UNKNOWN status, breaking agreement. When cvc5 unavailable: cvc5_version becomes None and cvc5 backend returns UNKNOWN status, breaking agreement.",
+      "independent_recompute": "Enumeration reference backend performs bounded finite enumeration over the problem's state space independently. Agreement on all three backends is required for settled=true.",
+      "ceiling": "Constraint satisfaction agreement status on three specific problem instances (proposal, hostile overclaim with full constraints, hostile overclaim with erased admission constraint). No model authority, no semantic correctness, no promotion.",
+      "failure_disposition": "settled changes from true to false when any backend disagrees. Disagreement is recorded with field 'disagreement' naming the conflicts. Run continues but proposal admission gate blocks release."
+    },
+    {
+      "claim_type": "flow_budget_exactness",
+      "description": "Exact arithmetic facts about FlowPolicy budgets (max_steps, visit_capacity, worst_case_steps, retry_slack, step_budget_slack) computed via stdlib int match sympy exact recomputation, and a polynomial claim routed through pinned SympyRationalPolynomialProfile passes evaluation.",
+      "tools": ["sympy"],
+      "negative_control": "When sympy unavailable: import error caught at line 914 (gate_operations.py), sympy_crosscheck becomes {agrees: null, error: '...'}, and verdict changes from VERIFIED to HOLD. The gate still records exact_facts (computed via stdlib int) but cannot cross-check.",
+      "independent_recompute": "Stdlib Python integer arithmetic computes all budget quantities independently (lines 826-870). SymPy performs exact symbolic arithmetic on the same quantities and results are compared field-by-field in crosscheck_rows (lines 938-968). Additionally, one polynomial claim is routed through SympyRationalPolynomialProfile.evaluate() to involve the heavily verified exact-arithmetic entry point in run-path validation.",
+      "ceiling": "Exact integer budget facts about one frozen FlowPolicy and consistency of those facts (positive terminal reachable within max_steps, step budget pigeonhole holds, retry exhausts before step). No liveness, semantic, or promotion claim.",
+      "failure_disposition": "When sympy unavailable: verdict=HOLD, reason='sympy_unavailable'. When crosscheck disagrees: verdict=MISMATCH, reason='sympy_stdlib_crosscheck_disagreement'. When positive terminal unreachable: verdict=MISMATCH, reason='positive_terminal_unreachable_within_step_budget'. When polynomial profile blocked: verdict=MISMATCH, reason='sympy_polynomial_profile_blocked'. When polynomial profile parked: verdict=HOLD, reason='sympy_polynomial_profile_parked'."
+    },
+    {
+      "claim_type": "workflow_topology_validity",
+      "description": "FlowPolicy graph structure is valid: entry node exists in nodes, terminal nodes are valid, and basic structural constraints hold. (Full rustworkx acyclicity/reachability check is pending FixedMiniLevTopology integration.)",
+      "tools": ["rustworkx"],
+      "negative_control": "When rustworkx unavailable: the full topology check via FixedMiniLevTopology.evaluate() cannot run. The provisional check at gate_rustworkx_workflow (lines 170-195) performs structural validation only. Full acyclicity proof is blocked when rustworkx unavailable.",
+      "independent_recompute": "workflow_graph.py provides a controller-owned Kahn topological-sort reference implementation (called _topological_order, lines 697-720 in gate_operations.py) that validates acyclicity independently of rustworkx. FixedMiniLevTopology.evaluate() (mini_lev_topology.py) performs additional reachability checks using the confirmed edges.",
+      "ceiling": "Graph is structurally valid, entry node exists, terminals are declared correctly, and basic node/terminal distinction holds. No full acyclicity or reachability proof without complete FixedMiniLevTopology integration.",
+      "failure_disposition": "Structural validation failure: verdict=FAILED, reason='invalid_entry_node|invalid_terminals|topology_check_error'. Provisional check: verdict=ACYCLIC_REACHABLE (pending full integration). On rustworkx unavailability in full check: disposition=PARKED in profile outcome."
+    },
+    {
+      "claim_type": "flow_transition_rewrite",
+      "description": "Every FlowTransition in the policy is observed and verified as exactly one Maude rewrite application. Terminal nodes are normal forms (no rule has a terminal as left-hand side), and terminal reachability is recomputed from only Maude-confirmed edges.",
+      "tools": ["maude"],
+      "negative_control": "When maude unavailable: import error is caught (line 1108, gate_operations.py). Profile construction fails and verdict becomes MISMATCH with reason 'maude_profile_rejected_policy_shape'. If workers cannot spawn due to runtime unavailability, outcome disposition becomes PARKED.",
+      "independent_recompute": "mini_levos module enforces transition-relation facts at FlowPolicy construction time (validates it is a DAG over non-retry edges, rejects duplicate (node,signal) pairs, maps BLOCKED/PARKED/HOLD signals to matching terminals, verifies every node reaches a terminal). MaudeTransitionProfile re-derives each transition independently and recomputes terminal reachability over the Maude-confirmed edges only (lines 1164-1199).",
+      "ceiling": "Each controller-defined transition observed as exactly one root Maude rule application, and reachability recomputed over confirmed edges. No truth, confluence, termination, or liveness claim. Maude acts as a witness to the transition relation, not as a decider of correctness.",
+      "failure_disposition": "Maude profile rejected: verdict=MISMATCH, reason='maude_profile_rejected_policy_shape:<error>'. Maude workers unavailable: verdict=HOLD, reason='maude_runtime_or_worker_unavailable'. Transition disagreement: verdict=MISMATCH, reason='maude_disagreed_with_controller_transition_table'. Reachability failure: verdict=MISMATCH, reason='confirmed_rewrite_relation_has_unreachable_terminal|terminal_appears_as_rewrite_source'."
+    },
+    {
+      "claim_type": "artifact_digest_integrity",
+      "description": "All artifacts declared in a receipt can be re-read from bytes on disk and their SHA256 digests match the receipt values exactly. No mismatches, no missing files.",
+      "tools": [],
+      "negative_control": "When an artifact is missing or its digest does not match on re-read: the consumer fails. This is a pure byte-level check with no tool dependencies beyond stdlib hashlib.",
+      "independent_recompute": "Re-read every artifact file from disk and recompute its SHA256 hash using Python's hashlib.sha256() (stdlib). Compare the computed digest against the receipt's declared value. Independent recomputation happens on every gate execution.",
+      "ceiling": "Artifact integrity only: digests match bytes on disk. No authentication against another same-user process, no hostile-code containment, no semantic validation of artifact contents.",
+      "failure_disposition": "Digest mismatch or missing artifact: verdict=FAIL, reason='consumer_rejected:<error detail>'. All digests verified: verdict=PASS, reason='all_digests_verified'."
+    },
+    {
+      "claim_type": "boundary_contract_eligibility",
+      "description": "A product/evidence scope declaration (boundary contract) matches the ConstraintBox controller's fixed role registry and passes mutual-exclusion encoding checks. The typed contract declares which CB core gates, sim profiles, and evidence receipts are in scope.",
+      "tools": [],
+      "negative_control": "When the contract is malformed or roles are invalid: BoundaryContractProfile.evaluate() returns disposition=BLOCKED. When role declarations contradict the fixed registry: disposition=BLOCKED. No external tools are required; validation is purely against controller-owned role lists.",
+      "independent_recompute": "Re-validate the contract against the static role lists defined in boundary_contract.py (CB_FORMAL_GATE_IDS, EXTERNAL_SIM_PROFILE_IDS, etc.). Re-check mutual-exclusion flags (core_contains_external_sim_profile, external_sim_profiles_are_cb_core, etc.) independently on each execution.",
+      "ceiling": "One typed product/evidence scope declaration matched the fixed ConstraintBox role registry and its mutual-exclusion encoding. Does not classify arbitrary prose, prove packages are installed, establish simulation correctness, authorize promotion, or claim truth.",
+      "failure_disposition": "Invalid contract: disposition=BLOCKED, classification='contract_validation_failed'. Valid contract: disposition=ELIGIBLE. Ambiguous/missing scope: disposition=PARKED."
+    },
+    {
+      "claim_type": "release_gate_composition",
+      "description": "All four composed release gates (G-A: run verifiers pass, G-B: artifact digests verified, G-C: no undeclared artifacts, G-D: evidence tree present) report success. Packaging and receipt integrity are confirmed.",
+      "tools": [],
+      "negative_control": "When any sub-gate fails: the release gate verdict becomes FAIL. Each sub-gate has its own negative control (artifact consumer FAIL, receipt validation FAIL, etc.). Composition ensures all four must pass.",
+      "independent_recompute": "Each of the four sub-gates (G-A through G-D) runs independently and recomputes its own evidence. G-A invokes the run's own verifier(s). G-B runs the strict receipt consumer. G-C scans the artifact root for undeclared files. G-D checks evidence-tree presence.",
+      "ceiling": "Packaging and receipt integrity only. No model authority, no semantic correctness, no promotion. Ceiling is identical to the strictest sub-gate ceiling.",
+      "failure_disposition": "Any sub-gate fails: verdict=FAIL, reason='release_gate_failed:<sub-gate error>'. All sub-gates pass: verdict=PASS, reason=<sub-gate reason>. Release gate execution error: verdict=FAIL, reason='release_gate_error:<exception>'."
+    },
+    {
+      "claim_type": "flow_termination_proof",
+      "description": "FlowPolicy terminates by structural argument: every cycle in the transition graph traverses at least one edge marked with RETRY signal, and the retry budget is finite. The flow terminates by retry-budget exhaustion even if loops are unbounded.",
+      "tools": ["z3-solver", "rustworkx"],
+      "negative_control": "When z3 unavailable: the constraint generation for retry-cycle detection fails. When rustworkx unavailable: the cycle detection and path analysis cannot run. Either unavailability causes the termination proof to fail.",
+      "independent_recompute": "Use rustworkx to detect cycles and identify retry edges. Use z3 to verify that every cycle has at least one retry traversal. Recompute the longest retry-free path and combine with retry budget to bound total steps. Both analyses run independently on each execution.",
+      "ceiling": "Every cycle traverses at least one retry-metered edge, so the loop terminates by retry budget exhaustion. No guarantee of finite wallclock time, no performance bound, no semantic guarantee of useful progress.",
+      "failure_disposition": "Termination proved: verdict=PASS, reason='structural_termination_proved'. Budget-free cycle found: verdict=FAIL, reason='budget_free_cycle_detected'. Termination check error: verdict=FAILED, reason='termination_check_error:<exception>'."
+    },
+    {
+      "claim_type": "receipt_authority_verification",
+      "description": "A receipt passes false-green risk detection and authority checks. No cached local receipts without XDG certification, no missing reverse brainstorm, no verdict regression, no evidence removal.",
+      "tools": [],
+      "negative_control": "When a receipt shows false-green risk indicators (cached local, missing reverse brainstorm, verdict regression, evidence loss): the checker returns has_errors=true and verdict=FAIL. Absence of risk indicators yields verdict=PASS.",
+      "independent_recompute": "Re-analyze the receipt lifecycle independently: check receipt authority status, scan for cached local artifacts, inspect brainstorm presence, compare verdict against evidence history, verify fixture/evidence presence. Analysis runs on every gate execution.",
+      "ceiling": "Receipt authority and false-green risk only. No hosted/network verification, no cross-process authentication, no semantic receipt validation.",
+      "failure_disposition": "False-green detected: verdict=FAIL, reason='false_green_detected:<error count>'. False-green risk (warnings): verdict=FAIL, reason='false_green_risk:<warning count>'. No risk: verdict=PASS, reason='receipt_authority_verified'. Analysis error: verdict=FAIL, reason='false_green_check_error:<exception>'."
+    },
+    {
+      "claim_type": "gate_ledger_stability",
+      "description": "Comparing two gate ledger states detects no gate weakening: no verdict regression without evidence change, no lowered evidence requirements, no fixture/contract removal, no acceptance criteria loosening.",
+      "tools": [],
+      "negative_control": "When weakening is detected (verdicts regressed, evidence requirements lowered, fixtures removed, criteria loosened): result.total_findings > 0 and verdict=FAIL. No weakening findings yield verdict=PASS.",
+      "independent_recompute": "Re-compare the current ledger against the previous ledger independently: check each gate's verdict history, evidence requirements, fixture presence, and acceptance criteria. Recomputation runs on every comparison execution.",
+      "ceiling": "Weakening detection only. No liveness, semantic, or promotion claim. Absence of weakening does not prove correctness or forward progress.",
+      "failure_disposition": "Weakening detected: verdict=FAIL, reason='gate_weakening_detected:<finding count>'. No weakening: verdict=PASS, reason='no_gate_weakening_detected'. Comparison error: verdict=FAIL, reason='weakening_detection_error:<exception>'."
+    },
+    {
+      "claim_type": "proposal_smt_admissibility",
+      "description": "The proposal bindings (provider receipt, tool readiness, intake checks, schema validity, evidence matching, falsifier presence, tool readiness, tool controls, tool operation binding) and the requested claim value satisfy the SMT admission constraints: all binding booleans are true AND requested_claim equals the allowed claim value.",
+      "tools": ["z3-solver", "cvc5"],
+      "negative_control": "When z3 unavailable: z3 backend returns UNKNOWN status, 'agrees' becomes false, and settled becomes false. When cvc5 unavailable: same result. Enumeration reference still runs but if the mandatory deciders disagree, proposal_admitted becomes false.",
+      "independent_recompute": "Enumeration backend performs bounded finite enumeration over the problem's state space independently. Agreement between z3, cvc5, and enumeration is required. Three separate constraint instances are solved: proposal_spec (bindings + admission constraints), hostile_full_spec (all bindings true + admission constraints), and hostile_erased_spec (all bindings true + admission constraints minus the claim constraint). Agreement on all three is required for settled=true.",
+      "ceiling": "Constraint satisfaction on three specific problem instances (proposal, hostile with full constraints, hostile with erased claim constraint). No model authority, no semantic correctness, no promotion.",
+      "failure_disposition": "All backends agree and proposal satisfies admission: settled=true, proposal_admitted=true. Backends disagree or proposal fails admission: settled=false, proposal_admitted=false (or one of the hostile instances becomes satisfiable). Run path blocks release on settled=false or proposal_admitted=false."
+    }
+  ]
+}

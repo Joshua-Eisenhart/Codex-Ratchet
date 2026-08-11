@@ -17,39 +17,41 @@
     },
     {
       "capability_id": "jax_cuda_parity",
-      "controls": {
-        "positive": false
-      },
-      "elapsed_seconds": 0.7926521979989047,
+      "controls": {},
+      "elapsed_seconds": 0.0,
       "evidence": {
-        "exit_code": 1,
-        "stderr_sha256": "b17e6116b7366eec240a610de600991d48fbb6646139e9ea7d4f67b934ddba25"
+        "expected_import_blocker_sha256": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
+        "expected_operation_poisoner_sha256": null,
+        "expected_worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1",
+        "observed_import_blocker_sha256": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
+        "observed_operation_poisoner_sha256": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0"
       },
       "expected_version": "0.11.0",
       "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
       "observed_version": null,
-      "reason": "positive_witness_failed",
+      "reason": "worker_source_digest_mismatch",
       "required": false,
-      "state": "FAILED",
-      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+      "state": "DRIFT",
+      "worker_sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
     },
     {
       "capability_id": "torch_cuda_parity",
-      "controls": {
-        "positive": false
-      },
-      "elapsed_seconds": 0.05065674799880071,
+      "controls": {},
+      "elapsed_seconds": 0.0,
       "evidence": {
-        "exit_code": 1,
-        "stderr_sha256": "7842b2f613d73011797cc3e8bd5d63c1df8fe85651608686abee36907f321e80"
+        "expected_import_blocker_sha256": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
+        "expected_operation_poisoner_sha256": null,
+        "expected_worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1",
+        "observed_import_blocker_sha256": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
+        "observed_operation_poisoner_sha256": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0"
       },
       "expected_version": null,
       "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
       "observed_version": null,
-      "reason": "dependency_unavailable",
+      "reason": "worker_source_digest_mismatch",
       "required": false,
-      "state": "UNAVAILABLE",
-      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+      "state": "DRIFT",
+      "worker_sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
     },
     {
       "capability_id": "cuquantum_tensor",
@@ -68,34 +70,32 @@
       "capability_id": "reactant_julia_gpu",
       "controls": {},
       "elapsed_seconds": 0.0,
-      "evidence": {
-        "executable": null
-      },
+      "evidence": {},
       "expected_version": null,
       "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
       "observed_version": null,
-      "reason": "external_executable_absent",
+      "reason": "capability_not_registered_by_controller",
       "required": false,
-      "state": "UNAVAILABLE",
+      "state": "UNTESTED",
       "worker_sha256": null
     }
   ],
-  "controller_sha256": "c4233d493f5096a88eaebd66912e77f03ae9a7ebacbe76671effab7b82f2b2c0",
-  "elapsed_seconds": 0.9269765059998463,
+  "controller_sha256": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e",
+  "elapsed_seconds": 0.2995987911708653,
   "environment": {
-    "distribution_count": 22,
-    "observed_sha256": "d956b396abd9ef44ff3ddac90daf73fd85753838a064db74b3fe33e511e8f957",
+    "distribution_count": 404,
+    "observed_sha256": "e847fc76823e623317b54abf2ae97d8fc635c24d6e7b497963b07e4e82c35ae8",
     "state": "UNPINNED"
   },
   "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
-  "generated_at_utc": "2026-07-26T03:58:00.411949+00:00",
+  "generated_at_utc": "2026-08-08T08:25:56.395405+00:00",
   "layer_id": "S4",
   "layer_name": "cloud GPU acceleration and parity",
-  "manifest_sha256": "4a814fd7ee727d15a8c78d5bc0741eeeaa41eacf04e501789c80177a58f585ff",
+  "manifest_sha256": "4f2560133ac0b51e783aa308a0802c5d947c62813871ceb324ae3f6d7e16f8f5",
   "mode": "boot",
   "promotion_allowed": false,
-  "python_executable": "/tmp/constraintbox-estate-e1/bin/python",
-  "python_version": "3.12.13",
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "python_version": "3.13.6",
   "schema": "constraintbox.sim-tier-receipt.v2",
-  "state": "FAILED"
+  "state": "DRIFT"
 }

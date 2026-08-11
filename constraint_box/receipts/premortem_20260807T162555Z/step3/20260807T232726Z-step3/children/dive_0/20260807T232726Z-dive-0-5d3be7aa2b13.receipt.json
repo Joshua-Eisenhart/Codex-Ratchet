@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:27:46.599015+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 14232,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# THE FAILURE STORY\n\nIt's late July. The team has 43 commits across 10 worktrees, with the primary branch sitting on claimgate/bypass-regression\u2014meant to be the integration point. During testing and debugging from July 15-18, someone made 180 local edits: test data files, config tweaks, logging patches, one-off boundary checks. Nobody committed these. When merge day arrives, the first attempt hits git's safety wall: \"Your local changes to system_v5/handler.py would be overwritten by merge.\" The team stashes the dirty state and tries again. But now they discover the 43 commits have hidden cross-dependencies. A commit in worktree-3 rewrites a schema that worktree-7's commit also modifies; both expect different incoming state. Merge aborts with a conflict. They stash again. By now the dirty files are gone from working tree but still in the reflog, and nobody can reconstruct which stash belongs to which branch. The 43 commits remain scattered across 10 untethered worktrees. Origin/main sta",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0129564
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_0/20260807T232726Z-dive-0-5d3be7aa2b13.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

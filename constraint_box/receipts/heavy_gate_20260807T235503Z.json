@@ -1,0 +1,147 @@
+{
+ "admitted": false,
+ "claim_ceiling": "installation, capability and call-site integration of the sim-engine lanes only; says nothing about whether any sim result is correct",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "lanes": {
+  "lane.diffrax": {
+   "call_sites": [],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.66,
+   "capability_stdout": "ODE solve matches exp(-1) ok 0.7.2",
+   "declared": true,
+   "installed": true,
+   "integrated": false,
+   "module": "diffrax"
+  },
+  "lane.jax": {
+   "call_sites": [
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 0.63,
+   "capability_stdout": "jit+vmap+grad ok 0.10.1",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "jax"
+  },
+  "lane.julia": {
+   "call_sites": [],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.09,
+   "capability_stdout": "julia LinearAlgebra density matrix ok 1.12.6",
+   "declared": true,
+   "installed": true,
+   "integrated": false,
+   "module": "julia (binary)"
+  },
+  "lane.pydmd": {
+   "call_sites": [
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 2.3,
+   "capability_stdout": "DMD rank-1 fit ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pydmd"
+  },
+  "lane.pykoopman": {
+   "call_sites": [
+    "src/external_pykoopman_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 5.33,
+   "capability_stdout": "Koopman operator square ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pykoopman"
+  },
+  "lane.pymdp": {
+   "call_sites": [
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": false,
+   "capability_reason": "TypeError: random_A_array() missing 1 required positional argument: 'num_states'",
+   "capability_sec": 1.03,
+   "capability_stdout": "",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pymdp"
+  },
+  "lane.pysindy": {
+   "call_sites": [
+    "src/external_pysindy_capability.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 2.15,
+   "capability_stdout": "SINDy recovered dx/dt=-x ok",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pysindy"
+  },
+  "lane.pytorch": {
+   "call_sites": [
+    "src/external_e3nn_capability.py",
+    "src/graph_topology_worker.py"
+   ],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 0.87,
+   "capability_stdout": "autograd+linalg ok 2.11.0",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "torch"
+  },
+  "lane.quimb_cotengra": {
+   "call_sites": [],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 1.12,
+   "capability_stdout": "MPS contraction norm ok cotengra",
+   "declared": true,
+   "installed": true,
+   "integrated": false,
+   "module": "quimb"
+  },
+  "lane.qutip_numpy": {
+   "call_sites": [],
+   "capability_capable": true,
+   "capability_reason": "",
+   "capability_sec": 2.18,
+   "capability_stdout": "density matrix + von Neumann entropy ok 5.2.3",
+   "declared": true,
+   "installed": true,
+   "integrated": false,
+   "module": "qutip"
+  }
+ },
+ "promotion_allowed": false,
+ "refusals": [
+  "lane.diffrax: installed but NOT INTEGRATED \u2014 no CB code references it",
+  "lane.julia: installed but NOT INTEGRATED \u2014 no CB code references it",
+  "lane.pymdp: installed but NOT CAPABLE \u2014 TypeError: random_A_array() missing 1 required positional argument: 'num_states'",
+  "lane.quimb_cotengra: installed but NOT INTEGRATED \u2014 no CB code references it",
+  "lane.qutip_numpy: installed but NOT INTEGRATED \u2014 no CB code references it"
+ ],
+ "schema": "cb.heavy-gate.v1",
+ "totals": {
+  "capable": 9,
+  "declared": 10,
+  "installed": 10,
+  "integrated": 6
+ },
+ "wall_seconds": 18.7,
+ "what_this_is": "CB light's verification of the CB heavy sim-engine estate. The sim engines are a separate estate; this gate does not make them part of CB light."
+}

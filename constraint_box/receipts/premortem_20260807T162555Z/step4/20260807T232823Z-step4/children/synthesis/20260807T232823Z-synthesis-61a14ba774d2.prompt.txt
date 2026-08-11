@@ -1,0 +1,81 @@
+Codex-Ratchet has 43 unmerged commits across 10 worktrees dated July 15-18, touching 492 files mostly under system_v5 (367) and system_v7 (116). Two worktrees share an identical HEAD (f0afdc36a). The primary checkout sits on claimgate/bypass-regression at 6e362506a with 180 dirty files. origin/main is at a9909489, a v9 commit that is 6,637 lines of JSON and only 1,234 lines of Python - boundary scaffolding, not consolidation. CB light is integrated (28 of 33 libraries wired). Success means main carries the useful July work, the dirty results are preserved, and every product boundary stays separate.
+
+DEEP DIVES:
+--- DIVE dive_0 ---
+# THE FAILURE STORY
+
+It's late July. The team has 43 commits across 10 worktrees, with the primary branch sitting on claimgate/bypass-regression—meant to be the integration point. During testing and debugging from July 15-18, someone made 180 local edits: test data files, config tweaks, logging patches, one-off boundary checks. Nobody committed these. When merge day arrives, the first attempt hits git's safety wall: "Your local changes to system_v5/handler.py would be overwritten by merge." The team stashes the dirty state and tries again. But now they discover the 43 commits have hidden cross-dependencies. A commit in worktree-3 rewrites a schema that worktree-7's commit also modifies; both expect different incoming state. Merge aborts with a conflict. They stash again. By now the dirty files are gone from working tree but still in the reflog, and nobody can reconstruct which stash belongs to which branch. The 43 commits remain scattered across 10 untethered worktrees. Origin/main stays on its v9 scaffolding. Three weeks later, the July work is written off.
+
+# THE UNDERLYING ASSUMPTION
+
+Dirty state and unmerged branches can coexist safely because the human will enforce discipline—
+
+--- DIVE dive_1 ---
+## THE FAILURE STORY
+
+By February 2026, the team had pushed both `system_v5-consolidation` and `system_v7-bridge` worktrees to origin, each claiming HEAD at f0afdc36a (a shared commit from July 17 that unified CB library wiring). The two worktrees had diverged locally after that point — one added system_v5 schema fixes, the other rewired v7 imports — but both carried the same merge-base. When the release lead tried to fast-forward merge both branches into main in sequence, git accepted the first (no new commits to replay). The second merge appeared clean but actually contained dead code paths: the v7 bridge changes assumed the v5 fixes were already in scope, but git had no way to detect this cross-branch coupling. The merge commit landed. Three days later, in integration testing, the CB library loader failed silently on v5 schemas because the assumed v5 fix never actually executed — it was in the first worktree's diff, not in main's history. The team discovered the problem only when CB light's 28 wired libraries started throwing undefined-reference errors on schema validation. Rolling back was impossible without orphaning other merged work. Main now carried a commit that was techni
+
+--- DIVE dive_2 ---
+# THE FAILURE STORY
+
+The ten worktrees created July 15-18 were assigned to different component leads: three on system_v5 serialization, two on system_v7 boundary logic, two on CB light integration, and three on infrastructure. By July 16, developers were committing independently. system_v5 worktree-1 refactored the config schema handler; system_v5 worktree-2, unaware, added validation logic that assumed the old structure. system_v7 worktree-1 deleted a middleware module; system_v7 worktree-2 committed a patch that imported from it. No one synced with main or each other—there was no shared rebase point, no integration branch.
+
+By July 18, 43 commits sat across the ten worktrees with overlapping changes to at least 89 of the 367 system_v5 files and 47 of the 116 system_v7 files. The two worktrees with identical HEAD at f0afdc36a weren't integration points—they were duplicates, an attempt to resolve a merge that already failed locally. When the team tried to merge all ten branches into main via three-way merge, the algorithm hit cascading conflicts: file X modified in worktree-1 and worktree-3 with incompatible rewrites; file Y edited in worktree-2 with a line count that doesn't match
+
+--- DIVE dive_3 ---
+## THE FAILURE STORY
+
+It started cleanly enough. You merged the first batch of commits from claimgate/bypass-regression into a feature branch, expecting to sequence them by date. Commits 1–8 landed without file conflicts. system_v5 tests passed. But when you merged commit 12 (from worktree 7, modifying CB library initialization), the code compiled, the linter passed, and git declared it clean. You committed it.
+
+Then the integration tests failed. Commit 9 (from worktree 3, which you'd already merged) called `CBLibrary.init_boundary()` with three arguments. But commit 12 had rewritten that function to take five arguments and moved it to a different module. No file conflict meant git saw no problem—the two changes were in different files. But the dependency was real, and it was now broken. By the time you discovered this, you'd already merged commits 14–19, each of which layered more assumptions on top of the broken state. Unwinding meant reverting six commits and re-merging in a different order. But commits 14–16 touched the same system_v7 files as commit 12, so re-merging 12 first meant re-resolving those conflicts by hand. Meanwhile, the primary checkout's 180 dirty files (experim
+
+--- DIVE dive_4 ---
+# THE FAILURE STORY
+
+By late January, the symptom was unmistakable: v9's bootstrapper imported `system_v5.auth.credential_gate` but found only `system_v5.auth.gates.credential`. The v5 worktree had renamed the module during a refactor on July 16 (commit e2f4a91), moving it under a `gates/` subpackage to match organizational conventions. Meanwhile, v7's worktree had kept the old import path and added a wrapper layer (`system_v7.adapters.v5_shim`) expecting the original API. When these merged to main, the v7 code tried to import from a path that no longer existed. CI caught it immediately—but by then, 12 commits of scaffolding had been layered on top, and the root cause was buried under 180 files of changes. Rolling back wasn't viable; the v9 boundary work depended on both systems being present. The team spent three days untangling the import graph, discovering that v5's refactor had also changed function signatures (`credential_gate(user_id, scope)` → `credential_gate(user, permission_set)`), requiring v7's adapter to be completely rewritten. The delay cascaded: dependent teams waiting on stable boundaries couldn't move forward, and the "July work preserved" criterion collapsed into
+
+--- DIVE dive_5 ---
+# THE PREMORTEM: Why Origin/Main Broke
+
+## THE FAILURE STORY
+
+By February, six months after the July work was committed, the first integration test against origin/main failed silently. The 43 unmerged commits from the 10 worktrees—the real implementation of system_v5 and system_v7 refactoring—never made it to main. Instead, what landed was the v9 scaffolding commit: 6,637 lines of JSON configuration stubs defining class signatures, function names, import paths. The Python beneath it was hollow: 1,234 lines of `pass`, empty methods, stub return values. The July work—real business logic, database adapters, validation pipelines—lived in the worktrees at f0afdc36a and claimgate/bypass-regression. Nobody integrated them before the v9 scaffolding became canonical.
+
+By March, when teams tried to consume main, they called methods that existed as signatures only. The JSON config was perfect scaffolding—architecture was sound, boundaries were clean, 28 of 33 CB light libraries wired correctly. But wiring doesn't execute. A request handler instantiated a processor class that existed only in JSON. Tests passed because they tested the schema, not the behavior. The 180 dirty files in the primary
+
+--- DIVE dive_6 ---
+## THE FAILURE STORY
+
+Development ran hot across the 10 worktrees during July 15-18. Three worktrees (branched from system_v5) began importing from CB.cache, CB.validation, CB.metrics, CB.async_queue, and CB.security—libraries that were documented in the CB integration spec and appeared in early design discussions. No one on those teams realized only 28 of the 33 CB libraries had actually been wired into the codebase. The integration tracker showed green because it counted "specifications written" as "implemented." By July 18, across 43 commits touching 492 files, the system_v5 subsystem alone had 87 new imports from the five unwired libraries.
+
+The first merge attempt to main happened in early August. Tests ran locally on individual branches without issue (each branch existed in isolation with its own virtual environment). When the July work was consolidated, runtime initialization hit ImportError on `from CB.cache import CacheLayer` in system_v5's startup sequence. The fallback caught it as AttributeError downstream when code tried to instantiate the missing objects. The person merging stopped the push. By then, 23 of the 43 commits were half-integrated into a feature branch; rol
+
+--- DIVE dive_7 ---
+# Premortem: Codex-Ratchet Merge-Base Failure
+
+## THE FAILURE STORY
+
+On merge day, when the team attempted to consolidate the 43 unmerged commits across the 10 worktrees back into origin/main, git's three-way merge algorithm silently used the wrong ancestor. Each worktree had been created from claimgate/bypass-regression (6e362506a), but origin/main had advanced beyond that point (a9909489 is 6,637 lines of scaffolding commits ahead). The automatic merge-base detection should have found the true common ancestor, but instead it used 6e362506a as the baseline—the very point from which the worktrees had split.
+
+This meant that when consolidating changes from system_v5 and system_v7 worktrees, the three-way merge algorithm couldn't see that certain refactorings in main had already happened. Code that bridged the system boundaries—the "boundary scaffolding" keeping v5 and v7 wired together—was already present in main but invisible to the merge logic. When a worktree had touched the same code, the conflict resolution marked it as a deletion. Developers, seeing this as a normal conflict in the busy v5/v7 boundary files, used `git merge --ours` to resolve in favor of main, which actually d
+
+--- DIVE dive_8 ---
+## THE FAILURE STORY
+
+On July 16, the system_v5 track decided to deprecate and delete `validators/base.py`, moving all validation logic into a new consolidated `validation_core.py`. Seven files had their imports rewritten. That same day, system_v7 was adding new constraint-checking methods to `base.py`—the same file—without knowing deprecation was underway. When the time came to merge the 43 commits into main, Git's three-way merge faithfully kept both the deletions and the new method definitions. The result: `validation_core.py` existed as intended, but fifteen downstream files still imported from the deleted `base.py`, and the newly-added methods existed in a file that no longer belonged to the build. Python runtime errors cascaded through the test suite. A merge that looked clean in conflict markers was syntactically broken.
+
+The secondary failure came from a file rename. system_v5 moved `pipeline/config.py` to `pipeline/config_v5.py` as part of its scaffolding refactor. system_v7 added new configuration classes to `pipeline/config.py` and modified two of them. The merge kept both files. Now you had duplicate configuration in two places, one actively used and one dead weight. Wo
+
+--- DIVE dive_9 ---
+## THE FAILURE STORY
+
+The v5/v7 refactor was tightly coupled—v5 defined shared schemas and import paths, v7 consumed them. The 43 commits came from 10 worktrees running in parallel, each with a complete local picture but no global view of dependencies. When merging to main chronologically (July 15–18 order), a v7 consumer commit (July 16) landed before the v5 provider commit (July 18) it depended on. Python import resolution broke silently; the symbol simply didn't exist yet on main. Subsequent commits in the queue landed on top of broken code. By the time the actual v5 definition arrived four commits later, downstream code had already layered invalid assumptions on top—assignments to undefined names, circular imports where v7 now imported v5 which imported utilities that now imported v7. Each worktree's tests passed locally (they were testing their own snapshot). Main was broken in the middle, in a state no worktree had ever actually validated. The CB light integration assumed clean boundaries; instead, system_v5 and system_v7 were now entangled on the main branch. Rolling back meant untangling all 43 commits because the merged state had become canonical—other branches had already
+
+Produce a PREMORTEM REPORT with EXACTLY these five sections, each with its heading:
+1. The Most Likely Failure
+2. The Most Dangerous Failure
+3. The Hidden Assumption
+4. The Revised Plan
+5. The Pre-Launch Checklist
+
+Be direct, specific, actionable. Under 500 words.

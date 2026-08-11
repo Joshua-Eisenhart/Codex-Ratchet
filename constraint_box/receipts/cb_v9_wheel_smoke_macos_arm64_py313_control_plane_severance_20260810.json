@@ -1,0 +1,159 @@
+{
+  "checks": [
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "fresh_venv_create",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "dependency_resolved_install",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "224800671c9974858a115d23aaf8dac73b22defc603544d4f4cedabecbf101e9"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "pip_dependency_check",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_json": {
+        "inside_fresh_environment": true,
+        "module": "constraintbox",
+        "schema": "constraintbox.fresh-install-origin.v1"
+      },
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "installed_origin",
+      "observed_json": {
+        "inside_fresh_environment": true,
+        "module": "constraintbox",
+        "schema": "constraintbox.fresh-install-origin.v1"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d93c650247f5dceebc824ff85f0af173883189c4ead8abb9114fe4b661047fdd"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_json": {
+        "core_tool_ids": [
+          "python.z3",
+          "python.cvc5",
+          "python.sympy",
+          "python.rustworkx",
+          "python.maude"
+        ],
+        "missing": [],
+        "schema": "constraintbox.core-doctor.v9"
+      },
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "v9_console_doctor",
+      "observed_json": {
+        "core_tool_ids": [
+          "python.z3",
+          "python.cvc5",
+          "python.sympy",
+          "python.rustworkx",
+          "python.maude"
+        ],
+        "missing": [],
+        "schema": "constraintbox.core-doctor.v9"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a01c2f49e11b4e94d29a53f780b1dd1d5204907a78617725f2af2e6b28e95bff"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_json": {
+        "claim_ceiling": "five_tool_function_exercise_only",
+        "observations.python.cvc5.status": "sat",
+        "observations.python.maude.module_loaded": true,
+        "observations.python.z3.status": "sat",
+        "promotion_allowed": false,
+        "schema": "constraintbox.core-exercise.v9"
+      },
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "v9_module_exercise",
+      "observed_json": {
+        "claim_ceiling": "five_tool_function_exercise_only",
+        "observations.python.cvc5.status": "sat",
+        "observations.python.maude.module_loaded": true,
+        "observations.python.z3.status": "sat",
+        "promotion_allowed": false,
+        "schema": "constraintbox.core-exercise.v9"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3fcfe16f4e51a39c048b1cd9c7230f4f9dd7fb88494b40c419f890fca337b27"
+    },
+    {
+      "exit": 2,
+      "expected_exit": 2,
+      "expected_json": {
+        "disposition": "HOLD",
+        "reason_code": "HOLD_CONTROL_PLANE_DEPENDENCY_MISSING"
+      },
+      "failure_kind": null,
+      "failure_reason": "subprocess_exit_nonzero",
+      "name": "v9_control_plane_dependency_severance",
+      "observed_json": {
+        "disposition": "HOLD",
+        "reason_code": "HOLD_CONTROL_PLANE_DEPENDENCY_MISSING"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0e2689ffd2d72eee549b791a430fb687e3c1cbba3b5d2706c38e196fa2b720b4"
+    }
+  ],
+  "claim_ceiling": "a fresh dependency-resolved installation on this host executed the declared five-tool v9 core checks only; this is not Linux or Windows execution, cross-platform adoption, full ConstraintBox product verification, user MMM/profile resources, external sim estate, LLM/provider paths, ClaimGate composition, release, promotion, or scientific truth",
+  "cross_platform_matrix_proved": false,
+  "dependency_resolution_mode": "normal_dependency_resolution",
+  "excluded_product_surfaces": [
+    "user_mmm_and_profile_request_preflight_not_packaged_in_this_wheel",
+    "external_sim_engine_adapters_and_estate",
+    "external_temporal_runtime_profiles",
+    "hosted_llm_advisers_and_proposal_release_surfaces",
+    "claimgate_full_product_composition"
+  ],
+  "fresh_environment": true,
+  "full_constraintbox_product_verified": false,
+  "generated_at_utc": "2026-08-10T23:00:16.949949+00:00",
+  "installer_verification_only": true,
+  "isolated_children": true,
+  "promotion_allowed": false,
+  "reason": "clean_wheel_smoke_passed",
+  "runtime_never_installs_dependencies": true,
+  "schema": "constraintbox.wheel-smoke.v2",
+  "state": "READY",
+  "verification_scope": "lean_core_install_smoke",
+  "verified_lean_core_operations": [
+    "v9_console_doctor",
+    "v9_module_exercise",
+    "v9_control_plane_dependency_severance"
+  ],
+  "wheel": "constraintbox-0.4.0.dev1-py3-none-any.whl",
+  "wheel_sha256": "c5d6e502dcdc696a3d17ae5b00f8eb3c92c4b03b782da2287fb14818bbd042e5",
+  "wheelhouse_supplied": false
+}

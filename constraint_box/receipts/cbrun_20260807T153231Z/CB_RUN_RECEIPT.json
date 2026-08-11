@@ -1,0 +1,127 @@
+{
+ "W_AUTORESEARCH": {
+  "cycle": 1,
+  "measure_moved": true,
+  "members_fired": {
+   "extract": 1
+  },
+  "refusals_per_claim": 0.2,
+  "usefulness": 0.556,
+  "wrote_back": true
+ },
+ "W_COUNCIL": {
+  "completed": 5,
+  "spawned": 5
+ },
+ "W_GATE": [
+  {
+   "admitted": true,
+   "claim": {
+    "claim_ceiling": "Cannot verify git merge state, test results, or conflict resolution; analysis limited to static code structure.",
+    "confidence": 0.35,
+    "finding": "43 commits across 10 worktrees touching 492 files in interdependent v5/v7 systems require pre-merge verification (merge-base status, integration test results, conflict audit) before merge eligibility can be assessed.",
+    "promotion_allowed": false,
+    "verdict": "PARKED"
+   },
+   "id": "claim~feynman",
+   "reasons": []
+  },
+  {
+   "admitted": true,
+   "claim": {
+    "claim_ceiling": "Does not verify merge-conflict resolution across 10 worktrees, inter-worktree consistency of system_v5/v7 architecture alignment, or completion status of v7 campaign gates from 2026-06-14 restart.",
+    "confidence": 0.45,
+    "finding": "43 commits across 10 July-dated worktrees touch 492 files in active v5/v7 transition; v7 restart (2026-06-14) declared NO layer DONE; worktree isolation prevents cross-verification without explicit conflict-resolution and architecture-alignment audit.",
+    "promotion_allowed": false,
+    "verdict": "PARKED"
+   },
+   "id": "claim~hume",
+   "reasons": []
+  },
+  {
+   "admitted": true,
+   "claim": {
+    "claim_ceiling": "Cannot assess test coverage, code review depth, conflict resolution correctness, breaking API changes, migration safety, or deployment impact without executing test suite and auditing review chain",
+    "confidence": 0.35,
+    "finding": "43 commits across 10 worktrees touching 492 files in major subsystems (system_v5/v7) aged 20 days; scope and age warrant verification before integration but no active blockers evident.",
+    "promotion_allowed": false,
+    "verdict": "PARKED"
+   },
+   "id": "claim~popper",
+   "reasons": []
+  },
+  {
+   "admitted": true,
+   "claim": {
+    "claim_ceiling": "Does not assess actual merge conflicts, CI test passes, or cross-worktree dependency consistency. Assesses only risk profile from structural signals: fragmentation, scale, version coverage.",
+    "confidence": 0.72,
+    "finding": "10 worktrees with 43 commits touching 492 files across system_v5 and system_v7 over July 15-18 signal parallel work without integration gate; fragmentation and cross-version scope indicate unresolved coordination risk before merge.",
+    "promotion_allowed": false,
+    "verdict": "PARKED"
+   },
+   "id": "claim~pushback",
+   "reasons": []
+  },
+  {
+   "admitted": false,
+   "claim": null,
+   "id": "claim~zhuangzi",
+   "reasons": [
+    "extract: no JSON object in the return"
+   ]
+  }
+ ],
+ "W_PROMPT": {
+  "duplicates": 0,
+  "max_overlap": 0.0,
+  "mean": 0.0,
+  "verdict": "DIVERSE"
+ },
+ "W_VERIFY": {
+  "admitted": 4,
+  "conserved_stratum_intact": true,
+  "count_law": {
+   "completed": 5,
+   "counted": 5,
+   "holds": true,
+   "spawned": 5
+  },
+  "refused": 1
+ },
+ "claim_ceiling": "format, shape and machinery only; CB does not decide whether any finding is true",
+ "promotion_allowed": false,
+ "schema": "cb.run.v1",
+ "skill": "premortem",
+ "skill_path": "/Users/joshuaeisenhart/.codex/skills/premortem/SKILL.md",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "machinery and format only; CB never decides truth",
+   "prompt_intent": "The Codex-Ratchet repo has 43 unmerged commits across 10 worktrees, dated July 15-18, touching 492 files mostly under system_v5 and system_v7. Assess the risk of merging them to main.",
+   "success_condition": "each voice returns a typed claim that survives the deterministic gate stack"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "5a6530a2b9ce592e2e1ce660ed380c44f316853111d9957a504c1218e79c5c37",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 1,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a model may set its own verdict"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "task": "The Codex-Ratchet repo has 43 unmerged commits across 10 worktrees, dated July 15-18, touching 492 files mostly under system_v5 and system_v7. Assess the risk of merging them to main.",
+ "voices": [
+  "hume",
+  "popper",
+  "zhuangzi",
+  "feynman",
+  "pushback"
+ ],
+ "wall_seconds": 117.6
+}

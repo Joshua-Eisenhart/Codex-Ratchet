@@ -1,0 +1,87 @@
+{
+  "claim_ceiling": "one fixed local NumPy worker fixture and named controls; no promotion",
+  "estate_receipt": {
+    "capabilities": [
+      {
+        "capability_id": "numpy_density",
+        "controls": {
+          "dispatch": true,
+          "mutation": true,
+          "operation": true,
+          "positive": true,
+          "replay": true,
+          "severance": true
+        },
+        "elapsed_seconds": 0.45697824997478165,
+        "evidence": {
+          "controller_worker_environment": {
+            "ephemeral_cache_config": [
+              "NUMBA_CACHE_DIR",
+              "MPLCONFIGDIR"
+            ],
+            "host_cache_config_inherited": false
+          },
+          "dispatch": [
+            "numpy.asarray",
+            "numpy.linalg.eigvalsh",
+            "numpy.trace"
+          ],
+          "observed": {
+            "dephased_entropy_bits": 0.9097361225311662,
+            "eigenvalues": [
+              0.3172344744775748,
+              0.6827655255224252
+            ],
+            "hartley_bits": 1.0,
+            "rank": 2,
+            "trace": 1.0,
+            "von_neumann_bits": 0.9013486588978599
+          },
+          "operation_causality_ceiling": "source-pinned adapter and exact severance protocol; not arbitrary hostile-process containment",
+          "operation_expected_exit_code": 86,
+          "operation_expected_signal_sha256": "ef7325a84e85368be666365544fad9ab0d60c31a913f1a726022438d41128ac1",
+          "operation_observed_exit_code": 86,
+          "operation_observed_signal_sha256": "ef7325a84e85368be666365544fad9ab0d60c31a913f1a726022438d41128ac1",
+          "operation_poisoner_sha256": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0",
+          "operation_poisoner_source_pinned": true,
+          "operation_severed": "numpy.linalg.eigvalsh",
+          "operation_target": "numpy.linalg.eigvalsh",
+          "runtime": {
+            "dtype": "float64"
+          },
+          "stdout_sha256": "29c78002a3158167b52b591f9e99151ef4702c9d3116afb7aa5360921ebbf412"
+        },
+        "expected_version": "2.3.4",
+        "fixture_sha256": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f",
+        "observed_version": "2.3.4",
+        "reason": "all_required_controls_passed",
+        "required": true,
+        "state": "READY",
+        "worker_sha256": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257"
+      }
+    ],
+    "controller_sha256": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e",
+    "elapsed_seconds": 0.7970626670139609,
+    "environment": {
+      "distribution_count": 403,
+      "observed_sha256": "25f0ab8a9bc8395761a3534d3c5c2c2d6c4fdc0febd869964699313d87b78cba",
+      "state": "UNPINNED"
+    },
+    "fixture_sha256": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f",
+    "generated_at_utc": "2026-08-09T07:02:45.553550+00:00",
+    "layer_id": "CB1",
+    "layer_name": "constraintbox.cr-gksl-numpy-density.darwin.v1",
+    "manifest_sha256": "a2ac949013253e688d6af89dbaac0bf13cb5e22f3126ce0a96c7c37ace03dc4f",
+    "mode": "acceptance",
+    "promotion_allowed": false,
+    "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "python_version": "3.13.6",
+    "schema": "constraintbox.sim-tier-receipt.v2",
+    "state": "READY"
+  },
+  "profile_id": "constraintbox.cr-gksl-numpy-density.darwin.v1",
+  "profile_manifest": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/b1e33759-f392-47e0-8f05-c6ce7250426c/scratchpad/repo_run/run/controller_profile_manifest.json",
+  "profile_manifest_sha256": "a2ac949013253e688d6af89dbaac0bf13cb5e22f3126ce0a96c7c37ace03dc4f",
+  "promotion_allowed": false,
+  "schema": "constraintbox.agent-tool-receipt.v1"
+}

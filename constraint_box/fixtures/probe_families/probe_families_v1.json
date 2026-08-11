@@ -1,0 +1,44 @@
+{
+  "families": [
+    {"gate_id":"cb:sympy-exact-gate","probes":[
+      {"probe_id":"sympy-ok","input_ref":{"numerator":2,"denominator":3,"expected":"2/3"},"expected":"admitted"},
+      {"probe_id":"sympy-zero-denom","input_ref":{"numerator":2,"denominator":0,"expected":"2/3"},"expected":"zero_denominator"},
+      {"probe_id":"sympy-mismatch","input_ref":{"numerator":2,"denominator":3,"expected":1.0},"expected":"exact_mismatch"}],
+      "boundary_pairs":[
+        {"probe_a":"sympy-ok","probe_b":"sympy-zero-denom","differing_field":"denominator","expected_flip":true},
+        {"probe_a":"sympy-ok","probe_b":"sympy-mismatch","differing_field":"expected","expected_flip":true}],
+      "deciders":[{"decider_id":"sympy","tool":"sympy","how_it_decides":"sympy Rational equality"},{"decider_id":"fraction","tool":"fractions.Fraction","how_it_decides":"stdlib Fraction equality"}]},
+    {"gate_id":"cb:maude-transition-gate","probes":[
+      {"probe_id":"maude-ok","input_ref":{"states":["a","b"],"from":"a","to":"b"},"expected":"admitted"},
+      {"probe_id":"maude-missing-source","input_ref":{"states":["a","b"],"from":"x","to":"b"},"expected":"unknown_source"},
+      {"probe_id":"maude-self-loop","input_ref":{"states":["a","b"],"from":"a","to":"a"},"expected":"self_loop"}],
+      "boundary_pairs":[
+        {"probe_a":"maude-ok","probe_b":"maude-missing-source","differing_field":"from","expected_flip":true},
+        {"probe_a":"maude-ok","probe_b":"maude-self-loop","differing_field":"to","expected_flip":true}],
+      "deciders":[{"decider_id":"maude","tool":"maude","how_it_decides":"finite transition rule shape"},{"decider_id":"enumeration","tool":"finite-enumeration","how_it_decides":"enumerate state endpoints"}]},
+    {"gate_id":"cb:rustworkx-workflow-gate","probes":[
+      {"probe_id":"graph-ok","input_ref":{"nodes":["a","b"],"edges":[["a","b"]],"entry":"a"},"expected":"admitted"},
+      {"probe_id":"graph-cycle","input_ref":{"nodes":["a","b"],"edges":[["a","b"],["b","a"]],"entry":"a"},"expected":"cycle"},
+      {"probe_id":"graph-entry-missing","input_ref":{"nodes":["a","b"],"edges":[["a","b"]],"entry":"x"},"expected":"entry_missing"}],
+      "boundary_pairs":[
+        {"probe_a":"graph-ok","probe_b":"graph-cycle","differing_field":"edges","expected_flip":true},
+        {"probe_a":"graph-ok","probe_b":"graph-entry-missing","differing_field":"entry","expected_flip":true}],
+      "deciders":[{"decider_id":"rustworkx","tool":"rustworkx","how_it_decides":"digraph cycle and reachability"},{"decider_id":"enumeration","tool":"finite-enumeration","how_it_decides":"enumerate paths over node set"}]},
+    {"gate_id":"mini_levos:construction-invariant","probes":[
+      {"probe_id":"mini-ok","input_ref":{"nodes":["a","b"],"edges":[["a","b"],["b","HOLD"]],"entry":"a"},"expected":"admitted"},
+      {"probe_id":"mini-entry-missing","input_ref":{"nodes":["a","b"],"edges":[["a","b"],["b","HOLD"]],"entry":"x"},"expected":"entry_missing"},
+      {"probe_id":"mini-dead-end","input_ref":{"nodes":["a","b"],"edges":[["a","b"]],"entry":"a"},"expected":"dead_end"}],
+      "boundary_pairs":[
+        {"probe_a":"mini-ok","probe_b":"mini-entry-missing","differing_field":"entry","expected_flip":true},
+        {"probe_a":"mini-ok","probe_b":"mini-dead-end","differing_field":"edges","expected_flip":true}],
+      "deciders":[{"decider_id":"constructor","tool":"mini_levos","how_it_decides":"construction invariant predicate"},{"decider_id":"enumeration","tool":"finite-enumeration","how_it_decides":"enumerate outgoing terminal paths"}]},
+    {"gate_id":"claimgate:chain-gate","probes":[
+      {"probe_id":"chain-ok","input_ref":{"records":[{"previous":"0","line":"a","line_hash":"b"}],"head":"b"},"expected":"admitted"},
+      {"probe_id":"chain-break","input_ref":{"records":[{"previous":"9","line":"a","line_hash":"b"}],"head":"b"},"expected":"chain_break"},
+      {"probe_id":"chain-head-missing","input_ref":{"records":[{"previous":"0","line":"a","line_hash":"b"}],"head":""},"expected":"head_missing"}],
+      "boundary_pairs":[
+        {"probe_a":"chain-ok","probe_b":"chain-break","differing_field":"records[0].previous","expected_flip":true},
+        {"probe_a":"chain-ok","probe_b":"chain-head-missing","differing_field":"head","expected_flip":true}],
+      "deciders":[{"decider_id":"ledger","tool":"HashChainLedger","how_it_decides":"recompute chain links"},{"decider_id":"raw-bytes","tool":"raw-byte-recompute","how_it_decides":"recompute canonical record bytes"}]}
+  ]
+}

@@ -1,0 +1,28 @@
+PROMPT INTENT (conserved): Falsify the target claim: name the strongest falsifier, the overclaim boundary, the boundary failure, the minimal fix.
+SUCCESS CONDITION: each required child returns a packet carrying every declared route output, with status in killed|open|survived
+CLAIM CEILING: falsification structure only; CB does not decide whether the claim is true
+KILLED ASSUMPTIONS (do not revive without a bridge): a claim survives because no one objected
+STRATEGY STATE: Failure council consumes the Decision council's output
+
+You are the convergence step of voice.feynman inside the failure.falsifier route.
+
+TARGET CLAIM:
+The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.
+
+Your subagents returned:
+[mechanism] **Operation:** `git merge <branch>` with dirty worktree
+
+**Mechanism:** git compares the index against the working tree for differences before entering merge logic. If uncommitted changes are detected, merge exits with error before HEAD is moved or commits applied.
+
+(24 words)
+[pass_fail] Slices loaded: v4.1-reference.
+
+**Operation · Observable:** `git merge july-branch` on current worktree (180 dirty files present). Measure: exit code, applied commits count, files touched before/after.
+
+**Pass/Fail:** Pass if merge aborts (non-zero exit) + zero commits applied + dirty files unchanged. Fail if merge succeeds or applies any commits.
+
+**Unresolved:** Exact branch name containing 43 July commits; method to verify dirt-file count matches 180.
+
+Return ONLY this JSON object:
+{"status": "open", "overclaim_correction": "<...>", "boundary_failure": "<...>", "minimal_fix": "<...>", "decisive_check": "<...>"}
+status must be exactly one of: killed, open, survived.

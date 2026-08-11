@@ -1,0 +1,93 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.receipt.json",
+      "completed_at": "2026-08-07T23:48:17.044695+00:00",
+      "cost_usd": 0.019788099999999996,
+      "duration_ms": 26086,
+      "id": "guard.boundary_check~round2",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:48:17.039702+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 22131,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n   ",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"[literal]\",\n  \"why_it_beats_the_others\": \"Falsifying a causal claim requires first confirming the antecedent occurred\u2014without evidence the git command was actually executed, all downstream critiques (which command, what error, what check blocked it) remain untestable.\",\n  \"retained_rival\": \"[adversarial]\"\n}\n```\n\nThe [literal] member diagnoses the root blockage: confirmation of execution is the prerequisite for testing. [Adversarial] survives because even once execution is confirmed, the claim remains structurally vague\u2014\"git aborts\" doesn't name which of several possible commands (merge/rebase/cherry-pick) was attempted, so expected behavior is undefined.",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:47:50.958327+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.feynman~round2/20260807T234750Z-voice-feynman-round2-e5e1dce39504.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.feynman~round2/20260807T234750Z-voice-feynman-round2-e5e1dce39504.receipt.json",
+      "completed_at": "2026-08-07T23:48:22.058054+00:00",
+      "cost_usd": 0.0216711,
+      "duration_ms": 31101,
+      "id": "voice.feynman~round2",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:48:22.052905+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.feynman~round2/20260807T234750Z-voice-feynman-round2-e5e1dce39504.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 26934,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_previ",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"Adversarial\",\n  \"why_it_beats_the_others\": \"File count is a red herring; git aborts only when working-tree changes conflict with incoming commits, not because 180 files exist.\",\n  \"retained_rival\": \"Boundary/Historical: Git's safety check is sound (refuse to overwrite uncommitted changes), but the claim's blame for 180 files assumes conflict exists\u2014not yet falsified, not yet confirmed.\"\n}\n```",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:47:50.956936+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.receipt.json",
+      "completed_at": "2026-08-07T23:48:12.506401+00:00",
+      "cost_usd": 0.0151464,
+      "duration_ms": 21552,
+      "id": "voice.popper~round2",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:48:12.500861+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.popper~round2/20260807T234750Z-voice-popper-round2-aceb43df685b.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 17620,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_preview",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"Git merge succeeds and applies all 43 July commits despite the 180 dirty files present\",\n  \"why_it_beats_the_others\": \"It falsifies both clauses of the target claim at once\u2014dirty files do not block the merge AND git does not abort\u2014rather than addressing them separately or hedging one part.\",\n  \"retained_rival\": \"Dirty files block merge only in specific index-conflict scenarios (staged changes, unresolved conflicts); the claim wrongly generalizes from a conditional to a universal.\"\n}\n```",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:47:50.953506+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.pushback~round2/20260807T234750Z-voice-pushback-round2-a05d30544fe6.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.pushback~round2/20260807T234750Z-voice-pushback-round2-a05d30544fe6.receipt.json",
+      "completed_at": "2026-08-07T23:48:11.508298+00:00",
+      "cost_usd": 0.0164231,
+      "duration_ms": 20552,
+      "id": "voice.pushback~round2",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:48:11.502960+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/voice.pushback~round2/20260807T234750Z-voice-pushback-round2-a05d30544fe6.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 16225,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_pre",
+      "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"literal\",\n  \"why_it_beats_the_others\": \"Causation requires observed effect; the claim asserts merge failure without demonstrating git's actual behavior or error mode on the dirty worktree.\",\n  \"retained_rival\": \"historical \u2014 even if merge fails with dirty files, the clean worktree counterfactual is untested, so causation remains unestablished\"\n}\n```\n\nThe literal reading kills the claim's foundation: no evidence the merge fails at all. Historical keeps alive the next threshold \u2014 IF failure is observed, you still need the clean-tree control to rule out unrelated causes (the 43 commits themselves, for instance, per boundary's point). Operational and boundary refine scope after those two gates pass.",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:47:50.955452+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T23:48:22.058257+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 4,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 4
+  },
+  "duration_ms": 31106,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 4,
+  "model": "haiku",
+  "route": "L3r2",
+  "started_at": "2026-08-07T23:47:50.951392+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 150.0
+}

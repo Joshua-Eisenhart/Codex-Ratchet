@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CB Light first fixture wave — premortem</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0d1117; --panel:#161b22; --line:#30363d; --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --warn:#f2cc60; --bad:#ff7b72; --good:#3fb950; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { max-width:1180px; margin:0 auto; padding:44px 24px 64px; }
+    h1 { margin:0 0 4px; font-size:2.1rem; } h2 { margin:42px 0 14px; font-size:1.3rem; } h3 { margin:0 0 8px; }
+    .meta,.ceiling { color:var(--muted); } .ceiling { border-left:3px solid var(--warn); padding-left:12px; }
+    .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+    .card h3 { color:var(--accent); } .danger h3 { color:var(--bad); }
+    ol,ul { padding-left:22px; } code { background:#21262d; padding:1px 5px; border-radius:4px; }
+    table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    th,td { text-align:left; vertical-align:top; padding:12px; border-bottom:1px solid var(--line); } th { color:var(--accent); } tr:last-child td { border-bottom:0; }
+    .pass { color:var(--good); } .hold { color:var(--warn); } footer { margin-top:40px; color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>CB Light first fixture wave — premortem</h1>
+  <p class="meta">2026-08-10 · America/Los_Angeles · five independent failure-analysis dives</p>
+  <p class="ceiling">Planning/falsification artifact only. It is not a wave run, tool admission, portability proof, real model/skill invocation, or promotion evidence.</p>
+
+  <h2>Premise</h2>
+  <p>Six months later, the first CB Light fixture wave failed: its receipts and graphs looked convincing, but it could not prove what ran, whether inputs were independent, or whether model-shaped output affected deterministic settlement.</p>
+
+  <h2>Fixture under test</h2>
+  <div class="card">
+    <ol>
+      <li>Seal a typed <code>IssueCard</code> and strict <code>ProbePacket</code>.</li>
+      <li>Run exactly three local deterministic fake adapters: witness, falsifier, evidence map.</li>
+      <li>Check topology with Rustworkx; settle a locally recomputed FactSet with Z3 plus enumeration.</li>
+      <li>Write append-only SQLite attempt/receipt lineage and replay from raw observations.</li>
+      <li>Return <code>SETTLED</code>, <code>HOLD</code>, <code>REFUSE</code>, or <code>EXPIRED</code>; always <code>promotion_allowed=false</code>.</li>
+    </ol>
+  </div>
+
+  <h2>Agent grid — independent failure modes</h2>
+  <div class="grid">
+    <article class="card danger"><h3>Authority / provenance</h3><p>Typed reference was rendered as “asset used,” without an invocation receipt.</p><p><strong>Safeguard:</strong> state machine <code>declared → resolved → bound → invoked → receipt_verified</code>; only the last may be cited.</p></article>
+    <article class="card danger"><h3>Input diversity</h3><p>Plural councils shared one packet, evidence digest, adapter, prompt, and seed.</p><p><strong>Safeguard:</strong> record context/evidence/lineage/adapter/seed hashes and deny corroboration credit to correlated branches.</p></article>
+    <article class="card danger"><h3>State / lineage</h3><p>Retries overwrote or joined a different attempt’s receipts.</p><p><strong>Safeguard:</strong> distinct plan fingerprint and immutable attempt ID; content-addressed raw receipts; HOLD on incomplete closure.</p></article>
+    <article class="card danger"><h3>Gate non-authority</h3><p>Adapter PASS or model verdict became a solver input.</p><p><strong>Safeguard:</strong> gate only a whitelisted, freshly reverified FactSet; adapters emit observations, never verdict/promotion.</p></article>
+    <article class="card danger"><h3>Scope creep</h3><p>Generic orchestration and simulation placeholders hid the finite fixture’s boundary.</p><p><strong>Safeguard:</strong> frozen allowlist: stdlib SQLite, Pydantic/jsonschema, Rustworkx, Z3/enumerator, three fake adapters.</p></article>
+  </div>
+
+  <h2>Required gates before exercise</h2>
+  <table>
+    <thead><tr><th>Gate</th><th>Required property</th></tr></thead>
+    <tbody>
+      <tr><td>Execution identity</td><td>Plan fingerprint is separate from append-only attempt ID; every raw observation is content-addressed and foreign-keyed.</td></tr>
+      <tr><td>Asset ledger</td><td>Many-to-many binding records identity/version/digest, role, adapter, mode, and evidence state. Reference is never invocation.</td></tr>
+      <tr><td>Settlement</td><td>A single fail-closed deterministic function consumes only locally reverified facts; it rejects model/provider verdict fields.</td></tr>
+      <tr><td>Independence</td><td>Per-probe context/evidence/lineage/adapter/seed hashes make correlation visible and non-corrobative.</td></tr>
+      <tr><td>Replay</td><td>Replay re-executes fake adapters and revalidates raw observations; it cannot reuse a green row.</td></tr>
+      <tr><td>Source boundary</td><td>Fixture source rejects PydanticAI, provider SDKs, network clients, Heavy/simulation packages, and generic agent frameworks.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Falsification controls</h2>
+  <div class="grid">
+    <article class="card"><h3>Positive</h3><p><span class="pass">SETTLED</span> only for a sealed local fixture; promotion remains false.</p></article>
+    <article class="card"><h3>Forgery / model authority</h3><p><span class="hold">REFUSE</span> forged provider/model PASS; its value cannot change settlement.</p></article>
+    <article class="card"><h3>Receipt tamper / missing falsifier</h3><p><span class="hold">HOLD</span>; no stale output may be reused.</p></article>
+    <article class="card"><h3>Bound but uninvoked asset</h3><p><span class="hold">HOLD_UNINVOKED_ASSET</span>; reports never say “used.”</p></article>
+    <article class="card"><h3>Clone / correlation</h3><p>Visible correlation; no independent corroboration credit.</p></article>
+    <article class="card"><h3>Replay / duplicate attempts</h3><p>New immutable attempt, re-execution, verified hashes; no joins or overwrites.</p></article>
+  </div>
+
+  <h2>Decision and order</h2>
+  <div class="card">
+    <p>Proceed only with the narrow contained fixture in <code>light_runtime/src/constraintbox</code>. First write schema, FactSet, state machine, and negative controls; then implement and exercise it. Do not add generic nested-council orchestration, PydanticAI, external model execution, or simulation integration to this slice.</p>
+  </div>
+  <footer>Prepared from five independent Codex subagent dives. Their analysis is design pressure, not executed CB-wave proof.</footer>
+</main>
+</body>
+</html>

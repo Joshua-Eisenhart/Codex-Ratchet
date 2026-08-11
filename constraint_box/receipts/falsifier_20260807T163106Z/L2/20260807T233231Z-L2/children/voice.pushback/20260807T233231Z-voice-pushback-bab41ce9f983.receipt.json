@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:32:58.012167+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 22175,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Dirty files pause merges (precondition), not block them causally. Stashing resolves the precondition; blocking occurs only if merge fails after cleaning the tree. The claim conflates precondition with causation.\",\n  \"boundary_failure\": \"Assumes merge was attempted after stashing (unobserved). No error message, exit code, or git state shown. Critical terms undefined: what is 'dirty' (modified, staged, untracked)? When does 'abort' occur\u2014before processing commits, during, or after? Missing observable evidence.\",\n  \"minimal_fix\": \"Dirty files must be stashed before merging. Merge outcome after stashing has not been characterized. No evidence the merge was attempted with a clean working tree.\",\n  \"decisive_check\": \"git stash; git merge <branch>; echo $?; git log --oneline -n 5. If merge succeeds, dirty files were precondition only (claim falsified). If merge fails, provide exact error message and show commit state before and after.\"\n",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0202964
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.pushback/20260807T233231Z-voice-pushback-bab41ce9f983.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

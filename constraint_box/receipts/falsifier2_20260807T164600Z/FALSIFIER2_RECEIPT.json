@@ -1,0 +1,101 @@
+{
+ "L3_round1": {
+  "completed": 20,
+  "spawned": 20
+ },
+ "claim_ceiling": "falsification structure and divergence measurement only",
+ "collapsed_councils": [],
+ "councils": {
+  "guard.boundary_check": {
+   "answers": {
+    "adversarial": "Claim crosses from observable file-state to operation-failure without naming which git command (`merge`, `rebase`, `cherry-pick`) triggers the abort.",
+    "boundary": "I don't have access to the salience file path you've referenced (`~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_ORWELL_FULL_v4_1.md`), and that path doesn't exist in your system.\n\nMore importantly: the target claim conflates two independent concerns \u2014 repository state (dirty files) and merge mechanics (applying commits) \u2014 without stating whether conflicts or file mutations are the actual blocker.\n\n**Boundary without bridge:** The claim moves from \"files are dirty\" to \"commits don't apply\" as if they're causally identical, when git merge behavior depends on *conflict*, not *dirtiness*.",
+    "historical": "I cannot load the salience reference file (`~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_ORWELL_FULL_v4_1.md`) \u2014 the path does not exist in this environment. Without it, I cannot complete the method contract for this voice receipt.\n\nIf this is a framework test or a cross-project setup, I need clarification: Is the file accessible here, or should I proceed without loading it?",
+    "literal": "Claim states merge failed but doesn't name the merge command, its branch arguments, or confirm execution actually occurred.",
+    "operational": "The claim states outcome (abort) but doesn't name the exact git command run, the error produced, or what git check blocks the operation."
+   },
+   "collapse": {
+    "could_disagree": true,
+    "max_similarity": 0.525,
+    "mean_similarity": 0.234,
+    "members": 5,
+    "verdict": "DIVERGENT"
+   }
+  },
+  "voice.feynman": {
+   "answers": {
+    "adversarial": "**Falsification target:**\n\nThe claim assumes all 180 dirty files conflict with incoming changes; git aborts only on actual conflicts, not file quantity.",
+    "boundary": "Git's pre-merge safety check aborts when the working tree contains uncommitted changes to prevent data loss.",
+    "historical": "Git's working-tree safety check: refuses to merge when uncommitted changes would be overwritten by incoming commits.",
+    "literal": "The Feynman voice requires: mechanism, observable, minimal test, expected pass signal, expected fail signal.\n\n**Target claim (literal):** The 180 dirty files block a merge; git aborts without applying any 43 July commits.\n\n**Single mechanism:** Git merge aborts when local modifications to tracked files conflict with incoming commits.",
+    "operational": "Git's pre-merge safety check rejects operations that would overwrite uncommitted changes in the working tree."
+   },
+   "collapse": {
+    "could_disagree": true,
+    "max_similarity": 0.673,
+    "mean_similarity": 0.318,
+    "members": 5,
+    "verdict": "DIVERGENT"
+   }
+  },
+  "voice.popper": {
+   "answers": {
+    "adversarial": "git merge completes successfully (exit 0), applying all 43 July commits despite the 180 dirty files.",
+    "boundary": "---\n\n**[RECEIPT: SALIENCE LOAD FAILED]** \u2014 The reference file `/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_POPPER_FULL_v4_1.md` is not accessible via standard tools in this context. Per voice-popper contract: *a receipt that did not load it is not counted.* \n\nI cannot complete the falsifier receipt without loading the required salience reference. This receipt is void.\n\n**What is needed:** Direct file read access to the Wizard v4.3 Popper mini-MMM at that path. Do you have the file locally, or should I refocus on the boundary question with inherited Popper method structure only?",
+    "historical": "**1. TARGET CLAIM (exact):**\nThe 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.\n\n**2. STRONGEST LIVE FALSIFIER (single sentence, under 30 words):**\nMerge succeeds and applies any of the 43 July commits with 180 dirty files present in the worktree.\n\n**3. DECISIVE CHECK:**\nRun `git merge <branch-with-July-commits>` with dirty files present. Observe:\n- Exit code (0 = success, non-zero = abort)\n- `git log` after attempt (do any July commits appear in history?)\n- `git status` (does it show merge in progress or completed?)\n\nEvidence path: command execution + log inspection + status state.\n\n**4. CLASSIFICATION: OPEN**\n\nReason: The claim is testable but not yet pressure-tested against actual git behavior. Dirty files may or may not block a merge depending on whether they conflict with incoming changes. The claim assumes categorical blocking; git's actual behavior (stash, abort, or proceed) remains undecided until the check runs.",
+    "literal": "The merge succeeds and applies all 43 July commits to the branch despite the 180 dirty files present.",
+    "operational": "**TARGET CLAIM (exact):** The 180 dirty files on the primary worktree block a clean merge; git aborts without applying any of the 43 July commits.\n\n**STRONGEST LIVE FALSIFIER:** Git merge succeeds and applies all 43 commits despite 180 dirty files present.\n\n**DECISIVE CHECK:** Run `git merge <target-branch>` on the worktree; observe exit code and `git log --oneline | head -50` for commit presence.\n\n**CLASSIFICATION:** `open` \u2014 claim is untested operationally; no check run yet."
+   },
+   "collapse": {
+    "could_disagree": true,
+    "max_similarity": 0.697,
+    "mean_similarity": 0.161,
+    "members": 5,
+    "verdict": "DIVERGENT"
+   }
+  },
+  "voice.pushback": {
+   "answers": {
+    "adversarial": "I cannot load the salience reference file at `~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_PUSHBACK_FULL_v4_1.md` \u2014 it's outside my accessible context. A receipt without that load is disqualified per your contract.\n\nProceed with authority from you, or provide the salience inline.",
+    "boundary": "The claim assumes dirty files block the merge but doesn't rule out that the 43 commits themselves fail to apply.",
+    "historical": "The claim assumes dirty files cause merge failure without testing the counterfactual: whether merge succeeds on a clean worktree.",
+    "literal": "The claim asserts causation\u2014dirty files block the merge\u2014without demonstrating git's actual failure mode or mechanism.",
+    "operational": "Assumes all dirty files block the merge, not specifically those in the merge's change path."
+   },
+   "collapse": {
+    "could_disagree": true,
+    "max_similarity": 0.611,
+    "mean_similarity": 0.407,
+    "members": 5,
+    "verdict": "DIVERGENT"
+   }
+  }
+ },
+ "promotion_allowed": false,
+ "round2": {
+  "completed": 4,
+  "fired_for": [
+   "voice.popper",
+   "voice.pushback",
+   "voice.feynman",
+   "guard.boundary_check"
+  ],
+  "spawned": 4
+ },
+ "route_verdict": "OPEN",
+ "schema": "cb.wave.failure-falsifier.v2",
+ "structure": {
+  "children": 4,
+  "l3_calls": 20,
+  "members_per_child": 5,
+  "slices": [
+   "literal",
+   "operational",
+   "adversarial",
+   "historical",
+   "boundary"
+  ]
+ },
+ "target_claim": "The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.",
+ "wall_seconds": 141.6
+}

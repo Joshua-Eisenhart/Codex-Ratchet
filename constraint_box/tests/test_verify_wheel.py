@@ -63,6 +63,21 @@ class WheelVerifierTests(unittest.TestCase):
             "externally_managed_python_prevents_venv_bootstrap",
         )
 
+    def test_lookup_accepts_dotted_tool_ids_and_nested_fields(self) -> None:
+        body = {
+            "observations": {
+                "python.z3": {"status": "sat"},
+                "python.maude": {"module_loaded": True},
+            }
+        }
+        self.assertEqual(
+            self.verifier._lookup(body, "observations.python.z3.status"), "sat"
+        )
+        self.assertIs(
+            self.verifier._lookup(body, "observations.python.maude.module_loaded"),
+            True,
+        )
+
     def test_dependency_install_failure_skips_core_claims(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             wheel = Path(directory) / "constraintbox-0.3.4-py3-none-any.whl"
@@ -93,7 +108,7 @@ class WheelVerifierTests(unittest.TestCase):
         )
         checks = {check["name"]: check for check in receipt["checks"]}
         self.assertFalse(checks["dependency_resolved_install"]["passed"])
-        self.assertEqual(checks["runtime_verify"]["state"], "SKIPPED")
+        self.assertEqual(checks["v9_console_doctor"]["state"], "SKIPPED")
         install = next(command for command in calls if "pip" in command)
         self.assertNotIn("--no-deps", install)
 

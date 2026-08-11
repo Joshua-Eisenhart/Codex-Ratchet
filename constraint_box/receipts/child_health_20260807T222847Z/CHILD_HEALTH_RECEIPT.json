@@ -1,0 +1,682 @@
+{
+ "claim_ceiling": "deterministic verb issuance over one already-produced wave receipt's seats, lanes and councils; child_health does not judge whether any council's answer was correct, only whether it arrived in a checkable shape and a live seat produced it",
+ "constants": {
+  "MEMBER_CEILING": 6,
+  "MEMBER_FLOOR": 5,
+  "SHAPE_MAX_WORDS": 40,
+  "SHAPE_MIN_CHARS": 3
+ },
+ "promotion_allowed": false,
+ "schema": "cb.child-health.v1",
+ "source_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/decision_20260807T221841Z/DECISION_RECEIPT.json",
+ "source_schema": "cb.wave.decision.v1",
+ "tally": {
+  "accept_with_reason": 58,
+  "block_full": 0,
+  "demote": 7,
+  "kill": 0,
+  "override": 0,
+  "reroute": 0,
+  "shrink": 0
+ },
+ "verbs": [
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "openai/gpt-oss-20b:free"
+   },
+   "id": "decision.context_strategy|voice.feynman|adversarial",
+   "reason": "seat passed the shape contract: 19 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.context_strategy|voice.feynman|boundary",
+   "reason": "seat passed the shape contract: 9 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.context_strategy|voice.feynman|historical",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.context_strategy|voice.feynman|literal",
+   "reason": "seat passed the shape contract: 15 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.context_strategy|voice.feynman|operational",
+   "reason": "seat passed the shape contract: 17 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.context_strategy|voice.hume|adversarial",
+   "reason": "seat passed the shape contract: 22 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.context_strategy|voice.hume|boundary",
+   "reason": "seat passed the shape contract: 25 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.context_strategy|voice.hume|historical",
+   "reason": "seat passed the shape contract: 12 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.context_strategy|voice.hume|literal",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.context_strategy|voice.hume|operational",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "openai/gpt-oss-20b:free"
+   },
+   "id": "decision.context_strategy|voice.strategy|adversarial",
+   "reason": "seat passed the shape contract: 20 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.context_strategy|voice.strategy|boundary",
+   "reason": "seat passed the shape contract: 20 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.context_strategy|voice.strategy|historical",
+   "reason": "seat passed the shape contract: 6 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.context_strategy|voice.strategy|literal",
+   "reason": "seat passed the shape contract: 23 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 538,
+    "family": "openai",
+    "lane": "openai/gpt-oss-20b:free"
+   },
+   "id": "decision.context_strategy|voice.strategy|operational",
+   "reason": "seat responded (ok=true) but failed the shape contract: 80 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "chars": 2709,
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.context_strategy|voice.systems|adversarial",
+   "reason": "seat responded (ok=true) but failed the shape contract: 448 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.context_strategy|voice.systems|boundary",
+   "reason": "seat passed the shape contract: 10 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.context_strategy|voice.systems|historical",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.context_strategy|voice.systems|literal",
+   "reason": "seat passed the shape contract: 19 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.context_strategy|voice.systems|operational",
+   "reason": "seat passed the shape contract: 16 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.evidence_boundary|guard.receipt_audit|adversarial",
+   "reason": "seat passed the shape contract: 17 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.evidence_boundary|guard.receipt_audit|boundary",
+   "reason": "seat passed the shape contract: 11 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 2602,
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.evidence_boundary|guard.receipt_audit|historical",
+   "reason": "seat responded (ok=true) but failed the shape contract: 440 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.evidence_boundary|guard.receipt_audit|literal",
+   "reason": "seat passed the shape contract: 14 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.evidence_boundary|guard.receipt_audit|operational",
+   "reason": "seat passed the shape contract: 16 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.evidence_boundary|voice.feynman|adversarial",
+   "reason": "seat passed the shape contract: 24 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.evidence_boundary|voice.feynman|boundary",
+   "reason": "seat passed the shape contract: 9 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.evidence_boundary|voice.feynman|historical",
+   "reason": "seat passed the shape contract: 9 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 2652,
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.evidence_boundary|voice.feynman|literal",
+   "reason": "seat responded (ok=true) but failed the shape contract: 405 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.evidence_boundary|voice.feynman|operational",
+   "reason": "seat passed the shape contract: 3 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 2499,
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.evidence_boundary|voice.hume|adversarial",
+   "reason": "seat responded (ok=true) but failed the shape contract: 410 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.evidence_boundary|voice.hume|boundary",
+   "reason": "seat passed the shape contract: 16 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.evidence_boundary|voice.hume|historical",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.evidence_boundary|voice.hume|literal",
+   "reason": "seat passed the shape contract: 25 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.evidence_boundary|voice.hume|operational",
+   "reason": "seat passed the shape contract: 12 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.evidence_boundary|voice.popper|adversarial",
+   "reason": "seat passed the shape contract: 22 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.evidence_boundary|voice.popper|boundary",
+   "reason": "seat passed the shape contract: 15 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.evidence_boundary|voice.popper|historical",
+   "reason": "seat passed the shape contract: 28 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 472,
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.evidence_boundary|voice.popper|literal",
+   "reason": "seat responded (ok=true) but failed the shape contract: 69 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.evidence_boundary|voice.popper|operational",
+   "reason": "seat passed the shape contract: 23 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.move_selection|lane.alternative|adversarial",
+   "reason": "seat passed the shape contract: 9 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|lane.alternative|boundary",
+   "reason": "seat passed the shape contract: 16 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.move_selection|lane.alternative|historical",
+   "reason": "seat passed the shape contract: 3 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "nv:openai/gpt-oss-120b"
+   },
+   "id": "decision.move_selection|lane.alternative|literal",
+   "reason": "seat passed the shape contract: 15 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.move_selection|lane.alternative|operational",
+   "reason": "seat passed the shape contract: 17 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.move_selection|lane.direct|adversarial",
+   "reason": "seat passed the shape contract: 15 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.move_selection|lane.direct|boundary",
+   "reason": "seat passed the shape contract: 5 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.move_selection|lane.direct|historical",
+   "reason": "seat passed the shape contract: 5 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.move_selection|lane.direct|literal",
+   "reason": "seat passed the shape contract: 4 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|lane.direct|operational",
+   "reason": "seat passed the shape contract: 14 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.move_selection|voice.factory|adversarial",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.move_selection|voice.factory|boundary",
+   "reason": "seat passed the shape contract: 35 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "chars": 2570,
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.move_selection|voice.factory|historical",
+   "reason": "seat responded (ok=true) but failed the shape contract: 411 words exceeds the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "demote"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|voice.factory|literal",
+   "reason": "seat passed the shape contract: 28 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.move_selection|voice.factory|operational",
+   "reason": "seat passed the shape contract: 8 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nvidia/nemotron-nano-9b-v2:free"
+   },
+   "id": "decision.move_selection|voice.hume|adversarial",
+   "reason": "seat passed the shape contract: 19 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.3-70b-instruct"
+   },
+   "id": "decision.move_selection|voice.hume|boundary",
+   "reason": "seat passed the shape contract: 13 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|voice.hume|historical",
+   "reason": "seat passed the shape contract: 14 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "meta-llama",
+    "lane": "nv:meta/llama-3.1-8b-instruct"
+   },
+   "id": "decision.move_selection|voice.hume|literal",
+   "reason": "seat passed the shape contract: 12 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/nemotron-3-nano-30b-a3b"
+   },
+   "id": "decision.move_selection|voice.hume|operational",
+   "reason": "seat passed the shape contract: 16 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|voice.orwell|adversarial",
+   "reason": "seat passed the shape contract: 24 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "nvidia",
+    "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5"
+   },
+   "id": "decision.move_selection|voice.orwell|boundary",
+   "reason": "seat passed the shape contract: 18 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "deepseek",
+    "lane": "nv:deepseek-ai/deepseek-v4-flash-0731"
+   },
+   "id": "decision.move_selection|voice.orwell|historical",
+   "reason": "seat passed the shape contract: 17 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "openai/gpt-oss-20b:free"
+   },
+   "id": "decision.move_selection|voice.orwell|literal",
+   "reason": "seat passed the shape contract: 4 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  },
+  {
+   "evidence": {
+    "family": "openai",
+    "lane": "openai/gpt-oss-20b:free"
+   },
+   "id": "decision.move_selection|voice.orwell|operational",
+   "reason": "seat passed the shape contract: 4 words, within the shape ceiling of 40",
+   "scope": "seat",
+   "verb": "accept_with_reason"
+  }
+ ],
+ "wall_seconds": 0.0
+}

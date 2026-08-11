@@ -1,0 +1,75 @@
+{
+ "events": {
+  "session_start": [
+   "estate_currentness"
+  ],
+  "pip_command_observed": [
+   "environment_identity"
+  ],
+  "dependency_file_changed": [
+   "lock_validity"
+  ],
+  "cb_source_changed": [
+   "integration_validity"
+  ],
+  "task_completion_claimed": [],
+  "post_tool_use_observed": [],
+  "probes_recorded": [
+   "integration_validity"
+  ],
+  "estate_metadata_refreshed": [
+   "estate_currentness"
+  ]
+ },
+ "facts": {
+  "estate_currentness": [
+   "estate_receipts_current"
+  ],
+  "environment_identity": [
+   "mandated_interpreter"
+  ],
+  "lock_validity": [
+   "declared_set_locked"
+  ],
+  "integration_validity": [
+   "probes_current"
+  ]
+ },
+ "constraints": {
+  "estate_receipts_current": {
+   "id": "estate_receipts_current",
+   "question": "Is every adopted package current per the LIVE PyPI authority, and does the local registry agree with it?",
+   "decider": "pypi_authority_with_local_comparison",
+   "authority": "https://pypi.org/pypi/{name}/json",
+   "expiry_seconds": 47347200,
+   "reason_code": "MAINTENANCE_REVIEW_REQUIRED",
+   "other_reason_codes": [
+    "METADATA_SOURCE_DISAGREEMENT",
+    "AUTHORITY_UNAVAILABLE",
+    "CURRENTNESS_AUTHORITY_CONFIRMED"
+   ],
+   "note": "The local registry is authoritative for what the registry says, never for what PyPI holds. Its tabulate row claimed release_date 2024-12-01 for version 0.10.0 while PyPI reports 2026-03-04 for that same version, and this constraint fired CURRENTNESS_EXPIRED on the fabricated date. Age past the bar is now MAINTENANCE_REVIEW_REQUIRED, not proof of abandonment; only a live observation settles it, and a registry/PyPI conflict is preserved as METADATA_SOURCE_DISAGREEMENT rather than resolved by preferring a side."
+  },
+  "mandated_interpreter": {
+   "id": "mandated_interpreter",
+   "question": "Did pip use the mandated interpreter?",
+   "decider": "inline_command_match",
+   "expiry_seconds": null,
+   "reason_code": "ENV_INTERPRETER_MISMATCH"
+  },
+  "declared_set_locked": {
+   "id": "declared_set_locked",
+   "question": "Does the lock cover the declared dependency set?",
+   "decider": "receipt_metadata",
+   "expiry_seconds": null,
+   "reason_code": "LOCK_STALE"
+  },
+  "probes_current": {
+   "id": "probes_current",
+   "question": "Are probes current for touched modules?",
+   "decider": "probe_obligation",
+   "expiry_seconds": null,
+   "reason_code": "PROBES_REQUIRED"
+  }
+ }
+}

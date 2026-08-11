@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:01.858599+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 11565,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# THE PREMORTEM: Why Origin/Main Broke\n\n## THE FAILURE STORY\n\nBy February, six months after the July work was committed, the first integration test against origin/main failed silently. The 43 unmerged commits from the 10 worktrees\u2014the real implementation of system_v5 and system_v7 refactoring\u2014never made it to main. Instead, what landed was the v9 scaffolding commit: 6,637 lines of JSON configuration stubs defining class signatures, function names, import paths. The Python beneath it was hollow: 1,234 lines of `pass`, empty methods, stub return values. The July work\u2014real business logic, database adapters, validation pipelines\u2014lived in the worktrees at f0afdc36a and claimgate/bypass-regression. Nobody integrated them before the v9 scaffolding became canonical.\n\nBy March, when teams tried to consume main, they called methods that existed as signatures only. The JSON config was perfect scaffolding\u2014architecture was sound, boundaries were clean, 28 of 33 CB light libraries wired correctly. B",
+    "result_subtype": "success",
+    "total_cost_usd": 0.012029399999999999
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_5/20260807T232746Z-dive-5-b185348d8816.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:01.976868+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 13346,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# THE FAILURE STORY\n\nBy late January, the symptom was unmistakable: v9's bootstrapper imported `system_v5.auth.credential_gate` but found only `system_v5.auth.gates.credential`. The v5 worktree had renamed the module during a refactor on July 16 (commit e2f4a91), moving it under a `gates/` subpackage to match organizational conventions. Meanwhile, v7's worktree had kept the old import path and added a wrapper layer (`system_v7.adapters.v5_shim`) expecting the original API. When these merged to main, the v7 code tried to import from a path that no longer existed. CI caught it immediately\u2014but by then, 12 commits of scaffolding had been layered on top, and the root cause was buried under 180 files of changes. Rolling back wasn't viable; the v9 boundary work depended on both systems being present. The team spent three days untangling the import graph, discovering that v5's refactor had also changed function signatures (`credential_gate(user_id, scope)` \u2192 `credential_gate(user, permission_s",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0151044
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_4/20260807T232745Z-dive-4-f7e428294d0e.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

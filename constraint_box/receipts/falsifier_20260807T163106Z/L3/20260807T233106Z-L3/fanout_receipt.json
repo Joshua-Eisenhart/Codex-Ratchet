@@ -1,0 +1,161 @@
+{
+  "children": [
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.receipt.json",
+      "completed_at": "2026-08-07T23:32:13.521503+00:00",
+      "cost_usd": 0.031569,
+      "duration_ms": 34475,
+      "id": "guard.boundary_check~boundary_failure",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:13.515707+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~boundary_failure/20260807T233139Z-guard-boundary-check-boundary-failure-02cfdda4a1de.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 31791,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget",
+      "result_preview": "Salience file not present at path; proceeding with receipt.\n\n**Fog:** \"block a clean merge\" and \"git aborts\" \u2014 which git operation (merge/rebase/pull)? Conflates dirty-tree rejection of worktree-update with rejection of merge-commit application. Git merge lands commits to index despite dirty tree.\n\n**Cut + replacement:**\n- \"block a clean merge\" \u2192 \"which operation halts, and at which step (before or after commit-application)?\"\n\n**Hidden bad state:** \"git aborts without applying\" assumes the abort happens before commits are applied, not after. Evidence missing: exit code, error message, state of `.git/MERGE_HEAD`.\n\n**Surviving challenge:** Dirty files may block *checkout* of merge result but not *merge-commit application*. Claim needs: operation name + stderr + git status at abort point.\n\n--",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:39.046178+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.receipt.json",
+      "completed_at": "2026-08-07T23:32:08.545275+00:00",
+      "cost_usd": 0.023522400000000002,
+      "duration_ms": 28847,
+      "id": "guard.boundary_check~minimal_fix",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:08.538096+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/guard.boundary_check~minimal_fix/20260807T233139Z-guard-boundary-check-minimal-fix-1b89593b0086.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 25192,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0",
+      "result_preview": "**fog found**: \"dirty files\" (state unspecified\u2014staged? modified? untracked?), \"block\" (mechanism undefined), \"apply\" (wrong term; merges don't apply commits), \"clean merge\" (reference undefined)\n\n**cuts + replacements**: \"180 dirty files\" \u2192 \"180 {staged|modified|untracked} files\"; \"block\" \u2192 \"prevent: git error [name it]\"; \"applying\" \u2192 \"merging\"\n\n**hidden bad-state**: No error message cited. Claim assumes all 180 files block identically\u2014false if mixed states. Untracked files don't block merge at all.\n\n**surviving challenge**: Claim holds only if file state is constrained. Mixed states need separate analysis.\n\n**minimal fix** (33 words): Specify file states (staged/modified/untracked). Name the git error. Replace \"apply commits\" with \"merge commits\". State which branch is \"clean\" relative t",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:39.697651+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~mechanism/20260807T233124Z-voice-feynman-mechanism-74d654538f91.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~mechanism/20260807T233124Z-voice-feynman-mechanism-74d654538f91.receipt.json",
+      "completed_at": "2026-08-07T23:31:39.045427+00:00",
+      "cost_usd": 0.0174124,
+      "duration_ms": 15072,
+      "id": "voice.feynman~mechanism",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:31:39.040136+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~mechanism/20260807T233124Z-voice-feynman-mechanism-74d654538f91.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 11859,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_prev",
+      "result_preview": "**Operation:** `git merge <branch>` with dirty worktree\n\n**Mechanism:** git compares the index against the working tree for differences before entering merge logic. If uncommitted changes are detected, merge exits with error before HEAD is moved or commits applied.\n\n(24 words)",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:23.973381+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~pass_fail/20260807T233134Z-voice-feynman-pass-fail-2e24bf021a8d.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~pass_fail/20260807T233134Z-voice-feynman-pass-fail-2e24bf021a8d.receipt.json",
+      "completed_at": "2026-08-07T23:32:31.333796+00:00",
+      "cost_usd": 0.0382834,
+      "duration_ms": 57282,
+      "id": "voice.feynman~pass_fail",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:32:31.328430+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.feynman~pass_fail/20260807T233134Z-voice-feynman-pass-fail-2e24bf021a8d.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 54413,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"result_prev",
+      "result_preview": "Slices loaded: v4.1-reference.\n\n**Operation \u00b7 Observable:** `git merge july-branch` on current worktree (180 dirty files present). Measure: exit code, applied commits count, files touched before/after.\n\n**Pass/Fail:** Pass if merge aborts (non-zero exit) + zero commits applied + dirty files unchanged. Fail if merge succeeds or applies any commits.\n\n**Unresolved:** Exact branch name containing 43 July commits; method to verify dirt-file count matches 180.",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:34.051211+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.receipt.json",
+      "completed_at": "2026-08-07T23:31:23.972056+00:00",
+      "cost_usd": 0.014286400000000001,
+      "duration_ms": 17350,
+      "id": "voice.popper~decisive_check",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:31:23.966074+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 12485,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n    \"res",
+      "result_preview": "**Target claim (exact):** The 180 dirty files on the primary worktree block a clean merge; git aborts without applying any of the 43 July commits.\n\n**Strongest falsifier:** If `git merge <branch>` succeeds, or if any July commit is applied to HEAD despite dirty files or git's error status.\n\n**Decisive check (runnable):**\n```\ngit status --short | wc -l\ngit merge origin/branch 2>&1; echo $?\ngit log --oneline --since=\"2026-07-01\" | wc -l\n```\nIf exit code is 0 or HEAD advances: claim is **killed**.\n\n**Classification:** `open` \u2014 depends on actual worktree state and branch target.\n\n**Agent ID:** `voice-popper::falsifier-merge-dirty-files`",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:06.621523+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~strongest_falsifier/20260807T233106Z-voice-popper-strongest-falsifier-3883ca5a281b.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~strongest_falsifier/20260807T233106Z-voice-popper-strongest-falsifier-3883ca5a281b.receipt.json",
+      "completed_at": "2026-08-07T23:31:45.140687+00:00",
+      "cost_usd": 0.0262284,
+      "duration_ms": 38523,
+      "id": "voice.popper~strongest_falsifier",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:31:45.134163+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~strongest_falsifier/20260807T233106Z-voice-popper-strongest-falsifier-3883ca5a281b.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 33350,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0",
+      "result_preview": "Git applies \u22651 of the 43 commits despite 180 dirty files present. This directly falsifies the claim's core prediction: \"aborts without applying any.\" Decisive test: git log post-merge shows \u22651 of the 43 commit SHAs, claim is killed.",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:06.616725+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.receipt.json",
+      "completed_at": "2026-08-07T23:31:34.049929+00:00",
+      "cost_usd": 0.033854800000000004,
+      "duration_ms": 27429,
+      "id": "voice.pushback~corrected_claim",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:31:34.043408+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~corrected_claim/20260807T233106Z-voice-pushback-corrected-claim-5b9fca0e317c.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 22882,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1.0,\n  ",
+      "result_preview": "I cannot locate the salience reference file in the indexed projects. Without it, I'm proceeding from the receipt contract alone.\n\n**Stated position:** 180 dirty files block a clean merge; git aborts without applying the 43 July commits.\n\n**Strongest falsifier:** Dirty files don't block merges\u2014they pause them. `git stash` resolves it in one step. A merge failure after stashing points to a commit conflict, not the dirty state.\n\n**Overclaim:** Framing a workflow constraint as a blocker. Dirty files are a precondition, not a blocker.\n\n**What I'd check to kill the claim:** Run `git stash` and attempt the merge. If it succeeds, the \"blocking\" characterization is false. If it fails, the real problem is downstream (bad commit, bad base).\n\n**Restated claim at evidence strength:**\n\nDirty files preve",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:06.620141+00:00",
+      "status": "completed"
+    },
+    {
+      "actual_models": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "bridge_output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~overclaim_boundary/20260807T233106Z-voice-pushback-overclaim-boundary-5d6cd6d5441c.json",
+      "bridge_receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~overclaim_boundary/20260807T233106Z-voice-pushback-overclaim-boundary-5d6cd6d5441c.receipt.json",
+      "completed_at": "2026-08-07T23:31:39.695807+00:00",
+      "cost_usd": 0.042063,
+      "duration_ms": 33077,
+      "id": "voice.pushback~overclaim_boundary",
+      "model": "haiku",
+      "raw_preview": "{\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"haiku\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--add-dir\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet\",\n    \"--effort\",\n    \"high\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"generated_at\": \"2026-08-07T23:31:39.684212+00:00\",\n  \"model\": \"haiku\",\n  \"output_path\": \"/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.pushback~overclaim_boundary/20260807T233106Z-voice-pushback-overclaim-boundary-5d6cd6d5441c.json\",\n  \"parsed\": {\n    \"budget_exceeded\": false,\n    \"duration_ms\": 28393,\n    \"is_error\": false,\n    \"models\": [\n      \"claude-haiku-4-5-20251001\"\n    ],\n    \"requested_budget_usd\": 1",
+      "result_preview": "**Position:** 180 dirty files block merge; git aborts without applying July commits.\n\n**Characteristic test:** Attempt the merge; show actual error message and pre/post commit state.\n\n**Overclaim:** \"Aborts without applying any\" masks timing\u2014does error occur before processing commits, during, or after? \"Dirty\" undefined: modified, staged, or untracked? Conflates precondition (files exist) with causation (they block).\n\n**Open:** Was merge attempted? Did git error before or after commit processing?\n\n**Surviving challenge:** Claim assumes unobserved behavior.",
+      "returncode": 0,
+      "started_at": "2026-08-07T23:31:06.618606+00:00",
+      "status": "completed"
+    }
+  ],
+  "completed_at": "2026-08-07T23:32:31.334239+00:00",
+  "counts": {
+    "abandoned": 0,
+    "completed": 8,
+    "failed": 0,
+    "not_launched": 0,
+    "timed_out": 0,
+    "total": 8
+  },
+  "duration_ms": 84720,
+  "effort": "high",
+  "fallback_model": "",
+  "global_timeout_sec": 0.0,
+  "max_concurrency": 4,
+  "model": "haiku",
+  "route": "L3",
+  "started_at": "2026-08-07T23:31:06.613399+00:00",
+  "status": "completed",
+  "stop_after_completed": 0,
+  "stop_reason": "drained",
+  "timeout_sec": 150.0
+}

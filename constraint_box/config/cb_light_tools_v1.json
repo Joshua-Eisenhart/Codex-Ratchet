@@ -1,0 +1,2206 @@
+{
+  "bootstrap_interpreter": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python",
+  "claim_ceiling": "91-row CB Light proposal identity only; no install, operation, adoption, CB Heavy, simulation, promotion, or release claim",
+  "constraints": {
+    "candidate_metadata_bar": {
+      "applies_to": "non-core candidate discovery; core role exceptions remain explicit",
+      "max_declared_runtime_deps": 3,
+      "max_wheel_bytes": 5242880,
+      "stale_days_max": 548
+    },
+    "portable_adoption_requires_in_addition": [
+      "full_transitive_lock",
+      "locked_artifact_hashes",
+      "linux_macos_windows_resolution_and_operation",
+      "closure_size_and_import_budget",
+      "security_and_license_authority_review",
+      "production_caller_and_output_binding",
+      "alternate_entrypoint_bypass_negative",
+      "owner_approval"
+    ],
+    "usable_now_requires": [
+      "proposed_light_identity",
+      "role_declared",
+      "exact_root_pin_installed",
+      "declared_import_provider",
+      "fresh_subprocess_import",
+      "clean_dependency_closure",
+      "contained_environment_exact",
+      "clean_runtime_closure_agreement",
+      "local_metadata_compatible",
+      "positive_api_operation",
+      "reason_specific_negative",
+      "boundary_observed",
+      "deterministic_replay",
+      "import_severance_observed",
+      "bounded_reference_agreement",
+      "probe_structure_non_vacuous",
+      "cross_receipt_identity_bound"
+    ]
+  },
+  "counts": {
+    "candidate_passing": 11,
+    "core": 5,
+    "evaluated_candidate_domain": 106,
+    "extended": 75,
+    "preinstall_excluded": 15,
+    "tools": 91
+  },
+  "mandated_interpreter": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python",
+  "manifest_sha256": "794ec93871da855c827a0a0848840928420d8a516d1495d017452e0967296fb3",
+  "membership_authority": "config/cb_light_contract_v1.json",
+  "preinstall_excluded_candidates": [
+    {
+      "declared_requirement": "backoff==2.2.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "backoff",
+      "failed_bar": "stale 1403d",
+      "normalized_name": "backoff",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "decorator-level bounded backoff",
+      "source_line": 5
+    },
+    {
+      "declared_requirement": "cyclonedx-python-lib==11.11.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "cyclonedx-python-lib",
+      "failed_bar": "8 deps",
+      "normalized_name": "cyclonedx-python-lib",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "SBOM per run recorded into the receipt",
+      "source_line": 7
+    },
+    {
+      "declared_requirement": "distro==1.9.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "distro",
+      "failed_bar": "stale 958d",
+      "normalized_name": "distro",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "identify the host distribution into the receipt",
+      "source_line": 9
+    },
+    {
+      "declared_requirement": "import-linter==2.13",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "import-linter",
+      "failed_bar": "7 deps",
+      "normalized_name": "import-linter",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "declare and enforce layer boundaries between CB modules",
+      "source_line": 11
+    },
+    {
+      "declared_requirement": "pexpect==4.9.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "pexpect",
+      "failed_bar": "stale 987d; no requires-python",
+      "normalized_name": "pexpect",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "drive a subprocess deterministically and capture exactly what it emitt",
+      "source_line": 13
+    },
+    {
+      "declared_requirement": "pip-audit==2.10.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "pip-audit",
+      "failed_bar": "23 deps",
+      "normalized_name": "pip-audit",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "dependency vulnerability check as a gate",
+      "source_line": 15
+    },
+    {
+      "declared_requirement": "portalocker==4.1.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "portalocker",
+      "failed_bar": "12 deps",
+      "normalized_name": "portalocker",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "cross-platform advisory file locking for lease exclusion",
+      "source_line": 17
+    },
+    {
+      "declared_requirement": "psutil==7.2.2",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "psutil",
+      "failed_bar": "38 deps",
+      "normalized_name": "psutil",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "process and resource introspection; prove a worker stayed inside its m",
+      "source_line": 19
+    },
+    {
+      "declared_requirement": "python-json-logger==4.1.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "python-json-logger",
+      "failed_bar": "18 deps",
+      "normalized_name": "python-json-logger",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "JSON log records that a gate can consume",
+      "source_line": 21
+    },
+    {
+      "declared_requirement": "python-statemachine==3.2.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "python-statemachine",
+      "failed_bar": "5 deps",
+      "normalized_name": "python-statemachine",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "declarative state machine with transition validation",
+      "source_line": 23
+    },
+    {
+      "declared_requirement": "RestrictedPython==8.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "RestrictedPython",
+      "failed_bar": "5 deps",
+      "normalized_name": "restrictedpython",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "compile untrusted proposal code with a restricted builtins set",
+      "source_line": 3
+    },
+    {
+      "declared_requirement": "rfc8785==0.1.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "rfc8785",
+      "failed_bar": "stale 680d; 9 deps",
+      "normalized_name": "rfc8785",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "JCS canonical JSON so hashes are stable across implementations",
+      "source_line": 25
+    },
+    {
+      "declared_requirement": "tenacity==9.1.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "tenacity",
+      "failed_bar": "5 deps",
+      "normalized_name": "tenacity",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "bounded retry with declared stop conditions; a provider call cannot re",
+      "source_line": 27
+    },
+    {
+      "declared_requirement": "transitions==0.9.3",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "transitions",
+      "failed_bar": "no requires-python",
+      "normalized_name": "transitions",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "explicit finite state machine with guards; mini-lev flow policies as d",
+      "source_line": 29
+    },
+    {
+      "declared_requirement": "whatthepatch==1.0.7",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "whatthepatch",
+      "failed_bar": "stale 630d",
+      "normalized_name": "whatthepatch",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "parse unified diffs to decide whether a patch touches a gate",
+      "source_line": 31
+    }
+  ],
+  "profile": "cb_light",
+  "promotion_allowed": false,
+  "role_layers": {
+    "controller_runtime_candidates": 5,
+    "rule": "supporting build, test, audit, and probe tools do not become CB Light runtime identity merely by being installed or selected",
+    "supporting_probe_or_engineering_candidates": 86
+  },
+  "runtime_environment": ".venv",
+  "schema": "constraintbox.cb-light-tool-manifest.v1",
+  "set_separation": {
+    "import_providers": "observed separately at runtime",
+    "installed_environment": "contained .venv observed separately at runtime",
+    "proposed_roots": 91,
+    "sim_engine_members": 0,
+    "transitive_closure": "observed separately at runtime"
+  },
+  "source_hashes": {
+    ".gitignore": "06cba44f72be61e48af5859d96dc7902493c42469abdb6274df1fb56fcf38df3",
+    "CB_FOUNDATION_REQUIREMENTS.md": "d56961d5cf9c5cb5995127cb991227a421ad3e4d75ef75749ae66849a902d0da",
+    "bin/cb-claude": "52bd17011d87d06f109f2d4626ded43f6ae68080f1c706fa27b3e1efa0037a2b",
+    "bin/cb-light": "5ccb4cee7cb9f834ed019db7664b5f60506f8e9654c0f550c1b9d83a0bfc21bf",
+    "config/cb_light_contract_v1.json": "443daabdb4369461e0019a9ce959c215924138a78b62ab785ced7d0ad5a07351",
+    "config/core_tool_registry_v9.json": "7dfcbf29c572fdc4420d63f4405f0148c6ca370d72649c258af5bd196444dfb2",
+    "hooks/__init__.py": "4318184b190c4afbb29d723ea63a78a532d64725f4778165186ef78ba354ad67",
+    "hooks/cb_light_command_guard.py": "75faef86bf87a78332b1fa68b2d4a8cb5413c1c03a3c45c47f5b67e24943d52f",
+    "hooks/cb_light_hook.py": "8400f05b157240ecfbab396703595039ae102856675fbcd07c84427df71deed8",
+    "hooks/config_change.sh": "17a38375a4341f867856debe4f401b6833c2c4ce69cc9fd3dd7ab14385a31c41",
+    "hooks/file_changed.sh": "7a722c856c778b744f5e66999f8ebf362c76f7d419420e98a2846473dcd68a07",
+    "hooks/post_tool.sh": "d95aaecadb2b6253fb6880c770f00e020936204ab438d03c80b3c03bf65222cd",
+    "hooks/post_tool_batch.sh": "0f7d544c27d7c976425a562c9048e6a06dc12217d84fc6e3408e35582fa16d2d",
+    "hooks/post_tool_failure.sh": "bfcb22331d3653e1540ea5490c358c74a4705b513458c4479cf7d5bfbe415ddc",
+    "hooks/pre_tool.sh": "08e7f2b3689c72a546f441bbd18d2fee99535d9ea4a7fd98a4ae26a2dd4119b8",
+    "hooks/session_start.sh": "d40d95199c475bbeebca47bae4da870d96453ab77296b1cc98a7ece7da253389",
+    "hooks/stop.sh": "7814a3d7cb425dc774f32654fde4d84a93e6081786291454deb528ae261cd43b",
+    "hooks/subagent_stop.sh": "cbb6e386b3644a7b964ebbbe5cbf354b824532ec5ebad403f1a31f376b9888f7",
+    "hooks/task_completed.sh": "601b118743066b3123d7637b6f6623d7c31ea75e335e583db8eaad148f82668b",
+    "light_runtime/.gitignore": "5f4585df2fb7c09df627b9623d9f79185f0d63f4e4efe640e91e081acd670c2e",
+    "light_runtime/pyproject.toml": "2cc99171b1a8e2ac8538ef143cc755fa14d11fdf8ef36fef8b5ad534f51b538b",
+    "light_runtime/src/constraintbox/__init__.py": "c9c980b3d9628b95a0fee20b57ee48240e591722c510878570e133761a1d8e8b",
+    "light_runtime/src/constraintbox/__main__.py": "ed09ceb715575049aad6b7a9b9c2206af9102ea22f7e46b6998bb3b0a9132aba",
+    "light_runtime/src/constraintbox/cb_light_probes.py": "4f198adbb991084d360b62a8bbd08cb93ef84d728d4dee4c270f62445c8a9d41",
+    "light_runtime/src/constraintbox/cb_light_selection.py": "163ef9dadbb375cce2c99240ae8e875c4e945a3ca8a8d328683415d69405338b",
+    "light_runtime/src/constraintbox/cb_light_tool_probes.py": "4c9782d7e59b2e4073db292465b50ccfd17c157e6a1e02af0ae1d1eb6261d5b7",
+    "light_runtime/src/constraintbox/constraints.py": "91b6f052b50d3275388e0787a4ce11a7c9a736d6259ba21959b51b82bcc27cb8",
+    "light_runtime/src/constraintbox/control_plane.py": "bf38801f04b58053b5e0f3332b79de1f79faa286bb76ca0aea36f50405b0425a",
+    "light_runtime/src/constraintbox/core_cli.py": "2957af8b2b74d237558dff422742885030bd09a20690371916004c1c4fab1926",
+    "light_runtime/src/constraintbox/core_tool_registry_v9.json": "7dfcbf29c572fdc4420d63f4405f0148c6ca370d72649c258af5bd196444dfb2",
+    "light_runtime/src/constraintbox/core_tools.py": "55834704da76aa698cafa33fc8e81ccd799e95ff0993d27d0fd08e636e82bf8a",
+    "light_runtime/src/constraintbox/dualsolve.py": "e1505e0fb5c4d50912fc0a5369e086b9b9bcf2aaf488f2bc57935df2e685ba75",
+    "light_runtime/src/constraintbox/wave_adapters.py": "247f3147631efc575b243fcb77e2bc296856259fd97a0603bec0e44e580520e3",
+    "light_runtime/src/constraintbox/wave_contracts.py": "900e4aeab547ad0bc441745b4140feba19dfc8048f921216d98b68f1a287c00f",
+    "light_runtime/src/constraintbox/wave_controller.py": "803f6d78ff49282e8d2b637bdbb965fb848efa1b906f15c3dd0985f90fa842c1",
+    "light_runtime/src/hookkernel/__init__.py": "08bf834c53ef55c08743f54bf7ca0411e4c7f265c88b622f57bf3df30fd528d2",
+    "light_runtime/src/hookkernel/cb_light_data/config/cb_light_domain_policy_v1.json": "7892a9ad3cae4cb28873047a7ebab2d00bb4c95feab907425c563fac7528dad6",
+    "light_runtime/src/hookkernel/cb_light_data/config/cb_light_library_candidates.json": "a7070919e4a30be6a88489cfc7e9e9fefa9dfada0d074fbf208d65330e37e7d5",
+    "light_runtime/src/hookkernel/cb_light_data/config/core_tool_registry_v9.json": "7dfcbf29c572fdc4420d63f4405f0148c6ca370d72649c258af5bd196444dfb2",
+    "light_runtime/src/hookkernel/cb_light_data/docs/CB_LIGHT_LIBRARY_LIST_20260807.md": "fe4ff41890e44bc61729b81346855e86a911826efe557411534fb521ad5646e9",
+    "light_runtime/src/hookkernel/cb_light_data/pyproject.toml": "04dcd00c02385e8b3423b8ac6e83910a4ca92431e9a8b0884ea831807829f034",
+    "light_runtime/src/hookkernel/cb_light_data/requirements/candidates/cb-candidates-failing.in": "891452282af0ef4aa8002b242d96a1dde04a885507f1a43ad31045e0993b2872",
+    "light_runtime/src/hookkernel/cb_light_data/requirements/candidates/cb-candidates-passing.in": "57a0e7b15fa4161579fb8f560151b08d89f3efd501fcb89aede832b83b5c2b40",
+    "light_runtime/src/hookkernel/cb_light_data/requirements/candidates/cb-light-extended.in": "8f9cb1f34b5c8c644372a739af0bce1cf3ba7b86fc25790c458c847415ddc423",
+    "light_runtime/src/hookkernel/cb_light_data/requirements/control_plane_candidates/cb_control_plane_candidate_pins_v1.txt": "667408e31f3df663e9ec2a3e05a3ec67fbd6b358cf45c9ccd49d03bbde3bb603",
+    "light_runtime/src/hookkernel/cb_light_domain.py": "80520dd01ed8adc60be98973616a6bc8f8f793923c722b8439d264cf797d0166",
+    "light_runtime/src/hookkernel/cb_light_gate.py": "5da23b590aa06d9acf83e4d9e4640d7274453848876493fdbc7672982717e7ca",
+    "light_runtime/src/hookkernel/cb_light_runtime.py": "4d8ed89097e860a70b255a49fc2cf663a144d0ed92f488e8e4f819bceead69b9",
+    "light_runtime/src/hookkernel/cb_light_solver.py": "78bd64feeb41e350fbcbe86c35e3776b2381dde8f3170e0ced5f94730ec23326",
+    "light_runtime/src/hookkernel/cb_light_state.py": "82ef59a793549cd88d2d9033f3e11f905af2990d35aa5a1c79dac8483e77e427",
+    "light_runtime/src/hookkernel/cb_light_wave_state.py": "6e7cb4d4d57f9616df79151505ff3dcd996aeace3d7277db4263ab4b690e72c4",
+    "requirements/candidates/cb-candidates-failing.in": "891452282af0ef4aa8002b242d96a1dde04a885507f1a43ad31045e0993b2872",
+    "requirements/candidates/cb-candidates-passing.in": "57a0e7b15fa4161579fb8f560151b08d89f3efd501fcb89aede832b83b5c2b40",
+    "requirements/candidates/cb-light-extended.in": "8f9cb1f34b5c8c644372a739af0bce1cf3ba7b86fc25790c458c847415ddc423",
+    "requirements/locks/constraintbox-py313-macos-estate.lock": "c86b892e3d5800f58b579d673a7566b62d02597238a3b7b10fdefb8817cd9636",
+    "scripts/audit_cb_light_heavy_separation.py": "ca6038a005c0a307373ea8381a32646169bbafe2df5647187496fb97393ac0f4",
+    "scripts/build_cb_light_manifest.py": "7a405189d5fa80007ad7ccdba2173e9ad8013247e27e2a8336e2a7b6fd6bd983",
+    "scripts/cb_light_cli.py": "0b3f95af7b8f217d7921c9551f9d455a31f43a5a712008c867686900a32916a3",
+    "scripts/cb_light_install_probe.py": "2ed81287235c06127c0c6eb047aa3dfd7f818b0ac14222b1896c33c53b906f6e",
+    "scripts/cb_light_metadata_probe.py": "f61b6d79d241251069ed33265add0e81c18c43a7684470860e28d5ab1e809e82",
+    "scripts/cb_light_select.py": "8c114796a353ac3843f4c2279912b7f0c384414fb6f7e9b8bf1329e785483771"
+  },
+  "supported_current_execution": {
+    "architecture": "arm64",
+    "os": "macos",
+    "python": "3.13"
+  },
+  "tools": [
+    {
+      "adopted": false,
+      "declared_requirement": "annotated-types==0.8.0",
+      "distribution": "annotated-types",
+      "expected_provider_distributions": [
+        "annotated-types"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "annotated_types"
+      ],
+      "locked_distribution": "annotated-types",
+      "locked_version": "0.8.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "annotated-types",
+      "role": "Reusable constraint markers (Range, Len, MultipleOf, Pattern) for typi",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "26"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "argon2-cffi==25.1.0",
+      "distribution": "argon2-cffi",
+      "expected_provider_distributions": [
+        "argon2-cffi"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "argon2"
+      ],
+      "locked_distribution": "argon2-cffi",
+      "locked_version": "25.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "argon2-cffi",
+      "role": "Argon2 key derivation binding credentials to ledger entries",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "10"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "arrow==1.4.0",
+      "distribution": "arrow",
+      "expected_provider_distributions": [
+        "arrow"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "arrow"
+      ],
+      "locked_distribution": "arrow",
+      "locked_version": "1.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "arrow",
+      "role": "Timestamp parsing and normalization for time-sensitive claim drift",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "84"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "ast-comments==1.3.0",
+      "distribution": "ast-comments",
+      "expected_provider_distributions": [
+        "ast-comments"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "ast_comments"
+      ],
+      "locked_distribution": "ast-comments",
+      "locked_version": "1.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "ast-comments",
+      "role": "AST parse preserving comments for prompt-code analysis",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "85"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "asttokens==3.0.2",
+      "distribution": "asttokens",
+      "expected_provider_distributions": [
+        "asttokens"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "asttokens"
+      ],
+      "locked_distribution": "asttokens",
+      "locked_version": "3.0.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "asttokens",
+      "role": "AST-to-token mapping for precise source locations in drift reports",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "58"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "attrs==26.1.0",
+      "distribution": "attrs",
+      "expected_provider_distributions": [
+        "attrs"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "attrs"
+      ],
+      "locked_distribution": "attrs",
+      "locked_version": "26.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "attrs",
+      "role": "Typed receipt classes with validators and no boilerplate",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "27"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "automaton==3.4.0",
+      "distribution": "automaton",
+      "expected_provider_distributions": [
+        "automaton"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "automaton"
+      ],
+      "locked_distribution": "automaton",
+      "locked_version": "3.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "automaton",
+      "role": "Finite state machine constraints on gate sequencing and state validity",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "48"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "beautifulsoup4==4.15.0",
+      "distribution": "beautifulsoup4",
+      "expected_provider_distributions": [
+        "beautifulsoup4"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "bs4"
+      ],
+      "locked_distribution": "beautifulsoup4",
+      "locked_version": "4.15.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "beautifulsoup4",
+      "role": "HTML and XML parsing for complex prompt extraction",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "86"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "bitarray==3.10.1",
+      "distribution": "bitarray",
+      "expected_provider_distributions": [
+        "bitarray"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "bitarray"
+      ],
+      "locked_distribution": "bitarray",
+      "locked_version": "3.10.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "bitarray",
+      "role": "Compact boolean arrays for SAT/CSP assignment and clause bookkeeping",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "49"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "blake3==1.0.9",
+      "distribution": "blake3",
+      "expected_provider_distributions": [
+        "blake3"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "blake3"
+      ],
+      "locked_distribution": "blake3",
+      "locked_version": "1.0.9",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "blake3",
+      "role": "fast tree hashing for large evidence directories",
+      "role_class": "hash_integrity",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "2"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "bleach==6.4.0",
+      "distribution": "bleach",
+      "expected_provider_distributions": [
+        "bleach"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "bleach"
+      ],
+      "locked_distribution": "bleach",
+      "locked_version": "6.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "bleach",
+      "role": "Tag stripping and sanitization before HTML claim comparison",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "87"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "cachetools==7.1.7",
+      "distribution": "cachetools",
+      "expected_provider_distributions": [
+        "cachetools"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "cachetools"
+      ],
+      "locked_distribution": "cachetools",
+      "locked_version": "7.1.7",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "cachetools",
+      "role": "Memoization of receipt validation results on hot paths",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "11"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "cattrs==26.1.0",
+      "distribution": "cattrs",
+      "expected_provider_distributions": [
+        "cattrs"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "cattrs"
+      ],
+      "locked_distribution": "cattrs",
+      "locked_version": "26.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "cattrs",
+      "role": "Typed structure/unstructure converters for attrs receipt classes",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "28"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "cbor2==6.1.4",
+      "distribution": "cbor2",
+      "expected_provider_distributions": [
+        "cbor2"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "cbor2"
+      ],
+      "locked_distribution": "cbor2",
+      "locked_version": "6.1.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "cbor2",
+      "role": "CBOR binary serialization with canonical encoding; receipt hashes stab",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "29"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "cerberus==1.3.8",
+      "distribution": "cerberus",
+      "expected_provider_distributions": [
+        "Cerberus"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "cerberus"
+      ],
+      "locked_distribution": "Cerberus",
+      "locked_version": "1.3.8",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "cerberus",
+      "role": "Dict schema validation for gate proposals before admission",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "30"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "charset-normalizer==3.4.9",
+      "distribution": "charset-normalizer",
+      "expected_provider_distributions": [
+        "charset-normalizer"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "charset_normalizer"
+      ],
+      "locked_distribution": "charset-normalizer",
+      "locked_version": "3.4.9",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "charset-normalizer",
+      "role": "detect encoding before comparing claim text",
+      "role_class": "text_drift",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "3"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "checksumdir==1.3.0",
+      "distribution": "checksumdir",
+      "expected_provider_distributions": [
+        "checksumdir"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "checksumdir"
+      ],
+      "locked_distribution": "checksumdir",
+      "locked_version": "1.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "checksumdir",
+      "role": "Deterministic directory-tree hash binding receipts to artifact collect",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "12"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "clingo==5.8.1",
+      "distribution": "clingo",
+      "expected_provider_distributions": [
+        "clingo"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "clingo"
+      ],
+      "locked_distribution": "clingo",
+      "locked_version": "5.8.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "clingo",
+      "role": "Answer Set Programming decider orthogonal to SMT and enumeration",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "50"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "coverage==7.15.4",
+      "distribution": "coverage",
+      "expected_provider_distributions": [
+        "coverage"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "coverage"
+      ],
+      "locked_distribution": "coverage",
+      "locked_version": "7.15.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "coverage",
+      "role": "Path coverage measurement as evidence of gate test adequacy",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "67"
+    },
+    {
+      "adopted": false,
+      "core_contract_id": "python.cvc5",
+      "declared_requirement": "cvc5>=1.3.3,<1.4.0",
+      "distribution": "cvc5",
+      "expected_provider_distributions": [
+        "cvc5"
+      ],
+      "identity_scope": "controller_runtime_candidate",
+      "import_names": [
+        "cvc5"
+      ],
+      "locked_distribution": "cvc5",
+      "locked_version": "1.3.3",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "cvc5",
+      "role": "independent_finite_satisfiability; solver_disagreement_control",
+      "role_class": "core_deterministic_runtime",
+      "runtime_identity_authority": true,
+      "source_group": "core",
+      "source_line": "project.dependencies"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "dictdiffer==0.10.0",
+      "distribution": "dictdiffer",
+      "expected_provider_distributions": [
+        "dictdiffer"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "dictdiffer"
+      ],
+      "locked_distribution": "dictdiffer",
+      "locked_version": "0.10.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "dictdiffer",
+      "role": "Structural dict diff for receipt change detection",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "13"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "dirty-equals==0.11",
+      "distribution": "dirty-equals",
+      "expected_provider_distributions": [
+        "dirty-equals"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "dirty_equals"
+      ],
+      "locked_distribution": "dirty-equals",
+      "locked_version": "0.11",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "dirty-equals",
+      "role": "Structural equality tolerant of field order for receipt assertions",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "68"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "ecdsa==0.19.2",
+      "distribution": "ecdsa",
+      "expected_provider_distributions": [
+        "ecdsa"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "ecdsa"
+      ],
+      "locked_distribution": "ecdsa",
+      "locked_version": "0.19.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "ecdsa",
+      "role": "ECDSA signing for receipt attestation without the full cryptography st",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "14"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "email-validator==2.3.0",
+      "distribution": "email-validator",
+      "expected_provider_distributions": [
+        "email-validator"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "email_validator"
+      ],
+      "locked_distribution": "email-validator",
+      "locked_version": "2.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "email-validator",
+      "role": "RFC-compliant email validation for receipt author fields",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "31"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "fasteners==0.20",
+      "distribution": "fasteners",
+      "expected_provider_distributions": [
+        "fasteners"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "fasteners"
+      ],
+      "locked_distribution": "fasteners",
+      "locked_version": "0.20",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "fasteners",
+      "role": "inter-process locks and read-write locks for the ledger",
+      "role_class": "concurrency_control",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "4"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "fastjsonschema==2.22.1",
+      "distribution": "fastjsonschema",
+      "expected_provider_distributions": [
+        "fastjsonschema"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "fastjsonschema"
+      ],
+      "locked_distribution": "fastjsonschema",
+      "locked_version": "2.22.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "fastjsonschema",
+      "role": "Compiles JSON Schema to fast validators; refuses receipts that violate",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "32"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "flake8-simplify==0.30.0",
+      "distribution": "flake8-simplify",
+      "expected_provider_distributions": [
+        "flake8_simplify"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "flake8_simplify"
+      ],
+      "locked_distribution": "flake8_simplify",
+      "locked_version": "0.30.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "flake8-simplify",
+      "role": "Flags complexity-increasing patterns in gate submissions",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "59"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "formula==6.0.0",
+      "distribution": "formula",
+      "expected_provider_distributions": [
+        "formula"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "formula"
+      ],
+      "locked_distribution": "formula",
+      "locked_version": "6.0.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "formula",
+      "role": "Formula parsing and solving with exact arithmetic for constraint expre",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "51"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "freezegun==1.5.5",
+      "distribution": "freezegun",
+      "expected_provider_distributions": [
+        "freezegun"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "freezegun"
+      ],
+      "locked_distribution": "freezegun",
+      "locked_version": "1.5.5",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "freezegun",
+      "role": "Frozen time for reproducible time-sensitive gate tests",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "70"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "frozendict==2.4.7",
+      "distribution": "frozendict",
+      "expected_provider_distributions": [
+        "frozendict"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "frozendict"
+      ],
+      "locked_distribution": "frozendict",
+      "locked_version": "2.4.7",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "frozendict",
+      "role": "Immutable dict for receipt content after validation and hashing",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "33"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "GitPython==3.1.58",
+      "distribution": "GitPython",
+      "expected_provider_distributions": [
+        "GitPython"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "git"
+      ],
+      "locked_distribution": "GitPython",
+      "locked_version": "3.1.58",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "gitpython",
+      "role": "Read git objects to audit evidence-tree commit hashes without subproce",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "15"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "gmpy2==2.3.1",
+      "distribution": "gmpy2",
+      "expected_provider_distributions": [
+        "gmpy2"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "gmpy2"
+      ],
+      "locked_distribution": "gmpy2",
+      "locked_version": "2.3.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "gmpy2",
+      "role": "Exact arbitrary-precision arithmetic for gates that refuse rounding er",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "52"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "grimp==3.15",
+      "distribution": "grimp",
+      "expected_provider_distributions": [
+        "grimp"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "grimp"
+      ],
+      "locked_distribution": "grimp",
+      "locked_version": "3.15",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "grimp",
+      "role": "the import graph behind import-linter",
+      "role_class": "static_audit",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "5"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "html2text==2025.4.15",
+      "distribution": "html2text",
+      "expected_provider_distributions": [
+        "html2text"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "html2text"
+      ],
+      "locked_distribution": "html2text",
+      "locked_version": "2025.4.15",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "html2text",
+      "role": "HTML-to-text so markup noise cannot disguise drift",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "90"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "isort==8.0.1",
+      "distribution": "isort",
+      "expected_provider_distributions": [
+        "isort"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "isort"
+      ],
+      "locked_distribution": "isort",
+      "locked_version": "8.0.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "isort",
+      "role": "Import order and boundary checking for module layout drift",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "60"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "lark==1.3.1",
+      "distribution": "lark",
+      "expected_provider_distributions": [
+        "lark"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "lark"
+      ],
+      "locked_distribution": "lark",
+      "locked_version": "1.3.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "lark",
+      "role": "Parser generator for bounded gate-rule DSLs",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "34"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "markdown-it-py==4.2.0",
+      "distribution": "markdown-it-py",
+      "expected_provider_distributions": [
+        "markdown-it-py"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "markdown_it"
+      ],
+      "locked_distribution": "markdown-it-py",
+      "locked_version": "4.2.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "markdown-it-py",
+      "role": "CommonMark-strict markdown parsing for markup drift",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "91"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "markdown2==2.5.5",
+      "distribution": "markdown2",
+      "expected_provider_distributions": [
+        "markdown2"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "markdown2"
+      ],
+      "locked_distribution": "markdown2",
+      "locked_version": "2.5.5",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "markdown2",
+      "role": "Markdown variant conversion where mistune misses extensions",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "92"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "marshmallow==4.3.1",
+      "distribution": "marshmallow",
+      "expected_provider_distributions": [
+        "marshmallow"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "marshmallow"
+      ],
+      "locked_distribution": "marshmallow",
+      "locked_version": "4.3.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "marshmallow",
+      "role": "Schema validation and deserialization; receipts conform to declared st",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "35"
+    },
+    {
+      "adopted": false,
+      "core_contract_id": "python.maude",
+      "declared_requirement": "maude==1.6.0",
+      "distribution": "maude",
+      "expected_provider_distributions": [
+        "maude"
+      ],
+      "identity_scope": "controller_runtime_candidate",
+      "import_names": [
+        "maude"
+      ],
+      "locked_distribution": "maude",
+      "locked_version": "1.6.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "maude",
+      "role": "finite_rewrite_transition; ordered_state_change",
+      "role_class": "core_deterministic_runtime",
+      "runtime_identity_authority": true,
+      "source_group": "core",
+      "source_line": "project.dependencies"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "mistune==3.3.4",
+      "distribution": "mistune",
+      "expected_provider_distributions": [
+        "mistune"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "mistune"
+      ],
+      "locked_distribution": "mistune",
+      "locked_version": "3.3.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "mistune",
+      "role": "Markdown parsing for structural change detection",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "93"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "mmh3==5.2.1",
+      "distribution": "mmh3",
+      "expected_provider_distributions": [
+        "mmh3"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "mmh3"
+      ],
+      "locked_distribution": "mmh3",
+      "locked_version": "5.2.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "mmh3",
+      "role": "MurmurHash3 non-cryptographic hashing for manifest-scale tree hashing",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "16"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "more-itertools==11.1.0",
+      "distribution": "more-itertools",
+      "expected_provider_distributions": [
+        "more-itertools"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "more_itertools"
+      ],
+      "locked_distribution": "more-itertools",
+      "locked_version": "11.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "more-itertools",
+      "role": "Deterministic batching and windowing iteration utilities",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "71"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "msgpack==1.2.1",
+      "distribution": "msgpack",
+      "expected_provider_distributions": [
+        "msgpack"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "msgpack"
+      ],
+      "locked_distribution": "msgpack",
+      "locked_version": "1.2.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "msgpack",
+      "role": "Compact binary receipt serialization without JSON canonicalization ove",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "36"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "packaging==26.3",
+      "distribution": "packaging",
+      "expected_provider_distributions": [
+        "packaging"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "packaging"
+      ],
+      "locked_distribution": "packaging",
+      "locked_version": "26.3",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "packaging",
+      "role": "PEP 440 version comparison for pin checks",
+      "role_class": "package_semantics",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "6"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "parso==0.8.7",
+      "distribution": "parso",
+      "expected_provider_distributions": [
+        "parso"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "parso"
+      ],
+      "locked_distribution": "parso",
+      "locked_version": "0.8.7",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "parso",
+      "role": "Python parser with error recovery for static gate-code and prompt-code",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "37"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "patch-ng==1.19.1",
+      "distribution": "patch-ng",
+      "expected_provider_distributions": [
+        "patch-ng"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "patch_ng"
+      ],
+      "locked_distribution": "patch-ng",
+      "locked_version": "1.19.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "patch-ng",
+      "role": "apply patches deterministically without shelling out",
+      "role_class": "mutation_tool",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "7"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "peewee==4.3.0",
+      "distribution": "peewee",
+      "expected_provider_distributions": [
+        "peewee"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "peewee"
+      ],
+      "locked_distribution": "peewee",
+      "locked_version": "4.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "peewee",
+      "role": "Small ORM for SQL ledger persistence",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "17"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pickledb==1.6",
+      "distribution": "pickledb",
+      "expected_provider_distributions": [
+        "pickledb"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pickledb"
+      ],
+      "locked_distribution": "pickledb",
+      "locked_version": "1.6",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pickledb",
+      "role": "JSON key-value store for receipt index and registry",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "18"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "platformdirs==4.11.1",
+      "distribution": "platformdirs",
+      "expected_provider_distributions": [
+        "platformdirs"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "platformdirs"
+      ],
+      "locked_distribution": "platformdirs",
+      "locked_version": "4.11.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "platformdirs",
+      "role": "correct per-OS state locations on all three platforms",
+      "role_class": "portability",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "8"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pluggy==1.6.0",
+      "distribution": "pluggy",
+      "expected_provider_distributions": [
+        "pluggy"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pluggy"
+      ],
+      "locked_distribution": "pluggy",
+      "locked_version": "1.6.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pluggy",
+      "role": "Minimal hook and plugin framework for extending gate behavior",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "72"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "plumbum==2.0.2",
+      "distribution": "plumbum",
+      "expected_provider_distributions": [
+        "plumbum"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "plumbum"
+      ],
+      "locked_distribution": "plumbum",
+      "locked_version": "2.0.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "plumbum",
+      "role": "typed subprocess composition with explicit exit-code handling",
+      "role_class": "subprocess_control",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "9"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "portion==2.6.2",
+      "distribution": "portion",
+      "expected_provider_distributions": [
+        "portion"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "portion"
+      ],
+      "locked_distribution": "portion",
+      "locked_version": "2.6.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "portion",
+      "role": "Interval membership testing; computed values fall within declared admi",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "38"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "protobuf==7.35.1",
+      "distribution": "protobuf",
+      "expected_provider_distributions": [
+        "protobuf"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "google.protobuf"
+      ],
+      "locked_distribution": "protobuf",
+      "locked_version": "7.35.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "protobuf",
+      "role": "Binary protocol buffers for compact versioned receipt serialization; s",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "39"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pyfakefs==6.2.0",
+      "distribution": "pyfakefs",
+      "expected_provider_distributions": [
+        "pyfakefs"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pyfakefs"
+      ],
+      "locked_distribution": "pyfakefs",
+      "locked_version": "6.2.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pyfakefs",
+      "role": "Hermetic in-memory filesystem for I/O gate tests",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "73"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pyflakes==3.4.0",
+      "distribution": "pyflakes",
+      "expected_provider_distributions": [
+        "pyflakes"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pyflakes"
+      ],
+      "locked_distribution": "pyflakes",
+      "locked_version": "3.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pyflakes",
+      "role": "Detects unused names, imports, redefinitions; no dead logic paths in g",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "61"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "PyJWT==2.13.0",
+      "distribution": "PyJWT",
+      "expected_provider_distributions": [
+        "PyJWT"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "jwt"
+      ],
+      "locked_distribution": "PyJWT",
+      "locked_version": "2.13.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pyjwt",
+      "role": "JWT sign and verify for lightweight receipt attestation",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "19"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pytest-benchmark==5.2.3",
+      "distribution": "pytest-benchmark",
+      "expected_provider_distributions": [
+        "pytest-benchmark"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pytest_benchmark"
+      ],
+      "locked_distribution": "pytest-benchmark",
+      "locked_version": "5.2.3",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pytest-benchmark",
+      "role": "Reproducible timing statistics for gate latency regressions",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "74"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pytest-randomly==4.1.0",
+      "distribution": "pytest-randomly",
+      "expected_provider_distributions": [
+        "pytest-randomly"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pytest_randomly"
+      ],
+      "locked_distribution": "pytest-randomly",
+      "locked_version": "4.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pytest-randomly",
+      "role": "Seed control and test-order randomization to expose order dependence",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "75"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pytest-timeout==2.4.0",
+      "distribution": "pytest-timeout",
+      "expected_provider_distributions": [
+        "pytest-timeout"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "pytest_timeout"
+      ],
+      "locked_distribution": "pytest-timeout",
+      "locked_version": "2.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pytest-timeout",
+      "role": "Hard time ceilings; bounded-execution proof for gate tests",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "76"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "pytest-xdist==3.8.0",
+      "distribution": "pytest-xdist",
+      "expected_provider_distributions": [
+        "pytest-xdist"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "xdist"
+      ],
+      "locked_distribution": "pytest-xdist",
+      "locked_version": "3.8.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "pytest-xdist",
+      "role": "Parallel test execution; gates behave under concurrency",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "77"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "python-Levenshtein==0.27.4",
+      "distribution": "python-Levenshtein",
+      "expected_provider_distributions": [
+        "Levenshtein"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "Levenshtein"
+      ],
+      "locked_distribution": "python-Levenshtein",
+      "locked_version": "0.27.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "python-levenshtein",
+      "role": "Fast edit distance for near-duplicate receipt and claim comparison",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "78"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "python-ulid==4.0.1",
+      "distribution": "python-ulid",
+      "expected_provider_distributions": [
+        "python-ulid"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "ulid"
+      ],
+      "locked_distribution": "python-ulid",
+      "locked_version": "4.0.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "python-ulid",
+      "role": "Sortable ULIDs for chronologically ordered ledger entry IDs",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "20"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "regex==2026.7.19",
+      "distribution": "regex",
+      "expected_provider_distributions": [
+        "regex"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "regex"
+      ],
+      "locked_distribution": "regex",
+      "locked_version": "2026.7.19",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "regex",
+      "role": "Enhanced regex engine for formal-language membership constraints",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "54"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "responses==0.26.2",
+      "distribution": "responses",
+      "expected_provider_distributions": [
+        "responses"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "responses"
+      ],
+      "locked_distribution": "responses",
+      "locked_version": "0.26.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "responses",
+      "role": "HTTP mocking for deterministic gate tests",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "79"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "rope==1.14.0",
+      "distribution": "rope",
+      "expected_provider_distributions": [
+        "rope"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "rope"
+      ],
+      "locked_distribution": "rope",
+      "locked_version": "1.14.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "rope",
+      "role": "Static import and usage analysis via refactoring engine",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "62"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "ruamel.yaml==0.19.1",
+      "distribution": "ruamel.yaml",
+      "expected_provider_distributions": [
+        "ruamel.yaml"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "ruamel.yaml"
+      ],
+      "locked_distribution": "ruamel.yaml",
+      "locked_version": "0.19.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "ruamel-yaml",
+      "role": "Round-trip YAML preserving comments for byte-identical config replay",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "21"
+    },
+    {
+      "adopted": false,
+      "core_contract_id": "python.rustworkx",
+      "declared_requirement": "rustworkx>=0.17.0,<0.18.0",
+      "distribution": "rustworkx",
+      "expected_provider_distributions": [
+        "rustworkx"
+      ],
+      "identity_scope": "controller_runtime_candidate",
+      "import_names": [
+        "rustworkx"
+      ],
+      "locked_distribution": "rustworkx",
+      "locked_version": "0.17.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "rustworkx",
+      "role": "finite_workflow_graph; acyclic_order_check",
+      "role_class": "core_deterministic_runtime",
+      "runtime_identity_authority": true,
+      "source_group": "core",
+      "source_line": "project.dependencies"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "satispy==1.4",
+      "distribution": "satispy",
+      "expected_provider_distributions": [
+        "satispy"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "satispy"
+      ],
+      "locked_distribution": "satispy",
+      "locked_version": "1.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "satispy",
+      "role": "Unified wrapper over SAT solvers; extra verifier lane for satisfiabili",
+      "role_class": "solvers-logic-automata",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "55"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "soupsieve==2.9.2",
+      "distribution": "soupsieve",
+      "expected_provider_distributions": [
+        "soupsieve"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "soupsieve"
+      ],
+      "locked_distribution": "soupsieve",
+      "locked_version": "2.9.2",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "soupsieve",
+      "role": "CSS selectors for targeted HTML prompt comparison",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "95"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "stamina==26.1.0",
+      "distribution": "stamina",
+      "expected_provider_distributions": [
+        "stamina"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "stamina"
+      ],
+      "locked_distribution": "stamina",
+      "locked_version": "26.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "stamina",
+      "role": "opinionated bounded retry built on tenacity",
+      "role_class": "bounded_retry",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "10"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "structlog==26.1.0",
+      "distribution": "structlog",
+      "expected_provider_distributions": [
+        "structlog"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "structlog"
+      ],
+      "locked_distribution": "structlog",
+      "locked_version": "26.1.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "structlog",
+      "role": "structured, machine-parseable audit events instead of prose logs",
+      "role_class": "audit_telemetry",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "11"
+    },
+    {
+      "adopted": false,
+      "core_contract_id": "python.sympy",
+      "declared_requirement": "sympy>=1.14.0,<1.15.0",
+      "distribution": "sympy",
+      "expected_provider_distributions": [
+        "sympy"
+      ],
+      "identity_scope": "controller_runtime_candidate",
+      "import_names": [
+        "sympy"
+      ],
+      "locked_distribution": "sympy",
+      "locked_version": "1.14.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "sympy",
+      "role": "exact_symbolic_normalization; finite_polynomial_checks",
+      "role_class": "core_deterministic_runtime",
+      "runtime_identity_authority": true,
+      "source_group": "core",
+      "source_line": "project.dependencies"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "testfixtures==12.3.0",
+      "distribution": "testfixtures",
+      "expected_provider_distributions": [
+        "testfixtures"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "testfixtures"
+      ],
+      "locked_distribution": "testfixtures",
+      "locked_version": "12.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "testfixtures",
+      "role": "Fixtures (TempDirectory, LogCapture, ShouldRaise) for deterministic sc",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "80"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "tinycss2==1.5.1",
+      "distribution": "tinycss2",
+      "expected_provider_distributions": [
+        "tinycss2"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "tinycss2"
+      ],
+      "locked_distribution": "tinycss2",
+      "locked_version": "1.5.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "tinycss2",
+      "role": "CSS parsing to detect style changes without whitespace false positives",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "96"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "tinydb==4.9.0",
+      "distribution": "tinydb",
+      "expected_provider_distributions": [
+        "tinydb"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "tinydb"
+      ],
+      "locked_distribution": "tinydb",
+      "locked_version": "4.9.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "tinydb",
+      "role": "Embedded JSON document store for append-only receipt logs",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "22"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "tomli==2.4.1",
+      "distribution": "tomli",
+      "expected_provider_distributions": [
+        "tomli"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "tomli"
+      ],
+      "locked_distribution": "tomli",
+      "locked_version": "2.4.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "tomli",
+      "role": "Pure-Python TOML reading backport for pinned manifests",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "40"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "tomlkit==0.15.1",
+      "distribution": "tomlkit",
+      "expected_provider_distributions": [
+        "tomlkit"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "tomlkit"
+      ],
+      "locked_distribution": "tomlkit",
+      "locked_version": "0.15.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "tomlkit",
+      "role": "Round-trip TOML preserving structure and comments for inspectable cano",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "41"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "typeguard==4.6.0",
+      "distribution": "typeguard",
+      "expected_provider_distributions": [
+        "typeguard"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "typeguard"
+      ],
+      "locked_distribution": "typeguard",
+      "locked_version": "4.6.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "typeguard",
+      "role": "Runtime type checking at gate function boundaries; rejects mistyped pr",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "42"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "typing-extensions==4.16.0",
+      "distribution": "typing-extensions",
+      "expected_provider_distributions": [
+        "typing_extensions"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "typing_extensions"
+      ],
+      "locked_distribution": "typing_extensions",
+      "locked_version": "4.16.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "typing-extensions",
+      "role": "Typing backports enabling constraint annotations across supported Pyth",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "43"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "Unidecode==1.4.0",
+      "distribution": "Unidecode",
+      "expected_provider_distributions": [
+        "Unidecode"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "unidecode"
+      ],
+      "locked_distribution": "Unidecode",
+      "locked_version": "1.4.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "unidecode",
+      "role": "ASCII transliteration so accented variants compare equal",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "97"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "unidiff==1.0.0",
+      "distribution": "unidiff",
+      "expected_provider_distributions": [
+        "unidiff"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "unidiff"
+      ],
+      "locked_distribution": "unidiff",
+      "locked_version": "1.0.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "unidiff",
+      "role": "Unified-diff parsing; reject patches that touch gate rules or assertio",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "63"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "uuid6==2025.0.1",
+      "distribution": "uuid6",
+      "expected_provider_distributions": [
+        "uuid6"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "uuid6"
+      ],
+      "locked_distribution": "uuid6",
+      "locked_version": "2025.0.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "uuid6",
+      "role": "RFC 9562 v6/v7 sortable UUIDs for receipt entry ordering",
+      "role_class": "hash-sign-ledger-storage",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "23"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "validators==0.35.0",
+      "distribution": "validators",
+      "expected_provider_distributions": [
+        "validators"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "validators"
+      ],
+      "locked_distribution": "validators",
+      "locked_version": "0.35.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "validators",
+      "role": "Composable field validators (URL, IP, email) for receipt fields",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "44"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "vcrpy==8.3.0",
+      "distribution": "vcrpy",
+      "expected_provider_distributions": [
+        "vcrpy"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "vcr"
+      ],
+      "locked_distribution": "vcrpy",
+      "locked_version": "8.3.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "vcrpy",
+      "role": "Record and replay HTTP for hermetic tests of network-touching gates",
+      "role_class": "test-repro-bounded",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "81"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "voluptuous==0.16.0",
+      "distribution": "voluptuous",
+      "expected_provider_distributions": [
+        "voluptuous"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "voluptuous"
+      ],
+      "locked_distribution": "voluptuous",
+      "locked_version": "0.16.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "voluptuous",
+      "role": "Declarative dict/list validation; refuses malformed receipts before wr",
+      "role_class": "schema-contract-serialization",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "45"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "vulture==2.16",
+      "distribution": "vulture",
+      "expected_provider_distributions": [
+        "vulture"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "vulture"
+      ],
+      "locked_distribution": "vulture",
+      "locked_version": "2.16",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "vulture",
+      "role": "Dead code detection; unreferenced definitions rejected",
+      "role_class": "static-analysis-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "64"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "w3lib==2.4.1",
+      "distribution": "w3lib",
+      "expected_provider_distributions": [
+        "w3lib"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "w3lib"
+      ],
+      "locked_distribution": "w3lib",
+      "locked_version": "2.4.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "w3lib",
+      "role": "URL and percent-encoding normalization for comparison",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "98"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "xmltodict==1.0.4",
+      "distribution": "xmltodict",
+      "expected_provider_distributions": [
+        "xmltodict"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "xmltodict"
+      ],
+      "locked_distribution": "xmltodict",
+      "locked_version": "1.0.4",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "xmltodict",
+      "role": "XML-to-dict for element-wise structural comparison",
+      "role_class": "text-similarity-drift",
+      "runtime_identity_authority": false,
+      "source_group": "extended",
+      "source_line": "99"
+    },
+    {
+      "adopted": false,
+      "declared_requirement": "xxhash==3.8.1",
+      "distribution": "xxhash",
+      "expected_provider_distributions": [
+        "xxhash"
+      ],
+      "identity_scope": "supporting_probe_or_engineering_candidate",
+      "import_names": [
+        "xxhash"
+      ],
+      "locked_distribution": "xxhash",
+      "locked_version": "3.8.1",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "xxhash",
+      "role": "non-cryptographic manifest hashing",
+      "role_class": "hash_integrity",
+      "runtime_identity_authority": false,
+      "source_group": "candidate_passing",
+      "source_line": "12"
+    },
+    {
+      "adopted": false,
+      "core_contract_id": "python.z3",
+      "declared_requirement": "z3-solver>=4.16.0.0,<4.17.0.0",
+      "distribution": "z3-solver",
+      "expected_provider_distributions": [
+        "z3-solver"
+      ],
+      "identity_scope": "controller_runtime_candidate",
+      "import_names": [
+        "z3"
+      ],
+      "locked_distribution": "z3-solver",
+      "locked_version": "4.16.0.0",
+      "membership": "PROPOSED_LIGHT",
+      "normalized_name": "z3-solver",
+      "role": "finite_satisfiability; counterexample_witness",
+      "role_class": "core_deterministic_runtime",
+      "runtime_identity_authority": true,
+      "source_group": "core",
+      "source_line": "project.dependencies"
+    }
+  ]
+}

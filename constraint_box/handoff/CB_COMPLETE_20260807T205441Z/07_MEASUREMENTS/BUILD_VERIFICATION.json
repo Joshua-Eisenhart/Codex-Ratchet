@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "json_files_strictly_parsed": 21,
+    "python_files_compiled": 27
+  },
+  "generated_at_utc": "2026-07-26T04:00:36.406645+00:00",
+  "promotion_allowed": false,
+  "receipt_states": [
+    {
+      "path": "receipts/MAJOR_RUN_PREFLIGHT.json",
+      "schema": "constraintbox.major-run-preflight.v1",
+      "sha256": "4b69f3365d3320890fe2d9dcff77812030e46649d83da3f9bcd6ae7dcb22c095",
+      "state": "READY",
+      "tier": null
+    },
+    {
+      "path": "receipts/S1_ACCEPTANCE.json",
+      "schema": "constraintbox.sim-tier-receipt.v2",
+      "sha256": "ad50453feb7ce54c7b11a1b3198418a6f57230435a4fa27017f274eabf17f481",
+      "state": "READY",
+      "tier": "S1"
+    },
+    {
+      "path": "receipts/S1_S2_DENSITY_PARITY.json",
+      "schema": "constraintbox.cross-estate-parity.v1",
+      "sha256": "efed9747a5855b48a6a37f0c7c77696efea0763028b817ff3f269175cc9b9b75",
+      "state": "READY",
+      "tier": null
+    },
+    {
+      "path": "receipts/S2_ACCEPTANCE.json",
+      "schema": "constraintbox.sim-tier-receipt.v2",
+      "sha256": "cb45f72b7b128b6cbf0dde7affac437c50ab22fd54d279b08b86c398f91f14f6",
+      "state": "DEGRADED",
+      "tier": "S2"
+    },
+    {
+      "path": "receipts/S3_ACCEPTANCE.json",
+      "schema": "constraintbox.sim-tier-receipt.v2",
+      "sha256": "0c61ba6dc43d0283faa13f5ba8066e128546b9b2d04a1eff5a64ede167fccabe",
+      "state": "DEGRADED",
+      "tier": "S3"
+    },
+    {
+      "path": "receipts/S4_BOOT_LOCAL_NO_GPU.json",
+      "schema": "constraintbox.sim-tier-receipt.v2",
+      "sha256": "a65efd207237d463c17b1751150bb8af6daedd4d0c0facf5d940dc6458b2ba22",
+      "state": "FAILED",
+      "tier": "S4"
+    },
+    {
+      "path": "receipts/WHEEL_SMOKE.json",
+      "schema": "constraintbox.wheel-smoke.v1",
+      "sha256": "2682369aa4859cd8fb36c726fc687c03e7627e9aa170e58eb8f7e691cd4cd5de",
+      "state": "READY",
+      "tier": null
+    }
+  ],
+  "schema": "constraintbox.build-verification.v1",
+  "tests": {
+    "command": "PYTHONPATH=src python -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "ok_marker": true,
+    "output_sha256": "370cb4f78c8a9ccd5346757fe204ce624951664a208210304a0b08a5713d8910",
+    "test_count": 50
+  }
+}

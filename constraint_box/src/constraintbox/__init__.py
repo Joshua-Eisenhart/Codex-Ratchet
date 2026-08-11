@@ -117,6 +117,12 @@ from .formalcheck import (
     TemporalCheckProfile,
     run_temporal_check,
 )
+from .gate_integrity_ast import (
+    AdversarialFixtureGenerator,
+    AdversarialResult,
+    GateIntegrityChecker,
+    WeakeningFinding,
+)
 from .maude_rewrite import MaudeTransitionProfile
 from .mini_levos import (
     FlowNode,

@@ -1,0 +1,927 @@
+diff --git a/system_v8/spinor_jepa/lane2_vector_jepa/results/receipt.json b/system_v8/spinor_jepa/lane2_vector_jepa/results/receipt.json
+index 88f338245..09d4e8ba8 100644
+--- a/system_v8/spinor_jepa/lane2_vector_jepa/results/receipt.json
++++ b/system_v8/spinor_jepa/lane2_vector_jepa/results/receipt.json
+@@ -31,23 +31,23 @@
+   "params_within_budget": true,
+   "train_steps": 300,
+   "batch": 32,
+-  "train_wall_seconds": 2.4
++  "train_wall_seconds": 2.2
+  },
+  "memory_gate": {
+   "criterion": "available memory > 25% before torch import",
+   "pass": true,
+-  "free_pct_at_decision": 25.21,
++  "free_pct_at_decision": 25.77,
+   "poll_trace_pct": [
+-   23.88,
+-   24.54,
+-   24.4,
+-   24.54,
+-   23.99,
+-   24.26,
+-   22.69,
+-   24.57,
+-   24.96,
+-   25.21
++   19.9,
++   21.65,
++   21.35,
++   21.48,
++   20.99,
++   21.7,
++   23.28,
++   23.17,
++   22.54,
++   25.77
+   ],
+   "timeout_s": 900.0
+  },
+@@ -230,7 +230,7 @@
+   "NOT charged: connection, bracket, grading, Clifford relation, complex/quaternion structure, factorization"
+  ],
+  "findings": [
+-  "memory gate passed at 25.21% free after polling (trace in receipt)",
++  "memory gate passed at 25.77% free after polling (trace in receipt)",
+   "ground truth for scoring reconstructed scorer-side by brute-forcing the 1024-state hidden space against visible bits (unique for all 64 objects); never used in features or training targets",
+   "P1 honest not_applicable: no lift/connection structure in a real vector carrier",
+   "P3/P4 honest ~0: commuting/associative instrument updates cannot witness order or bracket"
+diff --git a/system_v8/spinor_jepa/lane3_projective_ray/results/receipt.json b/system_v8/spinor_jepa/lane3_projective_ray/results/receipt.json
+index cb58d6797..a2bfe41c8 100644
+--- a/system_v8/spinor_jepa/lane3_projective_ray/results/receipt.json
++++ b/system_v8/spinor_jepa/lane3_projective_ray/results/receipt.json
+@@ -48,7 +48,7 @@
+       "split_seed": 20260719,
+       "train_objects": "0-47",
+       "test_objects": "48-63",
+-      "memory_gate_free_frac": 0.26943111419677734
++      "memory_gate_free_frac": 0.28702640533447266
+     }
+   },
+   "charges": [
+@@ -163,11 +163,6 @@
+     "Posterior occluded-bit accuracy on held-out objects 0.6318 vs majority chance 0.5151 and shuffled-object-id control 0.5921 (labels: oracle reconstruction from visible bits only; world is exactly identifiable, so 1.0 is the informational ceiling).",
+     "Structural limit of this carrier (honest negative): ONE global linear transport A on C^8 cannot branch over the 4 hidden CA rules; rule identity is only inferable across views, so dynamics must be carried by the observation-conditioned instrument updates M(obs). Expect the gap to the 1.0 ceiling to be structural, not merely optimization.",
+     "Order witness P3 is real for this carrier (0.313 normalized commutator): M(obs) and A do not commute, matching the card's ORDER RETAINED requirement; bracket witness P4 is a genuine zero (associative composition).",
+-    "P1 (2pi/4pi lift) is not_applicable_for_this_carrier: the ray quotient erases the sign by construction; recorded as a scored fact.",
+-    "HONEST NEGATIVE: belief-persistence Holevo is NOT above the permutation null (chi 0.3308 bits vs null p95 0.3680, margin -0.0373): the ray belief trajectory does not retain object identity beyond what random view regrouping gives.",
+-    "HONEST NEGATIVE: latent-cluster ARI on test beliefs is at the shuffled null (-0.0135 vs null p95 0.0279): no object clustering in belief space.",
+-    "HONEST NEGATIVE: counterfactual action binding (P6) is near zero (score 0.0144): replacing the learned transport with identity barely degrades occluded accuracy, so the action operator is only weakly load-bearing.",
+-    "Shuffled-object-id control reaches 0.5921 vs real 0.6318 occluded accuracy: only ~0.04 of the margin is object-binding-specific; the rest is generic view-structure regularity (CA-image subspace constraints).",
+-    "Card hash at run time: TOURNAMENT_CARD_v0.md sha256 82015599eb6905b27bf64a10fbc95bd416005694c64746ff4e3134d3a7eb4576 (read-only, not edited)."
++    "P1 (2pi/4pi lift) is not_applicable_for_this_carrier: the ray quotient erases the sign by construction; recorded as a scored fact."
+   ]
+ }
+\ No newline at end of file
+diff --git a/system_v8/spinor_jepa/lane4_quaternion/results/receipt.json b/system_v8/spinor_jepa/lane4_quaternion/results/receipt.json
+index 9dc2a758c..f61c4d3c0 100644
+--- a/system_v8/spinor_jepa/lane4_quaternion/results/receipt.json
++++ b/system_v8/spinor_jepa/lane4_quaternion/results/receipt.json
+@@ -49,9 +49,9 @@
+   "dtype": "float64 (torch CPU)",
+   "memory_gate": {
+    "required_free_pct": 25.0,
+-   "measured_free_pct": 23.8,
+-   "pass": false,
+-   "note": "measured free+inactive+speculative+purgeable before torch import; gate FAILED at ~19-20% across 8 polls + purge attempt (not permitted); proceeded because model footprint <100MB; breach recorded, not smoothed"
++   "measured_free_pct": 28.4,
++   "pass": true,
++   "note": "measured before torch import"
+   }
+  },
+  "charges": [
+@@ -197,7 +197,7 @@
+   }
+  ],
+  "findings": [
+-  "memory gate FAILED (23.8% < 25%) across repeated polls + purge attempt; run proceeded (model ~13k params); breach recorded openly",
++  "memory gate passed",
+   "GF(2) oracle: all 64 objects uniquely identified (rule + initial word), all 1125 withheld bits labeled unambiguously, 0 visible-bit check failures \u2014 evaluation labels are exact",
+   "P5 (primary): test occluded-bit accuracy 0.538 vs shuffled-object-id retrain control 0.523 and chance 0.5 \u2014 weak positive only; the 16-DOF quaternion belief does not perform the GF(2) inference the task rewards (honest negative kept)",
+   "P6 (primary): 0.34 < 0.5 \u2014 learned rotor transport is ray-WORSE than the identity counterfactual; the typed action is not bound to the dynamics in this training run (honest negative)",
+@@ -209,5 +209,5 @@
+  ],
+  "python": "3.13.6",
+  "torch": "2.11.0",
+- "wall_seconds": 7.5
++ "wall_seconds": 6.4
+ }
+\ No newline at end of file
+diff --git a/system_v8/spinor_jepa/lane5_multivector/results/receipt.json b/system_v8/spinor_jepa/lane5_multivector/results/receipt.json
+index df189991c..44feb3199 100644
+--- a/system_v8/spinor_jepa/lane5_multivector/results/receipt.json
++++ b/system_v8/spinor_jepa/lane5_multivector/results/receipt.json
+@@ -109,8 +109,8 @@
+     "latent_cluster_ari_shuffled_null": 0.000394,
+     "memory_gate": {
+       "authority": "memory_pressure system-wide free percentage",
+-      "free_pct": 45,
+-      "vm_stat_naive_free_pct": 22.8,
++      "free_pct": 49,
++      "vm_stat_naive_free_pct": 28.3,
+       "threshold_pct": 25,
+       "pass": true
+     }
+diff --git a/system_v8/spinor_jepa/lane6_spinor_ideal/results/receipt.json b/system_v8/spinor_jepa/lane6_spinor_ideal/results/receipt.json
+index a469d4005..f1e7f7ea1 100644
+--- a/system_v8/spinor_jepa/lane6_spinor_ideal/results/receipt.json
++++ b/system_v8/spinor_jepa/lane6_spinor_ideal/results/receipt.json
+@@ -13,7 +13,7 @@
+     "python": "3.13.6",
+     "memory_gate": {
+       "os_memorystatus_free_fraction": 0.5,
+-      "psutil_available_fraction": 0.2500486373901367
++      "psutil_available_fraction": 0.2866802215576172
+     },
+     "memory_gate_note": "gate passes on max(os kern.memorystatus_level, psutil available); both recorded"
+   },
+diff --git a/system_v8/spinor_jepa/lane7_purified_density/results/receipt.json b/system_v8/spinor_jepa/lane7_purified_density/results/receipt.json
+index 72634861f..b43b8e9ff 100644
+--- a/system_v8/spinor_jepa/lane7_purified_density/results/receipt.json
++++ b/system_v8/spinor_jepa/lane7_purified_density/results/receipt.json
+@@ -9,7 +9,7 @@
+   "python": "3.13.6",
+   "torch": "2.11.0",
+   "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+-  "memory_free_pct_before_torch": 46.0,
++  "memory_free_pct_before_torch": 51.0,
+   "data": {
+     "events": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+     "split": {
+diff --git a/system_v8/tool_ledger/battery_batch1/results/cvxpy.json b/system_v8/tool_ledger/battery_batch1/results/cvxpy.json
+index 4ce4b0674..4b4a59718 100644
+--- a/system_v8/tool_ledger/battery_batch1/results/cvxpy.json
++++ b/system_v8/tool_ledger/battery_batch1/results/cvxpy.json
+@@ -3,11 +3,11 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:03:59.094690+00:00",
++  "generated_at": "2026-07-27T21:29:24.071614+00:00",
+   "inputs": {
+     "stage64_receipt": "system_v8/nested_manifold/results/stage64/receipt.json"
+   },
+-  "memory_free_percent": 63,
++  "memory_free_percent": 50,
+   "real_object": "manifold stage position=0 bit=1 exact Choi channel",
+   "computed_number": 0.053926940765988036,
+   "checks": {
+diff --git a/system_v8/tool_ledger/battery_batch1/results/mctx.json b/system_v8/tool_ledger/battery_batch1/results/mctx.json
+index 523f9f53e..37d3d5e8c 100644
+--- a/system_v8/tool_ledger/battery_batch1/results/mctx.json
++++ b/system_v8/tool_ledger/battery_batch1/results/mctx.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:03:55.235993+00:00",
++  "generated_at": "2026-07-27T21:29:30.961015+00:00",
+   "real_object": "obj-000 view-4 world-source action sequence",
+   "inputs": {
+     "events": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+   },
+-  "memory_free_percent": 64,
++  "memory_free_percent": 51,
+   "computed_number": 0.9808292530117271,
+   "checks": {
+     "mctx_first_action_position": 4,
+diff --git a/system_v8/tool_ledger/battery_batch1/results/numpyro.json b/system_v8/tool_ledger/battery_batch1/results/numpyro.json
+index c4de4484f..5f82437c8 100644
+--- a/system_v8/tool_ledger/battery_batch1/results/numpyro.json
++++ b/system_v8/tool_ledger/battery_batch1/results/numpyro.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:03:53.269145+00:00",
++  "generated_at": "2026-07-27T21:29:33.860056+00:00",
+   "inputs": {
+     "events": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+     "senses_source": "system_v8/loop3_senses/senses_v2_slow_memory.py"
+   },
+-  "memory_free_percent": 63,
++  "memory_free_percent": 51,
+   "real_object": "obj-000 view-2 senses_v2 quantum-readout likelihood",
+   "computed_number": 6.938893903907228e-18,
+   "checks": {
+diff --git a/system_v8/tool_ledger/battery_batch1/results/optuna.json b/system_v8/tool_ledger/battery_batch1/results/optuna.json
+index 494f9ad03..9bcca03a0 100644
+--- a/system_v8/tool_ledger/battery_batch1/results/optuna.json
++++ b/system_v8/tool_ledger/battery_batch1/results/optuna.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:04:01.267150+00:00",
++  "generated_at": "2026-07-27T21:29:35.438082+00:00",
+   "inputs": {
+     "trajectories": "system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+     "receipt": "system_v8/loop3_senses/results/senses_v2_slow_memory/receipt.json"
+   },
+-  "memory_free_percent": 64,
++  "memory_free_percent": 51,
+   "real_object": "senses_v2 stored rho_fast plus m_slow object-disjoint ridge readout",
+   "computed_number": 0.880466472303207,
+   "checks": {
+diff --git a/system_v8/tool_ledger/battery_batch3/results/blackjax.json b/system_v8/tool_ledger/battery_batch3/results/blackjax.json
+index 1d37538d3..cac6ec467 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/blackjax.json
++++ b/system_v8/tool_ledger/battery_batch3/results/blackjax.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:46:09.998312+00:00",
++  "generated_at": "2026-07-27T21:29:58.774442+00:00",
+   "real_object": "qit_referee lawD damping series (real trajectory likelihood proxy)",
+   "inputs": {
+     "qit_referee": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 67,
++  "memory_free_percent": 54,
+   "computed_number": 0.6047321152687073,
+   "checks": {
+     "posterior_mean_gamma": 0.6047321152687073,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/cma.json b/system_v8/tool_ledger/battery_batch3/results/cma.json
+index 6c4593265..a5f942269 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/cma.json
++++ b/system_v8/tool_ledger/battery_batch3/results/cma.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:00.181667+00:00",
++  "generated_at": "2026-07-27T21:31:10.015691+00:00",
+   "real_object": "real cumulative IG fitness from senses hypotheses",
+   "inputs": {
+     "world": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 48,
+   "computed_number": 33.72586039018322,
+   "checks": {
+     "best_ig": 33.72586039018322,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/deap.json b/system_v8/tool_ledger/battery_batch3/results/deap.json
+index e119ac182..d92999db9 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/deap.json
++++ b/system_v8/tool_ledger/battery_batch3/results/deap.json
+@@ -3,16 +3,16 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:03.535091+00:00",
++  "generated_at": "2026-07-27T21:31:13.627028+00:00",
+   "real_object": "real IG from senses_v2 hypotheses",
+   "inputs": {
+     "world": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+   },
+-  "memory_free_percent": 68,
+-  "computed_number": 33.94900394149743,
++  "memory_free_percent": 50,
++  "computed_number": 33.725860390183215,
+   "checks": {
+-    "best_ig": 33.94900394149743,
+-    "random_mean": 32.61637946625237,
++    "best_ig": 33.725860390183215,
++    "random_mean": 32.65953177712014,
+     "beats_random": true
+   },
+   "reason": "deap GA on real probe-order IG; beats random mean."
+diff --git a/system_v8/tool_ledger/battery_batch3/results/gymnasium.json b/system_v8/tool_ledger/battery_batch3/results/gymnasium.json
+index bcb0b4b8c..426b7cd93 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/gymnasium.json
++++ b/system_v8/tool_ledger/battery_batch3/results/gymnasium.json
+@@ -3,16 +3,16 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:10.788955+00:00",
++  "generated_at": "2026-07-27T21:31:19.618301+00:00",
+   "real_object": "loop2_world occluded probe sequences as Gymnasium Env",
+   "inputs": {
+     "events": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+   },
+-  "memory_free_percent": 68,
+-  "computed_number": 42.0,
++  "memory_free_percent": 51,
++  "computed_number": 50.0,
+   "checks": {
+     "steps": 100,
+-    "total_reward": 42.0,
++    "total_reward": 50.0,
+     "env_steps_gate": true
+   },
+   "reason": "gymnasium Env wrapper over real occluded-object probe sequences; 100 load-bearing steps executed."
+diff --git a/system_v8/tool_ledger/battery_batch3/results/hdbscan.json b/system_v8/tool_ledger/battery_batch3/results/hdbscan.json
+index 952523db5..676d5fc6d 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/hdbscan.json
++++ b/system_v8/tool_ledger/battery_batch3/results/hdbscan.json
+@@ -3,13 +3,13 @@
+   "state": "BLOCKED",
+   "verdict": "BLOCKED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:53:53.732556+00:00",
++  "generated_at": "2026-07-27T21:31:19.904274+00:00",
+   "real_object": "real state trajectories from senses_v2_slow_memory",
+   "inputs": {
+     "traj": "system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+     "gudhi_receipt": "system_v8/deep_integration/results/topology/receipt.json"
+   },
+-  "memory_free_percent": 67,
++  "memory_free_percent": 51,
+   "computed_number": 32.0,
+   "checks": {
+     "hdbscan_clusters": 32,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/igraph.json b/system_v8/tool_ledger/battery_batch3/results/igraph.json
+index 5bfae1649..5b635e4fe 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/igraph.json
++++ b/system_v8/tool_ledger/battery_batch3/results/igraph.json
+@@ -3,13 +3,13 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:48:42.284138+00:00",
++  "generated_at": "2026-07-27T21:31:21.546401+00:00",
+   "real_object": "real capacity complex words from manifold source_packets.json",
+   "inputs": {
+     "packets": "system_v8/manifold/results/source_packets.json",
+     "topology_receipt": "system_v8/deep_integration/results/topology/receipt.json"
+   },
+-  "memory_free_percent": 63,
++  "memory_free_percent": 51,
+   "computed_number": 4.0,
+   "checks": {
+     "igraph_components": 4,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/jaxlie.json b/system_v8/tool_ledger/battery_batch3/results/jaxlie.json
+index 1d333a947..ef50c7521 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/jaxlie.json
++++ b/system_v8/tool_ledger/battery_batch3/results/jaxlie.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:54:04.196228+00:00",
++  "generated_at": "2026-07-27T21:31:21.920114+00:00",
+   "real_object": "real Bloch vector from manifold rungA or qit lawD damping",
+   "inputs": {
+     "qit": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 51,
+   "computed_number": 2.384185793236071e-08,
+   "checks": {
+     "norm_preserved": true,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/osqp.json b/system_v8/tool_ledger/battery_batch3/results/osqp.json
+index c678bf7c6..7a53a625e 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/osqp.json
++++ b/system_v8/tool_ledger/battery_batch3/results/osqp.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:15.248679+00:00",
++  "generated_at": "2026-07-27T21:31:23.181426+00:00",
+   "real_object": "real perturbed stage Choi projection QP subproblem",
+   "inputs": {
+     "stage": "system_v8/nested_manifold/results/stage64/receipt.json"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 51,
+   "computed_number": 7.58708146573041e-06,
+   "checks": {
+     "osqp_status": 1,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/pymoo.json b/system_v8/tool_ledger/battery_batch3/results/pymoo.json
+index 1f9000ea6..796f154ae 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/pymoo.json
++++ b/system_v8/tool_ledger/battery_batch3/results/pymoo.json
+@@ -3,16 +3,16 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:15.516655+00:00",
++  "generated_at": "2026-07-27T21:31:23.429928+00:00",
+   "real_object": "real IG from senses hypotheses",
+   "inputs": {
+     "world": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 51,
+   "computed_number": 33.72586039018322,
+   "checks": {
+     "best_ig": 33.72586039018322,
+-    "random_mean": 32.72624069511917,
++    "random_mean": 32.82434648017585,
+     "beats_random": true
+   },
+   "reason": "pymoo GA on real probe-order IG; beats random mean."
+diff --git a/system_v8/tool_ledger/battery_batch3/results/torchode.json b/system_v8/tool_ledger/battery_batch3/results/torchode.json
+index e03b82f7f..2d1311f1d 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/torchode.json
++++ b/system_v8/tool_ledger/battery_batch3/results/torchode.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:55:26.532530+00:00",
++  "generated_at": "2026-07-27T21:31:24.706242+00:00",
+   "real_object": "receipt-derived damped Bloch ODE from qit_referee lawD",
+   "inputs": {
+     "qit": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 51,
+   "computed_number": 2.2926882392582115e-07,
+   "checks": {
+     "torchode_end": 0.3678792119026184,
+diff --git a/system_v8/tool_ledger/battery_batch3/results/xitorch.json b/system_v8/tool_ledger/battery_batch3/results/xitorch.json
+index e640419bd..d8f1ad7a0 100644
+--- a/system_v8/tool_ledger/battery_batch3/results/xitorch.json
++++ b/system_v8/tool_ledger/battery_batch3/results/xitorch.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T05:44:17.302932+00:00",
++  "generated_at": "2026-07-27T21:31:25.831528+00:00",
+   "real_object": "Fisher information matrix from real senses readout likelihoods",
+   "inputs": {
+     "senses": "system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json"
+   },
+-  "memory_free_percent": 68,
++  "memory_free_percent": 51,
+   "computed_number": 0.0,
+   "checks": {
+     "max_abs_diff_vs_numpy": 0.0,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/arviz.json b/system_v8/tool_ledger/battery_batch4/results/arviz.json
+index 8a9962a2e..133c6b9ad 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/arviz.json
++++ b/system_v8/tool_ledger/battery_batch4/results/arviz.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:43:45.082642+00:00",
++  "generated_at": "2026-07-27T21:31:27.560092+00:00",
+   "real_object": "posterior trace of gamma sampled from qit_referee lawD damping series (pymc NUTS, 4 chains)",
+   "inputs": {
+     "qit_referee": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 42,
++  "memory_free_percent": 51,
+   "computed_number": 1.0,
+   "checks": {
+     "rhat_gamma": 1.0,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/datasketch.json b/system_v8/tool_ledger/battery_batch4/results/datasketch.json
+index 82e131729..baa89ad37 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/datasketch.json
++++ b/system_v8/tool_ledger/battery_batch4/results/datasketch.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:47:30.455568+00:00",
++  "generated_at": "2026-07-27T21:31:32.240947+00:00",
+   "real_object": "the 9 real manifold base_packets (accepted_words sets)",
+   "inputs": {
+     "source_packets": "system_v8/manifold/results/source_packets.json"
+   },
+-  "memory_free_percent": 44,
++  "memory_free_percent": 51,
+   "computed_number": 0.03437499999999999,
+   "checks": {
+     "max_abs_diff_minhash_vs_exact_jaccard": 0.03437499999999999,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/flowMC.json b/system_v8/tool_ledger/battery_batch4/results/flowMC.json
+index 10befa18e..1f7af59e7 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/flowMC.json
++++ b/system_v8/tool_ledger/battery_batch4/results/flowMC.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:45:53.079422+00:00",
++  "generated_at": "2026-07-27T21:31:32.703099+00:00",
+   "real_object": "qit_referee lawD damping series (same real trajectory blackjax batch-3 used)",
+   "inputs": {
+     "qit_referee": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 45,
++  "memory_free_percent": 51,
+   "computed_number": 0.6014736294746399,
+   "checks": {
+     "flowmc_posterior_mean_gamma": 0.6014736294746399,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/hdbscan.json b/system_v8/tool_ledger/battery_batch4/results/hdbscan.json
+index d3b594aa7..9804ea8d7 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/hdbscan.json
++++ b/system_v8/tool_ledger/battery_batch4/results/hdbscan.json
+@@ -3,13 +3,13 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:49:18.777588+00:00",
++  "generated_at": "2026-07-27T21:31:41.687779+00:00",
+   "real_object": "real rho_fast 4x4 density-matrix state trajectories from senses_v2_slow_memory (candidate_reset_fast)",
+   "inputs": {
+     "traj": "system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+     "gudhi_receipt": "system_v8/deep_integration/results/topology/receipt.json"
+   },
+-  "memory_free_percent": 52,
++  "memory_free_percent": 51,
+   "computed_number": 6.0,
+   "checks": {
+     "hdbscan_clusters_by_min_cluster_size": {
+diff --git a/system_v8/tool_ledger/battery_batch4/results/kahypar.json b/system_v8/tool_ledger/battery_batch4/results/kahypar.json
+index 60a644493..7b68b2d2b 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/kahypar.json
++++ b/system_v8/tool_ledger/battery_batch4/results/kahypar.json
+@@ -3,13 +3,13 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:48:36.824436+00:00",
++  "generated_at": "2026-07-27T21:31:43.139762+00:00",
+   "real_object": "real capacity words from manifold source_packets.json as hypergraph",
+   "inputs": {
+     "packets": "system_v8/manifold/results/source_packets.json",
+     "ini_config": "/Users/joshuaeisenhart/.local/share/lev/sim-stack/lib/python3.13/site-packages/cotengra/pathfinders/kahypar_profiles/cut_kKaHyPar_sea20.ini"
+   },
+-  "memory_free_percent": 46,
++  "memory_free_percent": 51,
+   "computed_number": 35.0,
+   "checks": {
+     "partition_sizes": [
+diff --git a/system_v8/tool_ledger/battery_batch4/results/numba.json b/system_v8/tool_ledger/battery_batch4/results/numba.json
+index d0d269829..4acda10cb 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/numba.json
++++ b/system_v8/tool_ledger/battery_batch4/results/numba.json
+@@ -3,82 +3,82 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:47:05.252730+00:00",
++  "generated_at": "2026-07-27T21:31:43.214573+00:00",
+   "real_object": "union-find over the 9 real capacity-complex packets used by the torch_geometric receipt",
+   "inputs": {
+     "source_packets": "system_v8/manifold/results/source_packets.json",
+     "reference": "system_v8/engine_estate/torch_estate_test.py"
+   },
+-  "memory_free_percent": 44,
+-  "computed_number": 3.5521862776985498,
++  "memory_free_percent": 51,
++  "computed_number": 4.287087425199641,
+   "checks": {
+     "all_9_packets_bitwise_equal_partition": true,
+-    "speedup_python_over_numba": 3.5521862776985498,
+-    "t_python_total_s": 4.958501085639e-05,
+-    "t_numba_total_s": 1.3959011994302273e-05,
++    "speedup_python_over_numba": 4.287087425199641,
++    "t_python_total_s": 4.7873007133603096e-05,
++    "t_numba_total_s": 1.1166790500283241e-05,
+     "per_packet": {
+       "qca_identity_cut_relation": {
+         "n_nodes": 4,
+         "n_edges": 0,
+         "partitions_equal": true,
+-        "t_python_s": 1.595797948539257e-05,
+-        "t_numba_s": 2.625049091875553e-06
++        "t_python_s": 1.1499971151351929e-05,
++        "t_numba_s": 3.1669624149799347e-06
+       },
+       "qca_right_shift_cut_relation": {
+         "n_nodes": 8,
+         "n_edges": 4,
+         "partitions_equal": true,
+-        "t_python_s": 6.9999368861317635e-06,
+-        "t_numba_s": 1.6249250620603561e-06
++        "t_python_s": 7.2908587753772736e-06,
++        "t_numba_s": 1.4579854905605316e-06
+       },
+       "qca_left_shift_cut_relation": {
+         "n_nodes": 8,
+         "n_edges": 4,
+         "partitions_equal": true,
+-        "t_python_s": 3.208988346159458e-06,
+-        "t_numba_s": 4.333094693720341e-06
++        "t_python_s": 3.3748801797628403e-06,
++        "t_numba_s": 1.0421499609947205e-06
+       },
+       "qca_finite_depth_local_circuit_cut_relation": {
+         "n_nodes": 16,
+         "n_edges": 24,
+         "partitions_equal": true,
+-        "t_python_s": 8.542090654373169e-06,
+-        "t_numba_s": 1.2079253792762756e-06
++        "t_python_s": 8.415896445512772e-06,
++        "t_numba_s": 1.250067725777626e-06
+       },
+       "gcm_completion_projection": {
+         "n_nodes": 7,
+         "n_edges": 3,
+         "partitions_equal": true,
+-        "t_python_s": 2.5420449674129486e-06,
+-        "t_numba_s": 9.170034900307655e-07
++        "t_python_s": 2.500135451555252e-06,
++        "t_numba_s": 9.168870747089386e-07
+       },
+       "spinor_density_quotient_relation": {
+         "n_nodes": 3,
+         "n_edges": 1,
+         "partitions_equal": true,
+-        "t_python_s": 1.459033228456974e-06,
+-        "t_numba_s": 7.919734343886375e-07
++        "t_python_s": 1.3329554349184036e-06,
++        "t_numba_s": 7.909256964921951e-07
+       },
+       "octonion_bracketing_relation": {
+         "n_nodes": 4,
+         "n_edges": 3,
+         "partitions_equal": true,
+-        "t_python_s": 2.125045284628868e-06,
+-        "t_numba_s": 7.920898497104645e-07
++        "t_python_s": 2.0831357687711716e-06,
++        "t_numba_s": 7.499475032091141e-07
+       },
+       "v7_contextuality_heldout_relation": {
+         "n_nodes": 8,
+         "n_edges": 5,
+         "partitions_equal": true,
+-        "t_python_s": 2.9999064281582832e-06,
+-        "t_numba_s": 7.919734343886375e-07
++        "t_python_s": 3.00002284348011e-06,
++        "t_numba_s": 7.918570190668106e-07
+       },
+       "v7_ring_presentation_relation": {
+         "n_nodes": 12,
+         "n_edges": 14,
+         "partitions_equal": true,
+-        "t_python_s": 5.749985575675964e-06,
+-        "t_numba_s": 8.749775588512421e-07
++        "t_python_s": 8.375151082873344e-06,
++        "t_numba_s": 1.00000761449337e-06
+       }
+     }
+   },
+diff --git a/system_v8/tool_ledger/battery_batch4/results/nutpie.json b/system_v8/tool_ledger/battery_batch4/results/nutpie.json
+index 709afbfb7..4b2177714 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/nutpie.json
++++ b/system_v8/tool_ledger/battery_batch4/results/nutpie.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:46:32.014115+00:00",
++  "generated_at": "2026-07-27T21:31:43.860171+00:00",
+   "real_object": "qit_referee lawD damping series (same real trajectory blackjax batch-3 used)",
+   "inputs": {
+     "qit_referee": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 43,
++  "memory_free_percent": 51,
+   "computed_number": 0.5955272857307703,
+   "checks": {
+     "nutpie_posterior_mean_gamma": 0.5955272857307703,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/pymc.json b/system_v8/tool_ledger/battery_batch4/results/pymc.json
+index 35a07c921..6f1fd5460 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/pymc.json
++++ b/system_v8/tool_ledger/battery_batch4/results/pymc.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:43:17.725663+00:00",
++  "generated_at": "2026-07-27T21:31:48.191222+00:00",
+   "real_object": "qit_referee lawD damping series (same real trajectory blackjax batch-3 used)",
+   "inputs": {
+     "qit_referee": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 30,
++  "memory_free_percent": 51,
+   "computed_number": 0.5961128573493361,
+   "checks": {
+     "pymc_posterior_mean_gamma": 0.5961128573493361,
+diff --git a/system_v8/tool_ledger/battery_batch4/results/ray.json b/system_v8/tool_ledger/battery_batch4/results/ray.json
+index 63fc97f8e..a44c7c394 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/ray.json
++++ b/system_v8/tool_ledger/battery_batch4/results/ray.json
+@@ -3,7 +3,7 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:49:41.262560+00:00",
++  "generated_at": "2026-07-27T21:31:52.051400+00:00",
+   "real_object": "4 real base_packets from manifold source_packets.json",
+   "inputs": {
+     "source_packets": "system_v8/manifold/results/source_packets.json"
+diff --git a/system_v8/tool_ledger/battery_batch4/results/sparse.json b/system_v8/tool_ledger/battery_batch4/results/sparse.json
+index 91f16ccd9..d83c26f73 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/sparse.json
++++ b/system_v8/tool_ledger/battery_batch4/results/sparse.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:47:54.962378+00:00",
++  "generated_at": "2026-07-27T21:31:58.089848+00:00",
+   "real_object": "capacity-complex adjacency of the largest real base packet (qca_finite_depth_local_circuit_cut_relation, n=16 nodes)",
+   "inputs": {
+     "source_packets": "system_v8/manifold/results/source_packets.json"
+   },
+-  "memory_free_percent": 45,
++  "memory_free_percent": 49,
+   "computed_number": 0.0,
+   "checks": {
+     "packet_id": "qca_finite_depth_local_circuit_cut_relation",
+diff --git a/system_v8/tool_ledger/battery_batch4/results/treescope.json b/system_v8/tool_ledger/battery_batch4/results/treescope.json
+index 28f6d7189..4eb7c24c2 100644
+--- a/system_v8/tool_ledger/battery_batch4/results/treescope.json
++++ b/system_v8/tool_ledger/battery_batch4/results/treescope.json
+@@ -3,12 +3,12 @@
+   "state": "PRUNED",
+   "verdict": "PRUNED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T06:51:59.315180+00:00",
++  "generated_at": "2026-07-27T21:31:59.017932+00:00",
+   "real_object": "the real qit_referee receipt.json dict",
+   "inputs": {
+     "receipt": "system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 55,
++  "memory_free_percent": 44,
+   "computed_number": 95129.0,
+   "checks": {
+     "html_non_empty": true,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/cirq.json b/system_v8/tool_ledger/battery_batch5/results/cirq.json
+index 4dbb1d333..9b8e4f964 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/cirq.json
++++ b/system_v8/tool_ledger/battery_batch5/results/cirq.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:14.168009+00:00",
++  "generated_at": "2026-07-27T21:31:59.798753+00:00",
+   "real_object": "real two-sheet unitary stage exp(-i H_joint 0.4), gate list KAK-decomposed by pennylane",
+   "inputs": {
+     "qit_referee_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 83,
++  "memory_free_percent": 44,
+   "computed_number": 8.645772700837783e-15,
+   "checks": {
+     "gate_count": 18,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/derivative.json b/system_v8/tool_ledger/battery_batch5/results/derivative.json
+index 0de0a235b..72e804e1d 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/derivative.json
++++ b/system_v8/tool_ledger/battery_batch5/results/derivative.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:25:24.725118+00:00",
++  "generated_at": "2026-07-27T21:32:04.171969+00:00",
+   "real_object": "A_relent_series_qutip amplitude-damping relative-entropy trajectory",
+   "inputs": {
+     "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 83,
++  "memory_free_percent": 46,
+   "computed_number": 0.04359451286626892,
+   "checks": {
+     "n_ticks": 31,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/minikanren.json b/system_v8/tool_ledger/battery_batch5/results/minikanren.json
+index e37068fc8..9a880b8c6 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/minikanren.json
++++ b/system_v8/tool_ledger/battery_batch5/results/minikanren.json
+@@ -3,9 +3,9 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:36.349528+00:00",
++  "generated_at": "2026-07-27T21:32:06.900521+00:00",
+   "real_object": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/manifold/results/source_packets.json",
+-  "memory_free_percent": 83,
++  "memory_free_percent": 47,
+   "computed_number": 2.0,
+   "checks": {
+     "n_real_words": 8,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/moocore.json b/system_v8/tool_ledger/battery_batch5/results/moocore.json
+index 8ee0f4eb6..533a3a9df 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/moocore.json
++++ b/system_v8/tool_ledger/battery_batch5/results/moocore.json
+@@ -3,9 +3,9 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:36.486127+00:00",
++  "generated_at": "2026-07-27T21:32:07.036198+00:00",
+   "real_object": "real obj-000/view-3 probe-order information-gain objective (senses_v2_slow_memory)",
+-  "memory_free_percent": 83,
++  "memory_free_percent": 46,
+   "computed_number": 3.425213065398079,
+   "checks": {
+     "n_random_population": 60,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/optht.json b/system_v8/tool_ledger/battery_batch5/results/optht.json
+index 0101c45eb..bf5526156 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/optht.json
++++ b/system_v8/tool_ledger/battery_batch5/results/optht.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:25:00.012570+00:00",
++  "generated_at": "2026-07-27T21:32:07.565183+00:00",
+   "real_object": "real rho_fast 4x4 density-matrix state trajectories from senses_v2_slow_memory (candidate_reset_fast)",
+   "inputs": {
+     "traj": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json"
+   },
+-  "memory_free_percent": 83,
++  "memory_free_percent": 45,
+   "computed_number": 16.0,
+   "checks": {
+     "n_samples": 384,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/pennylane_lightning.json b/system_v8/tool_ledger/battery_batch5/results/pennylane_lightning.json
+index 540746e56..6616b7056 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/pennylane_lightning.json
++++ b/system_v8/tool_ledger/battery_batch5/results/pennylane_lightning.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:20.603807+00:00",
++  "generated_at": "2026-07-27T21:32:08.847299+00:00",
+   "real_object": "real two-sheet unitary stage circuit + real rho0 dominant eigenvector (qit_referee)",
+   "inputs": {
+     "qit_referee_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 83,
++  "memory_free_percent": 45,
+   "computed_number": 2.2693074087393234e-16,
+   "checks": {
+     "gate_count": 23,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/pynndescent.json b/system_v8/tool_ledger/battery_batch5/results/pynndescent.json
+index 3c1886911..ec76b7776 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/pynndescent.json
++++ b/system_v8/tool_ledger/battery_batch5/results/pynndescent.json
+@@ -3,9 +3,9 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:23.564086+00:00",
++  "generated_at": "2026-07-27T21:32:12.508513+00:00",
+   "real_object": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+-  "memory_free_percent": 83,
++  "memory_free_percent": 45,
+   "computed_number": 0.9835069444444445,
+   "checks": {
+     "n_points": 384,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/qiskit.json b/system_v8/tool_ledger/battery_batch5/results/qiskit.json
+index 51af19328..627bb9da3 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/qiskit.json
++++ b/system_v8/tool_ledger/battery_batch5/results/qiskit.json
+@@ -3,12 +3,12 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:17.260848+00:00",
++  "generated_at": "2026-07-27T21:32:25.132683+00:00",
+   "real_object": "real two-sheet unitary stage exp(-i H_joint 0.4), gate list KAK-decomposed by pennylane",
+   "inputs": {
+     "qit_referee_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/deep_integration/results/qit_referee/receipt.json"
+   },
+-  "memory_free_percent": 83,
++  "memory_free_percent": 43,
+   "computed_number": 8.757280664885565e-15,
+   "checks": {
+     "gate_count": 18,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/ribs.json b/system_v8/tool_ledger/battery_batch5/results/ribs.json
+index 1c50a527e..262ef6141 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/ribs.json
++++ b/system_v8/tool_ledger/battery_batch5/results/ribs.json
+@@ -3,9 +3,9 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:37.023868+00:00",
++  "generated_at": "2026-07-27T21:32:29.268347+00:00",
+   "real_object": "real obj-000/view-3 probe-order cumulative-IG objective (senses_v2_slow_memory)",
+-  "memory_free_percent": 83,
++  "memory_free_percent": 40,
+   "computed_number": 33.94900394149742,
+   "checks": {
+     "best_qd_objective": 33.94900394149742,
+diff --git a/system_v8/tool_ledger/battery_batch5/results/sparsediffpy.json b/system_v8/tool_ledger/battery_batch5/results/sparsediffpy.json
+index 02ddc5503..8cd4fc7e9 100644
+--- a/system_v8/tool_ledger/battery_batch5/results/sparsediffpy.json
++++ b/system_v8/tool_ledger/battery_batch5/results/sparsediffpy.json
+@@ -3,9 +3,9 @@
+   "state": "INTEGRATED",
+   "verdict": "INTEGRATED",
+   "promotion_allowed": false,
+-  "generated_at": "2026-07-20T09:22:41.473226+00:00",
++  "generated_at": "2026-07-27T21:32:34.034852+00:00",
+   "real_object": "real amplitude-damping Liouvillian (tools_qit_referee.py c_ops_damp, GAM_LAW=0.5), real+imag block form",
+-  "memory_free_percent": 83,
++  "memory_free_percent": 39,
+   "computed_number": 0.0,
+   "checks": {
+     "matrix_dim": 32,

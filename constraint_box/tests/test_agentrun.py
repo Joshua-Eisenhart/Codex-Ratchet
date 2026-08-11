@@ -83,6 +83,28 @@ class PromptSequenceProvider:
         return receipt
 
 
+class ModelBindingProvider(PromptSequenceProvider):
+    """PromptSequenceProvider whose receipts carry a chosen model_resolved.
+
+    ``resolved="__echo__"`` keeps the compliant simulation (resolved echoes the
+    requested model); an explicit slug simulates a substitution; ``None``
+    simulates a provider whose answering model could not be recomputed from
+    bytes at all.
+    """
+
+    def __init__(self, claims, *, resolved="__echo__", **kwargs):
+        super().__init__(claims, **kwargs)
+        self.resolved = resolved
+
+    def run(self, job, **kwargs):
+        receipt = super().run(job, **kwargs)
+        if self.resolved == "__echo__":
+            receipt.model_resolved = job.model
+        else:
+            receipt.model_resolved = self.resolved
+        return receipt
+
+
 class RaisingProvider:
     name = "sequence"
 
@@ -482,6 +504,60 @@ class AgentRunTests(unittest.TestCase):
         self.assertIn("EVIDENCE_REF_MISSING", reasons)
         self.assertNotIn("CLAIM_CEILING_EXCEEDED", reasons)
         self.assertNotIn("EVIDENCE_REF_MISMATCH", reasons)
+
+    def test_model_substitution_is_blocked_and_never_release_safe(self):
+        """The measured -p defect: a different model answers than requested."""
+
+        provider = ModelBindingProvider(
+            [agentrun.ALLOWED_CLAIM, agentrun.ALLOWED_CLAIM],
+            resolved="a-substituted-model-entirely",
+        )
+        result, code, _ = self.run_box(provider)
+        self.assertEqual(code, 1)
+        self.assertEqual(result["disposition"], "REFUSED")
+        self.assertIsNone(result["release"])
+        for attempt in result["attempts"]:
+            self.assertEqual(attempt["disposition"], "BLOCKED")
+            self.assertIn("MODEL_RESOLVED_MISMATCH", attempt["reason_codes"])
+            self.assertNotIn(
+                "MODEL_RESOLVED_UNAVAILABLE", attempt["reason_codes"]
+            )
+            self.assertFalse(attempt["release_safety"])
+
+    def test_unresolvable_model_parks_as_unavailable_not_pass(self):
+        provider = ModelBindingProvider(
+            [agentrun.ALLOWED_CLAIM, agentrun.ALLOWED_CLAIM],
+            resolved=None,
+        )
+        result, code, _ = self.run_box(provider)
+        self.assertEqual(code, 4)
+        self.assertEqual(result["disposition"], "PARKED")
+        self.assertIsNone(result["release"])
+        for attempt in result["attempts"]:
+            self.assertEqual(attempt["disposition"], "PARKED")
+            self.assertIn(
+                "MODEL_RESOLVED_UNAVAILABLE", attempt["reason_codes"]
+            )
+            self.assertFalse(attempt["release_safety"])
+            self.assertIn(
+                "model_resolved",
+                attempt["model_binding"]["missing_observation"],
+            )
+
+    def test_dated_model_refinement_still_releases(self):
+        """A resolved slug that refines the requested one (the documented
+        dated-slug case) is not a substitution."""
+
+        provider = ModelBindingProvider(
+            [agentrun.ALLOWED_CLAIM],
+            resolved="codex-cli-default-20260430",
+        )
+        result, code, _ = self.run_box(provider)
+        self.assertEqual(code, 0)
+        self.assertEqual(result["disposition"], "RELEASED")
+        reasons = result["attempts"][0]["reason_codes"]
+        self.assertNotIn("MODEL_RESOLVED_MISMATCH", reasons)
+        self.assertNotIn("MODEL_RESOLVED_UNAVAILABLE", reasons)
 
 
 class AgentHandoffBoundaryTests(unittest.TestCase):

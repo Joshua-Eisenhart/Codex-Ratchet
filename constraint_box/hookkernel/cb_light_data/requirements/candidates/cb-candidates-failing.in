@@ -1,0 +1,32 @@
+# Untested candidates that FAIL the bar. Installed only to measure what adopting
+# them would actually cost; each line records why it failed.
+RestrictedPython==8.4    # compile untrusted proposal code with a restricted builtins set
+#   BAR: 5 deps
+backoff==2.2.1    # decorator-level bounded backoff
+#   BAR: stale 1403d
+cyclonedx-python-lib==11.11.0    # SBOM per run recorded into the receipt
+#   BAR: 8 deps
+distro==1.9.0    # identify the host distribution into the receipt
+#   BAR: stale 958d
+import-linter==2.13    # declare and enforce layer boundaries between CB modules
+#   BAR: 7 deps
+pexpect==4.9.0    # drive a subprocess deterministically and capture exactly what it emitt
+#   BAR: stale 987d; no requires-python
+pip-audit==2.10.1    # dependency vulnerability check as a gate
+#   BAR: 23 deps
+portalocker==4.1.0    # cross-platform advisory file locking for lease exclusion
+#   BAR: 12 deps
+psutil==7.2.2    # process and resource introspection; prove a worker stayed inside its m
+#   BAR: 38 deps
+python-json-logger==4.1.0    # JSON log records that a gate can consume
+#   BAR: 18 deps
+python-statemachine==3.2.1    # declarative state machine with transition validation
+#   BAR: 5 deps
+rfc8785==0.1.4    # JCS canonical JSON so hashes are stable across implementations
+#   BAR: stale 680d; 9 deps
+tenacity==9.1.4    # bounded retry with declared stop conditions; a provider call cannot re
+#   BAR: 5 deps
+transitions==0.9.3    # explicit finite state machine with guards; mini-lev flow policies as d
+#   BAR: no requires-python
+whatthepatch==1.0.7    # parse unified diffs to decide whether a patch touches a gate
+#   BAR: stale 630d

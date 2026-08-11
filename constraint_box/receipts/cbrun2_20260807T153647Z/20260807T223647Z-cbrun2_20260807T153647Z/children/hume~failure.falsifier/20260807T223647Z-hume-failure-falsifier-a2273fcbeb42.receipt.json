@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T22:37:48.230731+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/hume~failure.falsifier/20260807T223647Z-hume-failure-falsifier-a2273fcbeb42.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 56174,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"verdict\": \"BLOCKED\",\n  \"promotion_allowed\": false,\n  \"claim_ceiling\": \"Cannot verify git state, test status, CI/CD results, code review status, or merge conflict presence\",\n  \"confidence\": 0.3,\n  \"finding\": \"Premise unverified: git log, worktree count, file diff, and test/CI status must be checked before assessing merge readiness.\"\n}\n```",
+    "result_subtype": "success",
+    "total_cost_usd": 0.13735239999999999
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/hume~failure.falsifier/20260807T223647Z-hume-failure-falsifier-a2273fcbeb42.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun2_20260807T153647Z/20260807T223647Z-cbrun2_20260807T153647Z/children/hume~failure.falsifier/20260807T223647Z-hume-failure-falsifier-a2273fcbeb42.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

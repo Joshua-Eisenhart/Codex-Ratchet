@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:48:17.039702+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 22131,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"chosen\": \"[literal]\",\n  \"why_it_beats_the_others\": \"Falsifying a causal claim requires first confirming the antecedent occurred\u2014without evidence the git command was actually executed, all downstream critiques (which command, what error, what check blocked it) remain untestable.\",\n  \"retained_rival\": \"[adversarial]\"\n}\n```\n\nThe [literal] member diagnoses the root blockage: confirmation of execution is the prerequisite for testing. [Adversarial] survives because even once execution is confirmed, the claim remains structurally vague\u2014\"git aborts\" doesn't name which of several possible commands (merge/rebase/cherry-pick) was attempted, so expected behavior is undefined.",
+    "result_subtype": "success",
+    "total_cost_usd": 0.019788099999999996
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r2/20260807T234750Z-L3r2/children/guard.boundary_check~round2/20260807T234750Z-guard-boundary-check-round2-c343ed860244.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

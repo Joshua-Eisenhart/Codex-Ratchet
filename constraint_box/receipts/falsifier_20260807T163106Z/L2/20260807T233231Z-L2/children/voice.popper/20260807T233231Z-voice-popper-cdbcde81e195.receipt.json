@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:33:00.564829+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 25854,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "```json\n{\n  \"status\": \"open\",\n  \"overclaim_correction\": \"Claim treats the condition as a binary blocker, not acknowledging that worktree state is mutable. Git's refusal is predictable safety behavior, not a hard block on merging. The claim would need qualification: 'blocks until worktree is cleaned.'\",\n  \"boundary_failure\": \"Boundary lies between 'git enforces abort with dirty files' (true, testable) and 'therefore the merge cannot be completed' (incomplete \u2014 worktree changes can be stashed/committed/discarded). The claim confuses 'git refuses this attempt' with 'this operation is impossible.'\",\n  \"minimal_fix\": \"Run the decisive check (both agents agree on the test). If merge exit code is 0, or if any July commit SHA appears in `git log` post-merge, claim is killed. If merge fails with exit code 1 and no July commits appear in HEAD, claim survives as technically accurate (but operationally imprecise without remedy path).\",\n  \"decisive_check\": \"git status --short | wc -l; git merge ori",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0189114
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L2/20260807T233231Z-L2/children/voice.popper/20260807T233231Z-voice-popper-cdbcde81e195.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

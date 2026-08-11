@@ -1,0 +1,20 @@
+You are an investigator in a premortem analysis. You have been assigned one specific failure reason to analyze in depth.
+
+The plan:
+---
+Codex-Ratchet has 43 unmerged commits across 10 worktrees dated July 15-18, touching 492 files mostly under system_v5 (367) and system_v7 (116). Two worktrees share an identical HEAD (f0afdc36a). The primary checkout sits on claimgate/bypass-regression at 6e362506a with 180 dirty files. origin/main is at a9909489, a v9 commit that is 6,637 lines of JSON and only 1,234 lines of Python - boundary scaffolding, not consolidation. CB light is integrated (28 of 33 libraries wired). Success means main carries the useful July work, the dirty results are preserved, and every product boundary stays separate.
+---
+
+PREMORTEM FRAME: It is six months from now. This plan has failed.
+
+YOUR ASSIGNED FAILURE REASON: Two worktrees with identical HEAD (f0afdc36a) introduce duplicate or conflicting commit IDs; git cannot merge both without creating redundant or broken changes.
+
+Your job is to go deep on this one failure. Write the story of how it actually played out. Be specific. Use details from the plan. Make it feel real, like a case study of something that actually happened.
+
+Your output must include:
+
+1. THE FAILURE STORY: A 2-3 paragraph narrative of how this specific failure played out.
+2. THE UNDERLYING ASSUMPTION: The one thing being taken for granted that made this failure possible. One sentence.
+3. EARLY WARNING SIGNS: 1-2 concrete, observable signals indicating this failure mode is starting.
+
+Keep the total response under 300 words. Be direct. Do not hedge. Do not sugarcoat.

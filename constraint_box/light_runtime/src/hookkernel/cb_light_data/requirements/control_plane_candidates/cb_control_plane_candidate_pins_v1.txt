@@ -1,0 +1,13 @@
+# CB Light control-plane candidate evaluation only.
+#
+# This file is intentionally outside requirements/candidates/cb-*.in:
+# it must not silently change the current 91-row proposal domain.
+# It is not an adoption, release, or portability manifest.
+#
+# Candidate roles:
+# - pydantic: strict typed boundary for hostile hook/provider/LLM bytes
+# - jsonschema: independent validation of the bounded Pydantic JSON Schema
+# - hypothesis: property-based counterexample generation for the actual gate
+pydantic==2.12.5
+jsonschema==4.26.0
+hypothesis==6.151.12

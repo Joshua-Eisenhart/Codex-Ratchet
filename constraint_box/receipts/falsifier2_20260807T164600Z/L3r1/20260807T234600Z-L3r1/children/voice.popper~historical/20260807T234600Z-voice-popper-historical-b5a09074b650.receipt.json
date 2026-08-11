@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:46:29.031674+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r1/20260807T234600Z-L3r1/children/voice.popper~historical/20260807T234600Z-voice-popper-historical-b5a09074b650.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 23007,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "**1. TARGET CLAIM (exact):**\nThe 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.\n\n**2. STRONGEST LIVE FALSIFIER (single sentence, under 30 words):**\nMerge succeeds and applies any of the 43 July commits with 180 dirty files present in the worktree.\n\n**3. DECISIVE CHECK:**\nRun `git merge <branch-with-July-commits>` with dirty files present. Observe:\n- Exit code (0 = success, non-zero = abort)\n- `git log` after attempt (do any July commits appear in history?)\n- `git status` (does it show merge in progress or completed?)\n\nEvidence path: command execution + log inspection + status state.\n\n**4. CLASSIFICATION: OPEN**\n\nReason: The claim is testable but not yet pressure-tested against actual git behavior. Dirty files may or may not block a merge depending on whether they conflict with incoming changes. The claim assumes categorical blocking; git's actual behavior (stash, abort, or proceed) remains undecided until the check r",
+    "result_subtype": "success",
+    "total_cost_usd": 0.10510040000000001
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r1/20260807T234600Z-L3r1/children/voice.popper~historical/20260807T234600Z-voice-popper-historical-b5a09074b650.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier2_20260807T164600Z/L3r1/20260807T234600Z-L3r1/children/voice.popper~historical/20260807T234600Z-voice-popper-historical-b5a09074b650.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

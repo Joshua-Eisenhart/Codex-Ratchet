@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:31:23.966074+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 12485,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "**Target claim (exact):** The 180 dirty files on the primary worktree block a clean merge; git aborts without applying any of the 43 July commits.\n\n**Strongest falsifier:** If `git merge <branch>` succeeds, or if any July commit is applied to HEAD despite dirty files or git's error status.\n\n**Decisive check (runnable):**\n```\ngit status --short | wc -l\ngit merge origin/branch 2>&1; echo $?\ngit log --oneline --since=\"2026-07-01\" | wc -l\n```\nIf exit code is 0 or HEAD advances: claim is **killed**.\n\n**Classification:** `open` \u2014 depends on actual worktree state and branch target.\n\n**Agent ID:** `voice-popper::falsifier-merge-dirty-files`",
+    "result_subtype": "success",
+    "total_cost_usd": 0.014286400000000001
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/falsifier_20260807T163106Z/L3/20260807T233106Z-L3/children/voice.popper~decisive_check/20260807T233106Z-voice-popper-decisive-check-fe27518504b8.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 150.0
+}

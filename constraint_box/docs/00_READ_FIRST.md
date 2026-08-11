@@ -33,3 +33,20 @@ Current source and tests still support their broad separation of the control pla
 This lane did not recheck their historical package receipts, installed-version claims, cloud state, lock freshness, suggested installation steps, archive contents, or proposed M0-M8 completion. Some inherited statements overstate current wiring: applicability is reachable but gates nothing, and the retained ledger head is not an independent trust root.
 
 Trust this numbered set and `PROVENANCE.md` for current behavior and defects. Use the inherited set for 2026-07-25 design context, then remeasure before relying on a claim.
+
+## Added 2026-08-08 — session notes are not documentation
+
+`constraint_box/docs/` also contains ~21 files dated `20260806` or `20260807`. Those are
+working notes from one session, not part of this numbered set and not product
+documentation. Two are worth keeping: `OWNER_RULINGS_VERBATIM_20260806.md` (the owner's
+own words) and `CB_COMPONENT_INDEX_20260807.md` (986 components with per-row state and a
+next action).
+
+`constraint_box/scripts/cb_*.py` are from that same session. **None of them imports
+`constraintbox`.** They run beside the package rather than on it, and re-implement
+sequencing, budgets, receipts and terminals that `src/constraintbox/mini_levos.py`
+already provides. Treat them as ideas to port into the kernel, not as a foundation.
+
+The kernel is the sequencer: a wave is a `FlowPolicy`, a council is nodes, a member is a
+registered hook, a gate is a `GATE`-kind node, looping back is a transition, and a loop
+that stops advancing is the `HOLD` terminal.

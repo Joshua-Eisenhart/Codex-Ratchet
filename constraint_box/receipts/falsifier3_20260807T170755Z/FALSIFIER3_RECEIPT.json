@@ -1,0 +1,358 @@
+{
+ "claim_ceiling": "wave design structure only",
+ "lanes": [
+  "haiku",
+  "nvidia/nemotron-3-super-120b-a12b:free",
+  "nvidia/nemotron-nano-9b-v2:free",
+  "openai/gpt-oss-20b:free",
+  "cohere/north-mini-code:free"
+ ],
+ "promotion_allowed": false,
+ "schema": "cb.wave.failure-falsifier.v3",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "wave design structure only; CB does not decide whether the councils would produce good judgments",
+   "prompt_intent": "Falsify the DESIGN of the Decision and Follow-Up waves before building them.",
+   "success_condition": "each design claim is KILLED with a named structural refutation, or OPEN with the falsifier stated"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "7eafc117945dc064d30958f93b62a6675613f782fdc2bc0e2d021526d8475b84",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 1,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a wave design is sound because it was inherited"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "targets": {
+  "decision": {
+   "claim": "The Decision council's three routes \u2014 context_strategy, move_selection, evidence_boundary \u2014 are sufficient to select ONE bounded move while preserving live alternatives, without any further route.",
+   "collapse_audit": {
+    "max": 0.359,
+    "mean": 0.359,
+    "verdict": "DIVERGENT"
+   },
+   "deterministic": {
+    "celpy": {
+     "rule": "all councils run AND members >= floor",
+     "verdict": "REFUTE: conformance rule fails on the declared numbers"
+    },
+    "icontract": {
+     "verdict": "ADMIT"
+    },
+    "portion": {
+     "coverage": 1.0,
+     "verdict": "ADMIT"
+    },
+    "rustworkx": {
+     "cycles": 0,
+     "verdict": "ADMIT"
+    },
+    "z3": {
+     "query": "3 children x 4 members >= 15",
+     "result": "unsat",
+     "verdict": "REFUTE: declared structure is below the conformance floor"
+    }
+   },
+   "deterministic_refutations": [
+    "z3",
+    "celpy"
+   ],
+   "llm": [
+    {
+     "cost_usd": 0.0488488,
+     "model": "haiku",
+     "ok": true,
+     "provider": "anthropic",
+     "sec": 14.4,
+     "text": "Z3 refutes: the three routes structurally cannot reach conformance floor\u2014formal insufficiency of route selection design."
+    },
+    {
+     "finish": "stop",
+     "model": "nvidia/nemotron-3-super-120b-a12b:free",
+     "ok": true,
+     "provider": "openrouter",
+     "reasoning_chars": 1828,
+     "sec": 12.7,
+     "text": "The z3 verdict shows the declared structure falls below the conformance floor, proving the three routes cannot always select a bounded move while preserving alternatives.",
+     "usage": {
+      "completion_tokens": 479,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 462
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 0,
+       "upstream_inference_cost": 0,
+       "upstream_inference_prompt_cost": 0
+      },
+      "is_byok": false,
+      "prompt_tokens": 189,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 668
+     }
+    },
+    {
+     "error": "KeyError: 'choices'",
+     "model": "nvidia/nemotron-nano-9b-v2:free",
+     "ok": false,
+     "provider": "openrouter",
+     "sec": 62.6,
+     "text": ""
+    },
+    {
+     "finish": "length",
+     "model": "openai/gpt-oss-20b:free",
+     "ok": false,
+     "provider": "openrouter",
+     "reasoning_chars": 2993,
+     "sec": 47.6,
+     "text": "",
+     "usage": {
+      "completion_tokens": 600,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 597
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 4.2e-05,
+       "upstream_inference_cost": 4.52915e-05,
+       "upstream_inference_prompt_cost": 3.2915e-06
+      },
+      "is_byok": false,
+      "prompt_tokens": 227,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 827
+     }
+    },
+    {
+     "finish": "length",
+     "model": "cohere/north-mini-code:free",
+     "ok": false,
+     "provider": "openrouter",
+     "reasoning_chars": 2906,
+     "sec": 15.7,
+     "text": "",
+     "usage": {
+      "completion_tokens": 600,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 732
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 0,
+       "upstream_inference_cost": 0,
+       "upstream_inference_prompt_cost": 0
+      },
+      "is_byok": false,
+      "prompt_tokens": 151,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 751
+     }
+    }
+   ],
+   "provider_audit": {
+    "families": 2,
+    "lanes_called": 5,
+    "lanes_live": 2,
+    "max_similarity": 0.359,
+    "mean_similarity": 0.359,
+    "provider_families": [
+     "anthropic",
+     "openrouter"
+    ],
+    "verdict": "REAL_SWARM: multiple families, diverse receipts"
+   },
+   "verdict": "KILLED (deterministic refutation)"
+  },
+  "followup": {
+   "claim": "The Follow-Up council's three routes \u2014 next_move_selector, lane_builder, compile_gate \u2014 generate divergent next prompts and compile the useful ones into bounded work, and the five lanes (direct, alternative, reframe, back, wildcard) are enough to cover the option space.",
+   "collapse_audit": {
+    "max": 0.356,
+    "mean": 0.294,
+    "verdict": "DIVERGENT"
+   },
+   "deterministic": {
+    "celpy": {
+     "rule": "all councils run AND members >= floor",
+     "verdict": "REFUTE: conformance rule fails on the declared numbers"
+    },
+    "icontract": {
+     "verdict": "ADMIT"
+    },
+    "portion": {
+     "coverage": 1.0,
+     "verdict": "ADMIT"
+    },
+    "rustworkx": {
+     "cycles": 0,
+     "verdict": "ADMIT"
+    },
+    "z3": {
+     "query": "3 children x 5 members >= 15",
+     "result": "sat",
+     "verdict": "ADMIT"
+    }
+   },
+   "deterministic_refutations": [
+    "celpy"
+   ],
+   "llm": [
+    {
+     "cost_usd": 0.0552558,
+     "model": "haiku",
+     "ok": true,
+     "provider": "anthropic",
+     "sec": 26.5,
+     "text": "**If follow-up options persistently map to zero or multiple lanes, the five-lane partition is insufficient.**\n\n(17 words. Celpy's conformance-rule failure on declared numbers suggests the partition itself may not be exhaustive or mutually exclusive under active constraints.)"
+    },
+    {
+     "finish": "stop",
+     "model": "nvidia/nemotron-3-super-120b-a12b:free",
+     "ok": true,
+     "provider": "openrouter",
+     "reasoning_chars": 1579,
+     "sec": 26.5,
+     "text": "Celpy reports that the conformance rule fails on the declared numbers, proving the five lanes do not cover the option space.",
+     "usage": {
+      "completion_tokens": 402,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 399
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 0,
+       "upstream_inference_cost": 0,
+       "upstream_inference_prompt_cost": 0
+      },
+      "is_byok": false,
+      "prompt_tokens": 201,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 603
+     }
+    },
+    {
+     "finish": "stop",
+     "model": "nvidia/nemotron-nano-9b-v2:free",
+     "ok": true,
+     "provider": "openrouter",
+     "reasoning_chars": 2317,
+     "sec": 24.4,
+     "text": "\"An option exists not covered by any of the five lanes.\"",
+     "usage": {
+      "completion_tokens": 519,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 582
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 0,
+       "upstream_inference_cost": 0,
+       "upstream_inference_prompt_cost": 0
+      },
+      "is_byok": false,
+      "prompt_tokens": 197,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 716
+     }
+    },
+    {
+     "error": "HTTPError: HTTP Error 429: Too Many Requests",
+     "model": "openai/gpt-oss-20b:free",
+     "ok": false,
+     "provider": "openrouter",
+     "sec": 0.7,
+     "text": ""
+    },
+    {
+     "finish": "length",
+     "model": "cohere/north-mini-code:free",
+     "ok": false,
+     "provider": "openrouter",
+     "reasoning_chars": 2893,
+     "sec": 19.2,
+     "text": "",
+     "usage": {
+      "completion_tokens": 600,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 727
+      },
+      "cost": 0,
+      "cost_details": {
+       "upstream_inference_completions_cost": 0,
+       "upstream_inference_cost": 0,
+       "upstream_inference_prompt_cost": 0
+      },
+      "is_byok": false,
+      "prompt_tokens": 165,
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cache_write_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0
+      },
+      "total_tokens": 765
+     }
+    }
+   ],
+   "provider_audit": {
+    "families": 2,
+    "lanes_called": 5,
+    "lanes_live": 3,
+    "max_similarity": 0.356,
+    "mean_similarity": 0.294,
+    "provider_families": [
+     "anthropic",
+     "openrouter"
+    ],
+    "verdict": "REAL_SWARM: multiple families, diverse receipts"
+   },
+   "verdict": "KILLED (deterministic refutation)"
+  }
+ },
+ "wall_seconds": 89.4
+}

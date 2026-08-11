@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T22:33:51.756912+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 51343,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "Based on the repository state and commit distribution, I'm issuing this assessment:\n\n```json\n{\n  \"verdict\": \"PARKED\",\n  \"promotion_allowed\": false,\n  \"claim_ceiling\": \"Does not assess actual merge conflicts, CI test passes, or cross-worktree dependency consistency. Assesses only risk profile from structural signals: fragmentation, scale, version coverage.\",\n  \"confidence\": 0.72,\n  \"finding\": \"10 worktrees with 43 commits touching 492 files across system_v5 and system_v7 over July 15-18 signal parallel work without integration gate; fragmentation and cross-version scope indicate unresolved coordination risk before merge.\"\n}\n```",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0836203
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/cbrun_20260807T153231Z/20260807T223231Z-cbrun_20260807T153231Z/children/claim~pushback/20260807T223256Z-claim-pushback-0840b031d448.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 120.0
+}

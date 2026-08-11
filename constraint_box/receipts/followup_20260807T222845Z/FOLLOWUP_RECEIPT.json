@@ -1,0 +1,1470 @@
+{
+ "L3": {
+  "by_lane": {
+   "nv:deepseek-ai/deepseek-v4-flash-0731": {
+    "called": 15,
+    "live": 15
+   },
+   "nv:meta/llama-3.1-8b-instruct": {
+    "called": 12,
+    "live": 12
+   },
+   "nv:meta/llama-3.3-70b-instruct": {
+    "called": 10,
+    "live": 10
+   },
+   "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+    "called": 7,
+    "live": 7
+   },
+   "nv:nvidia/nemotron-3-nano-30b-a3b": {
+    "called": 8,
+    "live": 8
+   },
+   "nv:openai/gpt-oss-120b": {
+    "called": 6,
+    "live": 5
+   },
+   "nvidia/nemotron-nano-9b-v2:free": {
+    "called": 9,
+    "live": 9
+   },
+   "openai/gpt-oss-20b:free": {
+    "called": 3,
+    "live": 3
+   }
+  },
+  "dispatched": 70,
+  "live": 69
+ },
+ "candidate_options": [
+  "Reframe the task as generating candidate follow-up options for the task.",
+  "Reframe the constraint box as a question, not a box: \"What if the box is the constraint?",
+  "Reframe Constraint Box as a dynamic, adaptive system.",
+  "Reframe Constraint Box as a dynamic system.",
+  "Ask what the box's constraints exclude from the search space.**",
+  "Assess resource allocation against campaign priorities to identify potential bottlenecks.",
+  "Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test",
+  "Target a complementary market segment to broaden reach.",
+  "Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.",
+  "Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage",
+  "Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.",
+  "Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage. **Unquestioned constraint:** Five",
+  "Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.",
+  "Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.",
+  "The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".",
+  "We need to follow instructions. The agent is Systems voice. Must load the file at",
+  "Introduce a delay in the follow-up option generation process.",
+  "Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.",
+  "Introduce a secondary feedback loop to monitor and adjust follow-up option generation.",
+  "Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.",
+  "Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why. **Cut + replacement:**",
+  "Fog found:** \"expose a decision this task's framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)",
+  "Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".",
+  "Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?",
+  "Clarify which of the five lanes (direct, alternative, reframe, back, wildcard) directly addresses the unresolved constraint in the Constraint Box."
+ ],
+ "claim_ceiling": "follow-up structure and lane-coverage shape only; CB does not decide whether any option, lane, or the compiled synthesis is correct",
+ "classifier_self_test": {
+  "all_fixtures_pass": true,
+  "checks": [
+   {
+    "expect": [],
+    "got": [],
+    "pass": true,
+    "text": "keep monitoring the existing dashboard on the usual weekly cadence"
+   },
+   {
+    "expect": [
+     "direct"
+    ],
+    "got": [
+     "direct"
+    ],
+    "pass": true,
+    "text": "take the next step right now and nothing else"
+   },
+   {
+    "expect": [
+     "alternative",
+     "back"
+    ],
+    "got": [
+     "alternative",
+     "back"
+    ],
+    "pass": true,
+    "text": "instead of that, revert to the earlier framing"
+   },
+   {
+    "expect": [
+     "wildcard"
+    ],
+    "got": [
+     "wildcard"
+    ],
+    "pass": true,
+    "text": "try a wildcard, completely different experiment"
+   },
+   {
+    "expect": [
+     "reframe"
+    ],
+    "got": [
+     "reframe"
+    ],
+    "pass": true,
+    "text": "reframe the real question before doing anything else"
+   }
+  ],
+  "classifier_can_fail": true,
+  "proves_multi_lane_possible": true,
+  "proves_zero_lane_possible": true
+ },
+ "collapsed_councils": [],
+ "compilation": {
+  "follow_up.compile_gate": {
+   "compiled_work": "Five lanes cover 13 of 25 options; 19 options remain uncovered and 2 span multiple lanes, falsifying the claim that five lanes deterministically cover the follow-up space. Constraint Box must either expand its lane taxonomy to capture the uncovered 19 options or redesign the frame to admit what search constraints its current five lanes actually enforce\u2014the live option set did not stay within the boundary."
+  },
+  "follow_up.lane_builder": {
+   "next_prompts": {
+    "alternative": "Before generating options, determine the primary goal: feasibility, constraint robustness, or stakeholder alignment? Regenerate candidate options aligned to that goal. Report divergence from the direct lane.",
+    "back": "Revisit the Decision wave route admission. Should the Follow-Up wave treat all three routes equally, or asymmetrically favor the most-constrained route? Rebuild candidate options under your chosen priority model.",
+    "direct": "For each admitted route, generate one candidate follow-up option. Specify constraints added, expected tightening, and feasibility impact. Classify each option by lane (direct/alternative/reframe/back/wildcard).",
+    "reframe": "Assume only one follow-up option is possible. Which matters most to Constraint Box? Build that one. Then test: does adding two more options strengthen the system or introduce coordination drag?",
+    "wildcard": "Surface one unseen constraint (regulatory, technical, or organizational) not yet represented. Design a follow-up option addressing it. Does it re-rank the direct lane's candidate options?"
+   }
+  },
+  "follow_up.next_move_selector": {
+   "candidate_options": [
+    "Reframe the task as generating candidate follow-up options for the task.",
+    "Reframe the constraint box as a question, not a box: \"What if the box is the constraint?",
+    "Reframe Constraint Box as a dynamic, adaptive system.",
+    "Reframe Constraint Box as a dynamic system.",
+    "Ask what the box's constraints exclude from the search space.**",
+    "Assess resource allocation against campaign priorities to identify potential bottlenecks.",
+    "Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test",
+    "Target a complementary market segment to broaden reach.",
+    "Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.",
+    "Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage",
+    "Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.",
+    "Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage. **Unquestioned constraint:** Five",
+    "Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.",
+    "Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.",
+    "The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".",
+    "We need to follow instructions. The agent is Systems voice. Must load the file at",
+    "Introduce a delay in the follow-up option generation process.",
+    "Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.",
+    "Introduce a secondary feedback loop to monitor and adjust follow-up option generation.",
+    "Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.",
+    "Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why. **Cut + replacement:**",
+    "Fog found:** \"expose a decision this task's framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)",
+    "Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".",
+    "Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?",
+    "Clarify which of the five lanes (direct, alternative, reframe, back, wildcard) directly addresses the unresolved constraint in the Constraint Box."
+   ]
+  }
+ },
+ "councils": {
+  "follow_up.compile_gate": {
+   "guard.receipt_audit": {
+    "answers": {
+     "adversarial": "Claim that lane names guarantee corresponding options exist.",
+     "boundary": "The claim with no receipt behind it is \"a lane exists just because it is named one\".",
+     "historical": "The claim that the five lanes cover all possible follow-up options lacks a receipt.",
+     "literal": "The claim that the five lanes deterministically cover all potential follow-up options lacks empirical receipt.",
+     "operational": "The follow\u2011up claims that the Constraint Box will halve latency without any supporting evidence."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.808,
+     "mean_similarity": 0.406,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.808,
+     "mean_similarity": 0.406,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 15.0
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.2
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.6
+     },
+     "literal": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 15.1
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 11.0
+     }
+    }
+   },
+   "voice.feynman": {
+    "answers": {
+     "adversarial": "Run a concrete check where the model classifies its own generated follow-up options into the five lanes (direct, alternative, reframe, back, wildcard) and verify that the total lane coverage percentage equals 100%.",
+     "boundary": "Run the provided lane\u2011validation script on the generated options and verify it reports no option assigned to zero or multiple lanes and at least one option per lane.",
+     "historical": "Read the classifier's output and verify it explicitly lists both \u201czero\u2011lane\u201d and \u201cmulti\u2011lane\u201d results with no omitted options.",
+     "literal": "The single check: rerun the lane classifier on all harvested options and verify each option maps to exactly one lane, with zero unmapped.",
+     "operational": "Run the classifier on generated options and verify that the count of options assigned to zero lanes and multiple lanes is zero."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.658,
+     "mean_similarity": 0.38,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.658,
+     "mean_similarity": 0.38,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 8.6
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 11.1
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.0
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.9
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 70.0
+     }
+    }
+   },
+   "voice.hume": {
+    "answers": {
+     "adversarial": "The evidence shows 3/3 routes admitted and the Follow-Up wave selected, but no option coverage data exists yet.",
+     "boundary": "The candidate follow-up options for the task are harvested, lane prompts are built, and the code classifier reports zero-lane and multi-lane options honestly, with no live option silently dropped.",
+     "historical": "The Follow-Up wave built five lane prompts per option, but no evidence confirms exhaustive coverage or classifier accuracy in lane assignment.",
+     "operational": "Follow-up options are to be generated for Constraint Box."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 0.432,
+     "mean_similarity": 0.365,
+     "members": 4,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 4,
+     "max_similarity": 0.432,
+     "mean_similarity": 0.365,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 6.3
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 3.4
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 97.5
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": false,
+      "sec": 10.9
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 22.7
+     }
+    }
+   },
+   "voice.popper": {
+    "answers": {
+     "adversarial": "The strongest live falsifier is: \"An option exists that cannot fit into any of the five lanes (direct/alternative/reframe/back/wildcard), proving the coverage is incomplete.\"",
+     "boundary": "No lane covers an option that requires more than five lanes.",
+     "historical": "A lane with no generated options exists.",
+     "literal": "We need to follow Popper role. Steps: 1 Name target claim exactly. 2 Name strongest live falsifier first. 3 State decisive check/evidence path. 4 Classify: killed/open/survived. Return 4-part receipt with headings etc. Must be under 30 words, one sentence. Provide only answer? The task says: \"Answer in ONE sentence under 30 words. State only the answer.\" But also need to produce the 4-part receipt? The instruction earlier: \"Return (4-part receipt, stay in your voice \u2014 you are NOT the synthesis)\". So we must output the receipt with sections? Probably need to output the 4-part receipt as per Popper return spec. The receipt includes MINI-MMM block and then the actual answer? The task says answer in one sentence under 30 words, state only the answer. So the answer is the strongest falsifier? Actually they ask: \"Name the SINGLE strongest falsifier of the claim that five lanes cover this task's option space.\" So the answer is the falsifier statement. Must be one sentence <=30 words. So we need to output that sentence as the answer. But also need to produce the 4-part receipt? The Popper return spec says return 4-part receipt, but also the task says answer in one sentence under 30 words. Possibly we need to embed that sentence as part of receipt? The receipt includes a section for answer? The earlier receipt format shows MINI-MMM block then a line with answer? Not clear. The receipt format given earlier is just the mini-MMM block, not the answer. But the task says \"Answer in ONE sentence under 30 words. State only the answer.\" So maybe we should output just that sentence, not the full receipt. However the agent spec says return 4-part receipt. The receipt includes the mini-MMM block and then maybe the answer? The receipt format earlier shows only the mini-MMM block, not the answer. But the instruction says \"Return (4-part receipt, stay in your voice \u2014 you are NOT the synthesis)\". So we must produce the receipt, which includes the mini-MMM block and then maybe the answer? The receipt likely includes the answer in some field? Not defined. The receipt is just the block; but they also want the answer? The task explicitly says answer in one sentence. So we need to output that sentence as the answer, but also need to produce the receipt? Might conflict. Perhaps we should output the receipt and then the answer sentence? But they said \"State only the answer.\" So maybe we should output only the answer sentence, ignoring the receipt spec? However the agent spec is higher priority? The system says \"You are the Popper voice... Return (4-part receipt, stay in your voice \u2014 you are NOT the synthesis)\". So we must follow that. But the task also gives constraints",
+     "operational": "The strongest falsifier of the claim that five lanes cover this task's option space is the model classifying a live option as silently dropped."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.46,
+     "mean_similarity": 0.214,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 2,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.46,
+     "mean_similarity": 0.253,
+     "model_families": [
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 16.3
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 72.1
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 16.9
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 6.1
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.3
+     }
+    }
+   }
+  },
+  "follow_up.lane_builder": {
+   "lane.alternative": {
+    "answers": {
+     "adversarial": "Pursue a parallel constraint\u2011relaxation sprint to explore new feasibility dimensions before constructing the Follow\u2011Up wave.",
+     "boundary": "Instead of building the Follow\u2011Up wave, Constraint Box could conduct a stakeholder impact analysis to refine constraints.",
+     "historical": "\"Reassess initial assumptions with latest data before proceeding.\"",
+     "literal": "The strongest alternative next move is to reframe the task by asking \"What is the primary goal of the Follow-Up wave?\"",
+     "operational": "We need to generate candidate follow-up options for the task: \"Given the Decision wave admitted 3/3 routes and selected 'build the Follow-Up wave', decide the follow-up options for Constraint Box.\"\n\nWe need to build one next-prompt per lane: direct, alternative, reframe, back, wildcard.\n\nWe must deterministically test whether those five lanes cover the option space. Must not drop any lane silently. Must report zero-lane and multi-lane options honestly.\n\nWe need to output only the answer: \"Name the strongest ALTERNATIVE next move: a genuinely different path a reasonable person would pick instead of the direct one. Answer in ONE sentence under 30 words. State only the answer.\"\n\nSo we must output a single sentence, under 30 words, containing the strongest alternative next move.\n\nBut also we need to follow the constraints: we need to generate candidate follow-up options, build one next-prompt per lane, and test coverage. However the final answer must be only the answer: one sentence under 30 words naming the strongest alternative next move.\n\nBut we also need to ensure we don't violate any hidden constraints. The instruction says \"Answer in ONE sentence under 30 words. State only the answer.\" So we must output exactly that sentence, nothing else.\n\nThus we need to think: what is the strongest alternative next move? The context: Decision wave admitted 3/3 routes and selected \"build the Follow-Up wave\". Now decide follow-up options for Constraint Box. The strongest alternative next move is a genuinely different path a reasonable person would pick instead of the direct one.\n\nProbably the direct move is to \"build the Follow-Up wave\". Alternative could be \"pivot to a different wave type\" or \"skip follow-up and go to evaluation\". But we need to name it in one sentence under 30 words.\n\nMaybe: \"Deploy a parallel Constraint Box validation wave to test alternative configurations before committing to the follow-up.\" That's maybe 15 words? Let's count: Deploy(1) a2 parallel3 Constraint4 Box5 validation6 wave7 to8 test9 alternative10 configurations11 before12 committing13 to14 the15 follow-up16. That's 16 words, okay.\n\nBut we need to name the strongest ALTERNATIVE next move. Could be \"Initiate a Constraint Box audit to verify compliance before building the follow-up wave.\" Count: Initiate1 a2 Constraint3 Box4 audit5 to6 verify7 compliance8 before9 building10 the11 follow-up12 wave13. That's 13 words.\n\nWe need to ensure it's a genuinely different path from the direct one (which is building the follow-up wave). So alternative could be \"Run a Constraint Box risk assessment to refine requirements prior to wave construction.\" Count: Run1 a2 Constraint3 Box4 risk5 assessment6 to7 refine8"
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.38,
+     "mean_similarity": 0.167,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.38,
+     "mean_similarity": 0.191,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 11.5
+     },
+     "boundary": {
+      "error": "",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 25.0
+     },
+     "historical": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 13.5
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.9
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 9.9
+     }
+    }
+   },
+   "lane.back": {
+    "answers": {
+     "adversarial": "Revisit the assumption that a follow-up wave is necessary.",
+     "boundary": "Revisit the assumption that all three routes must be kept; drop the least-constrained one to simplify the follow-up wave.",
+     "historical": "Revisit the assumption that a follow-up wave is necessary.",
+     "literal": "Reevaluate the assumption that the Decision wave\u2019s admission of all three routes is final before building the Follow\u2011Up wave.",
+     "operational": "The BACK move should revisit the assumption that all route analyses were sufficient before selecting the Follow-Up wave."
+    },
+    "collapse": {
+     "distinct_answers": 4,
+     "max_similarity": 1.0,
+     "mean_similarity": 0.566,
+     "members": 5,
+     "verdict": "CONVERGENT (agree, not identical)"
+    },
+    "provider_diversity": {
+     "families": 4,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 1.0,
+     "mean_similarity": 0.566,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 17.9
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.6
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 12.8
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 13.0
+     },
+     "operational": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 5.8
+     }
+    }
+   },
+   "lane.direct": {
+    "answers": {
+     "adversarial": "Ask the user to specify which constraints from the Decision wave need further testing or refinement in the Constraint Box.",
+     "boundary": "Initiate construction of the Follow-Up wave using the admitted routes.",
+     "historical": "Direct: Run the five lane tests on the candidate options and record zero-lane/multi-lane results.",
+     "literal": "\"Define constraints for the Follow-Up wave based on the admitted routes.\"",
+     "operational": "Generate a list of follow\u2011up options for Constraint Box."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.797,
+     "mean_similarity": 0.398,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.797,
+     "mean_similarity": 0.398,
+     "model_families": [
+      "deepseek",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 11.0
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 19.9
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.9
+     },
+     "literal": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 4.3
+     },
+     "operational": {
+      "error": "",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 8.9
+     }
+    }
+   },
+   "lane.reframe": {
+    "answers": {
+     "adversarial": "Which follow-up options are redundant and can be eliminated without compromising the constraint box's objectives?",
+     "boundary": "What would count as progress if the Follow-Up wave were replaced by an alternative action?",
+     "historical": "How can we generate and evaluate candidate follow-up options for the Constraint Box task given the Decision wave's admitted routes and selected action?",
+     "literal": "How would the chosen follow-up options change if Constraint Box were evaluated against only one route, not all three?",
+     "operational": "What follow-up options would a user likely request, regardless of task constraints?"
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.522,
+     "mean_similarity": 0.391,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.522,
+     "mean_similarity": 0.391,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 17.0
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 4.6
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 4.6
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.9
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 0.5
+     }
+    }
+   },
+   "lane.wildcard": {
+    "answers": {
+     "adversarial": "Deploy a surprise partnership with an external regulator to test unanticipated compliance leverage.",
+     "boundary": "Wildcard: Explore unrelated stakeholder interests to uncover hidden constraints.",
+     "historical": "Launch a pilot micro\u2011experiment to crowd\u2011source constraint relaxations via an open\u2011innovation hackathon.",
+     "literal": "Investigate a novel, unexplored technology with high uncertainty but potential for disruptive impact.",
+     "operational": "The Follow-Up wave operation involves generating candidate options, building lane prompts, and testing lane coverage for the task of deciding follow-up options for Constraint Box."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.361,
+     "mean_similarity": 0.281,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.361,
+     "mean_similarity": 0.281,
+     "model_families": [
+      "meta-llama",
+      "nvidia",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 2.4
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 5.4
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:openai/gpt-oss-120b",
+      "model": "openai/gpt-oss-120b",
+      "ok": true,
+      "sec": 10.1
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 22.2
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 2.6
+     }
+    }
+   }
+  },
+  "follow_up.next_move_selector": {
+   "voice.factory": {
+    "answers": {
+     "adversarial": "Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.",
+     "boundary": "The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".",
+     "historical": "Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.",
+     "literal": "Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.",
+     "operational": "**Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage.  \n**Unquestioned constraint:** Five named lanes (direct, alternative, reframe, back, wildcard) must each yield exactly one prompt.  \n**Leverage point:** Automate the lane-coverage classifier to flag zero/multi-lane options, cutting triage rework.  \n**Surviving challenge:** Verifying classifier honesty without a ground-truth lane assignment set."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.522,
+     "mean_similarity": 0.264,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.522,
+     "mean_similarity": 0.264,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "openai"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 9.8
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 1.2
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.6
+     },
+     "literal": {
+      "error": "",
+      "lane": "openai/gpt-oss-20b:free",
+      "model": "openai/gpt-oss-20b:free",
+      "ok": true,
+      "sec": 12.8
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 7.3
+     }
+    }
+   },
+   "voice.orwell": {
+    "answers": {
+     "adversarial": "Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".",
+     "boundary": "\"Clarify which of the five lanes (direct, alternative, reframe, back, wildcard) directly addresses the unresolved constraint in the Constraint Box.\"",
+     "historical": "Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?",
+     "literal": "**Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why.\n\n**Cut + replacement:** Replace \"admitted\" with \"passed the gate\" and \"selected\" with \"voted by 3/3 council members on the record.\"\n\n**Bad state hidden:** None cited \u2014 no result paths for the 3/3 votes.\n\n**Replacement phrase:** \"build the Follow-Up wave\" \u2192 \"generate five lane prompts and run the coverage classifier.\"",
+     "operational": "**Fog found:** \"expose a decision this task's framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)  \n**Cuts + replacements:**  \n- \"hiding\" \u2192 \"avoiding\" (active verb, concrete action)  \n- \"framing\" \u2192 \"constraint\" (narrow to specific omitted element)  \n**Final receipt:**  \nWhat constraint is being avoided by not naming the missing lane explicitly?"
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.365,
+     "mean_similarity": 0.2,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.365,
+     "mean_similarity": 0.2,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.5
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 9.5
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 3.2
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 3.2
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 23.8
+     }
+    }
+   },
+   "voice.strategy": {
+    "answers": {
+     "adversarial": "Target a complementary market segment to broaden reach.",
+     "boundary": "\"Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage\"",
+     "historical": "Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.",
+     "literal": "Assess resource allocation against campaign priorities to identify potential bottlenecks.",
+     "operational": "\"Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test whether those five lanes cover the option space.\""
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.37,
+     "mean_similarity": 0.227,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 2,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.37,
+     "mean_similarity": 0.227,
+     "model_families": [
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia",
+      "openrouter"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 2.6
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 10.8
+     },
+     "historical": {
+      "error": "",
+      "lane": "nvidia/nemotron-nano-9b-v2:free",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "ok": true,
+      "sec": 14.4
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "ok": true,
+      "sec": 18.0
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.6
+     }
+    }
+   },
+   "voice.systems": {
+    "answers": {
+     "adversarial": "Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.",
+     "boundary": "Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.",
+     "historical": "Introduce a secondary feedback loop to monitor and adjust follow-up option generation.",
+     "literal": "We need to follow instructions. The agent is Systems voice. Must load the file at ~/wiki/wizard/packet-v4-3-current/mmm/mini/full/voices/md/MMM_VOICE_SYSTEMS_FULL_v4_1.md. Then produce a 4-part receipt: loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic`? Actually return format: \"the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic`\". The instruction says \"Return (4-part receipt; stay in voice, not the synthesis): the loop \u00b7 the real incentive \u00b7 the second-order effect \u00b7 a surviving challenge \u00b7 `slic`\". So we need to output exactly that format? Probably we need to output something like:\n\nloop: ... \u00b7 incentive: ... \u00b7 second-order effect: ... \u00b7 surviving challenge: ... \u00b7 `slic`\n\nBut must be in voice (Systems) and not synthesis. So we should output a receipt with those fields separated by \" \u00b7 \". Probably we need to fill each with appropriate answer.\n\nWe also need to name ONE candidate follow-up that would change the single feedback loop this task currently sits inside. One short phrase, no preamble. Answer in ONE sentence under 30 words. State only the answer.\n\nBut the overall task: \"Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test whether those five lanes cover the option space.\" However the agent is Systems voice, not the one generating candidates? The instruction says we are the Systems voice. We must name the feedback loop, incentive, second-order effect, and answer \"what is the system actually optimizing for, including the parts nobody intended?\" Also we must load the salience file and produce a receipt.\n\nBut also we have to produce a candidate follow-up? The prompt says \"Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test whether those five lanes cover the option space.\" That seems like the overall meta-task for the system. But the agent spec says we are Systems voice and must answer the 4-part receipt. However the \"SUCCESS CONDITION\" says candidate options are harvested, lane prompts are built, and the code classifier reports zero-lane and multi-lane options honestly. But we are not asked to do that; we are just the Systems voice.\n\nThus we should focus on the Systems voice tasks: load the file, then output the 4-part receipt with loop, incentive, second-order effect, surviving challenge, and `slic`. Also we need to name the feedback loop etc.\n\nWe also need to answer the original task: \"Name ONE candidate follow-up that would change the single feedback loop this task currently sits inside. One short phrase, no preamble. Answer in",
+     "operational": "Introduce a delay in the follow-up option generation process."
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.639,
+     "mean_similarity": 0.245,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 3,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.639,
+     "mean_similarity": 0.283,
+     "model_families": [
+      "deepseek",
+      "meta-llama",
+      "nvidia"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 3.7
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 4.6
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 12.7
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:nvidia/nemotron-3-nano-30b-a3b",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "ok": true,
+      "sec": 8.1
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 27.4
+     }
+    }
+   },
+   "voice.zhuangzi": {
+    "answers": {
+     "adversarial": "Reframe Constraint Box as a dynamic, adaptive system.",
+     "boundary": "**Ask what the box's constraints exclude from the search space.**",
+     "historical": "Reframe Constraint Box as a dynamic system.",
+     "literal": "\"Reframe the task as generating candidate follow-up options for the task.\"",
+     "operational": "Reframe the constraint box as a question, not a box: \"What if the box is the constraint?\""
+    },
+    "collapse": {
+     "distinct_answers": 5,
+     "max_similarity": 0.896,
+     "mean_similarity": 0.458,
+     "members": 5,
+     "verdict": "DIVERGENT"
+    },
+    "provider_diversity": {
+     "families": 2,
+     "lanes_called": 5,
+     "lanes_live": 5,
+     "max_similarity": 0.896,
+     "mean_similarity": 0.458,
+     "model_families": [
+      "deepseek",
+      "meta-llama"
+     ],
+     "routing_paths": [
+      "nvidia"
+     ],
+     "verdict": "REAL_SWARM: multiple families, diverse receipts"
+    },
+    "seats": {
+     "adversarial": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 15.3
+     },
+     "boundary": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 2.2
+     },
+     "historical": {
+      "error": "",
+      "lane": "nv:meta/llama-3.3-70b-instruct",
+      "model": "meta/llama-3.3-70b-instruct",
+      "ok": true,
+      "sec": 107.3
+     },
+     "literal": {
+      "error": "",
+      "lane": "nv:meta/llama-3.1-8b-instruct",
+      "model": "meta/llama-3.1-8b-instruct",
+      "ok": true,
+      "sec": 0.9
+     },
+     "operational": {
+      "error": "",
+      "lane": "nv:deepseek-ai/deepseek-v4-flash-0731",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "ok": true,
+      "sec": 1.1
+     }
+    }
+   }
+  }
+ },
+ "declared_outputs": {
+  "compiled_work": "Five lanes cover 13 of 25 options; 19 options remain uncovered and 2 span multiple lanes, falsifying the claim that five lanes deterministically cover the follow-up space. Constraint Box must either expand its lane taxonomy to capture the uncovered 19 options or redesign the frame to admit what search constraints its current five lanes actually enforce\u2014the live option set did not stay within the boundary.",
+  "lane_assignment": {
+   "Ask what the box's constraints exclude from the search space.**": [],
+   "Assess resource allocation against campaign priorities to identify potential bottlenecks.": [],
+   "Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.": [],
+   "Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage. **Unquestioned constraint:** Five": [],
+   "Clarify which of the five lanes (direct, alternative, reframe, back, wildcard) directly addresses the unresolved constraint in the Constraint Box.": [
+    "alternative",
+    "back",
+    "direct",
+    "reframe",
+    "wildcard"
+   ],
+   "Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.": [],
+   "Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.": [],
+   "Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".": [],
+   "Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.": [],
+   "Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage": [],
+   "Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why. **Cut + replacement:**": [],
+   "Fog found:** \"expose a decision this task's framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)": [],
+   "Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test": [
+    "alternative",
+    "back",
+    "reframe",
+    "wildcard"
+   ],
+   "Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.": [],
+   "Introduce a delay in the follow-up option generation process.": [],
+   "Introduce a secondary feedback loop to monitor and adjust follow-up option generation.": [],
+   "Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.": [],
+   "Reframe Constraint Box as a dynamic system.": [
+    "reframe"
+   ],
+   "Reframe Constraint Box as a dynamic, adaptive system.": [
+    "reframe"
+   ],
+   "Reframe the constraint box as a question, not a box: \"What if the box is the constraint?": [
+    "reframe"
+   ],
+   "Reframe the task as generating candidate follow-up options for the task.": [
+    "reframe"
+   ],
+   "Target a complementary market segment to broaden reach.": [],
+   "The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".": [],
+   "We need to follow instructions. The agent is Systems voice. Must load the file at": [],
+   "Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?": []
+  },
+  "next_prompts": {
+   "alternative": "Before generating options, determine the primary goal: feasibility, constraint robustness, or stakeholder alignment? Regenerate candidate options aligned to that goal. Report divergence from the direct lane.",
+   "back": "Revisit the Decision wave route admission. Should the Follow-Up wave treat all three routes equally, or asymmetrically favor the most-constrained route? Rebuild candidate options under your chosen priority model.",
+   "direct": "For each admitted route, generate one candidate follow-up option. Specify constraints added, expected tightening, and feasibility impact. Classify each option by lane (direct/alternative/reframe/back/wildcard).",
+   "reframe": "Assume only one follow-up option is possible. Which matters most to Constraint Box? Build that one. Then test: does adding two more options strengthen the system or introduce coordination drag?",
+   "wildcard": "Surface one unseen constraint (regulatory, technical, or organizational) not yet represented. Design a follow-up option addressing it. Does it re-rank the direct lane's candidate options?"
+  },
+  "uncovered_options": [
+   "Ask what the box's constraints exclude from the search space.**",
+   "Assess resource allocation against campaign priorities to identify potential bottlenecks.",
+   "Target a complementary market segment to broaden reach.",
+   "Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.",
+   "Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage",
+   "Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.",
+   "Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage. **Unquestioned constraint:** Five",
+   "Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.",
+   "Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.",
+   "The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".",
+   "We need to follow instructions. The agent is Systems voice. Must load the file at",
+   "Introduce a delay in the follow-up option generation process.",
+   "Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.",
+   "Introduce a secondary feedback loop to monitor and adjust follow-up option generation.",
+   "Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.",
+   "Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why. **Cut + replacement:**",
+   "Fog found:** \"expose a decision this task's framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)",
+   "Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".",
+   "Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?"
+  ]
+ },
+ "gate": {
+  "follow_up.compile_gate": {
+   "admitted": false,
+   "reasons": [
+    "voice.hume: 4 live members, below the conformance floor of 5",
+    "19 option(s) mapped to ZERO lanes -- the five-lane partition failed its own coverage claim: [\"Ask what the box's constraints exclude from the search space.**\", 'Assess resource allocation against campaign priorities to identify potential bottlenecks.', 'Target a complementary market segment to broaden reach.', 'Defer non-decisive options to prioritize sequence-critical paths aligned with root constraints.', 'Define constraint-boundary parameters for follow-up generation to ensure lane-complete coverage', 'Introduce a standardized follow\u2011up template in the Constraint Box to capture and prioritize options.', 'Bottleneck:** Constraint Box follow-up selection lacks a deterministic lane-coverage test, forcing manual option triage. **Unquestioned constraint:** Five', 'Automate the candidate-to-lane assignment via deterministic rule-based checks, eliminating manual classification.', \"Identify the bottleneck lane that constrains the Follow-Up wave's ability to generate candidate options for Constraint Box.\", 'The single blocking step is \"build the Follow-Up wave\" and the unquestioned constraint is \"Constraint Box\".', 'We need to follow instructions. The agent is Systems voice. Must load the file at', 'Introduce a delay in the follow-up option generation process.', \"Constraint Box: instrument every option's lane-coverage claim with a deterministic classifier audit.\", 'Introduce a secondary feedback loop to monitor and adjust follow-up option generation.', 'Constraint Box: add a second-order loop that audits which constraints get reinforced by downstream failures.', 'Fog found:** \"Decision wave admitted 3/3 routes\" \u2014 \"admitted\" implies approval without a test; \"selected\" hides who chose and why. **Cut + replacement:**', 'Fog found:** \"expose a decision this task\\'s framing is currently hiding\" (evasive framing; masks the concrete action of identifying unspoken constraints)', 'Cut the phrase \"build the Follow-Up wave\" to \"build the wave\".', 'Which concrete metric will validate that the selected follow\u2011up resolves the original constraint?']"
+   ]
+  },
+  "follow_up.lane_builder": {
+   "admitted": true,
+   "reasons": []
+  },
+  "follow_up.next_move_selector": {
+   "admitted": true,
+   "reasons": []
+  }
+ },
+ "lane_counts": {
+  "alternative": 2,
+  "back": 2,
+  "direct": 1,
+  "reframe": 6,
+  "wildcard": 2
+ },
+ "lane_keywords": {
+  "alternative": [
+   "\\binstead\\b",
+   "\\balternative\\b",
+   "\\brather than\\b",
+   "\\banother (option|path|approach|way)\\b",
+   "\\bswap\\b",
+   "\\bdifferent approach\\b",
+   "\\bpivot to\\b"
+  ],
+  "back": [
+   "\\bback\\b",
+   "\\brevert\\b",
+   "\\bundo\\b",
+   "\\bprevious\\b",
+   "\\bearlier\\b",
+   "\\breturn to\\b",
+   "\\bre-?examine\\b",
+   "\\brevisit\\b",
+   "\\brewind\\b",
+   "\\bprior step\\b"
+  ],
+  "direct": [
+   "\\bimmediately\\b",
+   "\\bright now\\b",
+   "\\bnext step\\b",
+   "\\bsmallest\\b",
+   "\\bdirectly\\b",
+   "\\bcontinue\\b",
+   "\\bproceed\\b",
+   "\\bfinish\\b",
+   "\\bexecute\\b",
+   "\\bnow\\b"
+  ],
+  "reframe": [
+   "\\breframe\\b",
+   "\\bredefine\\b",
+   "\\brecast\\b",
+   "\\brename\\b",
+   "\\bthe real question\\b",
+   "\\bwrong question\\b",
+   "\\bask instead\\b",
+   "\\bchange the (question|framing|goal)\\b"
+  ],
+  "wildcard": [
+   "\\bwildcard\\b",
+   "\\bunrelated\\b",
+   "\\borthogonal\\b",
+   "\\blong shot\\b",
+   "\\bout of left field\\b",
+   "\\brandom\\b",
+   "\\bunexpected\\b",
+   "\\bcompletely different\\b",
+   "\\bexperiment(al)?\\b"
+  ]
+ },
+ "overcovered_options": [
+  "Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test",
+  "Clarify which of the five lanes (direct, alternative, reframe, back, wildcard) directly addresses the unresolved constraint in the Constraint Box."
+ ],
+ "promotion_allowed": false,
+ "provenance": {
+  "follow_up.compile_gate/guard.receipt_audit": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.compile_gate/voice.feynman": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ed775ee5531afcb",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "d4106138ed47a5a5",
+   "voice": "feynman"
+  },
+  "follow_up.compile_gate/voice.hume": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "71071841620d78d9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "c8145a731a6521cf",
+   "voice": "hume"
+  },
+  "follow_up.compile_gate/voice.popper": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "8ab5b545cfa4d37e",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "7a914913ab378113",
+   "voice": "popper"
+  },
+  "follow_up.lane_builder/lane.alternative": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.lane_builder/lane.back": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.lane_builder/lane.direct": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.lane_builder/lane.reframe": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.lane_builder/lane.wildcard": {
+   "agent_spec_loaded": false,
+   "agent_spec_sha": "",
+   "mini_mmm_loaded": false,
+   "mini_mmm_sha": "",
+   "voice": null
+  },
+  "follow_up.next_move_selector/voice.factory": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "d9dc6ce673b03878",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "0b245fad7a09afa8",
+   "voice": "factory"
+  },
+  "follow_up.next_move_selector/voice.orwell": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "325169a07c451dc6",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "214fa89f499e5036",
+   "voice": "orwell"
+  },
+  "follow_up.next_move_selector/voice.strategy": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "97c31226b7980a51",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "5238e58992526f02",
+   "voice": "strategy"
+  },
+  "follow_up.next_move_selector/voice.systems": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "ba440d74b5dbc0b5",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "e294a60d4ae5574b",
+   "voice": "systems"
+  },
+  "follow_up.next_move_selector/voice.zhuangzi": {
+   "agent_spec_loaded": true,
+   "agent_spec_sha": "f19e1ba47994fce9",
+   "mini_mmm_loaded": true,
+   "mini_mmm_sha": "6bb8feabdac46ebe",
+   "voice": "zhuangzi"
+  }
+ },
+ "routes_admitted": [
+  "follow_up.next_move_selector",
+  "follow_up.lane_builder"
+ ],
+ "schema": "cb.wave.followup.v1",
+ "strategy_memory": {
+  "conserved": {
+   "claim_ceiling": "follow-up structure and lane-coverage shape only; CB does not decide whether any option or lane is correct",
+   "prompt_intent": "Generate candidate follow-up options for the task, build one next-prompt per lane (direct, alternative, reframe, back, wildcard), and deterministically test whether those five lanes cover the option space.",
+   "success_condition": "candidate options are harvested, lane prompts are built, and the code classifier reports zero-lane and multi-lane options honestly, with no live option silently dropped"
+  },
+  "conserved_intact": true,
+  "conserved_sha256": "d6bab6d367a2068cce8019a3ad849bee246fd6f8e31513dbc032c88f45a7077d",
+  "contracting_sizes": {
+   "followup_rationale": 0,
+   "killed_assumptions": 2,
+   "risks": 0,
+   "standing_context": 0,
+   "strategy_state": 0
+  },
+  "killed_assumptions": [
+   "a lane exists just because it is named one",
+   "a model classifying its own option into a lane is evidence of coverage"
+  ],
+  "promotion_allowed": false,
+  "rounds": 0,
+  "schema": "cb.strategy-memory.v1"
+ },
+ "structure": {
+  "children_per_route": {
+   "follow_up.compile_gate": 4,
+   "follow_up.lane_builder": 5,
+   "follow_up.next_move_selector": 5
+  },
+  "l3_calls_planned": 70,
+  "lane_names": [
+   "direct",
+   "alternative",
+   "reframe",
+   "back",
+   "wildcard"
+  ],
+  "members_per_child": 5,
+  "routes": [
+   "follow_up.next_move_selector",
+   "follow_up.lane_builder",
+   "follow_up.compile_gate"
+  ],
+  "slices": [
+   "literal",
+   "operational",
+   "adversarial",
+   "historical",
+   "boundary"
+  ]
+ },
+ "task": "Given the Decision wave admitted 3/3 routes and selected \"build the Follow-Up wave\", decide the follow-up options for Constraint Box.",
+ "wall_seconds": 519.0
+}

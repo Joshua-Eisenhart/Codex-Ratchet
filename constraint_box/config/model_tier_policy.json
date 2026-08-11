@@ -1,0 +1,25 @@
+{
+  "schema": "cb.model_tier_policy.v2",
+  "tiers": {
+    "cheap": {
+      "slugs": ["gpt-5.6-luna", "codex-cli-default*", "claude-haiku-4-5*", "*-mini", "*-flash"]
+    },
+    "standard": {
+      "slugs": ["gpt-5.6-terra", "claude-sonnet-5*"]
+    },
+    "premium": {
+      "slugs": ["gpt-5.6-sol", "claude-opus-5*", "claude-fable-5*"]
+    }
+  },
+  "ceilings": {
+    "cheap": {"max_dispatches": null, "max_output_tokens": null},
+    "standard": {"max_dispatches": 1000, "max_output_tokens": 10000000},
+    "premium": {"max_dispatches": 250, "max_output_tokens": 5000000}
+  },
+  "roles": {
+    "swarm": {"permitted_tiers": ["cheap"], "floor_tier": "cheap"},
+    "build": {"permitted_tiers": ["cheap", "standard"], "floor_tier": "cheap"},
+    "audit": {"permitted_tiers": ["cheap", "standard", "premium"], "floor_tier": "cheap"},
+    "synthesis": {"permitted_tiers": ["cheap", "standard", "premium"], "floor_tier": "cheap"}
+  }
+}

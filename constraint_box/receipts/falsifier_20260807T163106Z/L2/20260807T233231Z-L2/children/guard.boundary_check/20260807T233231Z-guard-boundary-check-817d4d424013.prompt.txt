@@ -1,0 +1,42 @@
+PROMPT INTENT (conserved): Falsify the target claim: name the strongest falsifier, the overclaim boundary, the boundary failure, the minimal fix.
+SUCCESS CONDITION: each required child returns a packet carrying every declared route output, with status in killed|open|survived
+CLAIM CEILING: falsification structure only; CB does not decide whether the claim is true
+KILLED ASSUMPTIONS (do not revive without a bridge): a claim survives because no one objected
+STRATEGY STATE: Failure council consumes the Decision council's output
+
+You are the convergence step of guard.boundary_check inside the failure.falsifier route.
+
+TARGET CLAIM:
+The 180 dirty files on the primary worktree block a clean merge: git aborts without applying any of the 43 July commits.
+
+Your subagents returned:
+[boundary_failure] Salience file not present at path; proceeding with receipt.
+
+**Fog:** "block a clean merge" and "git aborts" — which git operation (merge/rebase/pull)? Conflates dirty-tree rejection of worktree-update with rejection of merge-commit application. Git merge lands commits to index despite dirty tree.
+
+**Cut + replacement:**
+- "block a clean merge" → "which operation halts, and at which step (before or after commit-application)?"
+
+**Hidden bad state:** "git aborts without applying" assumes the abort happens before commits are applied, not after. Evidence missing: exit code, error message, state of `.git/MERGE_HEAD`.
+
+**Surviving challenge:** Dirty files may block *checkout* of merge result but not *merge-commit application*. Claim needs: operation name + stderr + git status at abort point.
+
+---
+
+**agent_id:** failure-orwell-001 | **slices_loaded:** false (salience unavailable) | **receipt_status:** incomplete-per-contract
+[minimal_fix] **fog found**: "dirty files" (state unspecified—staged? modified? untracked?), "block" (mechanism undefined), "apply" (wrong term; merges don't apply commits), "clean merge" (reference undefined)
+
+**cuts + replacements**: "180 dirty files" → "180 {staged|modified|untracked} files"; "block" → "prevent: git error [name it]"; "applying" → "merging"
+
+**hidden bad-state**: No error message cited. Claim assumes all 180 files block identically—false if mixed states. Untracked files don't block merge at all.
+
+**surviving challenge**: Claim holds only if file state is constrained. Mixed states need separate analysis.
+
+**minimal fix** (33 words): Specify file states (staged/modified/untracked). Name the git error. Replace "apply commits" with "merge commits". State which branch is "clean" relative to. Cite the exit behavior.
+
+**slices_loaded**: yes  
+**agent_id**: `failure-orwell-001`
+
+Return ONLY this JSON object:
+{"status": "open", "overclaim_correction": "<...>", "boundary_failure": "<...>", "minimal_fix": "<...>", "decisive_check": "<...>"}
+status must be exactly one of: killed, open, survived.

@@ -36,6 +36,7 @@ from .dualsolve import dual_solve
 from .estate import CapabilityState, EstateRunner
 from .gate import run_gate
 from .intake import IntakeError, canonical_json, parse_json_object
+from .model_tier_budget import model_tier_reasons
 from .proposal_minilev_flow import (
     ClaimGateCallbackResult,
     ClaimGateSignal,
@@ -85,12 +86,20 @@ MMM_PACKS_DIR = BOX_ROOT / "mmm" / "packs"
 WORKER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "capability_worker.py"
 BLOCKER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "import_blocker.py"
 POISONER_PATH = EXTERNAL_ESTATE_ROOT / "workers" / "operation_poisoner.py"
+MODEL_TIER_POLICY_PATH = BOX_ROOT / "config" / "model_tier_policy.json"
+MODEL_TIER_POLICY = json.loads(MODEL_TIER_POLICY_PATH.read_text(encoding="utf-8"))
 
 # This first live profile is intentionally exact and local.  Drift parks the
 # run; it is never silently reinterpreted as success on a different estate.
 PROFILE_PINS = {
     "fixture": "27df1ad2b3e35ae7cc342963bcfe0fe5a0b1a2599cac4b624ca48f8686e6222f",
-    "estate_controller": "563d1afd505e3deecd4105da8cf8915fc206acf63afc697c4246e96102f271eb",
+    # Repinned 2026-08-08, for the second time: the first repin was reverted by an
+    # agent restoring an unrelated temporary edit.  estate.py hashes its own source,
+    # and 563d1afd50.. predates the v9 import at a99094897, so every `constraintbox
+    # run` PARKed on PROFILE_INPUT_DRIFT:estate_controller against the box's own
+    # shipped controller.  be2ef0c911.. is the sha256 of estate.py at BOTH HEAD and
+    # worktree, verified independently twice.  The other four pins match their files.
+    "estate_controller": "be2ef0c911cc9cdecc299969ebf1f2bad1011d734ccbe0a094544cdfdcfb295e",
     "worker": "355aedae5ecbb9fe306ede2672ec8f8e9dcee576610190c8b18d03e3998f3257",
     "import_blocker": "b3e027e60eb963cd8bf143bad4c721b7fd2581508bb62a1d4a7a81970e2b6418",
     "operation_poisoner": "6710454e9f88389f1eb48f5ac0e8dbe79eecfeca6c1f2b5b510fba76936cd3f0",
@@ -432,6 +441,8 @@ def _harness_components() -> dict[str, Any]:
     from ._provider_harness.gates import gate as provider_gate
     from ._provider_harness.notary import Notary
     from ._provider_harness.providers import (
+        CodexLunaProvider,
+        CodexSolProvider,
         LocalToolProvider,
         NvidiaProvider,
         OpenRouterProvider,
@@ -442,6 +453,8 @@ def _harness_components() -> dict[str, Any]:
     return {
         "provider_gate": provider_gate,
         "Notary": Notary,
+        "CodexLunaProvider": CodexLunaProvider,
+        "CodexSolProvider": CodexSolProvider,
         "LocalToolProvider": LocalToolProvider,
         "NvidiaProvider": NvidiaProvider,
         "OpenRouterProvider": OpenRouterProvider,
@@ -479,6 +492,8 @@ def _build_prompt(
     task: AgentTask,
     *,
     attempt: int,
+    proposal_schema_text: str,
+    proposal_schema_sha256: str,
     personalized_context_text: str,
     personalized_context_sha256: str,
     tool_receipt_sha256: str,
@@ -496,7 +511,7 @@ def _build_prompt(
 You are an untrusted proposal generator inside ConstraintBox.
 You may not choose or claim a command, checker, verdict, policy, tolerance,
 profile, claim kind, promotion, or admission.
-Return only the JSON object required by the supplied output schema.
+Return only the JSON object matching the [PROPOSAL OUTPUT SCHEMA] block below.
 The only releasable requested_claim is {ALLOWED_CLAIM!r}.
 Copy the exact controller evidence reference into candidate.evidence_ref.
 Name at least one concrete falsifier.  No prose outside the JSON object.
@@ -521,6 +536,8 @@ state={capability.get("state")}
 controls={json.dumps(capability.get("controls", {}), sort_keys=True)}
 claim_ceiling={CLAIM_CEILING}
 
+[PROPOSAL OUTPUT SCHEMA sha256={proposal_schema_sha256}]
+{proposal_schema_text}
 [DETERMINISTIC FEEDBACK sha256={feedback_sha256 or "none"}]
 {feedback_block}
 
@@ -535,10 +552,17 @@ def _codex_command(
     attempt_dir: Path,
     schema_path: Path,
     codex_binary: str | None,
+    requested_model: str,
 ) -> list[str] | None:
     binary = codex_binary or shutil.which("codex")
     if binary is None:
         return None
+    # ``-m`` binds the model and the CLI enforces it (an unknown slug returns
+    # HTTP 400); without it codex silently picks its default and the receipt
+    # names a request that bound nothing.  ``--ephemeral`` is deliberately NOT
+    # passed: it suppresses the session rollout (measured 2026-08-08), which
+    # is the only byte-level observation of the model that actually answered,
+    # so an ephemeral dispatch is unverifiable by construction.
     return [
         binary,
         "exec",
@@ -549,7 +573,8 @@ def _codex_command(
         "-C",
         str(attempt_dir),
         "--skip-git-repo-check",
-        "--ephemeral",
+        "-m",
+        requested_model,
         "--json",
         "--output-schema",
         str(schema_path),
@@ -808,6 +833,73 @@ def _policy() -> Policy:
     )
 
 
+def _model_slug_refines(requested: str, resolved: str) -> bool:
+    """True iff the resolved slug is the requested slug or a dated/more-specific
+    refinement of it (``requested + "-…"``).
+
+    Justified from observed data, not assumption:
+      * codex rollout bytes resolve exactly (``gpt-5.6-luna`` -> ``gpt-5.6-luna``,
+        measured 2026-08-08), so equality passes.
+      * HTTP bodies may resolve a dated refinement (``x-ai/grok-4.3`` ->
+        ``x-ai/grok-4.3-20260430``, the receipt field's documented real
+        behavior), which strict equality would wrongly flag.
+      * the measured substitution (requested ``gpt-5.6-luna``, answered
+        ``gpt-5.6-sol``) fails this rule: ``gpt-5.6-sol`` does not extend
+        ``gpt-5.6-luna-``.
+
+    Risk taken: the LENIENT direction.  If a route ever requests a bare family
+    slug (e.g. ``gpt-5.6``) a sibling that extends it (``gpt-5.6-sol``) would
+    pass.  Every registered route therefore requests a fully-qualified slug;
+    the strict alternative would block every legitimately dated HTTP
+    resolution.
+    """
+
+    return resolved == requested or resolved.startswith(requested + "-")
+
+
+def _model_binding_reasons(
+    model_requested: Any,
+    model_resolved: Any,
+) -> list[str]:
+    """Deterministic check of the answering model against the requested one.
+
+    Two distinct conditions, two distinct codes:
+      * ``MODEL_RESOLVED_UNAVAILABLE`` -- the model that answered could not be
+        established from provider bytes at all (``model_resolved`` absent).
+        In CB vocabulary this is UNAVAILABLE: the run parks; it never passes.
+      * ``MODEL_RESOLVED_MISMATCH`` -- a real substitution: the resolved model
+        is neither the requested slug nor a refinement of it.
+    """
+
+    if not isinstance(model_requested, str) or not model_requested:
+        return ["MODEL_RESOLVED_UNAVAILABLE"]
+    if not isinstance(model_resolved, str) or not model_resolved:
+        return ["MODEL_RESOLVED_UNAVAILABLE"]
+    if not _model_slug_refines(model_requested, model_resolved):
+        return ["MODEL_RESOLVED_MISMATCH"]
+    return []
+
+
+def _gate_reasons(
+    model_requested: Any,
+    model_resolved: Any,
+    *,
+    role: str = "build",
+    spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
+) -> list[str]:
+    """Controller-owned model price-class and cumulative-budget reasons."""
+
+    return model_tier_reasons(
+        model_requested,
+        model_resolved,
+        role,
+        MODEL_TIER_POLICY,
+        spend or {},
+        task_id=task_id,
+    )
+
+
 def _reason_codes(
     *,
     receipt: Any,
@@ -821,8 +913,32 @@ def _reason_codes(
     smt: dict[str, Any],
     discharge_status: str,
     release_safety: bool,
+    model_requested: str,
+    model_resolved: Any = None,
+    model_tier_role: str = "build",
+    model_tier_spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
 ) -> list[str]:
     reasons = list(extraction_errors)
+    reasons.extend(
+        _model_binding_reasons(
+            model_requested,
+            model_resolved
+            if model_resolved is not None
+            else getattr(receipt, "model_resolved", None),
+        )
+    )
+    reasons.extend(
+        _gate_reasons(
+            model_requested,
+            model_resolved
+            if model_resolved is not None
+            else getattr(receipt, "model_resolved", None),
+            role=model_tier_role,
+            spend=model_tier_spend,
+            task_id=task_id,
+        )
+    )
     if getattr(receipt, "status", None) != "success":
         reasons.append(f"PROVIDER_STATUS_{getattr(receipt, 'status', 'MISSING')}")
     if not provider_admitted:
@@ -863,8 +979,18 @@ def _release_safety(
     evidence_ref: str,
     tool_errors: list[str],
     smt: dict[str, Any],
+    model_requested: str,
+    model_resolved: Any,
+    model_tier_role: str = "build",
+    model_tier_spend: dict[str, dict[str, int]] | None = None,
+    task_id: str | None = None,
 ) -> bool:
-    """Independent final recomputation; no prior boolean verdict is trusted."""
+    """Independent final recomputation; no prior boolean verdict is trusted.
+
+    The model binding is recomputed here from the raw requested/resolved
+    values so a proposal blocked by ``_reason_codes`` for a substituted or
+    unresolvable model can never still be judged release-safe.
+    """
 
     try:
         proposal = parse_json_object(raw)
@@ -878,6 +1004,14 @@ def _release_safety(
         and not tool_use
         and decision.disposition is Disposition.ELIGIBLE
         and not tool_errors
+        and not _model_binding_reasons(model_requested, model_resolved)
+        and not _gate_reasons(
+            model_requested,
+            model_resolved,
+            role=model_tier_role,
+            spend=model_tier_spend,
+            task_id=task_id,
+        )
         and candidate["requested_claim"] == ALLOWED_CLAIM
         and candidate["evidence_ref"] == evidence_ref
         and bool(proposal["falsifiers"])
@@ -920,6 +1054,7 @@ def _final_result(
     release_receipt_path: Path | None,
     proposal_flow: dict[str, Any] | None = None,
     provider_policy: dict[str, Any] | None = None,
+    formal_gates: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     return {
         "schema": SCHEMA,
@@ -973,6 +1108,7 @@ def _final_result(
         },
         "claim_gate": claim_gate,
         "proposal_flow": proposal_flow,
+        "formal_gates": formal_gates,
         "release_receipt": (
             str(release_receipt_path)
             if release_receipt_path is not None
@@ -985,6 +1121,44 @@ def _final_result(
             "parent_ratchet_checkout_imported": False,
         },
     }
+
+
+def _run_formal_run_path_gates(run_dir: Path) -> dict[str, Any]:
+    """Execute cb:sympy-exact-gate and cb:maude-transition-gate every run.
+
+    Both formal gates run unconditionally on the REAL proposal FlowPolicy
+    (proposal_minilev_flow.reference_flow_policy) — the same nodes,
+    transitions, and budgets `run_proposal_minilev_flow` executes — with no
+    usefulness heuristic.  The receipt is persisted next to the other run
+    artifacts.  A gate crash is recorded as an ERROR execution rather than
+    aborting the run; a MISMATCH verdict later excludes RELEASED.
+    """
+
+    from .gate_operations import FORMAL_RUN_GATES_SCHEMA, run_formal_flow_gates
+    from .proposal_minilev_flow import reference_flow_policy
+
+    try:
+        receipt = run_formal_flow_gates(reference_flow_policy())
+    except Exception as exc:  # noqa: BLE001 - recorded, never silently lost
+        receipt = {
+            "schema": FORMAL_RUN_GATES_SCHEMA,
+            "executions": [],
+            "error": f"{type(exc).__name__}: {exc}",
+            "any_mismatch": False,
+            "promotion_allowed": False,
+        }
+    _write_json(run_dir / "formal_gates_receipt.json", receipt)
+    return receipt
+
+
+def _formal_gates_mismatch(formal_gates: dict[str, Any]) -> bool:
+    executions = formal_gates.get("executions")
+    if not isinstance(executions, list):
+        return False
+    return any(
+        isinstance(execution, dict) and execution.get("verdict") == "MISMATCH"
+        for execution in executions
+    )
 
 
 def _run_mini_lev_proposal_loop(
@@ -1070,9 +1244,12 @@ def _run_mini_lev_proposal_loop(
         attempt_dir.mkdir()
         feedback = state["feedback"]
         feedback_sha256 = state["feedback_sha256"]
+        schema_text = schema_path.read_text(encoding="utf-8")
         prompt = _build_prompt(
             task,
             attempt=attempt_number,
+            proposal_schema_text=schema_text,
+            proposal_schema_sha256=schema_sha,
             personalized_context_text=box_run.context_text,
             personalized_context_sha256=box_run.context_sha256,
             tool_receipt_sha256=tool_sha,
@@ -1089,6 +1266,7 @@ def _run_mini_lev_proposal_loop(
                 attempt_dir=attempt_dir,
                 schema_path=schema_path,
                 codex_binary=codex_binary,
+                requested_model=provider_policy["requested_model"],
             )
             if provider_policy.get("route") == "local_tool"
             else None
@@ -1275,6 +1453,11 @@ def _run_mini_lev_proposal_loop(
             },
             now=decided_at,
         )
+        model_requested = provider_policy.get("requested_model")
+        model_resolved = getattr(latest["receipt"], "model_resolved", None)
+        model_binding_reasons = _model_binding_reasons(
+            model_requested, model_resolved
+        )
         release_safety = _release_safety(
             raw=raw,
             provider_admitted=latest["provider_gate"].admitted,
@@ -1283,6 +1466,9 @@ def _run_mini_lev_proposal_loop(
             evidence_ref=tool_sha,
             tool_errors=[],
             smt=smt,
+            model_requested=model_requested,
+            model_resolved=model_resolved,
+            task_id=task.task_id,
         )
         reasons = _reason_codes(
             receipt=latest["receipt"],
@@ -1296,11 +1482,17 @@ def _run_mini_lev_proposal_loop(
             smt=smt,
             discharge_status=settlement.status,
             release_safety=release_safety,
+            model_requested=model_requested,
+            task_id=task.task_id,
         )
         eligible = settlement.status == PASS and release_safety and not reasons
         provider_or_solver_parked = (
             getattr(latest["receipt"], "status", None) != "success"
             or not smt["settled"]
+            # An unresolvable answering model is UNAVAILABLE evidence, not a
+            # judged refusal: the attempt parks.  A MISMATCH (real
+            # substitution) stays a hard block, never a park.
+            or "MODEL_RESOLVED_UNAVAILABLE" in model_binding_reasons
         )
         attempt_disposition = (
             "ELIGIBLE"
@@ -1334,6 +1526,17 @@ def _run_mini_lev_proposal_loop(
             "smt_gate": smt,
             "discharge": _jsonable(settlement),
             "release_safety": release_safety,
+            "model_binding": {
+                "model_requested": model_requested,
+                "model_resolved": model_resolved,
+                "reason_codes": model_binding_reasons,
+                "missing_observation": (
+                    "receipt.model_resolved (codex rollout turn_context "
+                    "payload.model, or HTTP response body model)"
+                    if "MODEL_RESOLVED_UNAVAILABLE" in model_binding_reasons
+                    else None
+                ),
+            },
             "feedback": None,
             "feedback_sha256": None,
         }
@@ -1347,6 +1550,8 @@ def _run_mini_lev_proposal_loop(
                 "tool_use": latest["tool_use"],
                 "smt": smt,
                 "attempt": attempt_number,
+                "model_requested": model_requested,
+                "model_resolved": model_resolved,
             }
             signal = ProposalGateSignal.PASS
         elif attempt_number < MAX_ATTEMPTS:
@@ -1405,6 +1610,9 @@ def _run_mini_lev_proposal_loop(
             evidence_ref=tool_sha,
             tool_errors=[],
             smt=accepted["smt"],
+            model_requested=accepted["model_requested"],
+            model_resolved=accepted["model_resolved"],
+            task_id=task.task_id,
         )
         if not release_safety:
             _, artifact_sha256 = write_attempt_artifact(
@@ -1605,6 +1813,9 @@ def _run_agent_for_test(
 
     task_path = run_dir / "task.json"
     _write_json(task_path, task.to_dict())
+    # G1 wiring: both formal gates (sympy budgets, maude transitions) execute
+    # on the real proposal FlowPolicy on EVERY run, before any early return.
+    formal_gates = _run_formal_run_path_gates(run_dir)
     profile_inputs, profile_errors = _load_profile_inputs()
     branches = BranchLedger()
     if profile_errors:
@@ -1623,6 +1834,7 @@ def _run_agent_for_test(
             branch_ledger=branches,
             claim_gate=None,
             release_receipt_path=None,
+            formal_gates=formal_gates,
         )
         _write_json(run_dir / "run_receipt.json", result)
         return result, RUN_EXIT_CODES["PARKED"]
@@ -1657,6 +1869,7 @@ def _run_agent_for_test(
             branch_ledger=branches,
             claim_gate=None,
             release_receipt_path=None,
+            formal_gates=formal_gates,
         )
         _write_json(run_dir / "run_receipt.json", result)
         return result, RUN_EXIT_CODES[disposition]
@@ -1690,6 +1903,7 @@ def _run_agent_for_test(
                 claim_gate=None,
                 release_receipt_path=None,
                 provider_policy=provider_policy,
+                formal_gates=formal_gates,
             )
             _write_json(run_dir / "run_receipt.json", result)
             return result, RUN_EXIT_CODES["PARKED"]
@@ -1697,6 +1911,16 @@ def _run_agent_for_test(
         provider_policy = selected_provider.public_binding()
     else:
         provider_policy = _injected_provider_policy(provider)
+    # The machine's unqualified local route is deliberately the cheap rung.
+    # Explicit operator routes retain their declared model; only the default
+    # local dispatch follows the machine default.
+    if (
+        provider_policy.get("route") == "local_tool"
+        and provider_policy.get("operator_selected") is False
+    ):
+        provider_policy = dict(provider_policy)
+        provider_policy["requested_model"] = "gpt-5.6-luna"
+        provider_policy["selection_basis"] = "default_machine_model_gpt-5.6-luna"
     notary = components["Notary"]()
     schema_path = run_dir / "proposal_schema.json"
     _write_json(schema_path, _proposal_schema())
@@ -1730,7 +1954,18 @@ def _run_agent_for_test(
     terminal = proposal_outcome["terminal"]
     observed_claim_gate = proposal_outcome["claim_gate"]
     release_receipt_path = proposal_outcome["release_receipt_path"]
-    if (
+    if terminal == "RELEASED" and _formal_gates_mismatch(formal_gates):
+        # An exact formal disagreement (sympy budget arithmetic or maude
+        # rewrite observation against the run's own FlowPolicy) refuses the
+        # release regardless of the ClaimGate outcome.  This only ever
+        # narrows the release condition; it never widens it.
+        disposition = "REFUSED"
+        release = None
+        reason = (
+            "run-path formal gate MISMATCH: sympy/maude disagreed with the "
+            "flow policy's own structure"
+        )
+    elif (
         terminal == "RELEASED"
         and isinstance(observed_claim_gate, dict)
         and _claim_gate_is_strong(observed_claim_gate)
@@ -1777,6 +2012,7 @@ def _run_agent_for_test(
         release_receipt_path=release_receipt_path,
         proposal_flow=proposal_outcome["flow"],
         provider_policy=provider_policy,
+        formal_gates=formal_gates,
     )
     _write_json(run_dir / "run_receipt.json", result)
     return result, RUN_EXIT_CODES[disposition]

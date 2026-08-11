@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ref": {
+          "type": "string"
+        },
+        "requested_claim": {
+          "enum": [
+            "bounded_tool_execution",
+            "scientific_result",
+            "canonical_result"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "requested_claim",
+        "evidence_ref"
+      ],
+      "type": "object"
+    },
+    "falsifiers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "proposal_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "proposal_id",
+    "candidate",
+    "falsifiers"
+  ],
+  "type": "object"
+}

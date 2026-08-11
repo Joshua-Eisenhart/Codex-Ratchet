@@ -1,0 +1,33 @@
+{
+ "admitted": false,
+ "claim_ceiling": "installation, capability and call-site integration of the sim-engine lanes only; says nothing about whether any sim result is correct",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+ "lanes": {
+  "lane.pymdp": {
+   "call_sites": [
+    "src/external_s3_capability.py"
+   ],
+   "capability_capable": false,
+   "capability_reason": "TypeError: random_A_array() missing 1 required positional argument: 'key'",
+   "capability_sec": 1.37,
+   "capability_stdout": "",
+   "declared": true,
+   "installed": true,
+   "integrated": true,
+   "module": "pymdp"
+  }
+ },
+ "promotion_allowed": false,
+ "refusals": [
+  "lane.pymdp: installed but NOT CAPABLE \u2014 TypeError: random_A_array() missing 1 required positional argument: 'key'"
+ ],
+ "schema": "cb.heavy-gate.v1",
+ "totals": {
+  "capable": 0,
+  "declared": 1,
+  "installed": 1,
+  "integrated": 1
+ },
+ "wall_seconds": 1.4,
+ "what_this_is": "CB light's verification of the CB heavy sim-engine estate. The sim engines are a separate estate; this gate does not make them part of CB light."
+}

@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:28:03.053522+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 11177,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "## THE FAILURE STORY\n\nDevelopment ran hot across the 10 worktrees during July 15-18. Three worktrees (branched from system_v5) began importing from CB.cache, CB.validation, CB.metrics, CB.async_queue, and CB.security\u2014libraries that were documented in the CB integration spec and appeared in early design discussions. No one on those teams realized only 28 of the 33 CB libraries had actually been wired into the codebase. The integration tracker showed green because it counted \"specifications written\" as \"implemented.\" By July 18, across 43 commits touching 492 files, the system_v5 subsystem alone had 87 new imports from the five unwired libraries.\n\nThe first merge attempt to main happened in early August. Tests ran locally on individual branches without issue (each branch existed in isolation with its own virtual environment). When the July work was consolidated, runtime initialization hit ImportError on `from CB.cache import CacheLayer` in system_v5's startup sequence. The fallback caugh",
+    "result_subtype": "success",
+    "total_cost_usd": 0.0140914
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_6/20260807T232746Z-dive-6-f5fd73252769.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 import tomllib
 import unittest
 from pathlib import Path
 
 import constraintbox
+from constraintbox.core_cli import build_parser
+from constraintbox.core_tools import _REGISTRY, load_registry
+from constraintbox.control_plane import PIN_FILE
 from constraintbox.formal_registry import (
     DEFAULT_FORMAL_RUNTIME_POLICY,
     load_formal_runtime_policy,
@@ -17,6 +21,7 @@ from constraintbox.python_runtime import (
     python_runtime_policy_sha256,
 )
 from constraintbox.runtime_profiles import load_runtime_profile_registry
+from hookkernel.cb_light_domain import DATA_ROOT, POLICY
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +33,65 @@ def sha256(path: Path) -> str:
 
 
 class PackageResourceTests(unittest.TestCase):
+    def test_main_module_import_is_inert(self) -> None:
+        module = importlib.import_module("constraintbox.__main__")
+        self.assertTrue(callable(module.main))
+
+    def test_default_cli_excludes_the_external_claimgate_composition(self) -> None:
+        parser = build_parser()
+        subparsers = next(
+            action for action in parser._actions if getattr(action, "choices", None)
+        )
+        self.assertEqual(
+            sorted(subparsers.choices),
+            ["cb-light", "control-plane", "doctor", "exercise"],
+        )
+
+    def test_core_tool_registry_is_a_packaged_resource(self) -> None:
+        self.assertEqual(_REGISTRY, PACKAGE_ROOT / "core_tool_registry_v9.json")
+        self.assertTrue(_REGISTRY.is_file())
+        self.assertEqual(load_registry()["schema"], "constraintbox.core-tool-registry.v9")
+        # Keep the historical checkout-level copy from silently drifting while
+        # installed code consumes the packaged canonical resource.
+        self.assertEqual(
+            _REGISTRY.read_bytes(),
+            (ROOT / "config" / "core_tool_registry_v9.json").read_bytes(),
+        )
+
+    def test_cb_light_data_bundle_matches_declared_project_sources(self) -> None:
+        expected = {
+            "config/cb_light_domain_policy_v1.json": ROOT
+            / "config"
+            / "cb_light_domain_policy_v1.json",
+            "config/cb_light_library_candidates.json": ROOT
+            / "config"
+            / "cb_light_library_candidates.json",
+            "config/core_tool_registry_v9.json": ROOT
+            / "config"
+            / "core_tool_registry_v9.json",
+            "docs/CB_LIGHT_LIBRARY_LIST_20260807.md": ROOT
+            / "docs"
+            / "CB_LIGHT_LIBRARY_LIST_20260807.md",
+            "pyproject.toml": ROOT / "pyproject.toml",
+            "requirements/control_plane_candidates/cb_control_plane_candidate_pins_v1.txt": ROOT
+            / "requirements"
+            / "control_plane_candidates"
+            / "cb_control_plane_candidate_pins_v1.txt",
+        }
+        for name, source in expected.items():
+            self.assertEqual((DATA_ROOT / name).read_bytes(), source.read_bytes())
+        for source in sorted((ROOT / "requirements" / "candidates").glob("cb-*.in")):
+            bundled = DATA_ROOT / "requirements" / "candidates" / source.name
+            self.assertEqual(bundled.read_bytes(), source.read_bytes())
+        self.assertEqual(POLICY, DATA_ROOT / "config" / "cb_light_domain_policy_v1.json")
+        self.assertEqual(
+            PIN_FILE,
+            DATA_ROOT
+            / "requirements"
+            / "control_plane_candidates"
+            / "cb_control_plane_candidate_pins_v1.txt",
+        )
+
     def test_default_python_runtime_policy_is_a_portable_profile_resource(
         self,
     ) -> None:
@@ -105,22 +169,33 @@ class PackageResourceTests(unittest.TestCase):
         self.assertEqual(extras["rewrite"], [])
         self.assertEqual(extras["numeric"], ["numpy==2.3.4"])
         self.assertEqual(extras["test"], ["hypothesis==6.151.12"])
-        package_data = body["tool"]["setuptools"]["package-data"]["constraintbox"]
+        package_data = body["tool"]["setuptools"]["package-data"]
         self.assertEqual(
-            package_data,
+            package_data["constraintbox"],
             [
+                "core_tool_registry_v9.json",
                 "formal_runtime/*.json",
                 "formal_runtime/controller_lifecycle_v1/*",
                 "runtime_profiles/*.json",
+            ],
+        )
+        self.assertEqual(
+            package_data["hookkernel"],
+            [
+                "cb_light_data/config/*.json",
+                "cb_light_data/docs/*.md",
+                "cb_light_data/requirements/candidates/*.in",
+                "cb_light_data/requirements/control_plane_candidates/*.txt",
+                "cb_light_data/pyproject.toml",
             ],
         )
 
     def test_lean_core_package_data_excludes_the_sim_engine_estate(self) -> None:
         package_data = tomllib.loads(
             (ROOT / "pyproject.toml").read_text(encoding="utf-8")
-        )["tool"]["setuptools"]["package-data"]["constraintbox"]
-        self.assertIn("runtime_profiles/*.json", package_data)
-        self.assertNotIn("external_sim_estate/*", package_data)
+        )["tool"]["setuptools"]["package-data"]
+        self.assertIn("runtime_profiles/*.json", package_data["constraintbox"])
+        self.assertNotIn("external_sim_estate/*", package_data["constraintbox"])
         base_dependencies = tomllib.loads(
             (ROOT / "pyproject.toml").read_text(encoding="utf-8")
         )["project"]["dependencies"]

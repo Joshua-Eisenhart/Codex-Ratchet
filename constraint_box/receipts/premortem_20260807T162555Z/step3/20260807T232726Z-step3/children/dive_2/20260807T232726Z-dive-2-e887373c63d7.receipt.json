@@ -1,0 +1,43 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "haiku",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "1.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--tools",
+    ""
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-08-07T23:27:46.711711+00:00",
+  "model": "haiku",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.json",
+  "parsed": {
+    "budget_exceeded": false,
+    "duration_ms": 14805,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001"
+    ],
+    "requested_budget_usd": 1.0,
+    "result_preview": "# THE FAILURE STORY\n\nThe ten worktrees created July 15-18 were assigned to different component leads: three on system_v5 serialization, two on system_v7 boundary logic, two on CB light integration, and three on infrastructure. By July 16, developers were committing independently. system_v5 worktree-1 refactored the config schema handler; system_v5 worktree-2, unaware, added validation logic that assumed the old structure. system_v7 worktree-1 deleted a middleware module; system_v7 worktree-2 committed a patch that imported from it. No one synced with main or each other\u2014there was no shared rebase point, no integration branch.\n\nBy July 18, 43 commits sat across the ten worktrees with overlapping changes to at least 89 of the 367 system_v5 files and 47 of the 116 system_v7 files. The two worktrees with identical HEAD at f0afdc36a weren't integration points\u2014they were duplicates, an attempt to resolve a merge that already failed locally. When the team tried to merge all ten branches into ma",
+    "result_subtype": "success",
+    "total_cost_usd": 0.013198399999999999
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/receipts/premortem_20260807T162555Z/step3/20260807T232726Z-step3/children/dive_2/20260807T232726Z-dive-2-e887373c63d7.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "requested_model": "haiku",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 180.0
+}

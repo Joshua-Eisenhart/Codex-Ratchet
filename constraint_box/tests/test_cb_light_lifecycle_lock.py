@@ -214,3 +214,94 @@ def test_install_cli_routes_explicit_manifest_rebuild_flag(
 
     assert cb_light_cli.main(["install", "--rebuild-manifest"]) == 0
     assert observed == {"rebuild_manifest": True}
+
+
+def test_lifecycle_cli_binds_its_checkout_before_importing_installed_runtime(
+    tmp_path: Path,
+) -> None:
+    """An external working directory cannot make the wheel use site-packages as ROOT."""
+
+    script = CB / "scripts" / "cb_light_cli.py"
+    worker = """
+import importlib.util
+import json
+from pathlib import Path
+import sys
+
+script = Path(sys.argv[1])
+spec = importlib.util.spec_from_file_location("isolated_cb_light_cli", script)
+module = importlib.util.module_from_spec(spec)
+assert spec.loader is not None
+spec.loader.exec_module(module)
+
+seen = []
+class Completed:
+    returncode = 0
+def fake_run(command, **kwargs):
+    seen.append(command)
+    return Completed()
+
+module.subprocess.run = fake_run
+result = module._rebuild_manifest_under_lifecycle_lock()
+print(json.dumps({
+    "result": result,
+    "root": str(module.ROOT),
+    "mandated": str(module.MANDATED_INTERPRETER),
+    "build": str(module.BUILD_INTERPRETER),
+    "command": seen[0],
+}, sort_keys=True))
+"""
+    completed = subprocess.run(
+        [sys.executable, "-I", "-c", worker, str(script)],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=30,
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    observed = json.loads(completed.stdout)
+    assert observed["result"] == 0
+    assert observed["root"] == str(CB)
+    assert observed["mandated"].startswith(str(CB / ".venv"))
+    assert observed["command"][0] == observed["build"]
+    assert "site-packages/.venv" not in observed["mandated"]
+    assert "site-packages/.venv" not in observed["command"][0]
+
+
+def test_lifecycle_venv_creation_uses_base_builder_and_platform_layout(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    from scripts import cb_light_cli
+
+    observed: list[list[str]] = []
+
+    class Completed:
+        returncode = 0
+
+    monkeypatch.setattr(cb_light_cli, "BUILD_INTERPRETER", tmp_path / "base-python")
+    monkeypatch.setattr(
+        cb_light_cli,
+        "subprocess",
+        type(
+            "Subprocess",
+            (),
+            {
+                "run": staticmethod(
+                    lambda command, **kwargs: observed.append(command) or Completed()
+                )
+            },
+        ),
+    )
+
+    target = tmp_path / "fresh"
+    assert cb_light_cli._create_venv(target) == 0
+    assert observed == [
+        [str(tmp_path / "base-python"), "-m", "venv", "--clear", str(target)]
+    ]
+    assert cb_light_cli._venv_python(target, platform_name="posix") == (
+        target / "bin" / "python"
+    )
+    assert cb_light_cli._venv_python(target, platform_name="nt") == (
+        target / "Scripts" / "python.exe"
+    )

@@ -22,6 +22,12 @@ _CONTROL_PLANE_EXACT_PINS = {
     "jsonschema": "4.26.0",
 }
 
+_PREMORTEM_RESULT_SCHEMA = "constraintbox.premortem-remediation-result.v1"
+_PREMORTEM_CLI_CLAIM_CEILING = (
+    "CB Light premortem CLI entry boundary only; it does not execute a skill, "
+    "model, MMM, formal agent, repair action, browser, UI, or CB Heavy work."
+)
+
 
 def _current_cb_light_evaluation_for_wave() -> tuple[bool, str, dict[str, object]]:
     """Require the real contained Light gate before a fixture wave can start.
@@ -137,6 +143,98 @@ def _current_control_plane_dependencies_for_wave() -> tuple[bool, str, dict[str,
     return True, "CONTROL_PLANE_DEPENDENCIES_CURRENT", binding
 
 
+def _premortem_cli_result(
+    terminal: str,
+    reason_code: str,
+    detail: str,
+    *,
+    entry_gate: dict[str, object] | None = None,
+) -> dict[str, object]:
+    """Return the typed no-controller result for a CLI boundary refusal/hold."""
+
+    outcomes = {
+        "VERIFIED_DONE": "SETTLED",
+        "HOLD": "HOLD",
+        "REFUSE": "REFUSE",
+        "EXHAUSTED": "EXPIRED",
+        "PROPOSED_FOR_OWNER": "HOLD",
+    }
+    return {
+        "schema": _PREMORTEM_RESULT_SCHEMA,
+        "terminal": terminal,
+        "state_outcome": outcomes[terminal],
+        "reason_code": reason_code,
+        "detail": detail,
+        "claim_ceiling": _PREMORTEM_CLI_CLAIM_CEILING,
+        "issue_scope": "no_remediation_request_processed",
+        "attempt_id": None,
+        "attempt": None,
+        "selection_sha256": None,
+        "gate_sha256s": [],
+        "continuation": None,
+        "external_action_execution": "not_claimed",
+        "state_verification": {},
+        "entry_gate": None if entry_gate is None else dict(entry_gate),
+    }
+
+
+def _reject_duplicate_object_keys(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    """Make the request parser reject ambiguous duplicate-key JSON objects."""
+
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON object key: {key}")
+        result[key] = value
+    return result
+
+
+def _reject_json_constant(value: str) -> object:
+    """Reject non-standard JSON constants such as NaN and Infinity."""
+
+    raise ValueError(f"non-standard JSON constant: {value}")
+
+
+def _read_strict_premortem_request(path: Path) -> tuple[dict[str, object] | None, str | None]:
+    """Read a JSON object without starting the remediation controller or SQLite."""
+
+    try:
+        raw_text = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        return None, "REFUSE_PREMORTEM_REQUEST_UNREADABLE"
+    try:
+        raw = json.loads(
+            raw_text,
+            object_pairs_hook=_reject_duplicate_object_keys,
+            parse_constant=_reject_json_constant,
+        )
+    except (json.JSONDecodeError, ValueError):
+        return None, "REFUSE_PREMORTEM_REQUEST_INVALID_JSON"
+    if not isinstance(raw, dict):
+        return None, "REFUSE_PREMORTEM_REQUEST_NOT_OBJECT"
+    return raw, None
+
+
+def _run_premortem_remediation(
+    request: dict[str, object], *, db_path: Path | None
+) -> dict[str, object]:
+    """Lazily load the Light-only controller after the request boundary passes."""
+
+    from .premortem_remediation import run_remediation
+
+    return run_remediation(request, db_path=db_path)
+
+
+def _render_structured_json(body: dict[str, object], output: Path | None) -> None:
+    """Emit the same structured JSON to the requested receipt path and stdout."""
+
+    rendered = json.dumps(body, sort_keys=True, indent=2) + "\n"
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(rendered, encoding="utf-8")
+    print(rendered, end="")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="constraintbox")
     commands = parser.add_subparsers(dest="command", required=True)
@@ -157,6 +255,13 @@ def build_parser() -> argparse.ArgumentParser:
     wave.add_argument("--request", type=Path, required=True)
     wave.add_argument("--db", type=Path)
     wave.add_argument("--output", type=Path)
+    premortem = commands.add_parser(
+        "premortem",
+        help="run one receipt-bound CB Light premortem remediation round",
+    )
+    premortem.add_argument("--request", type=Path, required=True)
+    premortem.add_argument("--db", type=Path)
+    premortem.add_argument("--output", type=Path)
     cb_light = commands.add_parser(
         "cb-light",
         help="run the contained CB Light deterministic gate front door",
@@ -234,6 +339,36 @@ def main(argv: list[str] | None = None) -> None:
         # look like shell-level admission.  Only a non-refuted local fixture
         # settlement returns zero; HOLD, REFUSE, and SETTLED_REFUTED return 2.
         if body["disposition"] != "SETTLED":
+            raise SystemExit(2)
+        return
+
+    if args.command == "premortem":
+        evaluation_allowed, evaluation_reason, evaluation_binding = (
+            _current_cb_light_evaluation_for_wave()
+        )
+        if not evaluation_allowed:
+            body = _premortem_cli_result(
+                "HOLD",
+                "HOLD_PREMORTEM_REQUIRES_CURRENT_CB_LIGHT_EVALUATION",
+                evaluation_reason,
+                entry_gate=evaluation_binding,
+            )
+        else:
+            request, request_reason = _read_strict_premortem_request(args.request)
+            if request is None:
+                body = _premortem_cli_result(
+                    "REFUSE",
+                    request_reason or "REFUSE_PREMORTEM_REQUEST_INVALID_JSON",
+                    "The premortem request was refused before controller or SQLite access.",
+                    entry_gate=evaluation_binding,
+                )
+            else:
+                body = dict(
+                    _run_premortem_remediation(request, db_path=args.db)
+                )
+                body["entry_gate"] = dict(evaluation_binding)
+        _render_structured_json(body, args.output)
+        if body["terminal"] != "VERIFIED_DONE":
             raise SystemExit(2)
         return
 

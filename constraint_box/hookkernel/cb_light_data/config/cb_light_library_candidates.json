@@ -1,0 +1,3555 @@
+{
+  "registry": "cb_light_library_candidates",
+  "version": 1,
+  "generated": "2026-08-09",
+  "note": "Candidate registry only, never an install manifest. Every row's status ceiling is 'exists' (a PyPI record) until something is installed and wired, which is a separate decision. Verification fields are filled by scripts/verify_library_candidates.py from the live PyPI JSON API. cb_job is the discovery lane's claim of the CB job the library would do; it is not evidence.",
+  "candidates": [
+    {
+      "pypi_name": "marshmallow",
+      "category": "schema-contract-serialization",
+      "cb_job": "Schema validation and deserialization; receipts conform to declared structure or fail at write time",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "4.3.1",
+        "release_date": "2026-08-08",
+        "days_since_release": 0,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 49219,
+        "largest_wheel_mb": 0.05,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "backports-datetime-fromisoformat",
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "protobuf",
+      "category": "schema-contract-serialization",
+      "cb_job": "Binary protocol buffers for compact versioned receipt serialization; schema executable via codegen",
+      "verified": {
+        "latest_version": "7.35.1",
+        "release_date": "2026-06-11",
+        "days_since_release": 58,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 439996,
+        "largest_wheel_mb": 0.42,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cbor2",
+      "category": "schema-contract-serialization",
+      "cb_job": "CBOR binary serialization with canonical encoding; receipt hashes stable across platforms without JSON escaping",
+      "verified": {
+        "latest_version": "6.1.4",
+        "release_date": "2026-08-01",
+        "days_since_release": 7,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 533360,
+        "largest_wheel_mb": 0.51,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "fastjsonschema",
+      "category": "schema-contract-serialization",
+      "cb_job": "Compiles JSON Schema to fast validators; refuses receipts that violate schema at write time",
+      "also_categories": [
+        "hash-sign-ledger-storage"
+      ],
+      "verified": {
+        "latest_version": "2.22.1",
+        "release_date": "2026-07-27",
+        "days_since_release": 12,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 26239,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "typeguard",
+      "category": "schema-contract-serialization",
+      "cb_job": "Runtime type checking at gate function boundaries; rejects mistyped proposals before entry",
+      "also_categories": [
+        "test-repro-bounded",
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "4.6.0",
+        "release_date": "2026-07-26",
+        "days_since_release": 13,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 36884,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "typing_extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "annotated-types",
+      "category": "schema-contract-serialization",
+      "cb_job": "Reusable constraint markers (Range, Len, MultipleOf, Pattern) for typing.Annotated fields",
+      "verified": {
+        "latest_version": "0.8.0",
+        "release_date": "2026-07-23",
+        "days_since_release": 16,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 13427,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "tomlkit",
+      "category": "schema-contract-serialization",
+      "cb_job": "Round-trip TOML preserving structure and comments for inspectable canonical pins",
+      "verified": {
+        "latest_version": "0.15.1",
+        "release_date": "2026-07-17",
+        "days_since_release": 23,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 49449,
+        "largest_wheel_mb": 0.05,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "typing-extensions",
+      "category": "schema-contract-serialization",
+      "cb_job": "Typing backports enabling constraint annotations across supported Pythons",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "4.16.0",
+        "release_date": "2026-07-02",
+        "days_since_release": 37,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 45571,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "msgpack",
+      "category": "schema-contract-serialization",
+      "cb_job": "Compact binary receipt serialization without JSON canonicalization overhead",
+      "verified": {
+        "latest_version": "1.2.1",
+        "release_date": "2026-06-18",
+        "days_since_release": 51,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 427661,
+        "largest_wheel_mb": 0.41,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "portion",
+      "category": "schema-contract-serialization",
+      "cb_job": "Interval membership testing; computed values fall within declared admissible ranges at write time",
+      "verified": {
+        "latest_version": "2.6.2",
+        "release_date": "2026-06-14",
+        "days_since_release": 55,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 28218,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "sortedcontainers"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "parso",
+      "category": "schema-contract-serialization",
+      "cb_job": "Python parser with error recovery for static gate-code and prompt-code analysis",
+      "also_categories": [
+        "static-analysis-drift",
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "0.8.7",
+        "release_date": "2026-05-01",
+        "days_since_release": 99,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 107025,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "tomli",
+      "category": "schema-contract-serialization",
+      "cb_job": "Pure-Python TOML reading backport for pinned manifests",
+      "verified": {
+        "latest_version": "2.4.1",
+        "release_date": "2026-03-25",
+        "days_since_release": 136,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 283144,
+        "largest_wheel_mb": 0.27,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "attrs",
+      "category": "schema-contract-serialization",
+      "cb_job": "Typed receipt classes with validators and no boilerplate",
+      "also_categories": [
+        "hash-sign-ledger-storage"
+      ],
+      "verified": {
+        "latest_version": "26.1.0",
+        "release_date": "2026-03-19",
+        "days_since_release": 142,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 67548,
+        "largest_wheel_mb": 0.06,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pint",
+      "category": "schema-contract-serialization",
+      "cb_job": "Unit and dimension tracking; numeric receipts refuse mismatched arithmetic",
+      "verified": {
+        "latest_version": "0.25.3",
+        "release_date": "2026-03-19",
+        "days_since_release": 142,
+        "requires_python": ">=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 307488,
+        "largest_wheel_mb": 0.29,
+        "declared_runtime_deps": 4,
+        "runtime_dep_names": [
+          "flexcache",
+          "flexparser",
+          "platformdirs",
+          "typing-extensions"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "dependency tree: 4 declared runtime deps > 3 (flexcache, flexparser, platformdirs, typing-extensions)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cattrs",
+      "category": "schema-contract-serialization",
+      "cb_job": "Typed structure/unstructure converters for attrs receipt classes",
+      "verified": {
+        "latest_version": "26.1.0",
+        "release_date": "2026-02-18",
+        "days_since_release": 171,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 73054,
+        "largest_wheel_mb": 0.07,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "attrs",
+          "exceptiongroup",
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "voluptuous",
+      "category": "schema-contract-serialization",
+      "cb_job": "Declarative dict/list validation; refuses malformed receipts before write",
+      "verified": {
+        "latest_version": "0.16.0",
+        "release_date": "2025-12-18",
+        "days_since_release": 233,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 31931,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cerberus",
+      "category": "schema-contract-serialization",
+      "cb_job": "Dict schema validation for gate proposals before admission",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "1.3.8",
+        "release_date": "2025-11-06",
+        "days_since_release": 275,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 30567,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "importlib-metadata"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "frozendict",
+      "category": "schema-contract-serialization",
+      "cb_job": "Immutable dict for receipt content after validation and hashing",
+      "verified": {
+        "latest_version": "2.4.7",
+        "release_date": "2025-11-11",
+        "days_since_release": 270,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 130068,
+        "largest_wheel_mb": 0.12,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "lark",
+      "category": "schema-contract-serialization",
+      "cb_job": "Parser generator for bounded gate-rule DSLs",
+      "also_categories": [
+        "solvers-logic-automata"
+      ],
+      "verified": {
+        "latest_version": "1.3.1",
+        "release_date": "2025-10-27",
+        "days_since_release": 285,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 113151,
+        "largest_wheel_mb": 0.11,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "schema",
+      "category": "schema-contract-serialization",
+      "cb_job": "Minimal data-shape validation for small receipt schemas",
+      "verified": {
+        "latest_version": "0.7.8",
+        "release_date": "2025-10-11",
+        "days_since_release": 301,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 19108,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "contextlib2"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "email-validator",
+      "category": "schema-contract-serialization",
+      "cb_job": "RFC-compliant email validation for receipt author fields",
+      "verified": {
+        "latest_version": "2.3.0",
+        "release_date": "2025-08-26",
+        "days_since_release": 347,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 35604,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "dnspython",
+          "idna"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "validators",
+      "category": "schema-contract-serialization",
+      "cb_job": "Composable field validators (URL, IP, email) for receipt fields",
+      "also_categories": [
+        "test-repro-bounded"
+      ],
+      "verified": {
+        "latest_version": "0.35.0",
+        "release_date": "2025-05-01",
+        "days_since_release": 465,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 44712,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "tomli-w",
+      "category": "schema-contract-serialization",
+      "cb_job": "Deterministic TOML writing counterpart to tomli for manifests",
+      "also_categories": [
+        "hash-sign-ledger-storage"
+      ],
+      "verified": {
+        "latest_version": "1.2.0",
+        "release_date": "2025-01-15",
+        "days_since_release": 570,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6675,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2025-01-15 (570 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "immutables",
+      "category": "schema-contract-serialization",
+      "cb_job": "HAMT immutable map for large receipt versions with structural sharing",
+      "verified": {
+        "latest_version": "0.21",
+        "release_date": "2024-10-10",
+        "days_since_release": 668,
+        "requires_python": ">=3.8.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 104898,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-10-10 (668 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pyrsistent",
+      "category": "schema-contract-serialization",
+      "cb_job": "Immutable data structures with structural sharing for receipts",
+      "verified": {
+        "latest_version": "0.20.0",
+        "release_date": "2023-10-25",
+        "days_since_release": 1018,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 122615,
+        "largest_wheel_mb": 0.12,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2023-10-25 (1018 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "defusedxml",
+      "category": "schema-contract-serialization",
+      "cb_job": "Safe XML parsing; blocks XXE/billion-laughs during receipt deserialization",
+      "verified": {
+        "latest_version": "0.7.1",
+        "release_date": "2021-03-08",
+        "days_since_release": 1979,
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 25604,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2021-03-08 (1979 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "strictyaml",
+      "category": "schema-contract-serialization",
+      "cb_job": "Strict schema-first YAML; refuses unexpected keys and types before parse",
+      "verified": {
+        "latest_version": "1.7.3",
+        "release_date": "2023-03-10",
+        "days_since_release": 1247,
+        "requires_python": ">=3.7.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 123917,
+        "largest_wheel_mb": 0.12,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "python-dateutil"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2023-03-10 (1247 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "jcs",
+      "category": "schema-contract-serialization",
+      "cb_job": "RFC 8785 JSON canonicalization for stable receipt hashing",
+      "verified": {
+        "latest_version": "0.2.1",
+        "release_date": "2022-04-10",
+        "days_since_release": 1581,
+        "requires_python": ">=3.6.2",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 7603,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-04-10 (1581 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "satispy",
+      "category": "solvers-logic-automata",
+      "cb_job": "Unified wrapper over SAT solvers; extra verifier lane for satisfiability",
+      "verified": {
+        "latest_version": "1.4",
+        "release_date": "2025-12-16",
+        "days_since_release": 235,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 14715,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "clingo",
+      "category": "solvers-logic-automata",
+      "cb_job": "Answer Set Programming decider orthogonal to SMT and enumeration",
+      "verified": {
+        "latest_version": "5.8.1",
+        "release_date": "2026-08-05",
+        "days_since_release": 4,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 3625139,
+        "largest_wheel_mb": 3.46,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "cffi"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "automaton",
+      "category": "solvers-logic-automata",
+      "cb_job": "Finite state machine constraints on gate sequencing and state validity",
+      "verified": {
+        "latest_version": "3.4.0",
+        "release_date": "2026-03-24",
+        "days_since_release": 137,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 23504,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "PrettyTable",
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "bitarray",
+      "category": "solvers-logic-automata",
+      "cb_job": "Compact boolean arrays for SAT/CSP assignment and clause bookkeeping",
+      "verified": {
+        "latest_version": "3.10.1",
+        "release_date": "2026-08-07",
+        "days_since_release": 2,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 418890,
+        "largest_wheel_mb": 0.4,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "formula",
+      "category": "solvers-logic-automata",
+      "cb_job": "Formula parsing and solving with exact arithmetic for constraint expressions",
+      "verified": {
+        "latest_version": "6.0.0",
+        "release_date": "2026-07-02",
+        "days_since_release": 37,
+        "requires_python": "<4,>=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 2232514,
+        "largest_wheel_mb": 2.13,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cvxpy",
+      "category": "solvers-logic-automata",
+      "cb_job": "Convex constraint modeling; refuses non-convex problems by construction",
+      "verified": {
+        "latest_version": "1.9.2",
+        "release_date": "2026-06-22",
+        "days_since_release": 48,
+        "requires_python": ">=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 4427785,
+        "largest_wheel_mb": 4.22,
+        "declared_runtime_deps": 8,
+        "runtime_dep_names": [
+          "osqp",
+          "clarabel",
+          "scs",
+          "numpy",
+          "scipy",
+          "highspy",
+          "qdldl",
+          "sparsediffpy"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "dependency tree: 8 declared runtime deps > 3 (clarabel, highspy, numpy, osqp, qdldl, scipy, scs, sparsediffpy)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pddl",
+      "category": "solvers-logic-automata",
+      "cb_job": "PDDL parsing; planning problems as standardized constraint specifications",
+      "verified": {
+        "latest_version": "0.4.8",
+        "release_date": "2026-06-25",
+        "days_since_release": 45,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 54098,
+        "largest_wheel_mb": 0.05,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "lark",
+          "click"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "regex",
+      "category": "solvers-logic-automata",
+      "cb_job": "Enhanced regex engine for formal-language membership constraints",
+      "verified": {
+        "latest_version": "2026.7.19",
+        "release_date": "2026-07-19",
+        "days_since_release": 21,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 917534,
+        "largest_wheel_mb": 0.88,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "gmpy2",
+      "category": "solvers-logic-automata",
+      "cb_job": "Exact arbitrary-precision arithmetic for gates that refuse rounding error",
+      "verified": {
+        "latest_version": "2.3.1",
+        "release_date": "2026-06-24",
+        "days_since_release": 46,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 1781716,
+        "largest_wheel_mb": 1.7,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pysmt",
+      "category": "solvers-logic-automata",
+      "cb_job": "Solver-agnostic SMT formula construction layer over z3/cvc5",
+      "verified": {
+        "latest_version": "0.9.6",
+        "release_date": "2024-06-24",
+        "days_since_release": 775,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 326100,
+        "largest_wheel_mb": 0.31,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-06-24 (775 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pyformlang",
+      "category": "solvers-logic-automata",
+      "cb_job": "DFA/NFA/regular/context-free grammar framework for admissible-sequence constraints",
+      "verified": {
+        "latest_version": "1.0.11",
+        "release_date": "2025-03-18",
+        "days_since_release": 508,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 128508,
+        "largest_wheel_mb": 0.12,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "networkx",
+          "numpy",
+          "pydot"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "dfa",
+      "category": "solvers-logic-automata",
+      "cb_job": "Small DFA and Moore machine library for protocol and sequencing invariants",
+      "verified": {
+        "latest_version": "4.7.1",
+        "release_date": "2024-05-10",
+        "days_since_release": 821,
+        "requires_python": "<4.0,>=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 11311,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 4,
+        "runtime_dep_names": [
+          "attrs",
+          "funcy",
+          "bidict",
+          "bitarray"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-05-10 (821 days > 548)",
+          "dependency tree: 4 declared runtime deps > 3 (attrs, bidict, bitarray, funcy)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "boolean.py",
+      "category": "solvers-logic-automata",
+      "cb_job": "Boolean algebra expression build/simplify layer before SAT dispatch",
+      "verified": {
+        "latest_version": "5.0",
+        "release_date": "2025-04-03",
+        "days_since_release": 492,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 26577,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "knapsack",
+      "category": "solvers-logic-automata",
+      "cb_job": "Single-purpose bounded-weight selection solver",
+      "verified": {
+        "latest_version": "0.3.1",
+        "release_date": "2024-09-23",
+        "days_since_release": 685,
+        "requires_python": ">=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6092,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-09-23 (685 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "ecdsa",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "ECDSA signing for receipt attestation without the full cryptography stack",
+      "verified": {
+        "latest_version": "0.19.2",
+        "release_date": "2026-03-26",
+        "days_since_release": 135,
+        "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 150818,
+        "largest_wheel_mb": 0.14,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "six"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "ruamel.yaml",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Round-trip YAML preserving comments for byte-identical config replay",
+      "verified": {
+        "latest_version": "0.19.1",
+        "release_date": "2026-01-02",
+        "days_since_release": 218,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 118102,
+        "largest_wheel_mb": 0.11,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "checksumdir",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Deterministic directory-tree hash binding receipts to artifact collections",
+      "also_categories": [
+        "test-repro-bounded"
+      ],
+      "verified": {
+        "latest_version": "1.3.0",
+        "release_date": "2025-08-15",
+        "days_since_release": 358,
+        "requires_python": "<4.0,>=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 5491,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "PyJWT",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "JWT sign and verify for lightweight receipt attestation",
+      "verified": {
+        "latest_version": "2.13.0",
+        "release_date": "2026-05-21",
+        "days_since_release": 79,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 31274,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "typing_extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "dictdiffer",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Structural dict diff for receipt change detection",
+      "also_categories": [
+        "static-analysis-drift"
+      ],
+      "verified": {
+        "latest_version": "0.10.0",
+        "release_date": "2026-07-16",
+        "days_since_release": 23,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 16060,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "GitPython",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Read git objects to audit evidence-tree commit hashes without subprocess",
+      "verified": {
+        "latest_version": "3.1.58",
+        "release_date": "2026-08-04",
+        "days_since_release": 4,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 220183,
+        "largest_wheel_mb": 0.21,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "gitdb",
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "argon2-cffi",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Argon2 key derivation binding credentials to ledger entries",
+      "verified": {
+        "latest_version": "25.1.0",
+        "release_date": "2025-06-03",
+        "days_since_release": 432,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 14657,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "argon2-cffi-bindings"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cachetools",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Memoization of receipt validation results on hot paths",
+      "verified": {
+        "latest_version": "7.1.7",
+        "release_date": "2026-08-01",
+        "days_since_release": 7,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 16830,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "python-ulid",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Sortable ULIDs for chronologically ordered ledger entry IDs",
+      "verified": {
+        "latest_version": "4.0.1",
+        "release_date": "2026-07-20",
+        "days_since_release": 19,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 14609,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "uuid6",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "RFC 9562 v6/v7 sortable UUIDs for receipt entry ordering",
+      "verified": {
+        "latest_version": "2025.0.1",
+        "release_date": "2025-07-04",
+        "days_since_release": 400,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6979,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "tinydb",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Embedded JSON document store for append-only receipt logs",
+      "verified": {
+        "latest_version": "4.9.0",
+        "release_date": "2026-08-06",
+        "days_since_release": 2,
+        "requires_python": "<4,>=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 25731,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pickledb",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "JSON key-value store for receipt index and registry",
+      "verified": {
+        "latest_version": "1.6",
+        "release_date": "2026-01-05",
+        "days_since_release": 216,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 5224,
+        "largest_wheel_mb": 0.0,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "orjson",
+          "aiofiles"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "dataclasses-json",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "JSON serialization for typed dataclass receipts",
+      "verified": {
+        "latest_version": "0.6.7",
+        "release_date": "2024-06-09",
+        "days_since_release": 790,
+        "requires_python": "<4.0,>=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 28686,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "marshmallow",
+          "typing-inspect"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-06-09 (790 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "dacite",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Rebuild typed receipt dataclasses from JSON archives with type checks",
+      "verified": {
+        "latest_version": "1.9.2",
+        "release_date": "2025-02-05",
+        "days_since_release": 549,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 16600,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "dataclasses"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2025-02-05 (549 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "isodate",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "ISO 8601 parse and serialize for audit-trail timestamps",
+      "verified": {
+        "latest_version": "0.7.2",
+        "release_date": "2024-10-08",
+        "days_since_release": 669,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 22320,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-10-08 (669 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pymerkle",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Merkle tree construction and proofs for receipt audit chains",
+      "verified": {
+        "latest_version": "6.1.0",
+        "release_date": "2023-08-30",
+        "days_since_release": 1074,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 34289,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "cachetools"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2023-08-30 (1074 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "bsdiff4",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Binary diffing of artifact collections in evidence archives",
+      "verified": {
+        "latest_version": "1.2.6",
+        "release_date": "2025-02-19",
+        "days_since_release": 535,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 37325,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pydantic",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Typed validation with detailed errors for receipt schemas",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "2.13.4",
+        "release_date": "2026-05-06",
+        "days_since_release": 94,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 472262,
+        "largest_wheel_mb": 0.45,
+        "declared_runtime_deps": 4,
+        "runtime_dep_names": [
+          "annotated-types",
+          "pydantic-core",
+          "typing-extensions",
+          "typing-inspection"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "dependency tree: 4 declared runtime deps > 3 (annotated-types, pydantic-core, typing-extensions, typing-inspection)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "peewee",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Small ORM for SQL ledger persistence",
+      "verified": {
+        "latest_version": "4.3.0",
+        "release_date": "2026-07-31",
+        "days_since_release": 8,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 179479,
+        "largest_wheel_mb": 0.17,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "mmh3",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "MurmurHash3 non-cryptographic hashing for manifest-scale tree hashing",
+      "verified": {
+        "latest_version": "5.2.1",
+        "release_date": "2026-03-05",
+        "days_since_release": 156,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "linux,macos,windows",
+        "pure_python": false,
+        "largest_wheel_bytes": 135280,
+        "largest_wheel_mb": 0.13,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "jsondiff",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "JSON-native structural diffing for receipt changes",
+      "verified": {
+        "latest_version": "2.2.1",
+        "release_date": "2024-08-29",
+        "days_since_release": 710,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 13440,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pyyaml"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-08-29 (710 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pyflakes",
+      "category": "static-analysis-drift",
+      "cb_job": "Detects unused names, imports, redefinitions; no dead logic paths in gate code",
+      "verified": {
+        "latest_version": "3.4.0",
+        "release_date": "2025-06-20",
+        "days_since_release": 414,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 63551,
+        "largest_wheel_mb": 0.06,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "asttokens",
+      "category": "static-analysis-drift",
+      "cb_job": "AST-to-token mapping for precise source locations in drift reports",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "3.0.2",
+        "release_date": "2026-07-12",
+        "days_since_release": 28,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 28702,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "unidiff",
+      "category": "static-analysis-drift",
+      "cb_job": "Unified-diff parsing; reject patches that touch gate rules or assertions",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "1.0.0",
+        "release_date": "2026-07-25",
+        "days_since_release": 14,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 18279,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "eradicate",
+      "category": "static-analysis-drift",
+      "cb_job": "Detects commented-out code replacing live code",
+      "verified": {
+        "latest_version": "3.0.1",
+        "release_date": "2025-10-27",
+        "days_since_release": 286,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6303,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "isort",
+      "category": "static-analysis-drift",
+      "cb_job": "Import order and boundary checking for module layout drift",
+      "verified": {
+        "latest_version": "8.0.1",
+        "release_date": "2026-02-28",
+        "days_since_release": 161,
+        "requires_python": ">=3.10.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 89733,
+        "largest_wheel_mb": 0.09,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "vulture",
+      "category": "static-analysis-drift",
+      "cb_job": "Dead code detection; unreferenced definitions rejected",
+      "verified": {
+        "latest_version": "2.16",
+        "release_date": "2026-03-25",
+        "days_since_release": 136,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 26993,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "tomli"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "rope",
+      "category": "static-analysis-drift",
+      "cb_job": "Static import and usage analysis via refactoring engine",
+      "verified": {
+        "latest_version": "1.14.0",
+        "release_date": "2025-07-12",
+        "days_since_release": 392,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 207143,
+        "largest_wheel_mb": 0.2,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pytoolconfig"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "flake8-simplify",
+      "category": "static-analysis-drift",
+      "cb_job": "Flags complexity-increasing patterns in gate submissions",
+      "verified": {
+        "latest_version": "0.30.0",
+        "release_date": "2026-01-01",
+        "days_since_release": 219,
+        "requires_python": ">=3.9.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 26241,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "flake8"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "lizard",
+      "category": "static-analysis-drift",
+      "cb_job": "Cyclomatic complexity ceilings on gate code",
+      "verified": {
+        "latest_version": "1.23.0",
+        "release_date": "2026-06-02",
+        "days_since_release": 68,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 100830,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "pygments",
+          "pathspec"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pyright",
+      "category": "static-analysis-drift",
+      "cb_job": "Type checker for annotation drift across gate versions",
+      "verified": {
+        "latest_version": "1.1.411",
+        "release_date": "2026-06-25",
+        "days_since_release": 45,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6181526,
+        "largest_wheel_mb": 5.9,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "nodeenv",
+          "typing-extensions"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "largest wheel 5.90 MB exceeds 5 MB lean budget"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "freezegun",
+      "category": "test-repro-bounded",
+      "cb_job": "Frozen time for reproducible time-sensitive gate tests",
+      "verified": {
+        "latest_version": "1.5.5",
+        "release_date": "2025-08-09",
+        "days_since_release": 364,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 19266,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "python-dateutil"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-timeout",
+      "category": "test-repro-bounded",
+      "cb_job": "Hard time ceilings; bounded-execution proof for gate tests",
+      "verified": {
+        "latest_version": "2.4.0",
+        "release_date": "2025-05-05",
+        "days_since_release": 460,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 14382,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pytest"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "dirty-equals",
+      "category": "test-repro-bounded",
+      "cb_job": "Structural equality tolerant of field order for receipt assertions",
+      "verified": {
+        "latest_version": "0.11",
+        "release_date": "2025-11-17",
+        "days_since_release": 265,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 28051,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "icdiff",
+      "category": "test-repro-bounded",
+      "cb_job": "Readable diffs of receipt structures in test output",
+      "verified": {
+        "latest_version": "2.0.10",
+        "release_date": "2026-02-08",
+        "days_since_release": 181,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 17103,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-randomly",
+      "category": "test-repro-bounded",
+      "cb_job": "Seed control and test-order randomization to expose order dependence",
+      "verified": {
+        "latest_version": "4.1.0",
+        "release_date": "2026-04-20",
+        "days_since_release": 110,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 8353,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pytest"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-flakefinder",
+      "category": "test-repro-bounded",
+      "cb_job": "Repeat runs to expose intermittent gate failures",
+      "verified": {
+        "latest_version": "1.1.0",
+        "release_date": "2022-10-26",
+        "days_since_release": 1382,
+        "requires_python": ">=3.5",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 4644,
+        "largest_wheel_mb": 0.0,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pytest"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-10-26 (1382 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-snapshot",
+      "category": "test-repro-bounded",
+      "cb_job": "Snapshot capture and diff of receipt structures across runs",
+      "verified": {
+        "latest_version": "0.9.0",
+        "release_date": "2022-04-23",
+        "days_since_release": 1568,
+        "requires_python": ">=3.5",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 10715,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "pytest"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-04-23 (1568 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "vcrpy",
+      "category": "test-repro-bounded",
+      "cb_job": "Record and replay HTTP for hermetic tests of network-touching gates",
+      "verified": {
+        "latest_version": "8.3.0",
+        "release_date": "2026-07-04",
+        "days_since_release": 35,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 46530,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "PyYAML",
+          "wrapt"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "responses",
+      "category": "test-repro-bounded",
+      "cb_job": "HTTP mocking for deterministic gate tests",
+      "verified": {
+        "latest_version": "0.26.2",
+        "release_date": "2026-07-03",
+        "days_since_release": 36,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 35609,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "requests",
+          "urllib3",
+          "pyyaml"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pyfakefs",
+      "category": "test-repro-bounded",
+      "cb_job": "Hermetic in-memory filesystem for I/O gate tests",
+      "verified": {
+        "latest_version": "6.2.0",
+        "release_date": "2026-04-12",
+        "days_since_release": 118,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 241113,
+        "largest_wheel_mb": 0.23,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "coverage",
+      "category": "test-repro-bounded",
+      "cb_job": "Path coverage measurement as evidence of gate test adequacy",
+      "verified": {
+        "latest_version": "7.15.4",
+        "release_date": "2026-08-06",
+        "days_since_release": 2,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 271107,
+        "largest_wheel_mb": 0.26,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-benchmark",
+      "category": "test-repro-bounded",
+      "cb_job": "Reproducible timing statistics for gate latency regressions",
+      "verified": {
+        "latest_version": "5.2.3",
+        "release_date": "2025-11-09",
+        "days_since_release": 272,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 45255,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "pytest",
+          "py-cpuinfo"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pytest-xdist",
+      "category": "test-repro-bounded",
+      "cb_job": "Parallel test execution; gates behave under concurrency",
+      "verified": {
+        "latest_version": "3.8.0",
+        "release_date": "2025-07-01",
+        "days_since_release": 403,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 46396,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "execnet",
+          "pytest"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "semver",
+      "category": "test-repro-bounded",
+      "cb_job": "Semantic version ordering for deterministic version gates",
+      "verified": {
+        "latest_version": "3.0.4",
+        "release_date": "2025-01-24",
+        "days_since_release": 561,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 17912,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2025-01-24 (561 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "python-Levenshtein",
+      "category": "test-repro-bounded",
+      "cb_job": "Fast edit distance for near-duplicate receipt and claim comparison",
+      "also_categories": [
+        "text-similarity-drift"
+      ],
+      "verified": {
+        "latest_version": "0.27.4",
+        "release_date": "2026-08-08",
+        "days_since_release": 0,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 9501,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "Levenshtein"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "sortedcontainers",
+      "category": "test-repro-bounded",
+      "cb_job": "Deterministic sorted structures for order-independent checks",
+      "verified": {
+        "latest_version": "2.4.0",
+        "release_date": "2021-05-16",
+        "days_since_release": 1910,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 29575,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2021-05-16 (1910 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pluggy",
+      "category": "test-repro-bounded",
+      "cb_job": "Minimal hook and plugin framework for extending gate behavior",
+      "verified": {
+        "latest_version": "1.6.0",
+        "release_date": "2025-05-15",
+        "days_since_release": 450,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 20538,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "faker",
+      "category": "test-repro-bounded",
+      "cb_job": "Synthetic diverse inputs for fuzzing gate boundaries",
+      "verified": {
+        "latest_version": "40.36.0",
+        "release_date": "2026-07-24",
+        "days_since_release": 15,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 2062829,
+        "largest_wheel_mb": 1.97,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "tzdata"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "testfixtures",
+      "category": "test-repro-bounded",
+      "cb_job": "Fixtures (TempDirectory, LogCapture, ShouldRaise) for deterministic scaffolding",
+      "verified": {
+        "latest_version": "12.3.0",
+        "release_date": "2026-07-08",
+        "days_since_release": 31,
+        "requires_python": ">=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 69493,
+        "largest_wheel_mb": 0.07,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "more-itertools",
+      "category": "test-repro-bounded",
+      "cb_job": "Deterministic batching and windowing iteration utilities",
+      "verified": {
+        "latest_version": "11.1.0",
+        "release_date": "2026-05-22",
+        "days_since_release": 78,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 72226,
+        "largest_wheel_mb": 0.07,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "thefuzz",
+      "category": "text-similarity-drift",
+      "cb_job": "Token-based fuzzy matching for claim drift detection",
+      "verified": {
+        "latest_version": "0.22.1",
+        "release_date": "2024-01-19",
+        "days_since_release": 932,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 8245,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "rapidfuzz"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-01-19 (932 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "simhash",
+      "category": "text-similarity-drift",
+      "cb_job": "Near-duplicate hash that survives minor rewording",
+      "verified": {
+        "latest_version": "2.1.2",
+        "release_date": "2022-03-03",
+        "days_since_release": 1620,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 4714,
+        "largest_wheel_mb": 0.0,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "numpy"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-03-03 (1620 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "jaro-winkler",
+      "category": "text-similarity-drift",
+      "cb_job": "Jaro-Winkler similarity for typo and transposition drift",
+      "verified": {
+        "latest_version": "2.0.3",
+        "release_date": "2022-08-05",
+        "days_since_release": 1464,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 33663,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-08-05 (1464 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "python-slugify",
+      "category": "text-similarity-drift",
+      "cb_job": "Canonical slug normalization so equivalent text compares equal",
+      "verified": {
+        "latest_version": "8.0.4",
+        "release_date": "2024-02-08",
+        "days_since_release": 912,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 10051,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "text-unidecode"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-02-08 (912 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "textdistance",
+      "category": "text-similarity-drift",
+      "cb_job": "30+ string distance metrics for diverse claim types",
+      "verified": {
+        "latest_version": "4.6.3",
+        "release_date": "2024-07-16",
+        "days_since_release": 753,
+        "requires_python": ">=3.5",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 31263,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-07-16 (753 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "diff-match-patch",
+      "category": "text-similarity-drift",
+      "cb_job": "Fine-grained semantic diff, match and patch of claims",
+      "verified": {
+        "latest_version": "20241021",
+        "release_date": "2024-10-21",
+        "days_since_release": 656,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 43252,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-10-21 (656 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "html2text",
+      "category": "text-similarity-drift",
+      "cb_job": "HTML-to-text so markup noise cannot disguise drift",
+      "verified": {
+        "latest_version": "2025.4.15",
+        "release_date": "2025-04-15",
+        "days_since_release": 481,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 34656,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "html-sanitizer",
+      "category": "text-similarity-drift",
+      "cb_job": "Sanitize or refuse malformed HTML before comparison",
+      "verified": {
+        "latest_version": "2.6.0",
+        "release_date": "2025-06-30",
+        "days_since_release": 404,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 15564,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "beautifulsoup4",
+          "lxml-html-clean",
+          "lxml"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "xmltodict",
+      "category": "text-similarity-drift",
+      "cb_job": "XML-to-dict for element-wise structural comparison",
+      "verified": {
+        "latest_version": "1.0.4",
+        "release_date": "2026-02-22",
+        "days_since_release": 168,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 13580,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "mistune",
+      "category": "text-similarity-drift",
+      "cb_job": "Markdown parsing for structural change detection",
+      "verified": {
+        "latest_version": "3.3.4",
+        "release_date": "2026-07-22",
+        "days_since_release": 18,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 66862,
+        "largest_wheel_mb": 0.06,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "ast-comments",
+      "category": "text-similarity-drift",
+      "cb_job": "AST parse preserving comments for prompt-code analysis",
+      "verified": {
+        "latest_version": "1.3.0",
+        "release_date": "2026-02-22",
+        "days_since_release": 167,
+        "requires_python": "<4.0,>=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 5946,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "ngram",
+      "category": "text-similarity-drift",
+      "cb_job": "N-gram similarity for bag-of-words drift",
+      "verified": {
+        "latest_version": "4.0.3",
+        "release_date": "2021-09-15",
+        "days_since_release": 1788,
+        "requires_python": ">=3.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 24279,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2021-09-15 (1788 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "ftfy",
+      "category": "text-similarity-drift",
+      "cb_job": "Fix mojibake so encoding damage does not read as drift",
+      "verified": {
+        "latest_version": "6.3.1",
+        "release_date": "2024-10-26",
+        "days_since_release": 652,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 44821,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "wcwidth"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2024-10-26 (652 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "w3lib",
+      "category": "text-similarity-drift",
+      "cb_job": "URL and percent-encoding normalization for comparison",
+      "verified": {
+        "latest_version": "2.4.1",
+        "release_date": "2026-03-20",
+        "days_since_release": 141,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 21695,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "Unidecode",
+      "category": "text-similarity-drift",
+      "cb_job": "ASCII transliteration so accented variants compare equal",
+      "verified": {
+        "latest_version": "1.4.0",
+        "release_date": "2025-04-24",
+        "days_since_release": 471,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 235837,
+        "largest_wheel_mb": 0.22,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "markdown-it-py",
+      "category": "text-similarity-drift",
+      "cb_job": "CommonMark-strict markdown parsing for markup drift",
+      "verified": {
+        "latest_version": "4.2.0",
+        "release_date": "2026-05-07",
+        "days_since_release": 93,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 91687,
+        "largest_wheel_mb": 0.09,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "mdurl"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "inflection",
+      "category": "text-similarity-drift",
+      "cb_job": "Singular/plural canonicalization of grammatical variants",
+      "verified": {
+        "latest_version": "0.5.1",
+        "release_date": "2020-08-22",
+        "days_since_release": 2177,
+        "requires_python": ">=3.5",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 9454,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2020-08-22 (2177 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "bleach",
+      "category": "text-similarity-drift",
+      "cb_job": "Tag stripping and sanitization before HTML claim comparison",
+      "verified": {
+        "latest_version": "6.4.0",
+        "release_date": "2026-06-05",
+        "days_since_release": 64,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 165109,
+        "largest_wheel_mb": 0.16,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "webencodings"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "datasketch",
+      "category": "text-similarity-drift",
+      "cb_job": "MinHash and LSH near-duplicate detection at scale",
+      "verified": {
+        "latest_version": "2.0.0",
+        "release_date": "2026-07-05",
+        "days_since_release": 35,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 107247,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "numpy",
+          "scipy"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "polyfuzz",
+      "category": "text-similarity-drift",
+      "cb_job": "Fuzzy matching with pluggable backends",
+      "verified": {
+        "latest_version": "0.4.3",
+        "release_date": "2025-05-06",
+        "days_since_release": 459,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 36845,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 9,
+        "runtime_dep_names": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "tqdm",
+          "joblib",
+          "matplotlib",
+          "seaborn",
+          "rapidfuzz",
+          "scikit_learn"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "dependency tree: 9 declared runtime deps > 3 (joblib, matplotlib, numpy, pandas, rapidfuzz, scikit_learn, scipy, seaborn, tqdm)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "string-similarity",
+      "category": "text-similarity-drift",
+      "cb_job": "Dice and Jaccard set-based similarity",
+      "verified": {
+        "latest_version": "0.0.2",
+        "release_date": "2023-09-24",
+        "days_since_release": 1049,
+        "requires_python": ">=3.11",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6016,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2023-09-24 (1049 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "cosine-similarity",
+      "category": "text-similarity-drift",
+      "cb_job": "Cosine similarity for vector text comparison",
+      "verified": {
+        "latest_version": "0.1.2",
+        "release_date": "2022-01-20",
+        "days_since_release": 1662,
+        "requires_python": ">=2.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 5118,
+        "largest_wheel_mb": 0.0,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2022-01-20 (1662 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "bpe",
+      "category": "text-similarity-drift",
+      "cb_job": "Byte-pair encoding tokenization without a pre-trained model",
+      "verified": {
+        "latest_version": "1.0",
+        "release_date": "2019-03-27",
+        "days_since_release": 2692,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6752,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 6,
+        "runtime_dep_names": [
+          "nltk",
+          "tqdm",
+          "pytest",
+          "hypothesis",
+          "toolz",
+          "mypy"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2019-03-27 (2692 days > 548)",
+          "no requires_python declared",
+          "dependency tree: 6 declared runtime deps > 3 (hypothesis, mypy, nltk, pytest, toolz, tqdm)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pylev",
+      "category": "text-similarity-drift",
+      "cb_job": "Pure-Python Levenshtein fallback available everywhere",
+      "verified": {
+        "latest_version": "1.4.0",
+        "release_date": "2021-05-30",
+        "days_since_release": 1896,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 6080,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2021-05-30 (1896 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "fuzzywuzzy",
+      "category": "text-similarity-drift",
+      "cb_job": "Legacy fuzzy matcher; compatibility fallback for thefuzz",
+      "verified": {
+        "latest_version": "0.18.0",
+        "release_date": "2020-02-13",
+        "days_since_release": 2368,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 18272,
+        "largest_wheel_mb": 0.02,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2020-02-13 (2368 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "beautifulsoup4",
+      "category": "text-similarity-drift",
+      "cb_job": "HTML and XML parsing for complex prompt extraction",
+      "verified": {
+        "latest_version": "4.15.0",
+        "release_date": "2026-06-07",
+        "days_since_release": 62,
+        "requires_python": ">=3.7.0",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 109924,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "soupsieve",
+          "typing-extensions"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "gitdb",
+      "category": "text-similarity-drift",
+      "cb_job": "Git object database access for claim version tracking",
+      "verified": {
+        "latest_version": "4.0.12",
+        "release_date": "2025-01-02",
+        "days_since_release": 584,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 62794,
+        "largest_wheel_mb": 0.06,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "smmap"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2025-01-02 (584 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "pdfplumber",
+      "category": "text-similarity-drift",
+      "cb_job": "PDF text and table extraction preserving layout for comparison",
+      "verified": {
+        "latest_version": "0.11.10",
+        "release_date": "2026-06-15",
+        "days_since_release": 55,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 60047,
+        "largest_wheel_mb": 0.06,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "pdfminer.six",
+          "Pillow",
+          "pypdfium2"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "soupsieve",
+      "category": "text-similarity-drift",
+      "cb_job": "CSS selectors for targeted HTML prompt comparison",
+      "verified": {
+        "latest_version": "2.9.2",
+        "release_date": "2026-08-07",
+        "days_since_release": 2,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 37370,
+        "largest_wheel_mb": 0.04,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "typing-inspect",
+      "category": "text-similarity-drift",
+      "cb_job": "Runtime type-hint inspection for contract mismatch detection",
+      "verified": {
+        "latest_version": "0.9.0",
+        "release_date": "2023-05-24",
+        "days_since_release": 1172,
+        "requires_python": null,
+        "admits_3_12": null,
+        "admits_3_13": null,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 8827,
+        "largest_wheel_mb": 0.01,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "mypy-extensions",
+          "typing-extensions",
+          "typing"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2023-05-24 (1172 days > 548)",
+          "no requires_python declared"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "tinycss2",
+      "category": "text-similarity-drift",
+      "cb_job": "CSS parsing to detect style changes without whitespace false positives",
+      "verified": {
+        "latest_version": "1.5.1",
+        "release_date": "2025-11-23",
+        "days_since_release": 258,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 28404,
+        "largest_wheel_mb": 0.03,
+        "declared_runtime_deps": 1,
+        "runtime_dep_names": [
+          "webencodings"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "markdown2",
+      "category": "text-similarity-drift",
+      "cb_job": "Markdown variant conversion where mistune misses extensions",
+      "verified": {
+        "latest_version": "2.5.5",
+        "release_date": "2026-03-02",
+        "days_since_release": 159,
+        "requires_python": "<4,>=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 56250,
+        "largest_wheel_mb": 0.05,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "arrow",
+      "category": "text-similarity-drift",
+      "cb_job": "Timestamp parsing and normalization for time-sensitive claim drift",
+      "verified": {
+        "latest_version": "1.4.0",
+        "release_date": "2025-10-18",
+        "days_since_release": 294,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 68797,
+        "largest_wheel_mb": 0.07,
+        "declared_runtime_deps": 3,
+        "runtime_dep_names": [
+          "python-dateutil",
+          "backports.zoneinfo",
+          "tzdata"
+        ],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "abydos",
+      "category": "text-similarity-drift",
+      "cb_job": "Phonetic matching (Soundex, Metaphone) for homophone equivalence",
+      "verified": {
+        "latest_version": "0.5.0",
+        "release_date": "2020-01-11",
+        "days_since_release": 2402,
+        "requires_python": "~=3.5",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 886001,
+        "largest_wheel_mb": 0.84,
+        "declared_runtime_deps": 2,
+        "runtime_dep_names": [
+          "numpy",
+          "deprecation"
+        ],
+        "verdict": "drop",
+        "drop_reasons": [
+          "stale: last release 2020-01-11 (2402 days > 548)"
+        ],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": false
+      }
+    },
+    {
+      "pypi_name": "blake3",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Deterministic fast tree hashing for large evidence directories and receipt integrity",
+      "verified": {
+        "latest_version": "1.0.9",
+        "release_date": "2026-08-05",
+        "days_since_release": 4,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 775946,
+        "largest_wheel_mb": 0.74,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "charset-normalizer",
+      "category": "schema-contract-serialization",
+      "cb_job": "Detect encoding before comparing claim text to handle mixed UTF-8/Latin-1",
+      "verified": {
+        "latest_version": "3.4.9",
+        "release_date": "2026-08-01",
+        "days_since_release": 8,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 482344,
+        "largest_wheel_mb": 0.46,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "fasteners",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Inter-process locks and read-write locks for ledger coordination",
+      "verified": {
+        "latest_version": "0.20",
+        "release_date": "2025-11-01",
+        "days_since_release": 281,
+        "requires_python": ">=3.7",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 94371,
+        "largest_wheel_mb": 0.09,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "grimp",
+      "category": "static-analysis-drift",
+      "cb_job": "Build and query import graphs to detect CB module duplication",
+      "verified": {
+        "latest_version": "3.15",
+        "release_date": "2026-07-20",
+        "days_since_release": 20,
+        "requires_python": ">=3.10",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 4896849,
+        "largest_wheel_mb": 4.67,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "packaging",
+      "category": "schema-contract-serialization",
+      "cb_job": "PEP 440 version comparison for pin ceiling and prerelease ordering checks",
+      "verified": {
+        "latest_version": "26.3",
+        "release_date": "2026-08-08",
+        "days_since_release": 1,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 975175,
+        "largest_wheel_mb": 0.93,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "patch-ng",
+      "category": "static-analysis-drift",
+      "cb_job": "Apply patches deterministically without shell, for gate-rule diffs",
+      "verified": {
+        "latest_version": "1.19.1",
+        "release_date": "2025-12-15",
+        "days_since_release": 237,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 52428,
+        "largest_wheel_mb": 0.05,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "platformdirs",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Correct per-OS state directories (macOS, Linux, Windows) for receipt storage",
+      "verified": {
+        "latest_version": "4.11.1",
+        "release_date": "2026-07-25",
+        "days_since_release": 15,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 251658,
+        "largest_wheel_mb": 0.24,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "plumbum",
+      "category": "static-analysis-drift",
+      "cb_job": "Typed subprocess composition with explicit exit-code capture",
+      "verified": {
+        "latest_version": "2.0.2",
+        "release_date": "2026-03-15",
+        "days_since_release": 147,
+        "requires_python": ">=3.8",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 1216348,
+        "largest_wheel_mb": 1.16,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "stamina",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Opinionated bounded retry with explicit attempt ceiling for provider calls",
+      "verified": {
+        "latest_version": "26.1.0",
+        "release_date": "2026-08-08",
+        "days_since_release": 1,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 94371,
+        "largest_wheel_mb": 0.09,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "structlog",
+      "category": "schema-contract-serialization",
+      "cb_job": "Structured, machine-parseable audit events (JSON) instead of prose logs",
+      "verified": {
+        "latest_version": "26.1.0",
+        "release_date": "2026-08-08",
+        "days_since_release": 1,
+        "requires_python": ">=3.9",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 482344,
+        "largest_wheel_mb": 0.46,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "tabulate",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Deterministic table output for gate reports and status boards",
+      "verified": {
+        "latest_version": "0.10.0",
+        "release_date": "2024-12-01",
+        "days_since_release": 616,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 209715,
+        "largest_wheel_mb": 0.2,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    },
+    {
+      "pypi_name": "xxhash",
+      "category": "hash-sign-ledger-storage",
+      "cb_job": "Non-cryptographic manifest hashing at scale, faster than SHA-256",
+      "verified": {
+        "latest_version": "3.8.1",
+        "release_date": "2026-07-15",
+        "days_since_release": 25,
+        "requires_python": ">=3.6",
+        "admits_3_12": true,
+        "admits_3_13": true,
+        "platforms": "pure(all)",
+        "pure_python": true,
+        "largest_wheel_bytes": 104857,
+        "largest_wheel_mb": 0.1,
+        "declared_runtime_deps": 0,
+        "runtime_dep_names": [],
+        "verdict": "keep",
+        "drop_reasons": [],
+        "checked_at": "2026-08-09",
+        "functional_test_passed": true
+      }
+    }
+  ],
+  "verified_at": "2026-08-09T07:40:17+00:00",
+  "selection_bar": {
+    "stale_days_max": 548,
+    "max_declared_runtime_deps": 3,
+    "max_wheel_bytes": 5242880,
+    "python_versions_required": [
+      "3.12",
+      "3.13"
+    ],
+    "platforms_required": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "requires_python_must_be_declared": true
+  }
+}

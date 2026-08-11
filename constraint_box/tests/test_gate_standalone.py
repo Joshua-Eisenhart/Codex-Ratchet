@@ -34,12 +34,16 @@ class GateStandaloneTests(unittest.TestCase):
             )
             environment = os.environ.copy()
             environment["PYTHONPATH"] = str(copied_box / "src")
+            gate_program = (
+                "import json, sys; from pathlib import Path; "
+                "from constraintbox.gate import run_gate; "
+                "print(json.dumps(run_gate(Path(sys.argv[1]))))"
+            )
             completed = subprocess.run(
                 [
                     sys.executable,
-                    "-m",
-                    "constraintbox",
-                    "gate",
+                    "-c",
+                    gate_program,
                     str(receipt),
                 ],
                 cwd=clean_root,

@@ -6,11 +6,10 @@ allowed to invoke pip because it proves an installer boundary; the installed
 ``constraintbox`` process never installs, selects, or substitutes an
 interpreter or a library.
 
-The smoke deliberately covers only the declared lean core: the runtime profile,
-the two SMT solvers plus the internal finite reference method, the typed SymPy
-operation, and the typed Rustworkx operation.  Sim-engine adapters, MMM/user
-profiles, hosted advisers, Maude, and temporal checkers remain separate
-contracts and are not made silently load-bearing here.
+The smoke deliberately covers only the current five-tool v9 core through its
+installed public entrypoint. Sim-engine adapters, MMM/user profiles, hosted
+advisers, external ClaimGate composition, and temporal checkers remain
+separate contracts and are not made silently load-bearing here.
 """
 
 from __future__ import annotations
@@ -35,15 +34,13 @@ _VERIFICATION_SCOPE = "lean_core_install_smoke"
 _EXCLUDED_PRODUCT_SURFACES = (
     "user_mmm_and_profile_request_preflight_not_packaged_in_this_wheel",
     "external_sim_engine_adapters_and_estate",
-    "maude_and_temporal_external_runtime_profiles",
+    "external_temporal_runtime_profiles",
     "hosted_llm_advisers_and_proposal_release_surfaces",
     "claimgate_full_product_composition",
 )
 _LEAN_CORE_OPERATION_IDS = (
-    "runtime_profile_verification",
-    "z3_cvc5_and_internal_finite_reference_agreement",
-    "sympy_typed_qq_polynomial",
-    "rustworkx_typed_prerequisite_dag",
+    "v9_console_doctor",
+    "v9_module_exercise",
 )
 
 
@@ -152,10 +149,26 @@ def _failure_reason(invocation: Invocation) -> str | None:
 
 def _lookup(value: dict[str, Any] | None, dotted_path: str) -> object:
     current: object = value
-    for part in dotted_path.split("."):
-        if not isinstance(current, dict) or part not in current:
+    parts = dotted_path.split(".")
+    position = 0
+    while position < len(parts):
+        if not isinstance(current, dict):
             return None
-        current = current[part]
+        # Tool identifiers are intentionally dotted (for example ``python.z3``),
+        # while the verifier also uses dotted navigation. Prefer the longest
+        # actual key at each level so both forms remain unambiguous.
+        match: str | None = None
+        next_position = position
+        for end in range(len(parts), position, -1):
+            candidate = ".".join(parts[position:end])
+            if candidate in current:
+                match = candidate
+                next_position = end
+                break
+        if match is None:
+            return None
+        current = current[match]
+        position = next_position
     return current
 
 
@@ -277,45 +290,6 @@ def install_argv(
     return command
 
 
-def _write_payloads(root: Path) -> dict[str, Path]:
-    """Write controller-valid inputs owned by the verifier, not checkout fixtures."""
-
-    inputs = root / "inputs"
-    inputs.mkdir(parents=True)
-    symbolic = inputs / "symbolic.json"
-    symbolic.write_text(
-        json.dumps(
-            {
-                "coefficients": [
-                    {"degree": 0, "numerator": 1, "denominator": 2},
-                    {"degree": 2, "numerator": 3, "denominator": 4},
-                ],
-                "claimed_canonical": [
-                    {"degree": 0, "numerator": 1, "denominator": 2},
-                    {"degree": 2, "numerator": 3, "denominator": 4},
-                ],
-            },
-            sort_keys=True,
-        ),
-        encoding="utf-8",
-    )
-    workflow = inputs / "workflow.json"
-    workflow.write_text(
-        json.dumps(
-            {
-                "nodes": ["gate", "intake", "proposal_ready"],
-                "edges": [
-                    ["gate", "proposal_ready"],
-                    ["intake", "gate"],
-                ],
-            },
-            sort_keys=True,
-        ),
-        encoding="utf-8",
-    )
-    return {"symbolic": symbolic, "workflow": workflow}
-
-
 _INSTALLED_ORIGIN_PROGRAM = """
 import json
 import sys
@@ -331,19 +305,20 @@ print(json.dumps({
 }, sort_keys=True))
 """
 
-_SMT_PROGRAM = """
+_DEFAULT_CLI_BOUNDARY_PROGRAM = """
 import json
-from constraintbox.dualsolve import dual_solve
+from constraintbox.core_cli import build_parser
 
-spec = {
-    "variables": {"x": [0, 1], "y": [0, 1]},
-    "constraints": [
-        {"op": "neq", "left": {"var": "x"}, "right": {"var": "y"}}
-    ],
-}
-print(json.dumps(dual_solve(spec), sort_keys=True))
+parser = build_parser()
+subparsers = next(
+    action for action in parser._actions if getattr(action, "choices", None)
+)
+print(json.dumps({
+    "schema": "constraintbox.default-cli-boundary.v1",
+    "commands": sorted(subparsers.choices),
+    "gate_exposed": "gate" in subparsers.choices,
+}, sort_keys=True))
 """
-
 
 def _core_checks(
     *,
@@ -352,11 +327,15 @@ def _core_checks(
     timeout: float,
     env: dict[str, str],
 ) -> list[dict[str, object]]:
-    payloads = _write_payloads(scratch)
-    commands: tuple[tuple[str, list[str], dict[str, object]], ...] = (
+    console = python.with_name("constraintbox.exe" if os.name == "nt" else "constraintbox")
+    absent_optional_request = scratch / "control-plane-optional-dependency.json"
+    absent_optional_request.write_text("{}\n", encoding="utf-8")
+    absent_optional_db = scratch / "control-plane-optional-dependency.sqlite"
+    commands: tuple[tuple[str, list[str], int, dict[str, object]], ...] = (
         (
             "installed_origin",
             [str(python), _ISOLATED, "-c", _INSTALLED_ORIGIN_PROGRAM],
+            0,
             {
                 "schema": "constraintbox.fresh-install-origin.v1",
                 "module": "constraintbox",
@@ -364,73 +343,65 @@ def _core_checks(
             },
         ),
         (
-            "runtime_verify",
-            [str(python), _ISOLATED, "-m", "constraintbox", "runtime", "verify"],
-            {"state": "ELIGIBLE", "promotion_allowed": False},
-        ),
-        (
-            "core_smt_z3_cvc5_enumeration",
-            [str(python), _ISOLATED, "-c", _SMT_PROGRAM],
+            "v9_default_cli_external_surface_exclusion",
+            [str(python), _ISOLATED, "-c", _DEFAULT_CLI_BOUNDARY_PROGRAM],
+            0,
             {
-                "agree": True,
-                "all_definite": True,
-                "z3": "BOUNDED_SAT",
-                "cvc5": "BOUNDED_SAT",
-                "enumeration": "BOUNDED_SAT",
-                "backend_execution.z3.state": "EXECUTED_DEFINITE",
-                "backend_execution.cvc5.state": "EXECUTED_DEFINITE",
-                "backend_execution.enumeration.state": "EXECUTED_DEFINITE",
+                "schema": "constraintbox.default-cli-boundary.v1",
+                "commands": ["control-plane", "doctor", "exercise"],
+                "gate_exposed": False,
             },
         ),
         (
-            "formal_symbolic_sympy",
+            "v9_console_doctor",
+            [str(console), "doctor", "--json"],
+            0,
+            {
+                "schema": "constraintbox.core-doctor.v9",
+                "missing": [],
+                "core_tool_ids": [
+                    "python.z3",
+                    "python.cvc5",
+                    "python.sympy",
+                    "python.rustworkx",
+                    "python.maude",
+                ],
+            },
+        ),
+        (
+            "v9_module_exercise",
             [
                 str(python),
                 _ISOLATED,
                 "-m",
                 "constraintbox",
-                "formal",
-                "run",
-                "--task",
-                "formal.symbolic.polynomial_qq",
-                "--request-id",
-                "wheel-symbolic-smoke",
-                "--payload",
-                str(payloads["symbolic"]),
-                "--run-dir",
-                str(scratch / "runs" / "symbolic"),
+                "exercise",
+                "--json",
             ],
+            0,
             {
-                "disposition": "ELIGIBLE",
-                "task_kind": "formal.symbolic.polynomial_qq",
+                "schema": "constraintbox.core-exercise.v9",
                 "promotion_allowed": False,
-                "evidence.exact_operation_receipt.operation": "poly_qq_as_dict",
+                "claim_ceiling": "five_tool_function_exercise_only",
+                "observations.python.z3.status": "sat",
+                "observations.python.cvc5.status": "sat",
+                "observations.python.maude.module_loaded": True,
             },
         ),
         (
-            "formal_workflow_rustworkx",
+            "v9_control_plane_dependency_severance",
             [
-                str(python),
-                _ISOLATED,
-                "-m",
-                "constraintbox",
-                "formal",
-                "run",
-                "--task",
-                "formal.workflow.prerequisite_dag",
-                "--request-id",
-                "wheel-workflow-smoke",
-                "--payload",
-                str(payloads["workflow"]),
-                "--run-dir",
-                str(scratch / "runs" / "workflow"),
+                str(console),
+                "control-plane",
+                "--request",
+                str(absent_optional_request),
+                "--db",
+                str(absent_optional_db),
             ],
+            2,
             {
-                "disposition": "ELIGIBLE",
-                "task_kind": "formal.workflow.prerequisite_dag",
-                "promotion_allowed": False,
-                "evidence.tool.name": "rustworkx",
-                "evidence.reference_result.acyclic": True,
+                "disposition": "HOLD",
+                "reason_code": "HOLD_CONTROL_PLANE_DEPENDENCY_MISSING",
             },
         ),
     )
@@ -438,9 +409,10 @@ def _core_checks(
         _check(
             name=name,
             invocation=invoke(argv, timeout=timeout, env=env),
+            expected_exit=expected_exit,
             expected_json=expected,
         )
-        for name, argv, expected in commands
+        for name, argv, expected_exit, expected in commands
     ]
 
 
@@ -495,10 +467,10 @@ def verify_wheel(
                     "dependency_resolved_install",
                     "pip_dependency_check",
                     "installed_origin",
-                    "runtime_verify",
-                    "core_smt_z3_cvc5_enumeration",
-                    "formal_symbolic_sympy",
-                    "formal_workflow_rustworkx",
+                    "v9_default_cli_external_surface_exclusion",
+                    "v9_console_doctor",
+                    "v9_module_exercise",
+                    "v9_control_plane_dependency_severance",
                 )
             )
             reason = "fresh_venv_creation_failed"
@@ -523,10 +495,10 @@ def verify_wheel(
                     for name in (
                         "pip_dependency_check",
                         "installed_origin",
-                        "runtime_verify",
-                        "core_smt_z3_cvc5_enumeration",
-                        "formal_symbolic_sympy",
-                        "formal_workflow_rustworkx",
+                        "v9_default_cli_external_surface_exclusion",
+                        "v9_console_doctor",
+                        "v9_module_exercise",
+                        "v9_control_plane_dependency_severance",
                     )
                 )
                 reason = "dependency_resolution_or_wheel_install_failed"
@@ -544,15 +516,15 @@ def verify_wheel(
                 checks.extend(
                     _core_checks(
                         python=python,
-                        scratch=root / "smoke",
+                        scratch=root,
                         timeout=timeout,
                         env=environment,
                     )
                 )
                 reason = (
-                    "portable_core_smoke_passed"
+                    "clean_wheel_smoke_passed"
                     if all(check.get("passed") is True for check in checks)
-                    else "portable_core_smoke_failed"
+                    else "clean_wheel_smoke_failed"
                 )
 
     passed = all(check.get("passed") is True for check in checks)
@@ -564,16 +536,18 @@ def verify_wheel(
         "verified_lean_core_operations": list(_LEAN_CORE_OPERATION_IDS),
         "excluded_product_surfaces": list(_EXCLUDED_PRODUCT_SURFACES),
         "claim_ceiling": (
-            "a fresh dependency-resolved installation executed the declared "
-            "portable lean-core checks only; this is not verification of the "
-            "full ConstraintBox product, user MMM/profile resources, external "
-            "sim estate, LLM/provider paths, ClaimGate composition, release, "
+            "a fresh dependency-resolved installation on this host executed "
+            "the declared five-tool v9 core checks only; this is not Linux or "
+            "Windows execution, cross-platform adoption, full ConstraintBox "
+            "product verification, user MMM/profile resources, external sim "
+            "estate, LLM/provider paths, ClaimGate composition, release, "
             "promotion, or scientific truth"
         ),
         "wheel": wheel.name,
         "wheel_sha256": hashlib.sha256(wheel.read_bytes()).hexdigest(),
         "fresh_environment": True,
         "isolated_children": True,
+        "cross_platform_matrix_proved": False,
         "installer_verification_only": True,
         "runtime_never_installs_dependencies": True,
         "dependency_resolution_mode": install_mode,

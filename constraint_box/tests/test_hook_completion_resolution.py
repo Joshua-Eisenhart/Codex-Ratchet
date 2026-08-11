@@ -50,19 +50,29 @@ def test_hold_resolves_when_fact_is_restored(tmp_path):
     stale = {"estate_rows": [{"id": "tabulate", "date": OLD_DATE}], "today": "2026-08-09"}
     fresh = {"estate_rows": [{"id": "tabulate", "date": FRESH_DATE}], "today": "2026-08-09"}
 
-    # 1. a stale estate raises CURRENTNESS_EXPIRED
-    assert kernel("session_start", stale)["reason_code"] == "CURRENTNESS_EXPIRED"
+    # 1. a locally old date cannot prove abandonment; it requires a live
+    #    authority review and therefore raises a typed HOLD.
+    assert kernel("session_start", stale)["reason_code"] == "MAINTENANCE_REVIEW_REQUIRED"
 
     # 2. completion is refused and names that hold
     r = kernel("task_completion_claimed", {})
     assert r["verdict"] == "REFUSE"
-    assert "CURRENTNESS_EXPIRED" in r["details"]["open_holds"]
+    assert "MAINTENANCE_REVIEW_REQUIRED" in r["details"]["open_holds"]
 
-    # 3. a later fresh estate restores the fact
-    assert kernel("session_start", fresh)["reason_code"] == "CURRENTNESS_VALID"
+    # 3. a later fresh local row removes the maintenance-review HOLD, but local
+    #    metadata still cannot earn authority-confirmed completion.
+    assert kernel("session_start", fresh)["reason_code"] == "CURRENTNESS_LOCAL_OK"
+    assert kernel("task_completion_claimed", {})["verdict"] == "REFUSE"
 
-    # 4. the hold has CLEARED — the gate no longer counts it, and with no other
-    #    fact bad on this isolated chain, completion is now earned
+    # 4. the explicit live-authority resolution event settles the fact.
+    receipts = root.parent / "receipts"
+    receipts.mkdir()
+    (receipts / "estate_metadata_authority_v1.json").write_text(json.dumps({
+        "rows": [{"name": "tabulate", "status": "agree", "age_days": 1}],
+    }))
+    assert kernel("estate_metadata_refreshed", {})["reason_code"] == "CURRENTNESS_AUTHORITY_CONFIRMED"
+
+    # 5. the original hold has cleared and the authority-confirmed fact is current.
     r = kernel("task_completion_claimed", {})
-    assert "CURRENTNESS_EXPIRED" not in r["details"].get("open_holds", []), r
+    assert "MAINTENANCE_REVIEW_REQUIRED" not in r["details"].get("open_holds", []), r
     assert r["verdict"] == "ADMIT", r

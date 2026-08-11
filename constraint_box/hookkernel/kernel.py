@@ -182,8 +182,51 @@ def _evaluate(event, payload, root, registry):
             if age > int(limit):
                 stale.append({"id": row.get("id", "unknown"), "age_days": age, "stale_days_max": int(limit)})
         if stale:
-            return "HOLD", "CURRENTNESS_EXPIRED", {"estate_currentness": "stale"}, {"stale": stale}
-        return "ADMIT", "CURRENTNESS_VALID", {"estate_currentness": "current"}, {"checked": len(rows)}
+            # A local date alone cannot establish staleness. The registry was
+            # measured wrong once: its tabulate row claimed 616 days for a
+            # version PyPI released 158 days ago, and this constraint fired on
+            # it. Age past the bar now means "go ask the authority", not
+            # "abandoned". Only a live PyPI observation can settle it, and
+            # session_start does no network, so it holds for review.
+            return "HOLD", "MAINTENANCE_REVIEW_REQUIRED", {"estate_currentness": "unreviewed"}, {
+                "over_bar": stale,
+                "authority": "pypi",
+                "resolve_with": "estate_metadata_refreshed",
+                "note": "local date exceeded the bar; live authority not yet consulted",
+            }
+        return "ADMIT", "CURRENTNESS_LOCAL_OK", {"estate_currentness": "local_ok"}, {
+            "checked": len(rows),
+            "ceiling": "local registry only; not confirmed against PyPI",
+        }
+    if event == "estate_metadata_refreshed":
+        # Resolution path carrying live-authority evidence. Recomputed here from
+        # the refresh receipt on disk, never from a caller-supplied summary.
+        name = str(payload.get("receipt", "estate_metadata_authority_v1.json"))
+        path = root.parent / "receipts" / name
+        if not path.exists():
+            return "HOLD", "AUTHORITY_UNAVAILABLE", {"estate_currentness": "unreviewed"}, {"missing_receipt": name}
+        try:
+            body = json.loads(path.read_text(encoding="utf-8"))
+        except (ValueError, OSError) as exc:
+            return "HOLD", "AUTHORITY_UNAVAILABLE", {"estate_currentness": "unreviewed"}, {"unreadable": str(exc)[:120]}
+        rows = body.get("rows", [])
+        disagree = [r["name"] for r in rows if r.get("status") == "METADATA_SOURCE_DISAGREEMENT"]
+        unavailable = [r["name"] for r in rows if r.get("status") == "AUTHORITY_UNAVAILABLE"]
+        stale_live = [r["name"] for r in rows if (r.get("age_days") or 0) > int(STALE_DAYS_MAX)]
+        if unavailable:
+            return "HOLD", "AUTHORITY_UNAVAILABLE", {"estate_currentness": "unreviewed"}, {"unreachable": unavailable[:20]}
+        if disagree:
+            # Preserved, never resolved by preferring a side.
+            return "HOLD", "METADATA_SOURCE_DISAGREEMENT", {"estate_currentness": "disputed"}, {
+                "disagreeing": disagree[:20],
+                "count": len(disagree),
+            }
+        if stale_live:
+            return "HOLD", "MAINTENANCE_REVIEW_REQUIRED", {"estate_currentness": "unreviewed"}, {"stale_live": stale_live}
+        return "ADMIT", "CURRENTNESS_AUTHORITY_CONFIRMED", {"estate_currentness": "current"}, {
+            "rows": len(rows),
+            "authority": "pypi",
+        }
     if event == "pip_command_observed":
         tool_input = payload.get("tool_input", {})
         command = payload.get("command") or (tool_input.get("command", "") if isinstance(tool_input, dict) else "")

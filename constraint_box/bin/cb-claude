@@ -1,0 +1,9 @@
+#!/bin/bash
+set -u
+repo=/Users/joshuaeisenhart/Codex-Ratchet
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Claude Code executable not found" >&2
+  exit 127
+fi
+cd "$repo" || exit 2
+exec claude "$@"

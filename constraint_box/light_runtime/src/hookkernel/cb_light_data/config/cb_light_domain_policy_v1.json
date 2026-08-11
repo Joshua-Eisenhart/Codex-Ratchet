@@ -1,0 +1,79 @@
+{
+  "schema": "constraintbox.cb-light-domain-policy.v1",
+  "profile": "cb_light",
+  "domain_completeness": "UNRESOLVED_OWNER_SELECTION",
+  "candidate_sources": [
+    {
+      "id": "verified_candidate_registry",
+      "path": "config/cb_light_library_candidates.json",
+      "authority": "proposal_and_pypi_metadata_only"
+    },
+    {
+      "id": "historical_light_list",
+      "path": "docs/CB_LIGHT_LIBRARY_LIST_20260807.md",
+      "authority": "historical_proposal_only"
+    },
+    {
+      "id": "candidate_requirements",
+      "glob": "requirements/candidates/cb-*.in",
+      "authority": "candidate_bucket_only"
+    },
+    {
+      "id": "package_declarations",
+      "path": "pyproject.toml",
+      "authority": "declared_runtime_and_optional_roots_only"
+    },
+    {
+      "id": "current_core_contract",
+      "path": "config/core_tool_registry_v9.json",
+      "authority": "current_work_role_and_binding_declaration"
+    }
+  ],
+  "forbidden_membership_sources": [
+    "pip_list_or_ambient_environment",
+    "requirements_locks",
+    "requirements/profiles/e*.in",
+    "system_v5",
+    "sim_engines",
+    "build",
+    "generated_receipts"
+  ],
+  "metadata_constraints": {
+    "stale_days_max": 548,
+    "max_declared_runtime_deps": 3,
+    "max_wheel_bytes": 5242880,
+    "python_versions_required": ["3.12", "3.13"],
+    "platforms_required": ["linux", "macos", "windows"],
+    "requires_python_must_be_declared": true,
+    "current_release_must_not_be_yanked": true
+  },
+  "selection_constraints": {
+    "selected_for_work_requires": [
+      "light_profile",
+      "metadata_admissible",
+      "role_declared",
+      "declared_for_current_work",
+      "installed_in_mandated_interpreter",
+      "import_succeeds",
+      "positive_api_case",
+      "reason_specific_negative",
+      "single_field_boundary_flip",
+      "deterministic_replay",
+      "severance_observed",
+      "reference_agreement",
+      "receipt_consumer_bound"
+    ],
+    "adoption_requires_in_addition": [
+      "protected_owner_approval"
+    ]
+  },
+  "dispositions": [
+    "EXCLUDED_BY_CONSTRAINT",
+    "HOLD_MISSING_EVIDENCE",
+    "HOLD_DECIDER",
+    "OPEN_BASIN",
+    "SELECTED_FOR_WORK",
+    "ADOPTED"
+  ],
+  "claim_ceiling": "CB Light proposal-domain and per-tool work selection only. Never CB Heavy, simulation-engine, proof, admission, promotion, or release authority."
+}

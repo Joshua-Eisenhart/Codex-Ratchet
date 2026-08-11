@@ -1,0 +1,4203 @@
+{
+  "claim_ceiling": "Read-only row-level status of the contained CB Light proposal domain. It is not an adoption, portability, CB Heavy, simulation, promotion, or release ledger.",
+  "constraints_used_for_current_work_selection": [
+    "proposed_light_identity",
+    "role_declared",
+    "exact_root_pin_installed",
+    "declared_import_provider",
+    "fresh_subprocess_import",
+    "clean_dependency_closure",
+    "contained_environment_exact",
+    "clean_runtime_closure_agreement",
+    "local_metadata_compatible",
+    "positive_api_operation",
+    "reason_specific_negative",
+    "boundary_observed",
+    "deterministic_replay",
+    "import_severance_observed",
+    "bounded_reference_agreement",
+    "probe_structure_non_vacuous",
+    "cross_receipt_identity_bound"
+  ],
+  "controller_infrastructure": {
+    "distributions": [
+      "pip",
+      "constraintbox"
+    ],
+    "rule": "Installer and local controller only; neither is a member of the finite 91-tool candidate domain."
+  },
+  "counts": {
+    "cb_heavy_authorizations": 0,
+    "clean_installed_exact": 91,
+    "held_for_missing_evidence": 5,
+    "operation_admit": 87,
+    "operation_hold": 4,
+    "owner_approved_adoptions": 0,
+    "portable_adoptions": 0,
+    "preinstall_excluded_candidates": 15,
+    "proposed_light_tools": 91,
+    "runtime_installed_exact": 91,
+    "selected_for_work": 86
+  },
+  "generated_at": "2026-08-11T00:11:59.432503+00:00",
+  "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+  "preinstall_excluded_candidates": [
+    {
+      "declared_requirement": "backoff==2.2.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "backoff",
+      "failed_bar": "stale 1403d",
+      "normalized_name": "backoff",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "decorator-level bounded backoff",
+      "source_line": 5
+    },
+    {
+      "declared_requirement": "cyclonedx-python-lib==11.11.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "cyclonedx-python-lib",
+      "failed_bar": "8 deps",
+      "normalized_name": "cyclonedx-python-lib",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "SBOM per run recorded into the receipt",
+      "source_line": 7
+    },
+    {
+      "declared_requirement": "distro==1.9.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "distro",
+      "failed_bar": "stale 958d",
+      "normalized_name": "distro",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "identify the host distribution into the receipt",
+      "source_line": 9
+    },
+    {
+      "declared_requirement": "import-linter==2.13",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "import-linter",
+      "failed_bar": "7 deps",
+      "normalized_name": "import-linter",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "declare and enforce layer boundaries between CB modules",
+      "source_line": 11
+    },
+    {
+      "declared_requirement": "pexpect==4.9.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "pexpect",
+      "failed_bar": "stale 987d; no requires-python",
+      "normalized_name": "pexpect",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "drive a subprocess deterministically and capture exactly what it emitt",
+      "source_line": 13
+    },
+    {
+      "declared_requirement": "pip-audit==2.10.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "pip-audit",
+      "failed_bar": "23 deps",
+      "normalized_name": "pip-audit",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "dependency vulnerability check as a gate",
+      "source_line": 15
+    },
+    {
+      "declared_requirement": "portalocker==4.1.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "portalocker",
+      "failed_bar": "12 deps",
+      "normalized_name": "portalocker",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "cross-platform advisory file locking for lease exclusion",
+      "source_line": 17
+    },
+    {
+      "declared_requirement": "psutil==7.2.2",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "psutil",
+      "failed_bar": "38 deps",
+      "normalized_name": "psutil",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "process and resource introspection; prove a worker stayed inside its m",
+      "source_line": 19
+    },
+    {
+      "declared_requirement": "python-json-logger==4.1.0",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "python-json-logger",
+      "failed_bar": "18 deps",
+      "normalized_name": "python-json-logger",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "JSON log records that a gate can consume",
+      "source_line": 21
+    },
+    {
+      "declared_requirement": "python-statemachine==3.2.1",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "python-statemachine",
+      "failed_bar": "5 deps",
+      "normalized_name": "python-statemachine",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "declarative state machine with transition validation",
+      "source_line": 23
+    },
+    {
+      "declared_requirement": "RestrictedPython==8.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "RestrictedPython",
+      "failed_bar": "5 deps",
+      "normalized_name": "restrictedpython",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "compile untrusted proposal code with a restricted builtins set",
+      "source_line": 3
+    },
+    {
+      "declared_requirement": "rfc8785==0.1.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "rfc8785",
+      "failed_bar": "stale 680d; 9 deps",
+      "normalized_name": "rfc8785",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "JCS canonical JSON so hashes are stable across implementations",
+      "source_line": 25
+    },
+    {
+      "declared_requirement": "tenacity==9.1.4",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "tenacity",
+      "failed_bar": "5 deps",
+      "normalized_name": "tenacity",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "bounded retry with declared stop conditions; a provider call cannot re",
+      "source_line": 27
+    },
+    {
+      "declared_requirement": "transitions==0.9.3",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "transitions",
+      "failed_bar": "no requires-python",
+      "normalized_name": "transitions",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "explicit finite state machine with guards; mini-lev flow policies as d",
+      "source_line": 29
+    },
+    {
+      "declared_requirement": "whatthepatch==1.0.7",
+      "disposition": "EXCLUDED_BEFORE_INSTALL",
+      "distribution": "whatthepatch",
+      "failed_bar": "stale 630d",
+      "normalized_name": "whatthepatch",
+      "reason_code": "CANDIDATE_METADATA_BAR_FAILED",
+      "role": "parse unified diffs to decide whether a patch touches a gate",
+      "source_line": 31
+    }
+  ],
+  "receipt_bindings": {
+    "clean_install": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_install_clean_v1.json",
+      "sha256": "fb83259b3df20b592dd4aaf29238baea7d396505fa0d8c62941db937c15e9dc3"
+    },
+    "hook": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_hook_run_v1.json",
+      "sha256": "4a99bfd823310a18f4ff7840de2706313c9653949ea6b443fe3e2fc4c05dec2d"
+    },
+    "metadata": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_metadata_v1.json",
+      "sha256": "4c48f90e44bce22f8f24e7354e62a782bee69e00f9edead3eb5d028ac9d2ee4b"
+    },
+    "operation": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_tool_probes_v1.json",
+      "sha256": "6c53365d2d1a7f1e0690f8c696ac11f97f2fc12557443b3b0ffef27eb0fa7760"
+    },
+    "runtime_install": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_install_runtime_v1.json",
+      "sha256": "7099f854b5f946026fc842ab75474e90c125f09c569ba3a9347fd87a029ff020"
+    },
+    "selection": {
+      "manifest_identity_sha256": "ec8cd627d382a06e274f11f415ec2702cf5d77b2b5a49f631641effd8cfe6b82",
+      "path": "receipts/cb_light_selection_v1.json",
+      "sha256": "af58730aa7f2f21bd78d439c4afb6abb132f7b66dfd75911a338f7f7fbda8af1"
+    }
+  },
+  "schema": "constraintbox.cb-light-tool-status-ledger.v1",
+  "tools": [
+    {
+      "distribution": "annotated-types",
+      "import_name": "annotated_types",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "HOLD_MISSING_EVIDENCE",
+          "failed_constraints": [
+            "probe_structure_non_vacuous"
+          ],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_UNSAT"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "HOLD",
+          "failed_facts": [
+            "probe_structure_non_vacuous"
+          ],
+          "probe_structure_issues": [
+            "CONTROL_REVIEW_HOLD:INERT_METADATA_HAS_NO_OPERATIONAL_REFUSAL"
+          ],
+          "reason_code": "OPERATION_CONSTRAINTS_INCOMPLETE"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.8.0",
+      "normalized_name": "annotated-types",
+      "role": "Reusable constraint markers (Range, Len, MultipleOf, Pattern) for typi",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "argon2-cffi",
+      "import_name": "argon2",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "25.1.0",
+      "normalized_name": "argon2-cffi",
+      "role": "Argon2 key derivation binding credentials to ledger entries",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "arrow",
+      "import_name": "arrow",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.4.0",
+      "normalized_name": "arrow",
+      "role": "Timestamp parsing and normalization for time-sensitive claim drift",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "ast-comments",
+      "import_name": "ast_comments",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.3.0",
+      "normalized_name": "ast-comments",
+      "role": "AST parse preserving comments for prompt-code analysis",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "asttokens",
+      "import_name": "asttokens",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.0.2",
+      "normalized_name": "asttokens",
+      "role": "AST-to-token mapping for precise source locations in drift reports",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "attrs",
+      "import_name": "attrs",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "26.1.0",
+      "normalized_name": "attrs",
+      "role": "Typed receipt classes with validators and no boilerplate",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "automaton",
+      "import_name": "automaton",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.4.0",
+      "normalized_name": "automaton",
+      "role": "Finite state machine constraints on gate sequencing and state validity",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "beautifulsoup4",
+      "import_name": "bs4",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.15.0",
+      "normalized_name": "beautifulsoup4",
+      "role": "HTML and XML parsing for complex prompt extraction",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "bitarray",
+      "import_name": "bitarray",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.10.1",
+      "normalized_name": "bitarray",
+      "role": "Compact boolean arrays for SAT/CSP assignment and clause bookkeeping",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "blake3",
+      "import_name": "blake3",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.0.9",
+      "normalized_name": "blake3",
+      "role": "fast tree hashing for large evidence directories",
+      "role_class": "hash_integrity",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "bleach",
+      "import_name": "bleach",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "6.4.0",
+      "normalized_name": "bleach",
+      "role": "Tag stripping and sanitization before HTML claim comparison",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "cachetools",
+      "import_name": "cachetools",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "7.1.7",
+      "normalized_name": "cachetools",
+      "role": "Memoization of receipt validation results on hot paths",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "cattrs",
+      "import_name": "cattrs",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "26.1.0",
+      "normalized_name": "cattrs",
+      "role": "Typed structure/unstructure converters for attrs receipt classes",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "cbor2",
+      "import_name": "cbor2",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "6.1.4",
+      "normalized_name": "cbor2",
+      "role": "CBOR binary serialization with canonical encoding; receipt hashes stab",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "cerberus",
+      "import_name": "cerberus",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.3.8",
+      "normalized_name": "cerberus",
+      "role": "Dict schema validation for gate proposals before admission",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "charset-normalizer",
+      "import_name": "charset_normalizer",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.4.9",
+      "normalized_name": "charset-normalizer",
+      "role": "detect encoding before comparing claim text",
+      "role_class": "text_drift",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "checksumdir",
+      "import_name": "checksumdir",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.3.0",
+      "normalized_name": "checksumdir",
+      "role": "Deterministic directory-tree hash binding receipts to artifact collect",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "clingo",
+      "import_name": "clingo",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "5.8.1",
+      "normalized_name": "clingo",
+      "role": "Answer Set Programming decider orthogonal to SMT and enumeration",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "coverage",
+      "import_name": "coverage",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "7.15.4",
+      "normalized_name": "coverage",
+      "role": "Path coverage measurement as evidence of gate test adequacy",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "cvc5",
+      "import_name": "cvc5",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [
+            "largest_wheel_at_most_5mib",
+            "python_3_12_admitted",
+            "python_3_13_admitted",
+            "requires_python_declared"
+          ],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.3.3",
+      "normalized_name": "cvc5",
+      "role": "independent_finite_satisfiability; solver_disagreement_control",
+      "role_class": "core_deterministic_runtime",
+      "source_group": "core"
+    },
+    {
+      "distribution": "dictdiffer",
+      "import_name": "dictdiffer",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.10.0",
+      "normalized_name": "dictdiffer",
+      "role": "Structural dict diff for receipt change detection",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "dirty-equals",
+      "import_name": "dirty_equals",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.11",
+      "normalized_name": "dirty-equals",
+      "role": "Structural equality tolerant of field order for receipt assertions",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "ecdsa",
+      "import_name": "ecdsa",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "HOLD_MISSING_EVIDENCE",
+          "failed_constraints": [
+            "local_metadata_compatible"
+          ],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_UNSAT"
+        },
+        "metadata": {
+          "disposition": "HOLD",
+          "failed_predicates": [
+            "no_known_vulnerabilities"
+          ],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_INCOMPLETE"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.19.2",
+      "normalized_name": "ecdsa",
+      "role": "ECDSA signing for receipt attestation without the full cryptography st",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "email-validator",
+      "import_name": "email_validator",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.3.0",
+      "normalized_name": "email-validator",
+      "role": "RFC-compliant email validation for receipt author fields",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "fasteners",
+      "import_name": "fasteners",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.20",
+      "normalized_name": "fasteners",
+      "role": "inter-process locks and read-write locks for the ledger",
+      "role_class": "concurrency_control",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "fastjsonschema",
+      "import_name": "fastjsonschema",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.22.1",
+      "normalized_name": "fastjsonschema",
+      "role": "Compiles JSON Schema to fast validators; refuses receipts that violate",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "flake8-simplify",
+      "import_name": "flake8_simplify",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.30.0",
+      "normalized_name": "flake8-simplify",
+      "role": "Flags complexity-increasing patterns in gate submissions",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "formula",
+      "import_name": "formula",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "6.0.0",
+      "normalized_name": "formula",
+      "role": "Formula parsing and solving with exact arithmetic for constraint expre",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "freezegun",
+      "import_name": "freezegun",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.5.5",
+      "normalized_name": "freezegun",
+      "role": "Frozen time for reproducible time-sensitive gate tests",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "frozendict",
+      "import_name": "frozendict",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.4.7",
+      "normalized_name": "frozendict",
+      "role": "Immutable dict for receipt content after validation and hashing",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "GitPython",
+      "import_name": "git",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.1.58",
+      "normalized_name": "gitpython",
+      "role": "Read git objects to audit evidence-tree commit hashes without subproce",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "gmpy2",
+      "import_name": "gmpy2",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.3.1",
+      "normalized_name": "gmpy2",
+      "role": "Exact arbitrary-precision arithmetic for gates that refuse rounding er",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "grimp",
+      "import_name": "grimp",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.15",
+      "normalized_name": "grimp",
+      "role": "the import graph behind import-linter",
+      "role_class": "static_audit",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "html2text",
+      "import_name": "html2text",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2025.4.15",
+      "normalized_name": "html2text",
+      "role": "HTML-to-text so markup noise cannot disguise drift",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "isort",
+      "import_name": "isort",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "8.0.1",
+      "normalized_name": "isort",
+      "role": "Import order and boundary checking for module layout drift",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "lark",
+      "import_name": "lark",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.3.1",
+      "normalized_name": "lark",
+      "role": "Parser generator for bounded gate-rule DSLs",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "markdown-it-py",
+      "import_name": "markdown_it",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.2.0",
+      "normalized_name": "markdown-it-py",
+      "role": "CommonMark-strict markdown parsing for markup drift",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "markdown2",
+      "import_name": "markdown2",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.5.5",
+      "normalized_name": "markdown2",
+      "role": "Markdown variant conversion where mistune misses extensions",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "marshmallow",
+      "import_name": "marshmallow",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.3.1",
+      "normalized_name": "marshmallow",
+      "role": "Schema validation and deserialization; receipts conform to declared st",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "maude",
+      "import_name": "maude",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [
+            "python_3_12_admitted",
+            "python_3_13_admitted",
+            "requires_python_declared"
+          ],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.6.0",
+      "normalized_name": "maude",
+      "role": "finite_rewrite_transition; ordered_state_change",
+      "role_class": "core_deterministic_runtime",
+      "source_group": "core"
+    },
+    {
+      "distribution": "mistune",
+      "import_name": "mistune",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.3.4",
+      "normalized_name": "mistune",
+      "role": "Markdown parsing for structural change detection",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "mmh3",
+      "import_name": "mmh3",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "5.2.1",
+      "normalized_name": "mmh3",
+      "role": "MurmurHash3 non-cryptographic hashing for manifest-scale tree hashing",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "more-itertools",
+      "import_name": "more_itertools",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "11.1.0",
+      "normalized_name": "more-itertools",
+      "role": "Deterministic batching and windowing iteration utilities",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "msgpack",
+      "import_name": "msgpack",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.2.1",
+      "normalized_name": "msgpack",
+      "role": "Compact binary receipt serialization without JSON canonicalization ove",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "packaging",
+      "import_name": "packaging",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "26.3",
+      "normalized_name": "packaging",
+      "role": "PEP 440 version comparison for pin checks",
+      "role_class": "package_semantics",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "parso",
+      "import_name": "parso",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.8.7",
+      "normalized_name": "parso",
+      "role": "Python parser with error recovery for static gate-code and prompt-code",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "patch-ng",
+      "import_name": "patch_ng",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.19.1",
+      "normalized_name": "patch-ng",
+      "role": "apply patches deterministically without shelling out",
+      "role_class": "mutation_tool",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "peewee",
+      "import_name": "peewee",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.3.0",
+      "normalized_name": "peewee",
+      "role": "Small ORM for SQL ledger persistence",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pickledb",
+      "import_name": "pickledb",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.6",
+      "normalized_name": "pickledb",
+      "role": "JSON key-value store for receipt index and registry",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "platformdirs",
+      "import_name": "platformdirs",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "HOLD_MISSING_EVIDENCE",
+          "failed_constraints": [
+            "probe_structure_non_vacuous",
+            "reason_specific_negative"
+          ],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_UNSAT"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "HOLD",
+          "failed_facts": [
+            "probe_structure_non_vacuous",
+            "reason_specific_negative"
+          ],
+          "probe_structure_issues": [
+            "CONTROL_REVIEW_HOLD:TOTAL_PATH_RESOLVER_HAS_NO_DECLARED_REFUSAL",
+            "LITERAL_BOOLEAN_ARM:1"
+          ],
+          "reason_code": "OPERATION_CONSTRAINTS_INCOMPLETE"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.11.1",
+      "normalized_name": "platformdirs",
+      "role": "correct per-OS state locations on all three platforms",
+      "role_class": "portability",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "pluggy",
+      "import_name": "pluggy",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.6.0",
+      "normalized_name": "pluggy",
+      "role": "Minimal hook and plugin framework for extending gate behavior",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "plumbum",
+      "import_name": "plumbum",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.0.2",
+      "normalized_name": "plumbum",
+      "role": "typed subprocess composition with explicit exit-code handling",
+      "role_class": "subprocess_control",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "portion",
+      "import_name": "portion",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.6.2",
+      "normalized_name": "portion",
+      "role": "Interval membership testing; computed values fall within declared admi",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "protobuf",
+      "import_name": "google.protobuf",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "7.35.1",
+      "normalized_name": "protobuf",
+      "role": "Binary protocol buffers for compact versioned receipt serialization; s",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pyfakefs",
+      "import_name": "pyfakefs",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "6.2.0",
+      "normalized_name": "pyfakefs",
+      "role": "Hermetic in-memory filesystem for I/O gate tests",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pyflakes",
+      "import_name": "pyflakes",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.4.0",
+      "normalized_name": "pyflakes",
+      "role": "Detects unused names, imports, redefinitions; no dead logic paths in g",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "PyJWT",
+      "import_name": "jwt",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.13.0",
+      "normalized_name": "pyjwt",
+      "role": "JWT sign and verify for lightweight receipt attestation",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pytest-benchmark",
+      "import_name": "pytest_benchmark",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "5.2.3",
+      "normalized_name": "pytest-benchmark",
+      "role": "Reproducible timing statistics for gate latency regressions",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pytest-randomly",
+      "import_name": "pytest_randomly",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.1.0",
+      "normalized_name": "pytest-randomly",
+      "role": "Seed control and test-order randomization to expose order dependence",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pytest-timeout",
+      "import_name": "pytest_timeout",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.4.0",
+      "normalized_name": "pytest-timeout",
+      "role": "Hard time ceilings; bounded-execution proof for gate tests",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "pytest-xdist",
+      "import_name": "xdist",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.8.0",
+      "normalized_name": "pytest-xdist",
+      "role": "Parallel test execution; gates behave under concurrency",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "python-Levenshtein",
+      "import_name": "Levenshtein",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.27.4",
+      "normalized_name": "python-levenshtein",
+      "role": "Fast edit distance for near-duplicate receipt and claim comparison",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "python-ulid",
+      "import_name": "ulid",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.0.1",
+      "normalized_name": "python-ulid",
+      "role": "Sortable ULIDs for chronologically ordered ledger entry IDs",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "regex",
+      "import_name": "regex",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2026.7.19",
+      "normalized_name": "regex",
+      "role": "Enhanced regex engine for formal-language membership constraints",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "responses",
+      "import_name": "responses",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.26.2",
+      "normalized_name": "responses",
+      "role": "HTTP mocking for deterministic gate tests",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "rope",
+      "import_name": "rope",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.14.0",
+      "normalized_name": "rope",
+      "role": "Static import and usage analysis via refactoring engine",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "ruamel.yaml",
+      "import_name": "ruamel.yaml",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.19.1",
+      "normalized_name": "ruamel-yaml",
+      "role": "Round-trip YAML preserving comments for byte-identical config replay",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "rustworkx",
+      "import_name": "rustworkx",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.17.1",
+      "normalized_name": "rustworkx",
+      "role": "finite_workflow_graph; acyclic_order_check",
+      "role_class": "core_deterministic_runtime",
+      "source_group": "core"
+    },
+    {
+      "distribution": "satispy",
+      "import_name": "satispy",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "HOLD_MISSING_EVIDENCE",
+          "failed_constraints": [
+            "boundary_observed",
+            "bounded_reference_agreement",
+            "probe_structure_non_vacuous",
+            "reason_specific_negative"
+          ],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_UNSAT"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "HOLD",
+          "failed_facts": [
+            "boundary_observed",
+            "bounded_reference_agreement",
+            "probe_structure_non_vacuous",
+            "reason_specific_negative"
+          ],
+          "probe_structure_issues": [
+            "CONTROL_REVIEW_HOLD:NO_BUNDLED_SAT_BACKEND",
+            "DUPLICATE_ARMS:1:2",
+            "DUPLICATE_ARMS:1:3",
+            "DUPLICATE_ARMS:2:3",
+            "LITERAL_BOOLEAN_ARM:1",
+            "LITERAL_BOOLEAN_ARM:2",
+            "LITERAL_BOOLEAN_ARM:3"
+          ],
+          "reason_code": "OPERATION_CONSTRAINTS_INCOMPLETE"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.4",
+      "normalized_name": "satispy",
+      "role": "Unified wrapper over SAT solvers; extra verifier lane for satisfiabili",
+      "role_class": "solvers-logic-automata",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "soupsieve",
+      "import_name": "soupsieve",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.9.2",
+      "normalized_name": "soupsieve",
+      "role": "CSS selectors for targeted HTML prompt comparison",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "stamina",
+      "import_name": "stamina",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "26.1.0",
+      "normalized_name": "stamina",
+      "role": "opinionated bounded retry built on tenacity",
+      "role_class": "bounded_retry",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "structlog",
+      "import_name": "structlog",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "26.1.0",
+      "normalized_name": "structlog",
+      "role": "structured, machine-parseable audit events instead of prose logs",
+      "role_class": "audit_telemetry",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "sympy",
+      "import_name": "sympy",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [
+            "largest_wheel_at_most_5mib"
+          ],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.14.0",
+      "normalized_name": "sympy",
+      "role": "exact_symbolic_normalization; finite_polynomial_checks",
+      "role_class": "core_deterministic_runtime",
+      "source_group": "core"
+    },
+    {
+      "distribution": "testfixtures",
+      "import_name": "testfixtures",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "12.3.0",
+      "normalized_name": "testfixtures",
+      "role": "Fixtures (TempDirectory, LogCapture, ShouldRaise) for deterministic sc",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "tinycss2",
+      "import_name": "tinycss2",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.5.1",
+      "normalized_name": "tinycss2",
+      "role": "CSS parsing to detect style changes without whitespace false positives",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "tinydb",
+      "import_name": "tinydb",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.9.0",
+      "normalized_name": "tinydb",
+      "role": "Embedded JSON document store for append-only receipt logs",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "tomli",
+      "import_name": "tomli",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.4.1",
+      "normalized_name": "tomli",
+      "role": "Pure-Python TOML reading backport for pinned manifests",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "tomlkit",
+      "import_name": "tomlkit",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.15.1",
+      "normalized_name": "tomlkit",
+      "role": "Round-trip TOML preserving structure and comments for inspectable cano",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "typeguard",
+      "import_name": "typeguard",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.6.0",
+      "normalized_name": "typeguard",
+      "role": "Runtime type checking at gate function boundaries; rejects mistyped pr",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "typing-extensions",
+      "import_name": "typing_extensions",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "HOLD_MISSING_EVIDENCE",
+          "failed_constraints": [
+            "probe_structure_non_vacuous"
+          ],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_UNSAT"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "HOLD",
+          "failed_facts": [
+            "probe_structure_non_vacuous"
+          ],
+          "probe_structure_issues": [
+            "CONTROL_REVIEW_HOLD:TYPE_METADATA_HAS_NO_RUNTIME_ENFORCEMENT_EDGE"
+          ],
+          "reason_code": "OPERATION_CONSTRAINTS_INCOMPLETE"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.16.0",
+      "normalized_name": "typing-extensions",
+      "role": "Typing backports enabling constraint annotations across supported Pyth",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "Unidecode",
+      "import_name": "unidecode",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.4.0",
+      "normalized_name": "unidecode",
+      "role": "ASCII transliteration so accented variants compare equal",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "unidiff",
+      "import_name": "unidiff",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.0.0",
+      "normalized_name": "unidiff",
+      "role": "Unified-diff parsing; reject patches that touch gate rules or assertio",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "uuid6",
+      "import_name": "uuid6",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2025.0.1",
+      "normalized_name": "uuid6",
+      "role": "RFC 9562 v6/v7 sortable UUIDs for receipt entry ordering",
+      "role_class": "hash-sign-ledger-storage",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "validators",
+      "import_name": "validators",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.35.0",
+      "normalized_name": "validators",
+      "role": "Composable field validators (URL, IP, email) for receipt fields",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "vcrpy",
+      "import_name": "vcr",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "8.3.0",
+      "normalized_name": "vcrpy",
+      "role": "Record and replay HTTP for hermetic tests of network-touching gates",
+      "role_class": "test-repro-bounded",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "voluptuous",
+      "import_name": "voluptuous",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "0.16.0",
+      "normalized_name": "voluptuous",
+      "role": "Declarative dict/list validation; refuses malformed receipts before wr",
+      "role_class": "schema-contract-serialization",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "vulture",
+      "import_name": "vulture",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.16",
+      "normalized_name": "vulture",
+      "role": "Dead code detection; unreferenced definitions rejected",
+      "role_class": "static-analysis-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "w3lib",
+      "import_name": "w3lib",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "2.4.1",
+      "normalized_name": "w3lib",
+      "role": "URL and percent-encoding normalization for comparison",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "xmltodict",
+      "import_name": "xmltodict",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "1.0.4",
+      "normalized_name": "xmltodict",
+      "role": "XML-to-dict for element-wise structural comparison",
+      "role_class": "text-similarity-drift",
+      "source_group": "extended"
+    },
+    {
+      "distribution": "xxhash",
+      "import_name": "xxhash",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "3.8.1",
+      "normalized_name": "xxhash",
+      "role": "non-cryptographic manifest hashing",
+      "role_class": "hash_integrity",
+      "source_group": "candidate_passing"
+    },
+    {
+      "distribution": "z3-solver",
+      "import_name": "z3",
+      "lifecycle": {
+        "cb_heavy_authorization": "NOT_IN_SCOPE",
+        "clean_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        },
+        "current_work_selection": {
+          "disposition": "SELECTED_FOR_WORK",
+          "failed_constraints": [],
+          "reason_code": "USABLE_NOW_CONSTRAINTS_SATISFIED"
+        },
+        "metadata": {
+          "disposition": "ADMIT",
+          "failed_predicates": [
+            "largest_wheel_at_most_5mib",
+            "python_3_12_admitted",
+            "python_3_13_admitted",
+            "requires_python_declared"
+          ],
+          "reason_code": "PINNED_METADATA_LOCAL_SAFETY_SATISFIED"
+        },
+        "operation": {
+          "disposition": "ADMIT",
+          "failed_facts": [],
+          "probe_structure_issues": [],
+          "reason_code": "OPERATION_CONSTRAINTS_SATISFIED"
+        },
+        "owner_approved_adoption": false,
+        "portable_adoption": "HOLD_NOT_ADOPTED",
+        "proposed_light": true,
+        "runtime_install": {
+          "import_passed": true,
+          "installed": true,
+          "provider_bound": true,
+          "version_matches": true
+        }
+      },
+      "locked_version": "4.16.0.0",
+      "normalized_name": "z3-solver",
+      "role": "finite_satisfiability; counterexample_witness",
+      "role_class": "core_deterministic_runtime",
+      "source_group": "core"
+    }
+  ]
+}

@@ -9,13 +9,12 @@
   "order_dependence": {
     "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 -m pytest constraint_box/tests -q --randomly-seed SEED",
     "failures": [],
-    "full_suite_terminal": "passes local rerun: 1015 passed, 1 skipped, 13 warnings, 344 subtests passed in 652.99s (0:10:52)",
     "seeds": [
       101,
       202,
       303
     ],
-    "status": "unavailable"
+    "status": "not-run-inside-probe"
   },
   "schema": "cb.library_probe_receipt.v1",
   "tools": [
@@ -24,13 +23,18 @@
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "argon2"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f8fe9193eb7236d891c1536adfdcecaf207b68965246d0500fed12652c2c2ed9",
+      "raw_output_hash": "db989737572f49f8845f1da11e062557cd02c25ed7b21fe34825af29fc5254fa",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "argon2-cffi",
-      "version": null
+      "version": "25.1.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -44,128 +48,173 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "59319ee7334cdadc3d489111cfb6166e5d49f73df73160f915b7cd07f2921f61",
+      "raw_output_hash": "cceaf0cde9e28981a123113050e706b7b4baf064c1791dc1e4a868bb5ba914c7",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "cachetools",
-      "version": "6.2.6"
+      "version": "7.1.7"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "checksumdir"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "308998a861632fa0c50879e7b5bb9d85db298a89c44ff65990e711b11dbc5bb2",
+      "raw_output_hash": "37e70c19cb4c8c2e34d90d54c2a276e79efa4d4c76c591eee7b5ce3c8c034325",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "checksumdir",
-      "version": null
+      "version": "1.3.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "dictdiffer"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "0b5766370656f0ff3db2d137cf90a2cb272e9681dadb9f1c29f83c405541b3e6",
+      "raw_output_hash": "d5b0911c92140f629e74fecf6a996e778b5884bed76a9271e19c06d015e46e33",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "dictdiffer",
-      "version": null
+      "version": "0.10.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "ecdsa"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "469fe73f18813fa9b36c865a82b705a60d4e3fe5a57a5f26fbdc1e0551c7a177",
+      "raw_output_hash": "3165af2a9adcd7160dc605ec36f19141fa8a5879addb413fa5d21ab89768cf33",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "ecdsa",
-      "version": null
+      "version": "0.19.2"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "git"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "47f2611e343b05d3cdde94506f479666f9f7759b01ce5736ed3a6916336ada94",
+      "raw_output_hash": "a723e7075cea6ced082b04289bcca9fbd616d446285efd2e5a74b102b9c31584",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "GitPython",
-      "version": null
+      "version": "3.1.58"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "mmh3"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "5c35d54f53ff79090e30b29d9d8f96d30a3d78e76bafd137f93ae840e0147e72",
+      "raw_output_hash": "d8a8d4d3b4b6d9347bdbc26bb806cfd01ff856605738b16eab252b529a84243d",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "mmh3",
-      "version": null
+      "version": "5.2.1"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "peewee"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f3d2f0ad897b77342fba7dba6dd4ac3dfe71b47bc5100b3294349dafe51d1cec",
+      "raw_output_hash": "e8851a16d777678d04e8659d1d541b6b0f4c9a8b6e72e5022613596e0096a339",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "peewee",
-      "version": null
+      "version": "4.3.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pickledb"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "8645eebf05d6b2d658aa3182056e3a46b74eb829f9a800ca232a95ff6fc2455b",
+      "raw_output_hash": "96a58c98ff0f3213a1a97384b8133648e65f4a06e394347f72d8cd0d8187ddb5",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pickledb",
-      "version": null
+      "version": "1.6"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "jwt"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "2002dbc9935152585014ed682f02464fee9ead8721ff16fb16711ad7f512a457",
+      "raw_output_hash": "254f9f2a98f1c97c87599c3952056addcdd75b57b83bf40dcb178426da37e531",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "PyJWT",
-      "version": null
+      "version": "2.13.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "ulid"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "cd636876e7dc3c8cb301d3354401d3cd994744dfa8d2e00f823fea9d9d5af42f",
+      "raw_output_hash": "536ecd9a4b034f2285d04150782a39d18e9dc21b5ea6841c2c921501fcdc3ee0",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "python-ulid",
-      "version": null
+      "version": "4.0.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -190,26 +239,36 @@
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "tinydb"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "823822aa67c8bc276e1cf27dd378e598b8b7fba7c3041bc718843e725c05bccb",
+      "raw_output_hash": "1c65323cb0d13ffe3d14e3d19d64e2fe10478513598ad1a599f6f0e67e93acd1",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "tinydb",
-      "version": null
+      "version": "4.9.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "uuid6"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f06f238c3642792253adaf7f29f2b0c9ad51aaba3bc933fac9289863636913a8",
+      "raw_output_hash": "826afdd1bdab8d471002eb334a6db44398e7578e79e8ffd7fd74103ec46518dc",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "uuid6",
-      "version": null
+      "version": "2025.0.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -223,11 +282,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "2fd92b1ea6bc5b519af8ad139bb1ac1cc0ec413bc41f565176ee471b293cc024",
+      "raw_output_hash": "8160ce90052055ca4419ba21f02c1a6fe85a897b2eabb603166b71ef139da2a4",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "annotated-types",
-      "version": "0.7.0"
+      "version": "0.8.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -252,65 +311,90 @@
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "cattrs"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "7f853f4b5ef0471f9600991957c43ef52e25908a74d7105f6634359ec3de1c36",
+      "raw_output_hash": "61bda4470c644e13c2d1486a832d7a6fe9671ff95d7fa53e9c8392f7c9c8c6f7",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "cattrs",
-      "version": null
+      "version": "26.1.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "cbor2"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "c8efa0c0cbd7bcf3e2f5faf708e2550e32e92894e93846cdda647e731bb0e5a2",
+      "raw_output_hash": "390d6ec71f64a17dc576bd2970fe5319d78f4f3d88b50d38a3fd12269e449cac",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "cbor2",
-      "version": null
+      "version": "6.1.4"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "cerberus"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "205f1ec0ea94b789bf0b7f97918238f55f5192156d76c3b662733a22d450a9c6",
+      "raw_output_hash": "6806e75d6e936119468765387dca5b6fb1e38be7abd20ec17ee7d473f1765ac9",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "cerberus",
-      "version": null
+      "version": "1.3.8"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "email_validator"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "578218069faa788667d83612fc30d1584fadd86ab4efdc7a21c67ff29a644b1b",
+      "raw_output_hash": "56706ff629546e3df08f3f9bc7d7e1524e32d716740995b8df61651576feea2e",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "email-validator",
-      "version": null
+      "version": "2.3.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "fastjsonschema"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "6d0fa09c18fb8531178d3ac8651579e2f6c388f83ccb2432c892f42249c38ed1",
+      "raw_output_hash": "bc1e2c6fcbc6ce05d696793daec2c8048a6cc81668e2626f698616724198948a",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "fastjsonschema",
-      "version": null
+      "version": "2.22.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -353,13 +437,18 @@
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "marshmallow"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "542d6bc27ac513eab13b45e26594b851a8b50602f7aeaec31735221c76d431e1",
+      "raw_output_hash": "a75af96226d2dbc9ef1ca7156fcc9ee7872b9f2c9b5d87c73fcd335bd9f8d6bd",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "marshmallow",
-      "version": null
+      "version": "4.3.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -373,11 +462,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "4aabe5cb9178946a6c2b240ecd10dbe674cd52caf64387cb0a993ed99ea371f0",
+      "raw_output_hash": "95f795c2027bcb53fcf61ac927b25002b4a1d609c7f1d3d0e2ce968236452ef9",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "msgpack",
-      "version": "1.1.2"
+      "version": "1.2.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -429,11 +518,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "690a83a4b97b0acbf1c88b58d90c1b7d7425b075b588873c57445d16840d4fc8",
+      "raw_output_hash": "13d338752cc3a1d69c43e87e3933317dd746ae2ccab8b481a8504231e9107089",
       "replay_result": "not-run",
       "status": "unavailable",
       "tool": "protobuf",
-      "version": "5.29.6"
+      "version": "7.35.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -447,11 +536,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "a1fd67058cb72383b7bcf51953b527c8e5984652344d7cf2b54c6df6d16e64c4",
+      "raw_output_hash": "7480f984ee26044185cef8eba7b5ae955877f130557dd1ebca65a9b6838fe7d2",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "tomli",
-      "version": "2.4.0"
+      "version": "2.4.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -465,11 +554,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "bf8bf8bffe24fe35acec38fd86e70dfe590aaa662db7ef7c0209491c61d83dda",
+      "raw_output_hash": "7b598d983ed755ddd71792445a1ec25c2311b7307b48786a5ba95a1da047576a",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "tomlkit",
-      "version": "0.14.0"
+      "version": "0.15.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -483,11 +572,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "0c75a50eca221cf3b2ef4e4530b5ff47e0f2e80d1e0cc0b768fd1ef696e76566",
+      "raw_output_hash": "a9bda09915695bcbd6232dc21bd4b9f96f8d361a74e2beb3de97851ecf8da899",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "typeguard",
-      "version": "2.13.3"
+      "version": "4.6.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -501,102 +590,137 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "82ec0e0078c4761b412950de4cd7f92fa8af4bc793892f2c3546a24cc31575e1",
+      "raw_output_hash": "be2563695d6450cc6789f6a9988c1a456eaa4a1a3cb0ee0ffb5f0aee963d4525",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "typing-extensions",
-      "version": "4.15.0"
+      "version": "4.16.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "validators"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "8f4aa02f82076ae075d168faa85d079b3fac4651c8a511e8948d571aaa3bf1b6",
+      "raw_output_hash": "ce3432c30a9fb3e162dc0195cf755d092fd3bbfa58b0fbda40185ab8a05a73ff",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "validators",
-      "version": null
+      "version": "0.35.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "voluptuous"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "7b1f45e129a3555147390aefae4de360d3648e5bf8be5237434a171ce26ab116",
+      "raw_output_hash": "a286466c1b92ff25b0c9ef7d74c66f66169ebdf62435efaac4dbf1afa2017249",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "voluptuous",
-      "version": null
+      "version": "0.16.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "automaton"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "e2840b159b5385f5baa3624b6985d92df7807464dcae2613d3ddd88735a1d937",
+      "raw_output_hash": "2c59393fda01133cef9055d6c82677650622989a4319b89eb2f7d3f2ad251fec",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "automaton",
-      "version": null
+      "version": "3.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "bitarray"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "8d695ab2c28e208386ce77731873b87f9e1e47a3a0099732e091dbd644e434f8",
+      "raw_output_hash": "aeb9ab7b499fab2dbce9d4a8fc1ae28e56182277c035ec29d4af168636aa0c30",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "bitarray",
-      "version": null
+      "version": "3.10.1"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "clingo"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "5970901a7339f1a9e4e5490a66c75ccb7bbea1496f1712bf1998c32c9c4df3f0",
+      "raw_output_hash": "5a6c07b34d420cd34ee2edbb33ef822b0a0a3b0325b739408400c4c7e2442771",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "clingo",
-      "version": null
+      "version": "5.8.1"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "formula"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "6609ff1f8d98f4505b762acc0b281195ac425ff2d73caa3ca632cb9e443e93e3",
+      "raw_output_hash": "baf869d04477dd44019f07abff82da4cc7b2d095bfdbda8cf32d6a8b4b63d98b",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "formula",
-      "version": null
+      "version": "6.0.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "gmpy2"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "a8793a5e5e064a76e8a5ce3e813150250f9e78afa7dd20aeba947959ef42d668",
+      "raw_output_hash": "605b3b41b502254c9ea9f3a786a086ac74c9087dbc42709b5e5245cfd35bba9e",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "gmpy2",
-      "version": null
+      "version": "2.3.1"
     },
     {
       "boundary_mutation_probes": [],
@@ -610,24 +734,29 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "d939cbfee4067081e339b6b0c08d8a7f1027ba34c470a3e858a3affa269739c1",
+      "raw_output_hash": "ccf6d469247eacc9ae71dfee7dbcb015c13f5742a6a3619674b2e773cae7f485",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "regex",
-      "version": "2026.5.9"
+      "version": "2026.7.19"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "satispy"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f21feac403b67cf681c060362ab3ccf3ec0fa6c380795266d1b9893b3a5061b1",
+      "raw_output_hash": "216ec00654fe6db7ecb2a16afa6c8234c35528cdc8c051eb19ca3cb195ac9bed",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "satispy",
-      "version": null
+      "version": "1.4"
     },
     {
       "boundary_mutation_probes": [],
@@ -641,24 +770,29 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "06b6e33cf52d06c2b68cd04c1d29bde3c47fb0657d8b8a89cf6703951ecf70a1",
+      "raw_output_hash": "810ae756dd167627a0293b4c4ad6133c681774cf1368ec7bc78ce7c2131436fd",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "asttokens",
-      "version": "2.4.1"
+      "version": "3.0.2"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "dead-branch static audit",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "flake8_simplify"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "7add612d30e2697ab644cdd8c4d2be069c3264303414acbd4acd92293df9310d",
+      "raw_output_hash": "71ab68723ba95621ad86add6aff83938d2b647e975511d8e80853bb518e3f585",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "flake8-simplify",
-      "version": null
+      "version": "0.30.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -683,39 +817,54 @@
       "declared_role": "static gate-module audit",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pyflakes"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "ce806050606f9c9f6b794e18506da33c580d71c0148b6868e223943b361be0d1",
+      "raw_output_hash": "227520d0d0c574830297a1e7b6d4483fbdd5ce7a8f4a0d9f83b1ecf1f1de2c2d",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pyflakes",
-      "version": null
+      "version": "3.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "independent usage analysis",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "rope"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "ae10bf78cd554a28d4b715af97dc3fd778d34e3b6ac456db0436619ee31dce56",
+      "raw_output_hash": "3e535cf5e1cce53cb4561a74e538d9bccd852ce662014a9083ad4113118753bc",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "rope",
-      "version": null
+      "version": "1.14.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "mutation boundary audit",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "unidiff"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f2fb99028227d8bf31b769bf7557fb216b597956140277d766521ba80edbfcfe",
+      "raw_output_hash": "a9aaa1982ded42b38fddfc964362a2b83c83463c9e067f5fc584645896707748",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "unidiff",
-      "version": null
+      "version": "1.0.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -757,27 +906,47 @@
       "boundary_mutation_probes": [],
       "declared_role": "structural negative assertions",
       "independent_comparator": null,
-      "negative_probes": [],
-      "positive_probes": [],
+      "negative_probes": [
+        {
+          "assertion": "IsInt == 'not-an-int' is False",
+          "fired": true
+        }
+      ],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "dirty_equals"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "f12fe07b2c872befe03267c778f228621908ed6a438177918bd6ffa0c92692bf",
+      "raw_output_hash": "58a7ab87d0c3feeb482198abb2d09264b75645704fecc4ee64e5963fa4651147",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "proven",
       "tool": "dirty-equals",
-      "version": null
+      "version": "0.11"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "receipt clock determinism",
       "independent_comparator": null,
-      "negative_probes": [],
-      "positive_probes": [],
+      "negative_probes": [
+        {
+          "assertion": "frozen datetime has exact requested prefix",
+          "fired": true
+        }
+      ],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "freezegun"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "868fcb97ed17b0977590cd11a453c547cae6cd15b61fcb749f50857383d68e61",
+      "raw_output_hash": "76e734594f5f4876e786b5a8beee897eedc328aae019f874830fba448e409e21",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "proven",
       "tool": "freezegun",
-      "version": null
+      "version": "1.5.5"
     },
     {
       "boundary_mutation_probes": [],
@@ -791,11 +960,11 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "93b22d605abd12f0b9d1302ace2532567ad76de6507c9c2a4c81c71397492431",
+      "raw_output_hash": "a993a0b49f672a9f925db385391c2f6314b743df94a1c282cb12674d6bb99e0d",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "more-itertools",
-      "version": "11.0.1"
+      "version": "11.1.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -825,144 +994,211 @@
       "boundary_mutation_probes": [],
       "declared_role": "filesystem hermeticity",
       "independent_comparator": null,
-      "negative_probes": [],
-      "positive_probes": [],
+      "negative_probes": [
+        {
+          "exception": "FileNotFoundError",
+          "fired": false,
+          "message": "[Errno 2] No such file or directory: '/cb'"
+        }
+      ],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pyfakefs"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "2bc9c5091b0041804b5daf1d2faddd984bc77f9885a493c29338baca192c4696",
+      "raw_output_hash": "31b04b00c27a676b51b921efe22b5f1ade92859d6a905f675b9657066368aa32",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pyfakefs",
-      "version": null
+      "version": "6.2.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "self-check latency measurement",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pytest_benchmark"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "20a1ddf2edd1f3611c8e8b63c60ed562492d19771415e10a5bfc4773f7fb21ba",
+      "raw_output_hash": "c96c67028625ee9219e18de06b661d550ebf45201ba4e2c190768684d8d6a2b3",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pytest-benchmark",
-      "version": null
+      "version": "5.2.3"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "test order dependence",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pytest_randomly"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "d2b27ecb0c3b0533acfb5a0e478a250acd7b1bf3ae598b7d035e69fea51e10fe",
+      "raw_output_hash": "d34a27c1e84ea882b29ce2c16c24c106dc60eb0e18a82b72e0a351efa15b3419",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pytest-randomly",
-      "version": null
+      "version": "4.1.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "bounded test execution",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "pytest_timeout"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "df17748692a3ac4ce190413bbb68195e9d8366b336a857df37a34ed066924b60",
+      "raw_output_hash": "7ed0be20ca376029a839fe3891e0dc3e8a07ac1b5d2e008f1baedda454319839",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pytest-timeout",
-      "version": null
+      "version": "2.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "parallel suite state audit",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "xdist"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "a9355015f4ca61bec7114a6b4c03f2adf9594dd71144e0c50f63ad7c4d696e46",
+      "raw_output_hash": "e5585a1df3d68e6ec624a5045d0c34de5e1c0ab0eb9e7b10a383a195a1b161c2",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "pytest-xdist",
-      "version": null
+      "version": "3.8.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "Levenshtein"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "bdb4fc7802aa07b5181d7372cbae50cf7efe7051c1812d2837dde087276f35ab",
+      "raw_output_hash": "86c47a72c1e19899ffb13449f5e726ba3b0ac6636dd9fd428eedc66f69c868fa",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "python-Levenshtein",
-      "version": null
+      "version": "0.27.4"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "network denial in gate paths",
       "independent_comparator": null,
-      "negative_probes": [],
-      "positive_probes": [],
+      "negative_probes": [
+        {
+          "exception": "ConnectionError",
+          "fired": true,
+          "message": "Connection refused by Responses - the call doesn't match any registered mock.\n\nRequest: \n- GET https://cb.invalid/unregistered\n\nAvailable matches:\n- GET https://cb.invalid/ok URL does not match\n"
+        }
+      ],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "responses"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "18d343add8a29efc0e29ddd6d2b40b234a469c7ae8423c0fe0f055f9c8fd01a2",
+      "raw_output_hash": "2f07787a105bb1dba4a0a0c3459e3bc7618f3e92c79e7e7b312fa5a3aea5b44e",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "proven",
       "tool": "responses",
-      "version": null
+      "version": "0.26.2"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "exact negative assertions",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "testfixtures"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "95153f6aacc07b2bd3208c5cd7c6216f64673e22b968385313b4233107e46e65",
+      "raw_output_hash": "f8c8c5db058cb48c7593ac86cf4cbcadf4e59dbd92ecf47a71feb89b8f02ec86",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "testfixtures",
-      "version": null
+      "version": "12.3.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": "network denial/replay in gate paths",
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "vcr"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "143071d115766a011a1448ee3e38d07d8acf3be74276a29eb5245e9f7dfccc53",
+      "raw_output_hash": "387adaa77f8f8ada437493549da2377eebf74033b0d22b2e7d7f9cc036a080a2",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "vcrpy",
-      "version": null
+      "version": "8.3.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "arrow"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "7f858f2079a76843a3995733ea0ef41fd2965090a2b0bc57d9c8b19e8428c6f1",
+      "raw_output_hash": "948aa2cfd3f92b2071fb95792c8b928a7ef8848d0a32b52e50df580dc9a24aa3",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "arrow",
-      "version": null
+      "version": "1.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "ast_comments"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "fd4f4b1a268dcf18741d8e77ac89ee0dded3eaafbd638a98f70e54d61b2d3661",
+      "raw_output_hash": "13d1f86247b5ac04147d7ab07e357250316d98bf860200fdfaafa5d075ce676b",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "ast-comments",
-      "version": null
+      "version": "1.3.0"
     },
     {
       "boundary_mutation_probes": [],
@@ -976,37 +1212,47 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "c7ff8496fd2ac62c1677539a2593042282747e0fad606367702cc3576464f7ec",
+      "raw_output_hash": "54f545ffa20401541806367b7053910d7dfe2c2a6b776d776670a99e0308b0fb",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "beautifulsoup4",
-      "version": "4.14.3"
+      "version": "4.15.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "bleach"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "42de649d9994f43dfb846877029ee54fe34580b9ca8798f16ea4bc2883e02a87",
+      "raw_output_hash": "54cf287063b719f7583b923661bcc6acbffa45e2a9ddf05444348c03fd2e7dca",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "bleach",
-      "version": null
+      "version": "6.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "html2text"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "a2c24eb47b8454ed76689ee65eed6ade0499680f411b94208acbb87b777d6579",
+      "raw_output_hash": "bda2971f3cdd5425896bb0ae8f39f3408d7a3cdc565de66d2f8f4ba75a485df4",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "html2text",
-      "version": null
+      "version": "2025.4.15"
     },
     {
       "boundary_mutation_probes": [],
@@ -1020,37 +1266,47 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "ae7ddff7c99b8ced4a39c81262248df5c34799e979de41acbc6015928c23b0a2",
+      "raw_output_hash": "1908f2ee696132aed2009e043bfe777bd1bde35ac438b12f792c849361daa5d6",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "markdown-it-py",
-      "version": "4.0.0"
+      "version": "4.2.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "markdown2"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "01a769280a14c8f1c02457963e071243f533bf4319daec089bcfcea9d113b3b5",
+      "raw_output_hash": "676ddacfd889ac58eceaf696b3d336c308eaf4974c09d0494133e7c4ab5da4b7",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "markdown2",
-      "version": null
+      "version": "2.5.5"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "mistune"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "fd329cc6700da90c7dedf9a7f5aeb6134f84c551f0bff871cf1e2aaba6cd66e0",
+      "raw_output_hash": "c0a2f7188363d585ad86acd594dfcbcb4d9f93ef023c2c3b7ff34b1c2773a165",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "mistune",
-      "version": null
+      "version": "3.3.4"
     },
     {
       "boundary_mutation_probes": [],
@@ -1064,63 +1320,83 @@
         }
       ],
       "production_callers": [],
-      "raw_output_hash": "f86c88364cf92c9ba25f72c575271412b903431f5f19825dcc159b90fc2ca586",
+      "raw_output_hash": "ae1643f826cdfcd4b490b70267fa73d8c892c89e4140763f14ce047f88f61763",
       "replay_result": "not-run",
       "status": "unused",
       "tool": "soupsieve",
-      "version": "2.8.4"
+      "version": "2.9.2"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "tinycss2"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "ede12ee864b0a43e842ada5f5c3317b01cd59380af849a27c09d94d119c46f4a",
+      "raw_output_hash": "cd819cce1e7a57ed8399261751ebbce6bdd2d8bfdcaae794d9c54689bbbd1ae2",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "tinycss2",
-      "version": null
+      "version": "1.5.1"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "unidecode"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "02eab8bb7ded1bf6fc68323278f615c3cdcbe5fdd748dba6121d920b478b74eb",
+      "raw_output_hash": "947a0594cb05265cc8371fb47635b556a690ecf509645d49255cf305c43268ed",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "Unidecode",
-      "version": null
+      "version": "1.4.0"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "w3lib"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "aeaa94b44c89b7eef2b1d514666f441e1c045c2598edf42399ca5a6a86a33788",
+      "raw_output_hash": "1ccfd466926a620ae3ef1bfab3f88ba7a4551da43c7d2c4d5ec8a661ed054c2c",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "w3lib",
-      "version": null
+      "version": "2.4.1"
     },
     {
       "boundary_mutation_probes": [],
       "declared_role": null,
       "independent_comparator": null,
       "negative_probes": [],
-      "positive_probes": [],
+      "positive_probes": [
+        {
+          "fired": true,
+          "import": "xmltodict"
+        }
+      ],
       "production_callers": [],
-      "raw_output_hash": "5139931b996230b5306fe6a39bb5b6c542a9bbf62a1ceeb8a6963330f32aca64",
+      "raw_output_hash": "1427ee160941024d6101550cae579f673fc5daedca01a3a96bc55152cf54b320",
       "replay_result": "not-run",
-      "status": "unavailable",
+      "status": "unused",
       "tool": "xmltodict",
-      "version": null
+      "version": "1.0.4"
     }
   ],
   "vulture_comparison": {

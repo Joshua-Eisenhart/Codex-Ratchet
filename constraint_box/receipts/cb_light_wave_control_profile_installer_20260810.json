@@ -1,0 +1,95 @@
+{
+  "attempt_id": "wave-attempt-2833ae66dcdc41a9bd23cbe2e3fada45",
+  "binding_ids": [
+    "03270b50f6d7bdba88656c1d5d954b591d19bc91b7027203d38c52123fed3bef",
+    "78cfb6e8422a79e6cb8be46b7beb92213704d9eaba91c183501a84292d982138",
+    "9b25f6bda5eff49f025f5097e71abc565add4cedae8c233e4b4a27162872f8cc",
+    "ce9f1a4c55ad45d291849f2a1b1f56e969a107932fd6a25c41c2f8b507d2b6b0",
+    "ddc9360efcfc1321820da704a653974095a8362d58ab78de6a0a61df64509df4",
+    "e7be0dd4f6eaeca0a2b4f06970dd6cbaf3f802be2893a1cc324912c6c01bcfb8"
+  ],
+  "claim_ceiling": "One local CB Light first-fixture wave only: exactly three deterministic synthetic adapters, a fixed topology check, and a bounded local FactSet gate. No external model/provider/skill/MMM execution, authority, corroboration, membership, adoption, portability, CB Heavy, or release claim.",
+  "contract_schema_sha256": "69ae7a96aaebbd75aa66f19c9609d9a5ee8500f01095eb1e2a3480cb87fa0133",
+  "controller": "cb-light-fixture-wave-controller.v1",
+  "controller_source_sha256": "803f6d78ff49282e8d2b637bdbb965fb848efa1b906f15c3dd0985f90fa842c1",
+  "corroboration": "none",
+  "detail": "The bounded local FactSet settled the synthetic fixture without a counterexample.",
+  "disposition": "SETTLED",
+  "entry_gate": {
+    "evaluation_reason_code": "CB_LIGHT_EVALUATION_VERIFIED:selected=86,held=5,excluded_before_install=15",
+    "interpreter": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python",
+    "mode": "contained_cb_light_status_live_boundary",
+    "returncode": 0,
+    "status_script": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/scripts/cb_light_cli.py",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "0b02dc47ae5e0cfca3608a50444379c469ad0c2687d11a9d173ad7cb8dc18145"
+  },
+  "executed_local_adapters": [
+    "cb-light-fixture-witness-v1",
+    "cb-light-fixture-falsifier-v1",
+    "cb-light-fixture-evidence-map-v1"
+  ],
+  "exit_code_contract": "CLI exit 0 means only a non-refuted local fixture settlement; HOLD, REFUSE, and SETTLED_REFUTED exit 2 and never grant claim acceptance.",
+  "external_assets": {
+    "cb_heavy": "not_imported",
+    "mmms": "reference_digest_only",
+    "models": "not_invoked",
+    "network": "not_used",
+    "providers": "not_invoked",
+    "pydantic_ai": "not_imported",
+    "skills": "not_invoked"
+  },
+  "fact_set": {
+    "all_observations_non_authoritative": true,
+    "counterexample_present": false,
+    "exact_three_adapters": true,
+    "fixed_topology_acyclic": true,
+    "observations_bound_to_packet": true,
+    "packet_valid": true
+  },
+  "fixture_claim_outcome": "NO_LOCAL_COUNTEREXAMPLE",
+  "fixture_mode": true,
+  "gate": {
+    "agreement": true,
+    "claim_ceiling": "Z3 and enumeration checked the same bounded local FactSet law; they do not establish independent evidence or external truth.",
+    "corroboration": "none",
+    "enumeration_cases": 64,
+    "enumeration_disposition": "SETTLED",
+    "facts": {
+      "all_observations_non_authoritative": true,
+      "counterexample_present": false,
+      "exact_three_adapters": true,
+      "fixed_topology_acyclic": true,
+      "observations_bound_to_packet": true,
+      "packet_valid": true
+    },
+    "schema": "constraintbox.wave-fixture-factset-gate.v1",
+    "z3_disposition": "SETTLED"
+  },
+  "gate_artifact_sha256": "211b510211d45a51a12dc4359b67278597a4fdfb4a4e108ea65a63d95d4e0e2c",
+  "input_artifact_sha256": "46d20468a1d8015e206af9804f4539a41f736833b4af2e2a0af89f5436340cc4",
+  "observation_artifact_sha256s": [
+    "2d9a15ea2b0ae6c6eee5a5f6fd8f72dfceafca8661fe6b91be5504715b388d55",
+    "d15840d67969dc5afc04ba5964708e22a4989ec4399f7c56890aec034f320b87",
+    "b343418c654211738d4eb9659e1116da96f8c02252da501d56e71afdeba5ef2e"
+  ],
+  "packet_id": "packet-live-20260810",
+  "packet_sha256": "e059ad0b2978f8da9d9d2ce82e92c7b82784c71d43b4aa3682fe8fadcc3276fb",
+  "persisted": true,
+  "profile": "cb_light",
+  "promotion_allowed": false,
+  "reason_code": "SETTLED_LOCAL_FIXTURE_FACTSET",
+  "receipt_artifact_sha256": "f96bafb85e5432bba23a7c5072d95a226019c711e34ea60d4e76b675631b1715",
+  "schema": "constraintbox.wave-fixture-result.v1",
+  "settlement_id": "5d938a7fde7d80d616c822a44c8e097fd1f51651f5ee615437790cd1dd2ee519",
+  "state_outcome": "SETTLED",
+  "state_verification": {
+    "binding_count": 6,
+    "independent_semantic_proof": "not_claimed",
+    "retained_state_integrity_verified": true,
+    "schema": "constraintbox.cb-light-wave-state.v1",
+    "schema_version": 1
+  },
+  "topology_artifact_sha256": "9fe9ea5c961932eca4cc4ec7c943ccc2cca6f8627f2d57f62881203db77f6c14",
+  "wave_definition_id": "wave-live-20260810"
+}

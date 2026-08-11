@@ -1,9 +1,0 @@
-{
-  "classification": "scratch_diagnostic",
-  "hostile_control_fixture": true,
-  "promotion_allowed": false,
-  "claim_kind": "phantom_kind_v99",
-  "sim_id": "stale_policy_hostile_isolated",
-  "produced_by": "hostile-fixture-builder",
-  "_fixture_note": "HOSTILE CONTROL FIXTURE (class: stale_policy). NOT a real receipt; never admissible for promotion. The ONLY defect is claim_kind 'phantom_kind_v99', which claimgate_plugin/gate_registry.json does NOT define (pinned copy: stale_policy_pinned_registry.json, sha256 a346040d3a30d7c6dfa0586da963492b61d349b6c96f4ef4d05e91b0b1040052). Everything else is tier0-clean by design (allowed classification token, promotion_allowed false, no verification.cmd, no recompute, no audit sibling) so claim_verify's handling of an unknown claim_kind is exercised in ISOLATION. Correct behavior: refuse/park nonzero (unclassified -> INSUFFICIENT_DEPTH exit 3), never VERIFIED exit 0. If this fixture ever exits 0, the stale_policy hole has opened: an agent could mint a claim_kind the policy registry never defined and default through. classification here is an allowed token instead of 'hostile_control_fixture' per the corpus rule's 'where JSON shape allows' clause: the corpus token trips tier0 R1 and masks this class behind an unrelated rejection; the hostile_control_fixture:true flag and this note carry the safety marking instead."
-}

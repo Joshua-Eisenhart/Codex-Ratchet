@@ -20,8 +20,10 @@ The v9 default entrypoint is intentionally small. Its supported core commands
 are `python -m constraintbox doctor --json` and `python -m constraintbox
 exercise --json`; these are the independent acceptance routes declared by
 `PRODUCT_BOUNDARY.v9.json`. Historical wide-CLI commands are retained behind
-the named `constraintbox-legacy` entrypoint. `python -m constraintbox gate
-<receipt>` remains the ClaimGate receipt entrypoint.
+the named `constraintbox-legacy` entrypoint. ClaimGate composition is an
+external legacy surface: use `constraintbox-legacy gate <receipt>` only with a
+complete source/plugin installation. It is intentionally not advertised by the
+lean default CLI or claimed by its clean-wheel verifier.
 
 The boundary is enforced by role-bearing identifiers, not a flat library list:
 `cb:*` is contained controller/gate/mini-Lev/adapter code; `sim:*` is one
@@ -144,19 +146,33 @@ contained by Python introspection.
 The Python dependencies are split by actual role:
 
 ```bash
-python -m pip install .
-constraintbox runtime verify
-python -m pip install '.[numeric]'  # optional NumPy profile/workload support
-python -m pip install '.[test]'     # test-only Hypothesis
+# First select the intended CPython 3.12 or 3.13 interpreter, then create an
+# isolated environment.  The commands below work unchanged on macOS and Linux.
+python -m venv .venv
+.venv/bin/python -m pip install .
+.venv/bin/python -m constraintbox doctor --json
+.venv/bin/python -m constraintbox exercise --json
+.venv/bin/python -m pip check
+
+# Windows PowerShell uses the same Python-module interface with this path:
+.venv\Scripts\python.exe -m pip install .
+.venv\Scripts\python.exe -m constraintbox doctor --json
+.venv\Scripts\python.exe -m constraintbox exercise --json
+.venv\Scripts\python.exe -m pip check
+
+# Optional bounded profiles; none widens the five-tool core.
+python -m pip install '.[numeric]'        # future numeric/external workload support
+python -m pip install '.[test]'           # test-only Hypothesis
+python -m pip install '.[control-plane]'  # local Pydantic/jsonschema evaluation
 ```
 
 The base install contains the lean controller dependencies: Z3, CVC5, SymPy,
-Rustworkx, and Maude. `constraintbox runtime verify` inspects the interpreter that
-actually invoked it and classifies it as `ELIGIBLE`, `PARKED`, or `BLOCKED`
-against a declared CPython 3.11/3.12/3.13 profile. It never chooses another
-Python, installs or upgrades a library, or turns an absent dependency into a
-pass. Library paths and hashes belong to that run's receipt, not to a
-machine-specific product policy.
+Rustworkx, and Maude. The default v9 `doctor` and `exercise` commands inspect
+and exercise the interpreter that actually invoked them; they never choose a
+different Python or turn an absent dependency into a pass. Historical wide-CLI
+verification remains explicitly separate as `constraintbox-legacy runtime verify`.
+The macOS/Linux/Windows portability matrix is a separate adoption proof: a
+successful local installation is not portable adoption.
 
 The wheel currently packages the Python package and the formal-runtime policy,
 model, configuration, and expectations needed by the `formal` surface. Several

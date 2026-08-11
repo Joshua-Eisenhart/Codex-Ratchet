@@ -35,12 +35,17 @@ __pycache__/
 # ConstraintBox local packaging outputs; source, fixtures, and receipts remain visible.
 constraint_box/build/
 constraint_box/dist/
+constraint_box/constraintbox.egg-info/
 constraint_box/src/constraintbox.egg-info/
 
 # ClaimGate local packaging outputs; the product source remains tracked.
 claimgate_plugin/build/
 claimgate_plugin/dist/
 claimgate_plugin/*.egg-info/
+
+# Legacy standalone ClaimGate material is preserved locally, outside the
+# active Codex-Ratchet checkpoint.
+claimgate-suite/
 
 # The live ClaimGate authority is the repo-root claimgate_plugin tree. The copy
 # inside the imported ConstraintBox seed is retained locally for provenance but
@@ -119,6 +124,15 @@ system_v4/probes/telemetry_logs/
 
 # Local workstation/controller spillover
 .claude/
+# The three active CB hook entrypoints are product code, not local spillover.
+# Keep every other untracked .claude file ignored.
+!.claude/
+.claude/*
+!.claude/hooks/
+.claude/hooks/*
+!.claude/hooks/cb_pretooluse_guard.sh
+!.claude/hooks/cb_posttooluse_record.sh
+!.claude/hooks/cb_stop_completion_check.sh
 .hermes/
 .lev/*
 !.lev/flows/

@@ -1,28 +1,14 @@
-"""Boundary map for the PreToolUse package guard.
-
-The guard was built with a positive (block a package install on the wrong
-interpreter) but no admit-side probe, so it over-fired: `which uv` was refused
-with ENV_INTERPRETER_MISMATCH because the command merely contained the token
-`uv`. That is the unmapped-admit-region shape.
-
-These probes map both sides. A package-mutation verb on the wrong interpreter
-must still fire (fail-closed on the dangerous direction). Inspection commands
-that merely name the tool must pass.
-
-Honest boundary note: the matcher works on the raw command string, so a command
-that QUOTES an install string (for example `grep 'pip install' .`) still fires.
-That is a false positive in the safe direction — it routes to the kernel, which
-HOLDs; it never lets a real install through. Missing a real install is the
-direction that matters, and the probes below pin it.
-"""
+"""Boundary map for the parsed CB Light PreToolUse package gate."""
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import subprocess
+import tempfile
 
 GUARD = pathlib.Path(__file__).resolve().parents[2] / ".claude" / "hooks" / "cb_pretooluse_guard.sh"
-MANDATED = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+MANDATED = str(pathlib.Path(__file__).resolve().parents[1] / ".venv/bin/python")
 
 
 def _fires(command: str) -> bool:
@@ -33,12 +19,17 @@ def _fires(command: str) -> bool:
     kernel extract an empty command and refuse for the wrong reason.
     """
     envelope = json.dumps({"tool_name": "Bash", "tool_input": {"command": command}})
-    proc = subprocess.run(
-        ["bash", str(GUARD)],
-        input=envelope,
-        capture_output=True,
-        text=True,
-    )
+    with tempfile.TemporaryDirectory() as directory:
+        environment = os.environ.copy()
+        environment["CB_LIGHT_STATE_DB"] = str(pathlib.Path(directory) / "state.sqlite3")
+        environment["CLAUDE_PROJECT_DIR"] = str(GUARD.parents[2])
+        proc = subprocess.run(
+            ["bash", str(GUARD)],
+            input=envelope,
+            capture_output=True,
+            text=True,
+            env=environment,
+        )
     return proc.returncode != 0
 
 
@@ -86,7 +77,35 @@ def test_python_m_pip_install_fires():
 #     wrong-interpreter install is refused. Same verb, different interpreter. ---
 
 def test_mandated_interpreter_install_is_admitted():
-    assert _fires(f"{MANDATED} -m pip install numpy") is False
+    assert _fires(f"{MANDATED} -m pip install z3-solver==4.16.0.0") is False
+
+
+def test_unpinned_core_install_is_held():
+    assert _fires(f"{MANDATED} -m pip install z3-solver") is True
+
+
+def test_unselected_candidate_install_is_held():
+    assert _fires(f"{MANDATED} -m pip install marshmallow") is True
+
+
+def test_heavy_ambient_package_does_not_enter_light_domain():
+    assert _fires(f"{MANDATED} -m pip install jax") is True
+
+
+def test_uv_pip_without_explicit_interpreter_is_refused():
+    assert _fires("uv pip install z3-solver") is True
+
+
+def test_uv_pip_with_exact_interpreter_is_admitted():
+    assert _fires(f"uv pip install z3-solver==4.16.0.0 --python {MANDATED}") is False
+
+
+def test_interpreter_path_mentioned_but_not_executed_is_refused():
+    assert _fires(f"echo {MANDATED} && pip install z3-solver") is True
+
+
+def test_nested_shell_install_is_refused():
+    assert _fires(f"bash -c '{MANDATED} -m pip install z3-solver==4.16.0.0'") is True
 
 
 def test_wrong_interpreter_install_is_refused():

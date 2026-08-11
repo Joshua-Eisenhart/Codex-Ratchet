@@ -1,0 +1,237 @@
+{
+  "all_passed": true,
+  "claim_ceiling": "Synthetic pre-install hook payload exercise only; no payload package installation was executed, no adoption or CB Heavy claim.",
+  "counts": {
+    "cases": 4,
+    "route_exercises": 8
+  },
+  "db": "/private/tmp/cb_light_hook_boundary_exercise_20260811.sqlite3",
+  "exercised_at": "2026-08-11T00:22:58.171532+00:00",
+  "routes": {
+    "legacy_adapter": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/hooks/pre_tool.sh",
+    "root": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/hooks/cb_pretooluse_guard.sh"
+  },
+  "rows": [
+    {
+      "case_id": "declared_static_candidate",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install z3-solver==4.16.0.0",
+      "expected_disposition": "ADMIT",
+      "expected_reason_code": null,
+      "passed": true,
+      "result": {
+        "body": null,
+        "body_stream": "",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/hooks/cb_pretooluse_guard.sh",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "route": "root"
+    },
+    {
+      "case_id": "declared_static_candidate",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install z3-solver==4.16.0.0",
+      "expected_disposition": "ADMIT",
+      "expected_reason_code": null,
+      "passed": true,
+      "result": {
+        "body": null,
+        "body_stream": "",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/hooks/pre_tool.sh",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "route": "legacy_adapter"
+    },
+    {
+      "case_id": "undeclared_heavy_adjacent_package",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install jax==0.6.2",
+      "expected_disposition": "REFUSE",
+      "expected_reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "99972113e22a355a7a42c1912a5293e60950a6be62437241871856415ce43291",
+          "details": {
+            "outside": [
+              "jax"
+            ],
+            "projects": [],
+            "requested": [
+              "jax"
+            ]
+          },
+          "disposition": "REFUSE",
+          "event": "pre_install",
+          "reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/hooks/cb_pretooluse_guard.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"99972113e22a355a7a42c1912a5293e60950a6be62437241871856415ce43291\",\n  \"details\": {\n    \"outside\": [\n      \"jax\"\n    ],\n    \"projects\": [],\n    \"requested\": [\n      \"jax\"\n    ]\n  },\n  \"disposition\": \"REFUSE\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN\"\n}",
+        "stdout": ""
+      },
+      "route": "root"
+    },
+    {
+      "case_id": "undeclared_heavy_adjacent_package",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install jax==0.6.2",
+      "expected_disposition": "REFUSE",
+      "expected_reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "99972113e22a355a7a42c1912a5293e60950a6be62437241871856415ce43291",
+          "details": {
+            "outside": [
+              "jax"
+            ],
+            "projects": [],
+            "requested": [
+              "jax"
+            ]
+          },
+          "disposition": "REFUSE",
+          "event": "pre_install",
+          "reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/hooks/pre_tool.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"99972113e22a355a7a42c1912a5293e60950a6be62437241871856415ce43291\",\n  \"details\": {\n    \"outside\": [\n      \"jax\"\n    ],\n    \"projects\": [],\n    \"requested\": [\n      \"jax\"\n    ]\n  },\n  \"disposition\": \"REFUSE\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN\"\n}",
+        "stdout": ""
+      },
+      "route": "legacy_adapter"
+    },
+    {
+      "case_id": "mixed_declared_and_undeclared_package",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install z3-solver==4.16.0.0 requests==2.34.2",
+      "expected_disposition": "REFUSE",
+      "expected_reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "cb3e266303e4609dc1f3539aed30f9e041da37db2fdf182c4cabcb9ca27a8138",
+          "details": {
+            "outside": [
+              "requests"
+            ],
+            "projects": [],
+            "requested": [
+              "requests",
+              "z3-solver"
+            ]
+          },
+          "disposition": "REFUSE",
+          "event": "pre_install",
+          "reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/hooks/cb_pretooluse_guard.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"cb3e266303e4609dc1f3539aed30f9e041da37db2fdf182c4cabcb9ca27a8138\",\n  \"details\": {\n    \"outside\": [\n      \"requests\"\n    ],\n    \"projects\": [],\n    \"requested\": [\n      \"requests\",\n      \"z3-solver\"\n    ]\n  },\n  \"disposition\": \"REFUSE\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN\"\n}",
+        "stdout": ""
+      },
+      "route": "root"
+    },
+    {
+      "case_id": "mixed_declared_and_undeclared_package",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install z3-solver==4.16.0.0 requests==2.34.2",
+      "expected_disposition": "REFUSE",
+      "expected_reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "cb3e266303e4609dc1f3539aed30f9e041da37db2fdf182c4cabcb9ca27a8138",
+          "details": {
+            "outside": [
+              "requests"
+            ],
+            "projects": [],
+            "requested": [
+              "requests",
+              "z3-solver"
+            ]
+          },
+          "disposition": "REFUSE",
+          "event": "pre_install",
+          "reason_code": "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/hooks/pre_tool.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"cb3e266303e4609dc1f3539aed30f9e041da37db2fdf182c4cabcb9ca27a8138\",\n  \"details\": {\n    \"outside\": [\n      \"requests\"\n    ],\n    \"projects\": [],\n    \"requested\": [\n      \"requests\",\n      \"z3-solver\"\n    ]\n  },\n  \"disposition\": \"REFUSE\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN\"\n}",
+        "stdout": ""
+      },
+      "route": "legacy_adapter"
+    },
+    {
+      "case_id": "control_profile_package_not_static_candidate",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install pydantic==2.12.5",
+      "expected_disposition": "HOLD",
+      "expected_reason_code": "CANDIDATE_NOT_SELECTED_FOR_INSTALL",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "d6495846d664dc6ffa6a2109a2edceebe44edc8b49ac2473b9e5c5cf2906b21f",
+          "details": {
+            "projects": [],
+            "requested": [
+              "pydantic"
+            ],
+            "unselected": [
+              "pydantic"
+            ]
+          },
+          "disposition": "HOLD",
+          "event": "pre_install",
+          "reason_code": "CANDIDATE_NOT_SELECTED_FOR_INSTALL"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/.claude/hooks/cb_pretooluse_guard.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"d6495846d664dc6ffa6a2109a2edceebe44edc8b49ac2473b9e5c5cf2906b21f\",\n  \"details\": {\n    \"projects\": [],\n    \"requested\": [\n      \"pydantic\"\n    ],\n    \"unselected\": [\n      \"pydantic\"\n    ]\n  },\n  \"disposition\": \"HOLD\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"CANDIDATE_NOT_SELECTED_FOR_INSTALL\"\n}",
+        "stdout": ""
+      },
+      "route": "root"
+    },
+    {
+      "case_id": "control_profile_package_not_static_candidate",
+      "command": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python -m pip install pydantic==2.12.5",
+      "expected_disposition": "HOLD",
+      "expected_reason_code": "CANDIDATE_NOT_SELECTED_FOR_INSTALL",
+      "passed": true,
+      "result": {
+        "body": {
+          "claim_ceiling": "configured Bash-hook package mutation only",
+          "command_sha256": "d6495846d664dc6ffa6a2109a2edceebe44edc8b49ac2473b9e5c5cf2906b21f",
+          "details": {
+            "projects": [],
+            "requested": [
+              "pydantic"
+            ],
+            "unselected": [
+              "pydantic"
+            ]
+          },
+          "disposition": "HOLD",
+          "event": "pre_install",
+          "reason_code": "CANDIDATE_NOT_SELECTED_FOR_INSTALL"
+        },
+        "body_stream": "stderr",
+        "hook": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/hooks/pre_tool.sh",
+        "returncode": 2,
+        "stderr": "{\n  \"claim_ceiling\": \"configured Bash-hook package mutation only\",\n  \"command_sha256\": \"d6495846d664dc6ffa6a2109a2edceebe44edc8b49ac2473b9e5c5cf2906b21f\",\n  \"details\": {\n    \"projects\": [],\n    \"requested\": [\n      \"pydantic\"\n    ],\n    \"unselected\": [\n      \"pydantic\"\n    ]\n  },\n  \"disposition\": \"HOLD\",\n  \"event\": \"pre_install\",\n  \"reason_code\": \"CANDIDATE_NOT_SELECTED_FOR_INSTALL\"\n}",
+        "stdout": ""
+      },
+      "route": "legacy_adapter"
+    }
+  ],
+  "schema": "constraintbox.cb-light-hook-boundary-exercise.v1"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "constraintbox.control-plane-candidate-install-probe.v1",
+  "generated_at": "2026-08-10T21:39:28Z",
+  "profile": "cb_light",
+  "candidate_pin_file": "requirements/control_plane_candidates/cb_control_plane_candidate_pins_v1.txt",
+  "candidate_pin_file_sha256": "667408e31f3df663e9ec2a3e05a3ec67fbd6b358cf45c9ccd49d03bbde3bb603",
+  "interpreter": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python",
+    "python_version": "3.13.6",
+    "environment_kind": "contained_cb_light_venv"
+  },
+  "direct_candidates": {
+    "pydantic": "2.12.5",
+    "jsonschema": "4.26.0",
+    "hypothesis": "6.151.12"
+  },
+  "observed_closure_versions": {
+    "annotated-types": "0.8.0",
+    "attrs": "26.1.0",
+    "hypothesis": "6.151.12",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "pydantic": "2.12.5",
+    "pydantic-core": "2.41.5",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.6.3",
+    "sortedcontainers": "2.4.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.3"
+  },
+  "checks": {
+    "pip_check": {
+      "result": "PASS",
+      "detail": "No broken requirements found."
+    },
+    "pydantic_strict_positive": {
+      "result": "PASS",
+      "api": "create_model + model_validate(strict)"
+    },
+    "pydantic_strict_negative": {
+      "result": "PASS",
+      "case": "string-for-integer plus unexpected field rejected"
+    },
+    "jsonschema_crosscheck": {
+      "result": "PASS",
+      "api": "jsonschema.validate(instance, Pydantic.model_json_schema())"
+    },
+    "canonical_replay": {
+      "result": "PASS",
+      "case": "model_validate_json output canonicalized identically"
+    },
+    "hypothesis_property": {
+      "result": "PASS",
+      "case": "32 generated strict integer envelopes round-tripped"
+    }
+  },
+  "disposition": "CANDIDATE_EVALUATED_LOCAL",
+  "unmet_requirements": [
+    "protected_candidate_identity_in_selection_authority",
+    "source_consumer_hash",
+    "downstream_receipt_consumer",
+    "consumer_severance_negative",
+    "alternate_entrypoint_bypass_negative",
+    "full_transitive_hash_lock",
+    "linux_macos_windows_python312_python313_operation_matrix",
+    "owner_approval"
+  ],
+  "promotion_allowed": false,
+  "claim_ceiling": "Exact contained interpreter installation and isolated API probes for three control-plane candidates only; no current tool membership, function integration, portable adoption, CB Heavy, or release claim."
+}

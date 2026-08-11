@@ -1,0 +1,194 @@
+{
+  "cb_heavy_proved": false,
+  "checks": [
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "fresh_profile_venv_create",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "control_plane_extra_dependency_resolved_install",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6a9e12dc04465f26175374f91c10baea9680c606115849283e4cfff7899cd9fc"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "profile_pip_dependency_check",
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "attestation": {
+        "direct_metadata_by_package": {
+          "jsonschema": true,
+          "pydantic": true
+        },
+        "direct_metadata_matches": true,
+        "direct_pin_versions_match": true,
+        "direct_pins": {
+          "jsonschema": "4.26.0",
+          "pydantic": "2.12.5"
+        },
+        "environment_root": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169",
+        "module_origins": {
+          "constraintbox": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169/lib/python3.13/site-packages/constraintbox/__init__.py",
+          "hookkernel": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169/lib/python3.13/site-packages/hookkernel/__init__.py",
+          "jsonschema": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169/lib/python3.13/site-packages/jsonschema/__init__.py",
+          "pydantic": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169/lib/python3.13/site-packages/pydantic/__init__.py"
+        },
+        "observed_direct_versions": {
+          "jsonschema": "4.26.0",
+          "pydantic": "2.12.5"
+        },
+        "origin_checks": {
+          "all_profile_imports_inside_fresh_environment": true,
+          "no_source_tree_origin": true,
+          "pin_file_inside_fresh_environment": true
+        },
+        "pin_error": null,
+        "pin_file": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/constraintbox-control-plane-cawyy169/lib/python3.13/site-packages/hookkernel/cb_light_data/requirements/control_plane_candidates/cb_control_plane_candidate_pins_v1.txt",
+        "profile_ready": true,
+        "schema": "constraintbox.control-plane-profile-attestation.v1"
+      },
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_json": {
+        "direct_metadata_matches": true,
+        "direct_pin_versions_match": true,
+        "origin_checks.all_profile_imports_inside_fresh_environment": true,
+        "origin_checks.no_source_tree_origin": true,
+        "origin_checks.pin_file_inside_fresh_environment": true,
+        "profile_ready": true,
+        "schema": "constraintbox.control-plane-profile-attestation.v1"
+      },
+      "failure_kind": null,
+      "failure_reason": null,
+      "name": "installed_profile_direct_pin_attestation",
+      "observed_json": {
+        "direct_metadata_matches": true,
+        "direct_pin_versions_match": true,
+        "origin_checks.all_profile_imports_inside_fresh_environment": true,
+        "origin_checks.no_source_tree_origin": true,
+        "origin_checks.pin_file_inside_fresh_environment": true,
+        "profile_ready": true,
+        "schema": "constraintbox.control-plane-profile-attestation.v1"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1eacec024cc85380eb9dfad8fd6376cdb34def3cd5fe7fc8950663f7d537efcf"
+    },
+    {
+      "exit": 2,
+      "expected_exit": 2,
+      "expected_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_UNEXPECTED_FIELD",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "failure_kind": null,
+      "failure_reason": "subprocess_exit_nonzero",
+      "name": "installed_extra_field_refusal",
+      "observed_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_UNEXPECTED_FIELD",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0bdf58229cfb38f7d6af3a0a49a28125a77837f485cf298784c99b7e48a65bac"
+    },
+    {
+      "exit": 2,
+      "expected_exit": 2,
+      "expected_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_UNDECLARED_CAPABILITY",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "failure_kind": null,
+      "failure_reason": "subprocess_exit_nonzero",
+      "name": "installed_undeclared_capability_refusal",
+      "observed_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_UNDECLARED_CAPABILITY",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b6b3a7a57932a331d8449ea419b10aa22fcd6a68cd3157edd1b27928f40943e9"
+    },
+    {
+      "exit": 2,
+      "expected_exit": 2,
+      "expected_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_CANDIDATE_PIN_DIGEST_MISMATCH",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "failure_kind": null,
+      "failure_reason": "subprocess_exit_nonzero",
+      "name": "installed_candidate_pin_severance",
+      "observed_json": {
+        "disposition": "REFUSE",
+        "promotion_allowed": false,
+        "reason_code": "REFUSE_CANDIDATE_PIN_DIGEST_MISMATCH",
+        "schema": "constraintbox.control-plane-candidate-evaluation.v1"
+      },
+      "passed": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "cd85ebf9de03d71a0099e7bfefe1c9481f60c3a1ca039f90e98aabf04ae5271a"
+    },
+    {
+      "database_created": false,
+      "name": "installed_refusals_do_not_open_sqlite",
+      "passed": true
+    }
+  ],
+  "claim_ceiling": "Local-only fresh-wheel installer verification on this host: the installed control-plane profile exposed the direct pydantic and jsonschema pins, imported outside this source tree, and refused bounded no-extra/severance requests. This is not a full transitive hash lock, dependency-provenance, macOS/Linux/Windows portability, CB Light membership/adoption, provider execution, CB Heavy, release, promotion, or scientific-truth claim.",
+  "cross_platform_matrix_proved": false,
+  "dependency_provenance_verified": false,
+  "dependency_resolution_mode": "normal_dependency_resolution",
+  "direct_pins_only": true,
+  "direct_profile_packages": [
+    "pydantic",
+    "jsonschema"
+  ],
+  "fresh_environment": true,
+  "full_transitive_hash_lock_verified": false,
+  "generated_at_utc": "2026-08-11T01:15:05.836113+00:00",
+  "installer_verification_only": true,
+  "isolated_children": true,
+  "local_host_only": true,
+  "membership_or_adoption_proved": false,
+  "promotion_allowed": false,
+  "provider_execution_proved": false,
+  "reason": "clean_control_plane_profile_passed",
+  "runtime_never_installs_dependencies": true,
+  "schema": "constraintbox.control-plane-fresh-wheel-profile.v1",
+  "source_tree_environment_variables_scrubbed": true,
+  "state": "READY",
+  "verification_scope": "control_plane_fresh_wheel_profile",
+  "wheel": "constraintbox-0.4.0.dev1-py3-none-any.whl",
+  "wheel_requested_extra": "control-plane",
+  "wheel_sha256": "e6d58ca2384ad4b2ae84de46ff7fabae68b2564267ef975d798bca0f41cd091a",
+  "wheelhouse_supplied": false
+}

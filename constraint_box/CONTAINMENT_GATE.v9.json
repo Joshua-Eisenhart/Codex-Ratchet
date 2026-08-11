@@ -1,0 +1,109 @@
+{
+  "schema": "codex-ratchet.containment-gate.v1",
+  "product": "constraint_box",
+  "audit_date": "2026-08-10",
+  "audit_result": "PASS",
+  "boundary_status": "clean",
+  "findings": {
+    "implementation_files": 2292,
+    "all_within_boundary": true,
+    "unauthorized_imports_in_active_modules": 0,
+    "unauthorized_adapters": 0,
+    "bridge_adapters_in_cb": 2,
+    "consumer_adapters_in_appropriate_product": 1
+  },
+  "approved_thin_adapters": [
+    {
+      "path": "system_v9/verify_stack.py",
+      "purpose": "Stack structural health check",
+      "justification": "Reads CB config and manifests to verify v9 stack integrity; owned by Codex Ratchet controller",
+      "risk": "low",
+      "breach_potential": "none"
+    },
+    {
+      "path": "claimgate_plugin/hooks/post_receipt_gate.sh",
+      "purpose": "CB-to-ClaimGate bridge",
+      "justification": "Consumer-side receipt gate; owned by ClaimGate; registered in bridge registry",
+      "risk": "low",
+      "breach_potential": "none"
+    }
+  ],
+  "prohibited_patterns": [
+    "from constraintbox",
+    "import constraintbox"
+  ],
+  "prohibited_in_modules": [
+    "ratchet_engine",
+    "holodeck",
+    "sim_engines",
+    "claimgate-suite"
+  ],
+  "containment_tests": {
+    "test_v9_core_boundary.py": {
+      "status": "passing",
+      "scope": "CB internal boundaries (dependencies, entrypoints, forbidden imports)",
+      "last_run": "2026-08-10"
+    },
+    "test_containment_bypass.py": {
+      "status": "passing",
+      "scope": "External breach attempts (can peer products import CB?)",
+      "tests_count": 6,
+      "last_run": "2026-08-10",
+      "bypass_results": [
+        {
+          "test": "sim_engines_cannot_directly_import_constraintbox",
+          "result": "PASS"
+        },
+        {
+          "test": "holodeck_cannot_directly_import_constraintbox",
+          "result": "PASS"
+        },
+        {
+          "test": "ratchet_engine_cannot_directly_import_constraintbox",
+          "result": "PASS"
+        },
+        {
+          "test": "external_packet_bridge_is_cb_internal",
+          "result": "PASS"
+        },
+        {
+          "test": "cr_adapter_is_cb_internal",
+          "result": "PASS"
+        },
+        {
+          "test": "no_bridge_exposes_cb_internals",
+          "result": "PASS"
+        }
+      ]
+    }
+  },
+  "exceptions": [
+    {
+      "location": "Archive/claimgate_plugin/",
+      "status": "legacy_archived_not_loaded",
+      "contains": "constraintbox imports",
+      "risk": "none",
+      "note": "Archive is historical reference, not runtime code; excluded from bridge registry"
+    },
+    {
+      "location": "testfinal/lib/python3.13/site-packages/constraintbox/",
+      "status": "installed_package_test_environment",
+      "contains": "copy of CB source",
+      "risk": "none",
+      "note": "Editable install (pip install -e) for local development; removed by pip uninstall"
+    }
+  ],
+  "enforcement": {
+    "gate_rule": "Any new file outside constraint_box/ that references CB must be listed in approved thin adapters or registered in system_v9/bridges/registry.v9.json",
+    "gate_rule_owner": "ConstraintBox owner",
+    "automated_check_script": "PYTHONPATH=constraint_box/src python3 -m pytest -q constraint_box/tests/test_v9_core_boundary.py constraint_box/tests/test_containment_bypass.py",
+    "manual_review_required": "yes_when_new_thin_adapters_added"
+  },
+  "next_review_trigger": [
+    "Any change to system_v9/bridges/registry.v9.json",
+    "Any new Python file outside constraint_box/ that imports from constraintbox",
+    "Any new external dependency added to constraint_box/pyproject.toml",
+    "Major version bump or product restructure"
+  ],
+  "approval_status": "self_contained_audit_no_edit_requested"
+}

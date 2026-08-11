@@ -1,7 +1,7 @@
 """The currentness constraint binds to the authoritative registry, not the caller.
 
 A gate bypass was demonstrated in-session: a session_start payload carrying a
-forged-fresh estate_rows override wrote a CURRENTNESS_VALID receipt to the
+forged-fresh estate_rows override wrote a currentness receipt to the
 production chain, which cleared a genuinely stale estate. A constraint an LLM
 can satisfy by supplying its own input is not a constraint.
 
@@ -54,8 +54,8 @@ def test_forged_override_is_ignored_when_authoritative_config_exists(tmp_path):
     # A forged-fresh override must NOT clear the real staleness.
     forged = {"estate_rows": [{"id": "stalelib", "date": "2026-08-08"}], "today": "2026-08-09"}
     r = _kernel(tmp_path, root, "session_start", forged)
-    assert r["reason_code"] == "CURRENTNESS_EXPIRED", r
-    assert any(row["id"] == "stalelib" for row in r["details"]["stale"]), r
+    assert r["reason_code"] == "MAINTENANCE_REVIEW_REQUIRED", r
+    assert any(row["id"] == "stalelib" for row in r["details"]["over_bar"]), r
 
 
 @pytest.mark.skipif(SOURCE is None, reason="hookkernel package not found")
@@ -66,6 +66,6 @@ def test_override_is_honored_in_isolated_root_without_config(tmp_path):
     (root / "receipts.jsonl").unlink(missing_ok=True)
 
     fresh = {"estate_rows": [{"id": "x", "date": "2026-08-01"}], "today": "2026-08-09"}
-    assert _kernel(tmp_path, root, "session_start", fresh)["reason_code"] == "CURRENTNESS_VALID"
+    assert _kernel(tmp_path, root, "session_start", fresh)["reason_code"] == "CURRENTNESS_LOCAL_OK"
     stale = {"estate_rows": [{"id": "x", "date": "2023-01-01"}], "today": "2026-08-09"}
-    assert _kernel(tmp_path, root, "session_start", stale)["reason_code"] == "CURRENTNESS_EXPIRED"
+    assert _kernel(tmp_path, root, "session_start", stale)["reason_code"] == "MAINTENANCE_REVIEW_REQUIRED"

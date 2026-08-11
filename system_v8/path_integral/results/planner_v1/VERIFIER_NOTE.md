@@ -1,1 +1,0 @@
-PLANNER V1 VERIFIER NOTE (2026-07-20): TAINTED per fresh-context verify — the '60% probe budget' premise is not actually enforced in the accuracy metric; combined with the preregistered ceiling gate firing (all arms 1.0 > 0.95), v1 makes NO discrimination claim. TASK_STILL_EASY stands; v2 must enforce the budget inside the metric path and be verified on that point before running.

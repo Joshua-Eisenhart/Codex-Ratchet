@@ -22,9 +22,6 @@ import re
 import subprocess
 from pathlib import Path
 from typing import Any, Callable
-import libcst as cst
-from libcst.matchers import matches, Or, Name, SimpleWhitespace
-from hypothesis import given, strategies as st, HealthCheck, settings
 import json
 
 
@@ -415,6 +412,10 @@ class AdversarialFixtureGenerator:
         Tests both negative controls (malformed input should be rejected) and
         positive controls (valid input should be accepted) using hypothesis.
         """
+
+        # Hypothesis is an optional adversarial-test dependency. The static
+        # integrity checker itself must remain importable in the lean core.
+        from hypothesis import HealthCheck, given, settings, strategies as st
 
         # Define strategies for generating invalid and valid proposals
         hex_sha256_strategy = st.text(

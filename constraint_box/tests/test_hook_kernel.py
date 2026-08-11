@@ -81,8 +81,9 @@ def test_expired_fixture_is_currentness_negative(tmp_path):
     result = run(root, "session_start", {"today": "2026-08-09"})
     assert result.returncode == 2
     body = last(root)["payload"]
-    assert body["reason_code"] == "CURRENTNESS_EXPIRED"
-    assert body["details"]["stale"][0]["age_days"] == 616
+    assert body["reason_code"] == "MAINTENANCE_REVIEW_REQUIRED"
+    assert body["details"]["over_bar"][0]["age_days"] == 616
+    assert body["details"]["resolve_with"] == "estate_metadata_refreshed"
 
 
 def test_completion_refuses_open_hold(tmp_path):
@@ -182,6 +183,6 @@ def test_real_registry_scoped_to_adopted_estate_is_current(tmp_path):
 
     result = run(root, "session_start", {"today": "2026-08-09"})
     body = last(root)["payload"]
-    assert body["reason_code"] == "CURRENTNESS_VALID", body
+    assert body["reason_code"] == "CURRENTNESS_LOCAL_OK", body
     assert result.returncode == 0
     assert body["details"]["checked"] > 50, body

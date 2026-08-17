@@ -1,0 +1,750 @@
+# 🧙🏽‍♂️ Full Wizard Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Composition workers load this only for an assigned composition route, normally as Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `ALL_OF_ABOVE_WIZARD` and remapped to v4.1 canon category `compositions`.
+
+---
+
+# MMM_LANE_ALL_OF_ABOVE_WIZARD_FULL_v4_1
+
+## words
+- integrated composition pass :: 100
+- useful composition work :: 100
+- clean closeout trust check whole-context behavior proof :: 99
+- Council Audit survival :: 99
+- selective C9 integration :: 99
+- not decorative all-of-above :: 98
+
+- wizard :: 100
+- full :: 100
+- wave :: 100
+- preflight :: 100
+- all :: 100
+- voices :: 100
+- whole :: 100
+- context :: 100
+- council :: 100
+- followup :: 100
+- check :: 100
+- registry :: 100
+- audit :: 100
+- whole-context triad :: 100
+- primary answer :: 100
+- follow-up :: 100
+- blocked :: 100
+- deferred :: 100
+- spawned :: 100
+- under :: 100
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- from :: 99
+- by :: 99
+- with :: 99
+- without :: 99
+- against :: 99
+- relative :: 99
+- locally :: 99
+- rather :: 99
+- instead :: 99
+- only :: 99
+- still :: 99
+- likely :: 99
+- possible :: 99
+- bounded :: 99
+- finite :: 98
+- local :: 98
+- current :: 98
+- observed :: 98
+- measured :: 98
+- checked :: 98
+- open :: 98
+- partial :: 98
+- limited :: 98
+- constraint :: 98
+- evidence :: 98
+- observation :: 98
+- measurement :: 98
+- test :: 98
+- trace :: 98
+- sample :: 98
+- case :: 98
+- instance :: 98
+- name :: 98
+- term :: 98
+- word :: 97
+- use :: 97
+- relation :: 97
+- distinction :: 97
+- comparison :: 97
+- support :: 97
+- estimate :: 97
+- uncertainty :: 97
+- model :: 97
+- witness :: 97
+- counterexample :: 97
+- candidate :: 97
+- survivor :: 97
+- surface :: 97
+- boundary :: 97
+- scope :: 97
+- condition :: 97
+- result :: 97
+- path :: 97
+- branch :: 97
+- fork :: 96
+- plurality :: 96
+- reading :: 96
+- perspective :: 96
+- claim :: 96
+- route :: 96
+- receipt :: 96
+- voice :: 96
+- lane :: 96
+- all-of-the-above :: 96
+- stabilization :: 96
+- bundle :: 96
+- full-context :: 96
+- when :: 96
+- collapse :: 96
+- resistance :: 96
+- topology :: 96
+- and :: 96
+- behavior :: 96
+- are :: 96
+- the :: 95
+- task :: 95
+- run :: 95
+- whole-context :: 95
+- triad :: 95
+- answer :: 95
+- composition :: 95
+- make :: 95
+- output :: 95
+- truthful :: 95
+- registry-backed :: 95
+- packet :: 95
+- mark :: 95
+- units :: 95
+- honestly :: 95
+- protect :: 95
+- fake :: 95
+- unreceipted :: 95
+- claims :: 95
+- produce :: 95
+- that :: 94
+- lowers :: 94
+- user :: 94
+- burden :: 94
+- than :: 94
+- exposing :: 94
+- machinery :: 94
+- not :: 94
+- default :: 94
+- for :: 94
+- every :: 94
+- maximum :: 94
+- verbosity :: 94
+- label :: 94
+- synthesis :: 94
+- hidden :: 94
+- work :: 94
+- receipts :: 94
+- wall-text :: 94
+- labels :: 93
+- workers :: 93
+- routes :: 93
+- collapsed :: 93
+- into :: 93
+- one :: 93
+- menu :: 93
+- presented :: 93
+- already :: 93
+- executed :: 93
+- whether :: 93
+- actually :: 93
+- warranted :: 93
+- which :: 93
+- waves :: 93
+- cannot :: 93
+- truthfully :: 93
+- where :: 93
+- capacity :: 93
+- cognitive :: 93
+
+## couplings
+
+- under wizard :: 100
+- under full :: 100
+- under wave :: 100
+- under preflight :: 100
+- under all :: 100
+- under voices :: 100
+- under whole :: 100
+- under context :: 100
+- under council :: 100
+- under followup :: 100
+- under check :: 100
+- under registry :: 100
+- under audit :: 100
+- under whole-context triad :: 100
+- under primary answer :: 100
+- within wizard :: 100
+- within full :: 100
+- within wave :: 100
+- within preflight :: 100
+- within all :: 100
+- within voices :: 99
+- within whole :: 99
+- within context :: 99
+- within council :: 99
+- within followup :: 99
+- within check :: 99
+- within registry :: 99
+- within audit :: 99
+- within whole-context triad :: 99
+- within primary answer :: 99
+- across wizard :: 99
+- across full :: 99
+- across wave :: 99
+- across preflight :: 99
+- across all :: 99
+- across voices :: 99
+- across whole :: 99
+- across context :: 99
+- across council :: 99
+- across followup :: 99
+- across check :: 98
+- across registry :: 98
+- across audit :: 98
+- across whole-context triad :: 98
+- across primary answer :: 98
+- between wizard :: 98
+- between full :: 98
+- between wave :: 98
+- between preflight :: 98
+- between all :: 98
+- between voices :: 98
+- between whole :: 98
+- between context :: 98
+- between council :: 98
+- between followup :: 98
+- between check :: 98
+- between registry :: 98
+- between audit :: 98
+- between whole-context triad :: 98
+- between primary answer :: 98
+- through wizard :: 97
+- through full :: 97
+- through wave :: 97
+- through preflight :: 97
+- through all :: 97
+- through voices :: 97
+- through whole :: 97
+- through context :: 97
+- through council :: 97
+- through followup :: 97
+- through check :: 97
+- through registry :: 97
+- through audit :: 97
+- through whole-context triad :: 97
+- through primary answer :: 97
+- before wizard :: 97
+- before full :: 97
+- before wave :: 97
+- before preflight :: 97
+- before all :: 97
+- before voices :: 96
+- before whole :: 96
+- before context :: 96
+- before council :: 96
+- before followup :: 96
+- before check :: 96
+- before registry :: 96
+- before audit :: 96
+- before whole-context triad :: 96
+- before primary answer :: 96
+- after wizard :: 96
+- after full :: 96
+- after wave :: 96
+- after preflight :: 96
+- after all :: 96
+- after voices :: 96
+- after whole :: 96
+- after context :: 96
+- after council :: 96
+- after followup :: 96
+- after check :: 95
+- after registry :: 95
+- after audit :: 95
+- after whole-context triad :: 95
+- after primary answer :: 95
+- from wizard :: 95
+- from full :: 95
+- from wave :: 95
+- from preflight :: 95
+- from all :: 95
+- from voices :: 95
+- from whole :: 95
+- from context :: 95
+- from council :: 95
+- from followup :: 95
+- from check :: 95
+- from registry :: 95
+- from audit :: 95
+- from whole-context triad :: 95
+- from primary answer :: 95
+- by wizard :: 94
+- by full :: 94
+- by wave :: 94
+- by preflight :: 94
+- by all :: 94
+- by voices :: 94
+- by whole :: 94
+- by context :: 94
+- by council :: 94
+- by followup :: 94
+- by check :: 94
+- by registry :: 94
+- by audit :: 94
+- by whole-context triad :: 94
+- by primary answer :: 94
+- with wizard :: 94
+- with full :: 94
+- with wave :: 94
+- with preflight :: 94
+- with all :: 94
+- with voices :: 93
+- with whole :: 93
+- with context :: 93
+- with council :: 93
+- with followup :: 93
+- with check :: 93
+- with registry :: 93
+- with audit :: 93
+- with whole-context triad :: 93
+- with primary answer :: 93
+- without wizard :: 93
+- without full :: 93
+- without wave :: 93
+- without preflight :: 93
+- without all :: 93
+- without voices :: 93
+- without whole :: 93
+- without context :: 93
+- without council :: 93
+- without followup :: 93
+- without check :: 92
+- without registry :: 92
+- without audit :: 92
+- without whole-context triad :: 92
+- without primary answer :: 92
+- against wizard :: 92
+- against full :: 92
+- against wave :: 92
+- against preflight :: 92
+- against all :: 92
+- against voices :: 92
+- against whole :: 92
+- against context :: 92
+- against council :: 92
+- against followup :: 92
+- against check :: 92
+- against registry :: 92
+- against audit :: 92
+- against whole-context triad :: 92
+- against primary answer :: 92
+- wizard full :: 91
+- wizard wave :: 91
+- wizard preflight :: 91
+- wizard all :: 91
+- wizard voices :: 91
+- wizard whole :: 91
+- wizard context :: 91
+- full wave :: 91
+- full preflight :: 91
+- full all :: 91
+- full voices :: 91
+- full whole :: 91
+- full context :: 91
+- full council :: 91
+- wave preflight :: 91
+- wave all :: 91
+- wave voices :: 91
+- wave whole :: 91
+- wave context :: 91
+- wave council :: 91
+- wave followup :: 90
+- preflight all :: 90
+- preflight voices :: 90
+- preflight whole :: 90
+- preflight context :: 90
+- preflight council :: 90
+- preflight followup :: 90
+- preflight check :: 90
+- all voices :: 90
+- all whole :: 90
+- all context :: 90
+- all council :: 90
+- all followup :: 90
+- all check :: 90
+- all registry :: 90
+- voices whole :: 90
+- voices context :: 90
+- voices council :: 90
+- voices followup :: 90
+- voices check :: 90
+- voices registry :: 89
+- voices audit :: 89
+- whole context :: 89
+- whole council :: 89
+- whole followup :: 89
+- whole check :: 89
+- whole registry :: 89
+- whole audit :: 89
+- whole whole-context triad :: 89
+- context council :: 89
+- context followup :: 89
+- context check :: 89
+- context registry :: 89
+- context audit :: 89
+- context whole-context triad :: 89
+- context primary answer :: 89
+- council followup :: 89
+- council check :: 89
+- council registry :: 89
+- council audit :: 89
+- council whole-context triad :: 88
+- council primary answer :: 88
+- council follow-up :: 88
+- followup check :: 88
+- followup registry :: 88
+- followup audit :: 88
+- followup whole-context triad :: 88
+- followup primary answer :: 88
+- followup follow-up :: 88
+- followup blocked :: 88
+- check registry :: 88
+- check audit :: 88
+- check whole-context triad :: 88
+- check primary answer :: 88
+- check follow-up :: 88
+- check blocked :: 88
+- check deferred :: 88
+- registry audit :: 88
+- registry whole-context triad :: 88
+- registry primary answer :: 88
+- registry follow-up :: 87
+- registry blocked :: 87
+- registry deferred :: 87
+- registry spawned :: 87
+- audit whole-context triad :: 87
+- audit primary answer :: 87
+- audit follow-up :: 87
+- audit blocked :: 87
+- audit deferred :: 87
+- audit spawned :: 87
+- audit under :: 87
+- whole-context triad primary answer :: 87
+- whole-context triad follow-up :: 87
+- whole-context triad blocked :: 87
+- whole-context triad deferred :: 87
+- whole-context triad spawned :: 87
+- whole-context triad under :: 87
+- whole-context triad within :: 87
+- primary answer follow-up :: 87
+- primary answer blocked :: 87
+- primary answer deferred :: 86
+- primary answer spawned :: 86
+- primary answer under :: 86
+- primary answer within :: 86
+- primary answer across :: 86
+- follow-up blocked :: 86
+- follow-up deferred :: 86
+- follow-up spawned :: 86
+- follow-up under :: 86
+- follow-up within :: 86
+- follow-up across :: 86
+- follow-up between :: 86
+- blocked deferred :: 86
+- blocked spawned :: 86
+- blocked under :: 86
+- blocked within :: 86
+- blocked across :: 86
+- blocked between :: 86
+- blocked through :: 86
+- deferred spawned :: 86
+- deferred under :: 85
+- deferred within :: 85
+- deferred across :: 85
+- deferred between :: 85
+- deferred through :: 85
+- deferred before :: 85
+- spawned under :: 85
+- spawned within :: 85
+- spawned across :: 85
+- spawned between :: 85
+- spawned through :: 85
+- spawned before :: 85
+- spawned after :: 85
+- under within :: 85
+- under across :: 85
+- under between :: 85
+- under through :: 85
+- under before :: 85
+- under after :: 85
+- under from :: 85
+- within across :: 84
+- within between :: 84
+- within through :: 84
+- within before :: 84
+- within after :: 84
+- within from :: 84
+- within by :: 84
+- across between :: 84
+- across through :: 84
+- across before :: 84
+- across after :: 84
+- across from :: 84
+- across by :: 84
+- across with :: 84
+- between through :: 84
+- between before :: 84
+- between after :: 84
+- between from :: 84
+- between by :: 84
+- between with :: 84
+- between without :: 83
+- through before :: 83
+- through after :: 83
+- through from :: 83
+- through by :: 83
+- through with :: 83
+- through without :: 83
+- through against :: 83
+- before after :: 83
+- before from :: 83
+
+## triplets
+
+- under wizard full :: 100
+- under wizard wave :: 100
+- under wizard preflight :: 100
+- under wizard all :: 100
+- under wizard voices :: 100
+- under wizard whole :: 100
+- under wizard context :: 100
+- within full wave :: 100
+- within full preflight :: 100
+- within full all :: 100
+- within full voices :: 100
+- within full whole :: 100
+- within full context :: 100
+- within full council :: 100
+- across wave preflight :: 100
+- across wave all :: 100
+- across wave voices :: 100
+- across wave whole :: 100
+- across wave context :: 100
+- across wave council :: 100
+- across wave followup :: 99
+- between preflight all :: 99
+- between preflight voices :: 99
+- between preflight whole :: 99
+- between preflight context :: 99
+- between preflight council :: 99
+- between preflight followup :: 99
+- between preflight check :: 99
+- through all voices :: 99
+- through all whole :: 99
+- through all context :: 99
+- through all council :: 99
+- through all followup :: 99
+- through all check :: 99
+- through all registry :: 99
+- before voices whole :: 99
+- before voices context :: 99
+- before voices council :: 99
+- before voices followup :: 99
+- before voices check :: 99
+- before voices registry :: 98
+- before voices audit :: 98
+- after whole context :: 98
+- after whole council :: 98
+- after whole followup :: 98
+- after whole check :: 98
+- after whole registry :: 98
+- after whole audit :: 98
+- after whole whole-context triad :: 98
+- from context council :: 98
+- from context followup :: 98
+- from context check :: 98
+- from context registry :: 98
+- from context audit :: 98
+- from context whole-context triad :: 98
+- from context primary answer :: 98
+- by council followup :: 98
+- by council check :: 98
+- by council registry :: 98
+- by council audit :: 98
+- by council whole-context triad :: 97
+- by council primary answer :: 97
+- by council follow-up :: 97
+- with followup check :: 97
+- with followup registry :: 97
+- with followup audit :: 97
+- with followup whole-context triad :: 97
+- with followup primary answer :: 97
+- with followup follow-up :: 97
+- with followup blocked :: 97
+- without check registry :: 97
+- without check audit :: 97
+- without check whole-context triad :: 97
+- without check primary answer :: 97
+- without check follow-up :: 97
+- without check blocked :: 97
+- without check deferred :: 97
+- against registry audit :: 97
+- against registry whole-context triad :: 97
+- against registry primary answer :: 97
+- against registry follow-up :: 96
+- against registry blocked :: 96
+- against registry deferred :: 96
+- against registry spawned :: 96
+- relative audit whole-context triad :: 96
+- relative audit primary answer :: 96
+- relative audit follow-up :: 96
+- relative audit blocked :: 96
+- relative audit deferred :: 96
+- relative audit spawned :: 96
+- relative audit under :: 96
+- locally whole-context triad primary answer :: 96
+- locally whole-context triad follow-up :: 96
+- locally whole-context triad blocked :: 96
+- locally whole-context triad deferred :: 96
+- locally whole-context triad spawned :: 96
+- locally whole-context triad under :: 96
+- locally whole-context triad within :: 96
+- rather primary answer follow-up :: 96
+- rather primary answer blocked :: 96
+- rather primary answer deferred :: 95
+- rather primary answer spawned :: 95
+- rather primary answer under :: 95
+- rather primary answer within :: 95
+- rather primary answer across :: 95
+- instead follow-up blocked :: 95
+- instead follow-up deferred :: 95
+- instead follow-up spawned :: 95
+- instead follow-up under :: 95
+- instead follow-up within :: 95
+- instead follow-up across :: 95
+- instead follow-up between :: 95
+- only blocked deferred :: 95
+- only blocked spawned :: 95
+- only blocked under :: 95
+- only blocked within :: 95
+- only blocked across :: 95
+- only blocked between :: 95
+- only blocked through :: 95
+- still deferred spawned :: 95
+- still deferred under :: 94
+- still deferred within :: 94
+- still deferred across :: 94
+- still deferred between :: 94
+- still deferred through :: 94
+- still deferred before :: 94
+- likely spawned under :: 94
+- likely spawned within :: 94
+- likely spawned across :: 94
+- likely spawned between :: 94
+- likely spawned through :: 94
+- likely spawned before :: 94
+- likely spawned after :: 94
+- possible under within :: 94
+- possible under across :: 94
+- possible under between :: 94
+- possible under through :: 94
+- possible under before :: 94
+- possible under after :: 94
+- possible under from :: 94
+- bounded within across :: 93
+- bounded within between :: 93
+- bounded within through :: 93
+- bounded within before :: 93
+- bounded within after :: 93
+- bounded within from :: 93
+- bounded within by :: 93
+- finite across between :: 93
+- finite across through :: 93
+- finite across before :: 93
+- finite across after :: 93
+- finite across from :: 93
+- finite across by :: 93
+- finite across with :: 93
+- local between through :: 93
+- local between before :: 93
+- local between after :: 93
+- local between from :: 93
+- local between by :: 93
+- local between with :: 93
+- local between without :: 92
+- current through before :: 92
+- current through after :: 92
+- current through from :: 92
+- current through by :: 92
+- current through with :: 92
+- current through without :: 92
+- current through against :: 92
+- observed before after :: 92
+- observed before from :: 92
+- observed before by :: 92
+- observed before with :: 92
+- observed before without :: 92
+- observed before against :: 92
+- observed before relative :: 92
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- preflight
+- voice wave
+- voice audit
+- voice improvement
+- LLM Council
+- checks/guards
+- follow-up make
+- follow-up scout
+- follow-up audit
+- final receipt
+- controller synthesis
+
+### Couplings
+
+- maximum integrated route
+- full wave truth
+- no fake plurality
+
+### Triplets
+
+- preflight wave synthesis
+- followup scout audit

@@ -1,0 +1,16 @@
+{
+  "schema": "constraintbox.zip-wave-definition.v1",
+  "wave_id": "zip-agent-failure-wave",
+  "purpose": "Falsify one digest-bound ZIP_JOB through three independently returned child ZIPs, then compile without erasing child evidence.",
+  "target_binding": "sha256_of_input_zip_job",
+  "children": [
+    {"id": "structure", "skill": "zip-structure-cell", "operation": "audit_packet_structure_v1", "tools": ["pydantic", "jsonschema", "zipfile", "sha256"]},
+    {"id": "counterexample", "skill": "zip-counterexample-cell", "operation": "audit_packet_mutations_v1", "tools": ["zipfile", "sha256", "mutation_matrix"]},
+    {"id": "authority-collapse", "skill": "zip-authority-cell", "operation": "audit_runtime_authority_v1", "tools": ["operation_registry", "return_replay", "sha256"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "required_for_model_backed_cells": true, "current_cells_are_deterministic": true},
+  "loop": {"max_rounds": 2, "repair_then_exact_rerun": true, "stop_reasons": ["all_children_pass", "no_material_delta", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["target_digest", "child_return_zips", "parent_return_zip", "output_digest", "cancellation_state", "disagreement_state"], "missing_child_is_success": false},
+  "runtime_assignments_are_identity": false,
+  "claim_ceiling": "prototype_self_falsification_only;not_independent_proof;not_release"
+}

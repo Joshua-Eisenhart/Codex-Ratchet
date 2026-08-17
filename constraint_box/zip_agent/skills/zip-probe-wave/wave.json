@@ -1,0 +1,48 @@
+{
+  "schema": "constraintbox.zip-wave-definition.v1",
+  "wave_id": "zip-probe-wave",
+  "purpose": "Compile one replayable local observational field from a bound prompt, current tool manifest, and prior operation field, then falsify the packet as a ZIP tree.",
+  "target_binding": "sha256_of_prompt_manifest_prior_field_and_request_inside_zip_job",
+  "stages": [
+    {
+      "id": "interpret",
+      "operation": "probe_tool_field_v1",
+      "tools": ["pydantic", "jsonschema"],
+      "authority": "hypothesis_branches_only"
+    },
+    {
+      "id": "observe",
+      "operation": "probe_tool_field_v1",
+      "tools": ["fresh_python_process_pool", "manifest_imports", "severance_negatives", "seeded_pair_orders"],
+      "authority": "observations_only"
+    },
+    {
+      "id": "compile",
+      "operation": "probe_tool_field_v1",
+      "tools": ["z3", "cvc5", "sympy", "rustworkx"],
+      "authority": "finite_identity_crosschecks_only"
+    },
+    {
+      "id": "falsify",
+      "skill": "zip-failure-wave",
+      "authority": "bounded_self_falsification_only"
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "required_for_model_backed_children": true,
+    "current_stages_are_deterministic": true
+  },
+  "completion": {
+    "required_evidence": [
+      "input_packet_digest",
+      "return_zip_digest",
+      "probe_events",
+      "measured_quotient",
+      "entropy_topology",
+      "failure_wave_child_returns"
+    ],
+    "missing_evidence_is_success": false
+  },
+  "claim_ceiling": "local_observational_tool_field_only;not_global_rank;not_model_execution;not_release"
+}

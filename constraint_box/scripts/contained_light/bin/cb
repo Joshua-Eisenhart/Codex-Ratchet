@@ -1,0 +1,39 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+if [ -z "${CB_PYTHON:-}" ]; then
+  echo "REFUSE: set CB_PYTHON to a concrete interpreter" >&2
+  exit 2
+fi
+if [ ! -x "$CB_PYTHON" ]; then
+  echo "REFUSE: CB_PYTHON is not executable: $CB_PYTHON" >&2
+  exit 2
+fi
+resolved=$("$CB_PYTHON" -c "import sys; print(sys.executable)")
+case "$resolved" in
+  /opt/homebrew/bin/python3|/usr/bin/python3)
+    echo "REFUSE: CB_PYTHON resolved to $resolved" >&2
+    exit 2
+    ;;
+esac
+export PYTHONPATH="$ROOT/light/src"
+export PYTHONNOUSERSITE=1
+export PYTHONDONTWRITEBYTECODE=1
+export CB_LIGHT_ROOT="$ROOT"
+cmd=${1:-}
+shift || true
+case "$cmd" in
+  seed-check)
+    exec "$CB_PYTHON" "$ROOT/scripts/seed_check.py" --root "$ROOT" "$@"
+    ;;
+  seed|feasibility|surface|quotient|status)
+    exec "$CB_PYTHON" -m constraintbox.contained_light --root "$ROOT" "$cmd" "$@"
+    ;;
+  verify)
+    exec sh "$ROOT/scripts/verify.sh"
+    ;;
+  *)
+    echo "usage: cb seed-check|seed|feasibility|surface|quotient|status|verify" >&2
+    exit 2
+    ;;
+esac

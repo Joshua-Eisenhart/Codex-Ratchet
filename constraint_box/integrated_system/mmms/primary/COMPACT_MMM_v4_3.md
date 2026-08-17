@@ -1,0 +1,4699 @@
+<!-- v4.3 MMM ownership note: this file is a v4.3-owned copy of the v4.2 reservoir, promoted into packet-v4-3-current so current Wizard does not route through v4.2 for active MMM boot. Historical v4.1/v4.2 phrases remain inside the reservoir as provenance/source language unless a later behavior test rewrites them. -->
+
+# Wizard Compact MMM v4.3
+
+authority_status: canonical-runtime
+packet_version: v4.3
+source_lineage: v4.3-owned copy seeded from the v4.2 compact MMM reservoir; now owned by v4.3 as the compact fallback salience reservoir.
+v4_3_overlay: v4.3 owns current Wizard route truth, object preservation, context reinjection, per-LLM adapter boundaries, and output contracts in WIZARD_v4_3.md; this MMM remains the positive compact reservoir, not a replacement for those runtime rules.
+
+Positive main MMM reservoir for the main agent only.
+
+Boot scope:
+- Main agent may load this main MMM before the universal core and task.
+- Main agent does not load voice mini-MMMs.
+- Subagents do not load this main MMM.
+- Excluded diagnostic/provenance material never boot.
+- v4.1 adds runtime-capability and elastic-wave salience without turning adapters into universal law.
+
+Semantic hardening boundary: active main boot salience is positive/control/operation/evidence oriented. Excluded diagnostic terms belong in check/guard mini-MMMs or quarantined material, not here.
+
+## v4.3 saliency patch: output-language self-saliency
+
+This compact surface must shape what the worker says, not only what the worker silently reasons. The worker's emitted language becomes part of the next prompt basin.
+
+- Use sentence patterns that preserve branch state: `observed`, `inferred`, `open`, `killed`, `blocked`, `deferred`, `not promoted`.
+- Make claim ceilings audible: `source quote`, `worker report`, `local read`, `verified artifact`, `result rerun` are different support classes.
+- Keep negative evidence visible: graveyard, falsifier, killed branch, failed probe, and missing receipt are evidence, not cleanup noise.
+- Prefer tool-action nouns when work depends on a tool: probe, parse, lint, rerun, diff, validate, classify, queue, receipt.
+- A good compact MMM changes the next worker's attention by the words it leaves behind; a bad one has good hidden reasoning followed by salience-erasing prose.
+
+## words
+- acceptance :: 100
+- accepted :: 100
+- access :: 100
+- accommodation :: 100
+- across :: 100
+- act :: 100
+- active :: 100
+- active contract :: 100
+- active verb :: 100
+- admissible :: 100
+- adversarial :: 100
+- after receipts :: 100
+- aggregate :: 100
+- alignment :: 100
+- alive :: 100
+- all-c :: 100
+- all-of-the-above :: 100
+- alternate :: 100
+- alternate reading :: 100
+- alternative route :: 100
+- amplifying :: 100
+- amplitude :: 100
+- andon :: 100
+- anti :: 100
+- apparatus :: 100
+- apparatus reading :: 100
+- appear :: 100
+- appears :: 100
+- artifact path :: 100
+- aside :: 100
+- asymmetric :: 100
+- atom :: 100
+- attractor :: 100
+- audit finding :: 100
+- audit result :: 100
+- authn :: 100
+- back :: 100
+- background :: 100
+- backup :: 100
+- balancing :: 100
+- balancing loop :: 100
+- baseline :: 100
+- basic :: 100
+- basin :: 100
+- batch :: 100
+- become :: 100
+- behavior :: 100
+- belief :: 100
+- benefit :: 100
+- beside :: 100
+- bet :: 100
+- better if :: 100
+- block :: 100
+- blunt :: 100
+- bold :: 100
+- bold conjecture :: 100
+- both :: 100
+- bottleneck resource :: 100
+- boundaries :: 100
+- bounded exclusion :: 100
+- branch context :: 100
+- buffer :: 100
+- burden :: 100
+- butterfly :: 100
+- butterfly dream :: 100
+- calculation :: 100
+- calibration :: 100
+- calm :: 100
+- capacity :: 100
+- cargo cult science :: 100
+- carryforward :: 100
+- case :: 100
+- center of gravity :: 100
+- central :: 100
+- ceremonial :: 100
+- challenger :: 100
+- change :: 100
+- changed :: 100
+- cheap :: 100
+- cheap test :: 100
+- check the answer :: 100
+- checklist :: 100
+- choke :: 100
+- choke point :: 100
+- citation :: 100
+- clarity :: 100
+- classical :: 100
+- clear :: 100
+- cliche :: 100
+- close :: 100
+- closing :: 100
+- cloudy :: 100
+- coalition :: 100
+- codex :: 100
+- coexist :: 100
+- coexisting :: 100
+- collapsing :: 100
+- combine :: 100
+- commitment :: 100
+- common :: 100
+- compact :: 100
+- compose :: 100
+- composition :: 100
+- concern :: 100
+- concluded :: 100
+- conditional :: 100
+- conjecture :: 100
+- conjectures and refutations :: 100
+- conjunction :: 100
+- constant :: 100
+- constant conjunction :: 100
+- content :: 100
+- contiguity :: 100
+- continuous improvement :: 100
+- control :: 100
+- controller :: 100
+- controller act :: 100
+- convergence :: 100
+- copy :: 100
+- core :: 100
+- corroborated theory :: 100
+- corroboration :: 100
+- counterinstance :: 100
+- course :: 100
+- creative :: 100
+- credential :: 100
+- criterion :: 100
+- critical :: 100
+- critical rationalism :: 100
+- criticism :: 100
+- crosscheck :: 100
+- culminating point :: 100
+- current :: 100
+- current-turn :: 100
+- custom :: 100
+- custom and habit :: 100
+- cut :: 100
+- cut a word :: 100
+- cycle :: 100
+- cycle time :: 100
+- dao :: 100
+- data :: 100
+- dead file :: 100
+- dead phrase :: 100
+- deadend :: 100
+- debt :: 100
+- deciding :: 100
+- decision :: 100
+- decisive check :: 100
+- decisive front :: 100
+- decisive point :: 100
+- default :: 100
+- defer :: 100
+- degree :: 100
+- degree of evidence :: 100
+- delay :: 100
+- deliverable :: 100
+- demarcation :: 100
+- demonstration :: 100
+- deny :: 100
+- deprecated :: 100
+- derived :: 100
+- detail :: 100
+- diagram :: 100
+- diction :: 100
+- different assumption :: 100
+- different problem :: 100
+- direct move :: 100
+- direction :: 100
+- disagree :: 100
+- distinction :: 100
+- divergent :: 100
+- does :: 100
+- does not follow :: 100
+- door :: 100
+- doubt :: 100
+- drag :: 100
+- dream :: 100
+- drift condition :: 100
+- dropped :: 100
+- drum :: 100
+- drum buffer rope :: 100
+- duplicating :: 100
+- duplication :: 100
+- dying metaphor :: 100
+- dynamic :: 100
+- dynamics :: 100
+- earlier :: 100
+- earned :: 100
+- earns :: 100
+- edge case :: 100
+- edge move :: 100
+- effect :: 100
+- effort :: 100
+- emergence :: 100
+- emergent :: 100
+- empirical :: 100
+- empty :: 100
+- energy :: 100
+- enough :: 100
+- enquiry :: 100
+- environment :: 100
+- equalizing :: 100
+- equalizing things :: 100
+- error :: 100
+- error elimination :: 100
+- euphemism :: 100
+- even :: 100
+- evidence missing :: 100
+- example :: 100
+- exchange :: 100
+- excluded :: 100
+- exclusion :: 100
+- existing :: 100
+- exists :: 100
+- expectation :: 100
+- experience :: 100
+- experiment as judge :: 100
+- experimental reasoning :: 100
+- exploration :: 100
+- external :: 100
+- externality :: 100
+- fact :: 100
+- failed :: 100
+- faint :: 100
+- fallback :: 100
+- false binary :: 100
+- falsifiability :: 100
+- falsifiable hypothesis :: 100
+- falsification :: 100
+- falsify :: 100
+- family :: 100
+- fasting of the mind :: 100
+- feedback :: 100
+- feedback loop :: 100
+- feeling :: 100
+- feynman :: 100
+- field :: 100
+- file :: 100
+- finding :: 100
+- finite :: 100
+- firm :: 100
+- first move :: 100
+- fish :: 100
+- flow efficiency :: 100
+- folder :: 100
+- follow :: 100
+- follow-up :: 100
+- followup :: 100
+- fooled :: 100
+- forgetting :: 100
+- forward :: 100
+- free and easy wandering :: 100
+- friction :: 100
+- front :: 100
+- full :: 100
+- full-context :: 100
+- game :: 100
+- gap :: 100
+- gemini :: 100
+- generic :: 100
+- gentle :: 100
+- goal :: 100
+- ground :: 100
+- habit :: 100
+- hands :: 100
+- hard :: 100
+- harness :: 100
+- heartmind :: 100
+- heijunka :: 100
+- hidden premise :: 100
+- homeostasis :: 100
+- human read :: 100
+- humane :: 100
+- hygiene :: 100
+- idea :: 100
+- image :: 100
+- immediate :: 100
+- implementation :: 100
+- imported :: 100
+- impression :: 100
+- incentive :: 100
+- incompatible :: 100
+- inconsistency :: 100
+- inconsistent :: 100
+- indecision :: 100
+- indefinite :: 100
+- independent :: 100
+- independent route :: 100
+- index :: 100
+- indirect :: 100
+- infer :: 100
+- inflated :: 100
+- information :: 100
+- information flow :: 100
+- informative :: 100
+- initiative :: 100
+- injection :: 100
+- input :: 100
+- instrument :: 100
+- interaction :: 100
+- interactive :: 100
+- interpretation :: 100
+- intuition :: 100
+- inventory :: 100
+- inversion :: 100
+- isolation :: 100
+- jargon :: 100
+- jidoka :: 100
+- judge :: 100
+- judgment :: 100
+- junction :: 100
+- justintime :: 100
+- kaizen :: 100
+- kanban :: 100
+- keep :: 100
+- keeping :: 100
+- kinds :: 100
+- knob :: 100
+- knowledge :: 100
+- land :: 100
+- lanes :: 100
+- last :: 100
+- latency :: 100
+- lateral :: 100
+- law :: 100
+- layers :: 100
+- leadtime :: 100
+- leak :: 100
+- leakage :: 100
+- least :: 100
+- least privilege :: 100
+- ledger :: 100
+- lens :: 100
+- letting :: 100
+- level :: 100
+- leverage point :: 100
+- light :: 100
+- likelihood :: 100
+- likely :: 100
+- limb :: 100
+- limit :: 100
+- limited :: 100
+- limiter :: 100
+- line :: 100
+- line of operation :: 100
+- listing :: 100
+- live reading :: 100
+- live readings :: 100
+- live remainder :: 100
+- lively :: 100
+- llm :: 100
+- local :: 100
+- long :: 100
+- loop :: 100
+- loop or sequence :: 100
+- lowers :: 100
+- majority :: 100
+- management :: 100
+- manifest :: 100
+- many :: 100
+- many perspectives :: 100
+- map :: 100
+- matter :: 100
+- matters of fact :: 100
+- meaningless word :: 100
+- means and ends :: 100
+- measurable :: 100
+- measure :: 100
+- measured :: 100
+- measurement :: 100
+- mechanism :: 100
+- memory :: 100
+- memory and sense :: 100
+- mental model :: 100
+- metaphor :: 100
+- method :: 100
+- method collapsed :: 100
+- method executed :: 100
+- middle :: 100
+- milestone :: 100
+- minimal :: 100
+- minority :: 100
+- mis :: 100
+- mis-scoped :: 100
+- misconfiguration :: 100
+- misplaced :: 100
+- mission :: 100
+- mixed :: 100
+- model family :: 100
+- model-family :: 100
+- models :: 100
+- moderated :: 100
+- modest :: 100
+- most :: 100
+- muddy :: 100
+- nameless :: 100
+- names :: 100
+- naming :: 100
+- naming drift :: 100
+- narrowing :: 100
+- natural :: 100
+- navigation :: 100
+- network :: 100
+- new :: 100
+- next honest move :: 100
+- no :: 100
+- no branch :: 100
+- node :: 100
+- noise :: 100
+- non-forcing :: 100
+- nonclassical :: 100
+- nonforcing :: 100
+- nonmerge :: 100
+- nonobvious :: 100
+- not :: 100
+- not a vote :: 100
+- not collapsed :: 100
+- not enough :: 100
+- not fool yourself :: 100
+- not merged :: 100
+- not run :: 100
+- not supported :: 100
+- not yet excluded :: 100
+- not yet survived :: 100
+- notthat :: 100
+- noun :: 100
+- now :: 100
+- number :: 100
+- objection :: 100
+- objective :: 100
+- observable check :: 100
+- observe :: 100
+- obsolete :: 100
+- odd :: 100
+- operation :: 100
+- opus :: 100
+- origin :: 100
+- orphan :: 100
+- other :: 100
+- outdated :: 100
+- outside :: 100
+- outside frame :: 100
+- outside-frame :: 100
+- overreach :: 100
+- ownership :: 100
+- padding :: 100
+- pairwise :: 100
+- paradigm :: 100
+- parallel :: 100
+- parameter :: 100
+- particle :: 100
+- particular :: 100
+- particular observation :: 100
+- passive :: 100
+- patch :: 100
+- pattern :: 100
+- permission :: 100
+- perspective :: 100
+- perverse :: 100
+- phase :: 100
+- phrase :: 100
+- physical :: 100
+- physical law :: 100
+- picture :: 100
+- piecemeal :: 100
+- pivot :: 100
+- pivot of dao :: 100
+- plain english :: 100
+- plain wording :: 100
+- play :: 100
+- plural :: 100
+- point :: 100
+- policy :: 100
+- politics and english language :: 100
+- popper :: 100
+- position :: 100
+- power :: 100
+- precision :: 100
+- prediction :: 100
+- preflight :: 100
+- preload :: 100
+- premise :: 100
+- present :: 100
+- preserve :: 100
+- preserved difference :: 100
+- pressure-testing :: 100
+- pretentious :: 100
+- pretentious diction :: 100
+- previous :: 100
+- previous surface :: 100
+- primary answer :: 100
+- prior branch :: 100
+- priority :: 100
+- privilege :: 100
+- probable :: 100
+- probable reasoning :: 100
+- probe :: 100
+- problem situation :: 100
+- procedure :: 100
+- progress :: 100
+- prompt :: 100
+- propagation :: 100
+- proposed :: 100
+- prose :: 100
+- protect :: 100
+- provide :: 100
+- prune :: 100
+- pull :: 100
+- question :: 100
+- queue :: 100
+- queue length :: 100
+- rate :: 100
+- rate-limiter :: 100
+- readings :: 100
+- readme :: 100
+- readout :: 100
+- real :: 100
+- real measurement :: 100
+- reason :: 100
+- reasonable :: 100
+- recast :: 100
+- receipt changed :: 100
+- receipts :: 100
+- redefine :: 100
+- redesign :: 100
+- redirect :: 100
+- refutable :: 100
+- refutation :: 100
+- refute :: 100
+- refuted :: 100
+- refuted claim :: 100
+- registry-backed :: 100
+- reinforcing :: 100
+- reinforcing loop :: 100
+- reject :: 100
+- relations of ideas :: 100
+- relative :: 100
+- reliability :: 100
+- remembered :: 100
+- removal :: 100
+- remove :: 100
+- rename :: 100
+- repeat :: 100
+- repeatability :: 100
+- replacing :: 100
+- repo :: 100
+- report :: 100
+- reporting :: 100
+- reposition :: 100
+- resemblance :: 100
+- reserve :: 100
+- reshape :: 100
+- residue :: 100
+- resistance :: 100
+- resource :: 100
+- responsive :: 100
+- restore :: 100
+- resume :: 100
+- retained :: 100
+- return trigger :: 100
+- reversal :: 100
+- reviewer :: 100
+- revisit :: 100
+- reward :: 100
+- rework :: 100
+- rewrite :: 100
+- risky :: 100
+- risky claim :: 100
+- risky prediction :: 100
+- role-family :: 100
+- roles :: 100
+- rope :: 100
+- rot :: 100
+- route status :: 100
+- routes :: 100
+- row :: 100
+- rule :: 100
+- rung :: 100
+- running :: 100
+- safe :: 100
+- salience :: 100
+- sandbox :: 100
+- say :: 100
+- scale :: 100
+- scan :: 100
+- scarce :: 100
+- scarcity :: 100
+- scientific integrity :: 100
+- scoped :: 100
+- scrap :: 100
+- search clarity :: 100
+- second path :: 100
+- second-order :: 100
+- secondorder :: 100
+- secret :: 100
+- seem :: 100
+- seems :: 100
+- selection :: 100
+- self organization :: 100
+- selforganization :: 100
+- sense :: 100
+- sensible :: 100
+- sensitive :: 100
+- sentiment :: 100
+- separate readings :: 100
+- sequence :: 100
+- set :: 100
+- setup :: 100
+- severe :: 100
+- severe test :: 100
+- severity :: 100
+- shape :: 100
+- short :: 100
+- short word :: 100
+- shortest :: 100
+- show :: 100
+- signal :: 100
+- simple case :: 100
+- simple example :: 100
+- simulation :: 100
+- situated :: 100
+- small experiment :: 100
+- smaller :: 100
+- smaller move :: 100
+- smaller question :: 100
+- smallest :: 100
+- sober :: 100
+- social :: 100
+- soft word :: 100
+- sonnet :: 100
+- source :: 100
+- spawned :: 100
+- split retained :: 100
+- spontaneous :: 100
+- stabilizing :: 100
+- staged :: 100
+- stale image :: 100
+- stale surface :: 100
+- standard :: 100
+- standard work :: 100
+- statement :: 100
+- stealing :: 100
+- step :: 100
+- still possible :: 100
+- stock :: 100
+- stocks and flows :: 100
+- stop :: 100
+- stop condition :: 100
+- story :: 100
+- strange :: 100
+- strategic reserve :: 100
+- strongest :: 100
+- stuck :: 100
+- substantive :: 100
+- subsystem :: 100
+- succession :: 100
+- summarizing :: 100
+- support level :: 100
+- survive :: 100
+- survived :: 100
+- surviving :: 100
+- surviving alternatives :: 100
+- synthesis :: 100
+- system :: 100
+- system constraint :: 100
+- system structure :: 100
+- systems :: 100
+- systems-or-strategy :: 100
+- takt :: 100
+- task card :: 100
+- template :: 100
+- tempo :: 100
+- terrain :: 100
+- test pressure :: 100
+- testability :: 100
+- tested :: 100
+- testimony :: 100
+- testimony and experience :: 100
+- theater :: 100
+- them :: 100
+- theory of constraints :: 100
+- they :: 100
+- this and that :: 100
+- thread :: 100
+- threats :: 100
+- threshold :: 100
+- throughput accounting :: 100
+- tier :: 100
+- time :: 100
+- timing :: 100
+- token :: 100
+- toy model :: 100
+- trace :: 100
+- traceability :: 100
+- transform :: 100
+- transformation :: 100
+- transition :: 100
+- translate :: 100
+- translation :: 100
+- traversal :: 100
+- boot :: 100
+- boots :: 100
+- reinject :: 100
+- reinjects :: 100
+- reinjection :: 100
+- new thread :: 100
+- drifting thread :: 100
+- drifting threads :: 100
+- thread drift :: 100
+- main MMM :: 100
+- main MMM boot :: 100
+- main MMM reinjection :: 100
+- doctrine :: 100
+- latest doctrine :: 100
+- correlated :: 100
+- correlated thinkers :: 100
+- aligned :: 100
+- aligned nouns :: 100
+- thinker :: 100
+- thinkers :: 100
+- noun alignment :: 100
+- probe-induced equivalence :: 100
+- density matrix carrier :: 100
+- CPTP channel :: 100
+- same-carrier geometry :: 100
+- Weyl chirality pair :: 100
+- UNSAT fence :: 100
+- tool-lego integration :: 100
+- graph cell-complex carrier :: 100
+- z3 :: 100
+- cvc5 :: 100
+- sympy :: 100
+- UNSAT :: 100
+- SAT :: 100
+- pytorch :: 100
+- pyg :: 100
+- tensor :: 100
+- qubit :: 100
+- hilbert :: 100
+- lego :: 100
+- ratchet :: 100
+- probe family :: 100
+- seam :: 100
+- shell-local :: 100
+- hopf :: 100
+- clifford :: 100
+- spinor :: 100
+- torus :: 100
+- fiber :: 100
+- gerbe :: 100
+- C9 preserves named tension :: 100
+- named tension :: 100
+- integrator preserves divergence :: 100
+- reinjection trigger :: 100
+- qit engine :: 100
+- quantum information engine :: 100
+- simulation engine :: 100
+- sim runner :: 100
+- sim target :: 100
+- sim receipt :: 100
+- sim artifact :: 100
+- state vector :: 100
+- density matrix :: 100
+- hamiltonian :: 100
+- observable :: 100
+- operator :: 100
+- unitary :: 100
+- kraus operator :: 100
+- lindblad operator :: 100
+- cptp map :: 100
+- choi matrix :: 100
+- partial trace :: 100
+- entanglement entropy :: 100
+- mutual information :: 100
+- channel capacity :: 100
+- bloch sphere :: 100
+- pauli basis :: 100
+- clifford algebra :: 100
+- spinor field :: 100
+- weyl pair :: 100
+- hopf fibration :: 100
+- fiber bundle :: 100
+- connection form :: 100
+- curvature form :: 100
+- holonomy :: 100
+- torus cycle :: 100
+- gerbe carrier :: 100
+- cell complex :: 100
+- simplicial complex :: 100
+- hypergraph :: 100
+- constraint graph :: 100
+- proof gate :: 100
+- z3 solver :: 100
+- cvc5 solver :: 100
+- unsat core :: 100
+- sat witness :: 100
+- countermodel :: 100
+- invariant :: 100
+- boundary condition :: 100
+- initial condition :: 100
+- parameter sweep :: 100
+- seed set :: 100
+- run matrix :: 100
+- result ledger :: 100
+- admission gate :: 100
+- interpretation boundary :: 100
+- evidence graph :: 100
+- receipt graph :: 100
+- build lane :: 100
+- builder worker :: 100
+- runtime adapter :: 100
+- fresh boot :: 100
+- boot receipt :: 100
+- loaded path :: 100
+- salience body :: 100
+- main reservoir :: 100
+- noun reservoir :: 100
+- method reservoir :: 100
+- voice reservoir :: 100
+- lane reservoir :: 100
+- composition bank :: 100
+- followup bank :: 100
+- suppression criterion :: 100
+- score receipt :: 100
+- reroute branch :: 100
+- parallel debug :: 100
+- lagging worker :: 100
+- blocked branch :: 100
+- deferred branch :: 100
+- subagent receipt :: 100
+- subsubagent receipt :: 100
+- sonnet breadth :: 100
+- opus correction :: 100
+- codex acceptance :: 100
+- wiki source :: 100
+- universal source :: 100
+- project front door :: 100
+- sim plan :: 100
+- qit plan :: 100
+- graph tool :: 100
+- proof tool :: 100
+- tool lego :: 100
+- tool integration :: 100
+- falsifier :: 100
+- observable output :: 100
+- run command :: 100
+- stdout receipt :: 100
+- stderr receipt :: 100
+- golden artifact :: 100
+- behavior arm :: 100
+- main mmm arm :: 100
+- mini mmm arm :: 100
+- voice method :: 100
+- voice shape :: 100
+- behavioral separation :: 100
+- lexical separation :: 100
+- method signal :: 100
+- narrative drift :: 100
+- human answer :: 100
+- answer first :: 100
+- useful next move :: 100
+- build output :: 100
+- runnable file :: 100
+- python scaffold :: 100
+- smt2 scaffold :: 100
+- json scaffold :: 100
+- notebook scaffold :: 100
+- experiment manifest :: 100
+- result admission :: 100
+- simulation backlog :: 100
+- qit backlog :: 100
+- kernel builder :: 100
+- artifact builder :: 100
+- observation :: 98
+- probable inference :: 98
+- counter-instance :: 98
+- basic statement :: 98
+- intersubjective test :: 98
+- monitor :: 98
+- flow :: 98
+- evidence boundary :: 100
+- receipt truth :: 100
+- provenance :: 100
+- trust boundary :: 100
+- mitigation :: 100
+- authorization boundary :: 100
+- divergence preservation :: 100
+- plurality preservation :: 100
+- concrete naming :: 100
+- readable surface :: 100
+- acceptance gate :: 100
+- route truth :: 100
+- blocked receipt :: 100
+- deferred receipt :: 100
+- simulated receipt :: 100
+- capability negotiation :: 100
+- runtime capability :: 100
+- adaptive wave :: 100
+- elastic wave :: 100
+- minimum viable wave :: 100
+- evidence need :: 100
+- capacity fit :: 100
+- scout pass :: 100
+- test and learn :: 100
+- worker receipt :: 100
+- independent surface :: 100
+- tool receipt :: 100
+- model identity :: 100
+- dissent log :: 100
+- source-aware weighting :: 100
+- prework boundary :: 100
+
+## couplings
+- acceptance :: 100
+- acceptance check :: 100
+- access control :: 100
+- access risk :: 100
+- access trust boundary :: 100
+- accommodate difference :: 100
+- across alternative :: 100
+- across back :: 100
+- across bottleneck :: 100
+- across bridge :: 100
+- across campaign :: 100
+- across clean :: 100
+- across concern :: 100
+- across cut :: 100
+- across diagnostic :: 100
+- across direct move :: 100
+- across dissent :: 100
+- across exposure :: 100
+- across falsifier :: 100
+- across feedback :: 100
+- across finding :: 100
+- across fork :: 100
+- across front :: 100
+- across hold :: 100
+- across incentive :: 100
+- across inferred :: 100
+- across loop :: 100
+- across next :: 100
+- across observable :: 100
+- across permission :: 100
+- across preflight :: 100
+- across preserve :: 100
+- across probe :: 100
+- across procedure :: 100
+- across queue :: 100
+- across recast :: 100
+- across receipt :: 100
+- across reframe :: 100
+- across registry :: 100
+- across resume :: 100
+- across secret :: 100
+- across sequence :: 100
+- across short :: 100
+- across stale :: 100
+- across structure :: 100
+- across throughput :: 100
+- across tradeoff :: 100
+- across unexpected :: 100
+- across unlock :: 100
+- across untried :: 100
+- actual experience :: 100
+- advance :: 100
+- advance with test :: 100
+- after alternative :: 100
+- after back :: 100
+- after bottleneck :: 100
+- after bridge :: 100
+- after campaign :: 100
+- after clean :: 100
+- after concern :: 100
+- after cut :: 100
+- after diagnostic :: 100
+- after direct move :: 100
+- after dissent :: 100
+- after exposure :: 100
+- after falsifier :: 100
+- after feedback :: 100
+- after finding :: 100
+- after front :: 100
+- after hold :: 100
+- after incentive :: 100
+- after inferred :: 100
+- after loop :: 100
+- after next :: 100
+- after observable :: 100
+- after permission :: 100
+- after preflight :: 100
+- after preserve :: 100
+- after probe :: 100
+- after procedure :: 100
+- after queue :: 100
+- after recast :: 100
+- after receipt :: 100
+- after reframe :: 100
+- after registry :: 100
+- after sequence :: 100
+- after short :: 100
+- after stale :: 100
+- after throughput :: 100
+- after tradeoff :: 100
+- after unexpected :: 100
+- after unlock :: 100
+- after untried :: 100
+- all council :: 100
+- all registry :: 100
+- all voices :: 100
+- alternate reading :: 100
+- alternate reading comparison :: 100
+- alternate reading independent route :: 100
+- alternate reading route status :: 100
+- alternative boundary :: 100
+- alternative candidate :: 100
+- alternative constraint :: 100
+- alternative evidence :: 100
+- alternative option :: 100
+- alternative packet :: 100
+- alternative path :: 100
+- alternative probe :: 100
+- alternative receipt :: 100
+- alternative result :: 100
+- alternative route :: 100
+- alternative route audit result :: 100
+- alternative route retreat condition :: 100
+- alternative scope :: 100
+- alternative status :: 100
+- alternative support :: 100
+- alternative surface :: 100
+- alternative trace :: 100
+- alternative tradeoff :: 100
+- alternative witness :: 100
+- anomalous result :: 100
+- anomaly probe :: 100
+- answer first :: 100
+- anti human read :: 100
+- anti live readings :: 100
+- apparatus example :: 100
+- apparatus observable :: 100
+- apparatus procedure :: 100
+- apparatus setup :: 100
+- apparatus trace :: 100
+- apparent falsifier :: 100
+- appears :: 100
+- artifact done condition :: 100
+- artifact path :: 100
+- assumption :: 100
+- assumption reset :: 100
+- assumption shift :: 100
+- asymmetric upside :: 100
+- audit checked :: 100
+- audit clean :: 100
+- audit concluded :: 100
+- audit direct move :: 100
+- audit evidence :: 100
+- audit finding :: 100
+- audit open :: 100
+- audit receipt :: 100
+- audit result :: 100
+- audit result retreat condition :: 100
+- audit trace :: 100
+- authority artifact :: 100
+- authority boundary :: 100
+- authority preload :: 100
+- authority receipt :: 100
+- authority salience :: 100
+- authority task card :: 100
+- back boundary :: 100
+- back candidate :: 100
+- back constraint :: 100
+- back evidence :: 100
+- back navigation :: 100
+- back packet :: 100
+- back path :: 100
+- back previous :: 100
+- back probe :: 100
+- back receipt :: 100
+- back result :: 100
+- back resume :: 100
+- back return :: 100
+- back scope :: 100
+- back status :: 100
+- back support :: 100
+- back surface :: 100
+- back trace :: 100
+- back undo :: 100
+- back witness :: 100
+- background knowledge :: 100
+- balancing loop :: 100
+- basic statement :: 100
+- before alternative :: 100
+- before back :: 100
+- before bottleneck :: 100
+- before bridge :: 100
+- before campaign :: 100
+- before clean :: 100
+- before concern :: 100
+- before cut :: 100
+- before diagnostic :: 100
+- before direct move :: 100
+- before dissent :: 100
+- before exposure :: 100
+- before falsifier :: 100
+- before feedback :: 100
+- before finding :: 100
+- before front :: 100
+- before hold :: 100
+- before incentive :: 100
+- before inferred :: 100
+- before loop :: 100
+- before next :: 100
+- before observable :: 100
+- before permission :: 100
+- before preflight :: 100
+- before preserve :: 100
+- before probe :: 100
+- before procedure :: 100
+- before queue :: 100
+- before recast :: 100
+- before receipt :: 100
+- before reframe :: 100
+- before registry :: 100
+- before resume :: 100
+- before sequence :: 100
+- before short :: 100
+- before stale :: 100
+- before throughput :: 100
+- before tradeoff :: 100
+- before unexpected :: 100
+- before unlock :: 100
+- before untried :: 100
+- better condition :: 100
+- between alternative :: 100
+- between back :: 100
+- between bottleneck :: 100
+- between branch :: 100
+- between bridge :: 100
+- between campaign :: 100
+- between clean :: 100
+- between concern :: 100
+- between cut :: 100
+- between diagnostic :: 100
+- between direct move :: 100
+- between dissent :: 100
+- between exposure :: 100
+- between falsifier :: 100
+- between feedback :: 100
+- between finding :: 100
+- between fork :: 100
+- between front :: 100
+- between hold :: 100
+- between incentive :: 100
+- between inferred :: 100
+- between levels :: 100
+- between loop :: 100
+- between next :: 100
+- between observable :: 100
+- between permission :: 100
+- between preflight :: 100
+- between preserve :: 100
+- between probe :: 100
+- between procedure :: 100
+- between queue :: 100
+- between reading :: 100
+- between readings :: 100
+- between recast :: 100
+- between receipt :: 100
+- between reframe :: 100
+- between registry :: 100
+- between resume :: 100
+- between secret :: 100
+- between sequence :: 100
+- between short :: 100
+- between stale :: 100
+- between throughput :: 100
+- between tradeoff :: 100
+- between unexpected :: 100
+- between unlock :: 100
+- between untried :: 100
+- blocked :: 100
+- blocked diagnostic :: 100
+- blocked model :: 100
+- blocked untried :: 100
+- blocker :: 100
+- bold conjecture :: 100
+- bottleneck :: 100
+- bottleneck boundary :: 100
+- bottleneck candidate :: 100
+- bottleneck clarity :: 100
+- bottleneck constraint :: 100
+- bottleneck evidence :: 100
+- bottleneck evidence missing :: 100
+- bottleneck packet :: 100
+- bottleneck path :: 100
+- bottleneck probe :: 100
+- bottleneck receipt :: 100
+- bottleneck result :: 100
+- bottleneck scope :: 100
+- bottleneck status :: 100
+- bottleneck support :: 100
+- bottleneck surface :: 100
+- bottleneck trace :: 100
+- bottleneck witness :: 100
+- boundary :: 100
+- boundary boundary :: 100
+- boundary candidate :: 100
+- boundary check :: 100
+- boundary constraint :: 100
+- boundary credential :: 100
+- boundary evidence :: 100
+- boundary exposure :: 100
+- boundary not :: 100
+- boundary overreach :: 100
+- boundary packet :: 100
+- boundary path :: 100
+- boundary probe :: 100
+- boundary receipt :: 100
+- boundary redraw :: 100
+- boundary result :: 100
+- boundary scope :: 100
+- boundary scoped :: 100
+- boundary status :: 100
+- boundary support :: 100
+- boundary surface :: 100
+- boundary trace :: 100
+- boundary unearned :: 100
+- boundary unsupported :: 100
+- boundary witness :: 100
+- bounded action :: 100
+- bounded boundary :: 100
+- bounded candidate :: 100
+- bounded evidence :: 100
+- bounded exclusion :: 100
+- bounded forward check :: 100
+- bounded packet :: 100
+- bounded path :: 100
+- bounded probe :: 100
+- bounded receipt :: 100
+- bounded result :: 100
+- bounded scope :: 100
+- bounded status :: 100
+- bounded support :: 100
+- bounded surface :: 100
+- bounded trace :: 100
+- bounded witness :: 100
+- branch :: 100
+- bridge boundary :: 100
+- bridge candidate :: 100
+- bridge constraint :: 100
+- bridge evidence :: 100
+- bridge handoff :: 100
+- bridge layer :: 100
+- bridge packet :: 100
+- bridge path :: 100
+- bridge probe :: 100
+- bridge receipt :: 100
+- bridge result :: 100
+- bridge scope :: 100
+- bridge status :: 100
+- bridge support :: 100
+- bridge surface :: 100
+- bridge trace :: 100
+- bridge translation :: 100
+- bridge witness :: 100
+- buffer :: 100
+- bundle direct move :: 100
+- bundle done condition :: 100
+- bundle falsifier :: 100
+- bundle human read :: 100
+- bundle live readings :: 100
+- bundle loop or sequence :: 100
+- bundle observable :: 100
+- bundle observable check :: 100
+- bundle risky claim :: 100
+- bundle surviving split :: 100
+- bundle wildcard probe :: 100
+- butterfly dream :: 100
+- butterfly unfixed :: 100
+- by direct move :: 100
+- by preflight :: 100
+- by registry :: 100
+- calculation check :: 100
+- campaign :: 100
+- campaign boundary :: 100
+- campaign candidate :: 100
+- campaign constraint :: 100
+- campaign evidence :: 100
+- campaign frame :: 100
+- campaign packet :: 100
+- campaign path :: 100
+- campaign probe :: 100
+- campaign receipt :: 100
+- campaign result :: 100
+- campaign scope :: 100
+- campaign status :: 100
+- campaign support :: 100
+- campaign surface :: 100
+- campaign trace :: 100
+- campaign witness :: 100
+- capacity :: 100
+- careful :: 100
+- careful belief :: 100
+- carry :: 100
+- carry across :: 100
+- carry forward :: 100
+- carry tension :: 100
+- challenge boundary :: 100
+- challenge scope :: 100
+- changed question :: 100
+- check :: 100
+- check alternative :: 100
+- check back :: 100
+- check bottleneck :: 100
+- check branch :: 100
+- check bridge :: 100
+- check campaign :: 100
+- check claim :: 100
+- check clean :: 100
+- check compare :: 100
+- check concern :: 100
+- check concrete :: 100
+- check cut :: 100
+- check deliverable :: 100
+- check duplicate :: 100
+- check exposure :: 100
+- check falsifier :: 100
+- check feedback :: 100
+- check finding :: 100
+- check fork :: 100
+- check front :: 100
+- check handoff :: 100
+- check hold :: 100
+- check incentive :: 100
+- check inferred :: 100
+- check interface :: 100
+- check loop :: 100
+- check measure :: 100
+- check next :: 100
+- check observable :: 100
+- check observed :: 100
+- check operation :: 100
+- check permission :: 100
+- check plain :: 100
+- check plurality :: 100
+- check preserve :: 100
+- check procedure :: 100
+- check queue :: 100
+- check recast :: 100
+- check reframe :: 100
+- check remembered :: 100
+- check result :: 100
+- check resume :: 100
+- check return :: 100
+- check run :: 100
+- check secret :: 100
+- check sequence :: 100
+- check setup :: 100
+- check short :: 100
+- check stale :: 100
+- check structure :: 100
+- check test :: 100
+- check the idea :: 100
+- check throughput :: 100
+- check tradeoff :: 100
+- check unexpected :: 100
+- check unlock :: 100
+- checked :: 100
+- checked clean :: 100
+- checked concluded :: 100
+- checked evidence :: 100
+- checked finding :: 100
+- checked missing :: 100
+- checked open :: 100
+- checked state :: 100
+- checked support :: 100
+- choke point :: 100
+- claim :: 100
+- claim boundary :: 100
+- claim candidate :: 100
+- claim constraint :: 100
+- claim evidence :: 100
+- claim packet :: 100
+- claim path :: 100
+- claim probe :: 100
+- claim receipt :: 100
+- claim result :: 100
+- claim scope :: 100
+- claim status :: 100
+- claim support :: 100
+- claim surface :: 100
+- claim trace :: 100
+- claim under test :: 100
+- claim witness :: 100
+- clean :: 100
+- clean boundary :: 100
+- clean constraint :: 100
+- clean evidence :: 100
+- clean packet :: 100
+- clean path :: 100
+- clean probe :: 100
+- clean receipt :: 100
+- clean result :: 100
+- clean scope :: 100
+- clean status :: 100
+- clean support :: 100
+- clean surface :: 100
+- clean trace :: 100
+- clean verified :: 100
+- clean witness :: 100
+- cleanup boundary :: 100
+- cleanup candidate :: 100
+- cleanup constraint :: 100
+- cleanup done condition :: 100
+- cleanup evidence :: 100
+- cleanup maintenance :: 100
+- cleanup orphan :: 100
+- cleanup packet :: 100
+- cleanup path :: 100
+- cleanup probe :: 100
+- cleanup receipt :: 100
+- cleanup result :: 100
+- cleanup scope :: 100
+- cleanup status :: 100
+- cleanup support :: 100
+- cleanup surface :: 100
+- cleanup target :: 100
+- cleanup trace :: 100
+- cleanup witness :: 100
+- clear :: 100
+- clear no :: 100
+- close done condition :: 100
+- closeout audit :: 100
+- closeout cleanup :: 100
+- closeout condition :: 100
+- closeout done :: 100
+- closeout factory :: 100
+- closeout hygiene :: 100
+- closeout security :: 100
+- codex diagnostic :: 100
+- codex dissent :: 100
+- codex untried :: 100
+- coexisting :: 100
+- common life :: 100
+- compare alternative :: 100
+- compare back :: 100
+- compare bottleneck :: 100
+- compare branch :: 100
+- compare bridge :: 100
+- compare campaign :: 100
+- compare check :: 100
+- compare claim :: 100
+- compare clean :: 100
+- compare concern :: 100
+- compare concrete :: 100
+- compare cut :: 100
+- compare deliverable :: 100
+- compare duplicate :: 100
+- compare exposure :: 100
+- compare falsifier :: 100
+- compare feedback :: 100
+- compare finding :: 100
+- compare fork :: 100
+- compare frame :: 100
+- compare front :: 100
+- compare handoff :: 100
+- compare hold :: 100
+- compare incentive :: 100
+- compare inferred :: 100
+- compare interface :: 100
+- compare loop :: 100
+- compare measure :: 100
+- compare next :: 100
+- compare observable :: 100
+- compare observed :: 100
+- compare operation :: 100
+- compare permission :: 100
+- compare plain :: 100
+- compare plurality :: 100
+- compare preserve :: 100
+- compare procedure :: 100
+- compare queue :: 100
+- compare recast :: 100
+- compare reframe :: 100
+- compare remembered :: 100
+- compare resume :: 100
+- compare return :: 100
+- compare route :: 100
+- compare secret :: 100
+- compare sequence :: 100
+- compare setup :: 100
+- compare short :: 100
+- compare stale :: 100
+- compare structure :: 100
+- compare test :: 100
+- compare throughput :: 100
+- compare tradeoff :: 100
+- compare unexpected :: 100
+- compare unlock :: 100
+- compare viable :: 100
+- comparison :: 100
+- comparison route :: 100
+- compose :: 100
+- compose carry :: 100
+- compose composition :: 100
+- compose difference :: 100
+- compose distinct :: 100
+- compose merge :: 100
+- compose nonmerge :: 100
+- compose preserve :: 100
+- compose receipt :: 100
+- compose split :: 100
+- compose surviving :: 100
+- compose tension :: 100
+- composed output :: 100
+- composition carry :: 100
+- composition distinct :: 100
+- composition preserve :: 100
+- composition receipt :: 100
+- composition step :: 100
+- composition tension :: 100
+- concern :: 100
+- concern boundary :: 100
+- concern candidate :: 100
+- concern condition :: 100
+- concern constraint :: 100
+- concern evidence :: 100
+- concern not fact :: 100
+- concern packet :: 100
+- concern path :: 100
+- concern probe :: 100
+- concern receipt :: 100
+- concern result :: 100
+- concern scope :: 100
+- concern status :: 100
+- concern support :: 100
+- concern surface :: 100
+- concern trace :: 100
+- concern witness :: 100
+- concluded :: 100
+- concluded clean :: 100
+- concluded evidence :: 100
+- concluded finding :: 100
+- concluded missing :: 100
+- concluded open :: 100
+- concluded verified :: 100
+- concrete :: 100
+- concrete boundary :: 100
+- concrete candidate :: 100
+- concrete clear :: 100
+- concrete constraint :: 100
+- concrete cut :: 100
+- concrete deliverable :: 100
+- concrete euphemism :: 100
+- concrete evidence :: 100
+- concrete inflated :: 100
+- concrete operation :: 100
+- concrete packet :: 100
+- concrete path :: 100
+- concrete probe :: 100
+- concrete receipt :: 100
+- concrete result :: 100
+- concrete scope :: 100
+- concrete short :: 100
+- concrete status :: 100
+- concrete support :: 100
+- concrete surface :: 100
+- concrete trace :: 100
+- concrete witness :: 100
+- condition done condition :: 100
+- conditional :: 100
+- conjecture :: 100
+- conjecture and refutation :: 100
+- conjecture falsifier :: 100
+- conjecture refutation :: 100
+- conjectures and refutations :: 100
+- constant conjunction :: 100
+- context council :: 100
+- context prompt :: 100
+- context registry :: 100
+- context shift :: 100
+- contradiction :: 100
+- controller act :: 100
+- controller synthesis :: 100
+- core alternative route :: 100
+- core audit result :: 100
+- core claim pressure :: 100
+- core direct move :: 100
+- core observable check :: 100
+- core retreat condition :: 100
+- core risky claim :: 100
+- correction boundary :: 100
+- correction concern :: 100
+- correction scope :: 100
+- corroborated theory :: 100
+- cost benefit :: 100
+- council :: 100
+- council audit :: 100
+- council codex :: 100
+- council disagreement :: 100
+- council dissent :: 100
+- council external :: 100
+- council follow-up :: 100
+- council gemini :: 100
+- council model :: 100
+- council opus :: 100
+- council primary answer :: 100
+- council registry :: 100
+- council route :: 100
+- council sonnet :: 100
+- council split :: 100
+- council state :: 100
+- council view :: 100
+- council wave :: 100
+- council whole-context triad :: 100
+- counter instance :: 100
+- counterexample :: 100
+- counterinstance check :: 100
+- coupling :: 100
+- coupling boundary :: 100
+- coupling constraint :: 100
+- credential leak :: 100
+- credential privilege :: 100
+- critical test :: 100
+- cross model check :: 100
+- curious tolerance :: 100
+- current target :: 100
+- custom and habit :: 100
+- custom evidence :: 100
+- custom support :: 100
+- cut :: 100
+- cut boundary :: 100
+- cut candidate :: 100
+- cut constraint :: 100
+- cut evidence :: 100
+- cut packet :: 100
+- cut path :: 100
+- cut probe :: 100
+- cut receipt :: 100
+- cut result :: 100
+- cut scope :: 100
+- cut status :: 100
+- cut support :: 100
+- cut surface :: 100
+- cut trace :: 100
+- cut witness :: 100
+- cycle time :: 100
+- dead code :: 100
+- dead file :: 100
+- dead file active contract :: 100
+- dead file handoff :: 100
+- dead file naming drift :: 100
+- dead file provenance :: 100
+- dead file search clarity :: 100
+- dead file surface :: 100
+- dead surface :: 100
+- decisive check :: 100
+- decisive counterexample :: 100
+- decisive front :: 100
+- default bundle :: 100
+- default direct move :: 100
+- default observable check :: 100
+- default risky claim :: 100
+- defer :: 100
+- degree of evidence :: 100
+- deliverable :: 100
+- deliverable boundary :: 100
+- deliverable candidate :: 100
+- deliverable constraint :: 100
+- deliverable evidence :: 100
+- deliverable packet :: 100
+- deliverable path :: 100
+- deliverable probe :: 100
+- deliverable receipt :: 100
+- deliverable result :: 100
+- deliverable scope :: 100
+- deliverable status :: 100
+- deliverable support :: 100
+- deliverable surface :: 100
+- deliverable trace :: 100
+- deliverable witness :: 100
+- demarcation problem :: 100
+- deny default :: 100
+- dependency :: 100
+- deprecated file :: 100
+- derived artifact :: 100
+- derived authority :: 100
+- derived boundary :: 100
+- derived preload :: 100
+- derived receipt :: 100
+- derived salience :: 100
+- derived task card :: 100
+- details that doubt :: 100
+- diagnostic :: 100
+- diagnostic live :: 100
+- diagnostic route :: 100
+- diagram first :: 100
+- different assumption :: 100
+- different path :: 100
+- different path clear :: 100
+- different problem :: 100
+- different result :: 100
+- different road :: 100
+- different tradeoff :: 100
+- direct acceptance :: 100
+- direct deliverable :: 100
+- direct move alternative route :: 100
+- direct move audit result :: 100
+- direct move loop or sequence :: 100
+- direct move observable check :: 100
+- direct move retreat condition :: 100
+- direct move risky claim :: 100
+- direct move under :: 100
+- direct path :: 100
+- direct plus falsifier :: 100
+- disagreement diagnostic :: 100
+- disagreement preserved :: 100
+- disagreement untried :: 100
+- dissent :: 100
+- dissent blocked :: 100
+- dissent diagnostic :: 100
+- dissent disagreement :: 100
+- dissent falsifier :: 100
+- dissent human read :: 100
+- dissent live :: 100
+- dissent live readings :: 100
+- dissent observable :: 100
+- dissent untried :: 100
+- dissent wildcard probe :: 100
+- distinct :: 100
+- distinct boundary :: 100
+- distinct carry :: 100
+- distinct evidence :: 100
+- distinct packet :: 100
+- distinct path :: 100
+- distinct preserve :: 100
+- distinct receipt :: 100
+- distinct receipts :: 100
+- distinct result :: 100
+- distinct scope :: 100
+- distinct status :: 100
+- distinct support :: 100
+- distinct surface :: 100
+- distinct tension :: 100
+- distinct trace :: 100
+- divergence falsifier :: 100
+- divergence human read :: 100
+- divergence live readings :: 100
+- divergence observable :: 100
+- divergence wildcard probe :: 100
+- does not follow :: 100
+- done condition bottleneck :: 100
+- done condition evidence missing :: 100
+- done condition plain wording :: 100
+- done condition stale surface :: 100
+- done condition trust boundary :: 100
+- done condition under :: 100
+- dream waking :: 100
+- drift cleanup :: 100
+- drift condition :: 100
+- drift surface :: 100
+- duplicate boundary :: 100
+- duplicate candidate :: 100
+- duplicate cleanup :: 100
+- duplicate constraint :: 100
+- duplicate doc :: 100
+- duplicate drift :: 100
+- duplicate maintenance :: 100
+- duplicate naming :: 100
+- duplicate orphan :: 100
+- duplicate packet :: 100
+- duplicate path :: 100
+- duplicate probe :: 100
+- duplicate result :: 100
+- duplicate scope :: 100
+- duplicate status :: 100
+- duplicate support :: 100
+- duplicate surface :: 100
+- duplicate trace :: 100
+- duplicate witness :: 100
+- during council :: 100
+- during diagnostic :: 100
+- during dissent :: 100
+- during untried :: 100
+- empirical falsification :: 100
+- enough :: 100
+- error correction :: 100
+- euphemism :: 100
+- evidence and advance :: 100
+- evidence clean :: 100
+- evidence finding :: 100
+- evidence missing :: 100
+- evidence scoped :: 100
+- evidence verified :: 100
+- exact step :: 100
+- example :: 100
+- excluded :: 100
+- experience :: 100
+- experience evidence :: 100
+- experience idea :: 100
+- experience impression :: 100
+- experience support :: 100
+- experienced regularity :: 100
+- experiment example :: 100
+- experiment observable :: 100
+- experiment procedure :: 100
+- experiment setup :: 100
+- exposure :: 100
+- exposure boundary :: 100
+- exposure candidate :: 100
+- exposure constraint :: 100
+- exposure credential :: 100
+- exposure evidence :: 100
+- exposure packet :: 100
+- exposure path :: 100
+- exposure privilege :: 100
+- exposure probe :: 100
+- exposure receipt :: 100
+- exposure result :: 100
+- exposure scope :: 100
+- exposure status :: 100
+- exposure support :: 100
+- exposure surface :: 100
+- exposure trace :: 100
+- exposure witness :: 100
+- external check :: 100
+- external pressure :: 100
+- factory audit :: 100
+- factory bottleneck :: 100
+- faint idea :: 100
+- fallback option :: 100
+- false binary :: 100
+- falsifiability criterion :: 100
+- falsifier :: 100
+- falsifier across :: 100
+- falsifier boundary :: 100
+- falsifier candidate :: 100
+- falsifier constraint :: 100
+- falsifier evidence :: 100
+- falsifier observable :: 100
+- falsifier packet :: 100
+- falsifier path :: 100
+- falsifier probe :: 100
+- falsifier receipt :: 100
+- falsifier result :: 100
+- falsifier scope :: 100
+- falsifier status :: 100
+- falsifier support :: 100
+- falsifier surface :: 100
+- falsifier surviving split :: 100
+- falsifier trace :: 100
+- falsifier under :: 100
+- falsifier wildcard probe :: 100
+- falsifier within :: 100
+- falsifier witness :: 100
+- feedback :: 100
+- feedback boundary :: 100
+- feedback candidate :: 100
+- feedback constraint :: 100
+- feedback evidence :: 100
+- feedback loop :: 100
+- feedback packet :: 100
+- feedback path :: 100
+- feedback probe :: 100
+- feedback receipt :: 100
+- feedback result :: 100
+- feedback scope :: 100
+- feedback status :: 100
+- feedback support :: 100
+- feedback surface :: 100
+- feedback trace :: 100
+- feedback witness :: 100
+- felt difference :: 100
+- feynman test :: 100
+- final output check :: 100
+- finding :: 100
+- finding boundary :: 100
+- finding candidate :: 100
+- finding clean :: 100
+- finding constraint :: 100
+- finding evidence :: 100
+- finding packet :: 100
+- finding path :: 100
+- finding probe :: 100
+- finding receipt :: 100
+- finding result :: 100
+- finding scope :: 100
+- finding status :: 100
+- finding support :: 100
+- finding surface :: 100
+- finding trace :: 100
+- finding verified :: 100
+- finding witness :: 100
+- first move :: 100
+- fish perspective :: 100
+- flow :: 100
+- folder naming drift :: 100
+- followup audit :: 100
+- fork boundary :: 100
+- fork candidate :: 100
+- fork constraint :: 100
+- fork evidence :: 100
+- fork option :: 100
+- fork packet :: 100
+- fork path :: 100
+- fork probe :: 100
+- fork receipt :: 100
+- fork result :: 100
+- fork scope :: 100
+- fork status :: 100
+- fork support :: 100
+- fork surface :: 100
+- fork trace :: 100
+- fork tradeoff :: 100
+- fork witness :: 100
+- forward alternative route :: 100
+- forward direct move :: 100
+- forward loop or sequence :: 100
+- forward observable check :: 100
+- forward risky claim :: 100
+- found so far :: 100
+- frame :: 100
+- frame boundary :: 100
+- frame candidate :: 100
+- frame constraint :: 100
+- frame evidence :: 100
+- frame mismatch :: 100
+- frame packet :: 100
+- frame path :: 100
+- frame probe :: 100
+- frame recast :: 100
+- frame receipt :: 100
+- frame result :: 100
+- frame scope :: 100
+- frame shift :: 100
+- frame status :: 100
+- frame support :: 100
+- frame surface :: 100
+- frame trace :: 100
+- frame witness :: 100
+- free wandering :: 100
+- from direct move :: 100
+- from preflight :: 100
+- from registry :: 100
+- front :: 100
+- front boundary :: 100
+- front candidate :: 100
+- front constraint :: 100
+- front evidence :: 100
+- front packet :: 100
+- front path :: 100
+- front probe :: 100
+- front receipt :: 100
+- front result :: 100
+- front scope :: 100
+- front status :: 100
+- front support :: 100
+- front surface :: 100
+- front trace :: 100
+- front witness :: 100
+- full context :: 100
+- full council :: 100
+- full preflight :: 100
+- gemini diagnostic :: 100
+- gemini dissent :: 100
+- gemini untried :: 100
+- gentle doubt :: 100
+- gestalt shift :: 100
+- goblet words :: 100
+- ground and pressure :: 100
+- ground pressure :: 100
+- habit evidence :: 100
+- habit support :: 100
+- handoff :: 100
+- handoff between :: 100
+- handoff boundary :: 100
+- handoff candidate :: 100
+- handoff constraint :: 100
+- handoff context :: 100
+- handoff evidence :: 100
+- handoff human :: 100
+- handoff layers :: 100
+- handoff packet :: 100
+- handoff path :: 100
+- handoff plain :: 100
+- handoff probe :: 100
+- handoff prompt :: 100
+- handoff read :: 100
+- handoff receipt :: 100
+- handoff result :: 100
+- handoff scope :: 100
+- handoff status :: 100
+- handoff support :: 100
+- handoff trace :: 100
+- handoff witness :: 100
+- heart mind :: 100
+- held tension :: 100
+- hidden premise :: 100
+- hold alternative :: 100
+- hold back :: 100
+- hold bottleneck :: 100
+- hold boundary :: 100
+- hold branch :: 100
+- hold bridge :: 100
+- hold campaign :: 100
+- hold candidate :: 100
+- hold challenge :: 100
+- hold claim :: 100
+- hold clean :: 100
+- hold concern :: 100
+- hold concrete :: 100
+- hold constraint :: 100
+- hold correction :: 100
+- hold cut :: 100
+- hold defer :: 100
+- hold deliverable :: 100
+- hold duplicate :: 100
+- hold evidence :: 100
+- hold exposure :: 100
+- hold falsifier :: 100
+- hold feedback :: 100
+- hold finding :: 100
+- hold fork :: 100
+- hold frame :: 100
+- hold front :: 100
+- hold handoff :: 100
+- hold hold :: 100
+- hold incentive :: 100
+- hold inferred :: 100
+- hold level :: 100
+- hold loop :: 100
+- hold merge :: 100
+- hold next :: 100
+- hold not :: 100
+- hold observable :: 100
+- hold observed :: 100
+- hold operation :: 100
+- hold overreach :: 100
+- hold packet :: 100
+- hold path :: 100
+- hold permission :: 100
+- hold plain :: 100
+- hold plurality :: 100
+- hold preserve :: 100
+- hold probe :: 100
+- hold procedure :: 100
+- hold queue :: 100
+- hold reason :: 100
+- hold recast :: 100
+- hold receipt :: 100
+- hold reframe :: 100
+- hold remembered :: 100
+- hold resource :: 100
+- hold result :: 100
+- hold resume :: 100
+- hold retreat :: 100
+- hold return :: 100
+- hold scope :: 100
+- hold scoped :: 100
+- hold sequence :: 100
+- hold short :: 100
+- hold split :: 100
+- hold stale :: 100
+- hold status :: 100
+- hold stop :: 100
+- hold structure :: 100
+- hold support :: 100
+- hold surface :: 100
+- hold tension :: 100
+- hold throughput :: 100
+- hold trace :: 100
+- hold tradeoff :: 100
+- hold unearned :: 100
+- hold unexpected :: 100
+- hold unlock :: 100
+- hold unsupported :: 100
+- hold witness :: 100
+- human :: 100
+- human feeling :: 100
+- human read :: 100
+- human read falsifier :: 100
+- human read live readings :: 100
+- human read observable :: 100
+- human read surviving split :: 100
+- human read under :: 100
+- human read wildcard probe :: 100
+- humane summary :: 100
+- hume bridge :: 100
+- hume grounding :: 100
+- hume zhuangzi :: 100
+- idea evidence :: 100
+- idea support :: 100
+- immediate action :: 100
+- imported artifact :: 100
+- imported authority :: 100
+- imported derived :: 100
+- imported preload :: 100
+- imported receipt :: 100
+- imported salience :: 100
+- imported task card :: 100
+- impression and idea :: 100
+- impression evidence :: 100
+- impression support :: 100
+- incentive :: 100
+- incentive boundary :: 100
+- incentive candidate :: 100
+- incentive constraint :: 100
+- incentive evidence :: 100
+- incentive packet :: 100
+- incentive path :: 100
+- incentive probe :: 100
+- incentive receipt :: 100
+- incentive result :: 100
+- incentive scope :: 100
+- incentive status :: 100
+- incentive support :: 100
+- incentive surface :: 100
+- incentive trace :: 100
+- incentive witness :: 100
+- independent comparison :: 100
+- independent reviewer :: 100
+- independent route :: 100
+- independent route comparison :: 100
+- independent route route status :: 100
+- independent route split retained :: 100
+- index repair :: 100
+- inferred boundary :: 100
+- inferred candidate :: 100
+- inferred constraint :: 100
+- inferred evidence :: 100
+- inferred packet :: 100
+- inferred path :: 100
+- inferred probe :: 100
+- inferred receipt :: 100
+- inferred result :: 100
+- inferred scope :: 100
+- inferred status :: 100
+- inferred support :: 100
+- inferred surface :: 100
+- inferred trace :: 100
+- inferred witness :: 100
+- informative content :: 100
+- insecure default :: 100
+- instrument :: 100
+- inter subjective test :: 100
+- interaction :: 100
+- interaction boundary :: 100
+- interaction constraint :: 100
+- interface between receipts :: 100
+- interface boundary :: 100
+- interface candidate :: 100
+- interface constraint :: 100
+- interface evidence :: 100
+- interface packet :: 100
+- interface path :: 100
+- interface probe :: 100
+- interface receipt :: 100
+- interface result :: 100
+- interface scope :: 100
+- interface status :: 100
+- interface support :: 100
+- interface surface :: 100
+- interface trace :: 100
+- interface witness :: 100
+- inversion test :: 100
+- inward sentiment :: 100
+- landed done condition :: 100
+- last choice :: 100
+- latency :: 100
+- lateral move :: 100
+- leak risk :: 100
+- leak trust boundary :: 100
+- least privilege :: 100
+- left field check :: 100
+- lens shift :: 100
+- level boundary :: 100
+- likely :: 100
+- limited :: 100
+- live :: 100
+- live dissent :: 100
+- live reading :: 100
+- live readings :: 100
+- live readings falsifier :: 100
+- live readings observable :: 100
+- live readings surviving split :: 100
+- live readings under :: 100
+- live readings wildcard probe :: 100
+- live readings within :: 100
+- live remainder :: 100
+- live split :: 100
+- local present perspective :: 100
+- long game :: 100
+- loop :: 100
+- loop boundary :: 100
+- loop candidate :: 100
+- loop constraint :: 100
+- loop evidence :: 100
+- loop or sequence alternative route :: 100
+- loop or sequence audit result :: 100
+- loop or sequence retreat condition :: 100
+- loop packet :: 100
+- loop path :: 100
+- loop probe :: 100
+- loop receipt :: 100
+- loop result :: 100
+- loop scope :: 100
+- loop status :: 100
+- loop support :: 100
+- loop surface :: 100
+- loop trace :: 100
+- loop witness :: 100
+- maintenance :: 100
+- maintenance debt :: 100
+- manifest mismatch :: 100
+- manifest naming drift :: 100
+- many :: 100
+- many perspectives :: 100
+- many readings :: 100
+- many reversal :: 100
+- many ways :: 100
+- measure alternative :: 100
+- measure back :: 100
+- measure bottleneck :: 100
+- measure boundary :: 100
+- measure branch :: 100
+- measure bridge :: 100
+- measure campaign :: 100
+- measure check :: 100
+- measure claim :: 100
+- measure clean :: 100
+- measure concern :: 100
+- measure concrete :: 100
+- measure cut :: 100
+- measure deliverable :: 100
+- measure duplicate :: 100
+- measure exposure :: 100
+- measure falsifier :: 100
+- measure feedback :: 100
+- measure finding :: 100
+- measure fork :: 100
+- measure frame :: 100
+- measure front :: 100
+- measure handoff :: 100
+- measure hold :: 100
+- measure incentive :: 100
+- measure inferred :: 100
+- measure loop :: 100
+- measure next :: 100
+- measure observable :: 100
+- measure observed :: 100
+- measure operation :: 100
+- measure permission :: 100
+- measure plain :: 100
+- measure plurality :: 100
+- measure preserve :: 100
+- measure probe :: 100
+- measure procedure :: 100
+- measure queue :: 100
+- measure recast :: 100
+- measure receipt :: 100
+- measure reframe :: 100
+- measure remembered :: 100
+- measure result :: 100
+- measure resume :: 100
+- measure return :: 100
+- measure secret :: 100
+- measure sequence :: 100
+- measure setup :: 100
+- measure short :: 100
+- measure stale :: 100
+- measure structure :: 100
+- measure test :: 100
+- measure throughput :: 100
+- measure tradeoff :: 100
+- measure unexpected :: 100
+- measure unlock :: 100
+- merge :: 100
+- merge refusal :: 100
+- method collapsed :: 100
+- middle voice :: 100
+- mild skepticism :: 100
+- minimum viable move :: 100
+- minority objection :: 100
+- mis scoped :: 100
+- mis-scoped :: 100
+- misplaced file :: 100
+- missing evidence :: 100
+- missing receipt :: 100
+- missing trace :: 100
+- mission :: 100
+- model dissent :: 100
+- model family :: 100
+- model family comparison :: 100
+- model family independent route :: 100
+- model family route status :: 100
+- model route :: 100
+- motion alternative route :: 100
+- motion audit result :: 100
+- motion direct move :: 100
+- motion loop or sequence :: 100
+- motion observable check :: 100
+- motion risky claim :: 100
+- move path :: 100
+- naming cleanup :: 100
+- naming drift :: 100
+- naming drift active contract :: 100
+- naming drift handoff :: 100
+- naming drift provenance :: 100
+- naming drift residue :: 100
+- naming drift search clarity :: 100
+- naming drift surface :: 100
+- naming surface :: 100
+- narrow alternative :: 100
+- narrow back :: 100
+- narrow bottleneck :: 100
+- narrow boundary :: 100
+- narrow branch :: 100
+- narrow bridge :: 100
+- narrow campaign :: 100
+- narrow claim :: 100
+- narrow clean :: 100
+- narrow concern :: 100
+- narrow concrete :: 100
+- narrow cut :: 100
+- narrow deliverable :: 100
+- narrow duplicate :: 100
+- narrow exposure :: 100
+- narrow falsifier :: 100
+- narrow feedback :: 100
+- narrow finding :: 100
+- narrow fork :: 100
+- narrow frame :: 100
+- narrow front :: 100
+- narrow handoff :: 100
+- narrow hold :: 100
+- narrow incentive :: 100
+- narrow inferred :: 100
+- narrow loop :: 100
+- narrow next :: 100
+- narrow observable :: 100
+- narrow observed :: 100
+- narrow operation :: 100
+- narrow permission :: 100
+- narrow plain :: 100
+- narrow plurality :: 100
+- narrow preserve :: 100
+- narrow probe :: 100
+- narrow procedure :: 100
+- narrow queue :: 100
+- narrow recast :: 100
+- narrow reframe :: 100
+- narrow remembered :: 100
+- narrow resume :: 100
+- narrow return :: 100
+- narrow sequence :: 100
+- narrow short :: 100
+- narrow stale :: 100
+- narrow structure :: 100
+- narrow throughput :: 100
+- narrow tradeoff :: 100
+- narrow unexpected :: 100
+- narrow unlock :: 100
+- natural balance :: 100
+- natural dao :: 100
+- navigation branch context :: 100
+- navigation no branch :: 100
+- near council :: 100
+- new angle :: 100
+- next :: 100
+- next acceptance :: 100
+- next boundary :: 100
+- next bounded move :: 100
+- next candidate :: 100
+- next constraint :: 100
+- next deliverable :: 100
+- next evidence :: 100
+- next move :: 100
+- next packet :: 100
+- next path :: 100
+- next probe :: 100
+- next receipt :: 100
+- next result :: 100
+- next scope :: 100
+- next status :: 100
+- next support :: 100
+- next surface :: 100
+- next trace :: 100
+- next witness :: 100
+- no :: 100
+- no consensus :: 100
+- no consensus comparison :: 100
+- no consensus independent route :: 100
+- no consensus route status :: 100
+- no final view :: 100
+- non merge :: 100
+- non obvious probe :: 100
+- non-forcing :: 100
+- noncollapse route :: 100
+- nonforcing path :: 100
+- nonforcing reversal :: 100
+- nonforcing unfixed :: 100
+- nonobvious probe :: 100
+- not a vote :: 100
+- observable :: 100
+- observable boundary :: 100
+- observable calibration :: 100
+- observable candidate :: 100
+- observable check alternative route :: 100
+- observable check audit result :: 100
+- observable check loop or sequence :: 100
+- observable check retreat condition :: 100
+- observable constraint :: 100
+- observable evidence :: 100
+- observable example :: 100
+- observable packet :: 100
+- observable path :: 100
+- observable physical :: 100
+- observable probe :: 100
+- observable procedure :: 100
+- observable receipt :: 100
+- observable result :: 100
+- observable scope :: 100
+- observable setup :: 100
+- observable status :: 100
+- observable support :: 100
+- observable surface :: 100
+- observable surviving split :: 100
+- observable trace :: 100
+- observable under :: 100
+- observable wildcard probe :: 100
+- observable witness :: 100
+- observe alternative :: 100
+- observe back :: 100
+- observe bottleneck :: 100
+- observe boundary :: 100
+- observe branch :: 100
+- observe bridge :: 100
+- observe campaign :: 100
+- observe claim :: 100
+- observe clean :: 100
+- observe concern :: 100
+- observe concrete :: 100
+- observe cut :: 100
+- observe deliverable :: 100
+- observe duplicate :: 100
+- observe exposure :: 100
+- observe falsifier :: 100
+- observe feedback :: 100
+- observe finding :: 100
+- observe fork :: 100
+- observe frame :: 100
+- observe front :: 100
+- observe handoff :: 100
+- observe hold :: 100
+- observe incentive :: 100
+- observe inferred :: 100
+- observe loop :: 100
+- observe next :: 100
+- observe observable :: 100
+- observe observed :: 100
+- observe operation :: 100
+- observe permission :: 100
+- observe plain :: 100
+- observe plurality :: 100
+- observe preserve :: 100
+- observe probe :: 100
+- observe procedure :: 100
+- observe queue :: 100
+- observe recast :: 100
+- observe reframe :: 100
+- observe remembered :: 100
+- observe resume :: 100
+- observe return :: 100
+- observe secret :: 100
+- observe sequence :: 100
+- observe short :: 100
+- observe stale :: 100
+- observe structure :: 100
+- observe throughput :: 100
+- observe tradeoff :: 100
+- observe unexpected :: 100
+- observe unlock :: 100
+- observed :: 100
+- observed boundary :: 100
+- observed candidate :: 100
+- observed constraint :: 100
+- observed evidence :: 100
+- observed packet :: 100
+- observed path :: 100
+- observed probe :: 100
+- observed receipt :: 100
+- observed result :: 100
+- observed scope :: 100
+- observed status :: 100
+- observed surface :: 100
+- observed trace :: 100
+- observed witness :: 100
+- obsolete surface :: 100
+- odd probe :: 100
+- odd unlock :: 100
+- open claim :: 100
+- open clean :: 100
+- open exposure :: 100
+- open falsifier :: 100
+- open finding :: 100
+- open missing :: 100
+- open reading :: 100
+- open readings :: 100
+- open reversal :: 100
+- open survived :: 100
+- open unfixed :: 100
+- open verified :: 100
+- operation :: 100
+- operation boundary :: 100
+- operation candidate :: 100
+- operation constraint :: 100
+- operation evidence :: 100
+- operation explained :: 100
+- operation packet :: 100
+- operation path :: 100
+- operation probe :: 100
+- operation receipt :: 100
+- operation result :: 100
+- operation scope :: 100
+- operation status :: 100
+- operation support :: 100
+- operation surface :: 100
+- operation trace :: 100
+- operation witness :: 100
+- option :: 100
+- opus diagnostic :: 100
+- opus dissent :: 100
+- opus untried :: 100
+- order :: 100
+- ordinary :: 100
+- origin boundary :: 100
+- orphan path :: 100
+- orwell cut :: 100
+- other way :: 100
+- outside frame :: 100
+- overreach not :: 100
+- ownership :: 100
+- packet boundary :: 100
+- packet receipt :: 100
+- packet surface :: 100
+- pair receipt :: 100
+- parallel option :: 100
+- path :: 100
+- path mismatch :: 100
+- path naming drift :: 100
+- path traversal :: 100
+- path trust boundary :: 100
+- permission boundary :: 100
+- permission candidate :: 100
+- permission check :: 100
+- permission constraint :: 100
+- permission credential :: 100
+- permission drift :: 100
+- permission evidence :: 100
+- permission exposure :: 100
+- permission packet :: 100
+- permission path :: 100
+- permission probe :: 100
+- permission receipt :: 100
+- permission result :: 100
+- permission scope :: 100
+- permission status :: 100
+- permission support :: 100
+- permission surface :: 100
+- permission trace :: 100
+- permission witness :: 100
+- perspective :: 100
+- perspective butterfly :: 100
+- perspective many :: 100
+- perspective nameless :: 100
+- perspective nonforcing :: 100
+- perspective open :: 100
+- perspective reading :: 100
+- perspective shift :: 100
+- perspective transformation :: 100
+- perspective unfixed :: 100
+- perspectives on perspectives :: 100
+- plain boundary :: 100
+- plain candidate :: 100
+- plain clear :: 100
+- plain concrete :: 100
+- plain constraint :: 100
+- plain cut :: 100
+- plain english :: 100
+- plain euphemism :: 100
+- plain evidence :: 100
+- plain inflated :: 100
+- plain jargon :: 100
+- plain packet :: 100
+- plain path :: 100
+- plain probe :: 100
+- plain receipt :: 100
+- plain result :: 100
+- plain scope :: 100
+- plain short :: 100
+- plain status :: 100
+- plain support :: 100
+- plain surface :: 100
+- plain testable route :: 100
+- plain trace :: 100
+- plain witness :: 100
+- plain wording bottleneck :: 100
+- plain wording evidence missing :: 100
+- plain wording stale surface :: 100
+- plain wording trust boundary :: 100
+- plural :: 100
+- plurality boundary :: 100
+- plurality candidate :: 100
+- plurality constraint :: 100
+- plurality evidence :: 100
+- plurality packet :: 100
+- plurality path :: 100
+- plurality probe :: 100
+- plurality receipt :: 100
+- plurality result :: 100
+- plurality scope :: 100
+- plurality status :: 100
+- plurality strategy :: 100
+- plurality support :: 100
+- plurality surface :: 100
+- plurality trace :: 100
+- plurality witness :: 100
+- policy trust boundary :: 100
+- popper pressure :: 100
+- practical next :: 100
+- preflight all :: 100
+- preflight check :: 100
+- preflight context :: 100
+- preflight council :: 100
+- preflight followup :: 100
+- preflight voices :: 100
+- preflight whole :: 100
+- preload artifact :: 100
+- preload boundary :: 100
+- preload interface :: 100
+- preload receipt :: 100
+- preload task card :: 100
+- premise shift :: 100
+- preserve alternative :: 100
+- preserve back :: 100
+- preserve bottleneck :: 100
+- preserve boundary :: 100
+- preserve branch :: 100
+- preserve bridge :: 100
+- preserve campaign :: 100
+- preserve candidate :: 100
+- preserve carry :: 100
+- preserve claim :: 100
+- preserve clean :: 100
+- preserve concern :: 100
+- preserve concrete :: 100
+- preserve constraint :: 100
+- preserve cut :: 100
+- preserve deliverable :: 100
+- preserve distinct :: 100
+- preserve divergence :: 100
+- preserve duplicate :: 100
+- preserve evidence :: 100
+- preserve exposure :: 100
+- preserve falsifier :: 100
+- preserve feedback :: 100
+- preserve finding :: 100
+- preserve fork :: 100
+- preserve frame :: 100
+- preserve front :: 100
+- preserve handoff :: 100
+- preserve hold :: 100
+- preserve human read :: 100
+- preserve incentive :: 100
+- preserve inferred :: 100
+- preserve live readings :: 100
+- preserve loop :: 100
+- preserve next :: 100
+- preserve observed :: 100
+- preserve operation :: 100
+- preserve packet :: 100
+- preserve path :: 100
+- preserve permission :: 100
+- preserve plain :: 100
+- preserve plurality :: 100
+- preserve preserve :: 100
+- preserve procedure :: 100
+- preserve queue :: 100
+- preserve recast :: 100
+- preserve reframe :: 100
+- preserve refusal :: 100
+- preserve remembered :: 100
+- preserve result :: 100
+- preserve resume :: 100
+- preserve return :: 100
+- preserve scope :: 100
+- preserve sequence :: 100
+- preserve short :: 100
+- preserve stale :: 100
+- preserve status :: 100
+- preserve structure :: 100
+- preserve support :: 100
+- preserve surface :: 100
+- preserve tension :: 100
+- preserve throughput :: 100
+- preserve trace :: 100
+- preserve tradeoff :: 100
+- preserve unexpected :: 100
+- preserve unlock :: 100
+- preserve witness :: 100
+- preserved difference :: 100
+- preserved split :: 100
+- previous branch :: 100
+- previous context :: 100
+- previous resume :: 100
+- previous surface :: 100
+- previous surface branch context :: 100
+- previous surface navigation :: 100
+- previous surface no branch :: 100
+- previous surface target :: 100
+- prior branch navigation :: 100
+- prior branch previous surface :: 100
+- prior decision :: 100
+- prior surface :: 100
+- priority :: 100
+- privilege escalation :: 100
+- probe :: 100
+- probe boundary :: 100
+- probe candidate :: 100
+- probe constraint :: 100
+- probe evidence :: 100
+- probe human read :: 100
+- probe packet :: 100
+- probe path :: 100
+- probe probe :: 100
+- probe receipt :: 100
+- probe result :: 100
+- probe scope :: 100
+- probe status :: 100
+- probe support :: 100
+- probe surface :: 100
+- probe trace :: 100
+- probe witness :: 100
+- problem recast :: 100
+- procedure :: 100
+- procedure boundary :: 100
+- procedure calibration :: 100
+- main MMM boot :: 100
+- main MMM reinjects :: 100
+- main MMM reinjection :: 100
+- boot new thread :: 100
+- boot drifting thread :: 100
+- reinject latest doctrine :: 100
+- reinject drifting thread :: 100
+- thread drift reinjection :: 100
+- correlated thinkers aligned nouns :: 100
+- voice noun alignment :: 100
+- probe-induced equivalence carrier :: 100
+- same-carrier geometry fence :: 100
+- graph cell-complex carrier :: 100
+- z3 cvc5 UNSAT fence :: 100
+- probe family reinjection trigger :: 100
+- C9 preserves named tension :: 100
+- QIT lego tool integration :: 100
+- fact and observation :: 97
+- experience and testimony :: 97
+- probable inference :: 97
+- risky prediction :: 97
+- scientific integrity :: 97
+- dead metaphor :: 97
+- stocks and flows :: 97
+- buffer and delay :: 97
+- evidence boundary :: 100
+- receipt truth :: 100
+- provenance traceability :: 100
+- trust boundary :: 100
+- mitigation plan :: 100
+- authorization boundary :: 100
+- divergence preservation :: 100
+- plurality preservation :: 100
+- concrete naming :: 100
+- readable surface :: 100
+- acceptance gate :: 100
+- route truth :: 100
+- spawned receipt :: 100
+- blocked receipt :: 100
+- deferred receipt :: 100
+- simulated receipt :: 100
+- runtime capability :: 100
+- capability negotiation :: 100
+- adaptive wave :: 100
+- elastic wave :: 100
+- minimum viable wave :: 100
+- evidence need :: 100
+- capacity fit :: 100
+- test and learn :: 100
+- scout pass :: 100
+- worker receipt :: 100
+- independent surface :: 100
+- model identity :: 100
+- dissent log :: 100
+- source-aware weighting :: 100
+- prework boundary :: 100
+
+## triplets
+- access control boundary :: 100
+- accommodation cooperation difference :: 100
+- across audit checked :: 100
+- across audit concluded :: 100
+- across audit open :: 100
+- across audit receipt :: 100
+- across boundary overreach :: 100
+- across boundary unearned :: 100
+- across boundary unsupported :: 100
+- across compose receipt :: 100
+- across conjecture falsifier :: 100
+- across council route :: 100
+- across diagnostic live :: 100
+- across dissent blocked :: 100
+- across dissent disagreement :: 100
+- across hold boundary :: 100
+- across live back :: 100
+- across live bottleneck :: 100
+- across live bridge :: 100
+- across live campaign :: 100
+- across live exposure :: 100
+- across live falsifier :: 100
+- across live loop :: 100
+- across live observed :: 100
+- across live plain :: 100
+- across live readings :: 100
+- across live recast :: 100
+- across live reframe :: 100
+- across live stale :: 100
+- across live tradeoff :: 100
+- across live unexpected :: 100
+- across odd probe :: 100
+- across open audit :: 100
+- across open back :: 100
+- across open bottleneck :: 100
+- across open bridge :: 100
+- across open campaign :: 100
+- across open claim :: 100
+- across open clean :: 100
+- across open exposure :: 100
+- across open falsifier :: 100
+- across open falsify :: 100
+- across open finding :: 100
+- across open loop :: 100
+- across open observed :: 100
+- across open plain :: 100
+- across open reading :: 100
+- across open recast :: 100
+- across open receipt :: 100
+- across open reframe :: 100
+- across open stale :: 100
+- across open tradeoff :: 100
+- across open unexpected :: 100
+- across permission boundary :: 100
+- across receipt checked :: 100
+- across receipt concluded :: 100
+- across receipt evidence :: 100
+- across receipt open :: 100
+- across refutation falsifier :: 100
+- across synthesis compose :: 100
+- across unexpected probe :: 100
+- across unlock probe :: 100
+- across untried live :: 100
+- across wave council :: 100
+- across wave preflight :: 100
+- active verb noun :: 100
+- actual experience formulation :: 100
+- after council route :: 100
+- after diagnostic live :: 100
+- after resume previous surface :: 100
+- after resume prior branch :: 100
+- after untried live :: 100
+- after whole council :: 100
+- after whole registry :: 100
+- against forward loop or sequence :: 100
+- against preserve falsifier :: 100
+- against preserve live readings :: 100
+- against registry audit :: 100
+- against registry blocked :: 100
+- against registry deferred :: 100
+- against registry follow-up :: 100
+- against registry spawned :: 100
+- aggregate without flattening :: 100
+- alternative factory feynman :: 100
+- alternative path viable :: 100
+- andon visible problem :: 100
+- anomaly probe option :: 100
+- anomaly remains open :: 100
+- answer first action :: 100
+- apparatus measurement trace :: 100
+- assumption boundary redraw :: 100
+- asymmetric upside test :: 100
+- audit evidence path :: 100
+- audit receipt path :: 100
+- audit trace path :: 100
+- back boundary path :: 100
+- back evidence path :: 100
+- back navigation choice :: 100
+- back packet path :: 100
+- back path path :: 100
+- back receipt path :: 100
+- back result path :: 100
+- back scope path :: 100
+- back support path :: 100
+- back surface path :: 100
+- back trace path :: 100
+- background knowledge challenged :: 100
+- basic statement evidence :: 100
+- before compose receipt :: 100
+- before council route :: 100
+- before diagnostic live :: 100
+- before live back :: 100
+- before live bridge :: 100
+- before live exposure :: 100
+- before live falsifier :: 100
+- before live hold :: 100
+- before live loop :: 100
+- before live observed :: 100
+- before live plain :: 100
+- before live reframe :: 100
+- before live stale :: 100
+- before open audit :: 100
+- before open back :: 100
+- before open bridge :: 100
+- before open claim :: 100
+- before open clean :: 100
+- before open exposure :: 100
+- before open falsifier :: 100
+- before open falsify :: 100
+- before open finding :: 100
+- before open hold :: 100
+- before open loop :: 100
+- before open observed :: 100
+- before open plain :: 100
+- before open reading :: 100
+- before open receipt :: 100
+- before open reframe :: 100
+- before open stale :: 100
+- before synthesis compose :: 100
+- before untried live :: 100
+- before voices audit :: 100
+- before voices council :: 100
+- before voices registry :: 100
+- between boundary overreach :: 100
+- between boundary unearned :: 100
+- between boundary unsupported :: 100
+- between compose receipt :: 100
+- between conjecture falsifier :: 100
+- between council route :: 100
+- between diagnostic live :: 100
+- between factory audit :: 100
+- between hold boundary :: 100
+- between hume zhuangzi :: 100
+- between levels handoff :: 100
+- between live back :: 100
+- between live bottleneck :: 100
+- between live bridge :: 100
+- between live campaign :: 100
+- between live exposure :: 100
+- between live falsifier :: 100
+- between live loop :: 100
+- between live observed :: 100
+- between live open :: 100
+- between live plain :: 100
+- between live reading :: 100
+- between live readings :: 100
+- between live reframe :: 100
+- between live stale :: 100
+- between live unfixed :: 100
+- between odd probe :: 100
+- between open audit :: 100
+- between open back :: 100
+- between open bottleneck :: 100
+- between open branch :: 100
+- between open bridge :: 100
+- between open campaign :: 100
+- between open claim :: 100
+- between open clean :: 100
+- between open exposure :: 100
+- between open falsifier :: 100
+- between open falsify :: 100
+- between open finding :: 100
+- between open live :: 100
+- between open loop :: 100
+- between open observed :: 100
+- between open open :: 100
+- between open plain :: 100
+- between open reading :: 100
+- between open receipt :: 100
+- between open reframe :: 100
+- between open stale :: 100
+- between preflight all :: 100
+- between preflight check :: 100
+- between preflight context :: 100
+- between preflight council :: 100
+- between preflight followup :: 100
+- between preflight voices :: 100
+- between preflight whole :: 100
+- between refutation falsifier :: 100
+- between synthesis compose :: 100
+- between trust boundary :: 100
+- between unexpected probe :: 100
+- between untried live :: 100
+- blocked diagnostic untried :: 100
+- bold conjecture stress :: 100
+- bottleneck boundary path :: 100
+- bottleneck evidence path :: 100
+- bottleneck packet path :: 100
+- bottleneck path path :: 100
+- bottleneck queue flow :: 100
+- bottleneck receipt path :: 100
+- bottleneck result path :: 100
+- bottleneck scope path :: 100
+- bottleneck support path :: 100
+- bottleneck surface path :: 100
+- bottleneck test plain :: 100
+- bottleneck trace path :: 100
+- boundary scope path :: 100
+- bounded boundary path :: 100
+- bounded dead file active contract :: 100
+- bounded dead file handoff :: 100
+- bounded dead file naming drift :: 100
+- bounded dead file provenance :: 100
+- bounded dead file search clarity :: 100
+- bounded dead file surface :: 100
+- bounded evidence path :: 100
+- bounded forward check :: 100
+- bounded packet path :: 100
+- bounded path path :: 100
+- bounded receipt path :: 100
+- bounded result path :: 100
+- bounded scope path :: 100
+- bounded support path :: 100
+- bounded surface path :: 100
+- bounded trace path :: 100
+- branch comparison result :: 100
+- bridge boundary path :: 100
+- bridge evidence path :: 100
+- bridge packet path :: 100
+- bridge path path :: 100
+- bridge receipt path :: 100
+- bridge result path :: 100
+- bridge scope path :: 100
+- bridge support path :: 100
+- bridge surface path :: 100
+- bridge trace path :: 100
+- by bundle stale surface :: 100
+- by council audit :: 100
+- by council check :: 100
+- by council follow-up :: 100
+- by council followup :: 100
+- by council primary answer :: 100
+- by council registry :: 100
+- by council whole-context triad :: 100
+- by probe human read :: 100
+- campaign boundary path :: 100
+- campaign evidence path :: 100
+- campaign frame surprise :: 100
+- campaign packet path :: 100
+- campaign path path :: 100
+- campaign receipt path :: 100
+- campaign result path :: 100
+- campaign scope path :: 100
+- campaign sequence resource :: 100
+- campaign support path :: 100
+- campaign surface path :: 100
+- campaign trace path :: 100
+- carry across layers :: 100
+- challenge boundary path :: 100
+- challenge reason correction :: 100
+- changed question context :: 100
+- check audit receipt :: 100
+- check back receipt :: 100
+- check bottleneck receipt :: 100
+- check bridge receipt :: 100
+- check campaign receipt :: 100
+- check clean receipt :: 100
+- check distinct receipt :: 100
+- check exposure receipt :: 100
+- check falsifier receipt :: 100
+- check finding receipt :: 100
+- check hold receipt :: 100
+- check interface receipt :: 100
+- check loop receipt :: 100
+- check measure receipt :: 100
+- check observable receipt :: 100
+- check observed receipt :: 100
+- check plain receipt :: 100
+- check preserve receipt :: 100
+- check procedure receipt :: 100
+- check recast receipt :: 100
+- check reframe receipt :: 100
+- check stale receipt :: 100
+- check test receipt :: 100
+- check tradeoff receipt :: 100
+- check unexpected receipt :: 100
+- checked concluded open :: 100
+- claim evidence path :: 100
+- claim falsifier check :: 100
+- claim packet path :: 100
+- claim path path :: 100
+- claim receipt path :: 100
+- claim support path :: 100
+- claim surface path :: 100
+- clean evidence path :: 100
+- clean receipt path :: 100
+- clean trace path :: 100
+- cloudy vagueness blocked :: 100
+- commitment cost risk :: 100
+- common life evidence :: 100
+- compare alternative receipt :: 100
+- compare audit receipt :: 100
+- compare back receipt :: 100
+- compare bottleneck receipt :: 100
+- compare bridge receipt :: 100
+- compare campaign receipt :: 100
+- compare clean receipt :: 100
+- compare distinct receipt :: 100
+- compare exposure receipt :: 100
+- compare falsifier receipt :: 100
+- compare finding receipt :: 100
+- compare fork receipt :: 100
+- compare hold receipt :: 100
+- compare interface receipt :: 100
+- compare loop receipt :: 100
+- compare measure receipt :: 100
+- compare observable receipt :: 100
+- compare observed receipt :: 100
+- compare plain receipt :: 100
+- compare preserve receipt :: 100
+- compare procedure receipt :: 100
+- compare recast receipt :: 100
+- compare receipts compose :: 100
+- compare reframe receipt :: 100
+- compare stale receipt :: 100
+- compare test receipt :: 100
+- compare tradeoff receipt :: 100
+- compare unexpected receipt :: 100
+- compare viable receipt :: 100
+- compose composition distinct :: 100
+- compose composition preserve :: 100
+- compose composition receipt :: 100
+- compose distinct preserve :: 100
+- compose distinct receipt :: 100
+- compose preserve receipt :: 100
+- compose receipt distinct :: 100
+- compose receipt preserve :: 100
+- composition after receipts :: 100
+- concern not fact :: 100
+- concrete example calculation :: 100
+- conjecture refutation test :: 100
+- conjectures and refutations :: 100
+- context prompt bridge :: 100
+- cost benefit tradeoff :: 100
+- council receipt comparison :: 100
+- counterexample kills claim :: 100
+- coupling propagation path :: 100
+- cross model pressure :: 100
+- current checked support :: 100
+- current receipt required :: 100
+- current target blocker :: 100
+- custom habit expectation :: 100
+- cut dead language :: 100
+- decisive front condition :: 100
+- deliverable acceptance check :: 100
+- deny default permission :: 100
+- dependency sequence order :: 100
+- details throw doubt :: 100
+- different assumption path :: 100
+- different route concrete :: 100
+- direct hume popper :: 100
+- direct path done :: 100
+- distinct receipt path :: 100
+- distinct receipts held :: 100
+- does not follow :: 100
+- dream wake shift :: 100
+- drift surface path :: 100
+- duplicate surface path :: 100
+- during council route :: 100
+- during diagnostic live :: 100
+- during untried live :: 100
+- emergent behavior pattern :: 100
+- empirical falsification path :: 100
+- evidence claim falsifier :: 100
+- evidence mismatch stop :: 100
+- evidence receipt path :: 100
+- experience custom habit :: 100
+- experiment measurement result :: 100
+- exposure boundary path :: 100
+- exposure evidence path :: 100
+- exposure packet path :: 100
+- exposure path path :: 100
+- exposure receipt path :: 100
+- exposure result path :: 100
+- exposure scope path :: 100
+- exposure support path :: 100
+- exposure surface path :: 100
+- exposure trace path :: 100
+- fallback plan reserve :: 100
+- false closure finding :: 100
+- false limb removed :: 100
+- falsifier boundary path :: 100
+- falsifier evidence path :: 100
+- falsifier packet path :: 100
+- falsifier path path :: 100
+- falsifier receipt path :: 100
+- falsifier result path :: 100
+- falsifier scope path :: 100
+- falsifier support path :: 100
+- falsifier surface path :: 100
+- falsifier trace path :: 100
+- feedback boundary path :: 100
+- final output check :: 100
+- finding evidence path :: 100
+- finding receipt path :: 100
+- finding severity clean :: 100
+- finding trace path :: 100
+- finite naming drift active contract :: 100
+- finite naming drift handoff :: 100
+- finite naming drift provenance :: 100
+- finite naming drift search clarity :: 100
+- finite naming drift surface :: 100
+- fish bridge knowledge :: 100
+- frame premise shift :: 100
+- from audit direct move :: 100
+- from audit result :: 100
+- from context council :: 100
+- from context registry :: 100
+- from undo previous surface :: 100
+- from wildcard probe :: 100
+- front timing retreat :: 100
+- goal rule incentive :: 100
+- ground pressure advance :: 100
+- heart mind response :: 100
+- hold advance retreat :: 100
+- hold audit receipt :: 100
+- hold back receipt :: 100
+- hold bottleneck receipt :: 100
+- hold boundary path :: 100
+- hold boundary receipt :: 100
+- hold bridge receipt :: 100
+- hold campaign receipt :: 100
+- hold challenge receipt :: 100
+- hold clean receipt :: 100
+- hold distinct receipt :: 100
+- hold evidence path :: 100
+- hold exposure receipt :: 100
+- hold falsifier receipt :: 100
+- hold finding receipt :: 100
+- hold front receipt :: 100
+- hold hold receipt :: 100
+- hold interface receipt :: 100
+- hold loop receipt :: 100
+- hold observed receipt :: 100
+- hold packet path :: 100
+- hold path path :: 100
+- hold plain receipt :: 100
+- hold preserve receipt :: 100
+- hold recast receipt :: 100
+- hold receipt path :: 100
+- hold reframe receipt :: 100
+- hold result path :: 100
+- hold retreat receipt :: 100
+- hold scope path :: 100
+- hold sequence receipt :: 100
+- hold stale receipt :: 100
+- hold stop receipt :: 100
+- hold support path :: 100
+- hold surface path :: 100
+- hold trace path :: 100
+- hold tradeoff receipt :: 100
+- human feeling judgment :: 100
+- hume translates receipts :: 100
+- immediate concrete action :: 100
+- impression idea belief :: 100
+- incentive boundary path :: 100
+- incentive selection pressure :: 100
+- independent external check :: 100
+- inferred evidence path :: 100
+- inferred path path :: 100
+- inferred support path :: 100
+- inflated noun replaced :: 100
+- information flow access :: 100
+- informative content risk :: 100
+- instead leak trust boundary :: 100
+- instead navigation branch context :: 100
+- instead navigation no branch :: 100
+- instead risky claim audit result :: 100
+- instead risky claim loop or sequence :: 100
+- interface boundary path :: 100
+- interface receipt path :: 100
+- interface surface path :: 100
+- inversion test route :: 100
+- jidoka defect stop :: 100
+- just in time :: 100
+- kanban pull signal :: 100
+- lateral move small :: 100
+- lead time reduction :: 100
+- least privilege default :: 100
+- leverage point intervention :: 100
+- likely alternative route audit result :: 100
+- likely alternative route retreat condition :: 100
+- likely observable surviving split :: 100
+- likely observable wildcard probe :: 100
+- likely policy trust boundary :: 100
+- likely registry naming drift :: 100
+- live dissent preserved :: 100
+- live options strategy :: 100
+- local present perspective :: 100
+- local win campaign :: 100
+- locally core alternative route :: 100
+- locally core audit result :: 100
+- locally core direct move :: 100
+- locally core observable check :: 100
+- locally core retreat condition :: 100
+- locally core risky claim :: 100
+- locally dissent falsifier :: 100
+- locally dissent human read :: 100
+- locally dissent live readings :: 100
+- locally dissent observable :: 100
+- locally dissent wildcard probe :: 100
+- locally done condition bottleneck :: 100
+- locally done condition evidence missing :: 100
+- locally done condition plain wording :: 100
+- locally done condition stale surface :: 100
+- locally done condition trust boundary :: 100
+- locally done condition under :: 100
+- locally previous surface branch context :: 100
+- locally previous surface navigation :: 100
+- locally previous surface no branch :: 100
+- locally previous surface target :: 100
+- locally tier authority :: 100
+- locally tier derived :: 100
+- locally tier imported :: 100
+- locally tier preload :: 100
+- locally tier salience :: 100
+- locally tier surface :: 100
+- locally tier task card :: 100
+- locally whole-context triad blocked :: 100
+- locally whole-context triad deferred :: 100
+- locally whole-context triad follow-up :: 100
+- locally whole-context triad primary answer :: 100
+- locally whole-context triad spawned :: 100
+- long game plurality :: 100
+- loop boundary path :: 100
+- loop delay response :: 100
+- loop evidence path :: 100
+- loop packet path :: 100
+- loop path path :: 100
+- loop receipt path :: 100
+- loop result path :: 100
+- loop scope path :: 100
+- loop support path :: 100
+- loop surface path :: 100
+- loop trace path :: 100
+- maintenance reliability throughput :: 100
+- manifest registry mismatch :: 100
+- many live readings :: 100
+- matter fact evidence :: 100
+- measure audit receipt :: 100
+- measure back receipt :: 100
+- measure bottleneck receipt :: 100
+- measure bridge receipt :: 100
+- measure campaign receipt :: 100
+- measure clean receipt :: 100
+- measure distinct receipt :: 100
+- measure exposure receipt :: 100
+- measure falsifier receipt :: 100
+- measure finding receipt :: 100
+- measure hold receipt :: 100
+- measure interface receipt :: 100
+- measure loop receipt :: 100
+- measure observable receipt :: 100
+- measure observed receipt :: 100
+- measure plain receipt :: 100
+- measure preserve receipt :: 100
+- measure procedure receipt :: 100
+- measure recast receipt :: 100
+- measure reframe receipt :: 100
+- measure result path :: 100
+- measure stale receipt :: 100
+- measure test receipt :: 100
+- measure tradeoff receipt :: 100
+- measure unexpected receipt :: 100
+- memory sense testimony :: 100
+- merge refusal boundary :: 100
+- middle voice summary :: 100
+- minority objection held :: 100
+- mis scoped move :: 100
+- missing receipt blocked :: 100
+- model family route :: 100
+- model route state :: 100
+- name the thing :: 100
+- naming duplication cleanup :: 100
+- natural social dao :: 100
+- next boundary path :: 100
+- next bounded move :: 100
+- next evidence path :: 100
+- next packet path :: 100
+- next path path :: 100
+- next process pulls :: 100
+- next receipt path :: 100
+- next result path :: 100
+- next scope path :: 100
+- next support path :: 100
+- next surface path :: 100
+- next trace path :: 100
+- no final perspective :: 100
+- no hold condition :: 100
+- non obvious probe :: 100
+- noncollapse strategy route :: 100
+- nonforcing responsive action :: 100
+- not a vote :: 100
+- not enough evidence :: 100
+- not fool yourself :: 100
+- observable evidence path :: 100
+- observable packet path :: 100
+- observable path path :: 100
+- observable quantity procedure :: 100
+- observable receipt path :: 100
+- observable result path :: 100
+- observable support path :: 100
+- observable surface path :: 100
+- observe audit receipt :: 100
+- observe back receipt :: 100
+- observe bottleneck receipt :: 100
+- observe bridge receipt :: 100
+- observe campaign receipt :: 100
+- observe clean receipt :: 100
+- observe distinct receipt :: 100
+- observe exposure receipt :: 100
+- observe falsifier receipt :: 100
+- observe finding receipt :: 100
+- observe hold receipt :: 100
+- observe interface receipt :: 100
+- observe loop receipt :: 100
+- observe observed receipt :: 100
+- observe plain receipt :: 100
+- observe preserve receipt :: 100
+- observe recast receipt :: 100
+- observe reframe receipt :: 100
+- observe stale receipt :: 100
+- observe tradeoff receipt :: 100
+- observe unexpected receipt :: 100
+- observed boundary path :: 100
+- observed constant conjunction :: 100
+- observed evidence path :: 100
+- observed fact relation :: 100
+- observed inferred unknown :: 100
+- observed least privilege blocker :: 100
+- observed packet path :: 100
+- observed path path :: 100
+- observed receipt path :: 100
+- observed result path :: 100
+- observed scope path :: 100
+- observed support path :: 100
+- observed support test :: 100
+- observed surface path :: 100
+- observed trace path :: 100
+- obsolete deprecated residue :: 100
+- only access trust boundary :: 100
+- only observable check audit result :: 100
+- only observable check loop or sequence :: 100
+- open curiosity tolerance :: 100
+- option value tradeoff :: 100
+- orphan path repair :: 100
+- orwell feynman factory :: 100
+- outside frame objection :: 100
+- owner plan pressure :: 100
+- parallel route check :: 100
+- parameter stock flow :: 100
+- particular observed case :: 100
+- permission boundary path :: 100
+- perspective on perspective :: 100
+- physical picture check :: 100
+- piecemeal criticism route :: 100
+- plain boundary path :: 100
+- plain concrete words :: 100
+- plain english surface :: 100
+- plain evidence path :: 100
+- plain human judgment :: 100
+- plain ordinary account :: 100
+- plain packet path :: 100
+- plain path path :: 100
+- plain receipt path :: 100
+- plain result path :: 100
+- plain scope path :: 100
+- plain support path :: 100
+- plain surface path :: 100
+- plain trace path :: 100
+- plural readings held :: 100
+- positive feedback growth :: 100
+- possible audit result retreat condition :: 100
+- possible scan naming drift :: 100
+- possible wildcard probe surviving split :: 100
+- preflight voices council :: 100
+- preserve audit receipt :: 100
+- preserve back receipt :: 100
+- preserve bottleneck receipt :: 100
+- preserve bridge receipt :: 100
+- preserve campaign receipt :: 100
+- preserve clean receipt :: 100
+- preserve distinct receipt :: 100
+- preserve exposure receipt :: 100
+- preserve falsifier receipt :: 100
+- preserve finding receipt :: 100
+- preserve hold receipt :: 100
+- preserve interface receipt :: 100
+- preserve loop receipt :: 100
+- preserve observed receipt :: 100
+- preserve plain receipt :: 100
+- preserve preserve receipt :: 100
+- preserve recast receipt :: 100
+- preserve receipt path :: 100
+- preserve receipt receipt :: 100
+- preserve reframe receipt :: 100
+- preserve refusal receipt :: 100
+- preserve stale receipt :: 100
+- preserve tension nonmerge :: 100
+- pretentious diction cut :: 100
+- previous branch resume :: 100
+- previous surface path :: 100
+- priority order risk :: 100
+- privilege escalation path :: 100
+- probable inference degree :: 100
+- procedure result path :: 100
+- proposed evidence path :: 100
+- proposed support path :: 100
+- publish both results :: 100
+- quality built process :: 100
+- question replaced route :: 100
+- rather bundle live readings :: 100
+- rather direct move audit result :: 100
+- rather direct move loop or sequence :: 100
+- rather path trust boundary :: 100
+- rather plain wording stale surface :: 100
+- rather plain wording trust boundary :: 100
+- readme index drift :: 100
+- real fork tradeoff :: 100
+- recast boundary path :: 100
+- recast evidence path :: 100
+- recast packet path :: 100
+- recast path path :: 100
+- recast problem angle :: 100
+- recast receipt path :: 100
+- recast result path :: 100
+- recast scope path :: 100
+- recast support path :: 100
+- recast surface path :: 100
+- recast trace path :: 100
+- receipt evidence path :: 100
+- receipt interface summary :: 100
+- receipt trace path :: 100
+- reframe boundary path :: 100
+- reframe evidence path :: 100
+- reframe packet path :: 100
+- reframe path path :: 100
+- reframe receipt path :: 100
+- reframe result path :: 100
+- reframe scope path :: 100
+- reframe support path :: 100
+- reframe surface path :: 100
+- reframe trace path :: 100
+- reframe wildcard zhuangzi :: 100
+- registry receipt audit :: 100
+- relative audit blocked :: 100
+- relative audit follow-up :: 100
+- relative audit primary answer :: 100
+- relative audit whole-context triad :: 100
+- relative divergence falsifier :: 100
+- relative divergence live readings :: 100
+- relative divergence wildcard probe :: 100
+- relative prior branch navigation :: 100
+- relative prior branch previous surface :: 100
+- remembered evidence path :: 100
+- remembered support path :: 100
+- repo hygiene audit :: 100
+- restore context thread :: 100
+- result whichever way :: 100
+- retreat option path :: 100
+- return evidence path :: 100
+- return prior surface :: 100
+- return support path :: 100
+- rework waste removal :: 100
+- right quantity timing :: 100
+- risk support level :: 100
+- risky prediction checked :: 100
+- role allocation timing :: 100
+- rules goals paradigm :: 100
+- same experiment result :: 100
+- scarce resource allocation :: 100
+- scientific integrity doubt :: 100
+- second order effect :: 100
+- second route comparison :: 100
+- secret boundary path :: 100
+- secret token leak :: 100
+- security misconfiguration exposure :: 100
+- self organization structure :: 100
+- sensible support level :: 100
+- sensitive data boundary :: 100
+- separate branches retained :: 100
+- severe test result :: 100
+- short simple verb :: 100
+- shortest defensible answer :: 100
+- shortest path path :: 100
+- smallest useful step :: 100
+- smallest viable correction :: 100
+- sober finite estimate :: 100
+- source trace provenance :: 100
+- specific meaning first :: 100
+- stale boundary path :: 100
+- stale claim flagged :: 100
+- stale evidence path :: 100
+- stale file drift :: 100
+- stale metaphor removed :: 100
+- stale packet path :: 100
+- stale path path :: 100
+- stale receipt path :: 100
+- stale result path :: 100
+- stale scope path :: 100
+- stale support path :: 100
+- stale surface path :: 100
+- stale trace path :: 100
+- standard work improvement :: 100
+- still authority artifact :: 100
+- still authority boundary :: 100
+- still authority preload :: 100
+- still authority receipt :: 100
+- still authority salience :: 100
+- still authority task card :: 100
+- still bottleneck evidence missing :: 100
+- still deferred spawned :: 100
+- still falsifier observable :: 100
+- still falsifier surviving split :: 100
+- still falsifier wildcard probe :: 100
+- still loop or sequence alternative route :: 100
+- still loop or sequence audit result :: 100
+- still loop or sequence retreat condition :: 100
+- still readme naming drift :: 100
+- still sandbox trust boundary :: 100
+- stock flow feedback :: 100
+- stop boundary path :: 100
+- strategy drift condition :: 100
+- structure boundary path :: 100
+- stuck pattern reframed :: 100
+- surprise route unlock :: 100
+- surviving split carried :: 100
+- synthesis compose composition :: 100
+- synthesis compose distinct :: 100
+- synthesis compose receipt :: 100
+- synthesis composition distinct :: 100
+- synthesis composition receipt :: 100
+- synthesis distinct composition :: 100
+- synthesis distinct receipt :: 100
+- synthesis preserve composition :: 100
+- synthesis preserve distinct :: 100
+- synthesis preserve receipt :: 100
+- synthesis receipt composition :: 100
+- synthesis receipt distinct :: 100
+- system boundary coupling :: 100
+- systems hume pressure :: 100
+- takt time leveling :: 100
+- target claim falsifier :: 100
+- tempo control front :: 100
+- test audit receipt :: 100
+- test back receipt :: 100
+- test bottleneck receipt :: 100
+- test bridge receipt :: 100
+- test campaign receipt :: 100
+- test clean receipt :: 100
+- test concrete receipt :: 100
+- test cut receipt :: 100
+- test distinct receipt :: 100
+- test exposure receipt :: 100
+- test falsifier receipt :: 100
+- test finding receipt :: 100
+- test hold receipt :: 100
+- test interface receipt :: 100
+- test loop receipt :: 100
+- test measure receipt :: 100
+- test observable receipt :: 100
+- test observed receipt :: 100
+- test plain receipt :: 100
+- test preserve receipt :: 100
+- test procedure receipt :: 100
+- test recast receipt :: 100
+- test reframe receipt :: 100
+- test result path :: 100
+- test short receipt :: 100
+- test stale receipt :: 100
+- test tradeoff receipt :: 100
+- test unexpected receipt :: 100
+- testability demarcation criterion :: 100
+- testimony and experience :: 100
+- testimony memory sense :: 100
+- that does not follow :: 100
+- theory experiment decides :: 100
+- this not that :: 100
+- through all council :: 100
+- through all registry :: 100
+- through all voices :: 100
+- through boundary credential :: 100
+- through boundary exposure :: 100
+- through boundary overreach :: 100
+- through boundary unearned :: 100
+- through boundary unsupported :: 100
+- through compose receipt :: 100
+- through conjecture falsifier :: 100
+- through council route :: 100
+- through diagnostic live :: 100
+- through hold boundary :: 100
+- through live back :: 100
+- through live bridge :: 100
+- through live exposure :: 100
+- through live falsifier :: 100
+- through live hold :: 100
+- through live loop :: 100
+- through live observed :: 100
+- through live plain :: 100
+- through live reframe :: 100
+- through live stale :: 100
+- through open audit :: 100
+- through open back :: 100
+- through open bridge :: 100
+- through open claim :: 100
+- through open clean :: 100
+- through open exposure :: 100
+- through open falsifier :: 100
+- through open falsify :: 100
+- through open finding :: 100
+- through open hold :: 100
+- through open loop :: 100
+- through open observed :: 100
+- through open plain :: 100
+- through open reading :: 100
+- through open receipt :: 100
+- through open reframe :: 100
+- through open stale :: 100
+- through refutation falsifier :: 100
+- through synthesis compose :: 100
+- through untried live :: 100
+- throughput clarity path :: 100
+- throughput handoff drag :: 100
+- tradeoff boundary path :: 100
+- tradeoff evidence path :: 100
+- tradeoff packet path :: 100
+- tradeoff path path :: 100
+- tradeoff receipt path :: 100
+- tradeoff result path :: 100
+- tradeoff scope path :: 100
+- tradeoff support path :: 100
+- tradeoff surface path :: 100
+- tradeoff trace path :: 100
+- transformation without closure :: 100
+- trust boundary check :: 100
+- try it observe :: 100
+- under audit checked :: 100
+- under audit concluded :: 100
+- under audit open :: 100
+- under audit receipt :: 100
+- under blocked diagnostic :: 100
+- under blocked live :: 100
+- under blocked untried :: 100
+- under bottleneck queue :: 100
+- under boundary coupling :: 100
+- under boundary feedback :: 100
+- under boundary incentive :: 100
+- under boundary loop :: 100
+- under boundary overreach :: 100
+- under boundary unearned :: 100
+- under boundary unsupported :: 100
+- under checked evidence :: 100
+- under closeout audit :: 100
+- under closeout factory :: 100
+- under closeout security :: 100
+- under codex dissent :: 100
+- under compose receipt :: 100
+- under composition receipt :: 100
+- under concluded evidence :: 100
+- under conjecture falsifier :: 100
+- under council model :: 100
+- under council opus :: 100
+- under council route :: 100
+- under council sonnet :: 100
+- under diagnostic family :: 100
+- under diagnostic independent :: 100
+- under diagnostic live :: 100
+- under diagnostic receipt :: 100
+- under disagreement blocked :: 100
+- under disagreement diagnostic :: 100
+- under disagreement untried :: 100
+- under dissent blocked :: 100
+- under dissent disagreement :: 100
+- under dissent state :: 100
+- under dissent untried :: 100
+- under environment loop :: 100
+- under evidence clean :: 100
+- under evidence finding :: 100
+- under evidence missing :: 100
+- under external dissent :: 100
+- under feedback loop :: 100
+- under gemini dissent :: 100
+- under ground pressure :: 100
+- under hold boundary :: 100
+- under live back :: 100
+- under live bottleneck :: 100
+- under live bridge :: 100
+- under live campaign :: 100
+- under live claim :: 100
+- under live exposure :: 100
+- under live falsifier :: 100
+- under live loop :: 100
+- under live observable :: 100
+- under live observed :: 100
+- under live plain :: 100
+- under live readings :: 100
+- under live recast :: 100
+- under live reframe :: 100
+- under live return :: 100
+- under live stale :: 100
+- under live tradeoff :: 100
+- under live unexpected :: 100
+- under loop coupling :: 100
+- under loop emergence :: 100
+- under loop incentive :: 100
+- under model route :: 100
+- under odd probe :: 100
+- under open audit :: 100
+- under open back :: 100
+- under open bottleneck :: 100
+- under open bridge :: 100
+- under open campaign :: 100
+- under open claim :: 100
+- under open clean :: 100
+- under open evidence :: 100
+- under open exposure :: 100
+- under open falsifier :: 100
+- under open falsify :: 100
+- under open finding :: 100
+- under open hold :: 100
+- under open loop :: 100
+- under open observable :: 100
+- under open observed :: 100
+- under open permission :: 100
+- under open plain :: 100
+- under open reading :: 100
+- under open recast :: 100
+- under open receipt :: 100
+- under open reframe :: 100
+- under open stale :: 100
+- under open tradeoff :: 100
+- under open unexpected :: 100
+- under queue capacity :: 100
+- under queue flow :: 100
+- under queue handoff :: 100
+- under queue workcell :: 100
+- under receipt carry :: 100
+- under receipt checked :: 100
+- under receipt concluded :: 100
+- under receipt distinct :: 100
+- under receipt evidence :: 100
+- under receipt open :: 100
+- under receipt preserve :: 100
+- under refutation falsifier :: 100
+- under security exposure :: 100
+- under security permission :: 100
+- under security secret :: 100
+- under state diagnostic :: 100
+- under state untried :: 100
+- under synthesis compose :: 100
+- under synthesis composition :: 100
+- under synthesis distinct :: 100
+- under synthesis receipt :: 100
+- under throughput queue :: 100
+- under unexpected probe :: 100
+- under unlock probe :: 100
+- under untried diagnostic :: 100
+- under untried family :: 100
+- under untried live :: 100
+- under untried receipt :: 100
+- under view dissent :: 100
+- under wizard preflight :: 100
+- under wizard voices :: 100
+- unexpected angle check :: 100
+- unexpected boundary path :: 100
+- unexpected evidence path :: 100
+- unexpected packet path :: 100
+- unexpected path path :: 100
+- unexpected receipt path :: 100
+- unexpected result path :: 100
+- unexpected scope path :: 100
+- unexpected support path :: 100
+- unexpected surface path :: 100
+- unexpected trace path :: 100
+- unfixed name path :: 100
+- unit standard measurement :: 100
+- unresolved contradiction held :: 100
+- unsupported claim blocked :: 100
+- until council route :: 100
+- verify audit receipt :: 100
+- verify back receipt :: 100
+- verify bottleneck receipt :: 100
+- verify bridge receipt :: 100
+- verify campaign receipt :: 100
+- verify clean receipt :: 100
+- verify distinct receipt :: 100
+- verify exposure receipt :: 100
+- verify falsifier receipt :: 100
+- verify finding receipt :: 100
+- verify hold receipt :: 100
+- verify interface receipt :: 100
+- verify loop receipt :: 100
+- verify observed receipt :: 100
+- verify plain receipt :: 100
+- verify preserve receipt :: 100
+- verify recast receipt :: 100
+- verify reframe receipt :: 100
+- verify stale receipt :: 100
+- verify tradeoff receipt :: 100
+- verify unexpected receipt :: 100
+- version path mismatch :: 100
+- viewpoint lens shift :: 100
+- walk two paths :: 100
+- warm firm boundary :: 100
+- warm modest caution :: 100
+- weird edge case :: 100
+- what follows now :: 100
+- what would break :: 100
+- whole context triad :: 100
+- wip inventory flow :: 100
+- with anti live readings :: 100
+- with followup registry :: 100
+- with restore previous surface :: 100
+- with safe stale surface :: 100
+- with safe trust boundary :: 100
+- within audit checked :: 100
+- within audit concluded :: 100
+- within audit open :: 100
+- within audit receipt :: 100
+- within blocked diagnostic :: 100
+- within blocked untried :: 100
+- within bottleneck queue :: 100
+- within boundary coupling :: 100
+- within boundary feedback :: 100
+- within boundary incentive :: 100
+- within boundary loop :: 100
+- within boundary overreach :: 100
+- within boundary unearned :: 100
+- within boundary unsupported :: 100
+- within checked evidence :: 100
+- within codex dissent :: 100
+- within compose receipt :: 100
+- within composition receipt :: 100
+- within concluded evidence :: 100
+- within conjecture falsifier :: 100
+- within council model :: 100
+- within council opus :: 100
+- within council route :: 100
+- within council sonnet :: 100
+- within diagnostic live :: 100
+- within disagreement blocked :: 100
+- within disagreement diagnostic :: 100
+- within disagreement untried :: 100
+- within dissent blocked :: 100
+- within dissent disagreement :: 100
+- within dissent state :: 100
+- within dissent untried :: 100
+- within environment loop :: 100
+- within evidence clean :: 100
+- within evidence finding :: 100
+- within evidence missing :: 100
+- within external dissent :: 100
+- within feedback loop :: 100
+- within full council :: 100
+- within full preflight :: 100
+- within gemini dissent :: 100
+- within hold boundary :: 100
+- within live back :: 100
+- within live bottleneck :: 100
+- within live bridge :: 100
+- within live campaign :: 100
+- within live claim :: 100
+- within live exposure :: 100
+- within live falsifier :: 100
+- within live loop :: 100
+- within live observed :: 100
+- within live options :: 100
+- within live plain :: 100
+- within live readings :: 100
+- within live recast :: 100
+- within live reframe :: 100
+- within live stale :: 100
+- within live tradeoff :: 100
+- within live unexpected :: 100
+- within loop coupling :: 100
+- within loop emergence :: 100
+- within loop incentive :: 100
+- within model route :: 100
+- within odd probe :: 100
+- within open audit :: 100
+- within open back :: 100
+- within open bottleneck :: 100
+- within open bridge :: 100
+- within open campaign :: 100
+- within open claim :: 100
+- within open clean :: 100
+- within open evidence :: 100
+- within open exposure :: 100
+- within open falsifier :: 100
+- within open falsify :: 100
+- within open finding :: 100
+- within open loop :: 100
+- within open observed :: 100
+- within open plain :: 100
+- within open reading :: 100
+- within open recast :: 100
+- within open receipt :: 100
+- within open reframe :: 100
+- within open stale :: 100
+- within open tradeoff :: 100
+- within open unexpected :: 100
+- within queue capacity :: 100
+- within queue flow :: 100
+- within queue handoff :: 100
+- within queue workcell :: 100
+- within receipt carry :: 100
+- within receipt checked :: 100
+- within receipt concluded :: 100
+- within receipt distinct :: 100
+- within receipt evidence :: 100
+- within receipt open :: 100
+- within receipt preserve :: 100
+- within refutation falsifier :: 100
+- within secret boundary :: 100
+- within state diagnostic :: 100
+- within state untried :: 100
+- within synthesis compose :: 100
+- within synthesis composition :: 100
+- within synthesis distinct :: 100
+- within synthesis receipt :: 100
+- within throughput queue :: 100
+- within unexpected probe :: 100
+- within unlock probe :: 100
+- within untried diagnostic :: 100
+- within untried live :: 100
+- within view dissent :: 100
+- without bundle loop or sequence :: 100
+- without check registry :: 100
+- without close stale surface :: 100
+- without close trust boundary :: 100
+- word meaning reunited :: 100
+- work in progress :: 100
+- wrong frame reset :: 100
+- across blocked diagnostic :: 99
+- across blocked untried :: 99
+- across disagreement diagnostic :: 99
+- across disagreement untried :: 99
+- across dissent untried :: 99
+- across open missing :: 99
+- across open readings :: 99
+- across untried diagnostic :: 99
+- after compose receipt :: 99
+- after synthesis compose :: 99
+- between open missing :: 99
+- between open readings :: 99
+- instead human read falsifier :: 99
+- instead human read live readings :: 99
+- instead human read wildcard probe :: 99
+- instead stale surface bottleneck :: 99
+- instead stale surface evidence missing :: 99
+- instead stale surface trust boundary :: 99
+- not yet survived :: 99
+- only live readings falsifier :: 99
+- only live readings observable :: 99
+- only live readings surviving split :: 99
+- only live readings wildcard probe :: 99
+- only trust boundary bottleneck :: 99
+- only trust boundary evidence missing :: 99
+- rather plain wording evidence missing :: 99
+- under alternative tradeoff :: 99
+- under apparatus observable :: 99
+- under campaign sequence :: 99
+- under checked concluded :: 99
+- under checked open :: 99
+- under compose composition :: 99
+- under compose distinct :: 99
+- under compose preserve :: 99
+- under composition distinct :: 99
+- under concrete clear :: 99
+- under concrete cut :: 99
+- under concrete short :: 99
+- under conjecture refutation :: 99
+- under experience impression :: 99
+- under experiment observable :: 99
+- under experiment procedure :: 99
+- under experiment setup :: 99
+- under hold overreach :: 99
+- under hold unearned :: 99
+- under open missing :: 99
+- under open readings :: 99
+- under open return :: 99
+- under plain clear :: 99
+- under plain concrete :: 99
+- under plain cut :: 99
+- under plain short :: 99
+- under route tradeoff :: 99
+- under surprise unexpected :: 99
+- under surprise unlock :: 99
+- under throughput bottleneck :: 99
+- under unexpected odd :: 99
+- under wandering perspective :: 99
+- under way butterfly :: 99
+- under way perspective :: 99
+- under way transformation :: 99
+- under way wandering :: 99
+- under wildcard unexpected :: 99
+- within open missing :: 99
+- within open readings :: 99
+- across bounded loop :: 98
+- across current loop :: 98
+- across finite loop :: 98
+- across finite observed :: 98
+- across local loop :: 98
+- against forward alternative route :: 98
+- against forward direct move :: 98
+- against forward observable check :: 98
+- against forward risky claim :: 98
+- against registry primary answer :: 98
+- against registry whole-context triad :: 98
+- between bounded loop :: 98
+- between current loop :: 98
+- between finite loop :: 98
+- between finite observed :: 98
+- between local loop :: 98
+- by result direct move :: 98
+- by result risky claim :: 98
+- rather direct move observable check :: 98
+- rather direct move risky claim :: 98
+- relative motion direct move :: 98
+- relative motion observable check :: 98
+- relative motion risky claim :: 98
+- through current loop :: 98
+- under apparatus procedure :: 98
+- under apparatus setup :: 98
+- under bottleneck flow :: 98
+- under bottleneck handoff :: 98
+- under bottleneck workcell :: 98
+- under bounded loop :: 98
+- under campaign priority :: 98
+- under campaign resource :: 98
+- under campaign timing :: 98
+- under capacity batch :: 98
+- under carry tension :: 98
+- under checked finding :: 98
+- under clear cut :: 98
+- under clear euphemism :: 98
+- under clear inflated :: 98
+- under composition preserve :: 98
+- under concluded open :: 98
+- under coupling emergence :: 98
+- under coupling incentive :: 98
+- under current loop :: 98
+- under cut euphemism :: 98
+- under cut inflated :: 98
+- under distinct carry :: 98
+- under distinct preserve :: 98
+- under environment coupling :: 98
+- under environment feedback :: 98
+- under euphemism inflated :: 98
+- under euphemism jargon :: 98
+- under experience custom :: 98
+- under experience habit :: 98
+- under experience idea :: 98
+- under feedback coupling :: 98
+- under feedback emergence :: 98
+- under feedback incentive :: 98
+- under finite loop :: 98
+- under finite observed :: 98
+- under flow batch :: 98
+- under flow capacity :: 98
+- under flow latency :: 98
+- under fork tradeoff :: 98
+- under front advance :: 98
+- under front hold :: 98
+- under front retreat :: 98
+- under handoff capacity :: 98
+- under handoff flow :: 98
+- under handoff latency :: 98
+- under handoff workcell :: 98
+- under incentive emergence :: 98
+- under local loop :: 98
+- under observable calibration :: 98
+- under observable procedure :: 98
+- under observable setup :: 98
+- under odd unlock :: 98
+- under open unfixed :: 98
+- under option compare :: 98
+- under path acceptance :: 98
+- under path deliverable :: 98
+- under perspective butterfly :: 98
+- under perspective transformation :: 98
+- under physical example :: 98
+- under preserve carry :: 98
+- under preserve tension :: 98
+- under priority front :: 98
+- under priority resource :: 98
+- under priority timing :: 98
+- under procedure calibration :: 98
+- under procedure physical :: 98
+- under procedure setup :: 98
+- under resource front :: 98
+- under resource retreat :: 98
+- under resource timing :: 98
+- under scoped not :: 98
+- under sequence front :: 98
+- under sequence priority :: 98
+- under sequence resource :: 98
+- under sequence timing :: 98
+- under setup calibration :: 98
+- under setup physical :: 98
+- under short clear :: 98
+- under short cut :: 98
+- under short euphemism :: 98
+- under throughput handoff :: 98
+- under throughput workcell :: 98
+- under timing front :: 98
+- under timing hold :: 98
+- under timing retreat :: 98
+- under tradeoff option :: 98
+- under unexpected unlock :: 98
+- under workcell batch :: 98
+- under workcell capacity :: 98
+- under workcell flow :: 98
+- under workcell latency :: 98
+- with default direct move :: 98
+- with default observable check :: 98
+- with default risky claim :: 98
+- within bounded loop :: 98
+- within current loop :: 98
+- within finite loop :: 98
+- within finite observed :: 98
+- within local loop :: 98
+- without bundle direct move :: 98
+- without bundle observable check :: 98
+- without bundle risky claim :: 98
+- across handoff between :: 97
+- across handoff context :: 97
+- across handoff human :: 97
+- across handoff layers :: 97
+- across handoff plain :: 97
+- across handoff read :: 97
+- across permission credential :: 97
+- across permission exposure :: 97
+- across stale cleanup :: 97
+- across stale drift :: 97
+- across stale duplicate :: 97
+- across stale naming :: 97
+- before bounded loop :: 97
+- before current loop :: 97
+- before finite loop :: 97
+- before finite observed :: 97
+- before local loop :: 97
+- between blocked diagnostic :: 97
+- between blocked untried :: 97
+- between disagreement diagnostic :: 97
+- between disagreement untried :: 97
+- between dissent blocked :: 97
+- between dissent disagreement :: 97
+- between dissent untried :: 97
+- between untried diagnostic :: 97
+- during compose receipt :: 97
+- during synthesis compose :: 97
+- instead risky claim alternative route :: 97
+- instead risky claim observable check :: 97
+- instead risky claim retreat condition :: 97
+- only observable check alternative route :: 97
+- only observable check retreat condition :: 97
+- rather direct move alternative route :: 97
+- rather direct move retreat condition :: 97
+- rather direct move under :: 97
+- through bounded loop :: 97
+- through finite loop :: 97
+- through finite observed :: 97
+- through local loop :: 97
+- under acceptance blocker :: 97
+- under advance defer :: 97
+- under advance merge :: 97
+- under advance split :: 97
+- under back previous :: 97
+- under back resume :: 97
+- under back return :: 97
+- under back undo :: 97
+- under batch maintenance :: 97
+- under batch wip :: 97
+- under blocker now :: 97
+- under bridge handoff :: 97
+- under bridge translation :: 97
+- under careful enough :: 97
+- under careful human :: 97
+- under concern condition :: 97
+- under correction concern :: 97
+- under defer merge :: 97
+- under defer split :: 97
+- under deliverable acceptance :: 97
+- under does not :: 97
+- under hold advance :: 97
+- under hold defer :: 97
+- under hold merge :: 97
+- under hold split :: 97
+- under interaction edge :: 97
+- under interaction network :: 97
+- under interaction node :: 97
+- under interaction propagation :: 97
+- under latency batch :: 97
+- under latency wip :: 97
+- under maintenance ownership :: 97
+- under maintenance repeatability :: 97
+- under maintenance template :: 97
+- under merge mission :: 97
+- under nonforcing unfixed :: 97
+- under not correction :: 97
+- under not follow :: 97
+- under open survived :: 97
+- under ordinary careful :: 97
+- under ordinary human :: 97
+- under ordinary plain :: 97
+- under ordinary warm :: 97
+- under plain careful :: 97
+- under plain enough :: 97
+- under plain human :: 97
+- under plain warm :: 97
+- under propagation edge :: 97
+- under propagation network :: 97
+- under propagation node :: 97
+- under reading unfixed :: 97
+- under readings reversal :: 97
+- under retreat advance :: 97
+- under retreat defer :: 97
+- under retreat hold :: 97
+- under retreat split :: 97
+- under selection interaction :: 97
+- under selection propagation :: 97
+- under selection structure :: 97
+- under sensible careful :: 97
+- under sensible ordinary :: 97
+- under sensible plain :: 97
+- under sensible warm :: 97
+- under split merge :: 97
+- under split mission :: 97
+- under structure interaction :: 97
+- under structure network :: 97
+- under structure node :: 97
+- under structure propagation :: 97
+- under survive open :: 97
+- under testimony ordinary :: 97
+- under testimony sensible :: 97
+- under unfixed many :: 97
+- under unfixed nameless :: 97
+- under unfixed plural :: 97
+- under unfixed readings :: 97
+- under warm careful :: 97
+- under wip maintenance :: 97
+- under wip repeatability :: 97
+- under wip template :: 97
+- within alternative tradeoff :: 97
+- within compose composition :: 97
+- within conjecture refutation :: 97
+- within hold overreach :: 97
+- within hold unearned :: 97
+- within plain clear :: 97
+- within plain concrete :: 97
+- within plain short :: 97
+- within return previous :: 97
+- within return resume :: 97
+- within return undo :: 97
+- within secret credential :: 97
+- within secret exposure :: 97
+- within secret permission :: 97
+- within surprise unexpected :: 97
+- within translation handoff :: 97
+- within way butterfly :: 97
+- within way perspective :: 97
+- within way wandering :: 97
+- within wildcard unexpected :: 97
+- across handoff prompt :: 96
+- across stale maintenance :: 96
+- after naming cleanup :: 96
+- after naming drift :: 96
+- after resume restore :: 96
+- after resume undo :: 96
+- before duplicate cleanup :: 96
+- before duplicate drift :: 96
+- before duplicate maintenance :: 96
+- before duplicate naming :: 96
+- before duplicate orphan :: 96
+- before exposure credential :: 96
+- before exposure privilege :: 96
+- by cleanup maintenance :: 96
+- by cleanup orphan :: 96
+- by credential privilege :: 96
+- from drift cleanup :: 96
+- rather surface derived :: 96
+- rather surface imported :: 96
+- through blocked diagnostic :: 96
+- through blocked untried :: 96
+- through disagreement diagnostic :: 96
+- through disagreement untried :: 96
+- through dissent blocked :: 96
+- through dissent disagreement :: 96
+- through dissent untried :: 96
+- through previous resume :: 96
+- through untried diagnostic :: 96
+- within acceptance blocker :: 96
+- within advance defer :: 96
+- within advance merge :: 96
+- within advance split :: 96
+- within apparatus observable :: 96
+- within apparatus procedure :: 96
+- within apparatus setup :: 96
+- within batch maintenance :: 96
+- within batch wip :: 96
+- within bottleneck flow :: 96
+- within bottleneck handoff :: 96
+- within bottleneck workcell :: 96
+- within campaign priority :: 96
+- within campaign resource :: 96
+- within campaign sequence :: 96
+- within campaign timing :: 96
+- within capacity batch :: 96
+- within carry tension :: 96
+- within clear cut :: 96
+- within clear euphemism :: 96
+- within clear inflated :: 96
+- within compose distinct :: 96
+- within compose preserve :: 96
+- within composition distinct :: 96
+- within composition preserve :: 96
+- within concrete clear :: 96
+- within concrete cut :: 96
+- within concrete short :: 96
+- within cut euphemism :: 96
+- within cut inflated :: 96
+- within defer merge :: 96
+- within defer split :: 96
+- within deliverable acceptance :: 96
+- within distinct carry :: 96
+- within distinct preserve :: 96
+- within environment coupling :: 96
+- within environment feedback :: 96
+- within euphemism inflated :: 96
+- within euphemism jargon :: 96
+- within experience custom :: 96
+- within experience habit :: 96
+- within experience idea :: 96
+- within experience impression :: 96
+- within experiment observable :: 96
+- within experiment procedure :: 96
+- within experiment setup :: 96
+- within feedback coupling :: 96
+- within flow batch :: 96
+- within flow capacity :: 96
+- within flow latency :: 96
+- within fork tradeoff :: 96
+- within front advance :: 96
+- within front hold :: 96
+- within front retreat :: 96
+- within handoff capacity :: 96
+- within handoff flow :: 96
+- within handoff latency :: 96
+- within handoff workcell :: 96
+- within hold advance :: 96
+- within hold defer :: 96
+- within hold merge :: 96
+- within hold split :: 96
+- within latency batch :: 96
+- within latency wip :: 96
+- within nonforcing unfixed :: 96
+- within not correction :: 96
+- within observable calibration :: 96
+- within observable procedure :: 96
+- within observable setup :: 96
+- within odd unlock :: 96
+- within open unfixed :: 96
+- within option compare :: 96
+- within path acceptance :: 96
+- within path deliverable :: 96
+- within perspective butterfly :: 96
+- within perspective transformation :: 96
+- within physical example :: 96
+- within plain cut :: 96
+- within preserve carry :: 96
+- within preserve tension :: 96
+- within priority front :: 96
+- within priority resource :: 96
+- within priority timing :: 96
+- within procedure calibration :: 96
+- within procedure physical :: 96
+- within procedure setup :: 96
+- within reading unfixed :: 96
+- within resource front :: 96
+- within resource retreat :: 96
+- within resource timing :: 96
+- within retreat advance :: 96
+- within retreat defer :: 96
+- within retreat hold :: 96
+- within retreat split :: 96
+- within route tradeoff :: 96
+- within scoped not :: 96
+- within sequence front :: 96
+- within sequence priority :: 96
+- within sequence resource :: 96
+- within sequence timing :: 96
+- within setup calibration :: 96
+- within setup physical :: 96
+- within short clear :: 96
+- within short cut :: 96
+- within short euphemism :: 96
+- within split merge :: 96
+- within surprise unlock :: 96
+- within testimony ordinary :: 96
+- within testimony sensible :: 96
+- within throughput bottleneck :: 96
+- within throughput handoff :: 96
+- within throughput workcell :: 96
+- within timing front :: 96
+- within timing hold :: 96
+- within timing retreat :: 96
+- within tradeoff option :: 96
+- within unexpected odd :: 96
+- within unexpected unlock :: 96
+- within unfixed many :: 96
+- within unfixed nameless :: 96
+- within unfixed plural :: 96
+- within unfixed readings :: 96
+- within wandering perspective :: 96
+- within way transformation :: 96
+- within wip maintenance :: 96
+- within wip repeatability :: 96
+- within wip template :: 96
+- within workcell batch :: 96
+- within workcell capacity :: 96
+- within workcell flow :: 96
+- within workcell latency :: 96
+- by credential leak :: 95
+- until compose receipt :: 95
+- until synthesis compose :: 95
+- with restore navigation :: 95
+- within blocker now :: 95
+- within careful enough :: 95
+- within careful human :: 95
+- within concern condition :: 95
+- within correction concern :: 95
+- within maintenance ownership :: 95
+- within maintenance repeatability :: 95
+- within maintenance template :: 95
+- within merge mission :: 95
+- within open survived :: 95
+- within ordinary careful :: 95
+- within ordinary human :: 95
+- within ordinary plain :: 95
+- within ordinary warm :: 95
+- within plain careful :: 95
+- within plain enough :: 95
+- within plain human :: 95
+- within plain warm :: 95
+- within readings reversal :: 95
+- within sensible careful :: 95
+- within sensible ordinary :: 95
+- within sensible plain :: 95
+- within sensible warm :: 95
+- within split mission :: 95
+- within survive open :: 95
+- within warm careful :: 95
+- across acceptance blocker :: 94
+- across alternative tradeoff :: 94
+- across apparatus observable :: 94
+- across apparatus procedure :: 94
+- across apparatus setup :: 94
+- across bounded probe :: 94
+- across clear cut :: 94
+- across clear euphemism :: 94
+- across clear inflated :: 94
+- across compose composition :: 94
+- across compose distinct :: 94
+- across compose preserve :: 94
+- across concrete clear :: 94
+- across concrete cut :: 94
+- across concrete short :: 94
+- across conjecture refutation :: 94
+- across deliverable acceptance :: 94
+- across experience custom :: 94
+- across experience habit :: 94
+- across experience idea :: 94
+- across experience impression :: 94
+- across experiment observable :: 94
+- across experiment procedure :: 94
+- across experiment setup :: 94
+- across fork tradeoff :: 94
+- across hold overreach :: 94
+- across hold unearned :: 94
+- across nonforcing unfixed :: 94
+- across not correction :: 94
+- across observable calibration :: 94
+- across observable procedure :: 94
+- across observable setup :: 94
+- across odd unlock :: 94
+- across open unfixed :: 94
+- across option compare :: 94
+- across path acceptance :: 94
+- across path deliverable :: 94
+- across perspective butterfly :: 94
+- across perspective transformation :: 94
+- across physical example :: 94
+- across plain clear :: 94
+- across plain concrete :: 94
+- across plain cut :: 94
+- across plain short :: 94
+- across procedure calibration :: 94
+- across procedure physical :: 94
+- across procedure setup :: 94
+- across reading unfixed :: 94
+- across route tradeoff :: 94
+- across scoped not :: 94
+- across setup calibration :: 94
+- across setup physical :: 94
+- across short clear :: 94
+- across short cut :: 94
+- across short euphemism :: 94
+- boot new thread doctrine :: 100
+- reinject drifting thread doctrine :: 100
+- correlated thinkers aligned nouns :: 100
+- QIT proof graph :: 100
+- z3 cvc5 UNSAT :: 100
+- probe family seam :: 100
+- C9 tension divergence :: 100
+- qubit tensor hilbert :: 100
+- fact observation experience :: 96
+- custom habit belief :: 96
+- apparatus observable measurement :: 96
+- path perspective plurality :: 96
+- monitor controller feedback :: 96
+- stock flow delay :: 96
+- jidoka andon abnormality :: 96
+- evidence receipt boundary :: 98
+- provenance traceability receipt :: 98
+- trust boundary mitigation :: 98
+- authorization least privilege :: 98
+- divergence plurality preservation :: 98
+- clarity concrete naming :: 98
+- route truth receipt :: 98
+- spawned blocked deferred :: 98
+- blocked deferred simulated :: 98
+- runtime capability negotiation :: 98
+- adaptive wave sizing :: 98
+- minimum viable wave :: 98
+- evidence need capacity :: 98
+- test scout learn :: 98
+- worker task receipt :: 98
+- independent surface receipt :: 98
+- model identity receipt :: 98
+- dissent source weighting :: 98
+- prework future boundary :: 98

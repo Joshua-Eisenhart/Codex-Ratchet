@@ -1,0 +1,460 @@
+# 🏭 Factory Mini-MMM COMPACT v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `FACTORY` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_FACTORY_COMPACT_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- throughput :: 100
+- queue :: 100
+- workcell :: 100
+- latency :: 100
+- wip :: 100
+- repeatability :: 100
+- template :: 100
+- ownership :: 100
+- buffer :: 100
+- rework :: 100
+- work in progress :: 100
+- choke point :: 100
+- cycle time :: 100
+- standard work :: 100
+- bottleneck :: 100
+- flow :: 100
+- capacity :: 100
+- handoff :: 100
+- maintenance :: 100
+- throughput accounting :: 100
+- drum buffer rope :: 100
+- queue length :: 100
+- bottleneck resource :: 100
+- flow efficiency :: 100
+- batch :: 100
+- rate-limiter :: 100
+- leverage :: 100
+- work in process :: 100
+- progress :: 100
+- standard :: 100
+- checklist :: 100
+- kanban :: 100
+- drum :: 100
+- rope :: 100
+- choke :: 100
+- point :: 100
+- rate :: 100
+- limiter :: 100
+- scrap :: 100
+- cycle :: 100
+- time :: 100
+- theory of constraints :: 100
+- system constraint :: 100
+- continuous improvement :: 100
+- workstream :: 100
+- unblock :: 100
+- inventory :: 100
+- waiting :: 100
+- factory :: 100
+- drag :: 100
+- work :: 100
+- constraint :: 100
+- blocked :: 100
+- packet :: 100
+- actual :: 100
+- concrete :: 100
+- distinct :: 100
+- live :: 100
+- inferred :: 100
+- plain :: 100
+- known :: 100
+- unknown :: 100
+- narrow :: 100
+- andon :: 100
+- defect :: 100
+- heijunka :: 100
+- jidoka :: 100
+- justintime :: 100
+- kaizen :: 100
+- leadtime :: 100
+- management :: 100
+- pull :: 100
+- reliability :: 100
+- takt :: 100
+- visual :: 100
+- waste :: 100
+- small :: 79
+
+## couplings
+
+- choke point :: 100
+- cycle time :: 100
+- standard work :: 100
+- bottleneck evidence :: 100
+- bottleneck support :: 100
+- bottleneck path :: 100
+- bottleneck surface :: 100
+- bottleneck packet :: 100
+- bottleneck receipt :: 100
+- bottleneck trace :: 100
+- bottleneck result :: 100
+- bottleneck scope :: 100
+- bottleneck boundary :: 100
+- bottleneck status :: 100
+- bottleneck candidate :: 100
+- bottleneck witness :: 100
+- bottleneck :: 100
+- queue :: 100
+- handoff :: 100
+- throughput :: 100
+- wip :: 100
+- flow :: 100
+- maintenance :: 100
+- repeatability :: 100
+- template :: 100
+- ownership :: 100
+- workcell :: 100
+- capacity :: 100
+- latency :: 100
+- buffer :: 100
+- rework :: 100
+- bottleneck probe :: 100
+- bottleneck constraint :: 100
+- check bottleneck :: 100
+- compare bottleneck :: 100
+- observe bottleneck :: 100
+- measure bottleneck :: 100
+- test bottleneck :: 100
+- verify bottleneck :: 100
+- hold bottleneck :: 100
+- preserve bottleneck :: 100
+- split bottleneck :: 100
+- narrow bottleneck :: 100
+- under bottleneck :: 100
+- within bottleneck :: 100
+- across bottleneck :: 100
+- between bottleneck :: 100
+- through bottleneck :: 100
+- before bottleneck :: 100
+- after bottleneck :: 100
+- until bottleneck :: 100
+- where bottleneck :: 100
+- while bottleneck :: 100
+- queue evidence :: 100
+- queue support :: 100
+- queue path :: 100
+- queue surface :: 100
+- queue packet :: 100
+- work in progress :: 100
+- queue receipt :: 100
+- queue trace :: 100
+- queue result :: 100
+- queue scope :: 100
+- queue boundary :: 100
+- queue status :: 100
+- queue candidate :: 100
+- queue witness :: 100
+- queue probe :: 100
+- queue constraint :: 100
+- check queue :: 100
+- compare queue :: 100
+- observe queue :: 100
+- measure queue :: 100
+- test queue :: 100
+- verify queue :: 100
+- hold queue :: 100
+- preserve queue :: 100
+- split queue :: 100
+- narrow queue :: 100
+- under queue :: 100
+- within queue :: 100
+- across queue :: 100
+- between queue :: 100
+- through queue :: 100
+- before queue :: 100
+- after queue :: 100
+- until queue :: 100
+- where queue :: 100
+- while queue :: 100
+- throughput evidence :: 100
+- throughput support :: 100
+- throughput path :: 100
+- throughput surface :: 100
+- throughput packet :: 100
+- throughput receipt :: 100
+- throughput trace :: 100
+- throughput result :: 100
+- throughput scope :: 100
+- throughput boundary :: 100
+- throughput status :: 100
+- throughput candidate :: 100
+- throughput witness :: 100
+- throughput probe :: 100
+- throughput constraint :: 100
+- check throughput :: 100
+- compare throughput :: 100
+- observe throughput :: 100
+- measure throughput :: 100
+- test throughput :: 100
+- under throughput :: 100
+- within throughput :: 100
+- across throughput :: 100
+- between throughput :: 100
+- through throughput :: 100
+- verify throughput :: 100
+- hold throughput :: 100
+- preserve throughput :: 100
+- split throughput :: 100
+- narrow throughput :: 100
+- before throughput :: 100
+- after throughput :: 100
+- until throughput :: 100
+- where throughput :: 100
+- while throughput :: 100
+- handoff evidence :: 100
+- handoff support :: 100
+- handoff path :: 100
+- handoff surface :: 100
+- handoff packet :: 100
+- handoff receipt :: 100
+- handoff trace :: 100
+- handoff result :: 100
+- handoff scope :: 100
+- handoff boundary :: 100
+- handoff status :: 100
+- handoff candidate :: 100
+- handoff witness :: 100
+- handoff probe :: 100
+- handoff constraint :: 100
+- check handoff :: 100
+- compare handoff :: 100
+- observe handoff :: 100
+- measure handoff :: 100
+- test handoff :: 100
+- verify handoff :: 100
+- hold handoff :: 100
+- preserve handoff :: 100
+- split handoff :: 100
+- narrow handoff :: 100
+- until handoff :: 100
+
+## triplets
+
+- work in progress :: 100
+- under throughput queue :: 100
+- under bottleneck queue :: 100
+- under queue handoff :: 100
+- under queue workcell :: 100
+- under queue flow :: 100
+- under queue capacity :: 100
+- bottleneck evidence path :: 100
+- bottleneck support path :: 100
+- bottleneck path path :: 100
+- bottleneck surface path :: 100
+- under open bottleneck :: 100
+- bottleneck packet path :: 100
+- within throughput queue :: 100
+- within bottleneck queue :: 100
+- within queue handoff :: 100
+- within queue workcell :: 100
+- within queue flow :: 100
+- within queue capacity :: 100
+- under live bottleneck :: 100
+- bottleneck receipt path :: 100
+- bottleneck trace path :: 100
+- bottleneck result path :: 100
+- bottleneck scope path :: 100
+- bottleneck boundary path :: 100
+- within open bottleneck :: 100
+- check bottleneck receipt :: 100
+- within live bottleneck :: 100
+- compare bottleneck receipt :: 100
+- observe bottleneck receipt :: 100
+- measure bottleneck receipt :: 100
+- across open bottleneck :: 100
+- across live bottleneck :: 100
+- between open bottleneck :: 100
+- between live bottleneck :: 100
+- test bottleneck receipt :: 100
+- verify bottleneck receipt :: 100
+- hold bottleneck receipt :: 100
+- preserve bottleneck receipt :: 100
+- andon visible problem :: 100
+- bottleneck queue flow :: 100
+- jidoka defect stop :: 100
+- just in time :: 100
+- kanban pull signal :: 100
+- lead time reduction :: 100
+- maintenance reliability throughput :: 100
+- next process pulls :: 100
+- quality built process :: 100
+- rework waste removal :: 100
+- right quantity timing :: 100
+- standard work improvement :: 100
+- takt time leveling :: 100
+- throughput handoff drag :: 100
+- wip inventory flow :: 100
+- under throughput bottleneck :: 99
+- under throughput handoff :: 98
+- under throughput workcell :: 98
+- under bottleneck handoff :: 98
+- under bottleneck workcell :: 98
+- under bottleneck flow :: 98
+- under handoff workcell :: 98
+- under handoff flow :: 98
+- under handoff capacity :: 98
+- under handoff latency :: 98
+- under workcell flow :: 98
+- under workcell capacity :: 98
+- under workcell latency :: 98
+- under workcell batch :: 98
+- under flow capacity :: 98
+- under flow latency :: 98
+- under flow batch :: 98
+- under capacity batch :: 98
+- under latency batch :: 97
+- under latency wip :: 97
+- under batch wip :: 97
+- under batch maintenance :: 97
+- under wip maintenance :: 97
+- under wip repeatability :: 97
+- under wip template :: 97
+- under maintenance repeatability :: 97
+- under maintenance template :: 97
+- under maintenance ownership :: 97
+- within throughput bottleneck :: 96
+- within throughput handoff :: 96
+- within throughput workcell :: 96
+- within bottleneck handoff :: 96
+- within bottleneck workcell :: 96
+- within bottleneck flow :: 96
+- within handoff workcell :: 96
+- within handoff flow :: 96
+- within handoff capacity :: 96
+- within handoff latency :: 96
+- within workcell flow :: 96
+- within workcell capacity :: 96
+- within workcell latency :: 96
+- within workcell batch :: 96
+- within flow capacity :: 96
+- within flow latency :: 96
+- within flow batch :: 96
+- within capacity batch :: 96
+- within latency batch :: 96
+- within latency wip :: 96
+- within batch wip :: 96
+- within batch maintenance :: 96
+- within wip maintenance :: 96
+- within wip repeatability :: 96
+- within wip template :: 96
+- within maintenance repeatability :: 95
+- within maintenance template :: 95
+- within maintenance ownership :: 95
+- under capacity latency :: 88
+- under repeatability template :: 87
+- under repeatability ownership :: 87
+- under template ownership :: 87
+- under ownership buffer :: 87
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (COMPACT)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- Toyota Production System
+- waste
+- lead time
+- quality
+- jidoka
+- just-in-time
+- andon
+- abnormality
+- kanban
+- pull system
+- kaizen
+- takt
+- incident review
+
+### Couplings
+
+- eliminate waste
+- shorten lead times
+- pull system
+- jidoka andon
+- visible abnormality
+- quality at source
+
+### Triplets
+
+- jidoka andon abnormality
+- waste lead-time flow
+- kanban pull kaizen

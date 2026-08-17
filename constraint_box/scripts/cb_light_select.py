@@ -41,6 +41,15 @@ METADATA_PROBE_SOURCE = ROOT / "scripts/cb_light_metadata_probe.py"
 OPERATION_PROBE_SOURCE = ROOT / "light_runtime/src/constraintbox/cb_light_tool_probes.py"
 
 
+def manifest_interpreter(manifest: dict[str, Any]) -> pathlib.Path:
+    """Resolve the relocatable launcher declaration against this CB root."""
+
+    declared = pathlib.Path(str(manifest["mandated_interpreter"])).expanduser()
+    if declared.is_absolute():
+        return declared
+    return ROOT / declared
+
+
 def canonical_json(value: Any) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
 
@@ -330,7 +339,7 @@ def validate_install_receipt(
     if not isinstance(environment, dict):
         raise ValueError(f"{role} environment evidence missing")
     prefix = pathlib.Path(str(environment.get("prefix", ""))).resolve()
-    runtime_prefix = pathlib.Path(str(manifest["mandated_interpreter"])).parent.parent.resolve()
+    runtime_prefix = manifest_interpreter(manifest).parent.parent.resolve()
     if role == "runtime" and prefix != runtime_prefix:
         raise ValueError("runtime receipt is not from contained .venv")
     if role == "clean" and prefix == runtime_prefix:
@@ -815,7 +824,7 @@ def main() -> int:
         raise ValueError("runtime and clean install reports must use distinct paths")
     closure_agreement = runtime_closure == clean_closure
     metadata_rows = validate_metadata_receipt(metadata, manifest_rows)
-    runtime_prefix = pathlib.Path(str(manifest["mandated_interpreter"])).parent.parent.resolve()
+    runtime_prefix = manifest_interpreter(manifest).parent.parent.resolve()
     operation_rows, operation_by_name = validate_operation_receipt(
         operation, manifest_rows, runtime_prefix
     )

@@ -1,0 +1,124 @@
+{
+  "claim_ceiling": "finite structured support-extension and observation-restriction probe only; not chirality, not a manifold, not an attractor, not promotion",
+  "controls": {
+    "all_pass": true,
+    "identity_bind_commutes": true,
+    "jax_agrees_if_requested": true,
+    "missing_observation_refused": true,
+    "relabel_invariant": true,
+    "solver_masks_bound": true,
+    "structured_has_commuting_case": true,
+    "structured_has_gap_case": true,
+    "structured_less_generic_than_random_masks": true
+  },
+  "engine": "exact",
+  "finding": "STRUCTURED_FAMILY_DIFFERS_FROM_RANDOM_MASKS",
+  "fixture_id": "two-fibres-two-probes-v1",
+  "fixture_sha256": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+  "forbidden_inferences": [
+    "order gap is chirality",
+    "order gap is the odd gradient",
+    "static quotient component is an attractor",
+    "structured family result is manifold admission"
+  ],
+  "generic_endomap_control": {
+    "carrier_size": 4,
+    "commuting_pairs": 2824,
+    "comparison_note": "reference only; arbitrary endomap pairs are not the structured subset-mask family",
+    "map_count": 256,
+    "noncommuting_pairs": 62712,
+    "noncommuting_rate": 0.9569091796875,
+    "pair_count": 65536
+  },
+  "jax": {
+    "ran": false,
+    "reason": "exact engine"
+  },
+  "next_operation": "jax_vmap_named_bind_masks_only_if_more_width_is_needed",
+  "promotion_allowed": false,
+  "result_sha256": "8926612e947886fdd5866e7912127f4abb5d6f277025c5da8338c7cc58efedce",
+  "schema": "constraintbox.structured-open-bind-result.v1",
+  "solver": {
+    "agree": true,
+    "cvc5": "PASS",
+    "mask_set_sha256": "6a6eaacb452b83b58290a5bb0ef77344a54b3849562ca098abf851420c402bde",
+    "z3": "PASS"
+  },
+  "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50",
+  "status": "PASS",
+  "structured": {
+    "has_commuting_case": true,
+    "has_gap_case": true,
+    "identity_gap_zero": true,
+    "random_mask_case_count": 256,
+    "random_mask_gap_count": 156,
+    "random_mask_gap_rate": 0.609375,
+    "rows": [
+      {
+        "allowed_values": [
+          "L"
+        ],
+        "bind_mask": 3,
+        "commuting_count": 16,
+        "control": null,
+        "gap_count": 0,
+        "gap_rate": 0.0,
+        "id": "bind-side-L",
+        "probe": "side"
+      },
+      {
+        "allowed_values": [
+          "R"
+        ],
+        "bind_mask": 12,
+        "commuting_count": 16,
+        "control": null,
+        "gap_count": 0,
+        "gap_rate": 0.0,
+        "id": "bind-side-R",
+        "probe": "side"
+      },
+      {
+        "allowed_values": [
+          "0"
+        ],
+        "bind_mask": 5,
+        "commuting_count": 1,
+        "control": null,
+        "gap_count": 15,
+        "gap_rate": 0.9375,
+        "id": "bind-record-0",
+        "probe": "record"
+      },
+      {
+        "allowed_values": [
+          "1"
+        ],
+        "bind_mask": 10,
+        "commuting_count": 1,
+        "control": null,
+        "gap_count": 15,
+        "gap_rate": 0.9375,
+        "id": "bind-record-1",
+        "probe": "record"
+      },
+      {
+        "allowed_values": [
+          "L",
+          "R"
+        ],
+        "bind_mask": 15,
+        "commuting_count": 16,
+        "control": "identity",
+        "gap_count": 0,
+        "gap_rate": 0.0,
+        "id": "bind-identity",
+        "probe": "side"
+      }
+    ],
+    "structured_noncontrol_case_count": 64,
+    "structured_noncontrol_gap_count": 30,
+    "structured_noncontrol_gap_rate": 0.46875,
+    "subset_count": 16
+  }
+}

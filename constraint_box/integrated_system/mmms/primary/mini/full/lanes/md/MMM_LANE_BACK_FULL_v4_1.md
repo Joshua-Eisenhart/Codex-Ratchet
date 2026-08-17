@@ -1,0 +1,1139 @@
+# ⬅️ Back Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this lane. It is normally surfaced through Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `BACK` and remapped to v4.1 canon category `lanes`.
+
+---
+
+# MMM_LANE_BACK_FULL_v4_1
+
+## words
+
+- back :: 100
+- return :: 100
+- prior :: 100
+- surface :: 100
+- previous :: 100
+- choice :: 100
+- resume :: 100
+- undo :: 100
+- route :: 100
+- restore :: 100
+- context :: 100
+- frame :: 100
+- prior branch :: 100
+- previous surface :: 100
+- target :: 100
+- navigation :: 100
+- branch context :: 100
+- no branch :: 100
+- branch :: 100
+- earlier :: 100
+- path :: 99
+- revisit :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 99
+- among :: 99
+- inside :: 99
+- outside :: 99
+- near :: 99
+- beside :: 99
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- bounded :: 98
+- finite :: 98
+- open :: 98
+- live :: 98
+- distinct :: 98
+- concrete :: 98
+- plain :: 98
+- observed :: 98
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 97
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- packet :: 96
+- artifact :: 96
+- receipt :: 96
+- trace :: 96
+- result :: 96
+- support :: 96
+- evidence :: 96
+- scope :: 96
+- boundary :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 95
+- perception :: 95
+- conjunction :: 95
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- model :: 94
+- solver :: 94
+- satisfiable :: 94
+- by :: 94
+- relative :: 94
+- locally :: 94
+- rather :: 94
+- instead :: 94
+- still :: 94
+- likely :: 94
+- possible :: 94
+- partial :: 94
+- limited :: 94
+- measurement :: 94
+- test :: 93
+- sample :: 93
+- case :: 93
+- instance :: 93
+- word :: 93
+- distinction :: 93
+- comparison :: 93
+- estimate :: 93
+- uncertainty :: 93
+- counterexample :: 93
+- condition :: 93
+- fork :: 93
+- plurality :: 93
+- reading :: 93
+- perspective :: 93
+- claim :: 93
+- voice :: 93
+- lane :: 93
+- interactive :: 93
+- decision :: 93
+
+## couplings
+
+- under back :: 100
+- within back :: 100
+- across back :: 100
+- between back :: 100
+- through back :: 100
+- before back :: 100
+- after back :: 100
+- until back :: 100
+- where back :: 100
+- while back :: 100
+- back evidence :: 100
+- back support :: 100
+- back path :: 100
+- back surface :: 100
+- back packet :: 100
+- back receipt :: 100
+- back trace :: 100
+- back result :: 100
+- back scope :: 100
+- back boundary :: 100
+- back status :: 99
+- back candidate :: 99
+- back witness :: 99
+- back probe :: 99
+- back constraint :: 99
+- check back :: 99
+- compare back :: 99
+- observe back :: 99
+- measure back :: 99
+- test back :: 99
+- verify back :: 99
+- hold back :: 99
+- preserve back :: 99
+- split back :: 99
+- narrow back :: 99
+- under prior :: 99
+- within prior :: 99
+- across prior :: 99
+- between prior :: 99
+- through prior :: 99
+- before prior :: 98
+- after prior :: 98
+- until prior :: 98
+- where prior :: 98
+- while prior :: 98
+- prior evidence :: 98
+- prior support :: 98
+- prior path :: 98
+- prior surface :: 98
+- prior packet :: 98
+- prior receipt :: 98
+- prior trace :: 98
+- prior result :: 98
+- prior scope :: 98
+- prior boundary :: 98
+- prior status :: 98
+- prior candidate :: 98
+- prior witness :: 98
+- prior probe :: 98
+- prior constraint :: 98
+- check prior :: 97
+- compare prior :: 97
+- observe prior :: 97
+- measure prior :: 97
+- test prior :: 97
+- verify prior :: 97
+- hold prior :: 97
+- preserve prior :: 97
+- split prior :: 97
+- narrow prior :: 97
+- under previous :: 97
+- within previous :: 97
+- across previous :: 97
+- between previous :: 97
+- through previous :: 97
+- before previous :: 97
+- after previous :: 97
+- until previous :: 97
+- where previous :: 97
+- while previous :: 97
+- previous evidence :: 96
+- previous support :: 96
+- previous path :: 96
+- previous surface :: 96
+- previous packet :: 96
+- previous receipt :: 96
+- previous trace :: 96
+- previous result :: 96
+- previous scope :: 96
+- previous boundary :: 96
+- previous status :: 96
+- previous candidate :: 96
+- previous witness :: 96
+- previous probe :: 96
+- previous constraint :: 96
+- check previous :: 96
+- compare previous :: 96
+- observe previous :: 96
+- measure previous :: 96
+- test previous :: 96
+- verify previous :: 95
+- hold previous :: 95
+- preserve previous :: 95
+- split previous :: 95
+- narrow previous :: 95
+- under return :: 95
+- within return :: 95
+- across return :: 95
+- between return :: 95
+- through return :: 95
+- before return :: 95
+- after return :: 95
+- until return :: 95
+- where return :: 95
+- while return :: 95
+- return evidence :: 95
+- return support :: 95
+- return path :: 95
+- return surface :: 95
+- return packet :: 95
+- return receipt :: 94
+- return trace :: 94
+- return result :: 94
+- return scope :: 94
+- return boundary :: 94
+- return status :: 94
+- return candidate :: 94
+- return witness :: 94
+- return probe :: 94
+- return constraint :: 94
+- check return :: 94
+- compare return :: 94
+- observe return :: 94
+- measure return :: 94
+- test return :: 94
+- verify return :: 94
+- hold return :: 94
+- preserve return :: 94
+- split return :: 94
+- narrow return :: 94
+- under resume :: 93
+- within resume :: 93
+- across resume :: 93
+- between resume :: 93
+- through resume :: 93
+- before resume :: 93
+- after resume :: 93
+- until resume :: 93
+- where resume :: 93
+- while resume :: 93
+- resume evidence :: 93
+- resume support :: 93
+- resume path :: 93
+- resume surface :: 93
+- resume packet :: 93
+- resume receipt :: 93
+- resume trace :: 93
+- resume result :: 93
+- resume scope :: 93
+- resume boundary :: 93
+- resume status :: 92
+- resume candidate :: 92
+- resume witness :: 92
+- resume probe :: 92
+- resume constraint :: 92
+- check resume :: 92
+- compare resume :: 92
+- observe resume :: 92
+- measure resume :: 92
+- test resume :: 92
+- verify resume :: 92
+- hold resume :: 92
+- preserve resume :: 92
+- split resume :: 92
+- narrow resume :: 92
+- under branch :: 92
+- within branch :: 92
+- across branch :: 92
+- between branch :: 92
+- through branch :: 92
+- before branch :: 91
+- after branch :: 91
+- until branch :: 91
+- where branch :: 91
+- while branch :: 91
+- branch evidence :: 91
+- branch support :: 91
+- branch path :: 91
+- branch surface :: 91
+- branch packet :: 91
+- branch receipt :: 91
+- branch trace :: 91
+- branch result :: 91
+- branch scope :: 91
+- branch boundary :: 91
+- branch status :: 91
+- branch candidate :: 91
+- branch witness :: 91
+- branch probe :: 91
+- branch constraint :: 91
+- under surface :: 90
+- under choice :: 90
+- under undo :: 90
+- under route :: 90
+- under restore :: 90
+- under context :: 90
+- under frame :: 90
+- under prior branch :: 90
+- under previous surface :: 90
+- under target :: 90
+- within surface :: 90
+- within choice :: 90
+- within undo :: 90
+- within route :: 90
+- within restore :: 90
+- within context :: 90
+- within frame :: 90
+- within prior branch :: 90
+- within previous surface :: 90
+- within target :: 90
+- across surface :: 89
+- across choice :: 89
+- across undo :: 89
+- across route :: 89
+- across restore :: 89
+- across context :: 89
+- across frame :: 89
+- across prior branch :: 89
+- across previous surface :: 89
+- across target :: 89
+- between surface :: 89
+- between choice :: 89
+- between undo :: 89
+- between route :: 89
+- between restore :: 89
+- between context :: 89
+- between frame :: 89
+- between prior branch :: 89
+- between previous surface :: 89
+- between target :: 89
+- through surface :: 88
+- through choice :: 88
+- through undo :: 88
+- through route :: 88
+- through restore :: 88
+- through context :: 88
+- through frame :: 88
+- through prior branch :: 88
+- through previous surface :: 88
+- through target :: 88
+- before surface :: 88
+- before choice :: 88
+- before undo :: 88
+- before route :: 88
+- before restore :: 88
+- before context :: 88
+- before frame :: 88
+- before prior branch :: 88
+- before previous surface :: 88
+- before target :: 88
+- after surface :: 87
+- after choice :: 87
+- after undo :: 87
+- after route :: 87
+- after restore :: 87
+- after context :: 87
+- after frame :: 87
+- after prior branch :: 87
+- after previous surface :: 87
+- after target :: 87
+- from back :: 87
+- from return :: 87
+- from prior :: 87
+- from surface :: 87
+- from previous :: 87
+- from choice :: 87
+- from resume :: 87
+- from undo :: 87
+- from route :: 87
+- from restore :: 87
+- from context :: 86
+- from frame :: 86
+- from prior branch :: 86
+- from previous surface :: 86
+- from target :: 86
+- by back :: 86
+- by return :: 86
+- by prior :: 86
+- by surface :: 86
+- by previous :: 86
+- by choice :: 86
+- by resume :: 86
+- by undo :: 86
+- by route :: 86
+- by restore :: 86
+- by context :: 86
+- by frame :: 86
+- by prior branch :: 86
+- by previous surface :: 86
+- by target :: 86
+- with back :: 85
+- with return :: 85
+- with prior :: 85
+- with surface :: 85
+- with previous :: 85
+- with choice :: 85
+- with resume :: 85
+- with undo :: 85
+- with route :: 85
+- with restore :: 85
+- with context :: 85
+- with frame :: 85
+- with prior branch :: 85
+- with previous surface :: 85
+- with target :: 85
+- without back :: 85
+- without return :: 85
+- without prior :: 85
+- without surface :: 85
+- without previous :: 85
+- without choice :: 84
+- without resume :: 84
+- without undo :: 84
+- without route :: 84
+- without restore :: 84
+- without context :: 84
+- without frame :: 84
+- without prior branch :: 84
+- without previous surface :: 84
+- without target :: 84
+- against back :: 84
+- against return :: 84
+- against prior :: 84
+- against surface :: 84
+- against previous :: 84
+- against choice :: 84
+- against resume :: 84
+- against undo :: 84
+- against route :: 84
+- against restore :: 84
+- against context :: 83
+- against frame :: 83
+- against prior branch :: 83
+- against previous surface :: 83
+- against target :: 83
+- back return :: 83
+- back prior :: 83
+- back previous :: 83
+- back choice :: 83
+- back resume :: 83
+- back undo :: 83
+- return prior :: 83
+- return previous :: 83
+- return choice :: 83
+- return resume :: 83
+- return undo :: 83
+- return route :: 83
+- prior previous :: 83
+- prior choice :: 83
+- prior resume :: 83
+- prior undo :: 82
+- prior route :: 82
+- prior restore :: 82
+- surface previous :: 82
+- surface choice :: 82
+- surface resume :: 82
+- surface undo :: 82
+- surface route :: 82
+- surface restore :: 82
+- surface context :: 82
+- previous choice :: 82
+- previous resume :: 82
+- previous undo :: 82
+- previous route :: 82
+- previous restore :: 82
+- previous context :: 82
+- previous frame :: 82
+- choice resume :: 82
+- choice undo :: 82
+- choice route :: 82
+- choice restore :: 81
+- choice context :: 81
+- choice frame :: 81
+- choice prior branch :: 81
+- resume undo :: 81
+- resume route :: 81
+- resume restore :: 81
+- resume context :: 81
+- resume frame :: 81
+- resume prior branch :: 81
+- resume previous surface :: 81
+- undo route :: 81
+- undo restore :: 81
+- undo context :: 81
+- undo frame :: 81
+- undo prior branch :: 81
+- undo previous surface :: 81
+- undo target :: 81
+- route restore :: 81
+- route context :: 81
+- route frame :: 80
+- route prior branch :: 80
+- route previous surface :: 80
+- route target :: 80
+- route navigation :: 80
+- restore context :: 80
+- restore frame :: 80
+- restore prior branch :: 80
+- restore previous surface :: 80
+- restore target :: 80
+- restore navigation :: 80
+- restore branch context :: 80
+- context frame :: 80
+- context prior branch :: 80
+- context previous surface :: 80
+- context target :: 80
+- context navigation :: 80
+- context branch context :: 80
+- context no branch :: 80
+- frame prior branch :: 80
+- frame previous surface :: 79
+- frame target :: 79
+- frame navigation :: 79
+- frame branch context :: 79
+- frame no branch :: 79
+- frame branch :: 79
+- prior branch previous surface :: 79
+- prior branch target :: 79
+- prior branch navigation :: 79
+- prior branch branch context :: 79
+- prior branch no branch :: 79
+- prior branch branch :: 79
+- prior branch earlier :: 79
+- previous surface target :: 79
+- previous surface navigation :: 79
+- previous surface branch context :: 79
+- previous surface no branch :: 79
+- previous surface branch :: 79
+- previous surface earlier :: 79
+- previous surface path :: 79
+- target navigation :: 78
+- target branch context :: 78
+- target no branch :: 78
+- target branch :: 78
+- target earlier :: 78
+- target path :: 78
+- target revisit :: 78
+- navigation branch context :: 78
+- navigation no branch :: 78
+- navigation branch :: 78
+- navigation earlier :: 78
+- navigation path :: 78
+- navigation revisit :: 78
+- navigation under :: 78
+- branch context no branch :: 78
+- branch context branch :: 78
+- branch context earlier :: 78
+- branch context path :: 78
+- branch context revisit :: 78
+- branch context under :: 78
+- branch context within :: 77
+- no branch branch :: 77
+- no branch earlier :: 77
+- no branch path :: 77
+- no branch revisit :: 77
+- no branch under :: 77
+- no branch within :: 77
+- no branch across :: 77
+- branch earlier :: 77
+- branch revisit :: 77
+- branch under :: 77
+- branch within :: 77
+- branch across :: 77
+- branch between :: 77
+- earlier path :: 77
+- earlier revisit :: 77
+- earlier under :: 77
+- earlier within :: 77
+- earlier across :: 77
+- earlier between :: 77
+- earlier through :: 76
+- path revisit :: 76
+- path under :: 76
+- path within :: 76
+- path across :: 76
+- path between :: 76
+- path through :: 76
+- path before :: 76
+- revisit under :: 76
+- revisit within :: 76
+- revisit across :: 76
+- revisit between :: 76
+- revisit through :: 76
+- revisit before :: 76
+- revisit after :: 76
+- under within :: 76
+- under across :: 76
+- under between :: 76
+- under through :: 76
+- under before :: 76
+- under after :: 75
+- under until :: 75
+- within across :: 75
+- within between :: 75
+- within through :: 75
+- within before :: 75
+- within after :: 75
+- within until :: 75
+- within where :: 75
+- across between :: 75
+- across through :: 75
+
+## triplets
+
+- under current back :: 100
+- under local back :: 100
+- under bounded back :: 100
+- under finite back :: 100
+- under open back :: 100
+- under live back :: 100
+- within current back :: 100
+- within local back :: 100
+- within bounded back :: 100
+- within finite back :: 100
+- within open back :: 100
+- within live back :: 100
+- across current back :: 100
+- across local back :: 100
+- across bounded back :: 100
+- across finite back :: 100
+- across open back :: 100
+- across live back :: 100
+- between current back :: 100
+- between local back :: 100
+- between bounded back :: 99
+- between finite back :: 99
+- between open back :: 99
+- between live back :: 99
+- through current back :: 99
+- through local back :: 99
+- through bounded back :: 99
+- through finite back :: 99
+- through open back :: 99
+- through live back :: 99
+- before current back :: 99
+- before local back :: 99
+- before bounded back :: 99
+- before finite back :: 99
+- before open back :: 99
+- before live back :: 99
+- back evidence path :: 99
+- back support path :: 99
+- back path path :: 99
+- back surface path :: 99
+- back packet path :: 98
+- back receipt path :: 98
+- back trace path :: 98
+- back result path :: 98
+- back scope path :: 98
+- back boundary path :: 98
+- check back receipt :: 98
+- compare back receipt :: 98
+- observe back receipt :: 98
+- measure back receipt :: 98
+- test back receipt :: 98
+- verify back receipt :: 98
+- hold back receipt :: 98
+- preserve back receipt :: 98
+- under current prior :: 98
+- under local prior :: 98
+- under bounded prior :: 98
+- under finite prior :: 98
+- under open prior :: 98
+- under live prior :: 98
+- within current prior :: 97
+- within local prior :: 97
+- within bounded prior :: 97
+- within finite prior :: 97
+- within open prior :: 97
+- within live prior :: 97
+- across current prior :: 97
+- across local prior :: 97
+- across bounded prior :: 97
+- across finite prior :: 97
+- across open prior :: 97
+- across live prior :: 97
+- between current prior :: 97
+- between local prior :: 97
+- between bounded prior :: 97
+- between finite prior :: 97
+- between open prior :: 97
+- between live prior :: 97
+- through current prior :: 97
+- through local prior :: 97
+- through bounded prior :: 96
+- through finite prior :: 96
+- through open prior :: 96
+- through live prior :: 96
+- before current prior :: 96
+- before local prior :: 96
+- before bounded prior :: 96
+- before finite prior :: 96
+- before open prior :: 96
+- before live prior :: 96
+- prior evidence path :: 96
+- prior support path :: 96
+- prior path path :: 96
+- prior surface path :: 96
+- prior packet path :: 96
+- prior receipt path :: 96
+- prior trace path :: 96
+- prior result path :: 96
+- prior scope path :: 96
+- prior boundary path :: 96
+- check prior receipt :: 95
+- compare prior receipt :: 95
+- observe prior receipt :: 95
+- measure prior receipt :: 95
+- test prior receipt :: 95
+- verify prior receipt :: 95
+- hold prior receipt :: 95
+- preserve prior receipt :: 95
+- under current previous :: 95
+- under local previous :: 95
+- under bounded previous :: 95
+- under finite previous :: 95
+- under open previous :: 95
+- under live previous :: 95
+- within current previous :: 95
+- within local previous :: 95
+- within bounded previous :: 95
+- within finite previous :: 95
+- within open previous :: 95
+- within live previous :: 95
+- across current previous :: 94
+- across local previous :: 94
+- across bounded previous :: 94
+- across finite previous :: 94
+- across open previous :: 94
+- across live previous :: 94
+- between current previous :: 94
+- between local previous :: 94
+- between bounded previous :: 94
+- between finite previous :: 94
+- between open previous :: 94
+- between live previous :: 94
+- through current previous :: 94
+- through local previous :: 94
+- through bounded previous :: 94
+- through finite previous :: 94
+- through open previous :: 94
+- through live previous :: 94
+- before current previous :: 94
+- before local previous :: 94
+- before bounded previous :: 93
+- before finite previous :: 93
+- before open previous :: 93
+- before live previous :: 93
+- previous evidence path :: 93
+- previous support path :: 93
+- previous path path :: 93
+- previous surface path :: 93
+- previous packet path :: 93
+- previous receipt path :: 93
+- previous trace path :: 93
+- previous result path :: 93
+- previous scope path :: 93
+- previous boundary path :: 93
+- check previous receipt :: 93
+- compare previous receipt :: 93
+- observe previous receipt :: 93
+- measure previous receipt :: 93
+- test previous receipt :: 93
+- verify previous receipt :: 93
+- hold previous receipt :: 92
+- preserve previous receipt :: 92
+- under current return :: 92
+- under local return :: 92
+- under bounded return :: 92
+- under finite return :: 92
+- under open return :: 92
+- under live return :: 92
+- within current return :: 92
+- within local return :: 92
+- within bounded return :: 92
+- within finite return :: 92
+- within open return :: 92
+- within live return :: 92
+- across current return :: 92
+- across local return :: 92
+- across bounded return :: 92
+- across finite return :: 92
+- across open return :: 92
+- across live return :: 92
+- between current return :: 91
+- between local return :: 91
+- between bounded return :: 91
+- between finite return :: 91
+- between open return :: 91
+- between live return :: 91
+- through current return :: 91
+- through local return :: 91
+- through bounded return :: 91
+- through finite return :: 91
+- through open return :: 91
+- through live return :: 91
+- before current return :: 91
+- before local return :: 91
+- before bounded return :: 91
+- before finite return :: 91
+- before open return :: 91
+- before live return :: 91
+- return evidence path :: 91
+- return support path :: 91
+- return path path :: 90
+- return surface path :: 90
+- return packet path :: 90
+- return receipt path :: 90
+- return trace path :: 90
+- return result path :: 90
+- return scope path :: 90
+- return boundary path :: 90
+- check return receipt :: 90
+- compare return receipt :: 90
+- observe return receipt :: 90
+- measure return receipt :: 90
+- test return receipt :: 90
+- verify return receipt :: 90
+- hold return receipt :: 90
+- preserve return receipt :: 90
+- under current resume :: 90
+- under local resume :: 90
+- under bounded resume :: 90
+- under finite resume :: 90
+- under open resume :: 89
+- under live resume :: 89
+- within current resume :: 89
+- within local resume :: 89
+- within bounded resume :: 89
+- within finite resume :: 89
+- within open resume :: 89
+- within live resume :: 89
+- across current resume :: 89
+- across local resume :: 89
+- across bounded resume :: 89
+- across finite resume :: 89
+- across open resume :: 89
+- across live resume :: 89
+- between current resume :: 89
+- between local resume :: 89
+- between bounded resume :: 89
+- between finite resume :: 89
+- between open resume :: 89
+- between live resume :: 89
+- under back return :: 88
+- under back prior :: 88
+- under back surface :: 88
+- under back previous :: 88
+- under back choice :: 88
+- under back resume :: 88
+- under back undo :: 88
+- within return prior :: 88
+- within return surface :: 88
+- within return previous :: 88
+- within return choice :: 88
+- within return resume :: 88
+- within return undo :: 88
+- within return route :: 88
+- across prior surface :: 88
+- across prior previous :: 88
+- across prior choice :: 88
+- across prior resume :: 88
+- across prior undo :: 88
+- across prior route :: 88
+- across prior restore :: 87
+- between surface previous :: 87
+- between surface choice :: 87
+- between surface resume :: 87
+- between surface undo :: 87
+- between surface route :: 87
+- between surface restore :: 87
+- between surface context :: 87
+- through previous choice :: 87
+- through previous resume :: 87
+- through previous undo :: 87
+- through previous route :: 87
+- through previous restore :: 87
+- through previous context :: 87
+- through previous frame :: 87
+- before choice resume :: 87
+- before choice undo :: 87
+- before choice route :: 87
+- before choice restore :: 87
+- before choice context :: 87
+- before choice frame :: 86
+- before choice prior branch :: 86
+- after resume undo :: 86
+- after resume route :: 86
+- after resume restore :: 86
+- after resume context :: 86
+- after resume frame :: 86
+- after resume prior branch :: 86
+- after resume previous surface :: 86
+- from undo route :: 86
+- from undo restore :: 86
+- from undo context :: 86
+- from undo frame :: 86
+- from undo prior branch :: 86
+- from undo previous surface :: 86
+- from undo target :: 86
+- by route restore :: 86
+- by route context :: 86
+- by route frame :: 86
+- by route prior branch :: 86
+- by route previous surface :: 85
+- by route target :: 85
+- by route navigation :: 85
+- with restore context :: 85
+- with restore frame :: 85
+- with restore prior branch :: 85
+- with restore previous surface :: 85
+- with restore target :: 85
+- with restore navigation :: 85
+- with restore branch context :: 85
+- without context frame :: 85
+- without context prior branch :: 85
+- without context previous surface :: 85
+- without context target :: 85
+- without context navigation :: 85
+- without context branch context :: 85
+- without context no branch :: 85
+- against frame prior branch :: 85
+- against frame previous surface :: 85
+- against frame target :: 85
+- against frame navigation :: 84
+- against frame branch context :: 84
+- against frame no branch :: 84
+- against frame branch :: 84
+- relative prior branch previous surface :: 84
+- relative prior branch target :: 84
+- relative prior branch navigation :: 84
+- relative prior branch branch context :: 84
+- relative prior branch no branch :: 84
+- relative prior branch branch :: 84
+- relative prior branch earlier :: 84
+- locally previous surface target :: 84
+- locally previous surface navigation :: 84
+- locally previous surface branch context :: 84
+- locally previous surface no branch :: 84
+- locally previous surface branch :: 84
+- locally previous surface earlier :: 84
+- locally previous surface path :: 84
+- rather target navigation :: 84
+- rather target branch context :: 84
+- rather target no branch :: 83
+- rather target branch :: 83
+- rather target earlier :: 83
+- rather target path :: 83
+- rather target revisit :: 83
+- instead navigation branch context :: 83
+- instead navigation no branch :: 83
+- instead navigation branch :: 83
+- instead navigation earlier :: 83
+- instead navigation path :: 83
+- instead navigation revisit :: 83
+- instead navigation under :: 83
+- only branch context no branch :: 83
+- only branch context branch :: 83
+- only branch context earlier :: 83
+- only branch context path :: 83
+- only branch context revisit :: 83
+- only branch context under :: 83
+- only branch context within :: 83
+- still no branch branch :: 83
+- still no branch earlier :: 82
+- still no branch path :: 82
+- still no branch revisit :: 82
+- still no branch under :: 82
+- still no branch within :: 82
+- still no branch across :: 82
+- likely branch earlier :: 82
+- likely branch path :: 82
+- likely branch revisit :: 82
+- likely branch under :: 82
+- likely branch within :: 82
+- likely branch across :: 82
+- likely branch between :: 82
+- possible earlier path :: 82
+- possible earlier revisit :: 82
+- possible earlier under :: 82
+- possible earlier within :: 82
+- possible earlier across :: 82
+- possible earlier between :: 82
+- possible earlier through :: 82
+- bounded path revisit :: 81
+- bounded path under :: 81
+- bounded path within :: 81
+- bounded path across :: 81
+- bounded path between :: 81
+- bounded path through :: 81
+- bounded path before :: 81
+- finite revisit under :: 81
+- finite revisit within :: 81
+- finite revisit across :: 81
+- finite revisit between :: 81
+- finite revisit through :: 81
+- finite revisit before :: 81
+- finite revisit after :: 81
+- local under within :: 81
+- local under across :: 81
+- local under between :: 81
+- local under through :: 81
+- local under before :: 81
+- local under after :: 81
+- local under until :: 80
+- current within across :: 80
+- current within between :: 80
+- current within through :: 80
+- current within before :: 80
+- current within after :: 80
+- current within until :: 80
+- current within where :: 80
+- observed across between :: 80
+- observed across through :: 80
+- observed across before :: 80
+- observed across after :: 80
+- observed across until :: 80
+- observed across where :: 80
+- observed across while :: 80
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- return
+- restore
+- previous surface
+- rollback
+- revisit
+
+### Couplings
+
+- previous surface
+- rollback point
+- restore branch
+
+### Triplets
+
+- return restore revisit

@@ -45,8 +45,10 @@ from hooks.cb_light_hook import (  # noqa: E402
 # its base interpreter only to build the local Light wheel; the wheel is then
 # installed and exercised solely by the contained interpreter.
 BUILD_INTERPRETER = pathlib.Path(
-    getattr(sys, "_base_executable", None) or sys.executable
-).resolve()
+    os.environ.get("CB_LIGHT_BUILD_INTERPRETER")
+    or getattr(sys, "_base_executable", None)
+    or sys.executable
+).expanduser().absolute()
 CLEAN_RUNTIME = ROOT / ".venv-clean"
 
 

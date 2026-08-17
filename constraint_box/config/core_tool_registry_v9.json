@@ -52,6 +52,67 @@
       "source": ["constraint_box/src/constraintbox/maude_rewrite.py"],
       "tests": ["constraint_box/tests/test_maude_rewrite.py"],
       "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.automaton",
+      "distribution": "automaton",
+      "import": "automaton",
+      "required_apis": [
+        "machines.FiniteMachine",
+        "FiniteMachine.add_state",
+        "FiniteMachine.add_transition",
+        "FiniteMachine.initialize",
+        "FiniteMachine.process_event",
+        "FiniteMachine.is_actionable_event"
+      ],
+      "cb_roles": [
+        "independent_finite_state_transition_crosscheck",
+        "fixed_carrier_event_refusal"
+      ],
+      "source": [
+        "constraint_box/light_runtime/src/constraintbox/transition_mini_lev.py",
+        "constraint_box/light_runtime/src/constraintbox/core_tools.py",
+        "constraint_box/light_runtime/src/constraintbox/cb_light_probes.py"
+      ],
+      "tests": [
+        "constraint_box/tests/test_transition_mini_lev.py",
+        "constraint_box/tests/test_cb_light_core_probes.py"
+      ],
+      "integration_level": "operation_specific_transition_crosscheck"
+    },
+    {
+      "id": "python.pydantic",
+      "distribution": "pydantic",
+      "import": "pydantic",
+      "required_apis": ["BaseModel", "ConfigDict", "Field", "BaseModel.model_validate", "BaseModel.model_dump"],
+      "cb_roles": ["strict_typed_hostile_input_boundary", "bounded_request_normalization"],
+      "source": [
+        "constraint_box/light_runtime/src/constraintbox/control_plane.py",
+        "constraint_box/light_runtime/src/constraintbox/core_tools.py",
+        "constraint_box/light_runtime/src/constraintbox/cb_light_probes.py"
+      ],
+      "tests": [
+        "constraint_box/tests/test_control_plane.py",
+        "constraint_box/tests/test_cb_light_core_probes.py"
+      ],
+      "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.jsonschema",
+      "distribution": "jsonschema",
+      "import": "jsonschema",
+      "required_apis": ["Draft202012Validator", "Draft202012Validator.validate", "ValidationError"],
+      "cb_roles": ["independent_json_schema_boundary", "bounded_schema_crosscheck"],
+      "source": [
+        "constraint_box/light_runtime/src/constraintbox/control_plane.py",
+        "constraint_box/light_runtime/src/constraintbox/core_tools.py",
+        "constraint_box/light_runtime/src/constraintbox/cb_light_probes.py"
+      ],
+      "tests": [
+        "constraint_box/tests/test_control_plane.py",
+        "constraint_box/tests/test_cb_light_core_probes.py"
+      ],
+      "integration_level": "function_level_receipt"
     }
   ]
 }

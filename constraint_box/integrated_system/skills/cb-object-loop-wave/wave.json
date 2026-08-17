@@ -1,0 +1,45 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-object-loop-wave-v1",
+  "purpose": "Run the object loop: objective, proxy audit, premortem, negatives, bounded probe, independent receipts, demotion, durable failure memory.",
+  "children": [
+    {"id": "spec_boundary", "skill": "specification-boundary", "operation": "name_fence", "tools": ["objective_split", "forbidden_scan"]},
+    {"id": "proxy_audit", "skill": "proxy-to-object-auditor", "operation": "name_object_and_proxy", "tools": ["protected_measure_diff"]},
+    {"id": "premortem", "skill": "premortem-kill-criteria", "operation": "arm_tripwires", "tools": ["tripwire_presence"]},
+    {"id": "negatives", "skill": "adversarial-negative-generator", "operation": "generate_refuse_twins", "tools": ["twin_inventory"]},
+    {"id": "reversibility", "skill": "reversibility-option-value-gate", "operation": "refuse_irreversible_without_receipt", "tools": ["irreversible_flag"]},
+    {"id": "rederivation", "skill": "independent-rederivation-judge", "operation": "require_two_tool_families", "tools": ["z3", "cvc5", "enumeration"]},
+    {"id": "counterfactual", "skill": "counterfactual-impact-evaluator", "operation": "held_out_object_check", "tools": ["seed_admit", "valid_v1"]},
+    {"id": "externalities", "skill": "stakeholder-externality-mapper", "operation": "name_absent_bearers", "tools": ["beneficiary_list"]},
+    {"id": "ledger", "skill": "long-horizon-context-curator", "operation": "append_proposal_not_canon", "tools": ["append_only_jsonl"]},
+    {"id": "resurrection", "skill": "failure-memory-resurrection-checker", "operation": "refuse_forgotten_kills", "tools": ["failure_jsonl"]},
+    {"id": "constitution", "skill": "invariant-constitution-checker", "operation": "check_frozen_invariants", "tools": ["constitution_json"]},
+    {"id": "enough", "skill": "termination-enough-judge", "operation": "stop_on_no_improve", "tools": ["delta", "round_cap"]}
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": ["enough", "refuse_constitution", "refuse_resurrection", "refuse_proxy", "cancelled"]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "ledger_head",
+      "resurrection_status",
+      "constitution_status",
+      "enough_status"
+    ]
+  },
+  "claim_ceiling": "Object-loop receipts only; latest context is a proposal; not promotion."
+}

@@ -1,0 +1,1110 @@
+# 🧼 Hygiene Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Check/guard workers load this only for audit, hygiene, or security work; it is not a voice.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `REPO_HYGIENE` and remapped to v4.1 canon category `checks_guards`.
+
+---
+
+# MMM_LANE_REPO_HYGIENE_FULL_v4_1
+
+## words
+
+- repo :: 100
+- hygiene :: 100
+- stale :: 100
+- dead :: 100
+- file :: 100
+- duplicate :: 100
+- naming :: 100
+- drift :: 100
+- cleanup :: 100
+- maintenance :: 100
+- debt :: 100
+- orphan :: 100
+- deprecated :: 100
+- index :: 100
+- manifest :: 100
+- path :: 100
+- folder :: 100
+- readme :: 100
+- registry :: 100
+- scan :: 100
+- dead file :: 99
+- naming drift :: 99
+- active contract :: 99
+- provenance :: 99
+- handoff :: 99
+- search clarity :: 99
+- surface :: 99
+- residue :: 99
+- outdated :: 99
+- inconsistent :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 96
+- prior :: 96
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- packet :: 96
+- artifact :: 95
+- receipt :: 95
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- scope :: 95
+- boundary :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 94
+- practice :: 94
+- custom :: 94
+- habit :: 94
+- experience :: 94
+- observation :: 94
+- impression :: 94
+- idea :: 94
+- perception :: 94
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- by :: 94
+- relative :: 94
+- locally :: 94
+- rather :: 94
+- instead :: 93
+- still :: 93
+- likely :: 93
+- possible :: 93
+- partial :: 93
+- limited :: 93
+- measurement :: 93
+- test :: 93
+- sample :: 93
+- case :: 93
+- instance :: 93
+- word :: 93
+- distinction :: 93
+- comparison :: 93
+- estimate :: 93
+- uncertainty :: 93
+- model :: 93
+- counterexample :: 93
+- condition :: 93
+- fork :: 93
+
+## couplings
+
+- under stale :: 100
+- within stale :: 100
+- across stale :: 100
+- between stale :: 100
+- through stale :: 100
+- before stale :: 100
+- after stale :: 100
+- until stale :: 100
+- where stale :: 100
+- while stale :: 100
+- stale evidence :: 100
+- stale support :: 100
+- stale path :: 100
+- stale surface :: 100
+- stale packet :: 100
+- stale receipt :: 100
+- stale trace :: 100
+- stale result :: 100
+- stale scope :: 100
+- stale boundary :: 100
+- stale status :: 99
+- stale candidate :: 99
+- stale witness :: 99
+- stale probe :: 99
+- stale constraint :: 99
+- check stale :: 99
+- compare stale :: 99
+- observe stale :: 99
+- measure stale :: 99
+- test stale :: 99
+- verify stale :: 99
+- hold stale :: 99
+- preserve stale :: 99
+- split stale :: 99
+- narrow stale :: 99
+- under drift :: 99
+- within drift :: 99
+- across drift :: 99
+- between drift :: 99
+- through drift :: 99
+- before drift :: 98
+- after drift :: 98
+- until drift :: 98
+- where drift :: 98
+- while drift :: 98
+- drift evidence :: 98
+- drift support :: 98
+- drift path :: 98
+- drift surface :: 98
+- drift packet :: 98
+- drift receipt :: 98
+- drift trace :: 98
+- drift result :: 98
+- drift scope :: 98
+- drift boundary :: 98
+- drift status :: 98
+- drift candidate :: 98
+- drift witness :: 98
+- drift probe :: 98
+- drift constraint :: 98
+- check drift :: 97
+- compare drift :: 97
+- observe drift :: 97
+- measure drift :: 97
+- test drift :: 97
+- verify drift :: 97
+- hold drift :: 97
+- preserve drift :: 97
+- split drift :: 97
+- narrow drift :: 97
+- under dead :: 97
+- within dead :: 97
+- across dead :: 97
+- between dead :: 97
+- through dead :: 97
+- before dead :: 97
+- after dead :: 97
+- until dead :: 97
+- where dead :: 97
+- while dead :: 97
+- dead evidence :: 96
+- dead support :: 96
+- dead path :: 96
+- dead surface :: 96
+- dead packet :: 96
+- dead receipt :: 96
+- dead trace :: 96
+- dead result :: 96
+- dead scope :: 96
+- dead boundary :: 96
+- dead status :: 96
+- dead candidate :: 96
+- dead witness :: 96
+- dead probe :: 96
+- dead constraint :: 96
+- check dead :: 96
+- compare dead :: 96
+- observe dead :: 96
+- measure dead :: 96
+- test dead :: 96
+- verify dead :: 95
+- hold dead :: 95
+- preserve dead :: 95
+- split dead :: 95
+- narrow dead :: 95
+- under duplicate :: 95
+- within duplicate :: 95
+- across duplicate :: 95
+- between duplicate :: 95
+- through duplicate :: 95
+- before duplicate :: 95
+- after duplicate :: 95
+- until duplicate :: 95
+- where duplicate :: 95
+- while duplicate :: 95
+- duplicate evidence :: 95
+- duplicate support :: 95
+- duplicate path :: 95
+- duplicate surface :: 95
+- duplicate packet :: 95
+- duplicate receipt :: 94
+- duplicate trace :: 94
+- duplicate result :: 94
+- duplicate scope :: 94
+- duplicate boundary :: 94
+- duplicate status :: 94
+- duplicate candidate :: 94
+- duplicate witness :: 94
+- duplicate probe :: 94
+- duplicate constraint :: 94
+- check duplicate :: 94
+- compare duplicate :: 94
+- observe duplicate :: 94
+- measure duplicate :: 94
+- test duplicate :: 94
+- verify duplicate :: 94
+- hold duplicate :: 94
+- preserve duplicate :: 94
+- split duplicate :: 94
+- narrow duplicate :: 94
+- under naming :: 93
+- within naming :: 93
+- across naming :: 93
+- between naming :: 93
+- through naming :: 93
+- before naming :: 93
+- after naming :: 93
+- until naming :: 93
+- where naming :: 93
+- while naming :: 93
+- naming evidence :: 93
+- naming support :: 93
+- naming path :: 93
+- naming surface :: 93
+- naming packet :: 93
+- naming receipt :: 93
+- naming trace :: 93
+- naming result :: 93
+- naming scope :: 93
+- naming boundary :: 93
+- naming status :: 92
+- naming candidate :: 92
+- naming witness :: 92
+- naming probe :: 92
+- naming constraint :: 92
+- check naming :: 92
+- compare naming :: 92
+- observe naming :: 92
+- measure naming :: 92
+- test naming :: 92
+- verify naming :: 92
+- hold naming :: 92
+- preserve naming :: 92
+- split naming :: 92
+- narrow naming :: 92
+- under cleanup :: 92
+- within cleanup :: 92
+- across cleanup :: 92
+- between cleanup :: 92
+- through cleanup :: 92
+- before cleanup :: 91
+- after cleanup :: 91
+- until cleanup :: 91
+- where cleanup :: 91
+- while cleanup :: 91
+- cleanup evidence :: 91
+- cleanup support :: 91
+- cleanup path :: 91
+- cleanup surface :: 91
+- cleanup packet :: 91
+- cleanup receipt :: 91
+- cleanup trace :: 91
+- cleanup result :: 91
+- cleanup scope :: 91
+- cleanup boundary :: 91
+- cleanup status :: 91
+- cleanup candidate :: 91
+- cleanup witness :: 91
+- cleanup probe :: 91
+- cleanup constraint :: 91
+- under repo :: 90
+- under hygiene :: 90
+- under file :: 90
+- under maintenance :: 90
+- under debt :: 90
+- under orphan :: 90
+- under deprecated :: 90
+- under index :: 90
+- under manifest :: 90
+- within repo :: 90
+- within hygiene :: 90
+- within file :: 90
+- within maintenance :: 90
+- within debt :: 90
+- within orphan :: 90
+- within deprecated :: 90
+- within index :: 90
+- within manifest :: 90
+- across repo :: 90
+- across hygiene :: 90
+- across file :: 89
+- across maintenance :: 89
+- across debt :: 89
+- across orphan :: 89
+- across deprecated :: 89
+- across index :: 89
+- across manifest :: 89
+- between repo :: 89
+- between hygiene :: 89
+- between file :: 89
+- between maintenance :: 89
+- between debt :: 89
+- between orphan :: 89
+- between deprecated :: 89
+- between index :: 89
+- between manifest :: 89
+- through repo :: 89
+- through hygiene :: 89
+- through file :: 89
+- through maintenance :: 89
+- through debt :: 88
+- through orphan :: 88
+- through deprecated :: 88
+- through index :: 88
+- through manifest :: 88
+- before repo :: 88
+- before hygiene :: 88
+- before file :: 88
+- before maintenance :: 88
+- before debt :: 88
+- before orphan :: 88
+- before deprecated :: 88
+- before index :: 88
+- before manifest :: 88
+- after repo :: 88
+- after hygiene :: 88
+- after file :: 88
+- after maintenance :: 88
+- after debt :: 88
+- after orphan :: 88
+- after deprecated :: 87
+- after index :: 87
+- after manifest :: 87
+- from repo :: 87
+- from hygiene :: 87
+- from stale :: 87
+- from dead :: 87
+- from file :: 87
+- from duplicate :: 87
+- from naming :: 87
+- from drift :: 87
+- from cleanup :: 87
+- from maintenance :: 87
+- from debt :: 87
+- from orphan :: 87
+- from deprecated :: 87
+- from index :: 87
+- from manifest :: 87
+- by repo :: 87
+- by hygiene :: 87
+- by stale :: 86
+- by dead :: 86
+- by file :: 86
+- by duplicate :: 86
+- by naming :: 86
+- by drift :: 86
+- by cleanup :: 86
+- by maintenance :: 86
+- by debt :: 86
+- by orphan :: 86
+- by deprecated :: 86
+- by index :: 86
+- by manifest :: 86
+- with repo :: 86
+- with hygiene :: 86
+- with stale :: 86
+- with dead :: 86
+- with file :: 86
+- with duplicate :: 86
+- with naming :: 86
+- with drift :: 85
+- with cleanup :: 85
+- with maintenance :: 85
+- with debt :: 85
+- with orphan :: 85
+- with deprecated :: 85
+- with index :: 85
+- with manifest :: 85
+- without repo :: 85
+- without hygiene :: 85
+- without stale :: 85
+- without dead :: 85
+- without file :: 85
+- without duplicate :: 85
+- without naming :: 85
+- without drift :: 85
+- without cleanup :: 85
+- without maintenance :: 85
+- without debt :: 85
+- without orphan :: 85
+- without deprecated :: 84
+- without index :: 84
+- without manifest :: 84
+- against repo :: 84
+- against hygiene :: 84
+- against stale :: 84
+- against dead :: 84
+- against file :: 84
+- against duplicate :: 84
+- against naming :: 84
+- against drift :: 84
+- against cleanup :: 84
+- against maintenance :: 84
+- against debt :: 84
+- against orphan :: 84
+- against deprecated :: 84
+- against index :: 84
+- against manifest :: 84
+- repo hygiene :: 84
+- repo stale :: 84
+- repo dead :: 83
+- repo file :: 83
+- repo duplicate :: 83
+- repo naming :: 83
+- repo drift :: 83
+- hygiene stale :: 83
+- hygiene dead :: 83
+- hygiene file :: 83
+- hygiene duplicate :: 83
+- hygiene naming :: 83
+- hygiene drift :: 83
+- hygiene cleanup :: 83
+- stale dead :: 83
+- stale file :: 83
+- stale duplicate :: 83
+- stale naming :: 83
+- stale drift :: 83
+- stale cleanup :: 83
+- stale maintenance :: 83
+- dead file :: 83
+- dead duplicate :: 82
+- dead naming :: 82
+- dead drift :: 82
+- dead cleanup :: 82
+- dead maintenance :: 82
+- dead debt :: 82
+- file duplicate :: 82
+- file naming :: 82
+- file drift :: 82
+- file cleanup :: 82
+- file maintenance :: 82
+- file debt :: 82
+- file orphan :: 82
+- duplicate naming :: 82
+- duplicate drift :: 82
+- duplicate cleanup :: 82
+- duplicate maintenance :: 82
+- duplicate debt :: 82
+- duplicate orphan :: 82
+- duplicate deprecated :: 82
+- naming drift :: 81
+- naming cleanup :: 81
+- naming maintenance :: 81
+- naming debt :: 81
+- naming orphan :: 81
+- naming deprecated :: 81
+- naming index :: 81
+- drift cleanup :: 81
+- drift maintenance :: 81
+- drift debt :: 81
+- drift orphan :: 81
+- drift deprecated :: 81
+- drift index :: 81
+- drift manifest :: 81
+- cleanup maintenance :: 81
+- cleanup debt :: 81
+- cleanup orphan :: 81
+- cleanup deprecated :: 81
+- cleanup index :: 81
+- cleanup manifest :: 81
+- maintenance debt :: 80
+- maintenance orphan :: 80
+- maintenance deprecated :: 80
+- maintenance index :: 80
+- maintenance manifest :: 80
+- maintenance path :: 80
+- maintenance folder :: 80
+- debt orphan :: 80
+- debt deprecated :: 80
+- debt index :: 80
+- debt manifest :: 80
+- debt path :: 80
+- debt folder :: 80
+- debt readme :: 80
+- orphan deprecated :: 80
+- orphan index :: 80
+- orphan manifest :: 80
+- orphan path :: 80
+- orphan folder :: 80
+- orphan readme :: 80
+- orphan registry :: 79
+- deprecated index :: 79
+- deprecated manifest :: 79
+- deprecated path :: 79
+- deprecated folder :: 79
+- deprecated readme :: 79
+- deprecated registry :: 79
+- deprecated scan :: 79
+- index manifest :: 79
+- index path :: 79
+- index folder :: 79
+- index readme :: 79
+- index registry :: 79
+- index scan :: 79
+- index dead file :: 79
+- manifest path :: 79
+- manifest folder :: 79
+- manifest readme :: 79
+- manifest registry :: 79
+- manifest scan :: 79
+- manifest dead file :: 78
+- manifest naming drift :: 78
+- path folder :: 78
+- path readme :: 78
+- path registry :: 78
+- path scan :: 78
+- path dead file :: 78
+- path naming drift :: 78
+- path active contract :: 78
+- folder readme :: 78
+- folder registry :: 78
+- folder scan :: 78
+- folder dead file :: 78
+- folder naming drift :: 78
+- folder active contract :: 78
+- readme registry :: 78
+- readme scan :: 78
+- readme dead file :: 78
+- readme naming drift :: 78
+- readme active contract :: 77
+- readme provenance :: 77
+- registry scan :: 77
+- registry dead file :: 77
+- registry naming drift :: 77
+- registry active contract :: 77
+- registry provenance :: 77
+- registry handoff :: 77
+- scan dead file :: 77
+- scan naming drift :: 77
+- scan active contract :: 77
+- scan provenance :: 77
+- scan handoff :: 77
+- scan search clarity :: 77
+- dead file naming drift :: 77
+- dead file active contract :: 77
+- dead file provenance :: 76
+- dead file handoff :: 76
+- dead file search clarity :: 76
+- dead file surface :: 76
+- naming drift active contract :: 76
+- naming drift provenance :: 76
+- naming drift handoff :: 76
+- naming drift search clarity :: 76
+- naming drift surface :: 76
+- naming drift residue :: 76
+- active contract provenance :: 76
+- active contract handoff :: 76
+- active contract search clarity :: 76
+- active contract surface :: 76
+- active contract residue :: 76
+- active contract outdated :: 76
+- provenance handoff :: 75
+- provenance search clarity :: 75
+
+## triplets
+
+- under current stale :: 100
+- under local stale :: 100
+- under bounded stale :: 100
+- under finite stale :: 100
+- under open stale :: 100
+- under live stale :: 100
+- within current stale :: 100
+- within local stale :: 100
+- within bounded stale :: 100
+- within finite stale :: 100
+- within open stale :: 100
+- within live stale :: 100
+- across current stale :: 100
+- across local stale :: 100
+- across bounded stale :: 100
+- across finite stale :: 100
+- across open stale :: 100
+- across live stale :: 100
+- between current stale :: 100
+- between local stale :: 100
+- between bounded stale :: 99
+- between finite stale :: 99
+- between open stale :: 99
+- between live stale :: 99
+- through current stale :: 99
+- through local stale :: 99
+- through bounded stale :: 99
+- through finite stale :: 99
+- through open stale :: 99
+- through live stale :: 99
+- before current stale :: 99
+- before local stale :: 99
+- before bounded stale :: 99
+- before finite stale :: 99
+- before open stale :: 99
+- before live stale :: 99
+- stale evidence path :: 99
+- stale support path :: 99
+- stale path path :: 99
+- stale surface path :: 99
+- stale packet path :: 98
+- stale receipt path :: 98
+- stale trace path :: 98
+- stale result path :: 98
+- stale scope path :: 98
+- stale boundary path :: 98
+- check stale receipt :: 98
+- compare stale receipt :: 98
+- observe stale receipt :: 98
+- measure stale receipt :: 98
+- test stale receipt :: 98
+- verify stale receipt :: 98
+- hold stale receipt :: 98
+- preserve stale receipt :: 98
+- under current drift :: 98
+- under local drift :: 98
+- under bounded drift :: 98
+- under finite drift :: 98
+- under open drift :: 98
+- under live drift :: 98
+- within current drift :: 97
+- within local drift :: 97
+- within bounded drift :: 97
+- within finite drift :: 97
+- within open drift :: 97
+- within live drift :: 97
+- across current drift :: 97
+- across local drift :: 97
+- across bounded drift :: 97
+- across finite drift :: 97
+- across open drift :: 97
+- across live drift :: 97
+- between current drift :: 97
+- between local drift :: 97
+- between bounded drift :: 97
+- between finite drift :: 97
+- between open drift :: 97
+- between live drift :: 97
+- through current drift :: 97
+- through local drift :: 97
+- through bounded drift :: 96
+- through finite drift :: 96
+- through open drift :: 96
+- through live drift :: 96
+- before current drift :: 96
+- before local drift :: 96
+- before bounded drift :: 96
+- before finite drift :: 96
+- before open drift :: 96
+- before live drift :: 96
+- drift evidence path :: 96
+- drift support path :: 96
+- drift path path :: 96
+- drift surface path :: 96
+- drift packet path :: 96
+- drift receipt path :: 96
+- drift trace path :: 96
+- drift result path :: 96
+- drift scope path :: 96
+- drift boundary path :: 96
+- check drift receipt :: 95
+- compare drift receipt :: 95
+- observe drift receipt :: 95
+- measure drift receipt :: 95
+- test drift receipt :: 95
+- verify drift receipt :: 95
+- hold drift receipt :: 95
+- preserve drift receipt :: 95
+- under current dead :: 95
+- under local dead :: 95
+- under bounded dead :: 95
+- under finite dead :: 95
+- under open dead :: 95
+- under live dead :: 95
+- within current dead :: 95
+- within local dead :: 95
+- within bounded dead :: 95
+- within finite dead :: 95
+- within open dead :: 95
+- within live dead :: 95
+- across current dead :: 94
+- across local dead :: 94
+- across bounded dead :: 94
+- across finite dead :: 94
+- across open dead :: 94
+- across live dead :: 94
+- between current dead :: 94
+- between local dead :: 94
+- between bounded dead :: 94
+- between finite dead :: 94
+- between open dead :: 94
+- between live dead :: 94
+- through current dead :: 94
+- through local dead :: 94
+- through bounded dead :: 94
+- through finite dead :: 94
+- through open dead :: 94
+- through live dead :: 94
+- before current dead :: 94
+- before local dead :: 94
+- before bounded dead :: 93
+- before finite dead :: 93
+- before open dead :: 93
+- before live dead :: 93
+- dead evidence path :: 93
+- dead support path :: 93
+- dead path path :: 93
+- dead surface path :: 93
+- dead packet path :: 93
+- dead receipt path :: 93
+- dead trace path :: 93
+- dead result path :: 93
+- dead scope path :: 93
+- dead boundary path :: 93
+- check dead receipt :: 93
+- compare dead receipt :: 93
+- observe dead receipt :: 93
+- measure dead receipt :: 93
+- test dead receipt :: 93
+- verify dead receipt :: 93
+- hold dead receipt :: 92
+- preserve dead receipt :: 92
+- under current duplicate :: 92
+- under local duplicate :: 92
+- under bounded duplicate :: 92
+- under finite duplicate :: 92
+- under open duplicate :: 92
+- under live duplicate :: 92
+- within current duplicate :: 92
+- within local duplicate :: 92
+- within bounded duplicate :: 92
+- within finite duplicate :: 92
+- within open duplicate :: 92
+- within live duplicate :: 92
+- across current duplicate :: 92
+- across local duplicate :: 92
+- across bounded duplicate :: 92
+- across finite duplicate :: 92
+- across open duplicate :: 92
+- across live duplicate :: 92
+- between current duplicate :: 91
+- between local duplicate :: 91
+- between bounded duplicate :: 91
+- between finite duplicate :: 91
+- between open duplicate :: 91
+- between live duplicate :: 91
+- through current duplicate :: 91
+- through local duplicate :: 91
+- through bounded duplicate :: 91
+- through finite duplicate :: 91
+- through open duplicate :: 91
+- through live duplicate :: 91
+- before current duplicate :: 91
+- before local duplicate :: 91
+- before bounded duplicate :: 91
+- before finite duplicate :: 91
+- before open duplicate :: 91
+- before live duplicate :: 91
+- duplicate evidence path :: 91
+- duplicate support path :: 91
+- duplicate path path :: 90
+- duplicate surface path :: 90
+- duplicate packet path :: 90
+- duplicate receipt path :: 90
+- duplicate trace path :: 90
+- duplicate result path :: 90
+- duplicate scope path :: 90
+- duplicate boundary path :: 90
+- check duplicate receipt :: 90
+- compare duplicate receipt :: 90
+- observe duplicate receipt :: 90
+- measure duplicate receipt :: 90
+- test duplicate receipt :: 90
+- verify duplicate receipt :: 90
+- hold duplicate receipt :: 90
+- preserve duplicate receipt :: 90
+- under current naming :: 90
+- under local naming :: 90
+- under bounded naming :: 90
+- under finite naming :: 90
+- under open naming :: 89
+- under live naming :: 89
+- within current naming :: 89
+- within local naming :: 89
+- within bounded naming :: 89
+- within finite naming :: 89
+- within open naming :: 89
+- within live naming :: 89
+- across current naming :: 89
+- across local naming :: 89
+- across bounded naming :: 89
+- across finite naming :: 89
+- across open naming :: 89
+- across live naming :: 89
+- between current naming :: 89
+- between local naming :: 89
+- between bounded naming :: 89
+- between finite naming :: 89
+- between open naming :: 89
+- between live naming :: 89
+- under repo hygiene :: 88
+- under repo stale :: 88
+- under repo dead :: 88
+- under repo file :: 88
+- under repo duplicate :: 88
+- under repo naming :: 88
+- under repo drift :: 88
+- within hygiene stale :: 88
+- within hygiene dead :: 88
+- within hygiene file :: 88
+- within hygiene duplicate :: 88
+- within hygiene naming :: 88
+- within hygiene drift :: 88
+- within hygiene cleanup :: 88
+- across stale dead :: 88
+- across stale file :: 88
+- across stale duplicate :: 88
+- across stale naming :: 88
+- across stale drift :: 88
+- across stale cleanup :: 88
+- across stale maintenance :: 87
+- between dead file :: 87
+- between dead duplicate :: 87
+- between dead naming :: 87
+- between dead drift :: 87
+- between dead cleanup :: 87
+- between dead maintenance :: 87
+- between dead debt :: 87
+- through file duplicate :: 87
+- through file naming :: 87
+- through file drift :: 87
+- through file cleanup :: 87
+- through file maintenance :: 87
+- through file debt :: 87
+- through file orphan :: 87
+- before duplicate naming :: 87
+- before duplicate drift :: 87
+- before duplicate cleanup :: 87
+- before duplicate maintenance :: 87
+- before duplicate debt :: 87
+- before duplicate orphan :: 86
+- before duplicate deprecated :: 86
+- after naming drift :: 86
+- after naming cleanup :: 86
+- after naming maintenance :: 86
+- after naming debt :: 86
+- after naming orphan :: 86
+- after naming deprecated :: 86
+- after naming index :: 86
+- from drift cleanup :: 86
+- from drift maintenance :: 86
+- from drift debt :: 86
+- from drift orphan :: 86
+- from drift deprecated :: 86
+- from drift index :: 86
+- from drift manifest :: 86
+- by cleanup maintenance :: 86
+- by cleanup debt :: 86
+- by cleanup orphan :: 86
+- by cleanup deprecated :: 86
+- by cleanup index :: 85
+- by cleanup manifest :: 85
+- by cleanup path :: 85
+- with maintenance debt :: 85
+- with maintenance orphan :: 85
+- with maintenance deprecated :: 85
+- with maintenance index :: 85
+- with maintenance manifest :: 85
+- with maintenance path :: 85
+- with maintenance folder :: 85
+- without debt orphan :: 85
+- without debt deprecated :: 85
+- without debt index :: 85
+- without debt manifest :: 85
+- without debt path :: 85
+- without debt folder :: 85
+- without debt readme :: 85
+- against orphan deprecated :: 85
+- against orphan index :: 85
+- against orphan manifest :: 85
+- against orphan path :: 84
+- against orphan folder :: 84
+- against orphan readme :: 84
+- against orphan registry :: 84
+- relative deprecated index :: 84
+- relative deprecated manifest :: 84
+- relative deprecated path :: 84
+- relative deprecated folder :: 84
+- relative deprecated readme :: 84
+- relative deprecated registry :: 84
+- relative deprecated scan :: 84
+- locally index manifest :: 84
+- locally index path :: 84
+- locally index folder :: 84
+- locally index readme :: 84
+- locally index registry :: 84
+- locally index scan :: 84
+- locally index dead file :: 84
+- rather manifest path :: 84
+- rather manifest folder :: 84
+- rather manifest readme :: 83
+- rather manifest registry :: 83
+- rather manifest scan :: 83
+- rather manifest dead file :: 83
+- rather manifest naming drift :: 83
+- instead path folder :: 83
+- instead path readme :: 83
+- instead path registry :: 83
+- instead path scan :: 83
+- instead path dead file :: 83
+- instead path naming drift :: 83
+- instead path active contract :: 83
+- only folder readme :: 83
+- only folder registry :: 83
+- only folder scan :: 83
+- only folder dead file :: 83
+- only folder naming drift :: 83
+- only folder active contract :: 83
+- still readme registry :: 83
+- still readme scan :: 82
+- still readme dead file :: 82
+- still readme naming drift :: 82
+- still readme active contract :: 82
+- still readme provenance :: 82
+- likely registry scan :: 82
+- likely registry dead file :: 82
+- likely registry naming drift :: 82
+- likely registry active contract :: 82
+- likely registry provenance :: 82
+- likely registry handoff :: 82
+- possible scan dead file :: 82
+- possible scan naming drift :: 82
+- possible scan active contract :: 82
+- possible scan provenance :: 82
+- possible scan handoff :: 82
+- possible scan search clarity :: 82
+- bounded dead file naming drift :: 81
+- bounded dead file active contract :: 81
+- bounded dead file provenance :: 81
+- bounded dead file handoff :: 81
+- bounded dead file search clarity :: 81
+- bounded dead file surface :: 81
+- finite naming drift active contract :: 81
+- finite naming drift provenance :: 81
+- finite naming drift handoff :: 81
+- finite naming drift search clarity :: 81
+- finite naming drift surface :: 81
+- finite naming drift residue :: 81
+- local active contract provenance :: 81
+- local active contract handoff :: 81
+- local active contract search clarity :: 81
+- local active contract surface :: 81
+- local active contract residue :: 81
+- local active contract outdated :: 80
+- observed provenance handoff :: 80
+- observed provenance search clarity :: 80
+- observed provenance surface :: 80
+- observed provenance residue :: 80
+- observed provenance outdated :: 80
+- observed provenance inconsistent :: 80
+- observed provenance under :: 80
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- plain English
+- active verbs
+- cut words
+- concrete nouns
+- visible structure
+- readable surface
+- cognitive load
+
+### Couplings
+
+- visible structure
+- readable surface
+- concrete nouns
+- active verbs
+
+### Triplets
+
+- plain active concrete
+- structure readability load

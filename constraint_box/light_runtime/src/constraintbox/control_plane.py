@@ -204,7 +204,7 @@ def _request_model():
             pattern=r"^[a-z0-9][a-z0-9_-]*$",
         )
         operation: Literal["candidate_evaluation"]
-        candidate_id: Literal["pydantic"]
+        candidate_id: Literal["pydantic", "jsonschema"]
         snapshot_id: str = Field(pattern=r"^[0-9a-f]{64}$")
         probe_run_id: str = Field(pattern=r"^[0-9a-f]{64}$")
         selection_id: str = Field(pattern=r"^[0-9a-f]{64}$")
@@ -290,8 +290,9 @@ def _result(
         "detail": detail,
         "promotion_allowed": False,
         "claim_ceiling": (
-            "One strict local Pydantic candidate-evaluation consumer only; "
-            "no membership, adoption, portable, provider, CB Heavy, or release claim."
+            "One strict local typed candidate-evaluation consumer "
+            "(pydantic|jsonschema) only; no membership, adoption, portable, "
+            "provider, CB Heavy, or release claim."
         ),
     }
     body.update(extra)
@@ -385,6 +386,15 @@ def run_candidate_evaluation(
 ) -> dict[str, Any]:
     """Consume one validated Pydantic candidate request against CB Light state."""
 
+    from hookkernel.cb_light_basin_view import hold_result_if_incomplete
+
+    held = hold_result_if_incomplete()
+    if held is not None:
+        return {
+            **_result("HOLD", held["reason_code"], detail=held["detail"]),
+            "basin_view": held["basin_view"],
+        }
+
     try:
         request = validator(raw)
     except ControlPlaneError as exc:
@@ -459,7 +469,11 @@ def run_candidate_evaluation(
         return _result(
             "CANDIDATE_EVALUATED_LOCAL",
             "STRICT_PACKET_AND_SELECTION_BOUND",
-            detail="Pydantic and jsonschema validated a request that consumed a current CB Light selection triple.",
+            detail=(
+                "Typed envelope (Pydantic+jsonschema) validated a request that "
+                f"consumed a current CB Light selection triple for candidate_id="
+                f"{request.payload['candidate_id']}."
+            ),
             operation_id=operation_id,
             request_id=request.payload["request_id"],
             request_sha256=request.request_sha256,

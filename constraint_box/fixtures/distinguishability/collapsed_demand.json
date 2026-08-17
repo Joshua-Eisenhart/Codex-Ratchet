@@ -1,0 +1,40 @@
+{
+  "schema": "constraintbox.distinguishability.packet.v1",
+  "claim": "a demanded distinction is UNSAT when every probe is forced equal",
+  "claim_ceiling": "exists",
+  "candidates": ["a", "b"],
+  "probes": ["color", "shape"],
+  "probe_domains": {
+    "color": ["red", "blue"],
+    "shape": ["circle", "square"]
+  },
+  "demand_D": [
+    {
+      "left": "a",
+      "right": "b",
+      "id": "a_b",
+      "why_demanded": "D requires a and b to remain distinguishable"
+    }
+  ],
+  "constraints_C": [
+    {
+      "id": "eq_color",
+      "constraint": {
+        "op": "eq",
+        "left": {"var": "obs__color__a"},
+        "right": {"var": "obs__color__b"}
+      }
+    },
+    {
+      "id": "eq_shape",
+      "constraint": {
+        "op": "eq",
+        "left": {"var": "obs__shape__a"},
+        "right": {"var": "obs__shape__b"}
+      }
+    }
+  ],
+  "query": "demand_thick",
+  "theory": "finite",
+  "authority": "none"
+}

@@ -15,6 +15,7 @@ import ast
 import datetime as dt
 import importlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -69,8 +70,16 @@ FORBIDDEN_LIGHT_MODULES = tuple(
 )
 ALLOWED_LIGHT_HOOKKERNEL_PYTHON_PATHS = (
     "hookkernel/__init__.py",
+    # Read-only freshness/view guard for contained-Light operations.  It reads
+    # declared local evidence paths and emits HOLD; it loads no provider,
+    # simulator, legacy hookkernel module, or CB Heavy capability.
+    "hookkernel/cb_light_basin_view.py",
     "hookkernel/cb_light_domain.py",
     "hookkernel/cb_light_gate.py",
+    # This is a narrow append-only receipt-binding table for the contained
+    # finite Mini-Lev operation.  It neither loads legacy Mini-Lev code nor
+    # reaches a provider, simulator, or CB Heavy environment.
+    "hookkernel/cb_light_minilev_state.py",
     "hookkernel/cb_light_runtime.py",
     "hookkernel/cb_light_solver.py",
     "hookkernel/cb_light_state.py",
@@ -154,7 +163,10 @@ def shell_and_config_paths() -> list[Path]:
 
 
 def _base_interpreter() -> Path:
-    return Path(getattr(sys, "_base_executable", sys.executable)).resolve()
+    return Path(
+        os.environ.get("CB_LIGHT_BUILD_INTERPRETER")
+        or getattr(sys, "_base_executable", sys.executable)
+    ).expanduser().absolute()
 
 
 def _surface_probe_code() -> str:

@@ -26,10 +26,38 @@ REQUIRED_CASE_KINDS = {
     "severance",
     "reference",
 }
+_CORE_REGISTRY = (
+    Path(__file__).with_name("cb_light_data")
+    / "config"
+    / "core_tool_registry_v9.json"
+)
 
 
 class StateError(RuntimeError):
     """A retained-state write or validation failed closed."""
+
+
+def _expected_core_contract_ids() -> tuple[str, ...]:
+    """Read the contained registry instead of retaining a stale tool count."""
+
+    try:
+        body = json.loads(_CORE_REGISTRY.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise StateError(
+            f"cannot read contained CB Light core registry: {_CORE_REGISTRY}"
+        ) from exc
+    rows = body.get("tools") if isinstance(body, dict) else None
+    if not isinstance(rows, list):
+        raise StateError("contained CB Light core registry has no tools list")
+    ids = tuple(row.get("id") for row in rows if isinstance(row, dict))
+    if (
+        not ids
+        or len(ids) != len(rows)
+        or any(not isinstance(contract_id, str) or not contract_id for contract_id in ids)
+        or len(ids) != len(set(ids))
+    ):
+        raise StateError("contained CB Light core registry has invalid tool IDs")
+    return ids
 
 
 def default_db_path() -> Path:
@@ -429,11 +457,18 @@ def validate_probe_matrix(matrix: Mapping[str, Any]) -> None:
     if matrix.get("schema") != "constraintbox.cb-light-core-probes.v1":
         raise StateError("unexpected CB Light probe schema")
     decisions = matrix.get("tool_decisions")
-    if not isinstance(decisions, list) or len(decisions) != 5:
-        raise StateError("CB Light core probe matrix must contain exactly five tools")
+    expected_contract_ids = _expected_core_contract_ids()
+    if not isinstance(decisions, list) or len(decisions) != len(expected_contract_ids):
+        raise StateError(
+            "CB Light core probe matrix tool count differs from the contained registry"
+        )
     contract_ids = [row.get("contract_id") for row in decisions]
     if len(contract_ids) != len(set(contract_ids)):
         raise StateError("duplicate CB Light probe contract")
+    if set(contract_ids) != set(expected_contract_ids):
+        raise StateError(
+            "CB Light core probe contracts differ from the contained registry"
+        )
     for decision in decisions:
         cases = decision.get("cases")
         if not isinstance(cases, list):

@@ -31,7 +31,7 @@ def test_manifest_gate_and_hooks_share_the_contained_interpreter() -> None:
     expected = CB / ".venv" / "bin" / "python"
     assert same_declared_interpreter(MANDATED_INTERPRETER, expected)
     assert same_declared_interpreter(DEFAULT_INTERPRETER, expected)
-    assert same_declared_interpreter(manifest["mandated_interpreter"], expected)
+    assert same_declared_interpreter(CB / manifest["mandated_interpreter"], expected)
 
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
     assert _commands(settings, "SessionStart") == [

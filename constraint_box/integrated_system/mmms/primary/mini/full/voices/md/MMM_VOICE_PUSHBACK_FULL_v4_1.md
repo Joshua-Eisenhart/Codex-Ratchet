@@ -1,0 +1,2566 @@
+# 🥊 Pushback Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `PUSHBACK` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_PUSHBACK_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- hold :: 100
+- stop :: 100
+- boundary :: 100
+- overreach :: 100
+- unearned :: 100
+- unsupported :: 100
+- unsafe :: 100
+- mis :: 100
+- scoped :: 100
+- does :: 100
+- not :: 100
+- follow :: 100
+- smaller :: 100
+- move :: 100
+- correction :: 100
+- concern :: 100
+- risk :: 100
+- blocker :: 100
+- condition :: 100
+- honest :: 100
+- limit :: 100
+- yet :: 100
+- wrong :: 100
+- scope :: 100
+- break :: 100
+- refusal :: 99
+- redirect :: 99
+- minimum :: 99
+- viable :: 99
+- owner :: 99
+- challenge :: 99
+- no :: 99
+- not supported :: 99
+- does not follow :: 99
+- smaller move :: 99
+- blocked :: 99
+- reason :: 99
+- support level :: 99
+- observed :: 99
+- inferred :: 99
+- admissible :: 99
+- mis-scoped :: 99
+- stop condition :: 99
+- support :: 99
+- level :: 99
+- narrow :: 99
+- direct :: 99
+- warm :: 99
+- disagreement :: 99
+- earned :: 99
+- misfit :: 98
+- under :: 98
+- within :: 98
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- then :: 98
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- small :: 97
+- careful :: 97
+- first :: 97
+- next :: 97
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- surface :: 96
+- packet :: 96
+- artifact :: 96
+- receipt :: 96
+- trace :: 96
+- result :: 96
+- evidence :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 96
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 95
+- perception :: 95
+- conjunction :: 95
+- resemblance :: 95
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 95
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- test :: 94
+- check :: 94
+- verify :: 94
+- compare :: 94
+- sample :: 94
+- route :: 94
+- lane :: 94
+- voice :: 94
+- lens :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- deferred :: 94
+- spawned :: 94
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 93
+- according :: 93
+- locally :: 93
+- jointly :: 93
+- separately :: 93
+- rather :: 93
+- instead :: 93
+- still :: 93
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+- seems :: 93
+- appears :: 93
+- likely :: 93
+- possible :: 93
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+- limited :: 92
+- case :: 92
+- instance :: 92
+- word :: 92
+- regularity :: 92
+- distinction :: 92
+- difference :: 92
+- similarity :: 92
+- comparison :: 92
+- inference :: 92
+- estimate :: 92
+- uncertainty :: 92
+- frequency :: 92
+- distribution :: 92
+- fork :: 92
+- plurality :: 92
+
+## couplings
+
+- under hold :: 100
+- within hold :: 100
+- across hold :: 100
+- between hold :: 100
+- through hold :: 100
+- before hold :: 100
+- after hold :: 100
+- until hold :: 100
+- where hold :: 100
+- while hold :: 100
+- hold evidence :: 100
+- hold support :: 100
+- hold path :: 100
+- hold surface :: 100
+- hold packet :: 100
+- hold receipt :: 100
+- hold trace :: 100
+- hold result :: 100
+- hold scope :: 100
+- hold boundary :: 100
+- hold status :: 100
+- hold candidate :: 100
+- hold witness :: 100
+- hold probe :: 100
+- hold constraint :: 100
+- check hold :: 99
+- compare hold :: 99
+- observe hold :: 99
+- measure hold :: 99
+- test hold :: 99
+- verify hold :: 99
+- hold hold :: 99
+- preserve hold :: 99
+- split hold :: 99
+- narrow hold :: 99
+- under stop :: 99
+- within stop :: 99
+- across stop :: 99
+- between stop :: 99
+- through stop :: 99
+- before stop :: 99
+- after stop :: 99
+- until stop :: 99
+- where stop :: 99
+- while stop :: 99
+- stop evidence :: 99
+- stop support :: 99
+- stop path :: 99
+- stop surface :: 99
+- stop packet :: 99
+- stop receipt :: 98
+- stop trace :: 98
+- stop result :: 98
+- stop scope :: 98
+- stop boundary :: 98
+- stop status :: 98
+- stop candidate :: 98
+- stop witness :: 98
+- stop probe :: 98
+- stop constraint :: 98
+- check stop :: 98
+- compare stop :: 98
+- observe stop :: 98
+- measure stop :: 98
+- test stop :: 98
+- verify stop :: 98
+- hold stop :: 98
+- preserve stop :: 98
+- split stop :: 98
+- narrow stop :: 98
+- under challenge :: 98
+- within challenge :: 98
+- across challenge :: 98
+- between challenge :: 98
+- through challenge :: 98
+- before challenge :: 97
+- after challenge :: 97
+- until challenge :: 97
+- where challenge :: 97
+- while challenge :: 97
+- challenge evidence :: 97
+- challenge support :: 97
+- challenge path :: 97
+- challenge surface :: 97
+- challenge packet :: 97
+- challenge receipt :: 97
+- challenge trace :: 97
+- challenge result :: 97
+- challenge scope :: 97
+- challenge boundary :: 97
+- challenge status :: 97
+- challenge candidate :: 97
+- challenge witness :: 97
+- challenge probe :: 97
+- challenge constraint :: 97
+- check challenge :: 97
+- compare challenge :: 97
+- observe challenge :: 97
+- measure challenge :: 97
+- test challenge :: 97
+- verify challenge :: 96
+- hold challenge :: 96
+- preserve challenge :: 96
+- split challenge :: 96
+- narrow challenge :: 96
+- under boundary :: 96
+- within boundary :: 96
+- across boundary :: 96
+- between boundary :: 96
+- through boundary :: 96
+- before boundary :: 96
+- after boundary :: 96
+- until boundary :: 96
+- where boundary :: 96
+- while boundary :: 96
+- boundary evidence :: 96
+- boundary support :: 96
+- boundary path :: 96
+- boundary surface :: 96
+- boundary packet :: 96
+- boundary receipt :: 96
+- boundary trace :: 96
+- boundary result :: 96
+- boundary scope :: 96
+- boundary boundary :: 96
+- boundary status :: 95
+- boundary candidate :: 95
+- boundary witness :: 95
+- boundary probe :: 95
+- boundary constraint :: 95
+- check boundary :: 95
+- compare boundary :: 95
+- observe boundary :: 95
+- measure boundary :: 95
+- test boundary :: 95
+- verify boundary :: 95
+- preserve boundary :: 95
+- split boundary :: 95
+- narrow boundary :: 95
+- under correction :: 95
+- within correction :: 95
+- across correction :: 95
+- between correction :: 95
+- through correction :: 95
+- before correction :: 95
+- after correction :: 95
+- until correction :: 95
+- where correction :: 95
+- while correction :: 95
+- correction evidence :: 95
+- correction support :: 94
+- correction path :: 94
+- correction surface :: 94
+- correction packet :: 94
+- correction receipt :: 94
+- correction trace :: 94
+- correction result :: 94
+- correction scope :: 94
+- correction boundary :: 94
+- correction status :: 94
+- correction candidate :: 94
+- correction witness :: 94
+- correction probe :: 94
+- correction constraint :: 94
+- check correction :: 94
+- compare correction :: 94
+- observe correction :: 94
+- measure correction :: 94
+- test correction :: 94
+- verify correction :: 94
+- hold correction :: 94
+- preserve correction :: 94
+- split correction :: 94
+- narrow correction :: 94
+- under concern :: 94
+- within concern :: 93
+- across concern :: 93
+- between concern :: 93
+- through concern :: 93
+- before concern :: 93
+- after concern :: 93
+- until concern :: 93
+- where concern :: 93
+- while concern :: 93
+- concern evidence :: 93
+- concern support :: 93
+- concern path :: 93
+- concern surface :: 93
+- concern packet :: 93
+- concern receipt :: 93
+- concern trace :: 93
+- concern result :: 93
+- concern scope :: 93
+- concern boundary :: 93
+- concern status :: 93
+- concern candidate :: 93
+- concern witness :: 93
+- concern probe :: 93
+- concern constraint :: 93
+- check concern :: 93
+- compare concern :: 92
+- observe concern :: 92
+- measure concern :: 92
+- test concern :: 92
+- verify concern :: 92
+- hold concern :: 92
+- preserve concern :: 92
+- split concern :: 92
+- narrow concern :: 92
+- under reason :: 92
+- within reason :: 92
+- across reason :: 92
+- between reason :: 92
+- through reason :: 92
+- before reason :: 92
+- after reason :: 92
+- until reason :: 92
+- where reason :: 92
+- while reason :: 92
+- reason evidence :: 92
+- reason support :: 92
+- reason path :: 92
+- reason surface :: 92
+- reason packet :: 92
+- reason receipt :: 92
+- reason trace :: 91
+- reason result :: 91
+- reason scope :: 91
+- reason boundary :: 91
+- reason status :: 91
+- reason candidate :: 91
+- reason witness :: 91
+- reason probe :: 91
+- reason constraint :: 91
+- check reason :: 91
+- compare reason :: 91
+- observe reason :: 91
+- measure reason :: 91
+- test reason :: 91
+- verify reason :: 91
+- hold reason :: 91
+- preserve reason :: 91
+- split reason :: 91
+- narrow reason :: 91
+- under support :: 91
+- within support :: 91
+- across support :: 91
+- between support :: 91
+- through support :: 91
+- before support :: 91
+- after support :: 90
+- until support :: 90
+- where support :: 90
+- while support :: 90
+- support evidence :: 90
+- support support :: 90
+- support path :: 90
+- support surface :: 90
+- support packet :: 90
+- support receipt :: 90
+- support trace :: 90
+- support result :: 90
+- support scope :: 90
+- support boundary :: 90
+- support status :: 90
+- support candidate :: 90
+- support witness :: 90
+- support probe :: 90
+- support constraint :: 90
+- check support :: 90
+- compare support :: 90
+- observe support :: 90
+- measure support :: 90
+- test support :: 90
+- verify support :: 90
+- preserve support :: 89
+- split support :: 89
+- narrow support :: 89
+- under level :: 89
+- within level :: 89
+- across level :: 89
+- between level :: 89
+- through level :: 89
+- before level :: 89
+- after level :: 89
+- until level :: 89
+- where level :: 89
+- while level :: 89
+- level evidence :: 89
+- level support :: 89
+- level path :: 89
+- level surface :: 89
+- level packet :: 89
+- level receipt :: 89
+- level trace :: 89
+- level result :: 89
+- level scope :: 89
+- level boundary :: 89
+- level status :: 89
+- level candidate :: 89
+- level witness :: 88
+- level probe :: 88
+- level constraint :: 88
+- check level :: 88
+- compare level :: 88
+- observe level :: 88
+- measure level :: 88
+- test level :: 88
+- verify level :: 88
+- hold level :: 88
+- preserve level :: 88
+- split level :: 88
+- narrow level :: 88
+- under smaller :: 88
+- within smaller :: 88
+- across smaller :: 88
+- between smaller :: 88
+- through smaller :: 88
+- before smaller :: 88
+- after smaller :: 88
+- until smaller :: 88
+- where smaller :: 88
+- while smaller :: 88
+- smaller evidence :: 88
+- smaller support :: 88
+- smaller path :: 87
+- smaller surface :: 87
+- smaller packet :: 87
+- smaller receipt :: 87
+- smaller trace :: 87
+- smaller result :: 87
+- smaller scope :: 87
+- smaller boundary :: 87
+- smaller status :: 87
+- smaller candidate :: 87
+- smaller witness :: 87
+- smaller probe :: 87
+- smaller constraint :: 87
+- check smaller :: 87
+- compare smaller :: 87
+- not supported :: 87
+- smaller move :: 87
+- support level :: 87
+- stop condition :: 87
+- hold :: 87
+- no :: 87
+- does not follow :: 87
+- boundary :: 87
+- blocked :: 87
+- scope :: 87
+- reason :: 86
+- observed :: 86
+- inferred :: 86
+- concern :: 86
+- condition :: 86
+- correction :: 86
+- admissible :: 86
+- unsafe :: 86
+- unearned :: 86
+- mis-scoped :: 86
+- under overreach :: 86
+- under unearned :: 86
+- under unsupported :: 86
+- under unsafe :: 86
+- under mis :: 86
+- under scoped :: 86
+- under does :: 86
+- under not :: 86
+- under follow :: 86
+- under move :: 86
+- under risk :: 86
+- under blocker :: 86
+- under condition :: 86
+- under honest :: 86
+- within overreach :: 86
+- within unearned :: 85
+- within unsupported :: 85
+- within unsafe :: 85
+- within mis :: 85
+- within scoped :: 85
+- within does :: 85
+- within not :: 85
+- within follow :: 85
+- within move :: 85
+- within risk :: 85
+- within blocker :: 85
+- within condition :: 85
+- within honest :: 85
+- across overreach :: 85
+- across unearned :: 85
+- across unsupported :: 85
+- across unsafe :: 85
+- across mis :: 85
+- across scoped :: 85
+- across does :: 85
+- across not :: 85
+- across follow :: 85
+- across move :: 85
+- across risk :: 85
+- across blocker :: 85
+- across condition :: 84
+- across honest :: 84
+- between overreach :: 84
+- between unearned :: 84
+- between unsupported :: 84
+- between unsafe :: 84
+- between mis :: 84
+- between scoped :: 84
+- between does :: 84
+- between not :: 84
+- between follow :: 84
+- between move :: 84
+- between risk :: 84
+- between blocker :: 84
+- between condition :: 84
+- between honest :: 84
+- through overreach :: 84
+- through unearned :: 84
+- through unsupported :: 84
+- through unsafe :: 84
+- through mis :: 84
+- through scoped :: 84
+- through does :: 84
+- through not :: 84
+- through follow :: 84
+- through move :: 83
+- through risk :: 83
+- through blocker :: 83
+- through condition :: 83
+- through honest :: 83
+- before overreach :: 83
+- before unearned :: 83
+- before unsupported :: 83
+- before unsafe :: 83
+- before mis :: 83
+- before scoped :: 83
+- before does :: 83
+- before not :: 83
+- before follow :: 83
+- before move :: 83
+- before risk :: 83
+- before blocker :: 83
+- before condition :: 83
+- before honest :: 83
+- after overreach :: 83
+- after unearned :: 83
+- after unsupported :: 83
+- after unsafe :: 83
+- after mis :: 83
+- after scoped :: 83
+- after does :: 82
+- after not :: 82
+- after follow :: 82
+- after move :: 82
+- after risk :: 82
+- after blocker :: 82
+- after condition :: 82
+- after honest :: 82
+- during hold :: 82
+- during stop :: 82
+- during boundary :: 82
+- during overreach :: 82
+- during unearned :: 82
+- during unsupported :: 82
+- during unsafe :: 82
+- during mis :: 82
+- during scoped :: 82
+- during does :: 82
+- during not :: 82
+- during follow :: 82
+- during smaller :: 82
+- during move :: 82
+- during correction :: 82
+- during concern :: 82
+- during risk :: 82
+- during blocker :: 81
+- during condition :: 81
+- during honest :: 81
+- until overreach :: 81
+- until unearned :: 81
+- until unsupported :: 81
+- until unsafe :: 81
+- until mis :: 81
+- until scoped :: 81
+- until does :: 81
+- until not :: 81
+- until follow :: 81
+- until move :: 81
+- until risk :: 81
+- until blocker :: 81
+- until condition :: 81
+- until honest :: 81
+- since hold :: 81
+- since stop :: 81
+- since boundary :: 81
+- since overreach :: 81
+- since unearned :: 81
+- since unsupported :: 81
+- since unsafe :: 81
+- since mis :: 81
+- since scoped :: 80
+- since does :: 80
+- since not :: 80
+- since follow :: 80
+- since smaller :: 80
+- since move :: 80
+- since correction :: 80
+- since concern :: 80
+- since risk :: 80
+- since blocker :: 80
+- since condition :: 80
+- since honest :: 80
+- from hold :: 80
+- from stop :: 80
+- from boundary :: 80
+- from overreach :: 80
+- from unearned :: 80
+- from unsupported :: 80
+- from unsafe :: 80
+- from mis :: 80
+- from scoped :: 80
+- from does :: 80
+- from not :: 80
+- from follow :: 80
+- from smaller :: 80
+- from move :: 79
+- from correction :: 79
+- from concern :: 79
+- from risk :: 79
+- from blocker :: 79
+- from condition :: 79
+- from honest :: 79
+- by hold :: 79
+- by stop :: 79
+- by boundary :: 79
+- by overreach :: 79
+- by unearned :: 79
+- by unsupported :: 79
+- by unsafe :: 79
+- by mis :: 79
+- by scoped :: 79
+- by does :: 79
+- by not :: 79
+- by follow :: 79
+- by smaller :: 79
+- by move :: 79
+- by correction :: 79
+- by concern :: 79
+- by risk :: 79
+- by blocker :: 79
+- by condition :: 78
+- by honest :: 78
+- with hold :: 78
+- with stop :: 78
+- with boundary :: 78
+- with overreach :: 78
+- with unearned :: 78
+- with unsupported :: 78
+- with unsafe :: 78
+- with mis :: 78
+- with scoped :: 78
+- with does :: 78
+- with not :: 78
+- with follow :: 78
+- with smaller :: 78
+- with move :: 78
+- with correction :: 78
+- with concern :: 78
+- with risk :: 78
+- with blocker :: 78
+- with condition :: 78
+- with honest :: 78
+- without hold :: 78
+- without stop :: 78
+- without boundary :: 78
+- without overreach :: 77
+- without unearned :: 77
+- without unsupported :: 77
+- without unsafe :: 77
+- without mis :: 77
+- without scoped :: 77
+- without does :: 77
+- without not :: 77
+- without follow :: 77
+- without smaller :: 77
+- without move :: 77
+- without correction :: 77
+- without concern :: 77
+- without risk :: 77
+- without blocker :: 77
+- without condition :: 77
+- without honest :: 77
+- against hold :: 77
+- against stop :: 77
+- against boundary :: 77
+- against overreach :: 77
+- against unearned :: 77
+- against unsupported :: 77
+- against unsafe :: 77
+- against mis :: 77
+- against scoped :: 76
+- against does :: 76
+- against not :: 76
+- against follow :: 76
+- against smaller :: 76
+- against move :: 76
+- against correction :: 76
+- against concern :: 76
+- against risk :: 76
+- against blocker :: 76
+- against condition :: 76
+- against honest :: 76
+- toward hold :: 76
+- toward stop :: 76
+- toward boundary :: 76
+- toward overreach :: 76
+- toward unearned :: 76
+- toward unsupported :: 76
+- toward unsafe :: 76
+- toward mis :: 76
+- toward scoped :: 76
+- toward does :: 76
+- toward not :: 76
+- toward follow :: 76
+- toward smaller :: 76
+- toward move :: 75
+- toward correction :: 75
+- toward concern :: 75
+- toward risk :: 75
+- toward blocker :: 75
+- toward condition :: 75
+- toward honest :: 75
+- near hold :: 75
+- near stop :: 75
+- near boundary :: 75
+- near overreach :: 75
+- near unearned :: 75
+- near unsupported :: 75
+- near unsafe :: 75
+- near mis :: 75
+- near scoped :: 75
+- near does :: 75
+- near not :: 75
+- near follow :: 75
+- near smaller :: 75
+- near move :: 75
+- near correction :: 75
+- near concern :: 75
+- near risk :: 75
+- near blocker :: 75
+- near condition :: 74
+- near honest :: 74
+- relative hold :: 74
+- relative stop :: 74
+- relative boundary :: 74
+- relative overreach :: 74
+- relative unearned :: 74
+- relative unsupported :: 74
+- relative unsafe :: 74
+- relative mis :: 74
+- relative scoped :: 74
+- relative does :: 74
+- relative not :: 74
+- relative follow :: 74
+- relative smaller :: 74
+- relative move :: 74
+- relative correction :: 74
+- relative concern :: 74
+- relative risk :: 74
+- relative blocker :: 74
+- relative condition :: 74
+- relative honest :: 74
+- hold overreach :: 74
+- hold unearned :: 74
+- hold unsupported :: 74
+- hold unsafe :: 73
+- hold mis :: 73
+- hold scoped :: 73
+- hold does :: 73
+- hold not :: 73
+- hold follow :: 73
+- stop overreach :: 73
+- stop unearned :: 73
+- stop unsupported :: 73
+- stop unsafe :: 73
+- stop mis :: 73
+- stop scoped :: 73
+- stop does :: 73
+- stop not :: 73
+- stop follow :: 73
+- stop smaller :: 73
+- boundary overreach :: 73
+- boundary unearned :: 73
+- boundary unsupported :: 73
+- boundary unsafe :: 73
+- boundary mis :: 73
+- boundary scoped :: 73
+- boundary does :: 73
+- boundary not :: 73
+- boundary follow :: 73
+- boundary smaller :: 72
+- boundary move :: 72
+- overreach unearned :: 72
+- overreach unsupported :: 72
+- overreach unsafe :: 72
+- overreach mis :: 72
+- overreach scoped :: 72
+- overreach does :: 72
+- overreach not :: 72
+- overreach follow :: 72
+- overreach smaller :: 72
+- overreach move :: 72
+- overreach correction :: 72
+- unearned unsupported :: 72
+- unearned unsafe :: 72
+- unearned mis :: 72
+- unearned scoped :: 72
+- unearned does :: 72
+- unearned not :: 72
+- unearned follow :: 72
+- unearned smaller :: 72
+- unearned move :: 72
+- unearned correction :: 72
+- unearned concern :: 72
+- unsupported unsafe :: 72
+- unsupported mis :: 71
+- unsupported scoped :: 71
+- unsupported does :: 71
+- unsupported not :: 71
+- unsupported follow :: 71
+- unsupported smaller :: 71
+- unsupported move :: 71
+- unsupported correction :: 71
+- unsupported concern :: 71
+- unsupported risk :: 71
+- unsafe mis :: 71
+- unsafe scoped :: 71
+- unsafe does :: 71
+- unsafe not :: 71
+- unsafe follow :: 71
+- unsafe smaller :: 71
+- unsafe move :: 71
+- unsafe correction :: 71
+- unsafe concern :: 71
+- unsafe risk :: 71
+- unsafe blocker :: 71
+- mis scoped :: 71
+- mis does :: 71
+- mis not :: 71
+- mis follow :: 71
+- mis smaller :: 70
+- mis move :: 70
+- mis correction :: 70
+- mis concern :: 70
+- mis risk :: 70
+- mis blocker :: 70
+- mis condition :: 70
+- scoped does :: 70
+- scoped not :: 70
+- scoped follow :: 70
+- scoped smaller :: 70
+- scoped move :: 70
+- scoped correction :: 70
+- scoped concern :: 70
+- scoped risk :: 70
+- scoped blocker :: 70
+- scoped condition :: 70
+- scoped honest :: 70
+- does not :: 70
+- does follow :: 70
+- does smaller :: 70
+- does move :: 70
+- does correction :: 70
+- does concern :: 70
+- does risk :: 70
+- does blocker :: 69
+- does condition :: 69
+- does honest :: 69
+- does limit :: 69
+- not follow :: 69
+- not smaller :: 69
+- not move :: 69
+- not correction :: 69
+- not concern :: 69
+- not risk :: 69
+- not blocker :: 69
+- not condition :: 69
+- not honest :: 69
+- not limit :: 69
+- not yet :: 69
+- follow smaller :: 69
+- follow move :: 69
+- follow correction :: 69
+- follow concern :: 69
+- follow risk :: 69
+- follow blocker :: 69
+- follow condition :: 69
+- follow honest :: 69
+- follow limit :: 69
+- follow yet :: 69
+- follow wrong :: 68
+- smaller correction :: 68
+- smaller concern :: 68
+- smaller risk :: 68
+- smaller blocker :: 68
+- smaller condition :: 68
+- smaller honest :: 68
+- smaller limit :: 68
+- smaller yet :: 68
+- smaller wrong :: 68
+- move correction :: 68
+- move concern :: 68
+- move risk :: 68
+- move blocker :: 68
+- move condition :: 68
+- move honest :: 68
+- move limit :: 68
+- move yet :: 68
+- move wrong :: 68
+- move scope :: 68
+- move break :: 68
+- correction concern :: 68
+- correction risk :: 68
+- correction blocker :: 68
+- correction condition :: 68
+- correction honest :: 67
+- correction limit :: 67
+- correction yet :: 67
+- correction wrong :: 67
+- correction break :: 67
+- correction refusal :: 67
+- concern risk :: 67
+- concern blocker :: 67
+- concern condition :: 67
+- concern honest :: 67
+- concern limit :: 67
+- concern yet :: 67
+- concern wrong :: 67
+- concern break :: 67
+- concern refusal :: 67
+- concern redirect :: 67
+- risk blocker :: 67
+- risk condition :: 67
+- risk honest :: 67
+- risk limit :: 67
+- risk yet :: 67
+- risk wrong :: 67
+- risk scope :: 67
+- risk break :: 67
+- risk refusal :: 67
+- risk redirect :: 66
+- risk minimum :: 66
+- blocker condition :: 66
+- blocker honest :: 66
+- blocker limit :: 66
+- blocker yet :: 66
+- blocker wrong :: 66
+- blocker scope :: 66
+- blocker break :: 66
+- blocker refusal :: 66
+- blocker redirect :: 66
+- blocker minimum :: 66
+- blocker viable :: 66
+- condition honest :: 66
+- condition limit :: 66
+- condition yet :: 66
+- condition wrong :: 66
+- condition scope :: 66
+- condition break :: 66
+- condition refusal :: 66
+- condition redirect :: 66
+- condition minimum :: 66
+- condition viable :: 66
+- condition owner :: 66
+- honest limit :: 66
+- honest yet :: 65
+- honest wrong :: 65
+- honest scope :: 65
+- honest break :: 65
+- honest refusal :: 65
+- honest redirect :: 65
+- honest minimum :: 65
+- honest viable :: 65
+- honest owner :: 65
+- honest challenge :: 65
+- limit yet :: 65
+- limit wrong :: 65
+- limit scope :: 65
+- limit break :: 65
+- limit refusal :: 65
+- limit redirect :: 65
+- limit minimum :: 65
+- limit viable :: 65
+- limit owner :: 65
+- limit challenge :: 65
+- limit no :: 65
+- yet wrong :: 65
+- yet scope :: 65
+- yet break :: 65
+- yet refusal :: 65
+
+## triplets
+
+- under current hold :: 100
+- under local hold :: 100
+- under bounded hold :: 100
+- under finite hold :: 100
+- under open hold :: 100
+- under live hold :: 100
+- within current hold :: 100
+- within local hold :: 100
+- within bounded hold :: 100
+- within finite hold :: 100
+- within open hold :: 100
+- within live hold :: 100
+- across current hold :: 100
+- across local hold :: 100
+- across bounded hold :: 100
+- across finite hold :: 100
+- across open hold :: 100
+- across live hold :: 100
+- between current hold :: 100
+- between local hold :: 100
+- between bounded hold :: 100
+- between finite hold :: 100
+- between open hold :: 100
+- between live hold :: 100
+- through current hold :: 100
+- through local hold :: 99
+- through bounded hold :: 99
+- through finite hold :: 99
+- through open hold :: 99
+- through live hold :: 99
+- before current hold :: 99
+- before local hold :: 99
+- before bounded hold :: 99
+- before finite hold :: 99
+- before open hold :: 99
+- before live hold :: 99
+- hold evidence path :: 99
+- hold support path :: 99
+- hold path path :: 99
+- hold surface path :: 99
+- hold packet path :: 99
+- hold receipt path :: 99
+- hold trace path :: 99
+- hold result path :: 99
+- hold scope path :: 99
+- hold boundary path :: 99
+- check hold receipt :: 99
+- compare hold receipt :: 99
+- observe hold receipt :: 99
+- measure hold receipt :: 99
+- test hold receipt :: 98
+- verify hold receipt :: 98
+- hold hold receipt :: 98
+- preserve hold receipt :: 98
+- under current stop :: 98
+- under local stop :: 98
+- under bounded stop :: 98
+- under finite stop :: 98
+- under open stop :: 98
+- under live stop :: 98
+- within current stop :: 98
+- within local stop :: 98
+- within bounded stop :: 98
+- within finite stop :: 98
+- within open stop :: 98
+- within live stop :: 98
+- across current stop :: 98
+- across local stop :: 98
+- across bounded stop :: 98
+- across finite stop :: 98
+- across open stop :: 98
+- across live stop :: 98
+- between current stop :: 98
+- between local stop :: 98
+- between bounded stop :: 98
+- between finite stop :: 97
+- between open stop :: 97
+- between live stop :: 97
+- through current stop :: 97
+- through local stop :: 97
+- through bounded stop :: 97
+- through finite stop :: 97
+- through open stop :: 97
+- through live stop :: 97
+- before current stop :: 97
+- before local stop :: 97
+- before bounded stop :: 97
+- before finite stop :: 97
+- before open stop :: 97
+- before live stop :: 97
+- stop evidence path :: 97
+- stop support path :: 97
+- stop path path :: 97
+- stop surface path :: 97
+- stop packet path :: 97
+- stop receipt path :: 97
+- stop trace path :: 97
+- stop result path :: 97
+- stop scope path :: 97
+- stop boundary path :: 97
+- check stop receipt :: 96
+- compare stop receipt :: 96
+- observe stop receipt :: 96
+- measure stop receipt :: 96
+- test stop receipt :: 96
+- verify stop receipt :: 96
+- hold stop receipt :: 96
+- preserve stop receipt :: 96
+- under current challenge :: 96
+- under local challenge :: 96
+- under bounded challenge :: 96
+- under finite challenge :: 96
+- under open challenge :: 96
+- under live challenge :: 96
+- within current challenge :: 96
+- within local challenge :: 96
+- within bounded challenge :: 96
+- within finite challenge :: 96
+- within open challenge :: 96
+- within live challenge :: 96
+- across current challenge :: 96
+- across local challenge :: 96
+- across bounded challenge :: 96
+- across finite challenge :: 96
+- across open challenge :: 96
+- across live challenge :: 95
+- between current challenge :: 95
+- between local challenge :: 95
+- between bounded challenge :: 95
+- between finite challenge :: 95
+- between open challenge :: 95
+- between live challenge :: 95
+- through current challenge :: 95
+- through local challenge :: 95
+- through bounded challenge :: 95
+- through finite challenge :: 95
+- through open challenge :: 95
+- through live challenge :: 95
+- before current challenge :: 95
+- before local challenge :: 95
+- before bounded challenge :: 95
+- before finite challenge :: 95
+- before open challenge :: 95
+- before live challenge :: 95
+- challenge evidence path :: 95
+- challenge support path :: 95
+- challenge path path :: 95
+- challenge surface path :: 95
+- challenge packet path :: 95
+- challenge receipt path :: 95
+- challenge trace path :: 94
+- challenge result path :: 94
+- challenge scope path :: 94
+- challenge boundary path :: 94
+- check challenge receipt :: 94
+- compare challenge receipt :: 94
+- observe challenge receipt :: 94
+- measure challenge receipt :: 94
+- test challenge receipt :: 94
+- verify challenge receipt :: 94
+- hold challenge receipt :: 94
+- preserve challenge receipt :: 94
+- under current boundary :: 94
+- under local boundary :: 94
+- under bounded boundary :: 94
+- under finite boundary :: 94
+- under open boundary :: 94
+- under live boundary :: 94
+- within current boundary :: 94
+- within local boundary :: 94
+- within bounded boundary :: 94
+- within finite boundary :: 94
+- within open boundary :: 94
+- within live boundary :: 94
+- across current boundary :: 94
+- across local boundary :: 93
+- across bounded boundary :: 93
+- across finite boundary :: 93
+- across open boundary :: 93
+- across live boundary :: 93
+- between current boundary :: 93
+- between local boundary :: 93
+- between bounded boundary :: 93
+- between finite boundary :: 93
+- between open boundary :: 93
+- between live boundary :: 93
+- through current boundary :: 93
+- through local boundary :: 93
+- through bounded boundary :: 93
+- through finite boundary :: 93
+- through open boundary :: 93
+- through live boundary :: 93
+- before current boundary :: 93
+- before local boundary :: 93
+- before bounded boundary :: 93
+- before finite boundary :: 93
+- before open boundary :: 93
+- before live boundary :: 93
+- boundary evidence path :: 93
+- boundary support path :: 93
+- boundary path path :: 92
+- boundary surface path :: 92
+- boundary packet path :: 92
+- boundary receipt path :: 92
+- boundary trace path :: 92
+- boundary result path :: 92
+- boundary scope path :: 92
+- boundary boundary path :: 92
+- check boundary receipt :: 92
+- compare boundary receipt :: 92
+- observe boundary receipt :: 92
+- measure boundary receipt :: 92
+- test boundary receipt :: 92
+- verify boundary receipt :: 92
+- hold boundary receipt :: 92
+- preserve boundary receipt :: 92
+- under current correction :: 92
+- under local correction :: 92
+- under bounded correction :: 92
+- under finite correction :: 92
+- under open correction :: 92
+- under live correction :: 92
+- within current correction :: 92
+- within local correction :: 92
+- within bounded correction :: 92
+- within finite correction :: 91
+- within open correction :: 91
+- within live correction :: 91
+- across current correction :: 91
+- across local correction :: 91
+- across bounded correction :: 91
+- across finite correction :: 91
+- across open correction :: 91
+- across live correction :: 91
+- between current correction :: 91
+- between local correction :: 91
+- between bounded correction :: 91
+- between finite correction :: 91
+- between open correction :: 91
+- between live correction :: 91
+- does not follow :: 91
+- under hold stop :: 91
+- under hold boundary :: 91
+- under hold overreach :: 91
+- under hold unearned :: 91
+- under stop boundary :: 91
+- under stop overreach :: 91
+- under stop unearned :: 91
+- under stop unsupported :: 91
+- under boundary overreach :: 91
+- under boundary unearned :: 90
+- under boundary unsupported :: 90
+- under boundary unsafe :: 90
+- under overreach unearned :: 90
+- under overreach unsupported :: 90
+- under overreach unsafe :: 90
+- under overreach mis :: 90
+- under unearned unsupported :: 90
+- under unearned unsafe :: 90
+- under unearned mis :: 90
+- under unearned scoped :: 90
+- under unsupported unsafe :: 90
+- under unsupported mis :: 90
+- under unsupported scoped :: 90
+- under unsupported does :: 90
+- under unsafe mis :: 90
+- under unsafe scoped :: 90
+- under unsafe does :: 90
+- under unsafe not :: 90
+- under mis scoped :: 90
+- under mis does :: 90
+- under mis not :: 90
+- under mis follow :: 90
+- under scoped does :: 90
+- under scoped not :: 90
+- under scoped follow :: 89
+- under scoped smaller :: 89
+- under does not :: 89
+- under does follow :: 89
+- under does smaller :: 89
+- under does move :: 89
+- under not follow :: 89
+- under not smaller :: 89
+- under not move :: 89
+- under not correction :: 89
+- under follow smaller :: 89
+- under follow move :: 89
+- under follow correction :: 89
+- under follow concern :: 89
+- under smaller move :: 89
+- under smaller correction :: 89
+- under smaller concern :: 89
+- under smaller risk :: 89
+- under move correction :: 89
+- under move concern :: 89
+- under move risk :: 89
+- under move blocker :: 89
+- under correction concern :: 89
+- under correction risk :: 89
+- under correction blocker :: 89
+- under correction condition :: 88
+- under concern risk :: 88
+- under concern blocker :: 88
+- under concern condition :: 88
+- under concern honest :: 88
+- under risk blocker :: 88
+- under risk condition :: 88
+- under risk honest :: 88
+- under risk limit :: 88
+- under blocker condition :: 88
+- under blocker honest :: 88
+- under blocker limit :: 88
+- under blocker yet :: 88
+- under condition honest :: 88
+- under condition limit :: 88
+- under condition yet :: 88
+- under condition wrong :: 88
+- under honest limit :: 88
+- under honest yet :: 88
+- under honest wrong :: 88
+- under honest scope :: 88
+- within hold stop :: 88
+- within hold boundary :: 88
+- within hold overreach :: 88
+- within hold unearned :: 88
+- within stop boundary :: 87
+- within stop overreach :: 87
+- within stop unearned :: 87
+- within stop unsupported :: 87
+- within boundary overreach :: 87
+- within boundary unearned :: 87
+- within boundary unsupported :: 87
+- within boundary unsafe :: 87
+- within overreach unearned :: 87
+- within overreach unsupported :: 87
+- within overreach unsafe :: 87
+- within overreach mis :: 87
+- within unearned unsupported :: 87
+- within unearned unsafe :: 87
+- within unearned mis :: 87
+- within unearned scoped :: 87
+- within unsupported unsafe :: 87
+- within unsupported mis :: 87
+- within unsupported scoped :: 87
+- within unsupported does :: 87
+- within unsafe mis :: 87
+- within unsafe scoped :: 87
+- within unsafe does :: 87
+- within unsafe not :: 87
+- within mis scoped :: 87
+- within mis does :: 86
+- within mis not :: 86
+- within mis follow :: 86
+- within scoped does :: 86
+- within scoped not :: 86
+- within scoped follow :: 86
+- within scoped smaller :: 86
+- within does not :: 86
+- within does follow :: 86
+- within does smaller :: 86
+- within does move :: 86
+- within not follow :: 86
+- within not smaller :: 86
+- within not move :: 86
+- within not correction :: 86
+- within follow smaller :: 86
+- within follow move :: 86
+- within follow correction :: 86
+- within follow concern :: 86
+- within smaller move :: 86
+- within smaller correction :: 86
+- within smaller concern :: 86
+- within smaller risk :: 86
+- within move correction :: 86
+- within move concern :: 86
+- within move risk :: 85
+- within move blocker :: 85
+- within correction concern :: 85
+- within correction risk :: 85
+- within correction blocker :: 85
+- within correction condition :: 85
+- within concern risk :: 85
+- within concern blocker :: 85
+- within concern condition :: 85
+- within concern honest :: 85
+- within risk blocker :: 85
+- within risk condition :: 85
+- within risk honest :: 85
+- within risk limit :: 85
+- within blocker condition :: 85
+- within blocker honest :: 85
+- within blocker limit :: 85
+- within blocker yet :: 85
+- within condition honest :: 85
+- within condition limit :: 85
+- within condition yet :: 85
+- within condition wrong :: 85
+- within honest limit :: 85
+- within honest yet :: 85
+- within honest wrong :: 85
+- within honest scope :: 84
+- across hold stop :: 84
+- across hold boundary :: 84
+- across hold overreach :: 84
+- across hold unearned :: 84
+- across stop boundary :: 84
+- across stop overreach :: 84
+- across stop unearned :: 84
+- across stop unsupported :: 84
+- across boundary overreach :: 84
+- across boundary unearned :: 84
+- across boundary unsupported :: 84
+- across boundary unsafe :: 84
+- across overreach unearned :: 84
+- across overreach unsupported :: 84
+- across overreach unsafe :: 84
+- across overreach mis :: 84
+- across unearned unsupported :: 84
+- across unearned unsafe :: 84
+- across unearned mis :: 84
+- across unearned scoped :: 84
+- across unsupported unsafe :: 84
+- across unsupported mis :: 84
+- across unsupported scoped :: 84
+- across unsupported does :: 84
+- across unsafe mis :: 83
+- across unsafe scoped :: 83
+- across unsafe does :: 83
+- across unsafe not :: 83
+- across mis scoped :: 83
+- across mis does :: 83
+- across mis not :: 83
+- across mis follow :: 83
+- across scoped does :: 83
+- across scoped not :: 83
+- across scoped follow :: 83
+- across scoped smaller :: 83
+- across does not :: 83
+- across does follow :: 83
+- across does smaller :: 83
+- across does move :: 83
+- across not follow :: 83
+- across not smaller :: 83
+- across not move :: 83
+- across not correction :: 83
+- across follow smaller :: 83
+- across follow move :: 83
+- across follow correction :: 83
+- across follow concern :: 83
+- across smaller move :: 83
+- across smaller correction :: 82
+- across smaller concern :: 82
+- across smaller risk :: 82
+- across move correction :: 82
+- across move concern :: 82
+- across move risk :: 82
+- across move blocker :: 82
+- across correction concern :: 82
+- across correction risk :: 82
+- across correction blocker :: 82
+- across correction condition :: 82
+- across concern risk :: 82
+- across concern blocker :: 82
+- across concern condition :: 82
+- across concern honest :: 82
+- across risk blocker :: 82
+- across risk condition :: 82
+- across risk honest :: 82
+- across risk limit :: 82
+- across blocker condition :: 82
+- across blocker honest :: 82
+- across blocker limit :: 82
+- across blocker yet :: 82
+- across condition honest :: 82
+- across condition limit :: 82
+- across condition yet :: 81
+- across condition wrong :: 81
+- across honest limit :: 81
+- across honest yet :: 81
+- across honest wrong :: 81
+- across honest scope :: 81
+- between hold stop :: 81
+- between hold boundary :: 81
+- between hold overreach :: 81
+- between hold unearned :: 81
+- between stop boundary :: 81
+- between stop overreach :: 81
+- between stop unearned :: 81
+- between stop unsupported :: 81
+- between boundary overreach :: 81
+- between boundary unearned :: 81
+- between boundary unsupported :: 81
+- between boundary unsafe :: 81
+- between overreach unearned :: 81
+- between overreach unsupported :: 81
+- between overreach unsafe :: 81
+- between overreach mis :: 81
+- between unearned unsupported :: 81
+- between unearned unsafe :: 81
+- between unearned mis :: 81
+- between unearned scoped :: 80
+- between unsupported unsafe :: 80
+- between unsupported mis :: 80
+- between unsupported scoped :: 80
+- between unsupported does :: 80
+- between unsafe mis :: 80
+- between unsafe scoped :: 80
+- between unsafe does :: 80
+- between unsafe not :: 80
+- between mis scoped :: 80
+- between mis does :: 80
+- between mis not :: 80
+- between mis follow :: 80
+- between scoped does :: 80
+- between scoped not :: 80
+- between scoped follow :: 80
+- between scoped smaller :: 80
+- between does not :: 80
+- between does follow :: 80
+- between does smaller :: 80
+- between does move :: 80
+- between not follow :: 80
+- between not smaller :: 80
+- between not move :: 80
+- between not correction :: 80
+- between follow smaller :: 79
+- between follow move :: 79
+- between follow correction :: 79
+- between follow concern :: 79
+- between smaller move :: 79
+- between smaller correction :: 79
+- between smaller concern :: 79
+- between smaller risk :: 79
+- between move correction :: 79
+- between move concern :: 79
+- between move risk :: 79
+- between move blocker :: 79
+- between correction concern :: 79
+- between correction risk :: 79
+- between correction blocker :: 79
+- between correction condition :: 79
+- between concern risk :: 79
+- between concern blocker :: 79
+- between concern condition :: 79
+- between concern honest :: 79
+- between risk blocker :: 79
+- between risk condition :: 79
+- between risk honest :: 79
+- between risk limit :: 79
+- between blocker condition :: 79
+- between blocker honest :: 78
+- between blocker limit :: 78
+- between blocker yet :: 78
+- between condition honest :: 78
+- between condition limit :: 78
+- between condition yet :: 78
+- between condition wrong :: 78
+- between honest limit :: 78
+- between honest yet :: 78
+- between honest wrong :: 78
+- between honest scope :: 78
+- through hold stop :: 78
+- through hold boundary :: 78
+- through hold overreach :: 78
+- through hold unearned :: 78
+- through stop boundary :: 78
+- through stop overreach :: 78
+- through stop unearned :: 78
+- through stop unsupported :: 78
+- through boundary overreach :: 78
+- through boundary unearned :: 78
+- through boundary unsupported :: 78
+- through boundary unsafe :: 78
+- through overreach unearned :: 78
+- through overreach unsupported :: 78
+- through overreach unsafe :: 77
+- through overreach mis :: 77
+- through unearned unsupported :: 77
+- through unearned unsafe :: 77
+- through unearned mis :: 77
+- through unearned scoped :: 77
+- through unsupported unsafe :: 77
+- through unsupported mis :: 77
+- through unsupported scoped :: 77
+- through unsupported does :: 77
+- through unsafe mis :: 77
+- through unsafe scoped :: 77
+- through unsafe does :: 77
+- through unsafe not :: 77
+- through mis scoped :: 77
+- through mis does :: 77
+- through mis not :: 77
+- through mis follow :: 77
+- through scoped does :: 77
+- through scoped not :: 77
+- through scoped follow :: 77
+- through scoped smaller :: 77
+- through does not :: 77
+- through does follow :: 77
+- through does smaller :: 77
+- through does move :: 76
+- through not follow :: 76
+- through not smaller :: 76
+- through not move :: 76
+- through not correction :: 76
+- through follow smaller :: 76
+- through follow move :: 76
+- through follow correction :: 76
+- through follow concern :: 76
+- through smaller move :: 76
+- through smaller correction :: 76
+- through smaller concern :: 76
+- through smaller risk :: 76
+- through move correction :: 76
+- through move concern :: 76
+- through move risk :: 76
+- through move blocker :: 76
+- through correction concern :: 76
+- through correction risk :: 76
+- through correction blocker :: 76
+- through correction condition :: 76
+- through concern risk :: 76
+- through concern blocker :: 76
+- through concern condition :: 76
+- through concern honest :: 76
+- through risk blocker :: 75
+- through risk condition :: 75
+- through risk honest :: 75
+- through risk limit :: 75
+- through blocker condition :: 75
+- through blocker honest :: 75
+- through blocker limit :: 75
+- through blocker yet :: 75
+- through condition honest :: 75
+- through condition limit :: 75
+- through condition yet :: 75
+- through condition wrong :: 75
+- through honest limit :: 75
+- through honest yet :: 75
+- through honest wrong :: 75
+- through honest scope :: 75
+- before hold stop :: 75
+- before hold boundary :: 75
+- before hold overreach :: 75
+- before hold unearned :: 75
+- before stop boundary :: 75
+- before stop overreach :: 75
+- before stop unearned :: 75
+- before stop unsupported :: 75
+- before boundary overreach :: 75
+- before boundary unearned :: 74
+- before boundary unsupported :: 74
+- before boundary unsafe :: 74
+- before overreach unearned :: 74
+- before overreach unsupported :: 74
+- before overreach unsafe :: 74
+- before overreach mis :: 74
+- before unearned unsupported :: 74
+- before unearned unsafe :: 74
+- before unearned mis :: 74
+- before unearned scoped :: 74
+- before unsupported unsafe :: 74
+- before unsupported mis :: 74
+- before unsupported scoped :: 74
+- before unsupported does :: 74
+- before unsafe mis :: 74
+- before unsafe scoped :: 74
+- before unsafe does :: 74
+- before unsafe not :: 74
+- before mis scoped :: 74
+- before mis does :: 74
+- before mis not :: 74
+- before mis follow :: 74
+- before scoped does :: 74
+- before scoped not :: 74
+- before scoped follow :: 73
+- before scoped smaller :: 73
+- before does not :: 73
+- before does follow :: 73
+- before does smaller :: 73
+- before does move :: 73
+- before not follow :: 73
+- before not smaller :: 73
+- before not move :: 73
+- before not correction :: 73
+- before follow smaller :: 73
+- before follow move :: 73
+- before follow correction :: 73
+- before follow concern :: 73
+- before smaller move :: 73
+- before smaller correction :: 73
+- before smaller concern :: 73
+- before smaller risk :: 73
+- before move correction :: 73
+- before move concern :: 73
+- before move risk :: 73
+- before move blocker :: 73
+- before correction concern :: 73
+- before correction risk :: 73
+- before correction blocker :: 73
+- before correction condition :: 72
+- before concern risk :: 72
+- before concern blocker :: 72
+- before concern condition :: 72
+- before concern honest :: 72
+- before risk blocker :: 72
+- before risk condition :: 72
+- before risk honest :: 72
+- before risk limit :: 72
+- before blocker condition :: 72
+- before blocker honest :: 72
+- before blocker limit :: 72
+- before blocker yet :: 72
+- before condition honest :: 72
+- before condition limit :: 72
+- before condition yet :: 72
+- before condition wrong :: 72
+- before honest limit :: 72
+- before honest yet :: 72
+- before honest wrong :: 72
+- before honest scope :: 72
+- after hold stop :: 72
+- after hold boundary :: 72
+- after hold overreach :: 72
+- after hold unearned :: 72
+- after stop boundary :: 71
+- after stop overreach :: 71
+- after stop unearned :: 71
+- after stop unsupported :: 71
+- after boundary overreach :: 71
+- after boundary unearned :: 71
+- after boundary unsupported :: 71
+- after boundary unsafe :: 71
+- after overreach unearned :: 71
+- after overreach unsupported :: 71
+- after overreach unsafe :: 71
+- after overreach mis :: 71
+- after unearned unsupported :: 71
+- after unearned unsafe :: 71
+- after unearned mis :: 71
+- after unearned scoped :: 71
+- after unsupported unsafe :: 71
+- after unsupported mis :: 71
+- after unsupported scoped :: 71
+- after unsupported does :: 71
+- after unsafe mis :: 71
+- after unsafe scoped :: 71
+- after unsafe does :: 71
+- after unsafe not :: 71
+- after mis scoped :: 71
+- after mis does :: 70
+- after mis not :: 70
+- after mis follow :: 70
+- after scoped does :: 70
+- after scoped not :: 70
+- after scoped follow :: 70
+- after scoped smaller :: 70
+- after does not :: 70
+- after does follow :: 70
+- after does smaller :: 70
+- after does move :: 70
+- after not follow :: 70
+- after not smaller :: 70
+- after not move :: 70
+- after not correction :: 70
+- after follow smaller :: 70
+- after follow move :: 70
+- after follow correction :: 70
+- after follow concern :: 70
+- after smaller move :: 70
+- after smaller correction :: 70
+- after smaller concern :: 70
+- after smaller risk :: 70
+- after move correction :: 70
+- after move concern :: 70
+- after move risk :: 69
+- after move blocker :: 69
+- after correction concern :: 69
+- after correction risk :: 69
+- after correction blocker :: 69
+- after correction condition :: 69
+- after concern risk :: 69
+- after concern blocker :: 69
+- after concern condition :: 69
+- after concern honest :: 69
+- after risk blocker :: 69
+- after risk condition :: 69
+- after risk honest :: 69
+- after risk limit :: 69
+- after blocker condition :: 69
+- after blocker honest :: 69
+- after blocker limit :: 69
+- after blocker yet :: 69
+- after condition honest :: 69
+- after condition limit :: 69
+- after condition yet :: 69
+- after condition wrong :: 69
+- after honest limit :: 69
+- after honest yet :: 69
+- after honest wrong :: 69
+- after honest scope :: 68
+- during hold stop :: 68
+- during hold boundary :: 68
+- during hold overreach :: 68
+- during hold unearned :: 68
+- during stop boundary :: 68
+- during stop overreach :: 68
+- during stop unearned :: 68
+- during stop unsupported :: 68
+- during boundary overreach :: 68
+- during boundary unearned :: 68
+- during boundary unsupported :: 68
+- during boundary unsafe :: 68
+- during overreach unearned :: 68
+- during overreach unsupported :: 68
+- during overreach unsafe :: 68
+- during overreach mis :: 68
+- during unearned unsupported :: 68
+- during unearned unsafe :: 68
+- during unearned mis :: 68
+- during unearned scoped :: 68
+- during unsupported unsafe :: 68
+- during unsupported mis :: 68
+- during unsupported scoped :: 68
+- during unsupported does :: 68
+- during unsafe mis :: 67
+- during unsafe scoped :: 67
+- during unsafe does :: 67
+- during unsafe not :: 67
+- during mis scoped :: 67
+- during mis does :: 67
+- during mis not :: 67
+- during mis follow :: 67
+- during scoped does :: 67
+- during scoped not :: 67
+- during scoped follow :: 67
+- during scoped smaller :: 67
+- during does not :: 67
+- during does follow :: 67
+- during does smaller :: 67
+- during does move :: 67
+- during not follow :: 67
+- during not smaller :: 67
+- during not move :: 67
+- during not correction :: 67
+- during follow smaller :: 67
+- during follow move :: 67
+- during follow correction :: 67
+- during follow concern :: 67
+- during smaller move :: 67
+- during smaller correction :: 66
+- during smaller concern :: 66
+- during smaller risk :: 66
+- during move correction :: 66
+- during move concern :: 66
+- during move risk :: 66
+- during move blocker :: 66
+- during correction concern :: 66
+- during correction risk :: 66
+- during correction blocker :: 66
+- during correction condition :: 66
+- during concern risk :: 66
+- during concern blocker :: 66
+- during concern condition :: 66
+- during concern honest :: 66
+- during risk blocker :: 66
+- during risk condition :: 66
+- during risk honest :: 66
+- during risk limit :: 66
+- during blocker condition :: 66
+- during blocker honest :: 66
+- during blocker limit :: 66
+- during blocker yet :: 66
+- during condition honest :: 66
+- during condition limit :: 66
+- during condition yet :: 65
+- during condition wrong :: 65
+- during honest limit :: 65
+- during honest yet :: 65
+- during honest wrong :: 65
+- during honest scope :: 65
+- until hold stop :: 65
+- until hold boundary :: 65
+- until hold overreach :: 65
+- until hold unearned :: 65
+- until stop boundary :: 65
+- until stop overreach :: 65
+- until stop unearned :: 65
+- until stop unsupported :: 65
+- until boundary overreach :: 65
+- until boundary unearned :: 65
+- until boundary unsupported :: 65
+- until boundary unsafe :: 65
+- until overreach unearned :: 65
+- until overreach unsupported :: 65
+- until overreach unsafe :: 65
+- until overreach mis :: 65
+- until unearned unsupported :: 65
+- until unearned unsafe :: 65
+- until unearned mis :: 65
+- until unearned scoped :: 64
+- until unsupported unsafe :: 64
+- until unsupported mis :: 64
+- until unsupported scoped :: 64
+- until unsupported does :: 64
+- until unsafe mis :: 64
+- until unsafe scoped :: 64
+- until unsafe does :: 64
+- until unsafe not :: 64
+- until mis scoped :: 64
+- until mis does :: 64
+- until mis not :: 64
+- until mis follow :: 64
+- until scoped does :: 64
+- until scoped not :: 64
+- until scoped follow :: 64
+- until scoped smaller :: 64
+- until does not :: 64
+- until does follow :: 64
+- until does smaller :: 64
+- until does move :: 64
+- until not follow :: 64
+- until not smaller :: 64
+- until not move :: 64
+- until not correction :: 64
+- until follow smaller :: 63
+- until follow move :: 63
+- until follow correction :: 63
+- until follow concern :: 63
+- until smaller move :: 63
+- until smaller correction :: 63
+- until smaller concern :: 63
+- until smaller risk :: 63
+- until move correction :: 63
+- until move concern :: 63
+- until move risk :: 63
+- until move blocker :: 63
+- until correction concern :: 63
+- until correction risk :: 63
+- until correction blocker :: 63
+- until correction condition :: 63
+- until concern risk :: 63
+- until concern blocker :: 63
+- until concern condition :: 63
+- until concern honest :: 63
+- until risk blocker :: 63
+- until risk condition :: 63
+- until risk honest :: 63
+- until risk limit :: 63
+- until blocker condition :: 63
+- until blocker honest :: 62
+- until blocker limit :: 62
+- until blocker yet :: 62
+- until condition honest :: 62
+- until condition limit :: 62
+- until condition yet :: 62
+- until condition wrong :: 62
+- until honest limit :: 62
+- until honest yet :: 62
+- until honest wrong :: 62
+- until honest scope :: 62
+- since hold stop :: 62
+- since hold boundary :: 62
+- since hold overreach :: 62
+- since hold unearned :: 62
+- since stop boundary :: 62
+- since stop overreach :: 62
+- since stop unearned :: 62
+- since stop unsupported :: 62
+- since boundary overreach :: 62
+- since boundary unearned :: 62
+- since boundary unsupported :: 62
+- since boundary unsafe :: 62
+- since overreach unearned :: 62
+- since overreach unsupported :: 62
+- since overreach unsafe :: 61
+- since overreach mis :: 61
+- since unearned unsupported :: 61
+- since unearned unsafe :: 61
+- since unearned mis :: 61
+- since unearned scoped :: 61
+- since unsupported unsafe :: 61
+- since unsupported mis :: 61
+- since unsupported scoped :: 61
+- since unsupported does :: 61
+- since unsafe mis :: 61
+- since unsafe scoped :: 61
+- since unsafe does :: 61
+- since unsafe not :: 61
+- since mis scoped :: 61
+- since mis does :: 61
+- since mis not :: 61
+- since mis follow :: 61
+- since scoped does :: 61
+- since scoped not :: 61
+- since scoped follow :: 61
+- since scoped smaller :: 61
+- since does not :: 61
+- since does follow :: 61
+- since does smaller :: 61
+- since does move :: 60
+- since not follow :: 60
+- since not smaller :: 60
+- since not move :: 60
+- since not correction :: 60
+- since follow smaller :: 60
+- since follow move :: 60
+- since follow correction :: 60
+- since follow concern :: 60
+- since smaller move :: 60
+- since smaller correction :: 60
+- since smaller concern :: 60
+- since smaller risk :: 60
+- since move correction :: 60
+- since move concern :: 60
+- since move risk :: 60
+- since move blocker :: 60
+- since correction concern :: 60
+- since correction risk :: 60
+- since correction blocker :: 60
+- since correction condition :: 60
+- since concern risk :: 60
+- since concern blocker :: 60
+- since concern condition :: 60
+- since concern honest :: 60
+- since risk blocker :: 59
+- since risk condition :: 59
+- since risk honest :: 59
+- since risk limit :: 59
+- since blocker condition :: 59
+- since blocker honest :: 59
+- since blocker limit :: 59
+- since blocker yet :: 59
+- since condition honest :: 59
+- since condition limit :: 59
+- since condition yet :: 59
+- since condition wrong :: 59
+- since honest limit :: 59
+- since honest yet :: 59
+- since honest wrong :: 59
+- since honest scope :: 59
+- hold stop boundary :: 59
+- hold stop overreach :: 59
+- hold stop unearned :: 59
+- hold boundary overreach :: 59
+- hold boundary unearned :: 59
+- hold overreach boundary :: 59
+- hold overreach unearned :: 59
+- hold unearned boundary :: 59
+- hold unearned overreach :: 59
+- hold unsupported boundary :: 58
+- hold unsupported overreach :: 58
+- hold unsupported unearned :: 58
+- stop boundary overreach :: 58
+- stop boundary unearned :: 58
+- stop boundary unsupported :: 58
+- stop overreach unearned :: 58
+- stop overreach unsupported :: 58
+- stop unearned overreach :: 58
+- stop unearned unsupported :: 58
+- stop unsupported overreach :: 58
+- stop unsupported unearned :: 58
+- stop unsafe overreach :: 58
+- stop unsafe unearned :: 58
+- stop unsafe unsupported :: 58
+- boundary overreach unearned :: 58
+- boundary overreach unsupported :: 58
+- boundary overreach unsafe :: 58
+- boundary unearned unsupported :: 58
+- boundary unearned unsafe :: 58
+- boundary unsupported unearned :: 58
+- boundary unsupported unsafe :: 58
+- boundary unsafe unearned :: 58
+- boundary unsafe unsupported :: 58
+- boundary mis unearned :: 58
+- boundary mis unsupported :: 57
+- boundary mis unsafe :: 57
+- overreach unearned unsupported :: 57
+- overreach unearned unsafe :: 57
+- overreach unearned mis :: 57
+- overreach unsupported unsafe :: 57
+- overreach unsupported mis :: 57
+- overreach unsafe unsupported :: 57
+- overreach unsafe mis :: 57
+- overreach mis unsupported :: 57
+- overreach mis unsafe :: 57
+- overreach scoped unsupported :: 57
+- overreach scoped unsafe :: 57
+- overreach scoped mis :: 57
+- unearned unsupported unsafe :: 57
+- unearned unsupported mis :: 57
+- unearned unsupported scoped :: 57
+- unearned unsafe mis :: 57
+- unearned unsafe scoped :: 57
+- unearned mis unsafe :: 57
+- unearned mis scoped :: 57
+- unearned scoped unsafe :: 57
+- unearned scoped mis :: 57
+- unearned does unsafe :: 57
+- unearned does mis :: 57
+- unearned does scoped :: 56
+- unsupported unsafe mis :: 56
+- unsupported unsafe scoped :: 56
+- unsupported unsafe does :: 56
+- unsupported mis scoped :: 56
+- unsupported mis does :: 56
+- unsupported scoped mis :: 56
+- unsupported scoped does :: 56
+- unsupported does mis :: 56
+- unsupported does scoped :: 56
+- unsupported not mis :: 56
+- unsupported not scoped :: 56
+- unsupported not does :: 56
+- unsafe mis scoped :: 56
+- unsafe mis does :: 56
+- unsafe mis not :: 56
+- unsafe scoped does :: 56
+- unsafe scoped not :: 56
+- unsafe does scoped :: 56
+- unsafe does not :: 56
+- unsafe not scoped :: 56
+- unsafe not does :: 56
+- unsafe follow scoped :: 56
+- unsafe follow does :: 56
+- unsafe follow not :: 56
+- mis scoped does :: 55
+- mis scoped not :: 55
+- mis scoped follow :: 55
+- mis does not :: 55
+- mis does follow :: 55
+- mis not does :: 55
+- mis not follow :: 55
+- mis follow does :: 55
+- mis follow not :: 55
+- mis smaller does :: 55
+- mis smaller not :: 55
+- mis smaller follow :: 55
+- scoped does not :: 55
+- scoped does follow :: 55
+- scoped does smaller :: 55
+- scoped not follow :: 55
+- scoped not smaller :: 55
+- scoped follow not :: 55
+- scoped follow smaller :: 55
+- scoped smaller not :: 55
+- scoped smaller follow :: 55
+- scoped move not :: 55
+- scoped move follow :: 55
+- scoped move smaller :: 55
+- does not smaller :: 55
+- does not move :: 54
+- does follow smaller :: 54
+- does follow move :: 54
+- does smaller follow :: 54
+- does smaller move :: 54
+- does move follow :: 54
+- does move smaller :: 54
+- does correction follow :: 54
+- does correction smaller :: 54
+- does correction move :: 54
+- not follow smaller :: 54
+- not follow move :: 54
+- not follow correction :: 54
+- not smaller move :: 54
+- not smaller correction :: 54
+- not move smaller :: 54
+- not move correction :: 54
+- not correction smaller :: 54
+- not correction move :: 54
+- not concern smaller :: 54
+- not concern move :: 54
+- not concern correction :: 54
+- follow smaller move :: 54
+- follow smaller correction :: 54
+- follow smaller concern :: 54
+- follow move correction :: 53
+- follow move concern :: 53
+- follow correction move :: 53
+- follow correction concern :: 53
+- follow concern move :: 53
+- follow concern correction :: 53
+- follow risk move :: 53
+- follow risk correction :: 53
+- follow risk concern :: 53
+- smaller move correction :: 53
+- smaller move concern :: 53
+- smaller move risk :: 53
+- smaller correction concern :: 53
+- smaller correction risk :: 53
+- smaller concern correction :: 53
+- smaller concern risk :: 53
+- smaller risk correction :: 53
+- smaller risk concern :: 53
+- smaller blocker correction :: 53
+- smaller blocker concern :: 53
+- smaller blocker risk :: 53
+- move correction concern :: 53
+- move correction risk :: 53
+- move correction blocker :: 53
+- move concern risk :: 53
+- move concern blocker :: 52
+- move risk concern :: 52
+- move risk blocker :: 52
+- move blocker concern :: 52
+- move blocker risk :: 52
+- move condition concern :: 52
+- move condition risk :: 52
+- move condition blocker :: 52
+- correction concern risk :: 52
+- correction concern blocker :: 52
+- correction concern condition :: 52
+- correction risk blocker :: 52
+- correction risk condition :: 52
+- correction blocker risk :: 52
+- correction blocker condition :: 52
+- correction condition risk :: 52
+- correction condition blocker :: 52
+- correction honest risk :: 52
+- correction honest blocker :: 52
+- correction honest condition :: 52
+- concern risk blocker :: 52
+- concern risk condition :: 52
+- concern risk honest :: 52
+- concern blocker condition :: 52
+- concern blocker honest :: 52
+- concern condition blocker :: 51
+- concern condition honest :: 51
+- concern honest blocker :: 51
+- concern honest condition :: 51
+- concern limit blocker :: 51
+- concern limit condition :: 51
+- concern limit honest :: 51
+- risk blocker condition :: 51
+- risk blocker honest :: 51
+- risk blocker limit :: 51
+- risk condition honest :: 51
+- risk condition limit :: 51
+- risk honest condition :: 51
+- risk honest limit :: 51
+- risk limit condition :: 51
+- risk limit honest :: 51
+- risk yet condition :: 51
+- risk yet honest :: 51
+- risk yet limit :: 51
+- blocker condition honest :: 51
+- blocker condition limit :: 51
+- blocker condition yet :: 51
+- blocker honest limit :: 51
+- blocker honest yet :: 51
+- blocker limit honest :: 51
+- blocker limit yet :: 50
+- blocker yet honest :: 50
+- blocker yet limit :: 50
+- blocker wrong honest :: 50
+- blocker wrong limit :: 50
+- blocker wrong yet :: 50
+- condition honest limit :: 50
+- condition honest yet :: 50
+- condition honest wrong :: 50
+- condition limit yet :: 50
+- condition limit wrong :: 50
+- condition yet limit :: 50
+- condition yet wrong :: 50
+- condition wrong limit :: 50
+- condition wrong yet :: 50
+- condition scope limit :: 50
+- condition scope yet :: 50
+- condition scope wrong :: 50
+- honest limit yet :: 50
+- honest limit wrong :: 50
+- honest limit scope :: 50
+- honest yet wrong :: 50
+- honest yet scope :: 50
+- honest wrong yet :: 50
+- honest wrong scope :: 50
+- honest scope yet :: 49
+- honest scope wrong :: 49
+- honest break yet :: 49
+- honest break wrong :: 49
+- honest break scope :: 49
+- limit yet wrong :: 49
+- limit yet scope :: 49
+- limit yet break :: 49
+- limit wrong scope :: 49
+- limit wrong break :: 49
+- limit scope wrong :: 49
+- limit scope break :: 49
+- limit break wrong :: 49
+- limit break scope :: 49
+- limit refusal wrong :: 49
+- limit refusal scope :: 49
+- limit refusal break :: 49
+- yet wrong scope :: 49
+- yet wrong break :: 49
+- yet wrong refusal :: 49
+- yet scope break :: 49
+- yet scope refusal :: 49
+- yet break scope :: 49
+- yet break refusal :: 49
+- yet refusal scope :: 49
+- yet refusal break :: 48
+- yet redirect scope :: 48
+- yet redirect break :: 48
+- yet redirect refusal :: 48
+- wrong scope break :: 48
+- wrong scope refusal :: 48
+- wrong scope redirect :: 48
+- wrong break refusal :: 48
+- wrong break redirect :: 48
+- wrong refusal break :: 48
+- wrong refusal redirect :: 48
+- wrong redirect break :: 48
+- wrong redirect refusal :: 48
+- wrong minimum break :: 48
+- wrong minimum refusal :: 48
+- wrong minimum redirect :: 48
+- scope break refusal :: 48
+- scope break redirect :: 48
+- scope break minimum :: 48
+- scope refusal redirect :: 48
+- scope refusal minimum :: 48
+- scope redirect refusal :: 48
+- scope redirect minimum :: 48
+- scope minimum refusal :: 48
+- scope minimum redirect :: 48
+- scope viable refusal :: 47
+- scope viable redirect :: 47
+- scope viable minimum :: 47
+- break refusal redirect :: 47
+- break refusal minimum :: 47
+- break refusal viable :: 47
+- break redirect minimum :: 47
+- break redirect viable :: 47
+- break minimum redirect :: 47
+- break minimum viable :: 47
+- break viable redirect :: 47
+- break viable minimum :: 47
+- break owner redirect :: 47
+- break owner minimum :: 47
+- break owner viable :: 47
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- earned disagreement
+- boundary
+- challenge
+- support level
+- smallest correction
+- unsafe assumption
+
+### Couplings
+
+- earned boundary
+- smallest correction
+- unsafe assumption
+
+### Triplets
+
+- challenge support correction

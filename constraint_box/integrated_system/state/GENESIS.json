@@ -1,0 +1,23 @@
+{
+  "schema": "constraintbox.integrated-system-genesis.v1",
+  "predecessor": {
+    "event_count": 4265,
+    "head_sha256": "cca3c816217f1d9d9de60ab67fb0f6d55b62e9379e830c96bed8d83eb3c9a4ed",
+    "ledger_sha256": "56a8ce44f011e464f9d6a440e7434eace6247588f936783a78a09aacdcee73db",
+    "full_object_store_included": false
+  },
+  "context_projection": {
+    "path": "../context/full/prompt_plan_progress_corpus.jsonl",
+    "sha256": "90e012e943dc88a67b4dfc0041083ab4cf5af5dceebba57cc00cb4217b858afd",
+    "selected_event_count": 4180
+  },
+  "current_context": {
+    "OWNER_OBJECT.md": "ff233ce2e1086e18134eccd32169ed4be57dba5070bd8aa22087116b7668822b",
+    "CURRENT_PLAN.md": "e4bf43498991c717952153f2347dfaba1793e0dc224c1260007dd0c242d409da",
+    "FAILURE_MEMORY.md": "230444a4645459e4456c9f357d2b80e7d81d2df667fba68940d19e3e8c3eba66",
+    "OPEN_HYPOTHESES.md": "201414f61ccebd38260337d28277e29c84ca6ff096517b21027540f4e634063b"
+  },
+  "migration_rule": "new append-only state may cite this verified projection; it must not claim the omitted source snapshots or object store are portable",
+  "claim_ceiling": "clean-system genesis bound to a verified predecessor head and verbatim context projection; not full-history portability, not canon, not promotion",
+  "promotion_allowed": false
+}

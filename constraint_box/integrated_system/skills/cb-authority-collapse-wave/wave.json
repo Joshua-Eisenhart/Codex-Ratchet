@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-authority-collapse-wave-v1",
+  "purpose": "Falsify the authority path through bypass, custody, and cancellation attacks.",
+  "children": [
+    {"id": "bypass", "skill": "cb-authority-audit-cell", "operation": "alternate_entrypoint_bypass", "tools": ["call_graph", "host_hook_smoke"]},
+    {"id": "custody", "skill": "cb-authority-audit-cell", "operation": "receipt_source_custody", "tools": ["digest_verifier", "sqlite_readonly"]},
+    {"id": "cancellation", "skill": "cb-authority-audit-cell", "operation": "cancel_crash_partial_state", "tools": ["fault_injection", "event_log_audit"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 3, "repair_then_exact_rerun": true, "stop_reasons": ["no_material_delta", "falsifiers_settled", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "preload_receipts", "provider_call_receipt", "cancellation_state", "disagreement_state", "output_digest", "repair_digest", "rerun_delta"]},
+  "claim_ceiling": "Authority-path falsification evidence only; hook output and model prose remain non-authoritative."
+}

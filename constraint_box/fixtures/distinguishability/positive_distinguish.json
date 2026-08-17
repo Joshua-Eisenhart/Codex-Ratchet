@@ -1,0 +1,23 @@
+{
+  "schema": "constraintbox.distinguishability.packet.v1",
+  "claim": "two candidates are distinguishable under a two-probe family",
+  "claim_ceiling": "exists",
+  "candidates": ["a", "b"],
+  "probes": ["color", "shape"],
+  "probe_domains": {
+    "color": ["red", "blue"],
+    "shape": ["circle", "square"]
+  },
+  "demand_D": [
+    {
+      "left": "a",
+      "right": "b",
+      "id": "a_b",
+      "why_demanded": "the pair must not collapse under M"
+    }
+  ],
+  "constraints_C": [],
+  "query": "distinguish",
+  "theory": "finite",
+  "authority": "none"
+}

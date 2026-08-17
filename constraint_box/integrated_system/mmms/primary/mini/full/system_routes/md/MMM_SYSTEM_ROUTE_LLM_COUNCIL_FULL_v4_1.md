@@ -1,0 +1,2157 @@
+# 🧠 LLM Council Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Council workers load this only during the LLM Council wave.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `LLM_COUNCIL` and remapped to v4.1 canon category `system_routes`.
+
+---
+
+# MMM_VOICE_LLM_COUNCIL_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- council :: 100
+- model :: 100
+- route :: 100
+- sonnet :: 100
+- opus :: 100
+- codex :: 100
+- gemini :: 100
+- external :: 100
+- view :: 100
+- dissent :: 100
+- disagreement :: 100
+- state :: 100
+- blocked :: 100
+- untried :: 100
+- diagnostic :: 100
+- live :: 100
+- receipt :: 100
+- family :: 100
+- independent :: 100
+- check :: 100
+- outside :: 100
+- frame :: 100
+- implementation :: 100
+- harness :: 100
+- judgment :: 100
+- split :: 99
+- model family :: 99
+- role :: 99
+- outside frame :: 99
+- alternate reading :: 99
+- unsupported :: 99
+- receipt changed :: 99
+- not a vote :: 99
+- no consensus :: 99
+- independent route :: 99
+- comparison :: 99
+- split retained :: 99
+- route status :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- during :: 99
+- until :: 99
+- since :: 99
+- from :: 99
+- by :: 99
+- with :: 98
+- without :: 98
+- against :: 98
+- toward :: 98
+- near :: 98
+- relative :: 98
+- according :: 98
+- locally :: 98
+- jointly :: 98
+- separately :: 98
+- rather :: 98
+- instead :: 98
+- only :: 98
+- still :: 98
+- yet :: 98
+- often :: 98
+- sometimes :: 98
+- usually :: 98
+- seems :: 98
+- appears :: 98
+- likely :: 98
+- possible :: 98
+- plausible :: 98
+- tentative :: 98
+- provisional :: 98
+- bounded :: 97
+- finite :: 97
+- local :: 97
+- current :: 97
+- observed :: 97
+- measured :: 97
+- checked :: 97
+- open :: 97
+- partial :: 97
+- limited :: 97
+- constraint :: 97
+- evidence :: 97
+- observation :: 97
+- measurement :: 97
+- test :: 97
+- trace :: 97
+- sample :: 97
+- case :: 97
+- instance :: 97
+- particular :: 97
+- name :: 97
+- term :: 97
+- word :: 97
+- use :: 97
+- custom :: 97
+- habit :: 96
+- regularity :: 96
+- relation :: 96
+- distinction :: 96
+- difference :: 96
+- similarity :: 96
+- support :: 96
+- inference :: 96
+- estimate :: 96
+- uncertainty :: 96
+- probability :: 96
+- frequency :: 96
+- distribution :: 96
+- witness :: 96
+- counterexample :: 96
+- candidate :: 96
+- survivor :: 96
+- surface :: 96
+- boundary :: 96
+- scope :: 96
+- condition :: 96
+- result :: 96
+- path :: 96
+- branch :: 96
+- fork :: 96
+- plurality :: 95
+- reading :: 95
+- perspective :: 95
+- claim :: 95
+- voice :: 95
+- lane :: 95
+- llm :: 95
+- model-family :: 95
+- role-family :: 95
+- over :: 95
+- existing :: 95
+- receipts :: 95
+- compare :: 95
+- distinct :: 95
+- routes :: 95
+- turning :: 95
+- them :: 95
+- into :: 95
+- votes :: 95
+- preserve :: 95
+- readings :: 95
+- reject :: 95
+- claims :: 95
+- even :: 95
+- when :: 95
+- most :: 94
+- are :: 94
+- calm :: 94
+- mark :: 94
+- and :: 94
+- honestly :: 94
+- which :: 94
+- changed :: 94
+- the :: 94
+- answer :: 94
+- provide :: 94
+- outside-frame :: 94
+- pressure :: 94
+- replacing :: 94
+- topology :: 94
+- not :: 94
+- synthesis :: 94
+- audit :: 94
+- majority :: 94
+- vote :: 94
+- controller :: 94
+- simulation :: 94
+- missing :: 94
+- models :: 94
+- reporting :: 93
+- summarizing :: 93
+- they :: 93
+- voted :: 93
+- language :: 93
+- collapsing :: 93
+- roles :: 93
+- one :: 93
+- generic :: 93
+- using :: 93
+- label :: 93
+- exists :: 93
+- stealing :: 93
+- deciding :: 93
+- composition :: 93
+- act :: 93
+- ambiguity :: 93
+- overfitting :: 93
+- idiom :: 93
+- model-family-specific :: 93
+- blind :: 93
+- spots :: 93
+- that :: 93
+- should :: 93
+- count :: 92
+- agreement :: 92
+- survive :: 92
+- truth :: 92
+- validation :: 92
+- human :: 92
+- executive :: 92
+- translation :: 92
+- target :: 92
+- falsifier :: 92
+- whole-context :: 92
+- loop :: 92
+- analysis :: 92
+- alternate :: 92
+- retained :: 92
+- status :: 92
+- compares :: 92
+- composes :: 92
+- what :: 92
+- survives :: 92
+
+## couplings
+
+- model family :: 100
+- outside frame :: 100
+- alternate reading :: 100
+- receipt changed :: 100
+- no consensus :: 100
+- independent route :: 100
+- split retained :: 100
+- route status :: 100
+- council :: 100
+- route :: 100
+- role :: 100
+- live :: 100
+- blocked :: 100
+- untried :: 100
+- diagnostic :: 100
+- dissent :: 100
+- unsupported :: 100
+- not a vote :: 100
+- comparison :: 100
+- under council :: 100
+- under model :: 100
+- under route :: 100
+- under sonnet :: 100
+- under opus :: 100
+- under codex :: 100
+- under gemini :: 99
+- under external :: 99
+- under view :: 99
+- under dissent :: 99
+- under disagreement :: 99
+- under state :: 99
+- under blocked :: 99
+- under untried :: 99
+- under diagnostic :: 99
+- under live :: 99
+- under receipt :: 99
+- under family :: 99
+- under independent :: 99
+- under check :: 99
+- within council :: 99
+- within model :: 99
+- within route :: 99
+- within sonnet :: 99
+- within opus :: 99
+- within codex :: 99
+- within gemini :: 99
+- within external :: 99
+- within view :: 99
+- within dissent :: 99
+- within disagreement :: 99
+- within state :: 98
+- within blocked :: 98
+- within untried :: 98
+- within diagnostic :: 98
+- within live :: 98
+- within receipt :: 98
+- within family :: 98
+- within independent :: 98
+- within check :: 98
+- across council :: 98
+- across model :: 98
+- across route :: 98
+- across sonnet :: 98
+- across opus :: 98
+- across codex :: 98
+- across gemini :: 98
+- across external :: 98
+- across view :: 98
+- across dissent :: 98
+- across disagreement :: 98
+- across state :: 98
+- across blocked :: 98
+- across untried :: 98
+- across diagnostic :: 98
+- across live :: 98
+- across receipt :: 97
+- across family :: 97
+- across independent :: 97
+- across check :: 97
+- between council :: 97
+- between model :: 97
+- between route :: 97
+- between sonnet :: 97
+- between opus :: 97
+- between codex :: 97
+- between gemini :: 97
+- between external :: 97
+- between view :: 97
+- between dissent :: 97
+- between disagreement :: 97
+- between state :: 97
+- between blocked :: 97
+- between untried :: 97
+- between diagnostic :: 97
+- between live :: 97
+- between receipt :: 97
+- between family :: 97
+- between independent :: 97
+- between check :: 97
+- through council :: 97
+- through model :: 96
+- through route :: 96
+- through sonnet :: 96
+- through opus :: 96
+- through codex :: 96
+- through gemini :: 96
+- through external :: 96
+- through view :: 96
+- through dissent :: 96
+- through disagreement :: 96
+- through state :: 96
+- through blocked :: 96
+- through untried :: 96
+- through diagnostic :: 96
+- through live :: 96
+- through receipt :: 96
+- through family :: 96
+- through independent :: 96
+- through check :: 96
+- before council :: 96
+- before model :: 96
+- before route :: 96
+- before sonnet :: 96
+- before opus :: 96
+- before codex :: 96
+- before gemini :: 95
+- before external :: 95
+- before view :: 95
+- before dissent :: 95
+- before disagreement :: 95
+- before state :: 95
+- before blocked :: 95
+- before untried :: 95
+- before diagnostic :: 95
+- before live :: 95
+- before receipt :: 95
+- before family :: 95
+- before independent :: 95
+- before check :: 95
+- after council :: 95
+- after model :: 95
+- after route :: 95
+- after sonnet :: 95
+- after opus :: 95
+- after codex :: 95
+- after gemini :: 95
+- after external :: 95
+- after view :: 95
+- after dissent :: 95
+- after disagreement :: 95
+- after state :: 94
+- after blocked :: 94
+- after untried :: 94
+- after diagnostic :: 94
+- after live :: 94
+- after receipt :: 94
+- after family :: 94
+- after independent :: 94
+- after check :: 94
+- during council :: 94
+- during model :: 94
+- during route :: 94
+- during sonnet :: 94
+- during opus :: 94
+- during codex :: 94
+- during gemini :: 94
+- during external :: 94
+- during view :: 94
+- during dissent :: 94
+- during disagreement :: 94
+- during state :: 94
+- during blocked :: 94
+- during untried :: 94
+- during diagnostic :: 94
+- during live :: 94
+- during receipt :: 93
+- during family :: 93
+- during independent :: 93
+- during check :: 93
+- until council :: 93
+- until model :: 93
+- until route :: 93
+- until sonnet :: 93
+- until opus :: 93
+- until codex :: 93
+- until gemini :: 93
+- until external :: 93
+- until view :: 93
+- until dissent :: 93
+- until disagreement :: 93
+- until state :: 93
+- until blocked :: 93
+- until untried :: 93
+- until diagnostic :: 93
+- until live :: 93
+- until receipt :: 93
+- until family :: 93
+- until independent :: 93
+- until check :: 93
+- since council :: 93
+- since model :: 92
+- since route :: 92
+- since sonnet :: 92
+- since opus :: 92
+- since codex :: 92
+- since gemini :: 92
+- since external :: 92
+- since view :: 92
+- since dissent :: 92
+- since disagreement :: 92
+- since state :: 92
+- since blocked :: 92
+- since untried :: 92
+- since diagnostic :: 92
+- since live :: 92
+- since receipt :: 92
+- since family :: 92
+- since independent :: 92
+- since check :: 92
+- from council :: 92
+- from model :: 92
+- from route :: 92
+- from sonnet :: 92
+- from opus :: 92
+- from codex :: 92
+- from gemini :: 91
+- from external :: 91
+- from view :: 91
+- from dissent :: 91
+- from disagreement :: 91
+- from state :: 91
+- from blocked :: 91
+- from untried :: 91
+- from diagnostic :: 91
+- from live :: 91
+- from receipt :: 91
+- from family :: 91
+- from independent :: 91
+- from check :: 91
+- by council :: 91
+- by model :: 91
+- by route :: 91
+- by sonnet :: 91
+- by opus :: 91
+- by codex :: 91
+- by gemini :: 91
+- by external :: 91
+- by view :: 91
+- by dissent :: 91
+- by disagreement :: 91
+- by state :: 90
+- by blocked :: 90
+- by untried :: 90
+- by diagnostic :: 90
+- by live :: 90
+- by receipt :: 90
+- by family :: 90
+- by independent :: 90
+- by check :: 90
+- with council :: 90
+- with model :: 90
+- with route :: 90
+- with sonnet :: 90
+- with opus :: 90
+- with codex :: 90
+- with gemini :: 90
+- with external :: 90
+- with view :: 90
+- with dissent :: 90
+- with disagreement :: 90
+- with state :: 90
+- with blocked :: 90
+- with untried :: 90
+- with diagnostic :: 90
+- with live :: 90
+- with receipt :: 89
+- with family :: 89
+- with independent :: 89
+- with check :: 89
+- without council :: 89
+- without model :: 89
+- without route :: 89
+- without sonnet :: 89
+- without opus :: 89
+- without codex :: 89
+- without gemini :: 89
+- without external :: 89
+- without view :: 89
+- without dissent :: 89
+- without disagreement :: 89
+- without state :: 89
+- without blocked :: 89
+- without untried :: 89
+- without diagnostic :: 89
+- without live :: 89
+- without receipt :: 89
+- without family :: 89
+- without independent :: 89
+- without check :: 89
+- against council :: 89
+- against model :: 88
+- against route :: 88
+- against sonnet :: 88
+- against opus :: 88
+- against codex :: 88
+- against gemini :: 88
+- against external :: 88
+- against view :: 88
+- against dissent :: 88
+- against disagreement :: 88
+- against state :: 88
+- against blocked :: 88
+- against untried :: 88
+- against diagnostic :: 88
+- against live :: 88
+- against receipt :: 88
+- against family :: 88
+- against independent :: 88
+- against check :: 88
+- toward council :: 88
+- toward model :: 88
+- toward route :: 88
+- toward sonnet :: 88
+- toward opus :: 88
+- toward codex :: 88
+- toward gemini :: 87
+- toward external :: 87
+- toward view :: 87
+- toward dissent :: 87
+- toward disagreement :: 87
+- toward state :: 87
+- toward blocked :: 87
+- toward untried :: 87
+- toward diagnostic :: 87
+- toward live :: 87
+- toward receipt :: 87
+- toward family :: 87
+- toward independent :: 87
+- toward check :: 87
+- near council :: 87
+- near model :: 87
+- near route :: 87
+- near sonnet :: 87
+- near opus :: 87
+- near codex :: 87
+- near gemini :: 87
+- near external :: 87
+- near view :: 87
+- near dissent :: 87
+- near disagreement :: 87
+- near state :: 86
+- near blocked :: 86
+- near untried :: 86
+- near diagnostic :: 86
+- near live :: 86
+- near receipt :: 86
+- near family :: 86
+- near independent :: 86
+- near check :: 86
+- relative council :: 86
+- relative model :: 86
+- relative route :: 86
+- relative sonnet :: 86
+- relative opus :: 86
+- relative codex :: 86
+- relative gemini :: 86
+- relative external :: 86
+- relative view :: 86
+- relative dissent :: 86
+- relative disagreement :: 86
+- relative state :: 86
+- relative blocked :: 86
+- relative untried :: 86
+- relative diagnostic :: 86
+- relative live :: 86
+- relative receipt :: 85
+- relative family :: 85
+- relative independent :: 85
+- relative check :: 85
+- council model :: 85
+- council route :: 85
+- council sonnet :: 85
+- council opus :: 85
+- council codex :: 85
+- council gemini :: 85
+- council external :: 85
+- council view :: 85
+- council dissent :: 85
+- council disagreement :: 85
+- council state :: 85
+- model route :: 85
+- model sonnet :: 85
+- model opus :: 85
+- model codex :: 85
+- model gemini :: 85
+- model external :: 85
+- model view :: 85
+- model dissent :: 85
+- model disagreement :: 85
+- model state :: 85
+- model blocked :: 84
+- route sonnet :: 84
+- route opus :: 84
+- route codex :: 84
+- route gemini :: 84
+- route external :: 84
+- route view :: 84
+- route dissent :: 84
+- route disagreement :: 84
+- route state :: 84
+- route blocked :: 84
+- route untried :: 84
+- sonnet opus :: 84
+- sonnet codex :: 84
+- sonnet gemini :: 84
+- sonnet external :: 84
+- sonnet view :: 84
+- sonnet dissent :: 84
+- sonnet disagreement :: 84
+- sonnet state :: 84
+- sonnet blocked :: 84
+- sonnet untried :: 84
+- sonnet diagnostic :: 84
+- opus codex :: 84
+- opus gemini :: 84
+- opus external :: 83
+- opus view :: 83
+- opus dissent :: 83
+- opus disagreement :: 83
+- opus state :: 83
+- opus blocked :: 83
+- opus untried :: 83
+- opus diagnostic :: 83
+- opus live :: 83
+- codex gemini :: 83
+- codex external :: 83
+- codex view :: 83
+- codex dissent :: 83
+- codex disagreement :: 83
+- codex state :: 83
+- codex blocked :: 83
+- codex untried :: 83
+- codex diagnostic :: 83
+- codex live :: 83
+- codex receipt :: 83
+- gemini external :: 83
+- gemini view :: 83
+- gemini dissent :: 83
+- gemini disagreement :: 83
+- gemini state :: 83
+- gemini blocked :: 82
+- gemini untried :: 82
+- gemini diagnostic :: 82
+- gemini live :: 82
+- gemini receipt :: 82
+- gemini family :: 82
+- external view :: 82
+- external dissent :: 82
+- external disagreement :: 82
+- external state :: 82
+- external blocked :: 82
+- external untried :: 82
+- external diagnostic :: 82
+- external live :: 82
+- external receipt :: 82
+- external family :: 82
+- external independent :: 82
+- view dissent :: 82
+- view disagreement :: 82
+- view state :: 82
+- view blocked :: 82
+- view untried :: 82
+- view diagnostic :: 82
+- view live :: 82
+- view receipt :: 82
+- view family :: 81
+- view independent :: 81
+- view check :: 81
+- dissent disagreement :: 81
+- dissent state :: 81
+- dissent blocked :: 81
+- dissent untried :: 81
+- dissent diagnostic :: 81
+- dissent live :: 81
+- dissent receipt :: 81
+- dissent family :: 81
+- dissent independent :: 81
+- dissent check :: 81
+- dissent outside :: 81
+- disagreement state :: 81
+- disagreement blocked :: 81
+- disagreement untried :: 81
+- disagreement diagnostic :: 81
+- disagreement live :: 81
+- disagreement receipt :: 81
+- disagreement family :: 81
+- disagreement independent :: 81
+- disagreement check :: 81
+- disagreement outside :: 81
+- disagreement frame :: 81
+- state blocked :: 80
+- state untried :: 80
+- state diagnostic :: 80
+- state live :: 80
+- state receipt :: 80
+- state family :: 80
+- state independent :: 80
+- state check :: 80
+- state outside :: 80
+- state frame :: 80
+- state implementation :: 80
+- blocked untried :: 80
+- blocked diagnostic :: 80
+- blocked live :: 80
+- blocked receipt :: 80
+- blocked family :: 80
+- blocked independent :: 80
+- blocked check :: 80
+- blocked outside :: 80
+- blocked frame :: 80
+- blocked implementation :: 80
+- blocked harness :: 80
+- untried diagnostic :: 80
+- untried live :: 80
+- untried receipt :: 80
+- untried family :: 79
+- untried independent :: 79
+- untried check :: 79
+- untried outside :: 79
+- untried frame :: 79
+- untried implementation :: 79
+- untried harness :: 79
+- untried judgment :: 79
+- diagnostic live :: 79
+- diagnostic receipt :: 79
+- diagnostic family :: 79
+- diagnostic independent :: 79
+- diagnostic check :: 79
+- diagnostic outside :: 79
+- diagnostic frame :: 79
+- diagnostic implementation :: 79
+- diagnostic harness :: 79
+- diagnostic judgment :: 79
+- diagnostic split :: 79
+- live receipt :: 79
+- live family :: 79
+- live independent :: 79
+- live check :: 79
+- live outside :: 79
+- live frame :: 79
+- live implementation :: 78
+- live harness :: 78
+- live judgment :: 78
+- live split :: 78
+- live model family :: 78
+- receipt family :: 78
+- receipt independent :: 78
+- receipt check :: 78
+- receipt outside :: 78
+- receipt frame :: 78
+- receipt implementation :: 78
+- receipt harness :: 78
+- receipt judgment :: 78
+- receipt split :: 78
+- receipt model family :: 78
+- receipt role :: 78
+- family independent :: 78
+- family check :: 78
+- family outside :: 78
+- family frame :: 78
+- family implementation :: 78
+- family harness :: 78
+- family judgment :: 78
+- family split :: 78
+- family model family :: 78
+- family role :: 77
+- family outside frame :: 77
+- independent check :: 77
+- independent outside :: 77
+- independent frame :: 77
+- independent implementation :: 77
+- independent harness :: 77
+- independent judgment :: 77
+- independent split :: 77
+- independent model family :: 77
+- independent role :: 77
+- independent outside frame :: 77
+- independent alternate reading :: 77
+- check outside :: 77
+- check frame :: 77
+- check implementation :: 77
+- check harness :: 77
+- check judgment :: 77
+- check split :: 77
+- check model family :: 77
+- check role :: 77
+- check outside frame :: 77
+- check alternate reading :: 77
+- check unsupported :: 77
+- outside implementation :: 77
+- outside harness :: 76
+- outside judgment :: 76
+- outside split :: 76
+- outside model family :: 76
+- outside role :: 76
+- outside outside frame :: 76
+- outside alternate reading :: 76
+- outside unsupported :: 76
+- outside receipt changed :: 76
+- frame implementation :: 76
+- frame harness :: 76
+- frame judgment :: 76
+- frame split :: 76
+- frame model family :: 76
+- frame role :: 76
+- frame outside frame :: 76
+- frame alternate reading :: 76
+- frame unsupported :: 76
+- frame receipt changed :: 76
+- frame not a vote :: 76
+- implementation harness :: 76
+- implementation judgment :: 76
+- implementation split :: 76
+- implementation model family :: 76
+- implementation role :: 76
+- implementation outside frame :: 75
+- implementation alternate reading :: 75
+- implementation unsupported :: 75
+- implementation receipt changed :: 75
+- implementation not a vote :: 75
+- implementation no consensus :: 75
+- harness judgment :: 75
+- harness split :: 75
+- harness model family :: 75
+- harness role :: 75
+- harness outside frame :: 75
+- harness alternate reading :: 75
+- harness unsupported :: 75
+- harness receipt changed :: 75
+- harness not a vote :: 75
+- harness no consensus :: 75
+- harness independent route :: 75
+- judgment split :: 75
+- judgment model family :: 75
+- judgment role :: 75
+- judgment outside frame :: 75
+- judgment alternate reading :: 75
+- judgment unsupported :: 75
+- judgment receipt changed :: 75
+- judgment not a vote :: 75
+- judgment no consensus :: 74
+- judgment independent route :: 74
+- judgment comparison :: 74
+- split model family :: 74
+- split role :: 74
+- split outside frame :: 74
+- split alternate reading :: 74
+- split unsupported :: 74
+- split receipt changed :: 74
+- split not a vote :: 74
+- split no consensus :: 74
+- split independent route :: 74
+- split comparison :: 74
+- split split retained :: 74
+- model family role :: 74
+- model family outside frame :: 74
+- model family alternate reading :: 74
+- model family unsupported :: 74
+- model family receipt changed :: 74
+- model family not a vote :: 74
+- model family no consensus :: 74
+- model family independent route :: 74
+- model family comparison :: 74
+- model family split retained :: 74
+- model family route status :: 74
+- role outside frame :: 73
+- role alternate reading :: 73
+- role unsupported :: 73
+- role receipt changed :: 73
+- role not a vote :: 73
+- role no consensus :: 73
+- role independent route :: 73
+- role comparison :: 73
+- role split retained :: 73
+- role route status :: 73
+- role under :: 73
+- outside frame alternate reading :: 73
+- outside frame unsupported :: 73
+- outside frame receipt changed :: 73
+- outside frame not a vote :: 73
+- outside frame no consensus :: 73
+- outside frame independent route :: 73
+- outside frame comparison :: 73
+- outside frame split retained :: 73
+- outside frame route status :: 73
+- outside frame under :: 73
+- outside frame within :: 73
+- alternate reading unsupported :: 73
+- alternate reading receipt changed :: 73
+- alternate reading not a vote :: 73
+- alternate reading no consensus :: 72
+- alternate reading independent route :: 72
+- alternate reading comparison :: 72
+- alternate reading split retained :: 72
+- alternate reading route status :: 72
+- alternate reading under :: 72
+- alternate reading within :: 72
+- alternate reading across :: 72
+- unsupported receipt changed :: 72
+- unsupported not a vote :: 72
+- unsupported no consensus :: 72
+- unsupported independent route :: 72
+- unsupported comparison :: 72
+- unsupported split retained :: 72
+- unsupported route status :: 72
+- unsupported under :: 72
+- unsupported within :: 72
+- unsupported across :: 72
+- unsupported between :: 72
+- receipt changed not a vote :: 72
+- receipt changed no consensus :: 72
+- receipt changed independent route :: 72
+- receipt changed comparison :: 72
+- receipt changed split retained :: 72
+- receipt changed route status :: 72
+- receipt changed under :: 71
+- receipt changed within :: 71
+- receipt changed across :: 71
+- receipt changed between :: 71
+- receipt changed through :: 71
+- not a vote no consensus :: 71
+- not a vote independent route :: 71
+- not a vote comparison :: 71
+- not a vote split retained :: 71
+- not a vote route status :: 71
+- not a vote under :: 71
+- not a vote within :: 71
+- not a vote across :: 71
+- not a vote between :: 71
+- not a vote through :: 71
+- not a vote before :: 71
+- no consensus independent route :: 71
+- no consensus comparison :: 71
+- no consensus split retained :: 71
+- no consensus route status :: 71
+- no consensus under :: 71
+- no consensus within :: 71
+- no consensus across :: 71
+- no consensus between :: 71
+- no consensus through :: 71
+- no consensus before :: 70
+- no consensus after :: 70
+- independent route comparison :: 70
+- independent route split retained :: 70
+- independent route route status :: 70
+- independent route under :: 70
+- independent route within :: 70
+- independent route across :: 70
+- independent route between :: 70
+- independent route through :: 70
+- independent route before :: 70
+- independent route after :: 70
+
+## triplets
+
+- not a vote :: 100
+- under council model :: 100
+- under council route :: 100
+- under council sonnet :: 100
+- under council opus :: 100
+- under model route :: 100
+- under model sonnet :: 100
+- under model opus :: 100
+- under model codex :: 100
+- under route sonnet :: 100
+- under route opus :: 100
+- under route codex :: 100
+- under route gemini :: 100
+- under sonnet opus :: 100
+- under sonnet codex :: 100
+- under sonnet gemini :: 100
+- under sonnet external :: 100
+- under opus codex :: 100
+- under opus gemini :: 100
+- under opus external :: 100
+- under opus view :: 100
+- under codex gemini :: 100
+- under codex external :: 100
+- under codex view :: 100
+- under codex dissent :: 100
+- under gemini external :: 99
+- under gemini view :: 99
+- under gemini dissent :: 99
+- under gemini disagreement :: 99
+- under external view :: 99
+- under external dissent :: 99
+- under external disagreement :: 99
+- under external state :: 99
+- under view dissent :: 99
+- under view disagreement :: 99
+- under view state :: 99
+- under view blocked :: 99
+- under dissent disagreement :: 99
+- under dissent state :: 99
+- under dissent blocked :: 99
+- under dissent untried :: 99
+- under disagreement state :: 99
+- under disagreement blocked :: 99
+- under disagreement untried :: 99
+- under disagreement diagnostic :: 99
+- under state blocked :: 99
+- under state untried :: 99
+- under state diagnostic :: 99
+- under state live :: 99
+- under blocked untried :: 99
+- under blocked diagnostic :: 98
+- under blocked live :: 98
+- under blocked receipt :: 98
+- under untried diagnostic :: 98
+- under untried live :: 98
+- under untried receipt :: 98
+- under untried family :: 98
+- under diagnostic live :: 98
+- under diagnostic receipt :: 98
+- under diagnostic family :: 98
+- under diagnostic independent :: 98
+- under live receipt :: 98
+- under live family :: 98
+- under live independent :: 98
+- under live check :: 98
+- under receipt family :: 98
+- under receipt independent :: 98
+- under receipt check :: 98
+- under receipt outside :: 98
+- under family independent :: 98
+- under family check :: 98
+- under family outside :: 98
+- under family frame :: 98
+- under independent check :: 98
+- under independent outside :: 98
+- under independent frame :: 97
+- under independent implementation :: 97
+- under check outside :: 97
+- under check frame :: 97
+- under check implementation :: 97
+- under check harness :: 97
+- within council model :: 97
+- within council route :: 97
+- within council sonnet :: 97
+- within council opus :: 97
+- within model route :: 97
+- within model sonnet :: 97
+- within model opus :: 97
+- within model codex :: 97
+- within route sonnet :: 97
+- within route opus :: 97
+- within route codex :: 97
+- within route gemini :: 97
+- within sonnet opus :: 97
+- within sonnet codex :: 97
+- within sonnet gemini :: 97
+- within sonnet external :: 97
+- within opus codex :: 97
+- within opus gemini :: 97
+- within opus external :: 97
+- within opus view :: 96
+- within codex gemini :: 96
+- within codex external :: 96
+- within codex view :: 96
+- within codex dissent :: 96
+- within gemini external :: 96
+- within gemini view :: 96
+- within gemini dissent :: 96
+- within gemini disagreement :: 96
+- within external view :: 96
+- within external dissent :: 96
+- within external disagreement :: 96
+- within external state :: 96
+- within view dissent :: 96
+- within view disagreement :: 96
+- within view state :: 96
+- within view blocked :: 96
+- within dissent disagreement :: 96
+- within dissent state :: 96
+- within dissent blocked :: 96
+- within dissent untried :: 96
+- within disagreement state :: 96
+- within disagreement blocked :: 96
+- within disagreement untried :: 96
+- within disagreement diagnostic :: 96
+- within state blocked :: 95
+- within state untried :: 95
+- within state diagnostic :: 95
+- within state live :: 95
+- within blocked untried :: 95
+- within blocked diagnostic :: 95
+- within blocked live :: 95
+- within blocked receipt :: 95
+- within untried diagnostic :: 95
+- within untried live :: 95
+- within untried receipt :: 95
+- within untried family :: 95
+- within diagnostic live :: 95
+- within diagnostic receipt :: 95
+- within diagnostic family :: 95
+- within diagnostic independent :: 95
+- within live receipt :: 95
+- within live family :: 95
+- within live independent :: 95
+- within live check :: 95
+- within receipt family :: 95
+- within receipt independent :: 95
+- within receipt check :: 95
+- within receipt outside :: 95
+- within family independent :: 95
+- within family check :: 94
+- within family outside :: 94
+- within family frame :: 94
+- within independent check :: 94
+- within independent outside :: 94
+- within independent frame :: 94
+- within independent implementation :: 94
+- within check outside :: 94
+- within check frame :: 94
+- within check implementation :: 94
+- within check harness :: 94
+- across council model :: 94
+- across council route :: 94
+- across council sonnet :: 94
+- across council opus :: 94
+- across model route :: 94
+- across model sonnet :: 94
+- across model opus :: 94
+- across model codex :: 94
+- across route sonnet :: 94
+- across route opus :: 94
+- across route codex :: 94
+- across route gemini :: 94
+- across sonnet opus :: 94
+- across sonnet codex :: 94
+- across sonnet gemini :: 93
+- across sonnet external :: 93
+- across opus codex :: 93
+- across opus gemini :: 93
+- across opus external :: 93
+- across opus view :: 93
+- across codex gemini :: 93
+- across codex external :: 93
+- across codex view :: 93
+- across codex dissent :: 93
+- across gemini external :: 93
+- across gemini view :: 93
+- across gemini dissent :: 93
+- across gemini disagreement :: 93
+- across external view :: 93
+- across external dissent :: 93
+- across external disagreement :: 93
+- across external state :: 93
+- across view dissent :: 93
+- across view disagreement :: 93
+- across view state :: 93
+- across view blocked :: 93
+- across dissent disagreement :: 93
+- across dissent state :: 93
+- across dissent blocked :: 93
+- across dissent untried :: 92
+- across disagreement state :: 92
+- across disagreement blocked :: 92
+- across disagreement untried :: 92
+- across disagreement diagnostic :: 92
+- across state blocked :: 92
+- across state untried :: 92
+- across state diagnostic :: 92
+- across state live :: 92
+- across blocked untried :: 92
+- across blocked diagnostic :: 92
+- across blocked live :: 92
+- across blocked receipt :: 92
+- across untried diagnostic :: 92
+- across untried live :: 92
+- across untried receipt :: 92
+- across untried family :: 92
+- across diagnostic live :: 92
+- across diagnostic receipt :: 92
+- across diagnostic family :: 92
+- across diagnostic independent :: 92
+- across live receipt :: 92
+- across live family :: 92
+- across live independent :: 92
+- across live check :: 92
+- across receipt family :: 91
+- across receipt independent :: 91
+- across receipt check :: 91
+- across receipt outside :: 91
+- across family independent :: 91
+- across family check :: 91
+- across family outside :: 91
+- across family frame :: 91
+- across independent check :: 91
+- across independent outside :: 91
+- across independent frame :: 91
+- across independent implementation :: 91
+- across check outside :: 91
+- across check frame :: 91
+- across check implementation :: 91
+- across check harness :: 91
+- between council model :: 91
+- between council route :: 91
+- between council sonnet :: 91
+- between council opus :: 91
+- between model route :: 91
+- between model sonnet :: 91
+- between model opus :: 91
+- between model codex :: 91
+- between route sonnet :: 91
+- between route opus :: 90
+- between route codex :: 90
+- between route gemini :: 90
+- between sonnet opus :: 90
+- between sonnet codex :: 90
+- between sonnet gemini :: 90
+- between sonnet external :: 90
+- between opus codex :: 90
+- between opus gemini :: 90
+- between opus external :: 90
+- between opus view :: 90
+- between codex gemini :: 90
+- between codex external :: 90
+- between codex view :: 90
+- between codex dissent :: 90
+- between gemini external :: 90
+- between gemini view :: 90
+- between gemini dissent :: 90
+- between gemini disagreement :: 90
+- between external view :: 90
+- between external dissent :: 90
+- between external disagreement :: 90
+- between external state :: 90
+- between view dissent :: 90
+- between view disagreement :: 90
+- between view state :: 89
+- between view blocked :: 89
+- between dissent disagreement :: 89
+- between dissent state :: 89
+- between dissent blocked :: 89
+- between dissent untried :: 89
+- between disagreement state :: 89
+- between disagreement blocked :: 89
+- between disagreement untried :: 89
+- between disagreement diagnostic :: 89
+- between state blocked :: 89
+- between state untried :: 89
+- between state diagnostic :: 89
+- between state live :: 89
+- between blocked untried :: 89
+- between blocked diagnostic :: 89
+- between blocked live :: 89
+- between blocked receipt :: 89
+- between untried diagnostic :: 89
+- between untried live :: 89
+- between untried receipt :: 89
+- between untried family :: 89
+- between diagnostic live :: 89
+- between diagnostic receipt :: 89
+- between diagnostic family :: 89
+- between diagnostic independent :: 88
+- between live receipt :: 88
+- between live family :: 88
+- between live independent :: 88
+- between live check :: 88
+- between receipt family :: 88
+- between receipt independent :: 88
+- between receipt check :: 88
+- between receipt outside :: 88
+- between family independent :: 88
+- between family check :: 88
+- between family outside :: 88
+- between family frame :: 88
+- between independent check :: 88
+- between independent outside :: 88
+- between independent frame :: 88
+- between independent implementation :: 88
+- between check outside :: 88
+- between check frame :: 88
+- between check implementation :: 88
+- between check harness :: 88
+- through council model :: 88
+- through council route :: 88
+- through council sonnet :: 88
+- through council opus :: 88
+- through model route :: 87
+- through model sonnet :: 87
+- through model opus :: 87
+- through model codex :: 87
+- through route sonnet :: 87
+- through route opus :: 87
+- through route codex :: 87
+- through route gemini :: 87
+- through sonnet opus :: 87
+- through sonnet codex :: 87
+- through sonnet gemini :: 87
+- through sonnet external :: 87
+- through opus codex :: 87
+- through opus gemini :: 87
+- through opus external :: 87
+- through opus view :: 87
+- through codex gemini :: 87
+- through codex external :: 87
+- through codex view :: 87
+- through codex dissent :: 87
+- through gemini external :: 87
+- through gemini view :: 87
+- through gemini dissent :: 87
+- through gemini disagreement :: 87
+- through external view :: 87
+- through external dissent :: 86
+- through external disagreement :: 86
+- through external state :: 86
+- through view dissent :: 86
+- through view disagreement :: 86
+- through view state :: 86
+- through view blocked :: 86
+- through dissent disagreement :: 86
+- through dissent state :: 86
+- through dissent blocked :: 86
+- through dissent untried :: 86
+- through disagreement state :: 86
+- through disagreement blocked :: 86
+- through disagreement untried :: 86
+- through disagreement diagnostic :: 86
+- through state blocked :: 86
+- through state untried :: 86
+- through state diagnostic :: 86
+- through state live :: 86
+- through blocked untried :: 86
+- through blocked diagnostic :: 86
+- through blocked live :: 86
+- through blocked receipt :: 86
+- through untried diagnostic :: 86
+- through untried live :: 86
+- through untried receipt :: 85
+- through untried family :: 85
+- through diagnostic live :: 85
+- through diagnostic receipt :: 85
+- through diagnostic family :: 85
+- through diagnostic independent :: 85
+- through live receipt :: 85
+- through live family :: 85
+- through live independent :: 85
+- through live check :: 85
+- through receipt family :: 85
+- through receipt independent :: 85
+- through receipt check :: 85
+- through receipt outside :: 85
+- through family independent :: 85
+- through family check :: 85
+- through family outside :: 85
+- through family frame :: 85
+- through independent check :: 85
+- through independent outside :: 85
+- through independent frame :: 85
+- through independent implementation :: 85
+- through check outside :: 85
+- through check frame :: 85
+- through check implementation :: 85
+- through check harness :: 84
+- before council model :: 84
+- before council route :: 84
+- before council sonnet :: 84
+- before council opus :: 84
+- before model route :: 84
+- before model sonnet :: 84
+- before model opus :: 84
+- before model codex :: 84
+- before route sonnet :: 84
+- before route opus :: 84
+- before route codex :: 84
+- before route gemini :: 84
+- before sonnet opus :: 84
+- before sonnet codex :: 84
+- before sonnet gemini :: 84
+- before sonnet external :: 84
+- before opus codex :: 84
+- before opus gemini :: 84
+- before opus external :: 84
+- before opus view :: 84
+- before codex gemini :: 84
+- before codex external :: 84
+- before codex view :: 84
+- before codex dissent :: 84
+- before gemini external :: 83
+- before gemini view :: 83
+- before gemini dissent :: 83
+- before gemini disagreement :: 83
+- before external view :: 83
+- before external dissent :: 83
+- before external disagreement :: 83
+- before external state :: 83
+- before view dissent :: 83
+- before view disagreement :: 83
+- before view state :: 83
+- before view blocked :: 83
+- before dissent disagreement :: 83
+- before dissent state :: 83
+- before dissent blocked :: 83
+- before dissent untried :: 83
+- before disagreement state :: 83
+- before disagreement blocked :: 83
+- before disagreement untried :: 83
+- before disagreement diagnostic :: 83
+- before state blocked :: 83
+- before state untried :: 83
+- before state diagnostic :: 83
+- before state live :: 83
+- before blocked untried :: 83
+- before blocked diagnostic :: 82
+- before blocked live :: 82
+- before blocked receipt :: 82
+- before untried diagnostic :: 82
+- before untried live :: 82
+- before untried receipt :: 82
+- before untried family :: 82
+- before diagnostic live :: 82
+- before diagnostic receipt :: 82
+- before diagnostic family :: 82
+- before diagnostic independent :: 82
+- before live receipt :: 82
+- before live family :: 82
+- before live independent :: 82
+- before live check :: 82
+- before receipt family :: 82
+- before receipt independent :: 82
+- before receipt check :: 82
+- before receipt outside :: 82
+- before family independent :: 82
+- before family check :: 82
+- before family outside :: 82
+- before family frame :: 82
+- before independent check :: 82
+- before independent outside :: 82
+- before independent frame :: 81
+- before independent implementation :: 81
+- before check outside :: 81
+- before check frame :: 81
+- before check implementation :: 81
+- before check harness :: 81
+- after council model :: 81
+- after council route :: 81
+- after council sonnet :: 81
+- after council opus :: 81
+- after model route :: 81
+- after model sonnet :: 81
+- after model opus :: 81
+- after model codex :: 81
+- after route sonnet :: 81
+- after route opus :: 81
+- after route codex :: 81
+- after route gemini :: 81
+- after sonnet opus :: 81
+- after sonnet codex :: 81
+- after sonnet gemini :: 81
+- after sonnet external :: 81
+- after opus codex :: 81
+- after opus gemini :: 81
+- after opus external :: 81
+- after opus view :: 80
+- after codex gemini :: 80
+- after codex external :: 80
+- after codex view :: 80
+- after codex dissent :: 80
+- after gemini external :: 80
+- after gemini view :: 80
+- after gemini dissent :: 80
+- after gemini disagreement :: 80
+- after external view :: 80
+- after external dissent :: 80
+- after external disagreement :: 80
+- after external state :: 80
+- after view dissent :: 80
+- after view disagreement :: 80
+- after view state :: 80
+- after view blocked :: 80
+- after dissent disagreement :: 80
+- after dissent state :: 80
+- after dissent blocked :: 80
+- after dissent untried :: 80
+- after disagreement state :: 80
+- after disagreement blocked :: 80
+- after disagreement untried :: 80
+- after disagreement diagnostic :: 80
+- after state blocked :: 79
+- after state untried :: 79
+- after state diagnostic :: 79
+- after state live :: 79
+- after blocked untried :: 79
+- after blocked diagnostic :: 79
+- after blocked live :: 79
+- after blocked receipt :: 79
+- after untried diagnostic :: 79
+- after untried live :: 79
+- after untried receipt :: 79
+- after untried family :: 79
+- after diagnostic live :: 79
+- after diagnostic receipt :: 79
+- after diagnostic family :: 79
+- after diagnostic independent :: 79
+- after live receipt :: 79
+- after live family :: 79
+- after live independent :: 79
+- after live check :: 79
+- after receipt family :: 79
+- after receipt independent :: 79
+- after receipt check :: 79
+- after receipt outside :: 79
+- after family independent :: 79
+- after family check :: 78
+- after family outside :: 78
+- after family frame :: 78
+- after independent check :: 78
+- after independent outside :: 78
+- after independent frame :: 78
+- after independent implementation :: 78
+- after check outside :: 78
+- after check frame :: 78
+- after check implementation :: 78
+- after check harness :: 78
+- during council model :: 78
+- during council route :: 78
+- during council sonnet :: 78
+- during council opus :: 78
+- during model route :: 78
+- during model sonnet :: 78
+- during model opus :: 78
+- during model codex :: 78
+- during route sonnet :: 78
+- during route opus :: 78
+- during route codex :: 78
+- during route gemini :: 78
+- during sonnet opus :: 78
+- during sonnet codex :: 78
+- during sonnet gemini :: 77
+- during sonnet external :: 77
+- during opus codex :: 77
+- during opus gemini :: 77
+- during opus external :: 77
+- during opus view :: 77
+- during codex gemini :: 77
+- during codex external :: 77
+- during codex view :: 77
+- during codex dissent :: 77
+- during gemini external :: 77
+- during gemini view :: 77
+- during gemini dissent :: 77
+- during gemini disagreement :: 77
+- during external view :: 77
+- during external dissent :: 77
+- during external disagreement :: 77
+- during external state :: 77
+- during view dissent :: 77
+- during view disagreement :: 77
+- during view state :: 77
+- during view blocked :: 77
+- during dissent disagreement :: 77
+- during dissent state :: 77
+- during dissent blocked :: 77
+- during dissent untried :: 76
+- during disagreement state :: 76
+- during disagreement blocked :: 76
+- during disagreement untried :: 76
+- during disagreement diagnostic :: 76
+- during state blocked :: 76
+- during state untried :: 76
+- during state diagnostic :: 76
+- during state live :: 76
+- during blocked untried :: 76
+- during blocked diagnostic :: 76
+- during blocked live :: 76
+- during blocked receipt :: 76
+- during untried diagnostic :: 76
+- during untried live :: 76
+- during untried receipt :: 76
+- during untried family :: 76
+- during diagnostic live :: 76
+- during diagnostic receipt :: 76
+- during diagnostic family :: 76
+- during diagnostic independent :: 76
+- during live receipt :: 76
+- during live family :: 76
+- during live independent :: 76
+- during live check :: 76
+- during receipt family :: 75
+- during receipt independent :: 75
+- during receipt check :: 75
+- during receipt outside :: 75
+- during family independent :: 75
+- during family check :: 75
+- during family outside :: 75
+- during family frame :: 75
+- during independent check :: 75
+- during independent outside :: 75
+- during independent frame :: 75
+- during independent implementation :: 75
+- during check outside :: 75
+- during check frame :: 75
+- during check implementation :: 75
+- during check harness :: 75
+- until council model :: 75
+- until council route :: 75
+- until council sonnet :: 75
+- until council opus :: 75
+- until model route :: 75
+- until model sonnet :: 75
+- until model opus :: 75
+- until model codex :: 75
+- until route sonnet :: 75
+- until route opus :: 74
+- until route codex :: 74
+- until route gemini :: 74
+- until sonnet opus :: 74
+- until sonnet codex :: 74
+- until sonnet gemini :: 74
+- until sonnet external :: 74
+- until opus codex :: 74
+- until opus gemini :: 74
+- until opus external :: 74
+- until opus view :: 74
+- until codex gemini :: 74
+- until codex external :: 74
+- until codex view :: 74
+- until codex dissent :: 74
+- until gemini external :: 74
+- until gemini view :: 74
+- until gemini dissent :: 74
+- until gemini disagreement :: 74
+- until external view :: 74
+- until external dissent :: 74
+- until external disagreement :: 74
+- until external state :: 74
+- until view dissent :: 74
+- until view disagreement :: 74
+- until view state :: 73
+- until view blocked :: 73
+- until dissent disagreement :: 73
+- until dissent state :: 73
+- until dissent blocked :: 73
+- until dissent untried :: 73
+- until disagreement state :: 73
+- until disagreement blocked :: 73
+- until disagreement untried :: 73
+- until disagreement diagnostic :: 73
+- until state blocked :: 73
+- until state untried :: 73
+- until state diagnostic :: 73
+- until state live :: 73
+- until blocked untried :: 73
+- until blocked diagnostic :: 73
+- until blocked live :: 73
+- until blocked receipt :: 73
+- until untried diagnostic :: 73
+- until untried live :: 73
+- until untried receipt :: 73
+- until untried family :: 73
+- until diagnostic live :: 73
+- until diagnostic receipt :: 73
+- until diagnostic family :: 73
+- until diagnostic independent :: 72
+- until live receipt :: 72
+- until live family :: 72
+- until live independent :: 72
+- until live check :: 72
+- until receipt family :: 72
+- until receipt independent :: 72
+- until receipt check :: 72
+- until receipt outside :: 72
+- until family independent :: 72
+- until family check :: 72
+- until family outside :: 72
+- until family frame :: 72
+- until independent check :: 72
+- until independent outside :: 72
+- until independent frame :: 72
+- until independent implementation :: 72
+- until check outside :: 72
+- until check frame :: 72
+- until check implementation :: 72
+- until check harness :: 72
+- since council model :: 72
+- since council route :: 72
+- since council sonnet :: 72
+- since council opus :: 72
+- since model route :: 71
+- since model sonnet :: 71
+- since model opus :: 71
+- since model codex :: 71
+- since route sonnet :: 71
+- since route opus :: 71
+- since route codex :: 71
+- since route gemini :: 71
+- since sonnet opus :: 71
+- since sonnet codex :: 71
+- since sonnet gemini :: 71
+- since sonnet external :: 71
+- since opus codex :: 71
+- since opus gemini :: 71
+- since opus external :: 71
+- since opus view :: 71
+- since codex gemini :: 71
+- since codex external :: 71
+- since codex view :: 71
+- since codex dissent :: 71
+- since gemini external :: 71
+- since gemini view :: 71
+- since gemini dissent :: 71
+- since gemini disagreement :: 71
+- since external view :: 71
+- since external dissent :: 70
+- since external disagreement :: 70
+- since external state :: 70
+- since view dissent :: 70
+- since view disagreement :: 70
+- since view state :: 70
+- since view blocked :: 70
+- since dissent disagreement :: 70
+- since dissent state :: 70
+- since dissent blocked :: 70
+- since dissent untried :: 70
+- since disagreement state :: 70
+- since disagreement blocked :: 70
+- since disagreement untried :: 70
+- since disagreement diagnostic :: 70
+- since state blocked :: 70
+- since state untried :: 70
+- since state diagnostic :: 70
+- since state live :: 70
+- since blocked untried :: 70
+- since blocked diagnostic :: 70
+- since blocked live :: 70
+- since blocked receipt :: 70
+- since untried diagnostic :: 70
+- since untried live :: 70
+- since untried receipt :: 69
+- since untried family :: 69
+- since diagnostic live :: 69
+- since diagnostic receipt :: 69
+- since diagnostic family :: 69
+- since diagnostic independent :: 69
+- since live receipt :: 69
+- since live family :: 69
+- since live independent :: 69
+- since live check :: 69
+- since receipt family :: 69
+- since receipt independent :: 69
+- since receipt check :: 69
+- since receipt outside :: 69
+- since family independent :: 69
+- since family check :: 69
+- since family outside :: 69
+- since family frame :: 69
+- since independent check :: 69
+- since independent outside :: 69
+- since independent frame :: 69
+- since independent implementation :: 69
+- since check outside :: 69
+- since check frame :: 69
+- since check implementation :: 69
+- since check harness :: 68
+- council model route :: 68
+- council model sonnet :: 68
+- council model opus :: 68
+- council route sonnet :: 68
+- council route opus :: 68
+- council sonnet route :: 68
+- council sonnet opus :: 68
+- council opus route :: 68
+- council opus sonnet :: 68
+- council codex route :: 68
+- council codex sonnet :: 68
+- council codex opus :: 68
+- model route sonnet :: 68
+- model route opus :: 68
+- model route codex :: 68
+- model sonnet opus :: 68
+- model sonnet codex :: 68
+- model opus sonnet :: 68
+- model opus codex :: 68
+- model codex sonnet :: 68
+- model codex opus :: 68
+- model gemini sonnet :: 68
+- model gemini opus :: 68
+- model gemini codex :: 68
+- route sonnet opus :: 67
+- route sonnet codex :: 67
+- route sonnet gemini :: 67
+- route opus codex :: 67
+- route opus gemini :: 67
+- route codex opus :: 67
+- route codex gemini :: 67
+- route gemini opus :: 67
+- route gemini codex :: 67
+- route external opus :: 67
+- route external codex :: 67
+- route external gemini :: 67
+- sonnet opus codex :: 67
+- sonnet opus gemini :: 67
+- sonnet opus external :: 67
+- sonnet codex gemini :: 67
+- sonnet codex external :: 67
+- sonnet gemini codex :: 67
+- sonnet gemini external :: 67
+- sonnet external codex :: 67
+- sonnet external gemini :: 67
+- sonnet view codex :: 67
+- sonnet view gemini :: 67
+- sonnet view external :: 67
+- opus codex gemini :: 67
+- opus codex external :: 66
+- opus codex view :: 66
+- opus gemini external :: 66
+- opus gemini view :: 66
+- opus external gemini :: 66
+- opus external view :: 66
+- opus view gemini :: 66
+- opus view external :: 66
+- opus dissent gemini :: 66
+- opus dissent external :: 66
+- opus dissent view :: 66
+- codex gemini external :: 66
+- codex gemini view :: 66
+- codex gemini dissent :: 66
+- codex external view :: 66
+- codex external dissent :: 66
+- codex view external :: 66
+- codex view dissent :: 66
+- codex dissent external :: 66
+- codex dissent view :: 66
+- codex disagreement external :: 66
+- codex disagreement view :: 66
+- codex disagreement dissent :: 66
+- gemini external view :: 66
+- gemini external dissent :: 66
+- gemini external disagreement :: 65
+- gemini view dissent :: 65
+- gemini view disagreement :: 65
+- gemini dissent view :: 65
+- gemini dissent disagreement :: 65
+- gemini disagreement view :: 65
+- gemini disagreement dissent :: 65
+- gemini state view :: 65
+- gemini state dissent :: 65
+- gemini state disagreement :: 65
+- external view dissent :: 65
+- external view disagreement :: 65
+- external view state :: 65
+- external dissent disagreement :: 65
+- external dissent state :: 65
+- external disagreement dissent :: 65
+- external disagreement state :: 65
+- external state dissent :: 65
+- external state disagreement :: 65
+- external blocked dissent :: 65
+- external blocked disagreement :: 65
+- external blocked state :: 65
+- view dissent disagreement :: 65
+- view dissent state :: 65
+- view dissent blocked :: 65
+- view disagreement state :: 64
+- view disagreement blocked :: 64
+- view state disagreement :: 64
+- view state blocked :: 64
+- view blocked disagreement :: 64
+- view blocked state :: 64
+- view untried disagreement :: 64
+- view untried state :: 64
+- view untried blocked :: 64
+- dissent disagreement state :: 64
+- dissent disagreement blocked :: 64
+- dissent disagreement untried :: 64
+- dissent state blocked :: 64
+- dissent state untried :: 64
+- dissent blocked state :: 64
+- dissent blocked untried :: 64
+- dissent untried state :: 64
+- dissent untried blocked :: 64
+- dissent diagnostic state :: 64
+- dissent diagnostic blocked :: 64
+- dissent diagnostic untried :: 64
+- disagreement state blocked :: 64
+- disagreement state untried :: 64
+- disagreement state diagnostic :: 64
+- disagreement blocked untried :: 64
+- disagreement blocked diagnostic :: 63
+- disagreement untried blocked :: 63
+- disagreement untried diagnostic :: 63
+- disagreement diagnostic blocked :: 63
+- disagreement diagnostic untried :: 63
+- disagreement live blocked :: 63
+- disagreement live untried :: 63
+- disagreement live diagnostic :: 63
+- state blocked untried :: 63
+- state blocked diagnostic :: 63
+- state blocked live :: 63
+- state untried diagnostic :: 63
+- state untried live :: 63
+- state diagnostic untried :: 63
+- state diagnostic live :: 63
+- state live untried :: 63
+- state live diagnostic :: 63
+- state receipt untried :: 63
+- state receipt diagnostic :: 63
+- state receipt live :: 63
+- blocked untried diagnostic :: 63
+- blocked untried live :: 63
+- blocked untried receipt :: 63
+- blocked diagnostic live :: 63
+- blocked diagnostic receipt :: 63
+- blocked live diagnostic :: 62
+- blocked live receipt :: 62
+- blocked receipt diagnostic :: 62
+- blocked receipt live :: 62
+- blocked family diagnostic :: 62
+- blocked family live :: 62
+- blocked family receipt :: 62
+- untried diagnostic live :: 62
+- untried diagnostic receipt :: 62
+- untried diagnostic family :: 62
+- untried live receipt :: 62
+- untried live family :: 62
+- untried receipt live :: 62
+- untried receipt family :: 62
+- untried family live :: 62
+- untried family receipt :: 62
+- untried independent live :: 62
+- untried independent receipt :: 62
+- untried independent family :: 62
+- diagnostic live receipt :: 62
+- diagnostic live family :: 62
+- diagnostic live independent :: 62
+- diagnostic receipt family :: 62
+- diagnostic receipt independent :: 62
+- diagnostic family receipt :: 62
+- diagnostic family independent :: 61
+- diagnostic independent receipt :: 61
+- diagnostic independent family :: 61
+- diagnostic check receipt :: 61
+- diagnostic check family :: 61
+- diagnostic check independent :: 61
+- live receipt family :: 61
+- live receipt independent :: 61
+- live receipt check :: 61
+- live family independent :: 61
+- live family check :: 61
+- live independent family :: 61
+- live independent check :: 61
+- live check family :: 61
+- live check independent :: 61
+- live outside family :: 61
+- live outside independent :: 61
+- live outside check :: 61
+- receipt family independent :: 61
+- receipt family check :: 61
+- receipt family outside :: 61
+- receipt independent check :: 61
+- receipt independent outside :: 61
+- receipt check independent :: 61
+- receipt check outside :: 61
+- receipt outside independent :: 60
+- receipt outside check :: 60
+- receipt frame independent :: 60
+- receipt frame check :: 60
+- receipt frame outside :: 60
+- family independent check :: 60
+- family independent outside :: 60
+- family independent frame :: 60
+- family check outside :: 60
+- family check frame :: 60
+- family outside check :: 60
+- family outside frame :: 60
+- family frame check :: 60
+- family frame outside :: 60
+- family implementation check :: 60
+- family implementation outside :: 60
+- family implementation frame :: 60
+- independent check outside :: 60
+- independent check frame :: 60
+- independent check implementation :: 60
+- independent outside frame :: 60
+- independent outside implementation :: 60
+- independent frame outside :: 60
+- independent frame implementation :: 60
+- independent implementation outside :: 60
+- independent implementation frame :: 59
+- independent harness outside :: 59
+- independent harness frame :: 59
+- independent harness implementation :: 59
+- check outside frame :: 59
+- check outside implementation :: 59
+- check outside harness :: 59
+- check frame implementation :: 59
+- check frame harness :: 59
+- check implementation frame :: 59
+- check implementation harness :: 59
+- check harness frame :: 59
+- check harness implementation :: 59
+- check judgment frame :: 59
+- check judgment implementation :: 59
+- check judgment harness :: 59
+- outside frame implementation :: 59
+- outside frame harness :: 59
+- outside frame judgment :: 59
+- outside implementation harness :: 59
+- outside implementation judgment :: 59
+- outside harness implementation :: 59
+- outside harness judgment :: 59
+- outside judgment implementation :: 59
+- outside judgment harness :: 59
+- outside split implementation :: 58
+- outside split harness :: 58
+- outside split judgment :: 58
+- frame implementation harness :: 58
+- frame implementation judgment :: 58
+- frame implementation split :: 58
+- frame harness judgment :: 58
+- frame harness split :: 58
+- frame judgment harness :: 58
+- frame judgment split :: 58
+- frame split harness :: 58
+- frame split judgment :: 58
+- frame model family harness :: 58
+- frame model family judgment :: 58
+- frame model family split :: 58
+- implementation harness judgment :: 58
+- implementation harness split :: 58
+- implementation harness model family :: 58
+- implementation judgment split :: 58
+- implementation judgment model family :: 58
+- implementation split judgment :: 58
+- implementation split model family :: 58
+- implementation model family judgment :: 58
+- implementation model family split :: 58
+- implementation role judgment :: 58
+- implementation role split :: 57
+- implementation role model family :: 57
+- harness judgment split :: 57
+- harness judgment model family :: 57
+- harness judgment role :: 57
+- harness split model family :: 57
+- harness split role :: 57
+- harness model family split :: 57
+- harness model family role :: 57
+- harness role split :: 57
+- harness role model family :: 57
+- harness outside frame split :: 57
+- harness outside frame model family :: 57
+- harness outside frame role :: 57
+- judgment split model family :: 57
+- judgment split role :: 57
+- judgment split outside frame :: 57
+- judgment model family role :: 57
+- judgment model family outside frame :: 57
+- judgment role model family :: 57
+- judgment role outside frame :: 57
+- judgment outside frame model family :: 57
+- judgment outside frame role :: 57
+- judgment alternate reading model family :: 57
+- judgment alternate reading role :: 57
+- judgment alternate reading outside frame :: 56
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- independent proposal
+- diverse reasoning paths
+- route comparison
+- debate round
+- aggregation
+- arbitration
+- dissent preservation
+- trust calibration
+- source-aware filtering
+- self-consistency
+
+### Couplings
+
+- independence before merge
+- dissent logs
+- trust calibration
+- source-aware weighting
+- explicit blocked/deferred routes
+
+### Triplets
+
+- proposal debate arbitration
+- variance dissent calibration
+- independence merge receipt

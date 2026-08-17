@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-failure-wave-v1",
+  "purpose": "Compose three independently executable falsification waves, debate their evidence, repair, and rerun.",
+  "children": [
+    {"id": "premortem_wave", "skill": "cb-premortem-wave", "operation": "run_bound_premortem", "tools": ["wave_validator", "receipt_verifier"]},
+    {"id": "counterexample_wave", "skill": "cb-counterexample-wave", "operation": "run_bound_counterexamples", "tools": ["wave_validator", "observation_diff"]},
+    {"id": "authority_wave", "skill": "cb-authority-collapse-wave", "operation": "run_bound_authority_attacks", "tools": ["wave_validator", "receipt_verifier"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 3, "repair_then_exact_rerun": true, "stop_reasons": ["no_material_delta", "all_child_falsifiers_settled", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "preload_receipts", "provider_call_receipt", "cancellation_state", "disagreement_state", "output_digest", "repair_digest", "rerun_delta"]},
+  "claim_ceiling": "Nested bounded falsification execution only; no automatic gate, adoption, promotion, portability, or release authority."
+}

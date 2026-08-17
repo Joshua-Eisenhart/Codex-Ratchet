@@ -1,0 +1,9 @@
+#!/bin/sh
+# Time-first seed check. No venv. No contained-Light claim.
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+# Prefer a caller interpreter, then python3. This verb is stdlib-only.
+if [ -n "${CB_PYTHON:-}" ] && [ -x "${CB_PYTHON}" ]; then
+  exec "$CB_PYTHON" "$ROOT/seed_check.py" "$@"
+fi
+exec "${PYTHON:-python3}" "$ROOT/seed_check.py" "$@"

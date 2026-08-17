@@ -26,32 +26,39 @@ def test_contract_manifest_and_exclusions_are_exact() -> None:
     assert names == set(contract["install_proposal_names"])
     assert excluded == set(contract["preinstall_excluded_names"])
     assert names.isdisjoint(excluded)
-    assert len(names) == 91
-    assert len(excluded) == 15
+    expected = contract["expected_counts"]
+    assert len(names) == expected["install_proposals"]
+    assert len(excluded) == expected["preinstall_excluded"]
     assert manifest["counts"] == {
-        "candidate_passing": 11,
-        "core": 5,
-        "evaluated_candidate_domain": 106,
-        "extended": 75,
-        "preinstall_excluded": 15,
-        "tools": 91,
+        "candidate_passing": expected["candidate_passing"],
+        "core": expected["core"],
+        "evaluated_candidate_domain": (
+            expected["install_proposals"] + expected["preinstall_excluded"]
+        ),
+        "extended": expected["extended"],
+        "preinstall_excluded": expected["preinstall_excluded"],
+        "tools": expected["install_proposals"],
     }
     assert manifest["constraints"]["usable_now_requires"] == contract[
         "usable_now_requires"
     ]
     assert set(manifest["source_hashes"]) == set(contract["required_source_paths"])
     assert manifest["role_layers"] == {
-        "controller_runtime_candidates": 5,
-        "supporting_probe_or_engineering_candidates": 86,
+        "controller_runtime_candidates": expected["core"],
+        "supporting_probe_or_engineering_candidates": (
+            expected["install_proposals"] - expected["core"]
+        ),
         "rule": (
             "supporting build, test, audit, and probe tools do not become "
             "CB Light runtime identity merely by being installed or selected"
         ),
     }
-    assert sum(row["runtime_identity_authority"] is True for row in manifest["tools"]) == 5
+    assert sum(
+        row["runtime_identity_authority"] is True for row in manifest["tools"]
+    ) == expected["core"]
     assert manifest["set_separation"]["sim_engine_members"] == 0
     assert manifest["runtime_environment"] == ".venv"
-    assert pathlib.Path(manifest["mandated_interpreter"]).resolve() == (
+    assert (CB / manifest["mandated_interpreter"]).resolve() == (
         CB / ".venv/bin/python"
     ).resolve()
 
@@ -104,6 +111,9 @@ def test_contained_light_package_files_are_exactly_contract_bound() -> None:
 
 
 def test_runtime_and_clean_install_evidence_are_distinct_and_exact() -> None:
+    expected_roots = read("config/cb_light_contract_v1.json")["expected_counts"][
+        "install_proposals"
+    ]
     runtime = read("receipts/cb_light_install_runtime_v1.json")
     clean = read("receipts/cb_light_install_clean_v1.json")
     runtime_prefix = pathlib.Path(runtime["environment"]["prefix"]).resolve()
@@ -122,13 +132,13 @@ def test_runtime_and_clean_install_evidence_are_distinct_and_exact() -> None:
         assert receipt["all_root_constraints_satisfied"] is True
         assert receipt["all_install_constraints_satisfied"] is True
         assert receipt["environment"]["environment_exact"] is True
-        assert receipt["counts"]["distribution_present"] == 91
-        assert receipt["counts"]["version_matches"] == 91
-        assert receipt["counts"]["import_passed"] == 91
-        assert receipt["counts"]["provider_bound"] == 91
+        assert receipt["counts"]["distribution_present"] == expected_roots
+        assert receipt["counts"]["version_matches"] == expected_roots
+        assert receipt["counts"]["import_passed"] == expected_roots
+        assert receipt["counts"]["provider_bound"] == expected_roots
         assert receipt["counts"]["closure_missing"] == 0
         assert receipt["counts"]["closure_requirement_violations"] == 0
-        assert receipt["install_report"]["install_records"] >= 91
+        assert receipt["install_report"]["install_records"] >= expected_roots
         snapshot = receipt["site_packages_snapshot"]
         assert snapshot["file_count"] > 0
         assert snapshot["total_bytes"] > 0
@@ -154,10 +164,12 @@ def test_runtime_and_clean_install_evidence_are_distinct_and_exact() -> None:
 def test_operation_selection_and_three_solver_backends_are_rederived() -> None:
     operation = read("receipts/cb_light_tool_probes_v1.json")
     selection = read("receipts/cb_light_selection_v1.json")
-    assert operation["counts"]["probed"] == 91
-    assert operation["counts"]["admit"] + operation["counts"]["hold"] == 91
+    expected = read("config/cb_light_contract_v1.json")["expected_counts"]
+    proposal_count = expected["install_proposals"]
+    assert operation["counts"]["probed"] == proposal_count
+    assert operation["counts"]["admit"] + operation["counts"]["hold"] == proposal_count
     decision = selection["finite_selection_decision"]
-    assert decision["domain_size"] == 91
+    assert decision["domain_size"] == proposal_count
     assert decision["agree"] is True
     assert decision["unique_assignment"] is True
     assert set(decision["deciders"]) == {"z3", "cvc5", "enumeration"}
@@ -172,13 +184,15 @@ def test_operation_selection_and_three_solver_backends_are_rederived() -> None:
     assert selection["system_completion_reason"] == "SELECTION_IS_LOCAL_CB_LIGHT_EVALUATION_ONLY"
     assert selection["promotion_allowed"] is False
     counts = selection["counts"]
-    assert counts["evaluated_candidate_domain"] == 106
-    assert counts["preinstall_excluded"] == 15
+    assert counts["evaluated_candidate_domain"] == (
+        proposal_count + expected["preinstall_excluded"]
+    )
+    assert counts["preinstall_excluded"] == expected["preinstall_excluded"]
     assert (
         counts["selected_for_work"]
         + counts["hold_missing_evidence"]
         + counts["hold_decider_disagreement"]
-        == 91
+        == proposal_count
     )
     assert counts["hold_decider_disagreement"] == 0
     for row in selection["rows"]:
@@ -515,7 +529,7 @@ def test_selector_refuses_tampered_install_aggregate(tmp_path: pathlib.Path) -> 
     assert "runtime install aggregate mismatch" in completed.stderr
 
 
-def test_selector_turns_a_self_consistent_root_install_failure_into_hold(
+def test_selector_refuses_an_incomplete_dependency_failure_mutation(
     tmp_path: pathlib.Path,
 ) -> None:
     runtime = read("receipts/cb_light_install_runtime_v1.json")
@@ -587,13 +601,9 @@ def test_selector_turns_a_self_consistent_root_install_failure_into_hold(
         check=False,
         timeout=120,
     )
-    assert completed.returncode == 0, completed.stderr
-    selection = json.loads(output.read_text(encoding="utf-8"))
-    target_row = next(
-        item for item in selection["rows"] if item["normalized_name"] == target
-    )
-    assert target_row["work_disposition"] == "HOLD_MISSING_EVIDENCE"
-    assert selection["evaluation_complete"] is True
+    assert completed.returncode != 0
+    assert "dependency check self-report mismatch" in completed.stderr
+    assert not output.exists()
 
 
 def test_recursive_stop_hook_returns_without_livelock() -> None:

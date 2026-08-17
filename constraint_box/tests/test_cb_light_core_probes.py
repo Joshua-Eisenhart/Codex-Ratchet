@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from constraint_box.hookkernel.cb_light_state import (
+from hookkernel.cb_light_state import (
     REQUIRED_CASE_KINDS,
     connect,
     record_probe_matrix,
 )
 from constraintbox.cb_light_probes import _reference, run_core_probe_matrix
+from constraintbox.core_tools import load_registry
 
 
 def test_cvc5_reference_rejects_sat_with_an_invalid_witness():
@@ -19,10 +20,11 @@ def test_cvc5_reference_rejects_sat_with_an_invalid_witness():
     assert valid["agrees"] is True
 
 
-def test_five_core_tools_fire_full_probe_contracts_and_retain_rows(tmp_path):
+def test_declared_tools_fire_full_probe_contracts_and_retain_rows(tmp_path):
     matrix = run_core_probe_matrix(timeout_seconds=15)
     assert matrix["all_contracts_satisfied"] is True
-    assert len(matrix["tool_decisions"]) == 5
+    expected_count = len(load_registry()["tools"])
+    assert len(matrix["tool_decisions"]) == expected_count
     for decision in matrix["tool_decisions"]:
         assert decision["disposition"] == "ADMIT"
         assert {case["kind"] for case in decision["cases"]} == REQUIRED_CASE_KINDS
@@ -41,6 +43,6 @@ def test_five_core_tools_fire_full_probe_contracts_and_retain_rows(tmp_path):
     decisions = connection.execute(
         "SELECT COUNT(*) FROM tool_decision WHERE run_id = ?", (run_id,)
     ).fetchone()[0]
-    assert cases == 5 * len(REQUIRED_CASE_KINDS)
-    assert decisions == 5
+    assert cases == expected_count * len(REQUIRED_CASE_KINDS)
+    assert decisions == expected_count
     connection.close()

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "constraintbox-zip-agent"
+version = "0.1.0"
+description = "Deterministic ZIP_JOB transport and bounded local executor for ConstraintBox"
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic==2.12.5",
+  "jsonschema==4.26.0",
+]
+
+[project.scripts]
+cb-zip = "constraintbox_zip_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

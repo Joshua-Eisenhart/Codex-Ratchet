@@ -1,0 +1,83 @@
+{
+  "schema": "constraintbox.entropic-time-field.v1",
+  "field_id": "one-gradient-three-slice-fixture-v1",
+  "probes": ["side", "record", "phase"],
+  "slices": [
+    {
+      "tick": 0,
+      "states": ["z_left", "z_right"],
+      "status_by_state": {"z_left": "SAT", "z_right": "SAT"},
+      "observations": [
+        {"state": "z_left", "probe": "side", "value": "L"},
+        {"state": "z_left", "probe": "record", "value": 0},
+        {"state": "z_left", "probe": "phase", "value": "base"},
+        {"state": "z_right", "probe": "side", "value": "R"},
+        {"state": "z_right", "probe": "record", "value": 0},
+        {"state": "z_right", "probe": "phase", "value": "base"}
+      ],
+      "relations": [],
+      "mass_by_state": {"z_left": 1, "z_right": 1}
+    },
+    {
+      "tick": 1,
+      "states": ["a", "b", "c", "d"],
+      "status_by_state": {"a": "SAT", "b": "SAT", "c": "SAT", "d": "SAT"},
+      "observations": [
+        {"state": "a", "probe": "side", "value": "L"},
+        {"state": "a", "probe": "record", "value": 0},
+        {"state": "a", "probe": "phase", "value": "upper"},
+        {"state": "b", "probe": "side", "value": "L"},
+        {"state": "b", "probe": "record", "value": 0},
+        {"state": "b", "probe": "phase", "value": "upper"},
+        {"state": "c", "probe": "side", "value": "R"},
+        {"state": "c", "probe": "record", "value": 0},
+        {"state": "c", "probe": "phase", "value": "upper"},
+        {"state": "d", "probe": "side", "value": "R"},
+        {"state": "d", "probe": "record", "value": 1},
+        {"state": "d", "probe": "phase", "value": "upper"}
+      ],
+      "relations": [["a", "c"], ["b", "c"], ["a", "d"], ["b", "d"], ["c", "d"]],
+      "mass_by_state": {"a": 1, "b": 2, "c": 1, "d": 2}
+    },
+    {
+      "tick": 2,
+      "states": ["a0", "a1", "b0", "b1", "c0", "c1", "d0", "d1"],
+      "status_by_state": {"a0": "SAT", "a1": "SAT", "b0": "SAT", "b1": "SAT", "c0": "SAT", "c1": "SAT", "d0": "SAT", "d1": "SAT"},
+      "observations": [
+        {"state": "a0", "probe": "side", "value": "L"}, {"state": "a0", "probe": "record", "value": 0}, {"state": "a0", "probe": "phase", "value": 0},
+        {"state": "a1", "probe": "side", "value": "L"}, {"state": "a1", "probe": "record", "value": 0}, {"state": "a1", "probe": "phase", "value": 1},
+        {"state": "b0", "probe": "side", "value": "L"}, {"state": "b0", "probe": "record", "value": 1}, {"state": "b0", "probe": "phase", "value": 0},
+        {"state": "b1", "probe": "side", "value": "L"}, {"state": "b1", "probe": "record", "value": 1}, {"state": "b1", "probe": "phase", "value": 1},
+        {"state": "c0", "probe": "side", "value": "R"}, {"state": "c0", "probe": "record", "value": 0}, {"state": "c0", "probe": "phase", "value": 0},
+        {"state": "c1", "probe": "side", "value": "R"}, {"state": "c1", "probe": "record", "value": 0}, {"state": "c1", "probe": "phase", "value": 1},
+        {"state": "d0", "probe": "side", "value": "R"}, {"state": "d0", "probe": "record", "value": 1}, {"state": "d0", "probe": "phase", "value": 0},
+        {"state": "d1", "probe": "side", "value": "R"}, {"state": "d1", "probe": "record", "value": 1}, {"state": "d1", "probe": "phase", "value": 1}
+      ],
+      "relations": [["a0", "a1"], ["a1", "b0"], ["b0", "b1"], ["b1", "a0"], ["c0", "c1"], ["c1", "d0"], ["d0", "d1"], ["d1", "c0"]],
+      "mass_by_state": {"a0": 1, "a1": 1, "b0": 2, "b1": 2, "c0": 1, "c1": 1, "d0": 2, "d1": 2}
+    }
+  ],
+  "transitions": [
+    {
+      "id": "g0",
+      "from_tick": 0,
+      "to_tick": 1,
+      "extensions": {"z_left": ["a", "b"], "z_right": ["c", "d"]},
+      "restrictions": {"a": "z_left", "b": "z_left", "c": "z_right", "d": "z_right"}
+    },
+    {
+      "id": "g1",
+      "from_tick": 1,
+      "to_tick": 2,
+      "extensions": {"a": ["a0"], "b": ["a1", "b0", "b1"], "c": ["c0", "c1"], "d": ["d0", "d1"]},
+      "restrictions": {"a0": "a", "a1": "b", "b0": "b", "b1": "b", "c0": "c", "c1": "c", "d0": "d", "d1": "d"}
+    }
+  ],
+  "order_witness": {
+    "carrier": ["00", "01", "10", "11"],
+    "open_map": {"00": "10", "01": "11", "10": "10", "11": "11"},
+    "bind_map": {"00": "00", "01": "00", "10": "11", "11": "11"}
+  },
+  "claim_ceiling": "finite one-gradient fixture only; no physical spacetime, chirality, attractor, engine, or entropy-law claim",
+  "promotion_allowed": false
+}

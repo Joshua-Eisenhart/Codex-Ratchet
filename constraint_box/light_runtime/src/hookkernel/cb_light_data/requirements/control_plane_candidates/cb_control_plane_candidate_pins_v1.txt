@@ -1,13 +1,14 @@
-# CB Light control-plane candidate evaluation only.
+# CB Light control-plane request bindings.
 #
-# This file is intentionally outside requirements/candidates/cb-*.in:
-# it must not silently change the current 91-row proposal domain.
-# It is not an adoption, release, or portability manifest.
+# This file binds the exact requests used by bounded control-plane checks. It
+# is not an install profile, membership authority, or alternative root set.
+# pydantic and jsonschema are declared CB Light core roots in the active Light
+# project and root lock; their lines remain here only to bind those requests.
+# It establishes no install, import, operation, adoption, portability,
+# promotion, or release evidence.
 #
-# Candidate roles:
-# - pydantic: strict typed boundary for hostile hook/provider/LLM bytes
-# - jsonschema: independent validation of the bounded Pydantic JSON Schema
-# - hypothesis: property-based counterexample generation for the actual gate
+# hypothesis remains a test-only candidate for property-based counterexample
+# generation; it is not a core root or a membership authority.
 pydantic==2.12.5
 jsonschema==4.26.0
 hypothesis==6.151.12

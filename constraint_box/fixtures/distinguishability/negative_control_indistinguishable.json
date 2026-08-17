@@ -1,0 +1,37 @@
+{
+  "schema": "constraintbox.distinguishability.packet.v1",
+  "claim": "the intended negation of distinguish is expressible and SAT",
+  "claim_ceiling": "exists",
+  "candidates": ["a", "b"],
+  "probes": ["color", "shape"],
+  "probe_domains": {
+    "color": ["red", "blue"],
+    "shape": ["circle", "square"]
+  },
+  "demand_D": [],
+  "constraints_C": [
+    {
+      "id": "eq_color",
+      "constraint": {
+        "op": "eq",
+        "left": {"var": "obs__color__a"},
+        "right": {"var": "obs__color__b"}
+      }
+    },
+    {
+      "id": "eq_shape",
+      "constraint": {
+        "op": "eq",
+        "left": {"var": "obs__shape__a"},
+        "right": {"var": "obs__shape__b"}
+      }
+    }
+  ],
+  "query": "encoding_control",
+  "theory": "finite",
+  "authority": "none",
+  "negative_control": {
+    "assert": "all probes agree",
+    "expected": "SAT"
+  }
+}

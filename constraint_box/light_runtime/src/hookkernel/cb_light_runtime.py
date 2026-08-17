@@ -8,7 +8,17 @@ provider-specific runtime merely because one happens to be installed there.
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
+
+
+def _is_contained_light_root(candidate: Path) -> bool:
+    """Return whether ``candidate`` is the literal checkout-owned Light root."""
+
+    return (
+        (candidate / "config/cb_light_contract_v1.json").is_file()
+        and (candidate / "light_runtime/pyproject.toml").is_file()
+    )
 
 
 def _contained_root() -> Path:
@@ -29,13 +39,23 @@ def _contained_root() -> Path:
             return candidate
         raise RuntimeError(f"CB_LIGHT_ROOT is not a CB Light checkout: {candidate}")
 
+    # ``sys.prefix`` retains the declared virtual-environment directory even
+    # when ``.venv/bin/python`` is a symlink to a host interpreter.  This is
+    # the only safe automatic bridge from an installed contained-Light wheel
+    # back to its checkout-owned contract and SQLite state.
+    prefix_root = Path(sys.prefix).absolute().parent
+    executable_root = Path(sys.executable).absolute().parent.parent
     source_root = Path(__file__).resolve().parents[1]
     candidates = [Path.cwd().resolve(), *(Path.cwd().resolve().parents)]
+    candidates.extend((prefix_root, executable_root, source_root))
     for candidate in candidates:
         for maybe_root in (candidate, candidate / "constraint_box"):
-            if (maybe_root / "config/cb_light_contract_v1.json").is_file():
+            if _is_contained_light_root(maybe_root):
                 return maybe_root
-    return source_root
+    raise RuntimeError(
+        "CB Light checkout root is unbound: set CB_LIGHT_ROOT to a directory "
+        "with the contained Light contract and runtime package."
+    )
 
 
 ROOT = _contained_root()

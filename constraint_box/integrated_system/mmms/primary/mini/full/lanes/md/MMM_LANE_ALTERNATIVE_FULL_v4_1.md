@@ -1,0 +1,1840 @@
+# 🔀 Alternative Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this lane. It is normally surfaced through Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `ALTERNATIVE` and remapped to v4.1 canon category `lanes`.
+
+---
+
+# MMM_LANE_ALTERNATIVE_FULL_v4_1
+
+## words
+
+- alternative :: 100
+- second :: 100
+- route :: 100
+- fork :: 100
+- tradeoff :: 100
+- different :: 100
+- path :: 100
+- other :: 100
+- option :: 100
+- compare :: 100
+- fallback :: 100
+- variant :: 100
+- side :: 100
+- parallel :: 100
+- case :: 100
+- difference :: 100
+- alternate :: 100
+- second path :: 100
+- better if :: 100
+- worse if :: 100
+- different assumption :: 100
+- viable :: 100
+- assumption :: 100
+- divergent :: 100
+- backup :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 99
+- among :: 99
+- inside :: 99
+- outside :: 99
+- near :: 99
+- beside :: 99
+- over :: 99
+- from :: 99
+- with :: 99
+- without :: 99
+- only :: 99
+- not :: 99
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- bounded :: 98
+- finite :: 98
+- open :: 98
+- live :: 98
+- distinct :: 98
+- concrete :: 98
+- plain :: 98
+- observed :: 98
+- inferred :: 98
+- known :: 98
+- unknown :: 98
+- checked :: 98
+- missing :: 98
+- stale :: 98
+- narrow :: 98
+- small :: 98
+- warm :: 98
+- careful :: 98
+- honest :: 98
+- first :: 97
+- next :: 97
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 97
+- compared :: 97
+- measured :: 97
+- named :: 97
+- used :: 97
+- fit :: 97
+- direct :: 97
+- branch :: 97
+- surface :: 97
+- packet :: 97
+- artifact :: 97
+- receipt :: 97
+- trace :: 97
+- result :: 97
+- support :: 97
+- evidence :: 97
+- scope :: 96
+- boundary :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 96
+- probe :: 96
+- constraint :: 96
+- name :: 96
+- term :: 96
+- use :: 96
+- role :: 96
+- practice :: 96
+- custom :: 96
+- habit :: 96
+- experience :: 96
+- observation :: 96
+- impression :: 96
+- idea :: 96
+- perception :: 96
+- conjunction :: 96
+- resemblance :: 96
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 95
+- countermodel :: 95
+- counterexample :: 95
+- equivalence :: 95
+- indistinguishable :: 95
+- readout :: 95
+- measure :: 95
+- measurement :: 95
+- operation :: 95
+- procedure :: 95
+- instrument :: 95
+- experiment :: 95
+- test :: 95
+- check :: 95
+- verify :: 95
+- sample :: 95
+- lane :: 95
+- voice :: 94
+- lens :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- blocker :: 94
+- deferred :: 94
+- blocked :: 94
+- spawned :: 94
+- diagnostic :: 94
+- untried :: 94
+- preload :: 94
+- salience :: 94
+- language :: 94
+- body :: 94
+- during :: 94
+- since :: 94
+- by :: 94
+- toward :: 94
+- relative :: 94
+- according :: 94
+- locally :: 94
+- jointly :: 94
+- separately :: 94
+- rather :: 94
+- instead :: 93
+- still :: 93
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+
+## couplings
+
+- under alternative :: 100
+- within alternative :: 100
+- across alternative :: 100
+- between alternative :: 100
+- through alternative :: 100
+- before alternative :: 100
+- after alternative :: 100
+- until alternative :: 100
+- where alternative :: 100
+- while alternative :: 100
+- alternative evidence :: 100
+- alternative support :: 100
+- alternative path :: 100
+- alternative surface :: 100
+- alternative packet :: 100
+- alternative receipt :: 100
+- alternative trace :: 100
+- alternative result :: 100
+- alternative scope :: 100
+- alternative boundary :: 100
+- alternative status :: 100
+- alternative candidate :: 100
+- alternative witness :: 100
+- alternative probe :: 100
+- alternative constraint :: 100
+- check alternative :: 99
+- compare alternative :: 99
+- observe alternative :: 99
+- measure alternative :: 99
+- test alternative :: 99
+- verify alternative :: 99
+- hold alternative :: 99
+- preserve alternative :: 99
+- split alternative :: 99
+- narrow alternative :: 99
+- under fork :: 99
+- within fork :: 99
+- across fork :: 99
+- between fork :: 99
+- through fork :: 99
+- before fork :: 99
+- after fork :: 99
+- until fork :: 99
+- where fork :: 99
+- while fork :: 99
+- fork evidence :: 99
+- fork support :: 99
+- fork path :: 99
+- fork surface :: 99
+- fork packet :: 99
+- fork receipt :: 98
+- fork trace :: 98
+- fork result :: 98
+- fork scope :: 98
+- fork boundary :: 98
+- fork status :: 98
+- fork candidate :: 98
+- fork witness :: 98
+- fork probe :: 98
+- fork constraint :: 98
+- check fork :: 98
+- compare fork :: 98
+- observe fork :: 98
+- measure fork :: 98
+- test fork :: 98
+- verify fork :: 98
+- hold fork :: 98
+- preserve fork :: 98
+- split fork :: 98
+- narrow fork :: 98
+- under viable :: 98
+- within viable :: 98
+- across viable :: 98
+- between viable :: 98
+- through viable :: 98
+- before viable :: 97
+- after viable :: 97
+- until viable :: 97
+- where viable :: 97
+- while viable :: 97
+- viable evidence :: 97
+- viable support :: 97
+- viable path :: 97
+- viable surface :: 97
+- viable packet :: 97
+- viable receipt :: 97
+- viable trace :: 97
+- viable result :: 97
+- viable scope :: 97
+- viable boundary :: 97
+- viable status :: 97
+- viable candidate :: 97
+- viable witness :: 97
+- viable probe :: 97
+- viable constraint :: 97
+- check viable :: 97
+- compare viable :: 97
+- observe viable :: 97
+- measure viable :: 97
+- test viable :: 97
+- verify viable :: 96
+- hold viable :: 96
+- preserve viable :: 96
+- split viable :: 96
+- narrow viable :: 96
+- under tradeoff :: 96
+- within tradeoff :: 96
+- across tradeoff :: 96
+- between tradeoff :: 96
+- through tradeoff :: 96
+- before tradeoff :: 96
+- after tradeoff :: 96
+- until tradeoff :: 96
+- where tradeoff :: 96
+- while tradeoff :: 96
+- tradeoff evidence :: 96
+- tradeoff support :: 96
+- tradeoff path :: 96
+- tradeoff surface :: 96
+- tradeoff packet :: 96
+- tradeoff receipt :: 96
+- tradeoff trace :: 96
+- tradeoff result :: 96
+- tradeoff scope :: 96
+- tradeoff boundary :: 96
+- tradeoff status :: 95
+- tradeoff candidate :: 95
+- tradeoff witness :: 95
+- tradeoff probe :: 95
+- tradeoff constraint :: 95
+- check tradeoff :: 95
+- compare tradeoff :: 95
+- observe tradeoff :: 95
+- measure tradeoff :: 95
+- test tradeoff :: 95
+- verify tradeoff :: 95
+- hold tradeoff :: 95
+- preserve tradeoff :: 95
+- split tradeoff :: 95
+- narrow tradeoff :: 95
+- under different :: 95
+- within different :: 95
+- across different :: 95
+- between different :: 95
+- through different :: 95
+- before different :: 95
+- after different :: 95
+- until different :: 95
+- where different :: 95
+- while different :: 95
+- different evidence :: 94
+- different support :: 94
+- different path :: 94
+- different surface :: 94
+- different packet :: 94
+- different receipt :: 94
+- different trace :: 94
+- different result :: 94
+- different scope :: 94
+- different boundary :: 94
+- different status :: 94
+- different candidate :: 94
+- different witness :: 94
+- different probe :: 94
+- different constraint :: 94
+- check different :: 94
+- compare different :: 94
+- observe different :: 94
+- measure different :: 94
+- test different :: 94
+- verify different :: 94
+- hold different :: 94
+- preserve different :: 94
+- split different :: 94
+- narrow different :: 94
+- under route :: 93
+- within route :: 93
+- across route :: 93
+- between route :: 93
+- through route :: 93
+- before route :: 93
+- after route :: 93
+- until route :: 93
+- where route :: 93
+- while route :: 93
+- route evidence :: 93
+- route support :: 93
+- route path :: 93
+- route surface :: 93
+- route packet :: 93
+- route receipt :: 93
+- route trace :: 93
+- route result :: 93
+- route scope :: 93
+- route boundary :: 93
+- route status :: 93
+- route candidate :: 93
+- route witness :: 93
+- route probe :: 93
+- route constraint :: 93
+- check route :: 92
+- compare route :: 92
+- observe route :: 92
+- measure route :: 92
+- test route :: 92
+- verify route :: 92
+- hold route :: 92
+- preserve route :: 92
+- split route :: 92
+- narrow route :: 92
+- under compare :: 92
+- within compare :: 92
+- across compare :: 92
+- between compare :: 92
+- through compare :: 92
+- before compare :: 92
+- after compare :: 92
+- until compare :: 92
+- where compare :: 92
+- while compare :: 92
+- compare evidence :: 92
+- compare support :: 92
+- compare path :: 92
+- compare surface :: 92
+- compare packet :: 92
+- compare receipt :: 91
+- compare trace :: 91
+- compare result :: 91
+- compare scope :: 91
+- compare boundary :: 91
+- compare status :: 91
+- compare candidate :: 91
+- compare witness :: 91
+- compare probe :: 91
+- compare constraint :: 91
+- check compare :: 91
+- compare compare :: 91
+- observe compare :: 91
+- measure compare :: 91
+- test compare :: 91
+- verify compare :: 91
+- hold compare :: 91
+- preserve compare :: 91
+- split compare :: 91
+- narrow compare :: 91
+- under assumption :: 91
+- within assumption :: 91
+- across assumption :: 91
+- between assumption :: 91
+- through assumption :: 91
+- before assumption :: 90
+- after assumption :: 90
+- until assumption :: 90
+- where assumption :: 90
+- while assumption :: 90
+- assumption evidence :: 90
+- assumption support :: 90
+- assumption path :: 90
+- assumption surface :: 90
+- assumption packet :: 90
+- assumption receipt :: 90
+- assumption trace :: 90
+- assumption result :: 90
+- assumption scope :: 90
+- assumption boundary :: 90
+- assumption status :: 90
+- assumption candidate :: 90
+- assumption witness :: 90
+- assumption probe :: 90
+- assumption constraint :: 90
+- check assumption :: 90
+- compare assumption :: 90
+- observe assumption :: 90
+- measure assumption :: 90
+- test assumption :: 90
+- verify assumption :: 89
+- hold assumption :: 89
+- preserve assumption :: 89
+- split assumption :: 89
+- narrow assumption :: 89
+- under second :: 89
+- within second :: 89
+- across second :: 89
+- between second :: 89
+- through second :: 89
+- before second :: 89
+- after second :: 89
+- until second :: 89
+- where second :: 89
+- while second :: 89
+- second evidence :: 89
+- second support :: 89
+- second path :: 89
+- second surface :: 89
+- second packet :: 89
+- second receipt :: 89
+- second trace :: 89
+- second result :: 89
+- second scope :: 89
+- second boundary :: 89
+- second status :: 88
+- second candidate :: 88
+- second witness :: 88
+- second probe :: 88
+- second constraint :: 88
+- check second :: 88
+- compare second :: 88
+- observe second :: 88
+- measure second :: 88
+- test second :: 88
+- verify second :: 88
+- hold second :: 88
+- preserve second :: 88
+- split second :: 88
+- narrow second :: 88
+- under path :: 88
+- within path :: 88
+- across path :: 88
+- between path :: 88
+- through path :: 88
+- before path :: 88
+- after path :: 88
+- until path :: 88
+- where path :: 88
+- while path :: 88
+- path evidence :: 87
+- path support :: 87
+- path path :: 87
+- path surface :: 87
+- path packet :: 87
+- path receipt :: 87
+- path trace :: 87
+- path result :: 87
+- path scope :: 87
+- path boundary :: 87
+- path status :: 87
+- path candidate :: 87
+- path witness :: 87
+- path probe :: 87
+- path constraint :: 87
+- better if :: 87
+- worse if :: 87
+- different assumption :: 87
+- alternate :: 87
+- route :: 87
+- tradeoff :: 87
+- compare :: 87
+- fork :: 87
+- option :: 87
+- viable :: 87
+- under other :: 86
+- under option :: 86
+- under fallback :: 86
+- under variant :: 86
+- under side :: 86
+- under parallel :: 86
+- under case :: 86
+- under difference :: 86
+- under alternate :: 86
+- under second path :: 86
+- under better if :: 86
+- within other :: 86
+- within option :: 86
+- within fallback :: 86
+- within variant :: 86
+- within side :: 86
+- within parallel :: 86
+- within case :: 86
+- within difference :: 86
+- within alternate :: 86
+- within second path :: 86
+- within better if :: 86
+- across other :: 86
+- across option :: 85
+- across fallback :: 85
+- across variant :: 85
+- across side :: 85
+- across parallel :: 85
+- across case :: 85
+- across difference :: 85
+- across alternate :: 85
+- across second path :: 85
+- across better if :: 85
+- between other :: 85
+- between option :: 85
+- between fallback :: 85
+- between variant :: 85
+- between side :: 85
+- between parallel :: 85
+- between case :: 85
+- between difference :: 85
+- between alternate :: 85
+- between second path :: 85
+- between better if :: 85
+- through other :: 85
+- through option :: 85
+- through fallback :: 84
+- through variant :: 84
+- through side :: 84
+- through parallel :: 84
+- through case :: 84
+- through difference :: 84
+- through alternate :: 84
+- through second path :: 84
+- through better if :: 84
+- before other :: 84
+- before option :: 84
+- before fallback :: 84
+- before variant :: 84
+- before side :: 84
+- before parallel :: 84
+- before case :: 84
+- before difference :: 84
+- before alternate :: 84
+- before second path :: 84
+- before better if :: 84
+- after other :: 84
+- after option :: 84
+- after fallback :: 84
+- after variant :: 83
+- after side :: 83
+- after parallel :: 83
+- after case :: 83
+- after difference :: 83
+- after alternate :: 83
+- after second path :: 83
+- after better if :: 83
+- during alternative :: 83
+- during second :: 83
+- during route :: 83
+- during fork :: 83
+- during tradeoff :: 83
+- during different :: 83
+- during path :: 83
+- during other :: 83
+- during option :: 83
+- during compare :: 83
+- during fallback :: 83
+- during variant :: 83
+- during side :: 83
+- during parallel :: 83
+- during case :: 83
+- during difference :: 82
+- during alternate :: 82
+- during second path :: 82
+- during better if :: 82
+- until other :: 82
+- until option :: 82
+- until fallback :: 82
+- until variant :: 82
+- until side :: 82
+- until parallel :: 82
+- until case :: 82
+- until difference :: 82
+- until alternate :: 82
+- until second path :: 82
+- until better if :: 82
+- since alternative :: 82
+- since second :: 82
+- since route :: 82
+- since fork :: 82
+- since tradeoff :: 82
+- since different :: 82
+- since path :: 82
+- since other :: 82
+- since option :: 82
+- since compare :: 81
+- since fallback :: 81
+- since variant :: 81
+- since side :: 81
+- since parallel :: 81
+- since case :: 81
+- since difference :: 81
+- since alternate :: 81
+- since second path :: 81
+- since better if :: 81
+- from alternative :: 81
+- from second :: 81
+- from route :: 81
+- from fork :: 81
+- from tradeoff :: 81
+- from different :: 81
+- from path :: 81
+- from other :: 81
+- from option :: 81
+- from compare :: 81
+- from fallback :: 81
+- from variant :: 81
+- from side :: 81
+- from parallel :: 81
+- from case :: 80
+- from difference :: 80
+- from alternate :: 80
+- from second path :: 80
+- from better if :: 80
+- by alternative :: 80
+- by second :: 80
+- by route :: 80
+- by fork :: 80
+- by tradeoff :: 80
+- by different :: 80
+- by path :: 80
+- by other :: 80
+- by option :: 80
+- by compare :: 80
+- by fallback :: 80
+- by variant :: 80
+- by side :: 80
+- by parallel :: 80
+- by case :: 80
+- by difference :: 80
+- by alternate :: 80
+- by second path :: 80
+- by better if :: 79
+- with alternative :: 79
+- with second :: 79
+- with route :: 79
+- with fork :: 79
+- with tradeoff :: 79
+- with different :: 79
+- with path :: 79
+- with other :: 79
+- with option :: 79
+- with compare :: 79
+- with fallback :: 79
+- with variant :: 79
+- with side :: 79
+- with parallel :: 79
+- with case :: 79
+- with difference :: 79
+- with alternate :: 79
+- with second path :: 79
+- with better if :: 79
+- without alternative :: 79
+- without second :: 79
+- without route :: 79
+- without fork :: 79
+- without tradeoff :: 78
+- without different :: 78
+- without path :: 78
+- without other :: 78
+- without option :: 78
+- without compare :: 78
+- without fallback :: 78
+- without variant :: 78
+- without side :: 78
+- without parallel :: 78
+- without case :: 78
+- without difference :: 78
+- without alternate :: 78
+- without second path :: 78
+- without better if :: 78
+- against alternative :: 78
+- against second :: 78
+- against route :: 78
+- against fork :: 78
+- against tradeoff :: 78
+- against different :: 78
+- against path :: 78
+- against other :: 78
+- against option :: 78
+- against compare :: 77
+- against fallback :: 77
+- against variant :: 77
+- against side :: 77
+- against parallel :: 77
+- against case :: 77
+- against difference :: 77
+- against alternate :: 77
+- against second path :: 77
+- against better if :: 77
+- toward alternative :: 77
+- toward second :: 77
+- toward route :: 77
+- toward fork :: 77
+- toward tradeoff :: 77
+- toward different :: 77
+- toward path :: 77
+- toward other :: 77
+- toward option :: 77
+- toward compare :: 77
+- toward fallback :: 77
+- toward variant :: 77
+- toward side :: 77
+- toward parallel :: 77
+- toward case :: 76
+- toward difference :: 76
+- toward alternate :: 76
+- toward second path :: 76
+- toward better if :: 76
+- near alternative :: 76
+- near second :: 76
+- near route :: 76
+- near fork :: 76
+- near tradeoff :: 76
+- near different :: 76
+- near path :: 76
+- near other :: 76
+- near option :: 76
+- near compare :: 76
+- near fallback :: 76
+- near variant :: 76
+- near side :: 76
+- near parallel :: 76
+- near case :: 76
+- near difference :: 76
+- near alternate :: 76
+- near second path :: 76
+- near better if :: 75
+- relative alternative :: 75
+- relative second :: 75
+- relative route :: 75
+- relative fork :: 75
+- relative tradeoff :: 75
+- relative different :: 75
+- relative path :: 75
+- relative other :: 75
+- relative option :: 75
+- relative compare :: 75
+- relative fallback :: 75
+- relative variant :: 75
+- relative side :: 75
+- relative parallel :: 75
+- relative case :: 75
+- relative difference :: 75
+- relative alternate :: 75
+- relative second path :: 75
+- relative better if :: 75
+- alternative second :: 75
+- alternative route :: 75
+- alternative fork :: 75
+- alternative tradeoff :: 75
+- alternative different :: 74
+- alternative other :: 74
+- alternative option :: 74
+- alternative compare :: 74
+- alternative fallback :: 74
+- alternative variant :: 74
+- second route :: 74
+- second fork :: 74
+- second tradeoff :: 74
+- second different :: 74
+- second other :: 74
+- second option :: 74
+- second compare :: 74
+- second fallback :: 74
+- second variant :: 74
+- second side :: 74
+- route fork :: 74
+- route tradeoff :: 74
+- route different :: 74
+- route other :: 74
+- route option :: 74
+- route compare :: 74
+- route fallback :: 74
+- route variant :: 74
+- route side :: 74
+- route parallel :: 73
+- fork tradeoff :: 73
+- fork different :: 73
+- fork other :: 73
+- fork option :: 73
+- fork compare :: 73
+- fork fallback :: 73
+- fork variant :: 73
+- fork side :: 73
+- fork parallel :: 73
+- tradeoff different :: 73
+- tradeoff other :: 73
+- tradeoff option :: 73
+- tradeoff compare :: 73
+- tradeoff fallback :: 73
+- tradeoff variant :: 73
+- tradeoff side :: 73
+- tradeoff parallel :: 73
+- tradeoff case :: 73
+- different other :: 73
+- different option :: 73
+- different compare :: 73
+- different fallback :: 73
+
+## triplets
+
+- under current alternative :: 100
+- under local alternative :: 100
+- under bounded alternative :: 100
+- under finite alternative :: 100
+- under open alternative :: 100
+- under live alternative :: 100
+- within current alternative :: 100
+- within local alternative :: 100
+- within bounded alternative :: 100
+- within finite alternative :: 100
+- within open alternative :: 100
+- within live alternative :: 100
+- across current alternative :: 100
+- across local alternative :: 100
+- across bounded alternative :: 100
+- across finite alternative :: 100
+- across open alternative :: 100
+- across live alternative :: 100
+- between current alternative :: 100
+- between local alternative :: 100
+- between bounded alternative :: 100
+- between finite alternative :: 100
+- between open alternative :: 100
+- between live alternative :: 100
+- through current alternative :: 100
+- through local alternative :: 99
+- through bounded alternative :: 99
+- through finite alternative :: 99
+- through open alternative :: 99
+- through live alternative :: 99
+- before current alternative :: 99
+- before local alternative :: 99
+- before bounded alternative :: 99
+- before finite alternative :: 99
+- before open alternative :: 99
+- before live alternative :: 99
+- alternative evidence path :: 99
+- alternative support path :: 99
+- alternative path path :: 99
+- alternative surface path :: 99
+- alternative packet path :: 99
+- alternative receipt path :: 99
+- alternative trace path :: 99
+- alternative result path :: 99
+- alternative scope path :: 99
+- alternative boundary path :: 99
+- check alternative receipt :: 99
+- compare alternative receipt :: 99
+- observe alternative receipt :: 99
+- measure alternative receipt :: 99
+- test alternative receipt :: 98
+- verify alternative receipt :: 98
+- hold alternative receipt :: 98
+- preserve alternative receipt :: 98
+- under current fork :: 98
+- under local fork :: 98
+- under bounded fork :: 98
+- under finite fork :: 98
+- under open fork :: 98
+- under live fork :: 98
+- within current fork :: 98
+- within local fork :: 98
+- within bounded fork :: 98
+- within finite fork :: 98
+- within open fork :: 98
+- within live fork :: 98
+- across current fork :: 98
+- across local fork :: 98
+- across bounded fork :: 98
+- across finite fork :: 98
+- across open fork :: 98
+- across live fork :: 98
+- between current fork :: 98
+- between local fork :: 98
+- between bounded fork :: 98
+- between finite fork :: 97
+- between open fork :: 97
+- between live fork :: 97
+- through current fork :: 97
+- through local fork :: 97
+- through bounded fork :: 97
+- through finite fork :: 97
+- through open fork :: 97
+- through live fork :: 97
+- before current fork :: 97
+- before local fork :: 97
+- before bounded fork :: 97
+- before finite fork :: 97
+- before open fork :: 97
+- before live fork :: 97
+- fork evidence path :: 97
+- fork support path :: 97
+- fork path path :: 97
+- fork surface path :: 97
+- fork packet path :: 97
+- fork receipt path :: 97
+- fork trace path :: 97
+- fork result path :: 97
+- fork scope path :: 97
+- fork boundary path :: 97
+- check fork receipt :: 96
+- compare fork receipt :: 96
+- observe fork receipt :: 96
+- measure fork receipt :: 96
+- test fork receipt :: 96
+- verify fork receipt :: 96
+- hold fork receipt :: 96
+- preserve fork receipt :: 96
+- under current viable :: 96
+- under local viable :: 96
+- under bounded viable :: 96
+- under finite viable :: 96
+- under open viable :: 96
+- under live viable :: 96
+- within current viable :: 96
+- within local viable :: 96
+- within bounded viable :: 96
+- within finite viable :: 96
+- within open viable :: 96
+- within live viable :: 96
+- across current viable :: 96
+- across local viable :: 96
+- across bounded viable :: 96
+- across finite viable :: 96
+- across open viable :: 96
+- across live viable :: 95
+- between current viable :: 95
+- between local viable :: 95
+- between bounded viable :: 95
+- between finite viable :: 95
+- between open viable :: 95
+- between live viable :: 95
+- through current viable :: 95
+- through local viable :: 95
+- through bounded viable :: 95
+- through finite viable :: 95
+- through open viable :: 95
+- through live viable :: 95
+- before current viable :: 95
+- before local viable :: 95
+- before bounded viable :: 95
+- before finite viable :: 95
+- before open viable :: 95
+- before live viable :: 95
+- viable evidence path :: 95
+- viable support path :: 95
+- viable path path :: 95
+- viable surface path :: 95
+- viable packet path :: 95
+- viable receipt path :: 95
+- viable trace path :: 94
+- viable result path :: 94
+- viable scope path :: 94
+- viable boundary path :: 94
+- check viable receipt :: 94
+- compare viable receipt :: 94
+- observe viable receipt :: 94
+- measure viable receipt :: 94
+- test viable receipt :: 94
+- verify viable receipt :: 94
+- hold viable receipt :: 94
+- preserve viable receipt :: 94
+- under current tradeoff :: 94
+- under local tradeoff :: 94
+- under bounded tradeoff :: 94
+- under finite tradeoff :: 94
+- under open tradeoff :: 94
+- under live tradeoff :: 94
+- within current tradeoff :: 94
+- within local tradeoff :: 94
+- within bounded tradeoff :: 94
+- within finite tradeoff :: 94
+- within open tradeoff :: 94
+- within live tradeoff :: 94
+- across current tradeoff :: 94
+- across local tradeoff :: 93
+- across bounded tradeoff :: 93
+- across finite tradeoff :: 93
+- across open tradeoff :: 93
+- across live tradeoff :: 93
+- between current tradeoff :: 93
+- between local tradeoff :: 93
+- between bounded tradeoff :: 93
+- between finite tradeoff :: 93
+- between open tradeoff :: 93
+- between live tradeoff :: 93
+- through current tradeoff :: 93
+- through local tradeoff :: 93
+- through bounded tradeoff :: 93
+- through finite tradeoff :: 93
+- through open tradeoff :: 93
+- through live tradeoff :: 93
+- before current tradeoff :: 93
+- before local tradeoff :: 93
+- before bounded tradeoff :: 93
+- before finite tradeoff :: 93
+- before open tradeoff :: 93
+- before live tradeoff :: 93
+- tradeoff evidence path :: 93
+- tradeoff support path :: 93
+- tradeoff path path :: 92
+- tradeoff surface path :: 92
+- tradeoff packet path :: 92
+- tradeoff receipt path :: 92
+- tradeoff trace path :: 92
+- tradeoff result path :: 92
+- tradeoff scope path :: 92
+- tradeoff boundary path :: 92
+- check tradeoff receipt :: 92
+- compare tradeoff receipt :: 92
+- observe tradeoff receipt :: 92
+- measure tradeoff receipt :: 92
+- test tradeoff receipt :: 92
+- verify tradeoff receipt :: 92
+- hold tradeoff receipt :: 92
+- preserve tradeoff receipt :: 92
+- under current different :: 92
+- under local different :: 92
+- under bounded different :: 92
+- under finite different :: 92
+- under open different :: 92
+- under live different :: 92
+- within current different :: 92
+- within local different :: 92
+- within bounded different :: 92
+- within finite different :: 91
+- within open different :: 91
+- within live different :: 91
+- across current different :: 91
+- across local different :: 91
+- across bounded different :: 91
+- across finite different :: 91
+- across open different :: 91
+- across live different :: 91
+- between current different :: 91
+- between local different :: 91
+- between bounded different :: 91
+- between finite different :: 91
+- between open different :: 91
+- between live different :: 91
+- under alternative second :: 91
+- under alternative route :: 91
+- under alternative fork :: 91
+- under alternative tradeoff :: 91
+- under second route :: 91
+- under second fork :: 91
+- under second tradeoff :: 91
+- under second different :: 91
+- under route fork :: 91
+- under route tradeoff :: 91
+- under route different :: 90
+- under route path :: 90
+- under fork tradeoff :: 90
+- under fork different :: 90
+- under fork path :: 90
+- under fork other :: 90
+- under tradeoff different :: 90
+- under tradeoff path :: 90
+- under tradeoff other :: 90
+- under tradeoff option :: 90
+- under different path :: 90
+- under different other :: 90
+- under different option :: 90
+- under different compare :: 90
+- under path other :: 90
+- under path option :: 90
+- under path compare :: 90
+- under path fallback :: 90
+- under other option :: 90
+- under other compare :: 90
+- under other fallback :: 90
+- under other variant :: 90
+- under option compare :: 90
+- under option fallback :: 90
+- under option variant :: 90
+- under option side :: 89
+- under compare fallback :: 89
+- under compare variant :: 89
+- under compare side :: 89
+- under compare parallel :: 89
+- under fallback variant :: 89
+- under fallback side :: 89
+- under fallback parallel :: 89
+- under variant side :: 89
+- under variant parallel :: 89
+- under variant case :: 89
+- under side parallel :: 89
+- under side case :: 89
+- under side difference :: 89
+- under parallel case :: 89
+- under parallel difference :: 89
+- under parallel alternate :: 89
+- under case difference :: 88
+- under case alternate :: 88
+- under case second path :: 88
+- under case better if :: 88
+- under difference alternate :: 88
+- under difference second path :: 88
+- under difference better if :: 88
+- under difference worse if :: 88
+- under alternate second path :: 88
+- under alternate better if :: 88
+- under alternate worse if :: 88
+- under alternate different assumption :: 88
+- under second path better if :: 88
+- under second path worse if :: 88
+- under second path different assumption :: 88
+- under second path viable :: 88
+- under better if worse if :: 88
+- under better if different assumption :: 88
+- under better if viable :: 88
+- under better if assumption :: 88
+- within alternative second :: 88
+- within alternative route :: 88
+- within alternative fork :: 88
+- within alternative tradeoff :: 88
+- within second route :: 88
+- within second fork :: 87
+- within second tradeoff :: 87
+- within second different :: 87
+- within route fork :: 87
+- within route tradeoff :: 87
+- within route different :: 87
+- within route path :: 87
+- within fork tradeoff :: 87
+- within fork different :: 87
+- within fork path :: 87
+- within fork other :: 87
+- within tradeoff different :: 87
+- within tradeoff path :: 87
+- within tradeoff other :: 87
+- within tradeoff option :: 87
+- within different path :: 87
+- within different other :: 87
+- within different option :: 87
+- within different compare :: 87
+- within path other :: 87
+- within path option :: 87
+- within path compare :: 87
+- within path fallback :: 87
+- within other option :: 87
+- within other compare :: 87
+- within other fallback :: 86
+- within other variant :: 86
+- within option compare :: 86
+- within option fallback :: 86
+- within option variant :: 86
+- within option side :: 86
+- within compare fallback :: 86
+- within compare variant :: 86
+- within compare side :: 86
+- within compare parallel :: 86
+- within fallback variant :: 86
+- within fallback side :: 86
+- within fallback parallel :: 86
+- within variant side :: 86
+- within variant parallel :: 86
+- within variant case :: 86
+- within side parallel :: 86
+- within side case :: 86
+- within side difference :: 86
+- within parallel case :: 86
+- within parallel difference :: 86
+- within parallel alternate :: 85
+- within case difference :: 85
+- within case alternate :: 85
+- within case second path :: 85
+- within case better if :: 85
+- within difference alternate :: 85
+- within difference second path :: 85
+- within difference better if :: 85
+- within difference worse if :: 85
+- within alternate second path :: 85
+- within alternate better if :: 85
+- within alternate worse if :: 85
+- within alternate different assumption :: 85
+- within second path better if :: 85
+- within second path worse if :: 85
+- within second path different assumption :: 85
+- within second path viable :: 85
+- within better if worse if :: 85
+- within better if different assumption :: 85
+- within better if viable :: 85
+- within better if assumption :: 85
+- across alternative second :: 84
+- across alternative route :: 84
+- across alternative fork :: 84
+- across alternative tradeoff :: 84
+- across second route :: 84
+- across second fork :: 84
+- across second tradeoff :: 84
+- across second different :: 84
+- across route fork :: 84
+- across route tradeoff :: 84
+- across route different :: 84
+- across route path :: 84
+- across fork tradeoff :: 84
+- across fork different :: 84
+- across fork path :: 84
+- across fork other :: 84
+- across tradeoff different :: 84
+- across tradeoff path :: 84
+- across tradeoff other :: 84
+- across tradeoff option :: 84
+- across different path :: 84
+- across different other :: 84
+- across different option :: 84
+- across different compare :: 84
+- across path other :: 84
+- across path option :: 83
+- across path compare :: 83
+- across path fallback :: 83
+- across other option :: 83
+- across other compare :: 83
+- across other fallback :: 83
+- across other variant :: 83
+- across option compare :: 83
+- across option fallback :: 83
+- across option variant :: 83
+- across option side :: 83
+- across compare fallback :: 83
+- across compare variant :: 83
+- across compare side :: 83
+- across compare parallel :: 83
+- across fallback variant :: 83
+- across fallback side :: 83
+- across fallback parallel :: 83
+- across variant side :: 83
+- across variant parallel :: 83
+- across variant case :: 83
+- across side parallel :: 83
+- across side case :: 82
+- across side difference :: 82
+- across parallel case :: 82
+- across parallel difference :: 82
+- across parallel alternate :: 82
+- across case difference :: 82
+- across case alternate :: 82
+- across case second path :: 82
+- across case better if :: 82
+- across difference alternate :: 82
+- across difference second path :: 82
+- across difference better if :: 82
+- across difference worse if :: 82
+- across alternate second path :: 82
+- across alternate better if :: 82
+- across alternate worse if :: 82
+- across alternate different assumption :: 82
+- across second path better if :: 82
+- across second path worse if :: 82
+- across second path different assumption :: 82
+- across second path viable :: 81
+- across better if worse if :: 81
+- across better if different assumption :: 81
+- across better if viable :: 81
+- across better if assumption :: 81
+- between alternative second :: 81
+- between alternative route :: 81
+- between alternative fork :: 81
+- between alternative tradeoff :: 81
+- between second route :: 81
+- between second fork :: 81
+- between second tradeoff :: 81
+- between second different :: 81
+- between route fork :: 81
+- between route tradeoff :: 81
+- between route different :: 81
+- between route path :: 81
+- between fork tradeoff :: 81
+- between fork different :: 81
+- between fork path :: 81
+- between fork other :: 81
+- between tradeoff different :: 81
+- between tradeoff path :: 81
+- between tradeoff other :: 81
+- between tradeoff option :: 81
+- between different path :: 80
+- between different other :: 80
+- between different option :: 80
+- between different compare :: 80
+- between path other :: 80
+- between path option :: 80
+- between path compare :: 80
+- between path fallback :: 80
+- between other option :: 80
+- between other compare :: 80
+- between other fallback :: 80
+- between other variant :: 80
+- between option compare :: 80
+- between option fallback :: 80
+- between option variant :: 80
+- between option side :: 80
+- between compare fallback :: 80
+- between compare variant :: 80
+- between compare side :: 80
+- between compare parallel :: 80
+- between fallback variant :: 80
+- between fallback side :: 80
+- between fallback parallel :: 80
+- between variant side :: 80
+- between variant parallel :: 79
+- between variant case :: 79
+- between side parallel :: 79
+- between side case :: 79
+- between side difference :: 79
+- between parallel case :: 79
+- between parallel difference :: 79
+- between parallel alternate :: 79
+- between case difference :: 79
+- between case alternate :: 79
+- between case second path :: 79
+- between case better if :: 79
+- between difference alternate :: 79
+- between difference second path :: 79
+- between difference better if :: 79
+- between difference worse if :: 79
+- between alternate second path :: 79
+- between alternate better if :: 79
+- between alternate worse if :: 78
+- between alternate different assumption :: 78
+- between second path better if :: 78
+- between second path worse if :: 78
+- between second path different assumption :: 78
+- between second path viable :: 78
+- between better if worse if :: 78
+- between better if different assumption :: 78
+- between better if viable :: 78
+- between better if assumption :: 78
+- through alternative second :: 78
+- through alternative route :: 78
+- through alternative fork :: 78
+- through alternative tradeoff :: 78
+- through second route :: 78
+- through second fork :: 78
+- through second tradeoff :: 78
+- through second different :: 78
+- through route fork :: 78
+- through route tradeoff :: 78
+- through route different :: 78
+- through route path :: 78
+- through fork tradeoff :: 78
+- through fork different :: 78
+- through fork path :: 78
+- through fork other :: 77
+- through tradeoff different :: 77
+- through tradeoff path :: 77
+- through tradeoff other :: 77
+- through tradeoff option :: 77
+- through different path :: 77
+- through different other :: 77
+- through different option :: 77
+- through different compare :: 77
+- through path other :: 77
+- through path option :: 77
+- through path compare :: 77
+- through path fallback :: 77
+- through other option :: 77
+- through other compare :: 77
+- through other fallback :: 77
+- through other variant :: 77
+- through option compare :: 77
+- through option fallback :: 77
+- through option variant :: 77
+- through option side :: 77
+- through compare fallback :: 77
+- through compare variant :: 77
+- through compare side :: 77
+- through compare parallel :: 77
+- through fallback variant :: 76
+- through fallback side :: 76
+- through fallback parallel :: 76
+- through variant side :: 76
+- through variant parallel :: 76
+- through variant case :: 76
+- through side parallel :: 76
+- through side case :: 76
+- through side difference :: 76
+- through parallel case :: 76
+- through parallel difference :: 76
+- through parallel alternate :: 76
+- through case difference :: 76
+- through case alternate :: 76
+- through case second path :: 76
+- through case better if :: 76
+- through difference alternate :: 76
+- through difference second path :: 75
+- through difference better if :: 75
+- through difference worse if :: 75
+- through alternate second path :: 75
+- through alternate better if :: 75
+- through alternate worse if :: 75
+- through alternate different assumption :: 75
+- through second path better if :: 75
+- through second path worse if :: 75
+- through second path different assumption :: 75
+- through second path viable :: 75
+- through better if worse if :: 75
+- through better if different assumption :: 75
+- through better if viable :: 75
+- through better if assumption :: 75
+- before alternative second :: 75
+- before alternative route :: 75
+- before alternative fork :: 75
+- before alternative tradeoff :: 75
+- before second route :: 75
+- before second fork :: 75
+- before second tradeoff :: 75
+- before second different :: 75
+- before route fork :: 75
+- before route tradeoff :: 75
+- before route different :: 74
+- before route path :: 74
+- before fork tradeoff :: 74
+- before fork different :: 74
+- before fork path :: 74
+- before fork other :: 74
+- before tradeoff different :: 74
+- before tradeoff path :: 74
+- before tradeoff other :: 74
+- before tradeoff option :: 74
+- before different path :: 74
+- before different other :: 74
+- before different option :: 74
+- before different compare :: 74
+- before path other :: 74
+- before path option :: 74
+- before path compare :: 74
+- before path fallback :: 74
+- before other option :: 74
+- before other compare :: 74
+- before other fallback :: 74
+- before other variant :: 74
+- before option compare :: 74
+- before option fallback :: 74
+- before option variant :: 74
+- before option side :: 73
+- before compare fallback :: 73
+- before compare variant :: 73
+- before compare side :: 73
+- before compare parallel :: 73
+- before fallback variant :: 73
+- before fallback side :: 73
+- before fallback parallel :: 73
+- before variant side :: 73
+- before variant parallel :: 73
+- before variant case :: 73
+- before side parallel :: 73
+- before side case :: 73
+- before side difference :: 73
+- before parallel case :: 73
+- before parallel difference :: 73
+- before parallel alternate :: 73
+- before case difference :: 72
+- before case alternate :: 72
+- before case second path :: 72
+- before case better if :: 72
+- before difference alternate :: 72
+- before difference second path :: 72
+- before difference better if :: 72
+- before difference worse if :: 72
+- before alternate second path :: 72
+- before alternate better if :: 72
+- before alternate worse if :: 72
+- before alternate different assumption :: 72
+- before second path better if :: 72
+- before second path worse if :: 72
+- before second path different assumption :: 72
+- before second path viable :: 72
+- before better if worse if :: 72
+- before better if different assumption :: 72
+- before better if viable :: 72
+- before better if assumption :: 72
+- after alternative second :: 72
+- after alternative route :: 72
+- after alternative fork :: 72
+- after alternative tradeoff :: 72
+- after second route :: 72
+- after second fork :: 71
+- after second tradeoff :: 71
+- after second different :: 71
+- after route fork :: 71
+- after route tradeoff :: 71
+- after route different :: 71
+- after route path :: 71
+- after fork tradeoff :: 71
+- after fork different :: 71
+- after fork path :: 71
+- after fork other :: 71
+- after tradeoff different :: 71
+- after tradeoff path :: 71
+- after tradeoff other :: 71
+- after tradeoff option :: 71
+- after different path :: 71
+- after different other :: 71
+- after different option :: 71
+- after different compare :: 71
+- after path other :: 71
+- after path option :: 71
+- after path compare :: 71
+- after path fallback :: 71
+- after other option :: 71
+- after other compare :: 71
+- after other fallback :: 70
+- after other variant :: 70
+- after option compare :: 70
+- after option fallback :: 70
+- after option variant :: 70
+- after option side :: 70
+- after compare fallback :: 70
+- after compare variant :: 70
+- after compare side :: 70
+- after compare parallel :: 70
+- after fallback variant :: 70
+- after fallback side :: 70
+- after fallback parallel :: 70
+- after variant side :: 70
+- after variant parallel :: 70
+- after variant case :: 70
+- after side parallel :: 70
+- after side case :: 70
+- after side difference :: 70
+- after parallel case :: 70
+- after parallel difference :: 70
+- after parallel alternate :: 69
+- after case difference :: 69
+- after case alternate :: 69
+- after case second path :: 69
+- after case better if :: 69
+- after difference alternate :: 69
+- after difference second path :: 69
+- after difference better if :: 69
+- after difference worse if :: 69
+- after alternate second path :: 69
+- after alternate better if :: 69
+- after alternate worse if :: 69
+- after alternate different assumption :: 69
+- after second path better if :: 69
+- after second path worse if :: 69
+- after second path different assumption :: 69
+- after second path viable :: 69
+- after better if worse if :: 69
+- after better if different assumption :: 69
+- after better if viable :: 69
+- after better if assumption :: 69
+- during alternative second :: 68
+- during alternative route :: 68
+- during alternative fork :: 68
+- during alternative tradeoff :: 68
+- during second route :: 68
+- during second fork :: 68
+- during second tradeoff :: 68
+- during second different :: 68
+- during route fork :: 68
+- during route tradeoff :: 68
+- during route different :: 68
+- during route path :: 68
+- during fork tradeoff :: 68
+- during fork different :: 68
+- during fork path :: 68
+- during fork other :: 68
+- during tradeoff different :: 68
+- during tradeoff path :: 68
+- during tradeoff other :: 68
+- during tradeoff option :: 68
+- during different path :: 68
+- during different other :: 68
+- during different option :: 68
+- during different compare :: 68
+- during path other :: 68
+- during path option :: 67
+- during path compare :: 67
+- during path fallback :: 67
+- during other option :: 67
+- during other compare :: 67
+- during other fallback :: 67
+- during other variant :: 67
+- during option compare :: 67
+- during option fallback :: 67
+- during option variant :: 67
+- during option side :: 67
+- during compare fallback :: 67
+- during compare variant :: 67
+- during compare side :: 67
+- during compare parallel :: 67
+- during fallback variant :: 67
+- during fallback side :: 67
+- during fallback parallel :: 67
+- during variant side :: 67
+- during variant parallel :: 67
+- during variant case :: 67
+- during side parallel :: 67
+- during side case :: 66
+- during side difference :: 66
+- during parallel case :: 66
+- during parallel difference :: 66
+- during parallel alternate :: 66
+- during case difference :: 66
+- during case alternate :: 66
+- during case second path :: 66
+- during case better if :: 66
+- during difference alternate :: 66
+- during difference second path :: 66
+- during difference better if :: 66
+- during difference worse if :: 66
+- during alternate second path :: 66
+- during alternate better if :: 66
+- during alternate worse if :: 66
+- during alternate different assumption :: 66
+- during second path better if :: 66
+- during second path worse if :: 66
+- during second path different assumption :: 66
+- during second path viable :: 65
+- during better if worse if :: 65
+- during better if different assumption :: 65
+- during better if viable :: 65
+- during better if assumption :: 65
+- until alternative second :: 65
+- until alternative route :: 65
+- until alternative fork :: 65
+- until alternative tradeoff :: 65
+- until second route :: 65
+- until second fork :: 65
+- until second tradeoff :: 65
+- until second different :: 65
+- until route fork :: 65
+- until route tradeoff :: 65
+- until route different :: 65
+- until route path :: 65
+- until fork tradeoff :: 65
+- until fork different :: 65
+- until fork path :: 65
+- until fork other :: 65
+- until tradeoff different :: 65
+- until tradeoff path :: 65
+- until tradeoff other :: 65
+- until tradeoff option :: 65
+- until different path :: 64
+- until different other :: 64
+- until different option :: 64
+- until different compare :: 64
+- until path other :: 64
+- until path option :: 64
+- until path compare :: 64
+- until path fallback :: 64
+- until other option :: 64
+- until other compare :: 64
+- until other fallback :: 64
+- until other variant :: 64
+- until option compare :: 64
+- until option fallback :: 64
+- until option variant :: 64
+- until option side :: 64
+- until compare fallback :: 64
+- until compare variant :: 64
+- until compare side :: 64
+- until compare parallel :: 64
+- until fallback variant :: 64
+- until fallback side :: 64
+- until fallback parallel :: 64
+- until variant side :: 64
+- until variant parallel :: 63
+- until variant case :: 63
+- until side parallel :: 63
+- until side case :: 63
+- until side difference :: 63
+- until parallel case :: 63
+- until parallel difference :: 63
+- until parallel alternate :: 63
+- until case difference :: 63
+- until case alternate :: 63
+- until case second path :: 63
+- until case better if :: 63
+- until difference alternate :: 63
+- until difference second path :: 63
+- until difference better if :: 63
+- until difference worse if :: 63
+- until alternate second path :: 63
+- until alternate better if :: 63
+- until alternate worse if :: 62
+- until alternate different assumption :: 62
+- until second path better if :: 62
+- until second path worse if :: 62
+- until second path different assumption :: 62
+- until second path viable :: 62
+- until better if worse if :: 62
+- until better if different assumption :: 62
+- until better if viable :: 62
+- until better if assumption :: 62
+- since alternative second :: 62
+- since alternative route :: 62
+- since alternative fork :: 62
+- since alternative tradeoff :: 62
+- since second route :: 62
+- since second fork :: 62
+- since second tradeoff :: 62
+- since second different :: 62
+- since route fork :: 62
+- since route tradeoff :: 62
+- since route different :: 62
+- since route path :: 62
+- since fork tradeoff :: 62
+- since fork different :: 62
+- since fork path :: 62
+- since fork other :: 61
+- since tradeoff different :: 61
+- since tradeoff path :: 61
+- since tradeoff other :: 61
+- since tradeoff option :: 61
+- since different path :: 61
+- since different other :: 61
+- since different option :: 61
+- since different compare :: 61
+- since path other :: 61
+- since path option :: 61
+- since path compare :: 61
+- since path fallback :: 61
+- since other option :: 61
+- since other compare :: 61
+- since other fallback :: 61
+- since other variant :: 61
+- since option compare :: 61
+- since option fallback :: 61
+- since option variant :: 61
+- since option side :: 61
+- since compare fallback :: 61
+- since compare variant :: 61
+- since compare side :: 61
+- since compare parallel :: 61
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- branch
+- compare
+- tradeoff
+- second route
+- fallback
+
+### Couplings
+
+- second route
+- tradeoff axis
+- fallback branch
+
+### Triplets
+
+- branch compare tradeoff

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only installation truth for the 91-row CB Light proposal manifest."""
+"""Read-only installation truth for the CB Light proposal manifest."""
 
 from __future__ import annotations
 
@@ -26,6 +26,15 @@ OUTPUT = ROOT / "receipts/cb_light_install_runtime_v1.json"
 # The installer and local ConstraintBox package are controller infrastructure,
 # not members of the finite third-party CB Light candidate domain.
 RUNTIME_INFRASTRUCTURE_DISTRIBUTIONS = frozenset({"pip", "constraintbox"})
+
+
+def manifest_interpreter(manifest_path: pathlib.Path, value: object) -> pathlib.Path:
+    """Resolve a manifest-declared launcher against its contained CB root."""
+
+    declared = pathlib.Path(str(value)).expanduser()
+    if declared.is_absolute():
+        return declared
+    return manifest_path.parent.parent / declared
 
 
 def sha256(path: pathlib.Path) -> str:
@@ -279,7 +288,9 @@ def main() -> int:
     args = parser.parse_args()
     manifest_path = args.manifest.resolve()
     manifest = load_manifest(manifest_path)
-    mandated_python = pathlib.Path(str(manifest["mandated_interpreter"])).expanduser()
+    mandated_python = manifest_interpreter(
+        manifest_path, manifest["mandated_interpreter"]
+    )
     expected_python = pathlib.Path(
         str(
             args.expected_python

@@ -1518,6 +1518,17 @@
       "also_categories": [
         "text-similarity-drift"
       ],
+      "core_role_exception": {
+        "status": "declared_core_root",
+        "exact_requirement": "pydantic==2.12.5",
+        "membership_authority": [
+          "config/core_tool_registry_v9.json",
+          "config/cb_light_contract_v1.json"
+        ],
+        "candidate_metadata_verdict_remains": "drop",
+        "reason": "The explicit CB Light core role is an exception to this non-core candidate metadata dependency threshold.",
+        "evidence_ceiling": "Declaration only; no install, import, operation, adoption, portability, promotion, or release claim."
+      },
       "verified": {
         "latest_version": "2.13.4",
         "release_date": "2026-05-06",

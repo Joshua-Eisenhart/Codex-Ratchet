@@ -677,7 +677,9 @@ def _probe_and_select(connection: Any, domain: Mapping[str, Any]) -> dict[str, A
     implementation_source_hashes = {
         name: sha256_file(path) for name, path in implementation_paths.items()
     }
-    return {
+    from .cb_light_basin_view import apply_view_hold, read_current_view
+
+    body = {
         "schema": "constraintbox.cb-light-gate-run.v1",
         "snapshot_id": snapshot_id,
         "probe_run_id": probe_run_id,
@@ -694,15 +696,16 @@ def _probe_and_select(connection: Any, domain: Mapping[str, Any]) -> dict[str, A
         ),
         "disposition": "ADMIT" if matrix["all_contracts_satisfied"] else "HOLD",
         "reason_code": (
-            "CORE_PROBE_CONTRACTS_SATISFIED"
+            "TOOL_PROBE_CONTRACTS_SATISFIED"
             if matrix["all_contracts_satisfied"]
-            else "CORE_PROBE_CONTRACTS_INCOMPLETE"
+            else "TOOL_PROBE_CONTRACTS_INCOMPLETE"
         ),
         "claim_ceiling": (
-            "five current tool contracts plus full proposal selection state; "
-            "no adoption"
+            f"{len(matrix.get('tool_decisions', []))} current declared-tool "
+            "contracts plus full proposal selection state; no adoption"
         ),
     }
+    return apply_view_hold(body, read_current_view("tool_matrix"))
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -204,7 +204,7 @@ def render() -> dict[str, Any]:
             "distributions": ["pip", "constraintbox"],
             "rule": (
                 "Installer and local controller only; neither is a member of the "
-                "finite 91-tool candidate domain."
+                "finite candidate domain declared by the bound manifest."
             ),
         },
         "constraints_used_for_current_work_selection": contract[
@@ -248,10 +248,11 @@ def render() -> dict[str, Any]:
         "preinstall_excluded_candidates": exclusions,
         "tools": row_ledger,
     }
-    if body["counts"]["proposed_light_tools"] != 91:
-        raise ValueError("unexpected proposed Light tool count")
-    if body["counts"]["selected_for_work"] != 86:
-        raise ValueError("unexpected selected-for-work count")
+    expected_rows = (contract.get("expected_counts") or {}).get("install_proposals")
+    if not isinstance(expected_rows, int) or expected_rows <= 0:
+        raise ValueError("contract install-proposal count missing")
+    if body["counts"]["proposed_light_tools"] != expected_rows:
+        raise ValueError("proposed Light tool count differs from contract")
     return body
 
 

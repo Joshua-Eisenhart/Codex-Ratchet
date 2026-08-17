@@ -1,0 +1,40 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-context-wave-v1",
+  "purpose": "Prepare Decision with durable context. Not a truth council.",
+  "children": [
+    {"id": "ledger", "skill": "cb-context-ledger", "operation": "append_only_store", "tools": ["sha256", "jsonl"]},
+    {"id": "projector", "skill": "cb-context-projector", "operation": "kernel_plus_distinct_lanes", "tools": ["source_root_digest"]},
+    {"id": "delta_admission", "skill": "cb-context-delta-admission", "operation": "classify_then_admit", "tools": ["class_check"]},
+    {"id": "recency", "skill": "cb-recency-bias-auditor", "operation": "ablate_latest_delta", "tools": ["decision_diff"]},
+    {"id": "omission", "skill": "cb-context-omission-auditor", "operation": "report_missing_strata", "tools": ["strata_list"]},
+    {"id": "epoch", "skill": "cb-context-epoch-compiler", "operation": "seal_epoch", "tools": ["parent_digest"]},
+    {"id": "branch_memory", "skill": "cb-branch-failure-memory", "operation": "remember_and_gate_resurrection", "tools": ["resurrection_check"]}
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": ["epoch_sealed", "refuse_shared_roots", "refuse_recency_flip", "cancelled"]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "epoch_digest",
+      "kernel_digest",
+      "omitted_material",
+      "recency_result"
+    ]
+  },
+  "claim_ceiling": "Context bind only; no truth or promotion disposition."
+}

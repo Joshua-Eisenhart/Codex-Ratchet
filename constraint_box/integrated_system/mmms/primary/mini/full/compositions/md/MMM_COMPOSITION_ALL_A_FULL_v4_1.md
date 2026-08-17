@@ -1,0 +1,736 @@
+# 🔗 All-A Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Composition workers load this only for an assigned composition route, normally as Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `ALL_A` and remapped to v4.1 canon category `compositions`.
+
+---
+
+# MMM_LANE_ALL_A_FULL_v4_1
+
+## words
+
+- ground :: 100
+- pressure :: 100
+- direct :: 100
+- claim :: 100
+- test :: 100
+- systems :: 100
+- check :: 100
+- audit :: 100
+- result :: 100
+- default :: 100
+- bundle :: 100
+- forward :: 100
+- motion :: 100
+- core :: 100
+- direct move :: 100
+- risky claim :: 100
+- observable check :: 100
+- loop or sequence :: 100
+- alternative route :: 100
+- audit result :: 100
+- retreat condition :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- from :: 99
+- by :: 99
+- with :: 99
+- without :: 99
+- against :: 99
+- relative :: 99
+- locally :: 99
+- rather :: 99
+- instead :: 99
+- only :: 99
+- still :: 99
+- likely :: 99
+- possible :: 98
+- bounded :: 98
+- finite :: 98
+- local :: 98
+- current :: 98
+- observed :: 98
+- measured :: 98
+- checked :: 98
+- open :: 98
+- partial :: 98
+- limited :: 98
+- constraint :: 98
+- evidence :: 98
+- observation :: 98
+- measurement :: 98
+- trace :: 98
+- sample :: 98
+- case :: 98
+- instance :: 98
+- name :: 98
+- term :: 97
+- word :: 97
+- use :: 97
+- relation :: 97
+- distinction :: 97
+- comparison :: 97
+- support :: 97
+- estimate :: 97
+- uncertainty :: 97
+- model :: 97
+- witness :: 97
+- counterexample :: 97
+- candidate :: 97
+- survivor :: 97
+- surface :: 97
+- boundary :: 97
+- scope :: 97
+- condition :: 97
+- path :: 97
+- branch :: 97
+- fork :: 96
+- plurality :: 96
+- reading :: 96
+- perspective :: 96
+- route :: 96
+- receipt :: 96
+- voice :: 96
+- lane :: 96
+- all-a :: 96
+- composite :: 96
+- for :: 96
+- ordinary :: 96
+- substantive :: 96
+- work :: 96
+- compose :: 96
+- popper :: 96
+- feynman :: 96
+- systems-or-strategy :: 96
+- alternative :: 96
+- and :: 96
+- into :: 95
+- truthful :: 95
+- packet :: 95
+- advance :: 95
+- the :: 95
+- active :: 95
+- task :: 95
+- while :: 95
+- pressure-testing :: 95
+- risky :: 95
+- keep :: 95
+- one :: 95
+- real :: 95
+- alive :: 95
+- land :: 95
+- compact :: 95
+- concluded :: 95
+- not :: 95
+- all :: 95
+- voices :: 95
+- maximum :: 94
+- hidden :: 94
+- execution :: 94
+- receipts :: 94
+- flattening :: 94
+- listing :: 94
+- names :: 94
+- plan :: 94
+- running :: 94
+- unspawned :: 94
+- lanes :: 94
+- prose :: 94
+- omitting :: 94
+- retreat :: 94
+- making :: 94
+- too :: 94
+- broad :: 94
+- smallest :: 94
+- that :: 94
+- guards :: 93
+- first :: 93
+- should :: 93
+- run :: 93
+- honest :: 93
+- stop :: 93
+- plurality-preservation :: 93
+- focus :: 93
+- closeout :: 93
+- hygiene :: 93
+- full :: 93
+- wizard :: 93
+- stabilization :: 93
+- move :: 93
+- observable :: 93
+- loop :: 93
+- sequence :: 93
+- advances :: 93
+- pressure-tests :: 93
+
+## couplings
+
+- under ground :: 100
+- under pressure :: 100
+- under direct :: 100
+- under claim :: 100
+- under test :: 100
+- under systems :: 100
+- under check :: 100
+- under audit :: 100
+- under result :: 100
+- under default :: 100
+- under bundle :: 100
+- under forward :: 100
+- under motion :: 100
+- under core :: 100
+- under direct move :: 100
+- within ground :: 100
+- within pressure :: 100
+- within direct :: 100
+- within claim :: 100
+- within test :: 100
+- within systems :: 99
+- within check :: 99
+- within audit :: 99
+- within result :: 99
+- within default :: 99
+- within bundle :: 99
+- within forward :: 99
+- within motion :: 99
+- within core :: 99
+- within direct move :: 99
+- across ground :: 99
+- across pressure :: 99
+- across direct :: 99
+- across claim :: 99
+- across test :: 99
+- across systems :: 99
+- across check :: 99
+- across audit :: 99
+- across result :: 99
+- across default :: 99
+- across bundle :: 98
+- across forward :: 98
+- across motion :: 98
+- across core :: 98
+- across direct move :: 98
+- between ground :: 98
+- between pressure :: 98
+- between direct :: 98
+- between claim :: 98
+- between test :: 98
+- between systems :: 98
+- between check :: 98
+- between audit :: 98
+- between result :: 98
+- between default :: 98
+- between bundle :: 98
+- between forward :: 98
+- between motion :: 98
+- between core :: 98
+- between direct move :: 98
+- through ground :: 97
+- through pressure :: 97
+- through direct :: 97
+- through claim :: 97
+- through test :: 97
+- through systems :: 97
+- through check :: 97
+- through audit :: 97
+- through result :: 97
+- through default :: 97
+- through bundle :: 97
+- through forward :: 97
+- through motion :: 97
+- through core :: 97
+- through direct move :: 97
+- before ground :: 97
+- before pressure :: 97
+- before direct :: 97
+- before claim :: 97
+- before test :: 97
+- before systems :: 96
+- before check :: 96
+- before audit :: 96
+- before result :: 96
+- before default :: 96
+- before bundle :: 96
+- before forward :: 96
+- before motion :: 96
+- before core :: 96
+- before direct move :: 96
+- after ground :: 96
+- after pressure :: 96
+- after direct :: 96
+- after claim :: 96
+- after test :: 96
+- after systems :: 96
+- after check :: 96
+- after audit :: 96
+- after result :: 96
+- after default :: 96
+- after bundle :: 95
+- after forward :: 95
+- after motion :: 95
+- after core :: 95
+- after direct move :: 95
+- from ground :: 95
+- from pressure :: 95
+- from direct :: 95
+- from claim :: 95
+- from test :: 95
+- from systems :: 95
+- from check :: 95
+- from audit :: 95
+- from result :: 95
+- from default :: 95
+- from bundle :: 95
+- from forward :: 95
+- from motion :: 95
+- from core :: 95
+- from direct move :: 95
+- by ground :: 94
+- by pressure :: 94
+- by direct :: 94
+- by claim :: 94
+- by test :: 94
+- by systems :: 94
+- by check :: 94
+- by audit :: 94
+- by result :: 94
+- by default :: 94
+- by bundle :: 94
+- by forward :: 94
+- by motion :: 94
+- by core :: 94
+- by direct move :: 94
+- with ground :: 94
+- with pressure :: 94
+- with direct :: 94
+- with claim :: 94
+- with test :: 94
+- with systems :: 93
+- with check :: 93
+- with audit :: 93
+- with result :: 93
+- with default :: 93
+- with bundle :: 93
+- with forward :: 93
+- with motion :: 93
+- with core :: 93
+- with direct move :: 93
+- without ground :: 93
+- without pressure :: 93
+- without direct :: 93
+- without claim :: 93
+- without test :: 93
+- without systems :: 93
+- without check :: 93
+- without audit :: 93
+- without result :: 93
+- without default :: 93
+- without bundle :: 92
+- without forward :: 92
+- without motion :: 92
+- without core :: 92
+- without direct move :: 92
+- against ground :: 92
+- against pressure :: 92
+- against direct :: 92
+- against claim :: 92
+- against test :: 92
+- against systems :: 92
+- against check :: 92
+- against audit :: 92
+- against result :: 92
+- against default :: 92
+- against bundle :: 92
+- against forward :: 92
+- against motion :: 92
+- against core :: 92
+- against direct move :: 92
+- ground pressure :: 91
+- ground direct :: 91
+- ground claim :: 91
+- ground test :: 91
+- ground systems :: 91
+- ground check :: 91
+- ground audit :: 91
+- pressure direct :: 91
+- pressure claim :: 91
+- pressure test :: 91
+- pressure systems :: 91
+- pressure check :: 91
+- pressure audit :: 91
+- pressure result :: 91
+- direct claim :: 91
+- direct test :: 91
+- direct systems :: 91
+- direct check :: 91
+- direct audit :: 91
+- direct result :: 91
+- direct default :: 90
+- claim test :: 90
+- claim systems :: 90
+- claim check :: 90
+- claim audit :: 90
+- claim result :: 90
+- claim default :: 90
+- claim bundle :: 90
+- test systems :: 90
+- test check :: 90
+- test audit :: 90
+- test result :: 90
+- test default :: 90
+- test bundle :: 90
+- test forward :: 90
+- systems check :: 90
+- systems audit :: 90
+- systems result :: 90
+- systems default :: 90
+- systems bundle :: 90
+- systems forward :: 89
+- systems motion :: 89
+- check audit :: 89
+- check result :: 89
+- check default :: 89
+- check bundle :: 89
+- check forward :: 89
+- check motion :: 89
+- check core :: 89
+- audit result :: 89
+- audit default :: 89
+- audit bundle :: 89
+- audit forward :: 89
+- audit motion :: 89
+- audit core :: 89
+- audit direct move :: 89
+- result default :: 89
+- result bundle :: 89
+- result forward :: 89
+- result motion :: 89
+- result core :: 88
+- result direct move :: 88
+- result risky claim :: 88
+- default bundle :: 88
+- default forward :: 88
+- default motion :: 88
+- default core :: 88
+- default direct move :: 88
+- default risky claim :: 88
+- default observable check :: 88
+- bundle forward :: 88
+- bundle motion :: 88
+- bundle core :: 88
+- bundle direct move :: 88
+- bundle risky claim :: 88
+- bundle observable check :: 88
+- bundle loop or sequence :: 88
+- forward motion :: 88
+- forward core :: 88
+- forward direct move :: 88
+- forward risky claim :: 87
+- forward observable check :: 87
+- forward loop or sequence :: 87
+- forward alternative route :: 87
+- motion core :: 87
+- motion direct move :: 87
+- motion risky claim :: 87
+- motion observable check :: 87
+- motion loop or sequence :: 87
+- motion alternative route :: 87
+- motion audit result :: 87
+- core direct move :: 87
+- core risky claim :: 87
+- core observable check :: 87
+- core loop or sequence :: 87
+- core alternative route :: 87
+- core audit result :: 87
+- core retreat condition :: 87
+- direct move risky claim :: 87
+- direct move observable check :: 87
+- direct move loop or sequence :: 86
+- direct move alternative route :: 86
+- direct move audit result :: 86
+- direct move retreat condition :: 86
+- direct move under :: 86
+- risky claim observable check :: 86
+- risky claim loop or sequence :: 86
+- risky claim alternative route :: 86
+- risky claim audit result :: 86
+- risky claim retreat condition :: 86
+- risky claim under :: 86
+- risky claim within :: 86
+- observable check loop or sequence :: 86
+- observable check alternative route :: 86
+- observable check audit result :: 86
+- observable check retreat condition :: 86
+- observable check under :: 86
+- observable check within :: 86
+- observable check across :: 86
+- loop or sequence alternative route :: 86
+- loop or sequence audit result :: 85
+- loop or sequence retreat condition :: 85
+- loop or sequence under :: 85
+- loop or sequence within :: 85
+- loop or sequence across :: 85
+- loop or sequence between :: 85
+- alternative route audit result :: 85
+- alternative route retreat condition :: 85
+- alternative route under :: 85
+- alternative route within :: 85
+- alternative route across :: 85
+- alternative route between :: 85
+- alternative route through :: 85
+- audit result retreat condition :: 85
+- audit result under :: 85
+- audit result within :: 85
+- audit result across :: 85
+- audit result between :: 85
+- audit result through :: 85
+- audit result before :: 85
+- retreat condition under :: 84
+- retreat condition within :: 84
+- retreat condition across :: 84
+- retreat condition between :: 84
+- retreat condition through :: 84
+- retreat condition before :: 84
+- retreat condition after :: 84
+- under within :: 84
+- under across :: 84
+- under between :: 84
+- under through :: 84
+- under before :: 84
+- under after :: 84
+- under from :: 84
+- within across :: 84
+- within between :: 84
+- within through :: 84
+- within before :: 84
+- within after :: 84
+- within from :: 84
+- within by :: 83
+- across between :: 83
+- across through :: 83
+- across before :: 83
+- across after :: 83
+- across from :: 83
+- across by :: 83
+- across with :: 83
+- between through :: 83
+- between before :: 83
+
+## triplets
+
+- under ground pressure :: 100
+- under ground direct :: 100
+- under ground claim :: 100
+- under ground test :: 100
+- under ground systems :: 100
+- under ground check :: 100
+- under ground audit :: 100
+- within pressure direct :: 100
+- within pressure claim :: 100
+- within pressure test :: 100
+- within pressure systems :: 100
+- within pressure check :: 100
+- within pressure audit :: 100
+- within pressure result :: 100
+- across direct claim :: 100
+- across direct test :: 100
+- across direct systems :: 100
+- across direct check :: 100
+- across direct audit :: 100
+- across direct result :: 100
+- across direct default :: 99
+- between claim test :: 99
+- between claim systems :: 99
+- between claim check :: 99
+- between claim audit :: 99
+- between claim result :: 99
+- between claim default :: 99
+- between claim bundle :: 99
+- through test systems :: 99
+- through test check :: 99
+- through test audit :: 99
+- through test result :: 99
+- through test default :: 99
+- through test bundle :: 99
+- through test forward :: 99
+- before systems check :: 99
+- before systems audit :: 99
+- before systems result :: 99
+- before systems default :: 99
+- before systems bundle :: 99
+- before systems forward :: 98
+- before systems motion :: 98
+- after check audit :: 98
+- after check result :: 98
+- after check default :: 98
+- after check bundle :: 98
+- after check forward :: 98
+- after check motion :: 98
+- after check core :: 98
+- from audit result :: 98
+- from audit default :: 98
+- from audit bundle :: 98
+- from audit forward :: 98
+- from audit motion :: 98
+- from audit core :: 98
+- from audit direct move :: 98
+- by result default :: 98
+- by result bundle :: 98
+- by result forward :: 98
+- by result motion :: 98
+- by result core :: 97
+- by result direct move :: 97
+- by result risky claim :: 97
+- with default bundle :: 97
+- with default forward :: 97
+- with default motion :: 97
+- with default core :: 97
+- with default direct move :: 97
+- with default risky claim :: 97
+- with default observable check :: 97
+- without bundle forward :: 97
+- without bundle motion :: 97
+- without bundle core :: 97
+- without bundle direct move :: 97
+- without bundle risky claim :: 97
+- without bundle observable check :: 97
+- without bundle loop or sequence :: 97
+- against forward motion :: 97
+- against forward core :: 97
+- against forward direct move :: 97
+- against forward risky claim :: 96
+- against forward observable check :: 96
+- against forward loop or sequence :: 96
+- against forward alternative route :: 96
+- relative motion core :: 96
+- relative motion direct move :: 96
+- relative motion risky claim :: 96
+- relative motion observable check :: 96
+- relative motion loop or sequence :: 96
+- relative motion alternative route :: 96
+- relative motion audit result :: 96
+- locally core direct move :: 96
+- locally core risky claim :: 96
+- locally core observable check :: 96
+- locally core loop or sequence :: 96
+- locally core alternative route :: 96
+- locally core audit result :: 96
+- locally core retreat condition :: 96
+- rather direct move risky claim :: 96
+- rather direct move observable check :: 96
+- rather direct move loop or sequence :: 95
+- rather direct move alternative route :: 95
+- rather direct move audit result :: 95
+- rather direct move retreat condition :: 95
+- rather direct move under :: 95
+- instead risky claim observable check :: 95
+- instead risky claim loop or sequence :: 95
+- instead risky claim alternative route :: 95
+- instead risky claim audit result :: 95
+- instead risky claim retreat condition :: 95
+- instead risky claim under :: 95
+- instead risky claim within :: 95
+- only observable check loop or sequence :: 95
+- only observable check alternative route :: 95
+- only observable check audit result :: 95
+- only observable check retreat condition :: 95
+- only observable check under :: 95
+- only observable check within :: 95
+- only observable check across :: 95
+- still loop or sequence alternative route :: 95
+- still loop or sequence audit result :: 94
+- still loop or sequence retreat condition :: 94
+- still loop or sequence under :: 94
+- still loop or sequence within :: 94
+- still loop or sequence across :: 94
+- still loop or sequence between :: 94
+- likely alternative route audit result :: 94
+- likely alternative route retreat condition :: 94
+- likely alternative route under :: 94
+- likely alternative route within :: 94
+- likely alternative route across :: 94
+- likely alternative route between :: 94
+- likely alternative route through :: 94
+- possible audit result retreat condition :: 94
+- possible audit result under :: 94
+- possible audit result within :: 94
+- possible audit result across :: 94
+- possible audit result between :: 94
+- possible audit result through :: 94
+- possible audit result before :: 94
+- bounded retreat condition under :: 93
+- bounded retreat condition within :: 93
+- bounded retreat condition across :: 93
+- bounded retreat condition between :: 93
+- bounded retreat condition through :: 93
+- bounded retreat condition before :: 93
+- bounded retreat condition after :: 93
+- finite under within :: 93
+- finite under across :: 93
+- finite under between :: 93
+- finite under through :: 93
+- finite under before :: 93
+- finite under after :: 93
+- finite under from :: 93
+- local within across :: 93
+- local within between :: 93
+- local within through :: 93
+- local within before :: 93
+- local within after :: 93
+- local within from :: 93
+- local within by :: 92
+- current across between :: 92
+- current across through :: 92
+- current across before :: 92
+- current across after :: 92
+- current across from :: 92
+- current across by :: 92
+- current across with :: 92
+- observed between through :: 92
+- observed between before :: 92
+- observed between after :: 92
+- observed between from :: 92
+- observed between by :: 92
+- observed between with :: 92
+- observed between without :: 92
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- bounded artifact
+- riskiest claim
+- falsifier
+- observable check
+- real alternative
+
+### Couplings
+
+- bounded forward move
+- pressure-test it
+- observable check
+
+### Triplets
+
+- claim falsifier check

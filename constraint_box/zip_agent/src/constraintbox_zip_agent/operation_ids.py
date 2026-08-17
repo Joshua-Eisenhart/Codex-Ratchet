@@ -1,0 +1,28 @@
+KNOWN_OPERATION_IDS = frozenset(
+    {
+        "canonical_json_sha256_v1",
+        "text_sha256_v1",
+        "run_child_zip_v1",
+        "audit_packet_structure_v1",
+        "audit_packet_mutations_v1",
+        "audit_runtime_authority_v1",
+        "compile_failure_wave_v1",
+        "probe_tool_field_v1",
+        "compile_prompt_handshake_v1",
+        "run_provider_call_v1",
+        "run_md_agent_roster_v1",
+        "run_zip_python_tool_v1",
+        "compile_prompt_confirm_v1",
+        "compile_council_loop_v1",
+        "execute_work_zip_v1",
+        "append_project_ledger_v1",
+        "compile_preprompt_v1",
+        "render_human_oracle_v2",
+        "render_human_oracle_map_update_v1",
+        "compile_execution_evidence_v1",
+        "operation_probe_field_v1",
+        "run_cb_minilev_operation_v1",
+        "probe_cb_minilev_operation_v1",
+        "compile_provider_nested_inventory_v1",
+    }
+)

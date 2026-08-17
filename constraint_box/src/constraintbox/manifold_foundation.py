@@ -171,11 +171,16 @@ def validate_foundation(payload: dict[str, Any]) -> dict[str, Any]:
     left_output = _nonempty_text(engines["left_output"], "$.dual_engines.left_output")
     right_output = _nonempty_text(engines["right_output"], "$.dual_engines.right_output")
     order_gap = left_output != right_output
+    if not order_gap:
+        raise ManifoldFoundationError("REFUSE_ORDER_GAP_COLLAPSED")
+    if capacity_error > 1e-9 or delta_error > 1e-9:
+        raise ManifoldFoundationError("REFUSE_CAPACITY_MISMATCH")
 
     layers = root["layers"]
     if not isinstance(layers, list) or not layers:
         raise ManifoldFoundationError("$.layers must be a non-empty array")
     layer_ids: list[str] = []
+    layer_rows: list[dict[str, str]] = []
     for index, layer in enumerate(layers):
         item = _exact_keys(
             layer,
@@ -186,16 +191,22 @@ def validate_foundation(payload: dict[str, Any]) -> dict[str, Any]:
         if layer_id in layer_ids:
             raise ManifoldFoundationError("layer ids must be unique")
         layer_ids.append(layer_id)
-        _nonempty_text(item["constraint"], f"$.layers[{index}].constraint")
+        constraint = _nonempty_text(item["constraint"], f"$.layers[{index}].constraint")
         status = _nonempty_text(item["status"], f"$.layers[{index}].status")
         _nonempty_text(item["witness"], f"$.layers[{index}].witness")
         if index == 0 and (layer_id != "C0_finitude" or status != "accepted_seed"):
             raise ManifoldFoundationError("C0_finitude must be the accepted first constraint")
         if layer_id == "C3_nonassociativity" and status not in {"candidate", "unvalidated"}:
             raise ManifoldFoundationError("non-associativity must remain candidate/unvalidated")
+        layer_rows.append({"id": layer_id, "status": status, "constraint": constraint})
 
+    static_supports = [
+        {"tick": tick, "W": count, "K": capacity}
+        for tick, count, capacity in zip(ticks, counts, expected_capacity, strict=True)
+    ]
     return {
         "schema": RECEIPT_SCHEMA,
+        "operation": "finite_time_first_seed_validation.v1",
         "foundation_id": foundation_id,
         "status": "PASS",
         "classification": "scratch_diagnostic",
@@ -204,6 +215,9 @@ def validate_foundation(payload: dict[str, Any]) -> dict[str, Any]:
         "claim_ceiling": claim_ceiling,
         "checks": {
             "finite_first": True,
+            "support_counts": counts,
+            "capacity_bits_recomputed": expected_capacity,
+            "delta_capacity_bits_recomputed": expected_delta,
             "capacity_max_abs_error": capacity_error,
             "delta_capacity_max_abs_error": delta_error,
             "positive_capacity_gradient": gradient_positive,
@@ -211,6 +225,36 @@ def validate_foundation(payload: dict[str, Any]) -> dict[str, Any]:
             "witness_domain": domain,
             "layer_ids": layer_ids,
             "nonassociativity_deferred": "C3_nonassociativity" in layer_ids,
+        },
+        "surface": {
+            "kind": "static_finite_supports",
+            "not": ["attractor", "engine", "tda", "measured_distinguishability"],
+            "static_supports": static_supports,
+            "constraints": layer_rows,
+            "engines": {
+                "left_order": list(left_order),
+                "right_order": list(right_order),
+                "left_output": left_output,
+                "right_output": right_output,
+                "order_gap": order_gap,
+            },
+            "capacities": {
+                "support": {
+                    "status": "computed",
+                    "W": counts,
+                    "K": expected_capacity,
+                    "delta_K": expected_delta,
+                },
+                "fibre": {
+                    "status": "unearned",
+                    "reason": "no projection declared on this seed",
+                },
+                "record": {
+                    "status": "unearned",
+                    "reason": "no bound observation rows on this seed",
+                },
+                "summed": False,
+            },
         },
     }
 
@@ -233,3 +277,38 @@ def write_foundation_receipt(path: Path, output: Path) -> dict[str, Any]:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return receipt
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(prog="python -m constraintbox.manifold_foundation")
+    parser.add_argument("seed", type=Path)
+    parser.add_argument("--out", type=Path)
+    args = parser.parse_args(argv)
+    try:
+        receipt = validate_foundation_file(args.seed)
+    except (OSError, ManifoldFoundationError, ValueError) as exc:
+        body = {
+            "schema": RECEIPT_SCHEMA,
+            "operation": "finite_time_first_seed_validation.v1",
+            "status": "REFUSE",
+            "reason": str(exc),
+            "promotion_allowed": False,
+            "formal_admission_allowed": False,
+        }
+        text = json.dumps(body, indent=2, sort_keys=True) + "\n"
+        if args.out is not None:
+            args.out.write_text(text, encoding="utf-8")
+        sys.stdout.write(text)
+        return 2
+    text = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
+    if args.out is not None:
+        args.out.write_text(text, encoding="utf-8")
+    sys.stdout.write(text)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-repair-wave-v1",
+  "purpose": "Generate, test, keep or discard one bounded repair against a digest-bound failed candidate.",
+  "children": [
+    {"id": "minimal_repair", "skill": "karpathy-bounded-improve", "operation": "propose_minimal_mutation", "tools": ["source_diff", "test_runner"]},
+    {"id": "alternative_repair", "skill": "karpathy-bounded-improve", "operation": "propose_independent_mutation", "tools": ["source_diff", "test_runner"]},
+    {"id": "repair_verifier", "skill": "cb-counterexample-cell", "operation": "attack_candidate_repair", "tools": ["mutation_probe", "receipt_verifier"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 3, "repair_then_exact_rerun": true, "stop_reasons": ["candidate_kept", "no_improving_mutation", "write_scope_expanded", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "failure_receipt", "context_snapshot_digest", "target_digest_before", "candidate_digest_after", "preload_receipts", "provider_call_receipt", "mutation_diff", "score_before", "score_after", "positive_test", "negative_test", "rerun_delta", "kept_or_discarded", "cancellation_state", "disagreement_state", "output_digest"]},
+  "claim_ceiling": "Isolated candidate repair evidence only; no live-source mutation, adoption, promotion, portability, or release authority."
+}

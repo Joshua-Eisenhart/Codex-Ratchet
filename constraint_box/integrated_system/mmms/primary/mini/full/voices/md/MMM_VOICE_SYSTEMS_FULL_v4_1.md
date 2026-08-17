@@ -1,0 +1,2582 @@
+# 🔁 Systems Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `SYSTEMS` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_SYSTEMS_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- system :: 100
+- subsystem :: 100
+- environment :: 100
+- boundary :: 100
+- feedback :: 100
+- loop :: 100
+- coupling :: 100
+- incentive :: 100
+- emergence :: 100
+- second :: 100
+- order :: 100
+- side :: 100
+- effect :: 100
+- selection :: 100
+- reward :: 100
+- structure :: 100
+- interaction :: 100
+- propagation :: 100
+- network :: 100
+- node :: 100
+- edge :: 100
+- stock :: 100
+- flow :: 100
+- delay :: 100
+- amplifying :: 100
+- balancing :: 99
+- reinforcing :: 99
+- dynamics :: 99
+- attractor :: 99
+- basin :: 99
+- homeostasis :: 99
+- perverse :: 99
+- leverage point :: 99
+- feedback loop :: 99
+- information flow :: 99
+- system structure :: 99
+- self organization :: 99
+- mental model :: 99
+- stocks and flows :: 99
+- reinforcing loop :: 99
+- balancing loop :: 99
+- second-order :: 99
+- emergent :: 99
+- dependency :: 99
+- constraint :: 99
+- behavior :: 99
+- state :: 99
+- transition :: 99
+- drift :: 99
+- dynamic :: 99
+- stabilizing :: 98
+- under :: 98
+- within :: 98
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 97
+- yet :: 97
+- then :: 97
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 96
+- next :: 96
+- prior :: 96
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- surface :: 96
+- packet :: 96
+- artifact :: 96
+- receipt :: 96
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- scope :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 95
+- perception :: 95
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- model :: 94
+- solver :: 94
+- satisfiable :: 94
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- test :: 94
+- check :: 94
+- verify :: 94
+- compare :: 93
+- sample :: 93
+- route :: 93
+- lane :: 93
+- voice :: 93
+- lens :: 93
+- council :: 93
+- audit :: 93
+- finding :: 93
+- blocker :: 93
+- deferred :: 93
+- blocked :: 93
+- spawned :: 93
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 93
+- according :: 93
+- locally :: 92
+- jointly :: 92
+- separately :: 92
+- rather :: 92
+- instead :: 92
+- still :: 92
+- often :: 92
+- sometimes :: 92
+- usually :: 92
+- seems :: 92
+- appears :: 92
+- likely :: 92
+- possible :: 92
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+- limited :: 92
+- case :: 92
+- instance :: 92
+
+## couplings
+
+- under loop :: 100
+- within loop :: 100
+- across loop :: 100
+- between loop :: 100
+- through loop :: 100
+- before loop :: 100
+- after loop :: 100
+- until loop :: 100
+- where loop :: 100
+- while loop :: 100
+- loop evidence :: 100
+- loop support :: 100
+- loop path :: 100
+- loop surface :: 100
+- loop packet :: 100
+- loop receipt :: 100
+- loop trace :: 100
+- loop result :: 100
+- loop scope :: 100
+- loop boundary :: 100
+- loop status :: 100
+- loop candidate :: 100
+- loop witness :: 100
+- loop probe :: 100
+- loop constraint :: 100
+- check loop :: 99
+- compare loop :: 99
+- observe loop :: 99
+- measure loop :: 99
+- test loop :: 99
+- verify loop :: 99
+- hold loop :: 99
+- preserve loop :: 99
+- split loop :: 99
+- narrow loop :: 99
+- under feedback :: 99
+- within feedback :: 99
+- across feedback :: 99
+- between feedback :: 99
+- through feedback :: 99
+- before feedback :: 99
+- after feedback :: 99
+- until feedback :: 99
+- where feedback :: 99
+- while feedback :: 99
+- feedback evidence :: 99
+- feedback support :: 99
+- feedback path :: 99
+- feedback surface :: 99
+- feedback packet :: 99
+- feedback receipt :: 98
+- feedback trace :: 98
+- feedback result :: 98
+- feedback scope :: 98
+- feedback boundary :: 98
+- feedback status :: 98
+- feedback candidate :: 98
+- feedback witness :: 98
+- feedback probe :: 98
+- feedback constraint :: 98
+- check feedback :: 98
+- compare feedback :: 98
+- observe feedback :: 98
+- measure feedback :: 98
+- test feedback :: 98
+- verify feedback :: 98
+- hold feedback :: 98
+- preserve feedback :: 98
+- split feedback :: 98
+- narrow feedback :: 98
+- under incentive :: 98
+- within incentive :: 98
+- across incentive :: 98
+- between incentive :: 98
+- through incentive :: 98
+- before incentive :: 97
+- after incentive :: 97
+- until incentive :: 97
+- where incentive :: 97
+- while incentive :: 97
+- incentive evidence :: 97
+- incentive support :: 97
+- incentive path :: 97
+- incentive surface :: 97
+- incentive packet :: 97
+- incentive receipt :: 97
+- incentive trace :: 97
+- incentive result :: 97
+- incentive scope :: 97
+- incentive boundary :: 97
+- incentive status :: 97
+- incentive candidate :: 97
+- incentive witness :: 97
+- incentive probe :: 97
+- incentive constraint :: 97
+- check incentive :: 97
+- compare incentive :: 97
+- observe incentive :: 97
+- measure incentive :: 97
+- test incentive :: 97
+- verify incentive :: 96
+- hold incentive :: 96
+- preserve incentive :: 96
+- split incentive :: 96
+- narrow incentive :: 96
+- under structure :: 96
+- within structure :: 96
+- across structure :: 96
+- between structure :: 96
+- through structure :: 96
+- before structure :: 96
+- after structure :: 96
+- until structure :: 96
+- where structure :: 96
+- while structure :: 96
+- structure evidence :: 96
+- structure support :: 96
+- structure path :: 96
+- structure surface :: 96
+- structure packet :: 96
+- structure receipt :: 96
+- structure trace :: 96
+- structure result :: 96
+- structure scope :: 96
+- structure boundary :: 96
+- structure status :: 95
+- structure candidate :: 95
+- structure witness :: 95
+- structure probe :: 95
+- structure constraint :: 95
+- check structure :: 95
+- compare structure :: 95
+- observe structure :: 95
+- measure structure :: 95
+- test structure :: 95
+- verify structure :: 95
+- hold structure :: 95
+- preserve structure :: 95
+- split structure :: 95
+- narrow structure :: 95
+- under coupling :: 95
+- within coupling :: 95
+- across coupling :: 95
+- between coupling :: 95
+- through coupling :: 95
+- before coupling :: 95
+- after coupling :: 95
+- until coupling :: 95
+- where coupling :: 95
+- while coupling :: 95
+- coupling evidence :: 94
+- coupling support :: 94
+- coupling path :: 94
+- coupling surface :: 94
+- coupling packet :: 94
+- coupling receipt :: 94
+- coupling trace :: 94
+- coupling result :: 94
+- coupling scope :: 94
+- coupling boundary :: 94
+- coupling status :: 94
+- coupling candidate :: 94
+- coupling witness :: 94
+- coupling probe :: 94
+- coupling constraint :: 94
+- check coupling :: 94
+- compare coupling :: 94
+- observe coupling :: 94
+- measure coupling :: 94
+- test coupling :: 94
+- verify coupling :: 94
+- hold coupling :: 94
+- preserve coupling :: 94
+- split coupling :: 94
+- narrow coupling :: 94
+- under interaction :: 93
+- within interaction :: 93
+- across interaction :: 93
+- between interaction :: 93
+- through interaction :: 93
+- before interaction :: 93
+- after interaction :: 93
+- until interaction :: 93
+- where interaction :: 93
+- while interaction :: 93
+- interaction evidence :: 93
+- interaction support :: 93
+- interaction path :: 93
+- interaction surface :: 93
+- interaction packet :: 93
+- interaction receipt :: 93
+- interaction trace :: 93
+- interaction result :: 93
+- interaction scope :: 93
+- interaction boundary :: 93
+- interaction status :: 93
+- interaction candidate :: 93
+- interaction witness :: 93
+- interaction probe :: 93
+- interaction constraint :: 93
+- check interaction :: 92
+- compare interaction :: 92
+- observe interaction :: 92
+- measure interaction :: 92
+- test interaction :: 92
+- verify interaction :: 92
+- hold interaction :: 92
+- preserve interaction :: 92
+- split interaction :: 92
+- narrow interaction :: 92
+- under propagation :: 92
+- within propagation :: 92
+- across propagation :: 92
+- between propagation :: 92
+- through propagation :: 92
+- before propagation :: 92
+- after propagation :: 92
+- until propagation :: 92
+- where propagation :: 92
+- while propagation :: 92
+- propagation evidence :: 92
+- propagation support :: 92
+- propagation path :: 92
+- propagation surface :: 92
+- propagation packet :: 92
+- propagation receipt :: 91
+- propagation trace :: 91
+- propagation result :: 91
+- propagation scope :: 91
+- propagation boundary :: 91
+- propagation status :: 91
+- propagation candidate :: 91
+- propagation witness :: 91
+- propagation probe :: 91
+- propagation constraint :: 91
+- check propagation :: 91
+- compare propagation :: 91
+- observe propagation :: 91
+- measure propagation :: 91
+- test propagation :: 91
+- verify propagation :: 91
+- hold propagation :: 91
+- preserve propagation :: 91
+- split propagation :: 91
+- narrow propagation :: 91
+- under emergence :: 91
+- within emergence :: 91
+- across emergence :: 91
+- between emergence :: 91
+- through emergence :: 91
+- before emergence :: 90
+- after emergence :: 90
+- until emergence :: 90
+- where emergence :: 90
+- while emergence :: 90
+- emergence evidence :: 90
+- emergence support :: 90
+- emergence path :: 90
+- emergence surface :: 90
+- emergence packet :: 90
+- emergence receipt :: 90
+- emergence trace :: 90
+- emergence result :: 90
+- emergence scope :: 90
+- emergence boundary :: 90
+- emergence status :: 90
+- emergence candidate :: 90
+- emergence witness :: 90
+- emergence probe :: 90
+- emergence constraint :: 90
+- check emergence :: 90
+- compare emergence :: 90
+- observe emergence :: 90
+- measure emergence :: 90
+- test emergence :: 90
+- verify emergence :: 89
+- hold emergence :: 89
+- preserve emergence :: 89
+- split emergence :: 89
+- narrow emergence :: 89
+- under second :: 89
+- within second :: 89
+- across second :: 89
+- between second :: 89
+- through second :: 89
+- before second :: 89
+- after second :: 89
+- until second :: 89
+- where second :: 89
+- while second :: 89
+- second evidence :: 89
+- second support :: 89
+- second path :: 89
+- second surface :: 89
+- second packet :: 89
+- second receipt :: 89
+- second trace :: 89
+- second result :: 89
+- second scope :: 89
+- second boundary :: 89
+- second status :: 88
+- second candidate :: 88
+- second witness :: 88
+- second probe :: 88
+- second constraint :: 88
+- check second :: 88
+- compare second :: 88
+- observe second :: 88
+- measure second :: 88
+- test second :: 88
+- verify second :: 88
+- hold second :: 88
+- preserve second :: 88
+- split second :: 88
+- narrow second :: 88
+- under order :: 88
+- within order :: 88
+- across order :: 88
+- between order :: 88
+- through order :: 88
+- before order :: 88
+- after order :: 88
+- until order :: 88
+- where order :: 88
+- while order :: 88
+- order evidence :: 87
+- order support :: 87
+- order path :: 87
+- order surface :: 87
+- order packet :: 87
+- order receipt :: 87
+- order trace :: 87
+- order result :: 87
+- order scope :: 87
+- order boundary :: 87
+- order status :: 87
+- order candidate :: 87
+- order witness :: 87
+- order probe :: 87
+- order constraint :: 87
+- leverage point :: 87
+- feedback loop :: 87
+- information flow :: 87
+- system structure :: 87
+- self organization :: 87
+- mental model :: 87
+- reinforcing loop :: 87
+- balancing loop :: 87
+- stocks and flows :: 87
+- loop :: 87
+- feedback :: 86
+- reinforcing :: 86
+- balancing :: 86
+- coupling :: 86
+- propagation :: 86
+- incentive :: 86
+- selection :: 86
+- second-order :: 86
+- emergent :: 86
+- structure :: 86
+- dependency :: 86
+- interaction :: 86
+- constraint :: 86
+- behavior :: 86
+- environment :: 86
+- boundary :: 86
+- node :: 86
+- edge :: 86
+- network :: 86
+- state :: 86
+- transition :: 86
+- drift :: 86
+- under system :: 86
+- under subsystem :: 86
+- under environment :: 86
+- under boundary :: 85
+- under side :: 85
+- under effect :: 85
+- under selection :: 85
+- under reward :: 85
+- under network :: 85
+- under node :: 85
+- within system :: 85
+- within subsystem :: 85
+- within environment :: 85
+- within boundary :: 85
+- within side :: 85
+- within effect :: 85
+- within selection :: 85
+- within reward :: 85
+- within network :: 85
+- within node :: 85
+- across system :: 85
+- across subsystem :: 85
+- across environment :: 85
+- across boundary :: 85
+- across side :: 85
+- across effect :: 85
+- across selection :: 85
+- across reward :: 85
+- across network :: 84
+- across node :: 84
+- between system :: 84
+- between subsystem :: 84
+- between environment :: 84
+- between boundary :: 84
+- between side :: 84
+- between effect :: 84
+- between selection :: 84
+- between reward :: 84
+- between network :: 84
+- between node :: 84
+- through system :: 84
+- through subsystem :: 84
+- through environment :: 84
+- through boundary :: 84
+- through side :: 84
+- through effect :: 84
+- through selection :: 84
+- through reward :: 84
+- through network :: 84
+- through node :: 84
+- before system :: 84
+- before subsystem :: 84
+- before environment :: 84
+- before boundary :: 83
+- before side :: 83
+- before effect :: 83
+- before selection :: 83
+- before reward :: 83
+- before network :: 83
+- before node :: 83
+- after system :: 83
+- after subsystem :: 83
+- after environment :: 83
+- after boundary :: 83
+- after side :: 83
+- after effect :: 83
+- after selection :: 83
+- after reward :: 83
+- after network :: 83
+- after node :: 83
+- during system :: 83
+- during subsystem :: 83
+- during environment :: 83
+- during boundary :: 83
+- during feedback :: 83
+- during loop :: 83
+- during coupling :: 83
+- during incentive :: 83
+- during emergence :: 82
+- during second :: 82
+- during order :: 82
+- during side :: 82
+- during effect :: 82
+- during selection :: 82
+- during reward :: 82
+- during structure :: 82
+- during interaction :: 82
+- during propagation :: 82
+- during network :: 82
+- during node :: 82
+- until system :: 82
+- until subsystem :: 82
+- until environment :: 82
+- until boundary :: 82
+- until side :: 82
+- until effect :: 82
+- until selection :: 82
+- until reward :: 82
+- until network :: 82
+- until node :: 82
+- since system :: 82
+- since subsystem :: 82
+- since environment :: 82
+- since boundary :: 81
+- since feedback :: 81
+- since loop :: 81
+- since coupling :: 81
+- since incentive :: 81
+- since emergence :: 81
+- since second :: 81
+- since order :: 81
+- since side :: 81
+- since effect :: 81
+- since selection :: 81
+- since reward :: 81
+- since structure :: 81
+- since interaction :: 81
+- since propagation :: 81
+- since network :: 81
+- since node :: 81
+- from system :: 81
+- from subsystem :: 81
+- from environment :: 81
+- from boundary :: 81
+- from feedback :: 81
+- from loop :: 81
+- from coupling :: 81
+- from incentive :: 81
+- from emergence :: 80
+- from second :: 80
+- from order :: 80
+- from side :: 80
+- from effect :: 80
+- from selection :: 80
+- from reward :: 80
+- from structure :: 80
+- from interaction :: 80
+- from propagation :: 80
+- from network :: 80
+- from node :: 80
+- by system :: 80
+- by subsystem :: 80
+- by environment :: 80
+- by boundary :: 80
+- by feedback :: 80
+- by loop :: 80
+- by coupling :: 80
+- by incentive :: 80
+- by emergence :: 80
+- by second :: 80
+- by order :: 80
+- by side :: 80
+- by effect :: 80
+- by selection :: 79
+- by reward :: 79
+- by structure :: 79
+- by interaction :: 79
+- by propagation :: 79
+- by network :: 79
+- by node :: 79
+- with system :: 79
+- with subsystem :: 79
+- with environment :: 79
+- with boundary :: 79
+- with feedback :: 79
+- with loop :: 79
+- with coupling :: 79
+- with incentive :: 79
+- with emergence :: 79
+- with second :: 79
+- with order :: 79
+- with side :: 79
+- with effect :: 79
+- with selection :: 79
+- with reward :: 79
+- with structure :: 79
+- with interaction :: 79
+- with propagation :: 79
+- with network :: 78
+- with node :: 78
+- without system :: 78
+- without subsystem :: 78
+- without environment :: 78
+- without boundary :: 78
+- without feedback :: 78
+- without loop :: 78
+- without coupling :: 78
+- without incentive :: 78
+- without emergence :: 78
+- without second :: 78
+- without order :: 78
+- without side :: 78
+- without effect :: 78
+- without selection :: 78
+- without reward :: 78
+- without structure :: 78
+- without interaction :: 78
+- without propagation :: 78
+- without network :: 78
+- without node :: 78
+- against system :: 78
+- against subsystem :: 78
+- against environment :: 78
+- against boundary :: 77
+- against feedback :: 77
+- against loop :: 77
+- against coupling :: 77
+- against incentive :: 77
+- against emergence :: 77
+- against second :: 77
+- against order :: 77
+- against side :: 77
+- against effect :: 77
+- against selection :: 77
+- against reward :: 77
+- against structure :: 77
+- against interaction :: 77
+- against propagation :: 77
+- against network :: 77
+- against node :: 77
+- toward system :: 77
+- toward subsystem :: 77
+- toward environment :: 77
+- toward boundary :: 77
+- toward feedback :: 77
+- toward loop :: 77
+- toward coupling :: 77
+- toward incentive :: 77
+- toward emergence :: 76
+- toward second :: 76
+- toward order :: 76
+- toward side :: 76
+- toward effect :: 76
+- toward selection :: 76
+- toward reward :: 76
+- toward structure :: 76
+- toward interaction :: 76
+- toward propagation :: 76
+- toward network :: 76
+- toward node :: 76
+- near system :: 76
+- near subsystem :: 76
+- near environment :: 76
+- near boundary :: 76
+- near feedback :: 76
+- near loop :: 76
+- near coupling :: 76
+- near incentive :: 76
+- near emergence :: 76
+- near second :: 76
+- near order :: 76
+- near side :: 76
+- near effect :: 76
+- near selection :: 75
+- near reward :: 75
+- near structure :: 75
+- near interaction :: 75
+- near propagation :: 75
+- near network :: 75
+- near node :: 75
+- relative system :: 75
+- relative subsystem :: 75
+- relative environment :: 75
+- relative boundary :: 75
+- relative feedback :: 75
+- relative loop :: 75
+- relative coupling :: 75
+- relative incentive :: 75
+- relative emergence :: 75
+- relative second :: 75
+- relative order :: 75
+- relative side :: 75
+- relative effect :: 75
+- relative selection :: 75
+- relative reward :: 75
+- relative structure :: 75
+- relative interaction :: 75
+- relative propagation :: 75
+- relative network :: 74
+- relative node :: 74
+- system subsystem :: 74
+- system environment :: 74
+- system boundary :: 74
+- system feedback :: 74
+- system loop :: 74
+- system coupling :: 74
+- system incentive :: 74
+- system emergence :: 74
+- system second :: 74
+- system order :: 74
+- system side :: 74
+- subsystem environment :: 74
+- subsystem boundary :: 74
+- subsystem feedback :: 74
+- subsystem loop :: 74
+- subsystem coupling :: 74
+- subsystem incentive :: 74
+- subsystem emergence :: 74
+- subsystem second :: 74
+- subsystem order :: 74
+- subsystem side :: 74
+- subsystem effect :: 74
+- environment boundary :: 74
+- environment feedback :: 73
+- environment loop :: 73
+- environment coupling :: 73
+- environment incentive :: 73
+- environment emergence :: 73
+- environment second :: 73
+- environment order :: 73
+- environment side :: 73
+- environment effect :: 73
+- environment selection :: 73
+- boundary feedback :: 73
+- boundary loop :: 73
+- boundary coupling :: 73
+- boundary incentive :: 73
+- boundary emergence :: 73
+- boundary second :: 73
+- boundary order :: 73
+- boundary side :: 73
+- boundary effect :: 73
+- boundary selection :: 73
+- boundary reward :: 73
+- feedback coupling :: 73
+- feedback incentive :: 73
+- feedback emergence :: 73
+- feedback second :: 73
+- feedback order :: 72
+- feedback side :: 72
+- feedback effect :: 72
+- feedback selection :: 72
+- feedback reward :: 72
+- feedback structure :: 72
+- loop coupling :: 72
+- loop incentive :: 72
+- loop emergence :: 72
+- loop second :: 72
+- loop order :: 72
+- loop side :: 72
+- loop effect :: 72
+- loop selection :: 72
+- loop reward :: 72
+- loop structure :: 72
+- loop interaction :: 72
+- coupling incentive :: 72
+- coupling emergence :: 72
+- coupling second :: 72
+- coupling order :: 72
+- coupling side :: 72
+- coupling effect :: 72
+- coupling selection :: 72
+- coupling reward :: 72
+- coupling structure :: 71
+- coupling interaction :: 71
+- coupling propagation :: 71
+- incentive emergence :: 71
+- incentive second :: 71
+- incentive order :: 71
+- incentive side :: 71
+- incentive effect :: 71
+- incentive selection :: 71
+- incentive reward :: 71
+- incentive structure :: 71
+- incentive interaction :: 71
+- incentive propagation :: 71
+- incentive network :: 71
+- emergence second :: 71
+- emergence order :: 71
+- emergence side :: 71
+- emergence effect :: 71
+- emergence selection :: 71
+- emergence reward :: 71
+- emergence structure :: 71
+- emergence interaction :: 71
+- emergence propagation :: 71
+- emergence network :: 71
+- emergence node :: 71
+- second order :: 70
+- second side :: 70
+- second effect :: 70
+- second selection :: 70
+- second reward :: 70
+- second structure :: 70
+- second interaction :: 70
+- second propagation :: 70
+- second network :: 70
+- second node :: 70
+- second edge :: 70
+- order side :: 70
+- order effect :: 70
+- order selection :: 70
+- order reward :: 70
+- order structure :: 70
+- order interaction :: 70
+- order propagation :: 70
+- order network :: 70
+- order node :: 70
+- order edge :: 70
+- order stock :: 70
+- side effect :: 70
+- side selection :: 70
+- side reward :: 70
+- side structure :: 69
+- side interaction :: 69
+- side propagation :: 69
+- side network :: 69
+- side node :: 69
+- side edge :: 69
+- side stock :: 69
+- side flow :: 69
+- effect selection :: 69
+- effect reward :: 69
+- effect structure :: 69
+- effect interaction :: 69
+- effect propagation :: 69
+- effect network :: 69
+- effect node :: 69
+- effect edge :: 69
+- effect stock :: 69
+- effect flow :: 69
+- effect delay :: 69
+- selection reward :: 69
+- selection structure :: 69
+- selection interaction :: 69
+- selection propagation :: 69
+- selection network :: 69
+- selection node :: 69
+- selection edge :: 68
+- selection stock :: 68
+- selection flow :: 68
+- selection delay :: 68
+- selection amplifying :: 68
+- reward structure :: 68
+- reward interaction :: 68
+- reward propagation :: 68
+- reward network :: 68
+- reward node :: 68
+- reward edge :: 68
+- reward stock :: 68
+- reward flow :: 68
+- reward delay :: 68
+- reward amplifying :: 68
+- reward balancing :: 68
+- structure interaction :: 68
+- structure propagation :: 68
+- structure network :: 68
+- structure node :: 68
+- structure edge :: 68
+- structure stock :: 68
+- structure flow :: 68
+- structure delay :: 68
+- structure amplifying :: 68
+- structure balancing :: 67
+- structure reinforcing :: 67
+- interaction propagation :: 67
+- interaction network :: 67
+- interaction node :: 67
+- interaction edge :: 67
+- interaction stock :: 67
+- interaction flow :: 67
+- interaction delay :: 67
+- interaction amplifying :: 67
+- interaction balancing :: 67
+- interaction reinforcing :: 67
+- interaction dynamics :: 67
+- propagation network :: 67
+- propagation node :: 67
+- propagation edge :: 67
+- propagation stock :: 67
+- propagation flow :: 67
+- propagation delay :: 67
+- propagation amplifying :: 67
+- propagation balancing :: 67
+- propagation reinforcing :: 67
+- propagation dynamics :: 67
+- propagation attractor :: 67
+- network node :: 67
+- network edge :: 66
+- network stock :: 66
+- network flow :: 66
+- network delay :: 66
+- network amplifying :: 66
+- network balancing :: 66
+- network reinforcing :: 66
+- network dynamics :: 66
+- network attractor :: 66
+- network basin :: 66
+- node edge :: 66
+- node stock :: 66
+- node flow :: 66
+- node delay :: 66
+- node amplifying :: 66
+- node balancing :: 66
+- node reinforcing :: 66
+- node dynamics :: 66
+- node attractor :: 66
+- node basin :: 66
+- node homeostasis :: 66
+- edge stock :: 66
+- edge flow :: 66
+- edge delay :: 66
+- edge amplifying :: 66
+- edge balancing :: 65
+- edge reinforcing :: 65
+- edge dynamics :: 65
+- edge attractor :: 65
+- edge basin :: 65
+- edge homeostasis :: 65
+- edge perverse :: 65
+- stock flow :: 65
+- stock delay :: 65
+- stock amplifying :: 65
+- stock balancing :: 65
+- stock reinforcing :: 65
+- stock dynamics :: 65
+- stock attractor :: 65
+- stock basin :: 65
+- stock homeostasis :: 65
+- stock perverse :: 65
+- stock leverage point :: 65
+- flow delay :: 65
+- flow amplifying :: 65
+- flow balancing :: 65
+- flow reinforcing :: 65
+- flow dynamics :: 65
+- flow attractor :: 65
+- flow basin :: 65
+
+## triplets
+
+- under current loop :: 100
+- under local loop :: 100
+- under bounded loop :: 100
+- under finite loop :: 100
+- under open loop :: 100
+- under live loop :: 100
+- within current loop :: 100
+- within local loop :: 100
+- within bounded loop :: 100
+- within finite loop :: 100
+- within open loop :: 100
+- within live loop :: 100
+- across current loop :: 100
+- across local loop :: 100
+- across bounded loop :: 100
+- across finite loop :: 100
+- across open loop :: 100
+- across live loop :: 100
+- between current loop :: 100
+- between local loop :: 100
+- between bounded loop :: 100
+- between finite loop :: 100
+- between open loop :: 100
+- between live loop :: 100
+- through current loop :: 100
+- through local loop :: 99
+- through bounded loop :: 99
+- through finite loop :: 99
+- through open loop :: 99
+- through live loop :: 99
+- before current loop :: 99
+- before local loop :: 99
+- before bounded loop :: 99
+- before finite loop :: 99
+- before open loop :: 99
+- before live loop :: 99
+- loop evidence path :: 99
+- loop support path :: 99
+- loop path path :: 99
+- loop surface path :: 99
+- loop packet path :: 99
+- loop receipt path :: 99
+- loop trace path :: 99
+- loop result path :: 99
+- loop scope path :: 99
+- loop boundary path :: 99
+- check loop receipt :: 99
+- compare loop receipt :: 99
+- observe loop receipt :: 99
+- measure loop receipt :: 99
+- test loop receipt :: 98
+- verify loop receipt :: 98
+- hold loop receipt :: 98
+- preserve loop receipt :: 98
+- under current feedback :: 98
+- under local feedback :: 98
+- under bounded feedback :: 98
+- under finite feedback :: 98
+- under open feedback :: 98
+- under live feedback :: 98
+- within current feedback :: 98
+- within local feedback :: 98
+- within bounded feedback :: 98
+- within finite feedback :: 98
+- within open feedback :: 98
+- within live feedback :: 98
+- across current feedback :: 98
+- across local feedback :: 98
+- across bounded feedback :: 98
+- across finite feedback :: 98
+- across open feedback :: 98
+- across live feedback :: 98
+- between current feedback :: 98
+- between local feedback :: 98
+- between bounded feedback :: 98
+- between finite feedback :: 97
+- between open feedback :: 97
+- between live feedback :: 97
+- through current feedback :: 97
+- through local feedback :: 97
+- through bounded feedback :: 97
+- through finite feedback :: 97
+- through open feedback :: 97
+- through live feedback :: 97
+- before current feedback :: 97
+- before local feedback :: 97
+- before bounded feedback :: 97
+- before finite feedback :: 97
+- before open feedback :: 97
+- before live feedback :: 97
+- feedback evidence path :: 97
+- feedback support path :: 97
+- feedback path path :: 97
+- feedback surface path :: 97
+- feedback packet path :: 97
+- feedback receipt path :: 97
+- feedback trace path :: 97
+- feedback result path :: 97
+- feedback scope path :: 97
+- feedback boundary path :: 97
+- check feedback receipt :: 96
+- compare feedback receipt :: 96
+- observe feedback receipt :: 96
+- measure feedback receipt :: 96
+- test feedback receipt :: 96
+- verify feedback receipt :: 96
+- hold feedback receipt :: 96
+- preserve feedback receipt :: 96
+- under current incentive :: 96
+- under local incentive :: 96
+- under bounded incentive :: 96
+- under finite incentive :: 96
+- under open incentive :: 96
+- under live incentive :: 96
+- within current incentive :: 96
+- within local incentive :: 96
+- within bounded incentive :: 96
+- within finite incentive :: 96
+- within open incentive :: 96
+- within live incentive :: 96
+- across current incentive :: 96
+- across local incentive :: 96
+- across bounded incentive :: 96
+- across finite incentive :: 96
+- across open incentive :: 96
+- across live incentive :: 95
+- between current incentive :: 95
+- between local incentive :: 95
+- between bounded incentive :: 95
+- between finite incentive :: 95
+- between open incentive :: 95
+- between live incentive :: 95
+- through current incentive :: 95
+- through local incentive :: 95
+- through bounded incentive :: 95
+- through finite incentive :: 95
+- through open incentive :: 95
+- through live incentive :: 95
+- before current incentive :: 95
+- before local incentive :: 95
+- before bounded incentive :: 95
+- before finite incentive :: 95
+- before open incentive :: 95
+- before live incentive :: 95
+- incentive evidence path :: 95
+- incentive support path :: 95
+- incentive path path :: 95
+- incentive surface path :: 95
+- incentive packet path :: 95
+- incentive receipt path :: 95
+- incentive trace path :: 94
+- incentive result path :: 94
+- incentive scope path :: 94
+- incentive boundary path :: 94
+- check incentive receipt :: 94
+- compare incentive receipt :: 94
+- observe incentive receipt :: 94
+- measure incentive receipt :: 94
+- test incentive receipt :: 94
+- verify incentive receipt :: 94
+- hold incentive receipt :: 94
+- preserve incentive receipt :: 94
+- under current structure :: 94
+- under local structure :: 94
+- under bounded structure :: 94
+- under finite structure :: 94
+- under open structure :: 94
+- under live structure :: 94
+- within current structure :: 94
+- within local structure :: 94
+- within bounded structure :: 94
+- within finite structure :: 94
+- within open structure :: 94
+- within live structure :: 94
+- across current structure :: 94
+- across local structure :: 93
+- across bounded structure :: 93
+- across finite structure :: 93
+- across open structure :: 93
+- across live structure :: 93
+- between current structure :: 93
+- between local structure :: 93
+- between bounded structure :: 93
+- between finite structure :: 93
+- between open structure :: 93
+- between live structure :: 93
+- through current structure :: 93
+- through local structure :: 93
+- through bounded structure :: 93
+- through finite structure :: 93
+- through open structure :: 93
+- through live structure :: 93
+- before current structure :: 93
+- before local structure :: 93
+- before bounded structure :: 93
+- before finite structure :: 93
+- before open structure :: 93
+- before live structure :: 93
+- structure evidence path :: 93
+- structure support path :: 93
+- structure path path :: 92
+- structure surface path :: 92
+- structure packet path :: 92
+- structure receipt path :: 92
+- structure trace path :: 92
+- structure result path :: 92
+- structure scope path :: 92
+- structure boundary path :: 92
+- check structure receipt :: 92
+- compare structure receipt :: 92
+- observe structure receipt :: 92
+- measure structure receipt :: 92
+- test structure receipt :: 92
+- verify structure receipt :: 92
+- hold structure receipt :: 92
+- preserve structure receipt :: 92
+- under current coupling :: 92
+- under local coupling :: 92
+- under bounded coupling :: 92
+- under finite coupling :: 92
+- under open coupling :: 92
+- under live coupling :: 92
+- within current coupling :: 92
+- within local coupling :: 92
+- within bounded coupling :: 92
+- within finite coupling :: 91
+- within open coupling :: 91
+- within live coupling :: 91
+- across current coupling :: 91
+- across local coupling :: 91
+- across bounded coupling :: 91
+- across finite coupling :: 91
+- across open coupling :: 91
+- across live coupling :: 91
+- between current coupling :: 91
+- between local coupling :: 91
+- between bounded coupling :: 91
+- between finite coupling :: 91
+- between open coupling :: 91
+- between live coupling :: 91
+- stocks and flows :: 91
+- under system subsystem :: 91
+- under system environment :: 91
+- under system boundary :: 91
+- under system feedback :: 91
+- under subsystem environment :: 91
+- under subsystem boundary :: 91
+- under subsystem feedback :: 91
+- under subsystem loop :: 91
+- under environment boundary :: 91
+- under environment feedback :: 90
+- under environment loop :: 90
+- under environment coupling :: 90
+- under boundary feedback :: 90
+- under boundary loop :: 90
+- under boundary coupling :: 90
+- under boundary incentive :: 90
+- under feedback loop :: 90
+- under feedback coupling :: 90
+- under feedback incentive :: 90
+- under feedback emergence :: 90
+- under loop coupling :: 90
+- under loop incentive :: 90
+- under loop emergence :: 90
+- under loop second :: 90
+- under coupling incentive :: 90
+- under coupling emergence :: 90
+- under coupling second :: 90
+- under coupling order :: 90
+- under incentive emergence :: 90
+- under incentive second :: 90
+- under incentive order :: 90
+- under incentive side :: 90
+- under emergence second :: 90
+- under emergence order :: 90
+- under emergence side :: 89
+- under emergence effect :: 89
+- under second order :: 89
+- under second side :: 89
+- under second effect :: 89
+- under second selection :: 89
+- under order side :: 89
+- under order effect :: 89
+- under order selection :: 89
+- under order reward :: 89
+- under side effect :: 89
+- under side selection :: 89
+- under side reward :: 89
+- under side structure :: 89
+- under effect selection :: 89
+- under effect reward :: 89
+- under effect structure :: 89
+- under effect interaction :: 89
+- under selection reward :: 89
+- under selection structure :: 89
+- under selection interaction :: 89
+- under selection propagation :: 89
+- under reward structure :: 89
+- under reward interaction :: 89
+- under reward propagation :: 89
+- under reward network :: 88
+- under structure interaction :: 88
+- under structure propagation :: 88
+- under structure network :: 88
+- under structure node :: 88
+- under interaction propagation :: 88
+- under interaction network :: 88
+- under interaction node :: 88
+- under interaction edge :: 88
+- under propagation network :: 88
+- under propagation node :: 88
+- under propagation edge :: 88
+- under propagation stock :: 88
+- under network node :: 88
+- under network edge :: 88
+- under network stock :: 88
+- under network flow :: 88
+- under node edge :: 88
+- under node stock :: 88
+- under node flow :: 88
+- under node delay :: 88
+- within system subsystem :: 88
+- within system environment :: 88
+- within system boundary :: 88
+- within system feedback :: 88
+- within subsystem environment :: 87
+- within subsystem boundary :: 87
+- within subsystem feedback :: 87
+- within subsystem loop :: 87
+- within environment boundary :: 87
+- within environment feedback :: 87
+- within environment loop :: 87
+- within environment coupling :: 87
+- within boundary feedback :: 87
+- within boundary loop :: 87
+- within boundary coupling :: 87
+- within boundary incentive :: 87
+- within feedback loop :: 87
+- within feedback coupling :: 87
+- within feedback incentive :: 87
+- within feedback emergence :: 87
+- within loop coupling :: 87
+- within loop incentive :: 87
+- within loop emergence :: 87
+- within loop second :: 87
+- within coupling incentive :: 87
+- within coupling emergence :: 87
+- within coupling second :: 87
+- within coupling order :: 87
+- within incentive emergence :: 87
+- within incentive second :: 86
+- within incentive order :: 86
+- within incentive side :: 86
+- within emergence second :: 86
+- within emergence order :: 86
+- within emergence side :: 86
+- within emergence effect :: 86
+- within second order :: 86
+- within second side :: 86
+- within second effect :: 86
+- within second selection :: 86
+- within order side :: 86
+- within order effect :: 86
+- within order selection :: 86
+- within order reward :: 86
+- within side effect :: 86
+- within side selection :: 86
+- within side reward :: 86
+- within side structure :: 86
+- within effect selection :: 86
+- within effect reward :: 86
+- within effect structure :: 86
+- within effect interaction :: 86
+- within selection reward :: 86
+- within selection structure :: 86
+- within selection interaction :: 85
+- within selection propagation :: 85
+- within reward structure :: 85
+- within reward interaction :: 85
+- within reward propagation :: 85
+- within reward network :: 85
+- within structure interaction :: 85
+- within structure propagation :: 85
+- within structure network :: 85
+- within structure node :: 85
+- within interaction propagation :: 85
+- within interaction network :: 85
+- within interaction node :: 85
+- within interaction edge :: 85
+- within propagation network :: 85
+- within propagation node :: 85
+- within propagation edge :: 85
+- within propagation stock :: 85
+- within network node :: 85
+- within network edge :: 85
+- within network stock :: 85
+- within network flow :: 85
+- within node edge :: 85
+- within node stock :: 85
+- within node flow :: 85
+- within node delay :: 84
+- across system subsystem :: 84
+- across system environment :: 84
+- across system boundary :: 84
+- across system feedback :: 84
+- across subsystem environment :: 84
+- across subsystem boundary :: 84
+- across subsystem feedback :: 84
+- across subsystem loop :: 84
+- across environment boundary :: 84
+- across environment feedback :: 84
+- across environment loop :: 84
+- across environment coupling :: 84
+- across boundary feedback :: 84
+- across boundary loop :: 84
+- across boundary coupling :: 84
+- across boundary incentive :: 84
+- across feedback loop :: 84
+- across feedback coupling :: 84
+- across feedback incentive :: 84
+- across feedback emergence :: 84
+- across loop coupling :: 84
+- across loop incentive :: 84
+- across loop emergence :: 84
+- across loop second :: 84
+- across coupling incentive :: 83
+- across coupling emergence :: 83
+- across coupling second :: 83
+- across coupling order :: 83
+- across incentive emergence :: 83
+- across incentive second :: 83
+- across incentive order :: 83
+- across incentive side :: 83
+- across emergence second :: 83
+- across emergence order :: 83
+- across emergence side :: 83
+- across emergence effect :: 83
+- across second order :: 83
+- across second side :: 83
+- across second effect :: 83
+- across second selection :: 83
+- across order side :: 83
+- across order effect :: 83
+- across order selection :: 83
+- across order reward :: 83
+- across side effect :: 83
+- across side selection :: 83
+- across side reward :: 83
+- across side structure :: 83
+- across effect selection :: 83
+- across effect reward :: 82
+- across effect structure :: 82
+- across effect interaction :: 82
+- across selection reward :: 82
+- across selection structure :: 82
+- across selection interaction :: 82
+- across selection propagation :: 82
+- across reward structure :: 82
+- across reward interaction :: 82
+- across reward propagation :: 82
+- across reward network :: 82
+- across structure interaction :: 82
+- across structure propagation :: 82
+- across structure network :: 82
+- across structure node :: 82
+- across interaction propagation :: 82
+- across interaction network :: 82
+- across interaction node :: 82
+- across interaction edge :: 82
+- across propagation network :: 82
+- across propagation node :: 82
+- across propagation edge :: 82
+- across propagation stock :: 82
+- across network node :: 82
+- across network edge :: 82
+- across network stock :: 81
+- across network flow :: 81
+- across node edge :: 81
+- across node stock :: 81
+- across node flow :: 81
+- across node delay :: 81
+- between system subsystem :: 81
+- between system environment :: 81
+- between system boundary :: 81
+- between system feedback :: 81
+- between subsystem environment :: 81
+- between subsystem boundary :: 81
+- between subsystem feedback :: 81
+- between subsystem loop :: 81
+- between environment boundary :: 81
+- between environment feedback :: 81
+- between environment loop :: 81
+- between environment coupling :: 81
+- between boundary feedback :: 81
+- between boundary loop :: 81
+- between boundary coupling :: 81
+- between boundary incentive :: 81
+- between feedback loop :: 81
+- between feedback coupling :: 81
+- between feedback incentive :: 81
+- between feedback emergence :: 80
+- between loop coupling :: 80
+- between loop incentive :: 80
+- between loop emergence :: 80
+- between loop second :: 80
+- between coupling incentive :: 80
+- between coupling emergence :: 80
+- between coupling second :: 80
+- between coupling order :: 80
+- between incentive emergence :: 80
+- between incentive second :: 80
+- between incentive order :: 80
+- between incentive side :: 80
+- between emergence second :: 80
+- between emergence order :: 80
+- between emergence side :: 80
+- between emergence effect :: 80
+- between second order :: 80
+- between second side :: 80
+- between second effect :: 80
+- between second selection :: 80
+- between order side :: 80
+- between order effect :: 80
+- between order selection :: 80
+- between order reward :: 80
+- between side effect :: 79
+- between side selection :: 79
+- between side reward :: 79
+- between side structure :: 79
+- between effect selection :: 79
+- between effect reward :: 79
+- between effect structure :: 79
+- between effect interaction :: 79
+- between selection reward :: 79
+- between selection structure :: 79
+- between selection interaction :: 79
+- between selection propagation :: 79
+- between reward structure :: 79
+- between reward interaction :: 79
+- between reward propagation :: 79
+- between reward network :: 79
+- between structure interaction :: 79
+- between structure propagation :: 79
+- between structure network :: 79
+- between structure node :: 79
+- between interaction propagation :: 79
+- between interaction network :: 79
+- between interaction node :: 79
+- between interaction edge :: 79
+- between propagation network :: 79
+- between propagation node :: 78
+- between propagation edge :: 78
+- between propagation stock :: 78
+- between network node :: 78
+- between network edge :: 78
+- between network stock :: 78
+- between network flow :: 78
+- between node edge :: 78
+- between node stock :: 78
+- between node flow :: 78
+- between node delay :: 78
+- through system subsystem :: 78
+- through system environment :: 78
+- through system boundary :: 78
+- through system feedback :: 78
+- through subsystem environment :: 78
+- through subsystem boundary :: 78
+- through subsystem feedback :: 78
+- through subsystem loop :: 78
+- through environment boundary :: 78
+- through environment feedback :: 78
+- through environment loop :: 78
+- through environment coupling :: 78
+- through boundary feedback :: 78
+- through boundary loop :: 78
+- through boundary coupling :: 77
+- through boundary incentive :: 77
+- through feedback loop :: 77
+- through feedback coupling :: 77
+- through feedback incentive :: 77
+- through feedback emergence :: 77
+- through loop coupling :: 77
+- through loop incentive :: 77
+- through loop emergence :: 77
+- through loop second :: 77
+- through coupling incentive :: 77
+- through coupling emergence :: 77
+- through coupling second :: 77
+- through coupling order :: 77
+- through incentive emergence :: 77
+- through incentive second :: 77
+- through incentive order :: 77
+- through incentive side :: 77
+- through emergence second :: 77
+- through emergence order :: 77
+- through emergence side :: 77
+- through emergence effect :: 77
+- through second order :: 77
+- through second side :: 77
+- through second effect :: 77
+- through second selection :: 76
+- through order side :: 76
+- through order effect :: 76
+- through order selection :: 76
+- through order reward :: 76
+- through side effect :: 76
+- through side selection :: 76
+- through side reward :: 76
+- through side structure :: 76
+- through effect selection :: 76
+- through effect reward :: 76
+- through effect structure :: 76
+- through effect interaction :: 76
+- through selection reward :: 76
+- through selection structure :: 76
+- through selection interaction :: 76
+- through selection propagation :: 76
+- through reward structure :: 76
+- through reward interaction :: 76
+- through reward propagation :: 76
+- through reward network :: 76
+- through structure interaction :: 76
+- through structure propagation :: 76
+- through structure network :: 76
+- through structure node :: 76
+- through interaction propagation :: 75
+- through interaction network :: 75
+- through interaction node :: 75
+- through interaction edge :: 75
+- through propagation network :: 75
+- through propagation node :: 75
+- through propagation edge :: 75
+- through propagation stock :: 75
+- through network node :: 75
+- through network edge :: 75
+- through network stock :: 75
+- through network flow :: 75
+- through node edge :: 75
+- through node stock :: 75
+- through node flow :: 75
+- through node delay :: 75
+- before system subsystem :: 75
+- before system environment :: 75
+- before system boundary :: 75
+- before system feedback :: 75
+- before subsystem environment :: 75
+- before subsystem boundary :: 75
+- before subsystem feedback :: 75
+- before subsystem loop :: 75
+- before environment boundary :: 75
+- before environment feedback :: 74
+- before environment loop :: 74
+- before environment coupling :: 74
+- before boundary feedback :: 74
+- before boundary loop :: 74
+- before boundary coupling :: 74
+- before boundary incentive :: 74
+- before feedback loop :: 74
+- before feedback coupling :: 74
+- before feedback incentive :: 74
+- before feedback emergence :: 74
+- before loop coupling :: 74
+- before loop incentive :: 74
+- before loop emergence :: 74
+- before loop second :: 74
+- before coupling incentive :: 74
+- before coupling emergence :: 74
+- before coupling second :: 74
+- before coupling order :: 74
+- before incentive emergence :: 74
+- before incentive second :: 74
+- before incentive order :: 74
+- before incentive side :: 74
+- before emergence second :: 74
+- before emergence order :: 74
+- before emergence side :: 73
+- before emergence effect :: 73
+- before second order :: 73
+- before second side :: 73
+- before second effect :: 73
+- before second selection :: 73
+- before order side :: 73
+- before order effect :: 73
+- before order selection :: 73
+- before order reward :: 73
+- before side effect :: 73
+- before side selection :: 73
+- before side reward :: 73
+- before side structure :: 73
+- before effect selection :: 73
+- before effect reward :: 73
+- before effect structure :: 73
+- before effect interaction :: 73
+- before selection reward :: 73
+- before selection structure :: 73
+- before selection interaction :: 73
+- before selection propagation :: 73
+- before reward structure :: 73
+- before reward interaction :: 73
+- before reward propagation :: 73
+- before reward network :: 72
+- before structure interaction :: 72
+- before structure propagation :: 72
+- before structure network :: 72
+- before structure node :: 72
+- before interaction propagation :: 72
+- before interaction network :: 72
+- before interaction node :: 72
+- before interaction edge :: 72
+- before propagation network :: 72
+- before propagation node :: 72
+- before propagation edge :: 72
+- before propagation stock :: 72
+- before network node :: 72
+- before network edge :: 72
+- before network stock :: 72
+- before network flow :: 72
+- before node edge :: 72
+- before node stock :: 72
+- before node flow :: 72
+- before node delay :: 72
+- after system subsystem :: 72
+- after system environment :: 72
+- after system boundary :: 72
+- after system feedback :: 72
+- after subsystem environment :: 71
+- after subsystem boundary :: 71
+- after subsystem feedback :: 71
+- after subsystem loop :: 71
+- after environment boundary :: 71
+- after environment feedback :: 71
+- after environment loop :: 71
+- after environment coupling :: 71
+- after boundary feedback :: 71
+- after boundary loop :: 71
+- after boundary coupling :: 71
+- after boundary incentive :: 71
+- after feedback loop :: 71
+- after feedback coupling :: 71
+- after feedback incentive :: 71
+- after feedback emergence :: 71
+- after loop coupling :: 71
+- after loop incentive :: 71
+- after loop emergence :: 71
+- after loop second :: 71
+- after coupling incentive :: 71
+- after coupling emergence :: 71
+- after coupling second :: 71
+- after coupling order :: 71
+- after incentive emergence :: 71
+- after incentive second :: 70
+- after incentive order :: 70
+- after incentive side :: 70
+- after emergence second :: 70
+- after emergence order :: 70
+- after emergence side :: 70
+- after emergence effect :: 70
+- after second order :: 70
+- after second side :: 70
+- after second effect :: 70
+- after second selection :: 70
+- after order side :: 70
+- after order effect :: 70
+- after order selection :: 70
+- after order reward :: 70
+- after side effect :: 70
+- after side selection :: 70
+- after side reward :: 70
+- after side structure :: 70
+- after effect selection :: 70
+- after effect reward :: 70
+- after effect structure :: 70
+- after effect interaction :: 70
+- after selection reward :: 70
+- after selection structure :: 70
+- after selection interaction :: 69
+- after selection propagation :: 69
+- after reward structure :: 69
+- after reward interaction :: 69
+- after reward propagation :: 69
+- after reward network :: 69
+- after structure interaction :: 69
+- after structure propagation :: 69
+- after structure network :: 69
+- after structure node :: 69
+- after interaction propagation :: 69
+- after interaction network :: 69
+- after interaction node :: 69
+- after interaction edge :: 69
+- after propagation network :: 69
+- after propagation node :: 69
+- after propagation edge :: 69
+- after propagation stock :: 69
+- after network node :: 69
+- after network edge :: 69
+- after network stock :: 69
+- after network flow :: 69
+- after node edge :: 69
+- after node stock :: 69
+- after node flow :: 69
+- after node delay :: 68
+- during system subsystem :: 68
+- during system environment :: 68
+- during system boundary :: 68
+- during system feedback :: 68
+- during subsystem environment :: 68
+- during subsystem boundary :: 68
+- during subsystem feedback :: 68
+- during subsystem loop :: 68
+- during environment boundary :: 68
+- during environment feedback :: 68
+- during environment loop :: 68
+- during environment coupling :: 68
+- during boundary feedback :: 68
+- during boundary loop :: 68
+- during boundary coupling :: 68
+- during boundary incentive :: 68
+- during feedback loop :: 68
+- during feedback coupling :: 68
+- during feedback incentive :: 68
+- during feedback emergence :: 68
+- during loop coupling :: 68
+- during loop incentive :: 68
+- during loop emergence :: 68
+- during loop second :: 68
+- during coupling incentive :: 67
+- during coupling emergence :: 67
+- during coupling second :: 67
+- during coupling order :: 67
+- during incentive emergence :: 67
+- during incentive second :: 67
+- during incentive order :: 67
+- during incentive side :: 67
+- during emergence second :: 67
+- during emergence order :: 67
+- during emergence side :: 67
+- during emergence effect :: 67
+- during second order :: 67
+- during second side :: 67
+- during second effect :: 67
+- during second selection :: 67
+- during order side :: 67
+- during order effect :: 67
+- during order selection :: 67
+- during order reward :: 67
+- during side effect :: 67
+- during side selection :: 67
+- during side reward :: 67
+- during side structure :: 67
+- during effect selection :: 67
+- during effect reward :: 66
+- during effect structure :: 66
+- during effect interaction :: 66
+- during selection reward :: 66
+- during selection structure :: 66
+- during selection interaction :: 66
+- during selection propagation :: 66
+- during reward structure :: 66
+- during reward interaction :: 66
+- during reward propagation :: 66
+- during reward network :: 66
+- during structure interaction :: 66
+- during structure propagation :: 66
+- during structure network :: 66
+- during structure node :: 66
+- during interaction propagation :: 66
+- during interaction network :: 66
+- during interaction node :: 66
+- during interaction edge :: 66
+- during propagation network :: 66
+- during propagation node :: 66
+- during propagation edge :: 66
+- during propagation stock :: 66
+- during network node :: 66
+- during network edge :: 66
+- during network stock :: 65
+- during network flow :: 65
+- during node edge :: 65
+- during node stock :: 65
+- during node flow :: 65
+- during node delay :: 65
+- until system subsystem :: 65
+- until system environment :: 65
+- until system boundary :: 65
+- until system feedback :: 65
+- until subsystem environment :: 65
+- until subsystem boundary :: 65
+- until subsystem feedback :: 65
+- until subsystem loop :: 65
+- until environment boundary :: 65
+- until environment feedback :: 65
+- until environment loop :: 65
+- until environment coupling :: 65
+- until boundary feedback :: 65
+- until boundary loop :: 65
+- until boundary coupling :: 65
+- until boundary incentive :: 65
+- until feedback loop :: 65
+- until feedback coupling :: 65
+- until feedback incentive :: 65
+- until feedback emergence :: 64
+- until loop coupling :: 64
+- until loop incentive :: 64
+- until loop emergence :: 64
+- until loop second :: 64
+- until coupling incentive :: 64
+- until coupling emergence :: 64
+- until coupling second :: 64
+- until coupling order :: 64
+- until incentive emergence :: 64
+- until incentive second :: 64
+- until incentive order :: 64
+- until incentive side :: 64
+- until emergence second :: 64
+- until emergence order :: 64
+- until emergence side :: 64
+- until emergence effect :: 64
+- until second order :: 64
+- until second side :: 64
+- until second effect :: 64
+- until second selection :: 64
+- until order side :: 64
+- until order effect :: 64
+- until order selection :: 64
+- until order reward :: 64
+- until side effect :: 63
+- until side selection :: 63
+- until side reward :: 63
+- until side structure :: 63
+- until effect selection :: 63
+- until effect reward :: 63
+- until effect structure :: 63
+- until effect interaction :: 63
+- until selection reward :: 63
+- until selection structure :: 63
+- until selection interaction :: 63
+- until selection propagation :: 63
+- until reward structure :: 63
+- until reward interaction :: 63
+- until reward propagation :: 63
+- until reward network :: 63
+- until structure interaction :: 63
+- until structure propagation :: 63
+- until structure network :: 63
+- until structure node :: 63
+- until interaction propagation :: 63
+- until interaction network :: 63
+- until interaction node :: 63
+- until interaction edge :: 63
+- until propagation network :: 63
+- until propagation node :: 62
+- until propagation edge :: 62
+- until propagation stock :: 62
+- until network node :: 62
+- until network edge :: 62
+- until network stock :: 62
+- until network flow :: 62
+- until node edge :: 62
+- until node stock :: 62
+- until node flow :: 62
+- until node delay :: 62
+- since system subsystem :: 62
+- since system environment :: 62
+- since system boundary :: 62
+- since system feedback :: 62
+- since subsystem environment :: 62
+- since subsystem boundary :: 62
+- since subsystem feedback :: 62
+- since subsystem loop :: 62
+- since environment boundary :: 62
+- since environment feedback :: 62
+- since environment loop :: 62
+- since environment coupling :: 62
+- since boundary feedback :: 62
+- since boundary loop :: 62
+- since boundary coupling :: 61
+- since boundary incentive :: 61
+- since feedback loop :: 61
+- since feedback coupling :: 61
+- since feedback incentive :: 61
+- since feedback emergence :: 61
+- since loop coupling :: 61
+- since loop incentive :: 61
+- since loop emergence :: 61
+- since loop second :: 61
+- since coupling incentive :: 61
+- since coupling emergence :: 61
+- since coupling second :: 61
+- since coupling order :: 61
+- since incentive emergence :: 61
+- since incentive second :: 61
+- since incentive order :: 61
+- since incentive side :: 61
+- since emergence second :: 61
+- since emergence order :: 61
+- since emergence side :: 61
+- since emergence effect :: 61
+- since second order :: 61
+- since second side :: 61
+- since second effect :: 61
+- since second selection :: 60
+- since order side :: 60
+- since order effect :: 60
+- since order selection :: 60
+- since order reward :: 60
+- since side effect :: 60
+- since side selection :: 60
+- since side reward :: 60
+- since side structure :: 60
+- since effect selection :: 60
+- since effect reward :: 60
+- since effect structure :: 60
+- since effect interaction :: 60
+- since selection reward :: 60
+- since selection structure :: 60
+- since selection interaction :: 60
+- since selection propagation :: 60
+- since reward structure :: 60
+- since reward interaction :: 60
+- since reward propagation :: 60
+- since reward network :: 60
+- since structure interaction :: 60
+- since structure propagation :: 60
+- since structure network :: 60
+- since structure node :: 60
+- since interaction propagation :: 59
+- since interaction network :: 59
+- since interaction node :: 59
+- since interaction edge :: 59
+- since propagation network :: 59
+- since propagation node :: 59
+- since propagation edge :: 59
+- since propagation stock :: 59
+- since network node :: 59
+- since network edge :: 59
+- since network stock :: 59
+- since network flow :: 59
+- since node edge :: 59
+- since node stock :: 59
+- since node flow :: 59
+- since node delay :: 59
+- system subsystem environment :: 59
+- system subsystem boundary :: 59
+- system subsystem feedback :: 59
+- system environment boundary :: 59
+- system environment feedback :: 59
+- system boundary environment :: 59
+- system boundary feedback :: 59
+- system feedback environment :: 59
+- system feedback boundary :: 59
+- system loop environment :: 58
+- system loop boundary :: 58
+- system loop feedback :: 58
+- subsystem environment boundary :: 58
+- subsystem environment feedback :: 58
+- subsystem environment loop :: 58
+- subsystem boundary feedback :: 58
+- subsystem boundary loop :: 58
+- subsystem feedback boundary :: 58
+- subsystem feedback loop :: 58
+- subsystem loop boundary :: 58
+- subsystem loop feedback :: 58
+- subsystem coupling boundary :: 58
+- subsystem coupling feedback :: 58
+- subsystem coupling loop :: 58
+- environment boundary feedback :: 58
+- environment boundary loop :: 58
+- environment boundary coupling :: 58
+- environment feedback loop :: 58
+- environment feedback coupling :: 58
+- environment loop feedback :: 58
+- environment loop coupling :: 58
+- environment coupling feedback :: 58
+- environment coupling loop :: 58
+- environment incentive feedback :: 58
+- environment incentive loop :: 57
+- environment incentive coupling :: 57
+- boundary feedback loop :: 57
+- boundary feedback coupling :: 57
+- boundary feedback incentive :: 57
+- boundary loop coupling :: 57
+- boundary loop incentive :: 57
+- boundary coupling loop :: 57
+- boundary coupling incentive :: 57
+- boundary incentive loop :: 57
+- boundary incentive coupling :: 57
+- boundary emergence loop :: 57
+- boundary emergence coupling :: 57
+- boundary emergence incentive :: 57
+- feedback loop coupling :: 57
+- feedback loop incentive :: 57
+- feedback loop emergence :: 57
+- feedback coupling incentive :: 57
+- feedback coupling emergence :: 57
+- feedback incentive coupling :: 57
+- feedback incentive emergence :: 57
+- feedback emergence coupling :: 57
+- feedback emergence incentive :: 57
+- feedback second coupling :: 57
+- feedback second incentive :: 57
+- feedback second emergence :: 56
+- loop coupling incentive :: 56
+- loop coupling emergence :: 56
+- loop coupling second :: 56
+- loop incentive emergence :: 56
+- loop incentive second :: 56
+- loop emergence incentive :: 56
+- loop emergence second :: 56
+- loop second incentive :: 56
+- loop second emergence :: 56
+- loop order incentive :: 56
+- loop order emergence :: 56
+- loop order second :: 56
+- coupling incentive emergence :: 56
+- coupling incentive second :: 56
+- coupling incentive order :: 56
+- coupling emergence second :: 56
+- coupling emergence order :: 56
+- coupling second emergence :: 56
+- coupling second order :: 56
+- coupling order emergence :: 56
+- coupling order second :: 56
+- coupling side emergence :: 56
+- coupling side second :: 56
+- coupling side order :: 56
+- incentive emergence second :: 55
+- incentive emergence order :: 55
+- incentive emergence side :: 55
+- incentive second order :: 55
+- incentive second side :: 55
+- incentive order second :: 55
+- incentive order side :: 55
+- incentive side second :: 55
+- incentive side order :: 55
+- incentive effect second :: 55
+- incentive effect order :: 55
+- incentive effect side :: 55
+- emergence second order :: 55
+- emergence second side :: 55
+- emergence second effect :: 55
+- emergence order side :: 55
+- emergence order effect :: 55
+- emergence side order :: 55
+- emergence side effect :: 55
+- emergence effect order :: 55
+- emergence effect side :: 55
+- emergence selection order :: 55
+- emergence selection side :: 55
+- emergence selection effect :: 55
+- second order side :: 55
+- second order effect :: 54
+- second order selection :: 54
+- second side effect :: 54
+- second side selection :: 54
+- second effect side :: 54
+- second effect selection :: 54
+- second selection side :: 54
+- second selection effect :: 54
+- second reward side :: 54
+- second reward effect :: 54
+- second reward selection :: 54
+- order side effect :: 54
+- order side selection :: 54
+- order side reward :: 54
+- order effect selection :: 54
+- order effect reward :: 54
+- order selection effect :: 54
+- order selection reward :: 54
+- order reward effect :: 54
+- order reward selection :: 54
+- order structure effect :: 54
+- order structure selection :: 54
+- order structure reward :: 54
+- side effect selection :: 54
+- side effect reward :: 54
+- side effect structure :: 53
+- side selection reward :: 53
+- side selection structure :: 53
+- side reward selection :: 53
+- side reward structure :: 53
+- side structure selection :: 53
+- side structure reward :: 53
+- side interaction selection :: 53
+- side interaction reward :: 53
+- side interaction structure :: 53
+- effect selection reward :: 53
+- effect selection structure :: 53
+- effect selection interaction :: 53
+- effect reward structure :: 53
+- effect reward interaction :: 53
+- effect structure reward :: 53
+- effect structure interaction :: 53
+- effect interaction reward :: 53
+- effect interaction structure :: 53
+- effect propagation reward :: 53
+- effect propagation structure :: 53
+- effect propagation interaction :: 53
+- selection reward structure :: 53
+- selection reward interaction :: 53
+- selection reward propagation :: 53
+- selection structure interaction :: 52
+- selection structure propagation :: 52
+- selection interaction structure :: 52
+- selection interaction propagation :: 52
+- selection propagation structure :: 52
+- selection propagation interaction :: 52
+- selection network structure :: 52
+- selection network interaction :: 52
+- selection network propagation :: 52
+- reward structure interaction :: 52
+- reward structure propagation :: 52
+- reward structure network :: 52
+- reward interaction propagation :: 52
+- reward interaction network :: 52
+- reward propagation interaction :: 52
+- reward propagation network :: 52
+- reward network interaction :: 52
+- reward network propagation :: 52
+- reward node interaction :: 52
+- reward node propagation :: 52
+- reward node network :: 52
+- structure interaction propagation :: 52
+- structure interaction network :: 52
+- structure interaction node :: 52
+- structure propagation network :: 52
+- structure propagation node :: 51
+- structure network propagation :: 51
+- structure network node :: 51
+- structure node propagation :: 51
+- structure node network :: 51
+- structure edge propagation :: 51
+- structure edge network :: 51
+- structure edge node :: 51
+- interaction propagation network :: 51
+- interaction propagation node :: 51
+- interaction propagation edge :: 51
+- interaction network node :: 51
+- interaction network edge :: 51
+- interaction node network :: 51
+- interaction node edge :: 51
+- interaction edge network :: 51
+- interaction edge node :: 51
+- interaction stock network :: 51
+- interaction stock node :: 51
+- interaction stock edge :: 51
+- propagation network node :: 51
+- propagation network edge :: 51
+- propagation network stock :: 51
+- propagation node edge :: 51
+- propagation node stock :: 51
+- propagation edge node :: 50
+- propagation edge stock :: 50
+- propagation stock node :: 50
+- propagation stock edge :: 50
+- propagation flow node :: 50
+- propagation flow edge :: 50
+- propagation flow stock :: 50
+- network node edge :: 50
+- network node stock :: 50
+- network node flow :: 50
+- network edge stock :: 50
+- network edge flow :: 50
+- network stock edge :: 50
+- network stock flow :: 50
+- network flow edge :: 50
+- network flow stock :: 50
+- network delay edge :: 50
+- network delay stock :: 50
+- network delay flow :: 50
+- node edge stock :: 50
+- node edge flow :: 50
+- node edge delay :: 50
+- node stock flow :: 50
+- node stock delay :: 50
+- node flow stock :: 50
+- node flow delay :: 49
+- node delay stock :: 49
+- node delay flow :: 49
+- node amplifying stock :: 49
+- node amplifying flow :: 49
+- node amplifying delay :: 49
+- edge stock flow :: 49
+- edge stock delay :: 49
+- edge stock amplifying :: 49
+- edge flow delay :: 49
+- edge flow amplifying :: 49
+- edge delay flow :: 49
+- edge delay amplifying :: 49
+- edge amplifying flow :: 49
+- edge amplifying delay :: 49
+- edge balancing flow :: 49
+- edge balancing delay :: 49
+- edge balancing amplifying :: 49
+- stock flow delay :: 49
+- stock flow amplifying :: 49
+- stock flow balancing :: 49
+- stock delay amplifying :: 49
+- stock delay balancing :: 49
+- stock amplifying delay :: 49
+- stock amplifying balancing :: 49
+- stock balancing delay :: 48
+- stock balancing amplifying :: 48
+- stock reinforcing delay :: 48
+- stock reinforcing amplifying :: 48
+- stock reinforcing balancing :: 48
+- flow delay amplifying :: 48
+- flow delay balancing :: 48
+- flow delay reinforcing :: 48
+- flow amplifying balancing :: 48
+- flow amplifying reinforcing :: 48
+- flow balancing amplifying :: 48
+- flow balancing reinforcing :: 48
+- flow reinforcing amplifying :: 48
+- flow reinforcing balancing :: 48
+- flow dynamics amplifying :: 48
+- flow dynamics balancing :: 48
+- flow dynamics reinforcing :: 48
+- delay amplifying balancing :: 48
+- delay amplifying reinforcing :: 48
+- delay amplifying dynamics :: 48
+- delay balancing reinforcing :: 48
+- delay balancing dynamics :: 48
+- delay reinforcing balancing :: 48
+- delay reinforcing dynamics :: 48
+- delay dynamics balancing :: 48
+- delay dynamics reinforcing :: 47
+- delay attractor balancing :: 47
+- delay attractor reinforcing :: 47
+- delay attractor dynamics :: 47
+- amplifying balancing reinforcing :: 47
+- amplifying balancing dynamics :: 47
+- amplifying balancing attractor :: 47
+- amplifying reinforcing dynamics :: 47
+- amplifying reinforcing attractor :: 47
+- amplifying dynamics reinforcing :: 47
+- amplifying dynamics attractor :: 47
+- amplifying attractor reinforcing :: 47
+- amplifying attractor dynamics :: 47
+- amplifying basin reinforcing :: 47
+- amplifying basin dynamics :: 47
+- amplifying basin attractor :: 47
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- Norbert Wiener
+- Stafford Beer
+- Donella Meadows
+- cybernetics
+- monitor
+- controller
+- feedback
+- control
+- communication
+- stock
+- flow
+- delay
+- buffer
+- leverage point
+- goal
+- paradigm
+
+### Couplings
+
+- feedback loop
+- stocks and flows
+- buffer and delay
+- monitor controller
+- leverage point
+- control and communication
+
+### Triplets
+
+- monitor controller feedback
+- stock flow delay
+- goal paradigm leverage

@@ -1,0 +1,2492 @@
+# 🔎 Audit Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Check/guard workers load this only for audit, hygiene, or security work; it is not a voice.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `AUDIT` and remapped to v4.1 canon category `checks_guards`.
+
+---
+
+# MMM_VOICE_AUDIT_FULL_v4_1
+
+## words
+
+- audit :: 100
+- receipt :: 100
+- checked :: 100
+- concluded :: 100
+- open :: 100
+- evidence :: 100
+- finding :: 100
+- clean :: 100
+- missing :: 100
+- unsupported :: 100
+- stale :: 100
+- unread :: 100
+- not :: 100
+- run :: 100
+- verified :: 100
+- failed :: 100
+- pass :: 100
+- fail :: 100
+- drift :: 100
+- collapse :: 100
+- fake :: 100
+- plurality :: 100
+- duplicate :: 100
+- method :: 100
+- check :: 100
+- closeout :: 99
+- registry :: 99
+- traceability :: 99
+- current-turn :: 99
+- unverified :: 99
+- method executed :: 99
+- method collapsed :: 99
+- worker id :: 99
+- artifact path :: 99
+- audit finding :: 99
+- not run :: 99
+- verify :: 99
+- path :: 99
+- row :: 99
+- deferred :: 99
+- blocked :: 99
+- unrun :: 99
+- gap :: 99
+- defect :: 99
+- ledger :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 97
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- surface :: 96
+- packet :: 96
+- artifact :: 96
+- trace :: 96
+- result :: 96
+- support :: 96
+- scope :: 96
+- boundary :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 95
+- perception :: 95
+- conjunction :: 95
+- resemblance :: 95
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- test :: 94
+- compare :: 94
+- sample :: 94
+- route :: 94
+- lane :: 94
+- voice :: 94
+- lens :: 94
+- council :: 94
+- blocker :: 94
+- spawned :: 94
+- diagnostic :: 94
+- untried :: 94
+- preload :: 94
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 93
+- according :: 93
+- locally :: 93
+- jointly :: 93
+- separately :: 93
+- rather :: 93
+- instead :: 93
+- still :: 93
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+- seems :: 93
+- appears :: 93
+- likely :: 93
+- possible :: 93
+- plausible :: 93
+- tentative :: 93
+- provisional :: 93
+- partial :: 92
+- limited :: 92
+- case :: 92
+- instance :: 92
+- word :: 92
+- regularity :: 92
+- distinction :: 92
+- difference :: 92
+- similarity :: 92
+- comparison :: 92
+- inference :: 92
+- estimate :: 92
+- uncertainty :: 92
+- frequency :: 92
+- distribution :: 92
+- condition :: 92
+- fork :: 92
+- reading :: 92
+- perspective :: 92
+- claim :: 92
+
+## couplings
+
+- under audit :: 100
+- within audit :: 100
+- across audit :: 100
+- between audit :: 100
+- through audit :: 100
+- before audit :: 100
+- after audit :: 100
+- until audit :: 100
+- where audit :: 100
+- while audit :: 100
+- audit evidence :: 100
+- audit support :: 100
+- audit path :: 100
+- audit surface :: 100
+- audit packet :: 100
+- audit receipt :: 100
+- audit trace :: 100
+- audit result :: 100
+- audit scope :: 100
+- audit boundary :: 100
+- audit status :: 100
+- audit candidate :: 100
+- audit witness :: 100
+- audit probe :: 100
+- audit constraint :: 100
+- check audit :: 99
+- compare audit :: 99
+- observe audit :: 99
+- measure audit :: 99
+- test audit :: 99
+- verify audit :: 99
+- hold audit :: 99
+- preserve audit :: 99
+- split audit :: 99
+- narrow audit :: 99
+- under receipt :: 99
+- within receipt :: 99
+- across receipt :: 99
+- between receipt :: 99
+- through receipt :: 99
+- before receipt :: 99
+- after receipt :: 99
+- until receipt :: 99
+- where receipt :: 99
+- while receipt :: 99
+- receipt evidence :: 99
+- receipt support :: 99
+- receipt path :: 99
+- receipt surface :: 99
+- receipt packet :: 99
+- receipt receipt :: 98
+- receipt trace :: 98
+- receipt result :: 98
+- receipt scope :: 98
+- receipt boundary :: 98
+- receipt status :: 98
+- receipt candidate :: 98
+- receipt witness :: 98
+- receipt probe :: 98
+- receipt constraint :: 98
+- check receipt :: 98
+- compare receipt :: 98
+- observe receipt :: 98
+- measure receipt :: 98
+- test receipt :: 98
+- verify receipt :: 98
+- hold receipt :: 98
+- preserve receipt :: 98
+- split receipt :: 98
+- narrow receipt :: 98
+- under finding :: 98
+- within finding :: 98
+- across finding :: 98
+- between finding :: 98
+- through finding :: 98
+- before finding :: 97
+- after finding :: 97
+- until finding :: 97
+- where finding :: 97
+- while finding :: 97
+- finding evidence :: 97
+- finding support :: 97
+- finding path :: 97
+- finding surface :: 97
+- finding packet :: 97
+- finding receipt :: 97
+- finding trace :: 97
+- finding result :: 97
+- finding scope :: 97
+- finding boundary :: 97
+- finding status :: 97
+- finding candidate :: 97
+- finding witness :: 97
+- finding probe :: 97
+- finding constraint :: 97
+- check finding :: 97
+- compare finding :: 97
+- observe finding :: 97
+- measure finding :: 97
+- test finding :: 97
+- verify finding :: 96
+- hold finding :: 96
+- preserve finding :: 96
+- split finding :: 96
+- narrow finding :: 96
+- under clean :: 96
+- within clean :: 96
+- across clean :: 96
+- between clean :: 96
+- through clean :: 96
+- before clean :: 96
+- after clean :: 96
+- until clean :: 96
+- where clean :: 96
+- while clean :: 96
+- clean evidence :: 96
+- clean support :: 96
+- clean path :: 96
+- clean surface :: 96
+- clean packet :: 96
+- clean receipt :: 96
+- clean trace :: 96
+- clean result :: 96
+- clean scope :: 96
+- clean boundary :: 96
+- clean status :: 95
+- clean candidate :: 95
+- clean witness :: 95
+- clean probe :: 95
+- clean constraint :: 95
+- check clean :: 95
+- compare clean :: 95
+- observe clean :: 95
+- measure clean :: 95
+- test clean :: 95
+- verify clean :: 95
+- hold clean :: 95
+- preserve clean :: 95
+- split clean :: 95
+- narrow clean :: 95
+- under missing :: 95
+- within missing :: 95
+- across missing :: 95
+- between missing :: 95
+- through missing :: 95
+- before missing :: 95
+- after missing :: 95
+- until missing :: 95
+- where missing :: 95
+- while missing :: 95
+- missing evidence :: 94
+- missing support :: 94
+- missing path :: 94
+- missing surface :: 94
+- missing packet :: 94
+- missing receipt :: 94
+- missing trace :: 94
+- missing result :: 94
+- missing scope :: 94
+- missing boundary :: 94
+- missing status :: 94
+- missing candidate :: 94
+- missing witness :: 94
+- missing probe :: 94
+- missing constraint :: 94
+- check missing :: 94
+- compare missing :: 94
+- observe missing :: 94
+- measure missing :: 94
+- test missing :: 94
+- verify missing :: 94
+- hold missing :: 94
+- preserve missing :: 94
+- split missing :: 94
+- narrow missing :: 94
+- under duplicate :: 93
+- within duplicate :: 93
+- across duplicate :: 93
+- between duplicate :: 93
+- through duplicate :: 93
+- before duplicate :: 93
+- after duplicate :: 93
+- until duplicate :: 93
+- where duplicate :: 93
+- while duplicate :: 93
+- duplicate evidence :: 93
+- duplicate support :: 93
+- duplicate path :: 93
+- duplicate surface :: 93
+- duplicate packet :: 93
+- duplicate receipt :: 93
+- duplicate trace :: 93
+- duplicate result :: 93
+- duplicate scope :: 93
+- duplicate boundary :: 93
+- duplicate status :: 93
+- duplicate candidate :: 93
+- duplicate witness :: 93
+- duplicate probe :: 93
+- duplicate constraint :: 93
+- check duplicate :: 92
+- compare duplicate :: 92
+- observe duplicate :: 92
+- measure duplicate :: 92
+- test duplicate :: 92
+- verify duplicate :: 92
+- hold duplicate :: 92
+- preserve duplicate :: 92
+- split duplicate :: 92
+- narrow duplicate :: 92
+- under collapse :: 92
+- within collapse :: 92
+- across collapse :: 92
+- between collapse :: 92
+- through collapse :: 92
+- before collapse :: 92
+- after collapse :: 92
+- until collapse :: 92
+- where collapse :: 92
+- while collapse :: 92
+- collapse evidence :: 92
+- collapse support :: 92
+- collapse path :: 92
+- collapse surface :: 92
+- collapse packet :: 92
+- collapse receipt :: 91
+- collapse trace :: 91
+- collapse result :: 91
+- collapse scope :: 91
+- collapse boundary :: 91
+- collapse status :: 91
+- collapse candidate :: 91
+- collapse witness :: 91
+- collapse probe :: 91
+- collapse constraint :: 91
+- check collapse :: 91
+- compare collapse :: 91
+- observe collapse :: 91
+- measure collapse :: 91
+- test collapse :: 91
+- verify collapse :: 91
+- hold collapse :: 91
+- preserve collapse :: 91
+- split collapse :: 91
+- narrow collapse :: 91
+- under overclaim :: 91
+- within overclaim :: 91
+- across overclaim :: 91
+- between overclaim :: 91
+- through overclaim :: 91
+- before overclaim :: 90
+- after overclaim :: 90
+- until overclaim :: 90
+- where overclaim :: 90
+- while overclaim :: 90
+- overclaim evidence :: 90
+- overclaim support :: 90
+- overclaim path :: 90
+- overclaim surface :: 90
+- overclaim packet :: 90
+- overclaim receipt :: 90
+- overclaim trace :: 90
+- overclaim result :: 90
+- overclaim scope :: 90
+- overclaim boundary :: 90
+- overclaim status :: 90
+- overclaim candidate :: 90
+- overclaim witness :: 90
+- overclaim probe :: 90
+- overclaim constraint :: 90
+- check overclaim :: 90
+- compare overclaim :: 90
+- observe overclaim :: 90
+- measure overclaim :: 90
+- test overclaim :: 90
+- verify overclaim :: 89
+- hold overclaim :: 89
+- preserve overclaim :: 89
+- split overclaim :: 89
+- narrow overclaim :: 89
+- under verify :: 89
+- within verify :: 89
+- across verify :: 89
+- between verify :: 89
+- through verify :: 89
+- before verify :: 89
+- after verify :: 89
+- until verify :: 89
+- where verify :: 89
+- while verify :: 89
+- verify evidence :: 89
+- verify support :: 89
+- verify path :: 89
+- verify surface :: 89
+- verify packet :: 89
+- verify trace :: 89
+- verify result :: 89
+- verify scope :: 89
+- verify boundary :: 89
+- verify status :: 89
+- verify candidate :: 88
+- verify witness :: 88
+- verify probe :: 88
+- verify constraint :: 88
+- check verify :: 88
+- compare verify :: 88
+- observe verify :: 88
+- measure verify :: 88
+- test verify :: 88
+- verify verify :: 88
+- hold verify :: 88
+- preserve verify :: 88
+- split verify :: 88
+- narrow verify :: 88
+- under check :: 88
+- within check :: 88
+- across check :: 88
+- between check :: 88
+- through check :: 88
+- before check :: 88
+- after check :: 88
+- until check :: 88
+- where check :: 88
+- while check :: 88
+- check evidence :: 88
+- check support :: 87
+- check path :: 87
+- check surface :: 87
+- check packet :: 87
+- check trace :: 87
+- check result :: 87
+- check scope :: 87
+- check boundary :: 87
+- check status :: 87
+- check candidate :: 87
+- check witness :: 87
+- check probe :: 87
+- check constraint :: 87
+- check check :: 87
+- compare check :: 87
+- method executed :: 87
+- method collapsed :: 87
+- worker id :: 87
+- artifact path :: 87
+- audit finding :: 87
+- not run :: 87
+- receipt :: 87
+- checked :: 87
+- concluded :: 87
+- open :: 87
+- evidence :: 86
+- current-turn :: 86
+- missing :: 86
+- unverified :: 86
+- collapse :: 86
+- duplicate :: 86
+- clean :: 86
+- finding :: 86
+- under checked :: 86
+- under concluded :: 86
+- under open :: 86
+- under evidence :: 86
+- under unsupported :: 86
+- under stale :: 86
+- under unread :: 86
+- under not :: 86
+- under run :: 86
+- under verified :: 86
+- under failed :: 86
+- under pass :: 86
+- under fail :: 86
+- under drift :: 86
+- within checked :: 86
+- within concluded :: 85
+- within open :: 85
+- within evidence :: 85
+- within unsupported :: 85
+- within stale :: 85
+- within unread :: 85
+- within not :: 85
+- within run :: 85
+- within verified :: 85
+- within failed :: 85
+- within pass :: 85
+- within fail :: 85
+- within drift :: 85
+- across checked :: 85
+- across concluded :: 85
+- across open :: 85
+- across evidence :: 85
+- across unsupported :: 85
+- across stale :: 85
+- across unread :: 85
+- across not :: 85
+- across run :: 85
+- across verified :: 85
+- across failed :: 85
+- across pass :: 85
+- across fail :: 84
+- across drift :: 84
+- between checked :: 84
+- between concluded :: 84
+- between open :: 84
+- between evidence :: 84
+- between unsupported :: 84
+- between stale :: 84
+- between unread :: 84
+- between not :: 84
+- between run :: 84
+- between verified :: 84
+- between failed :: 84
+- between pass :: 84
+- between fail :: 84
+- between drift :: 84
+- through checked :: 84
+- through concluded :: 84
+- through open :: 84
+- through evidence :: 84
+- through unsupported :: 84
+- through stale :: 84
+- through unread :: 84
+- through not :: 84
+- through run :: 84
+- through verified :: 83
+- through failed :: 83
+- through pass :: 83
+- through fail :: 83
+- through drift :: 83
+- before checked :: 83
+- before concluded :: 83
+- before open :: 83
+- before evidence :: 83
+- before unsupported :: 83
+- before stale :: 83
+- before unread :: 83
+- before not :: 83
+- before run :: 83
+- before verified :: 83
+- before failed :: 83
+- before pass :: 83
+- before fail :: 83
+- before drift :: 83
+- after checked :: 83
+- after concluded :: 83
+- after open :: 83
+- after evidence :: 83
+- after unsupported :: 83
+- after stale :: 83
+- after unread :: 82
+- after not :: 82
+- after run :: 82
+- after verified :: 82
+- after failed :: 82
+- after pass :: 82
+- after fail :: 82
+- after drift :: 82
+- during audit :: 82
+- during receipt :: 82
+- during checked :: 82
+- during concluded :: 82
+- during open :: 82
+- during evidence :: 82
+- during finding :: 82
+- during clean :: 82
+- during missing :: 82
+- during unsupported :: 82
+- during stale :: 82
+- during unread :: 82
+- during not :: 82
+- during run :: 82
+- during verified :: 82
+- during failed :: 82
+- during pass :: 82
+- during fail :: 81
+- during drift :: 81
+- during collapse :: 81
+- until checked :: 81
+- until concluded :: 81
+- until open :: 81
+- until evidence :: 81
+- until unsupported :: 81
+- until stale :: 81
+- until unread :: 81
+- until not :: 81
+- until run :: 81
+- until verified :: 81
+- until failed :: 81
+- until pass :: 81
+- until fail :: 81
+- until drift :: 81
+- since audit :: 81
+- since receipt :: 81
+- since checked :: 81
+- since concluded :: 81
+- since open :: 81
+- since evidence :: 81
+- since finding :: 81
+- since clean :: 81
+- since missing :: 80
+- since unsupported :: 80
+- since stale :: 80
+- since unread :: 80
+- since not :: 80
+- since run :: 80
+- since verified :: 80
+- since failed :: 80
+- since pass :: 80
+- since fail :: 80
+- since drift :: 80
+- since collapse :: 80
+- from audit :: 80
+- from receipt :: 80
+- from checked :: 80
+- from concluded :: 80
+- from open :: 80
+- from evidence :: 80
+- from finding :: 80
+- from clean :: 80
+- from missing :: 80
+- from unsupported :: 80
+- from stale :: 80
+- from unread :: 80
+- from not :: 80
+- from run :: 79
+- from verified :: 79
+- from failed :: 79
+- from pass :: 79
+- from fail :: 79
+- from drift :: 79
+- from collapse :: 79
+- by audit :: 79
+- by receipt :: 79
+- by checked :: 79
+- by concluded :: 79
+- by open :: 79
+- by evidence :: 79
+- by finding :: 79
+- by clean :: 79
+- by missing :: 79
+- by unsupported :: 79
+- by stale :: 79
+- by unread :: 79
+- by not :: 79
+- by run :: 79
+- by verified :: 79
+- by failed :: 79
+- by pass :: 79
+- by fail :: 79
+- by drift :: 78
+- by collapse :: 78
+- with audit :: 78
+- with receipt :: 78
+- with checked :: 78
+- with concluded :: 78
+- with open :: 78
+- with evidence :: 78
+- with finding :: 78
+- with clean :: 78
+- with missing :: 78
+- with unsupported :: 78
+- with stale :: 78
+- with unread :: 78
+- with not :: 78
+- with run :: 78
+- with verified :: 78
+- with failed :: 78
+- with pass :: 78
+- with fail :: 78
+- with drift :: 78
+- with collapse :: 78
+- without audit :: 78
+- without receipt :: 78
+- without checked :: 78
+- without concluded :: 77
+- without open :: 77
+- without evidence :: 77
+- without finding :: 77
+- without clean :: 77
+- without missing :: 77
+- without unsupported :: 77
+- without stale :: 77
+- without unread :: 77
+- without not :: 77
+- without run :: 77
+- without verified :: 77
+- without failed :: 77
+- without pass :: 77
+- without fail :: 77
+- without drift :: 77
+- without collapse :: 77
+- against audit :: 77
+- against receipt :: 77
+- against checked :: 77
+- against concluded :: 77
+- against open :: 77
+- against evidence :: 77
+- against finding :: 77
+- against clean :: 77
+- against missing :: 76
+- against unsupported :: 76
+- against stale :: 76
+- against unread :: 76
+- against not :: 76
+- against run :: 76
+- against verified :: 76
+- against failed :: 76
+- against pass :: 76
+- against fail :: 76
+- against drift :: 76
+- against collapse :: 76
+- toward audit :: 76
+- toward receipt :: 76
+- toward checked :: 76
+- toward concluded :: 76
+- toward open :: 76
+- toward evidence :: 76
+- toward finding :: 76
+- toward clean :: 76
+- toward missing :: 76
+- toward unsupported :: 76
+- toward stale :: 76
+- toward unread :: 76
+- toward not :: 76
+- toward run :: 75
+- toward verified :: 75
+- toward failed :: 75
+- toward pass :: 75
+- toward fail :: 75
+- toward drift :: 75
+- toward collapse :: 75
+- near audit :: 75
+- near receipt :: 75
+- near checked :: 75
+- near concluded :: 75
+- near open :: 75
+- near evidence :: 75
+- near finding :: 75
+- near clean :: 75
+- near missing :: 75
+- near unsupported :: 75
+- near stale :: 75
+- near unread :: 75
+- near not :: 75
+- near run :: 75
+- near verified :: 75
+- near failed :: 75
+- near pass :: 75
+- near fail :: 75
+- near drift :: 74
+- near collapse :: 74
+- relative audit :: 74
+- relative receipt :: 74
+- relative checked :: 74
+- relative concluded :: 74
+- relative open :: 74
+- relative evidence :: 74
+- relative finding :: 74
+- relative clean :: 74
+- relative missing :: 74
+- relative unsupported :: 74
+- relative stale :: 74
+- relative unread :: 74
+- relative not :: 74
+- relative run :: 74
+- relative verified :: 74
+- relative failed :: 74
+- relative pass :: 74
+- relative fail :: 74
+- relative drift :: 74
+- relative collapse :: 74
+- audit checked :: 74
+- audit concluded :: 74
+- audit open :: 74
+- audit clean :: 73
+- audit missing :: 73
+- audit unsupported :: 73
+- audit stale :: 73
+- audit unread :: 73
+- receipt checked :: 73
+- receipt concluded :: 73
+- receipt open :: 73
+- receipt finding :: 73
+- receipt clean :: 73
+- receipt missing :: 73
+- receipt unsupported :: 73
+- receipt stale :: 73
+- receipt unread :: 73
+- receipt not :: 73
+- checked concluded :: 73
+- checked open :: 73
+- checked evidence :: 73
+- checked finding :: 73
+- checked clean :: 73
+- checked missing :: 73
+- checked unsupported :: 73
+- checked stale :: 73
+- checked unread :: 73
+- checked not :: 73
+- checked run :: 72
+- concluded open :: 72
+- concluded evidence :: 72
+- concluded finding :: 72
+- concluded clean :: 72
+- concluded missing :: 72
+- concluded unsupported :: 72
+- concluded stale :: 72
+- concluded unread :: 72
+- concluded not :: 72
+- concluded run :: 72
+- concluded verified :: 72
+- open evidence :: 72
+- open finding :: 72
+- open clean :: 72
+- open missing :: 72
+- open unsupported :: 72
+- open stale :: 72
+- open unread :: 72
+- open not :: 72
+- open run :: 72
+- open verified :: 72
+- open failed :: 72
+- evidence finding :: 72
+- evidence clean :: 72
+- evidence missing :: 71
+- evidence unsupported :: 71
+- evidence stale :: 71
+- evidence unread :: 71
+- evidence not :: 71
+- evidence run :: 71
+- evidence verified :: 71
+- evidence failed :: 71
+- evidence pass :: 71
+- finding clean :: 71
+- finding missing :: 71
+- finding unsupported :: 71
+- finding stale :: 71
+- finding unread :: 71
+- finding not :: 71
+- finding run :: 71
+- finding verified :: 71
+- finding failed :: 71
+- finding pass :: 71
+- finding fail :: 71
+- clean missing :: 71
+- clean unsupported :: 71
+- clean stale :: 71
+- clean unread :: 71
+- clean not :: 71
+- clean run :: 70
+- clean verified :: 70
+- clean failed :: 70
+- clean pass :: 70
+- clean fail :: 70
+- clean drift :: 70
+- missing unsupported :: 70
+- missing stale :: 70
+- missing unread :: 70
+- missing not :: 70
+- missing run :: 70
+- missing verified :: 70
+- missing failed :: 70
+- missing pass :: 70
+- missing fail :: 70
+- missing drift :: 70
+- missing collapse :: 70
+- unsupported stale :: 70
+- unsupported unread :: 70
+- unsupported not :: 70
+- unsupported run :: 70
+- unsupported verified :: 70
+- unsupported failed :: 70
+- unsupported pass :: 70
+- unsupported fail :: 70
+- unsupported drift :: 69
+- unsupported collapse :: 69
+- unsupported fake :: 69
+- stale unread :: 69
+- stale not :: 69
+- stale run :: 69
+- stale verified :: 69
+- stale failed :: 69
+- stale pass :: 69
+- stale fail :: 69
+- stale drift :: 69
+- stale collapse :: 69
+- stale fake :: 69
+- stale plurality :: 69
+- unread not :: 69
+- unread run :: 69
+- unread verified :: 69
+- unread failed :: 69
+- unread pass :: 69
+- unread fail :: 69
+- unread drift :: 69
+- unread collapse :: 69
+- unread fake :: 69
+- unread plurality :: 69
+- unread duplicate :: 69
+- not verified :: 68
+- not failed :: 68
+- not pass :: 68
+- not fail :: 68
+- not drift :: 68
+- not collapse :: 68
+- not fake :: 68
+- not plurality :: 68
+- not duplicate :: 68
+- not method :: 68
+- run verified :: 68
+- run failed :: 68
+- run pass :: 68
+- run fail :: 68
+- run drift :: 68
+- run collapse :: 68
+- run fake :: 68
+- run plurality :: 68
+- run duplicate :: 68
+- run method :: 68
+- run check :: 68
+- verified failed :: 68
+- verified pass :: 68
+- verified fail :: 68
+- verified drift :: 68
+- verified collapse :: 67
+- verified fake :: 67
+- verified plurality :: 67
+- verified duplicate :: 67
+- verified method :: 67
+- verified check :: 67
+- verified closeout :: 67
+- failed pass :: 67
+- failed fail :: 67
+- failed drift :: 67
+- failed collapse :: 67
+- failed fake :: 67
+- failed plurality :: 67
+- failed duplicate :: 67
+- failed method :: 67
+- failed check :: 67
+- failed closeout :: 67
+- failed registry :: 67
+- pass fail :: 67
+- pass drift :: 67
+- pass collapse :: 67
+- pass fake :: 67
+- pass plurality :: 67
+- pass duplicate :: 67
+- pass method :: 67
+- pass check :: 66
+- pass closeout :: 66
+- pass registry :: 66
+- pass traceability :: 66
+- fail drift :: 66
+- fail collapse :: 66
+- fail fake :: 66
+- fail plurality :: 66
+- fail duplicate :: 66
+- fail method :: 66
+- fail check :: 66
+- fail closeout :: 66
+- fail registry :: 66
+- fail traceability :: 66
+- fail current-turn :: 66
+- drift collapse :: 66
+- drift fake :: 66
+- drift plurality :: 66
+- drift duplicate :: 66
+- drift method :: 66
+- drift check :: 66
+- drift closeout :: 66
+- drift registry :: 66
+- drift traceability :: 66
+- drift current-turn :: 66
+- collapse fake :: 65
+- collapse plurality :: 65
+- collapse duplicate :: 65
+- collapse method :: 65
+- collapse check :: 65
+- collapse closeout :: 65
+- collapse registry :: 65
+- collapse traceability :: 65
+- collapse current-turn :: 65
+- collapse unverified :: 65
+- fake duplicate :: 65
+- fake method :: 65
+- fake check :: 65
+- fake closeout :: 65
+- fake registry :: 65
+- fake traceability :: 65
+- fake current-turn :: 65
+- fake unverified :: 65
+- fake method executed :: 65
+- plurality duplicate :: 65
+- plurality method :: 65
+- plurality check :: 65
+
+## triplets
+
+- under current audit :: 100
+- under local audit :: 100
+- under bounded audit :: 100
+- under finite audit :: 100
+- under open audit :: 100
+- under live audit :: 100
+- within current audit :: 100
+- within local audit :: 100
+- within bounded audit :: 100
+- within finite audit :: 100
+- within open audit :: 100
+- within live audit :: 100
+- across current audit :: 100
+- across local audit :: 100
+- across bounded audit :: 100
+- across finite audit :: 100
+- across open audit :: 100
+- across live audit :: 100
+- between current audit :: 100
+- between local audit :: 100
+- between bounded audit :: 100
+- between finite audit :: 100
+- between open audit :: 100
+- between live audit :: 100
+- through current audit :: 100
+- through local audit :: 99
+- through bounded audit :: 99
+- through finite audit :: 99
+- through open audit :: 99
+- through live audit :: 99
+- before current audit :: 99
+- before local audit :: 99
+- before bounded audit :: 99
+- before finite audit :: 99
+- before open audit :: 99
+- before live audit :: 99
+- audit evidence path :: 99
+- audit support path :: 99
+- audit path path :: 99
+- audit surface path :: 99
+- audit packet path :: 99
+- audit receipt path :: 99
+- audit trace path :: 99
+- audit result path :: 99
+- audit scope path :: 99
+- audit boundary path :: 99
+- check audit receipt :: 99
+- compare audit receipt :: 99
+- observe audit receipt :: 99
+- measure audit receipt :: 99
+- test audit receipt :: 98
+- verify audit receipt :: 98
+- hold audit receipt :: 98
+- preserve audit receipt :: 98
+- under current receipt :: 98
+- under local receipt :: 98
+- under bounded receipt :: 98
+- under finite receipt :: 98
+- under open receipt :: 98
+- under live receipt :: 98
+- within current receipt :: 98
+- within local receipt :: 98
+- within bounded receipt :: 98
+- within finite receipt :: 98
+- within open receipt :: 98
+- within live receipt :: 98
+- across current receipt :: 98
+- across local receipt :: 98
+- across bounded receipt :: 98
+- across finite receipt :: 98
+- across open receipt :: 98
+- across live receipt :: 98
+- between current receipt :: 98
+- between local receipt :: 98
+- between bounded receipt :: 98
+- between finite receipt :: 97
+- between open receipt :: 97
+- between live receipt :: 97
+- through current receipt :: 97
+- through local receipt :: 97
+- through bounded receipt :: 97
+- through finite receipt :: 97
+- through open receipt :: 97
+- through live receipt :: 97
+- before current receipt :: 97
+- before local receipt :: 97
+- before bounded receipt :: 97
+- before finite receipt :: 97
+- before open receipt :: 97
+- before live receipt :: 97
+- receipt evidence path :: 97
+- receipt support path :: 97
+- receipt path path :: 97
+- receipt surface path :: 97
+- receipt packet path :: 97
+- receipt receipt path :: 97
+- receipt trace path :: 97
+- receipt result path :: 97
+- receipt scope path :: 97
+- receipt boundary path :: 97
+- check receipt receipt :: 96
+- compare receipt receipt :: 96
+- observe receipt receipt :: 96
+- measure receipt receipt :: 96
+- test receipt receipt :: 96
+- verify receipt receipt :: 96
+- hold receipt receipt :: 96
+- preserve receipt receipt :: 96
+- under current finding :: 96
+- under local finding :: 96
+- under bounded finding :: 96
+- under finite finding :: 96
+- under open finding :: 96
+- under live finding :: 96
+- within current finding :: 96
+- within local finding :: 96
+- within bounded finding :: 96
+- within finite finding :: 96
+- within open finding :: 96
+- within live finding :: 96
+- across current finding :: 96
+- across local finding :: 96
+- across bounded finding :: 96
+- across finite finding :: 96
+- across open finding :: 96
+- across live finding :: 95
+- between current finding :: 95
+- between local finding :: 95
+- between bounded finding :: 95
+- between finite finding :: 95
+- between open finding :: 95
+- between live finding :: 95
+- through current finding :: 95
+- through local finding :: 95
+- through bounded finding :: 95
+- through finite finding :: 95
+- through open finding :: 95
+- through live finding :: 95
+- before current finding :: 95
+- before local finding :: 95
+- before bounded finding :: 95
+- before finite finding :: 95
+- before open finding :: 95
+- before live finding :: 95
+- finding evidence path :: 95
+- finding support path :: 95
+- finding path path :: 95
+- finding surface path :: 95
+- finding packet path :: 95
+- finding receipt path :: 95
+- finding trace path :: 94
+- finding result path :: 94
+- finding scope path :: 94
+- finding boundary path :: 94
+- check finding receipt :: 94
+- compare finding receipt :: 94
+- observe finding receipt :: 94
+- measure finding receipt :: 94
+- test finding receipt :: 94
+- verify finding receipt :: 94
+- hold finding receipt :: 94
+- preserve finding receipt :: 94
+- under current clean :: 94
+- under local clean :: 94
+- under bounded clean :: 94
+- under finite clean :: 94
+- under open clean :: 94
+- under live clean :: 94
+- within current clean :: 94
+- within local clean :: 94
+- within bounded clean :: 94
+- within finite clean :: 94
+- within open clean :: 94
+- within live clean :: 94
+- across current clean :: 94
+- across local clean :: 93
+- across bounded clean :: 93
+- across finite clean :: 93
+- across open clean :: 93
+- across live clean :: 93
+- between current clean :: 93
+- between local clean :: 93
+- between bounded clean :: 93
+- between finite clean :: 93
+- between open clean :: 93
+- between live clean :: 93
+- through current clean :: 93
+- through local clean :: 93
+- through bounded clean :: 93
+- through finite clean :: 93
+- through open clean :: 93
+- through live clean :: 93
+- before current clean :: 93
+- before local clean :: 93
+- before bounded clean :: 93
+- before finite clean :: 93
+- before open clean :: 93
+- before live clean :: 93
+- clean evidence path :: 93
+- clean support path :: 93
+- clean path path :: 92
+- clean surface path :: 92
+- clean packet path :: 92
+- clean receipt path :: 92
+- clean trace path :: 92
+- clean result path :: 92
+- clean scope path :: 92
+- clean boundary path :: 92
+- check clean receipt :: 92
+- compare clean receipt :: 92
+- observe clean receipt :: 92
+- measure clean receipt :: 92
+- test clean receipt :: 92
+- verify clean receipt :: 92
+- hold clean receipt :: 92
+- preserve clean receipt :: 92
+- under current missing :: 92
+- under local missing :: 92
+- under bounded missing :: 92
+- under finite missing :: 92
+- under open missing :: 92
+- under live missing :: 92
+- within current missing :: 92
+- within local missing :: 92
+- within bounded missing :: 92
+- within finite missing :: 91
+- within open missing :: 91
+- within live missing :: 91
+- across current missing :: 91
+- across local missing :: 91
+- across bounded missing :: 91
+- across finite missing :: 91
+- across open missing :: 91
+- across live missing :: 91
+- between current missing :: 91
+- between local missing :: 91
+- between bounded missing :: 91
+- between finite missing :: 91
+- between open missing :: 91
+- between live missing :: 91
+- under audit receipt :: 91
+- under audit checked :: 91
+- under audit concluded :: 91
+- under audit open :: 91
+- under receipt checked :: 91
+- under receipt concluded :: 91
+- under receipt open :: 91
+- under receipt evidence :: 91
+- under checked concluded :: 91
+- under checked open :: 91
+- under checked evidence :: 90
+- under checked finding :: 90
+- under concluded open :: 90
+- under concluded evidence :: 90
+- under concluded finding :: 90
+- under concluded clean :: 90
+- under open evidence :: 90
+- under evidence finding :: 90
+- under evidence clean :: 90
+- under evidence missing :: 90
+- under evidence unsupported :: 90
+- under finding clean :: 90
+- under finding missing :: 90
+- under finding unsupported :: 90
+- under finding stale :: 90
+- under clean missing :: 90
+- under clean unsupported :: 90
+- under clean stale :: 90
+- under clean unread :: 90
+- under missing unsupported :: 90
+- under missing stale :: 90
+- under missing unread :: 90
+- under missing not :: 90
+- under unsupported stale :: 90
+- under unsupported unread :: 90
+- under unsupported not :: 89
+- under unsupported run :: 89
+- under stale unread :: 89
+- under stale not :: 89
+- under stale run :: 89
+- under stale verified :: 89
+- under unread not :: 89
+- under unread run :: 89
+- under unread verified :: 89
+- under unread failed :: 89
+- under not run :: 89
+- under not verified :: 89
+- under not failed :: 89
+- under not pass :: 89
+- under run verified :: 89
+- under run failed :: 89
+- under run pass :: 89
+- under run fail :: 89
+- under verified failed :: 89
+- under verified pass :: 89
+- under verified fail :: 89
+- under verified drift :: 89
+- under failed pass :: 89
+- under failed fail :: 89
+- under failed drift :: 89
+- under failed collapse :: 88
+- under pass fail :: 88
+- under pass drift :: 88
+- under pass collapse :: 88
+- under pass fake :: 88
+- under fail drift :: 88
+- under fail collapse :: 88
+- under fail fake :: 88
+- under fail plurality :: 88
+- under drift collapse :: 88
+- under drift fake :: 88
+- under drift plurality :: 88
+- under drift duplicate :: 88
+- under collapse fake :: 88
+- under collapse plurality :: 88
+- under collapse duplicate :: 88
+- under collapse method :: 88
+- within audit receipt :: 88
+- within audit checked :: 88
+- within audit concluded :: 88
+- within audit open :: 88
+- within receipt checked :: 88
+- within receipt concluded :: 88
+- within receipt open :: 88
+- within receipt evidence :: 88
+- within checked concluded :: 87
+- within checked open :: 87
+- within checked evidence :: 87
+- within checked finding :: 87
+- within concluded open :: 87
+- within concluded evidence :: 87
+- within concluded finding :: 87
+- within concluded clean :: 87
+- within open evidence :: 87
+- within evidence finding :: 87
+- within evidence clean :: 87
+- within evidence missing :: 87
+- within evidence unsupported :: 87
+- within finding clean :: 87
+- within finding missing :: 87
+- within finding unsupported :: 87
+- within finding stale :: 87
+- within clean missing :: 87
+- within clean unsupported :: 87
+- within clean stale :: 87
+- within clean unread :: 87
+- within missing unsupported :: 87
+- within missing stale :: 87
+- within missing unread :: 87
+- within missing not :: 87
+- within unsupported stale :: 86
+- within unsupported unread :: 86
+- within unsupported not :: 86
+- within unsupported run :: 86
+- within stale unread :: 86
+- within stale not :: 86
+- within stale run :: 86
+- within stale verified :: 86
+- within unread not :: 86
+- within unread run :: 86
+- within unread verified :: 86
+- within unread failed :: 86
+- within not run :: 86
+- within not verified :: 86
+- within not failed :: 86
+- within not pass :: 86
+- within run verified :: 86
+- within run failed :: 86
+- within run pass :: 86
+- within run fail :: 86
+- within verified failed :: 86
+- within verified pass :: 86
+- within verified fail :: 86
+- within verified drift :: 86
+- within failed pass :: 86
+- within failed fail :: 85
+- within failed drift :: 85
+- within failed collapse :: 85
+- within pass fail :: 85
+- within pass drift :: 85
+- within pass collapse :: 85
+- within pass fake :: 85
+- within fail drift :: 85
+- within fail collapse :: 85
+- within fail fake :: 85
+- within fail plurality :: 85
+- within drift collapse :: 85
+- within drift fake :: 85
+- within drift plurality :: 85
+- within drift duplicate :: 85
+- within collapse fake :: 85
+- within collapse plurality :: 85
+- within collapse duplicate :: 85
+- within collapse method :: 85
+- across audit receipt :: 85
+- across audit checked :: 85
+- across audit concluded :: 85
+- across audit open :: 85
+- across receipt checked :: 85
+- across receipt concluded :: 85
+- across receipt open :: 84
+- across receipt evidence :: 84
+- across checked concluded :: 84
+- across checked open :: 84
+- across checked evidence :: 84
+- across checked finding :: 84
+- across concluded open :: 84
+- across concluded evidence :: 84
+- across concluded finding :: 84
+- across concluded clean :: 84
+- across open evidence :: 84
+- across evidence finding :: 84
+- across evidence clean :: 84
+- across evidence missing :: 84
+- across evidence unsupported :: 84
+- across finding clean :: 84
+- across finding missing :: 84
+- across finding unsupported :: 84
+- across finding stale :: 84
+- across clean missing :: 84
+- across clean unsupported :: 84
+- across clean stale :: 84
+- across clean unread :: 84
+- across missing unsupported :: 84
+- across missing stale :: 84
+- across missing unread :: 83
+- across missing not :: 83
+- across unsupported stale :: 83
+- across unsupported unread :: 83
+- across unsupported not :: 83
+- across unsupported run :: 83
+- across stale unread :: 83
+- across stale not :: 83
+- across stale run :: 83
+- across stale verified :: 83
+- across unread not :: 83
+- across unread run :: 83
+- across unread verified :: 83
+- across unread failed :: 83
+- across not run :: 83
+- across not verified :: 83
+- across not failed :: 83
+- across not pass :: 83
+- across run verified :: 83
+- across run failed :: 83
+- across run pass :: 83
+- across run fail :: 83
+- across verified failed :: 83
+- across verified pass :: 83
+- across verified fail :: 83
+- across verified drift :: 82
+- across failed pass :: 82
+- across failed fail :: 82
+- across failed drift :: 82
+- across failed collapse :: 82
+- across pass fail :: 82
+- across pass drift :: 82
+- across pass collapse :: 82
+- across pass fake :: 82
+- across fail drift :: 82
+- across fail collapse :: 82
+- across fail fake :: 82
+- across fail plurality :: 82
+- across drift collapse :: 82
+- across drift fake :: 82
+- across drift plurality :: 82
+- across drift duplicate :: 82
+- across collapse fake :: 82
+- across collapse plurality :: 82
+- across collapse duplicate :: 82
+- across collapse method :: 82
+- between audit receipt :: 82
+- between audit checked :: 82
+- between audit concluded :: 82
+- between audit open :: 82
+- between receipt checked :: 81
+- between receipt concluded :: 81
+- between receipt open :: 81
+- between receipt evidence :: 81
+- between checked concluded :: 81
+- between checked open :: 81
+- between checked evidence :: 81
+- between checked finding :: 81
+- between concluded open :: 81
+- between concluded evidence :: 81
+- between concluded finding :: 81
+- between concluded clean :: 81
+- between open evidence :: 81
+- between evidence finding :: 81
+- between evidence clean :: 81
+- between evidence missing :: 81
+- between evidence unsupported :: 81
+- between finding clean :: 81
+- between finding missing :: 81
+- between finding unsupported :: 81
+- between finding stale :: 81
+- between clean missing :: 81
+- between clean unsupported :: 81
+- between clean stale :: 81
+- between clean unread :: 81
+- between missing unsupported :: 80
+- between missing stale :: 80
+- between missing unread :: 80
+- between missing not :: 80
+- between unsupported stale :: 80
+- between unsupported unread :: 80
+- between unsupported not :: 80
+- between unsupported run :: 80
+- between stale unread :: 80
+- between stale not :: 80
+- between stale run :: 80
+- between stale verified :: 80
+- between unread not :: 80
+- between unread run :: 80
+- between unread verified :: 80
+- between unread failed :: 80
+- between not run :: 80
+- between not verified :: 80
+- between not failed :: 80
+- between not pass :: 80
+- between run verified :: 80
+- between run failed :: 80
+- between run pass :: 80
+- between run fail :: 80
+- between verified failed :: 80
+- between verified pass :: 79
+- between verified fail :: 79
+- between verified drift :: 79
+- between failed pass :: 79
+- between failed fail :: 79
+- between failed drift :: 79
+- between failed collapse :: 79
+- between pass fail :: 79
+- between pass drift :: 79
+- between pass collapse :: 79
+- between pass fake :: 79
+- between fail drift :: 79
+- between fail collapse :: 79
+- between fail fake :: 79
+- between fail plurality :: 79
+- between drift collapse :: 79
+- between drift fake :: 79
+- between drift plurality :: 79
+- between drift duplicate :: 79
+- between collapse fake :: 79
+- between collapse plurality :: 79
+- between collapse duplicate :: 79
+- between collapse method :: 79
+- through audit receipt :: 79
+- through audit checked :: 79
+- through audit concluded :: 78
+- through audit open :: 78
+- through receipt checked :: 78
+- through receipt concluded :: 78
+- through receipt open :: 78
+- through receipt evidence :: 78
+- through checked concluded :: 78
+- through checked open :: 78
+- through checked evidence :: 78
+- through checked finding :: 78
+- through concluded open :: 78
+- through concluded evidence :: 78
+- through concluded finding :: 78
+- through concluded clean :: 78
+- through open evidence :: 78
+- through open missing :: 78
+- through evidence finding :: 78
+- through evidence clean :: 78
+- through evidence missing :: 78
+- through evidence unsupported :: 78
+- through finding clean :: 78
+- through finding missing :: 78
+- through finding unsupported :: 78
+- through finding stale :: 78
+- through clean missing :: 78
+- through clean unsupported :: 77
+- through clean stale :: 77
+- through clean unread :: 77
+- through missing unsupported :: 77
+- through missing stale :: 77
+- through missing unread :: 77
+- through missing not :: 77
+- through unsupported stale :: 77
+- through unsupported unread :: 77
+- through unsupported not :: 77
+- through unsupported run :: 77
+- through stale unread :: 77
+- through stale not :: 77
+- through stale run :: 77
+- through stale verified :: 77
+- through unread not :: 77
+- through unread run :: 77
+- through unread verified :: 77
+- through unread failed :: 77
+- through not run :: 77
+- through not verified :: 77
+- through not failed :: 77
+- through not pass :: 77
+- through run verified :: 77
+- through run failed :: 77
+- through run pass :: 76
+- through run fail :: 76
+- through verified failed :: 76
+- through verified pass :: 76
+- through verified fail :: 76
+- through verified drift :: 76
+- through failed pass :: 76
+- through failed fail :: 76
+- through failed drift :: 76
+- through failed collapse :: 76
+- through pass fail :: 76
+- through pass drift :: 76
+- through pass collapse :: 76
+- through pass fake :: 76
+- through fail drift :: 76
+- through fail collapse :: 76
+- through fail fake :: 76
+- through fail plurality :: 76
+- through drift collapse :: 76
+- through drift fake :: 76
+- through drift plurality :: 76
+- through drift duplicate :: 76
+- through collapse fake :: 76
+- through collapse plurality :: 76
+- through collapse duplicate :: 76
+- through collapse method :: 75
+- before audit receipt :: 75
+- before audit checked :: 75
+- before audit concluded :: 75
+- before audit open :: 75
+- before receipt checked :: 75
+- before receipt concluded :: 75
+- before receipt open :: 75
+- before receipt evidence :: 75
+- before checked concluded :: 75
+- before checked open :: 75
+- before checked evidence :: 75
+- before checked finding :: 75
+- before concluded open :: 75
+- before concluded evidence :: 75
+- before concluded finding :: 75
+- before concluded clean :: 75
+- before open evidence :: 75
+- before open missing :: 75
+- before evidence finding :: 75
+- before evidence clean :: 75
+- before evidence missing :: 75
+- before evidence unsupported :: 75
+- before finding clean :: 75
+- before finding missing :: 75
+- before finding unsupported :: 74
+- before finding stale :: 74
+- before clean missing :: 74
+- before clean unsupported :: 74
+- before clean stale :: 74
+- before clean unread :: 74
+- before missing unsupported :: 74
+- before missing stale :: 74
+- before missing unread :: 74
+- before missing not :: 74
+- before unsupported stale :: 74
+- before unsupported unread :: 74
+- before unsupported not :: 74
+- before unsupported run :: 74
+- before stale unread :: 74
+- before stale not :: 74
+- before stale run :: 74
+- before stale verified :: 74
+- before unread not :: 74
+- before unread run :: 74
+- before unread verified :: 74
+- before unread failed :: 74
+- before not run :: 74
+- before not verified :: 74
+- before not failed :: 74
+- before not pass :: 73
+- before run verified :: 73
+- before run failed :: 73
+- before run pass :: 73
+- before run fail :: 73
+- before verified failed :: 73
+- before verified pass :: 73
+- before verified fail :: 73
+- before verified drift :: 73
+- before failed pass :: 73
+- before failed fail :: 73
+- before failed drift :: 73
+- before failed collapse :: 73
+- before pass fail :: 73
+- before pass drift :: 73
+- before pass collapse :: 73
+- before pass fake :: 73
+- before fail drift :: 73
+- before fail collapse :: 73
+- before fail fake :: 73
+- before fail plurality :: 73
+- before drift collapse :: 73
+- before drift fake :: 73
+- before drift plurality :: 73
+- before drift duplicate :: 73
+- before collapse fake :: 72
+- before collapse plurality :: 72
+- before collapse duplicate :: 72
+- before collapse method :: 72
+- after audit receipt :: 72
+- after audit checked :: 72
+- after audit concluded :: 72
+- after audit open :: 72
+- after receipt checked :: 72
+- after receipt concluded :: 72
+- after receipt open :: 72
+- after receipt evidence :: 72
+- after checked concluded :: 72
+- after checked open :: 72
+- after checked evidence :: 72
+- after checked finding :: 72
+- after concluded open :: 72
+- after concluded evidence :: 72
+- after concluded finding :: 72
+- after concluded clean :: 72
+- after open evidence :: 72
+- after open finding :: 72
+- after open clean :: 72
+- after open missing :: 72
+- after evidence finding :: 72
+- after evidence clean :: 71
+- after evidence missing :: 71
+- after evidence unsupported :: 71
+- after finding clean :: 71
+- after finding missing :: 71
+- after finding unsupported :: 71
+- after finding stale :: 71
+- after clean missing :: 71
+- after clean unsupported :: 71
+- after clean stale :: 71
+- after clean unread :: 71
+- after missing unsupported :: 71
+- after missing stale :: 71
+- after missing unread :: 71
+- after missing not :: 71
+- after unsupported stale :: 71
+- after unsupported unread :: 71
+- after unsupported not :: 71
+- after unsupported run :: 71
+- after stale unread :: 71
+- after stale not :: 71
+- after stale run :: 71
+- after stale verified :: 71
+- after unread not :: 71
+- after unread run :: 71
+- after unread verified :: 70
+- after unread failed :: 70
+- after not run :: 70
+- after not verified :: 70
+- after not failed :: 70
+- after not pass :: 70
+- after run verified :: 70
+- after run failed :: 70
+- after run pass :: 70
+- after run fail :: 70
+- after verified failed :: 70
+- after verified pass :: 70
+- after verified fail :: 70
+- after verified drift :: 70
+- after failed pass :: 70
+- after failed fail :: 70
+- after failed drift :: 70
+- after failed collapse :: 70
+- after pass fail :: 70
+- after pass drift :: 70
+- after pass collapse :: 70
+- after pass fake :: 70
+- after fail drift :: 70
+- after fail collapse :: 70
+- after fail fake :: 70
+- after fail plurality :: 69
+- after drift collapse :: 69
+- after drift fake :: 69
+- after drift plurality :: 69
+- after drift duplicate :: 69
+- after collapse fake :: 69
+- after collapse plurality :: 69
+- after collapse duplicate :: 69
+- after collapse method :: 69
+- during audit receipt :: 69
+- during audit checked :: 69
+- during audit concluded :: 69
+- during audit open :: 69
+- during receipt checked :: 69
+- during receipt concluded :: 69
+- during receipt open :: 69
+- during receipt evidence :: 69
+- during checked concluded :: 69
+- during checked open :: 69
+- during checked evidence :: 69
+- during checked finding :: 69
+- during concluded open :: 69
+- during concluded evidence :: 69
+- during concluded finding :: 69
+- during concluded clean :: 69
+- during open evidence :: 68
+- during open finding :: 68
+- during open clean :: 68
+- during open missing :: 68
+- during evidence finding :: 68
+- during evidence clean :: 68
+- during evidence missing :: 68
+- during evidence unsupported :: 68
+- during finding clean :: 68
+- during finding missing :: 68
+- during finding unsupported :: 68
+- during finding stale :: 68
+- during clean missing :: 68
+- during clean unsupported :: 68
+- during clean stale :: 68
+- during clean unread :: 68
+- during missing unsupported :: 68
+- during missing stale :: 68
+- during missing unread :: 68
+- during missing not :: 68
+- during unsupported stale :: 68
+- during unsupported unread :: 68
+- during unsupported not :: 68
+- during unsupported run :: 68
+- during stale unread :: 68
+- during stale not :: 67
+- during stale run :: 67
+- during stale verified :: 67
+- during unread not :: 67
+- during unread run :: 67
+- during unread verified :: 67
+- during unread failed :: 67
+- during not run :: 67
+- during not verified :: 67
+- during not failed :: 67
+- during not pass :: 67
+- during run verified :: 67
+- during run failed :: 67
+- during run pass :: 67
+- during run fail :: 67
+- during verified failed :: 67
+- during verified pass :: 67
+- during verified fail :: 67
+- during verified drift :: 67
+- during failed pass :: 67
+- during failed fail :: 67
+- during failed drift :: 67
+- during failed collapse :: 67
+- during pass fail :: 67
+- during pass drift :: 67
+- during pass collapse :: 66
+- during pass fake :: 66
+- during fail drift :: 66
+- during fail collapse :: 66
+- during fail fake :: 66
+- during fail plurality :: 66
+- during drift collapse :: 66
+- during drift fake :: 66
+- during drift plurality :: 66
+- during drift duplicate :: 66
+- during collapse fake :: 66
+- during collapse plurality :: 66
+- during collapse duplicate :: 66
+- during collapse method :: 66
+- until audit receipt :: 66
+- until audit checked :: 66
+- until audit concluded :: 66
+- until audit open :: 66
+- until receipt checked :: 66
+- until receipt concluded :: 66
+- until receipt open :: 66
+- until receipt evidence :: 66
+- until checked concluded :: 66
+- until checked open :: 66
+- until checked evidence :: 66
+- until checked finding :: 65
+- until concluded open :: 65
+- until concluded evidence :: 65
+- until concluded finding :: 65
+- until concluded clean :: 65
+- until open evidence :: 65
+- until open finding :: 65
+- until open clean :: 65
+- until open missing :: 65
+- until evidence finding :: 65
+- until evidence clean :: 65
+- until evidence missing :: 65
+- until evidence unsupported :: 65
+- until finding clean :: 65
+- until finding missing :: 65
+- until finding unsupported :: 65
+- until finding stale :: 65
+- until clean missing :: 65
+- until clean unsupported :: 65
+- until clean stale :: 65
+- until clean unread :: 65
+- until missing unsupported :: 65
+- until missing stale :: 65
+- until missing unread :: 65
+- until missing not :: 65
+- until unsupported stale :: 64
+- until unsupported unread :: 64
+- until unsupported not :: 64
+- until unsupported run :: 64
+- until stale unread :: 64
+- until stale not :: 64
+- until stale run :: 64
+- until stale verified :: 64
+- until unread not :: 64
+- until unread run :: 64
+- until unread verified :: 64
+- until unread failed :: 64
+- until not run :: 64
+- until not verified :: 64
+- until not failed :: 64
+- until not pass :: 64
+- until run verified :: 64
+- until run failed :: 64
+- until run pass :: 64
+- until run fail :: 64
+- until verified failed :: 64
+- until verified pass :: 64
+- until verified fail :: 64
+- until verified drift :: 64
+- until failed pass :: 64
+- until failed fail :: 63
+- until failed drift :: 63
+- until failed collapse :: 63
+- until pass fail :: 63
+- until pass drift :: 63
+- until pass collapse :: 63
+- until pass fake :: 63
+- until fail drift :: 63
+- until fail collapse :: 63
+- until fail fake :: 63
+- until fail plurality :: 63
+- until drift collapse :: 63
+- until drift fake :: 63
+- until drift plurality :: 63
+- until drift duplicate :: 63
+- until collapse fake :: 63
+- until collapse plurality :: 63
+- until collapse duplicate :: 63
+- until collapse method :: 63
+- since audit receipt :: 63
+- since audit checked :: 63
+- since audit concluded :: 63
+- since audit open :: 63
+- since receipt checked :: 63
+- since receipt concluded :: 63
+- since receipt open :: 62
+- since receipt evidence :: 62
+- since checked concluded :: 62
+- since checked open :: 62
+- since checked evidence :: 62
+- since checked finding :: 62
+- since concluded open :: 62
+- since concluded evidence :: 62
+- since concluded finding :: 62
+- since concluded clean :: 62
+- since open evidence :: 62
+- since open finding :: 62
+- since open clean :: 62
+- since open missing :: 62
+- since evidence finding :: 62
+- since evidence clean :: 62
+- since evidence missing :: 62
+- since evidence unsupported :: 62
+- since finding clean :: 62
+- since finding missing :: 62
+- since finding unsupported :: 62
+- since finding stale :: 62
+- since clean missing :: 62
+- since clean unsupported :: 62
+- since clean stale :: 62
+- since clean unread :: 61
+- since missing unsupported :: 61
+- since missing stale :: 61
+- since missing unread :: 61
+- since missing not :: 61
+- since unsupported stale :: 61
+- since unsupported unread :: 61
+- since unsupported not :: 61
+- since unsupported run :: 61
+- since stale unread :: 61
+- since stale not :: 61
+- since stale run :: 61
+- since stale verified :: 61
+- since unread not :: 61
+- since unread run :: 61
+- since unread verified :: 61
+- since unread failed :: 61
+- since not run :: 61
+- since not verified :: 61
+- since not failed :: 61
+- since not pass :: 61
+- since run verified :: 61
+- since run failed :: 61
+- since run pass :: 61
+- since run fail :: 61
+- since verified failed :: 60
+- since verified pass :: 60
+- since verified fail :: 60
+- since verified drift :: 60
+- since failed pass :: 60
+- since failed fail :: 60
+- since failed drift :: 60
+- since failed collapse :: 60
+- since pass fail :: 60
+- since pass drift :: 60
+- since pass collapse :: 60
+- since pass fake :: 60
+- since fail drift :: 60
+- since fail collapse :: 60
+- since fail fake :: 60
+- since fail plurality :: 60
+- since drift collapse :: 60
+- since drift fake :: 60
+- since drift plurality :: 60
+- since drift duplicate :: 60
+- since collapse fake :: 60
+- since collapse plurality :: 60
+- since collapse duplicate :: 60
+- since collapse method :: 60
+- audit receipt checked :: 60
+- audit receipt concluded :: 59
+- audit receipt open :: 59
+- audit checked concluded :: 59
+- audit checked open :: 59
+- audit concluded checked :: 59
+- audit concluded open :: 59
+- audit open checked :: 59
+- audit open concluded :: 59
+- audit evidence checked :: 59
+- audit evidence concluded :: 59
+- audit evidence open :: 59
+- receipt checked concluded :: 59
+- receipt checked open :: 59
+- receipt checked evidence :: 59
+- receipt concluded open :: 59
+- receipt concluded evidence :: 59
+- receipt open concluded :: 59
+- receipt open evidence :: 59
+- receipt evidence concluded :: 59
+- receipt evidence open :: 59
+- receipt finding concluded :: 59
+- receipt finding open :: 59
+- receipt finding evidence :: 59
+- checked concluded open :: 59
+- checked concluded evidence :: 59
+- checked concluded finding :: 58
+- checked open evidence :: 58
+- checked open finding :: 58
+- checked evidence open :: 58
+- checked evidence finding :: 58
+- checked finding open :: 58
+- checked finding evidence :: 58
+- checked clean open :: 58
+- checked clean evidence :: 58
+- checked clean finding :: 58
+- concluded open evidence :: 58
+- concluded open finding :: 58
+- concluded open clean :: 58
+- concluded evidence finding :: 58
+- concluded evidence clean :: 58
+- concluded finding evidence :: 58
+- concluded finding clean :: 58
+- concluded clean evidence :: 58
+- concluded clean finding :: 58
+- concluded missing evidence :: 58
+- concluded missing finding :: 58
+- concluded missing clean :: 58
+- open evidence finding :: 58
+- open evidence clean :: 58
+- open evidence missing :: 58
+- open finding clean :: 57
+- open finding missing :: 57
+- open clean finding :: 57
+- open clean missing :: 57
+- open missing finding :: 57
+- open missing clean :: 57
+- open unsupported finding :: 57
+- open unsupported clean :: 57
+- open unsupported missing :: 57
+- evidence finding clean :: 57
+- evidence finding missing :: 57
+- evidence finding unsupported :: 57
+- evidence clean missing :: 57
+- evidence clean unsupported :: 57
+- evidence missing clean :: 57
+- evidence missing unsupported :: 57
+- evidence unsupported clean :: 57
+- evidence unsupported missing :: 57
+- evidence stale clean :: 57
+- evidence stale missing :: 57
+- evidence stale unsupported :: 57
+- finding clean missing :: 57
+- finding clean unsupported :: 57
+- finding clean stale :: 57
+- finding missing unsupported :: 57
+- finding missing stale :: 56
+- finding unsupported missing :: 56
+- finding unsupported stale :: 56
+- finding stale missing :: 56
+- finding stale unsupported :: 56
+- finding unread missing :: 56
+- finding unread unsupported :: 56
+- finding unread stale :: 56
+- clean missing unsupported :: 56
+- clean missing stale :: 56
+- clean missing unread :: 56
+- clean unsupported stale :: 56
+- clean unsupported unread :: 56
+- clean stale unsupported :: 56
+- clean stale unread :: 56
+- clean unread unsupported :: 56
+- clean unread stale :: 56
+- clean not unsupported :: 56
+- clean not stale :: 56
+- clean not unread :: 56
+- missing unsupported stale :: 56
+- missing unsupported unread :: 56
+- missing unsupported not :: 56
+- missing stale unread :: 56
+- missing stale not :: 56
+- missing unread stale :: 55
+- missing unread not :: 55
+- missing not stale :: 55
+- missing not unread :: 55
+- missing run stale :: 55
+- missing run unread :: 55
+- missing run not :: 55
+- unsupported stale unread :: 55
+- unsupported stale not :: 55
+- unsupported stale run :: 55
+- unsupported unread not :: 55
+- unsupported unread run :: 55
+- unsupported not unread :: 55
+- unsupported not run :: 55
+- unsupported run unread :: 55
+- unsupported run not :: 55
+- unsupported verified unread :: 55
+- unsupported verified not :: 55
+- unsupported verified run :: 55
+- stale unread not :: 55
+- stale unread run :: 55
+- stale unread verified :: 55
+- stale not run :: 55
+- stale not verified :: 55
+- stale run not :: 55
+- stale run verified :: 54
+- stale verified not :: 54
+- stale verified run :: 54
+- stale failed not :: 54
+- stale failed run :: 54
+- stale failed verified :: 54
+- unread not run :: 54
+- unread not verified :: 54
+- unread not failed :: 54
+- unread run verified :: 54
+- unread run failed :: 54
+- unread verified run :: 54
+- unread verified failed :: 54
+- unread failed run :: 54
+- unread failed verified :: 54
+- unread pass run :: 54
+- unread pass verified :: 54
+- unread pass failed :: 54
+- not run verified :: 54
+- not run failed :: 54
+- not run pass :: 54
+- not verified failed :: 54
+- not verified pass :: 54
+- not failed verified :: 54
+- not failed pass :: 54
+- not pass verified :: 53
+- not pass failed :: 53
+- not fail verified :: 53
+- not fail failed :: 53
+- not fail pass :: 53
+- run verified failed :: 53
+- run verified pass :: 53
+- run verified fail :: 53
+- run failed pass :: 53
+- run failed fail :: 53
+- run pass failed :: 53
+- run pass fail :: 53
+- run fail failed :: 53
+- run fail pass :: 53
+- run drift failed :: 53
+- run drift pass :: 53
+- run drift fail :: 53
+- verified failed pass :: 53
+- verified failed fail :: 53
+- verified failed drift :: 53
+- verified pass fail :: 53
+- verified pass drift :: 53
+- verified fail pass :: 53
+- verified fail drift :: 53
+- verified drift pass :: 53
+- verified drift fail :: 52
+- verified collapse pass :: 52
+- verified collapse fail :: 52
+- verified collapse drift :: 52
+- failed pass fail :: 52
+- failed pass drift :: 52
+- failed pass collapse :: 52
+- failed fail drift :: 52
+- failed fail collapse :: 52
+- failed drift fail :: 52
+- failed drift collapse :: 52
+- failed collapse fail :: 52
+- failed collapse drift :: 52
+- failed fake fail :: 52
+- failed fake drift :: 52
+- failed fake collapse :: 52
+- pass fail drift :: 52
+- pass fail collapse :: 52
+- pass fail fake :: 52
+- pass drift collapse :: 52
+- pass drift fake :: 52
+- pass collapse drift :: 52
+- pass collapse fake :: 52
+- pass fake drift :: 52
+- pass fake collapse :: 52
+- pass plurality drift :: 51
+- pass plurality collapse :: 51
+- pass plurality fake :: 51
+- fail drift collapse :: 51
+- fail drift fake :: 51
+- fail drift plurality :: 51
+- fail collapse fake :: 51
+- fail collapse plurality :: 51
+- fail fake collapse :: 51
+- fail plurality collapse :: 51
+- fail plurality fake :: 51
+- fail duplicate collapse :: 51
+- fail duplicate fake :: 51
+- fail duplicate plurality :: 51
+- drift collapse fake :: 51
+- drift collapse plurality :: 51
+- drift collapse duplicate :: 51
+- drift fake duplicate :: 51
+- drift plurality fake :: 51
+- drift plurality duplicate :: 51
+- drift duplicate fake :: 51
+- drift duplicate plurality :: 51
+- drift method fake :: 51
+- drift method plurality :: 51
+- drift method duplicate :: 51
+- collapse fake duplicate :: 50
+- collapse fake method :: 50
+- collapse plurality duplicate :: 50
+- collapse plurality method :: 50
+- collapse duplicate plurality :: 50
+- collapse duplicate method :: 50
+- collapse method plurality :: 50
+- collapse method duplicate :: 50
+- collapse check plurality :: 50
+- collapse check duplicate :: 50
+- collapse check method :: 50
+- fake duplicate method :: 50
+- fake duplicate check :: 50
+- fake method duplicate :: 50
+- fake method check :: 50
+- fake check duplicate :: 50
+- fake check method :: 50
+- fake closeout duplicate :: 50
+- fake closeout method :: 50
+- fake closeout check :: 50
+- plurality duplicate method :: 50
+- plurality duplicate check :: 50
+- plurality duplicate closeout :: 50
+- plurality method check :: 50
+- plurality method closeout :: 50
+- plurality check method :: 49
+- plurality check closeout :: 49
+- plurality closeout method :: 49
+- plurality closeout check :: 49
+- plurality registry method :: 49
+- plurality registry check :: 49
+- plurality registry closeout :: 49
+- duplicate method check :: 49
+- duplicate method closeout :: 49
+- duplicate method registry :: 49
+- duplicate check closeout :: 49
+- duplicate check registry :: 49
+- duplicate closeout check :: 49
+- duplicate closeout registry :: 49
+- duplicate registry check :: 49
+- duplicate registry closeout :: 49
+- duplicate traceability check :: 49
+- duplicate traceability closeout :: 49
+- duplicate traceability registry :: 49
+- method check closeout :: 49
+- method check registry :: 49
+- method check traceability :: 49
+- method closeout registry :: 49
+- method closeout traceability :: 49
+- method registry closeout :: 49
+- method registry traceability :: 48
+- method traceability closeout :: 48
+- method traceability registry :: 48
+- method current-turn closeout :: 48
+- method current-turn registry :: 48
+- method current-turn traceability :: 48
+- check closeout registry :: 48
+- check closeout traceability :: 48
+- check closeout current-turn :: 48
+- check registry traceability :: 48
+- check registry current-turn :: 48
+- check traceability registry :: 48
+- check traceability current-turn :: 48
+- check current-turn registry :: 48
+- check current-turn traceability :: 48
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- provenance
+- entity
+- activity
+- agent
+- traceability
+- digital thread
+- initial state
+- path
+- counterexample
+- benchmark
+- receipt
+- evidence chain
+
+### Couplings
+
+- audit trail
+- evidence chain
+- counterexample trace
+- digital thread
+- initial state
+
+### Triplets
+
+- entity activity agent
+- state path witness
+- theory invariant counterexample

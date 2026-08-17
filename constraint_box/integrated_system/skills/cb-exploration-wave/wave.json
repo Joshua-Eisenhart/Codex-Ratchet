@@ -1,0 +1,71 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-exploration-wave-v1",
+  "purpose": "Harvest rival futures of the present Light object and keep an antichain. Do not falsify or pick a winner.",
+  "children": [
+    {
+      "id": "harvest",
+      "skill": "cb-exploration-wave",
+      "operation": "harvest_instances",
+      "tools": ["sha256", "seed_loader", "reading_inventory"]
+    },
+    {
+      "id": "rival_readings",
+      "skill": "voice-zhuangzi",
+      "operation": "name_rival_readings_and_hidden_third",
+      "tools": ["reading_inventory", "false_binary_check"]
+    },
+    {
+      "id": "assumptions",
+      "skill": "assumption-audit",
+      "operation": "list_premises_per_reading",
+      "tools": ["assumption_split", "shared_premise_flag"]
+    },
+    {
+      "id": "compile_packets",
+      "skill": "distinguishability-smt",
+      "operation": "compile_reading_to_packet",
+      "tools": ["packet_schema", "source_span_check"]
+    },
+    {
+      "id": "antichain",
+      "skill": "cb-exploration-wave",
+      "operation": "keep_incomparable_survivors",
+      "tools": ["antichain_check", "diversity_count"]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true
+  },
+  "loop": {
+    "max_rounds": 2,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "antichain_open",
+      "hold_collapsed_diversity",
+      "refuse_winner",
+      "refuse_deduction_on_induction",
+      "cancelled",
+      "max_rounds"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "seed_digest",
+      "reading_count",
+      "antichain_ids",
+      "hidden_third",
+      "winner_selected"
+    ]
+  },
+  "claim_ceiling": "Rival-reading harvest only; not falsification, not a quotient, not promotion."
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contained Claude Code hook controller for the CB Light 91-tool lifecycle."""
+"""Contained Claude Code hook controller for the CB Light proposal lifecycle."""
 
 from __future__ import annotations
 
@@ -58,7 +58,7 @@ CLEAN_INSTALL_REPORT = RECEIPTS / "cb_light_clean_install_report_v1.json"
 SETTINGS = REPO / ".claude/settings.json"
 BROKER = ROOT / "bin/cb-light"
 # These distributions implement the contained control plane itself.  They are
-# deliberately outside the finite 91-tool candidate domain: `pip` provides the
+# deliberately outside the finite candidate domain: `pip` provides the
 # installer and `constraintbox` provides the gate.  Treating either as a tool
 # candidate would falsely turn controller closure into tool adoption.
 RUNTIME_INFRASTRUCTURE_DISTRIBUTIONS = frozenset({"pip", "constraintbox"})
@@ -852,8 +852,13 @@ def refresh(*, lock_held: bool = False) -> dict[str, Any]:
 
 def _refresh() -> dict[str, Any]:
     manifest = verify_manifest()
+    declared_interpreter = pathlib.Path(
+        str(manifest.get("mandated_interpreter", ""))
+    ).expanduser()
+    if not declared_interpreter.is_absolute():
+        declared_interpreter = ROOT / declared_interpreter
     if not same_declared_interpreter(
-        str(manifest.get("mandated_interpreter", "")), MANDATED_INTERPRETER
+        declared_interpreter, MANDATED_INTERPRETER
     ):
         raise HookRefusal("MANIFEST_RUNTIME_PATH_MISMATCH", str(MANDATED_INTERPRETER))
     if not CLEAN_RECEIPT.is_file():
@@ -1155,7 +1160,7 @@ def verify_evaluation(
             or counts.get("evaluated_candidate_domain") != expected_domain
             or accounted != expected_roots
         ):
-            return False, "SELECTION_NOT_EXACTLY_91_ACCOUNTED"
+            return False, "SELECTION_DOMAIN_ACCOUNTING_MISMATCH"
         if counts.get("hold_decider_disagreement") != 0:
             return False, "SMT_DECIDER_DISAGREEMENT"
         rows = selection.get("rows")
@@ -1494,7 +1499,7 @@ def main(argv: list[str] | None = None) -> int:
                         "hookSpecificOutput": {
                             "hookEventName": "SessionStart",
                             "additionalContext": (
-                                f"ConstraintBox Light is a separate 91-tool Python profile. "
+                                f"ConstraintBox Light is a separate Python proposal domain. "
                                 f"Local evaluation current={allowed}; status={reason}. "
                                 "System completion remains unearned; do not treat external "
                                 "simulation-engine stacks as Light membership."

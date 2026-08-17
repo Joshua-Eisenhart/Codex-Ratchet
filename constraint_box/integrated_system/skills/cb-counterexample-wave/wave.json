@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-counterexample-wave-v1",
+  "purpose": "Attack one target through independent boundary, order, and ablation observations.",
+  "children": [
+    {"id": "boundary", "skill": "cb-counterexample-cell", "operation": "boundary_mutation", "tools": ["property_tests", "boundary_generator"]},
+    {"id": "order", "skill": "cb-counterexample-cell", "operation": "order_reversal", "tools": ["replay_runner", "relation_diff"]},
+    {"id": "ablation", "skill": "cb-counterexample-cell", "operation": "tool_constraint_ablation", "tools": ["ablation_runner", "rank_delta"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 3, "repair_then_exact_rerun": true, "stop_reasons": ["no_material_delta", "falsifiers_settled", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "preload_receipts", "provider_call_receipt", "cancellation_state", "disagreement_state", "output_digest", "repair_digest", "rerun_delta"]},
+  "claim_ceiling": "Replayable counterexample evidence only; no basin, gate, tool-rank, or promotion authority."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-build-campaign-wave-v1",
+  "purpose": "Loop maintenance, context bind, strategy framing, failure plus objective integrity, bounded repair, strategy checkpoint, and output. W-WATCH monitors and has no content vote.",
+  "children": [
+    {"id": "maintenance", "skill": "cb-maintenance-wave", "operation": "run_maintenance_wave", "tools": ["workspace_diagnostic", "source_context_freeze", "candidate_classifier", "receipt_verifier"]},
+    {"id": "context", "skill": "cb-context-wave", "operation": "bind_durable_context", "tools": ["jsonl", "source_root_digest"]},
+    {"id": "framing", "skill": "cb-strategy-framing-wave", "operation": "frame_before_decision", "tools": ["object_restatement", "portfolio_enum"]},
+    {"id": "failure", "skill": "cb-failure-wave", "operation": "run_failure_wave", "tools": ["wave_validator", "receipt_verifier"]},
+    {"id": "integrity", "skill": "cb-objective-integrity-wave", "operation": "attack_goodhart_and_paperclip", "tools": ["severance_search", "adversary_attacks"]},
+    {"id": "repair", "skill": "cb-repair-wave", "operation": "run_repair_wave", "tools": ["candidate_workspace", "test_runner"]},
+    {"id": "checkpoint", "skill": "cb-strategy-checkpoint-wave", "operation": "checkpoint_after_repair", "tools": ["repair_vs_object", "recency_ablation"]},
+    {"id": "output", "skill": "cb-output-compiler", "operation": "compile_human_surface", "tools": ["output_surface", "route_compare"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 4, "repair_then_exact_rerun": true, "stop_reasons": ["candidate_compiled", "unrepairable_failure", "strategy_split", "request_context", "object_severed", "no_material_delta", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "preload_receipts", "provider_call_receipt", "maintenance_receipt", "context_epoch_digest", "framing_disposition", "failure_wave_receipt", "integrity_receipt", "repair_wave_receipt", "checkpoint_disposition", "cancellation_state", "disagreement_state", "output_digest", "compiled_disposition"]},
+  "claim_ceiling": "Bounded build-campaign evidence only; no automatic live-source write, adoption, promotion, portability, or release authority. W-WATCH has no content vote."
+}

@@ -1,0 +1,2581 @@
+# 🏭 Factory Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `FACTORY` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_FACTORY_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- factory :: 100
+- throughput :: 100
+- bottleneck :: 100
+- queue :: 100
+- handoff :: 100
+- workcell :: 100
+- flow :: 100
+- capacity :: 100
+- latency :: 100
+- batch :: 100
+- work :: 100
+- progress :: 100
+- wip :: 100
+- maintenance :: 100
+- repeatability :: 100
+- template :: 100
+- standard :: 100
+- ownership :: 100
+- checklist :: 100
+- kanban :: 100
+- drum :: 100
+- buffer :: 100
+- rope :: 100
+- choke :: 100
+- point :: 100
+- constraint :: 99
+- rate :: 99
+- limiter :: 99
+- drag :: 99
+- rework :: 99
+- scrap :: 99
+- cycle :: 99
+- time :: 99
+- theory of constraints :: 99
+- system constraint :: 99
+- throughput accounting :: 99
+- drum buffer rope :: 99
+- work in process :: 99
+- queue length :: 99
+- bottleneck resource :: 99
+- flow efficiency :: 99
+- continuous improvement :: 99
+- work in progress :: 99
+- rate-limiter :: 99
+- choke point :: 99
+- leverage :: 99
+- cycle time :: 99
+- standard work :: 99
+- workstream :: 99
+- unblock :: 99
+- inventory :: 98
+- blocked :: 98
+- waiting :: 98
+- packet :: 98
+- under :: 98
+- within :: 98
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 97
+- only :: 97
+- not :: 97
+- no :: 97
+- yet :: 97
+- then :: 97
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 96
+- careful :: 96
+- honest :: 96
+- first :: 96
+- next :: 96
+- prior :: 96
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- surface :: 96
+- artifact :: 95
+- receipt :: 95
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- scope :: 95
+- boundary :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 94
+- idea :: 94
+- perception :: 94
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- model :: 94
+- solver :: 94
+- satisfiable :: 94
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- test :: 93
+- check :: 93
+- verify :: 93
+- compare :: 93
+- sample :: 93
+- route :: 93
+- lane :: 93
+- voice :: 93
+- lens :: 93
+- council :: 93
+- audit :: 93
+- finding :: 93
+- blocker :: 93
+- deferred :: 93
+- spawned :: 93
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 92
+- according :: 92
+- locally :: 92
+- jointly :: 92
+- separately :: 92
+- rather :: 92
+- instead :: 92
+- still :: 92
+- often :: 92
+- sometimes :: 92
+- usually :: 92
+- seems :: 92
+- appears :: 92
+- likely :: 92
+- possible :: 92
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+- limited :: 92
+
+## couplings
+
+- under bottleneck :: 100
+- within bottleneck :: 100
+- across bottleneck :: 100
+- between bottleneck :: 100
+- through bottleneck :: 100
+- before bottleneck :: 100
+- after bottleneck :: 100
+- until bottleneck :: 100
+- where bottleneck :: 100
+- while bottleneck :: 100
+- bottleneck evidence :: 100
+- bottleneck support :: 100
+- bottleneck path :: 100
+- bottleneck surface :: 100
+- bottleneck packet :: 100
+- bottleneck receipt :: 100
+- bottleneck trace :: 100
+- bottleneck result :: 100
+- bottleneck scope :: 100
+- bottleneck boundary :: 100
+- bottleneck status :: 100
+- bottleneck candidate :: 100
+- bottleneck witness :: 100
+- bottleneck probe :: 100
+- bottleneck constraint :: 100
+- check bottleneck :: 99
+- compare bottleneck :: 99
+- observe bottleneck :: 99
+- measure bottleneck :: 99
+- test bottleneck :: 99
+- verify bottleneck :: 99
+- hold bottleneck :: 99
+- preserve bottleneck :: 99
+- split bottleneck :: 99
+- narrow bottleneck :: 99
+- under queue :: 99
+- within queue :: 99
+- across queue :: 99
+- between queue :: 99
+- through queue :: 99
+- before queue :: 99
+- after queue :: 99
+- until queue :: 99
+- where queue :: 99
+- while queue :: 99
+- queue evidence :: 99
+- queue support :: 99
+- queue path :: 99
+- queue surface :: 99
+- queue packet :: 99
+- queue receipt :: 98
+- queue trace :: 98
+- queue result :: 98
+- queue scope :: 98
+- queue boundary :: 98
+- queue status :: 98
+- queue candidate :: 98
+- queue witness :: 98
+- queue probe :: 98
+- queue constraint :: 98
+- check queue :: 98
+- compare queue :: 98
+- observe queue :: 98
+- measure queue :: 98
+- test queue :: 98
+- verify queue :: 98
+- hold queue :: 98
+- preserve queue :: 98
+- split queue :: 98
+- narrow queue :: 98
+- under throughput :: 98
+- within throughput :: 98
+- across throughput :: 98
+- between throughput :: 98
+- through throughput :: 98
+- before throughput :: 97
+- after throughput :: 97
+- until throughput :: 97
+- where throughput :: 97
+- while throughput :: 97
+- throughput evidence :: 97
+- throughput support :: 97
+- throughput path :: 97
+- throughput surface :: 97
+- throughput packet :: 97
+- throughput receipt :: 97
+- throughput trace :: 97
+- throughput result :: 97
+- throughput scope :: 97
+- throughput boundary :: 97
+- throughput status :: 97
+- throughput candidate :: 97
+- throughput witness :: 97
+- throughput probe :: 97
+- throughput constraint :: 97
+- check throughput :: 97
+- compare throughput :: 97
+- observe throughput :: 97
+- measure throughput :: 97
+- test throughput :: 97
+- verify throughput :: 96
+- hold throughput :: 96
+- preserve throughput :: 96
+- split throughput :: 96
+- narrow throughput :: 96
+- under handoff :: 96
+- within handoff :: 96
+- across handoff :: 96
+- between handoff :: 96
+- through handoff :: 96
+- before handoff :: 96
+- after handoff :: 96
+- until handoff :: 96
+- where handoff :: 96
+- while handoff :: 96
+- handoff evidence :: 96
+- handoff support :: 96
+- handoff path :: 96
+- handoff surface :: 96
+- handoff packet :: 96
+- handoff receipt :: 96
+- handoff trace :: 96
+- handoff result :: 96
+- handoff scope :: 96
+- handoff boundary :: 96
+- handoff status :: 95
+- handoff candidate :: 95
+- handoff witness :: 95
+- handoff probe :: 95
+- handoff constraint :: 95
+- check handoff :: 95
+- compare handoff :: 95
+- observe handoff :: 95
+- measure handoff :: 95
+- test handoff :: 95
+- verify handoff :: 95
+- hold handoff :: 95
+- preserve handoff :: 95
+- split handoff :: 95
+- narrow handoff :: 95
+- under choke :: 95
+- within choke :: 95
+- across choke :: 95
+- between choke :: 95
+- through choke :: 95
+- before choke :: 95
+- after choke :: 95
+- until choke :: 95
+- where choke :: 95
+- while choke :: 95
+- choke evidence :: 94
+- choke support :: 94
+- choke path :: 94
+- choke surface :: 94
+- choke packet :: 94
+- choke receipt :: 94
+- choke trace :: 94
+- choke result :: 94
+- choke scope :: 94
+- choke boundary :: 94
+- choke status :: 94
+- choke candidate :: 94
+- choke witness :: 94
+- choke probe :: 94
+- choke constraint :: 94
+- check choke :: 94
+- compare choke :: 94
+- observe choke :: 94
+- measure choke :: 94
+- test choke :: 94
+- verify choke :: 94
+- hold choke :: 94
+- preserve choke :: 94
+- split choke :: 94
+- narrow choke :: 94
+- under leverage :: 93
+- within leverage :: 93
+- across leverage :: 93
+- between leverage :: 93
+- through leverage :: 93
+- before leverage :: 93
+- after leverage :: 93
+- until leverage :: 93
+- where leverage :: 93
+- while leverage :: 93
+- leverage evidence :: 93
+- leverage support :: 93
+- leverage path :: 93
+- leverage surface :: 93
+- leverage packet :: 93
+- leverage receipt :: 93
+- leverage trace :: 93
+- leverage result :: 93
+- leverage scope :: 93
+- leverage boundary :: 93
+- leverage status :: 93
+- leverage candidate :: 93
+- leverage witness :: 93
+- leverage probe :: 93
+- leverage constraint :: 93
+- check leverage :: 92
+- compare leverage :: 92
+- observe leverage :: 92
+- measure leverage :: 92
+- test leverage :: 92
+- verify leverage :: 92
+- hold leverage :: 92
+- preserve leverage :: 92
+- split leverage :: 92
+- narrow leverage :: 92
+- under drag :: 92
+- within drag :: 92
+- across drag :: 92
+- between drag :: 92
+- through drag :: 92
+- before drag :: 92
+- after drag :: 92
+- until drag :: 92
+- where drag :: 92
+- while drag :: 92
+- drag evidence :: 92
+- drag support :: 92
+- drag path :: 92
+- drag surface :: 92
+- drag packet :: 92
+- drag receipt :: 91
+- drag trace :: 91
+- drag result :: 91
+- drag scope :: 91
+- drag boundary :: 91
+- drag status :: 91
+- drag candidate :: 91
+- drag witness :: 91
+- drag probe :: 91
+- drag constraint :: 91
+- check drag :: 91
+- compare drag :: 91
+- observe drag :: 91
+- measure drag :: 91
+- test drag :: 91
+- verify drag :: 91
+- hold drag :: 91
+- preserve drag :: 91
+- split drag :: 91
+- narrow drag :: 91
+- under workstream :: 91
+- within workstream :: 91
+- across workstream :: 91
+- between workstream :: 91
+- through workstream :: 91
+- before workstream :: 90
+- after workstream :: 90
+- until workstream :: 90
+- where workstream :: 90
+- while workstream :: 90
+- workstream evidence :: 90
+- workstream support :: 90
+- workstream path :: 90
+- workstream surface :: 90
+- workstream packet :: 90
+- workstream receipt :: 90
+- workstream trace :: 90
+- workstream result :: 90
+- workstream scope :: 90
+- workstream boundary :: 90
+- workstream status :: 90
+- workstream candidate :: 90
+- workstream witness :: 90
+- workstream probe :: 90
+- workstream constraint :: 90
+- check workstream :: 90
+- compare workstream :: 90
+- observe workstream :: 90
+- measure workstream :: 90
+- test workstream :: 90
+- verify workstream :: 89
+- hold workstream :: 89
+- preserve workstream :: 89
+- split workstream :: 89
+- narrow workstream :: 89
+- under maintenance :: 89
+- within maintenance :: 89
+- across maintenance :: 89
+- between maintenance :: 89
+- through maintenance :: 89
+- before maintenance :: 89
+- after maintenance :: 89
+- until maintenance :: 89
+- where maintenance :: 89
+- while maintenance :: 89
+- maintenance evidence :: 89
+- maintenance support :: 89
+- maintenance path :: 89
+- maintenance surface :: 89
+- maintenance packet :: 89
+- maintenance receipt :: 89
+- maintenance trace :: 89
+- maintenance result :: 89
+- maintenance scope :: 89
+- maintenance boundary :: 89
+- maintenance status :: 88
+- maintenance candidate :: 88
+- maintenance witness :: 88
+- maintenance probe :: 88
+- maintenance constraint :: 88
+- check maintenance :: 88
+- compare maintenance :: 88
+- observe maintenance :: 88
+- measure maintenance :: 88
+- test maintenance :: 88
+- verify maintenance :: 88
+- hold maintenance :: 88
+- preserve maintenance :: 88
+- split maintenance :: 88
+- narrow maintenance :: 88
+- under unblock :: 88
+- within unblock :: 88
+- across unblock :: 88
+- between unblock :: 88
+- through unblock :: 88
+- before unblock :: 88
+- after unblock :: 88
+- until unblock :: 88
+- where unblock :: 88
+- while unblock :: 88
+- unblock evidence :: 87
+- unblock support :: 87
+- unblock path :: 87
+- unblock surface :: 87
+- unblock packet :: 87
+- unblock receipt :: 87
+- unblock trace :: 87
+- unblock result :: 87
+- unblock scope :: 87
+- unblock boundary :: 87
+- unblock status :: 87
+- unblock candidate :: 87
+- unblock witness :: 87
+- unblock probe :: 87
+- unblock constraint :: 87
+- system constraint :: 87
+- throughput accounting :: 87
+- queue length :: 87
+- bottleneck resource :: 87
+- flow efficiency :: 87
+- continuous improvement :: 87
+- choke point :: 87
+- cycle time :: 87
+- standard work :: 87
+- theory of constraints :: 87
+- drum buffer rope :: 86
+- work in process :: 86
+- bottleneck :: 86
+- queue :: 86
+- handoff :: 86
+- throughput :: 86
+- work in progress :: 86
+- wip :: 86
+- batch :: 86
+- flow :: 86
+- maintenance :: 86
+- repeatability :: 86
+- template :: 86
+- ownership :: 86
+- workcell :: 86
+- rate-limiter :: 86
+- leverage :: 86
+- capacity :: 86
+- latency :: 86
+- buffer :: 86
+- rework :: 86
+- under factory :: 86
+- under workcell :: 86
+- under flow :: 86
+- under capacity :: 86
+- under latency :: 85
+- under batch :: 85
+- under work :: 85
+- under progress :: 85
+- under wip :: 85
+- under repeatability :: 85
+- under template :: 85
+- under standard :: 85
+- under ownership :: 85
+- under checklist :: 85
+- under kanban :: 85
+- within factory :: 85
+- within workcell :: 85
+- within flow :: 85
+- within capacity :: 85
+- within latency :: 85
+- within batch :: 85
+- within work :: 85
+- within progress :: 85
+- within wip :: 85
+- within repeatability :: 85
+- within template :: 85
+- within standard :: 85
+- within ownership :: 85
+- within checklist :: 85
+- within kanban :: 84
+- across factory :: 84
+- across workcell :: 84
+- across flow :: 84
+- across capacity :: 84
+- across latency :: 84
+- across batch :: 84
+- across work :: 84
+- across progress :: 84
+- across wip :: 84
+- across repeatability :: 84
+- across template :: 84
+- across standard :: 84
+- across ownership :: 84
+- across checklist :: 84
+- across kanban :: 84
+- between factory :: 84
+- between workcell :: 84
+- between flow :: 84
+- between capacity :: 84
+- between latency :: 84
+- between batch :: 84
+- between work :: 84
+- between progress :: 84
+- between wip :: 84
+- between repeatability :: 83
+- between template :: 83
+- between standard :: 83
+- between ownership :: 83
+- between checklist :: 83
+- between kanban :: 83
+- through factory :: 83
+- through workcell :: 83
+- through flow :: 83
+- through capacity :: 83
+- through latency :: 83
+- through batch :: 83
+- through work :: 83
+- through progress :: 83
+- through wip :: 83
+- through repeatability :: 83
+- through template :: 83
+- through standard :: 83
+- through ownership :: 83
+- through checklist :: 83
+- through kanban :: 83
+- before factory :: 83
+- before workcell :: 83
+- before flow :: 83
+- before capacity :: 83
+- before latency :: 82
+- before batch :: 82
+- before work :: 82
+- before progress :: 82
+- before wip :: 82
+- before repeatability :: 82
+- before template :: 82
+- before standard :: 82
+- before ownership :: 82
+- before checklist :: 82
+- before kanban :: 82
+- after factory :: 82
+- after workcell :: 82
+- after flow :: 82
+- after capacity :: 82
+- after latency :: 82
+- after batch :: 82
+- after work :: 82
+- after progress :: 82
+- after wip :: 82
+- after repeatability :: 82
+- after template :: 82
+- after standard :: 82
+- after ownership :: 82
+- after checklist :: 82
+- after kanban :: 81
+- during factory :: 81
+- during throughput :: 81
+- during bottleneck :: 81
+- during queue :: 81
+- during handoff :: 81
+- during workcell :: 81
+- during flow :: 81
+- during capacity :: 81
+- during latency :: 81
+- during batch :: 81
+- during work :: 81
+- during progress :: 81
+- during wip :: 81
+- during maintenance :: 81
+- during repeatability :: 81
+- during template :: 81
+- during standard :: 81
+- during ownership :: 81
+- during checklist :: 81
+- during kanban :: 81
+- until factory :: 81
+- until workcell :: 81
+- until flow :: 81
+- until capacity :: 81
+- until latency :: 80
+- until batch :: 80
+- until work :: 80
+- until progress :: 80
+- until wip :: 80
+- until repeatability :: 80
+- until template :: 80
+- until standard :: 80
+- until ownership :: 80
+- until checklist :: 80
+- until kanban :: 80
+- since factory :: 80
+- since throughput :: 80
+- since bottleneck :: 80
+- since queue :: 80
+- since handoff :: 80
+- since workcell :: 80
+- since flow :: 80
+- since capacity :: 80
+- since latency :: 80
+- since batch :: 80
+- since work :: 80
+- since progress :: 80
+- since wip :: 80
+- since maintenance :: 80
+- since repeatability :: 79
+- since template :: 79
+- since standard :: 79
+- since ownership :: 79
+- since checklist :: 79
+- since kanban :: 79
+- from factory :: 79
+- from throughput :: 79
+- from bottleneck :: 79
+- from queue :: 79
+- from handoff :: 79
+- from workcell :: 79
+- from flow :: 79
+- from capacity :: 79
+- from latency :: 79
+- from batch :: 79
+- from work :: 79
+- from progress :: 79
+- from wip :: 79
+- from maintenance :: 79
+- from repeatability :: 79
+- from template :: 79
+- from standard :: 79
+- from ownership :: 79
+- from checklist :: 79
+- from kanban :: 78
+- by factory :: 78
+- by throughput :: 78
+- by bottleneck :: 78
+- by queue :: 78
+- by handoff :: 78
+- by workcell :: 78
+- by flow :: 78
+- by capacity :: 78
+- by latency :: 78
+- by batch :: 78
+- by work :: 78
+- by progress :: 78
+- by wip :: 78
+- by maintenance :: 78
+- by repeatability :: 78
+- by template :: 78
+- by standard :: 78
+- by ownership :: 78
+- by checklist :: 78
+- by kanban :: 78
+- with factory :: 78
+- with throughput :: 78
+- with bottleneck :: 78
+- with queue :: 78
+- with handoff :: 77
+- with workcell :: 77
+- with flow :: 77
+- with capacity :: 77
+- with latency :: 77
+- with batch :: 77
+- with work :: 77
+- with progress :: 77
+- with wip :: 77
+- with maintenance :: 77
+- with repeatability :: 77
+- with template :: 77
+- with standard :: 77
+- with ownership :: 77
+- with checklist :: 77
+- with kanban :: 77
+- without factory :: 77
+- without throughput :: 77
+- without bottleneck :: 77
+- without queue :: 77
+- without handoff :: 77
+- without workcell :: 77
+- without flow :: 77
+- without capacity :: 77
+- without latency :: 77
+- without batch :: 76
+- without work :: 76
+- without progress :: 76
+- without wip :: 76
+- without maintenance :: 76
+- without repeatability :: 76
+- without template :: 76
+- without standard :: 76
+- without ownership :: 76
+- without checklist :: 76
+- without kanban :: 76
+- against factory :: 76
+- against throughput :: 76
+- against bottleneck :: 76
+- against queue :: 76
+- against handoff :: 76
+- against workcell :: 76
+- against flow :: 76
+- against capacity :: 76
+- against latency :: 76
+- against batch :: 76
+- against work :: 76
+- against progress :: 76
+- against wip :: 76
+- against maintenance :: 76
+- against repeatability :: 75
+- against template :: 75
+- against standard :: 75
+- against ownership :: 75
+- against checklist :: 75
+- against kanban :: 75
+- toward factory :: 75
+- toward throughput :: 75
+- toward bottleneck :: 75
+- toward queue :: 75
+- toward handoff :: 75
+- toward workcell :: 75
+- toward flow :: 75
+- toward capacity :: 75
+- toward latency :: 75
+- toward batch :: 75
+- toward work :: 75
+- toward progress :: 75
+- toward wip :: 75
+- toward maintenance :: 75
+- toward repeatability :: 75
+- toward template :: 75
+- toward standard :: 75
+- toward ownership :: 75
+- toward checklist :: 75
+- toward kanban :: 74
+- near factory :: 74
+- near throughput :: 74
+- near bottleneck :: 74
+- near queue :: 74
+- near handoff :: 74
+- near workcell :: 74
+- near flow :: 74
+- near capacity :: 74
+- near latency :: 74
+- near batch :: 74
+- near work :: 74
+- near progress :: 74
+- near wip :: 74
+- near maintenance :: 74
+- near repeatability :: 74
+- near template :: 74
+- near standard :: 74
+- near ownership :: 74
+- near checklist :: 74
+- near kanban :: 74
+- relative factory :: 74
+- relative throughput :: 74
+- relative bottleneck :: 74
+- relative queue :: 74
+- relative handoff :: 73
+- relative workcell :: 73
+- relative flow :: 73
+- relative capacity :: 73
+- relative latency :: 73
+- relative batch :: 73
+- relative work :: 73
+- relative progress :: 73
+- relative wip :: 73
+- relative maintenance :: 73
+- relative repeatability :: 73
+- relative template :: 73
+- relative standard :: 73
+- relative ownership :: 73
+- relative checklist :: 73
+- relative kanban :: 73
+- factory throughput :: 73
+- factory bottleneck :: 73
+- factory queue :: 73
+- factory handoff :: 73
+- factory workcell :: 73
+- factory flow :: 73
+- factory capacity :: 73
+- factory latency :: 73
+- factory batch :: 73
+- factory work :: 72
+- factory progress :: 72
+- throughput bottleneck :: 72
+- throughput queue :: 72
+- throughput handoff :: 72
+- throughput workcell :: 72
+- throughput flow :: 72
+- throughput capacity :: 72
+- throughput latency :: 72
+- throughput batch :: 72
+- throughput work :: 72
+- throughput progress :: 72
+- throughput wip :: 72
+- bottleneck queue :: 72
+- bottleneck handoff :: 72
+- bottleneck workcell :: 72
+- bottleneck flow :: 72
+- bottleneck capacity :: 72
+- bottleneck latency :: 72
+- bottleneck batch :: 72
+- bottleneck work :: 72
+- bottleneck progress :: 72
+- bottleneck wip :: 72
+- bottleneck maintenance :: 72
+- queue handoff :: 72
+- queue workcell :: 71
+- queue flow :: 71
+- queue capacity :: 71
+- queue latency :: 71
+- queue batch :: 71
+- queue work :: 71
+- queue progress :: 71
+- queue wip :: 71
+- queue maintenance :: 71
+- queue repeatability :: 71
+- handoff workcell :: 71
+- handoff flow :: 71
+- handoff capacity :: 71
+- handoff latency :: 71
+- handoff batch :: 71
+- handoff work :: 71
+- handoff progress :: 71
+- handoff wip :: 71
+- handoff maintenance :: 71
+- handoff repeatability :: 71
+- handoff template :: 71
+- workcell flow :: 71
+- workcell capacity :: 71
+- workcell latency :: 71
+- workcell batch :: 71
+- workcell work :: 70
+- workcell progress :: 70
+- workcell wip :: 70
+- workcell maintenance :: 70
+- workcell repeatability :: 70
+- workcell template :: 70
+- workcell standard :: 70
+- flow capacity :: 70
+- flow latency :: 70
+- flow batch :: 70
+- flow work :: 70
+- flow progress :: 70
+- flow wip :: 70
+- flow maintenance :: 70
+- flow repeatability :: 70
+- flow template :: 70
+- flow standard :: 70
+- flow ownership :: 70
+- capacity latency :: 70
+- capacity batch :: 70
+- capacity work :: 70
+- capacity progress :: 70
+- capacity wip :: 70
+- capacity maintenance :: 70
+- capacity repeatability :: 70
+- capacity template :: 69
+- capacity standard :: 69
+- capacity ownership :: 69
+- capacity checklist :: 69
+- latency batch :: 69
+- latency work :: 69
+- latency progress :: 69
+- latency wip :: 69
+- latency maintenance :: 69
+- latency repeatability :: 69
+- latency template :: 69
+- latency standard :: 69
+- latency ownership :: 69
+- latency checklist :: 69
+- latency kanban :: 69
+- batch work :: 69
+- batch progress :: 69
+- batch wip :: 69
+- batch maintenance :: 69
+- batch repeatability :: 69
+- batch template :: 69
+- batch standard :: 69
+- batch ownership :: 69
+- batch checklist :: 69
+- batch kanban :: 69
+- batch drum :: 68
+- work progress :: 68
+- work wip :: 68
+- work maintenance :: 68
+- work repeatability :: 68
+- work template :: 68
+- work standard :: 68
+- work ownership :: 68
+- work checklist :: 68
+- work kanban :: 68
+- work drum :: 68
+- work buffer :: 68
+- progress wip :: 68
+- progress maintenance :: 68
+- progress repeatability :: 68
+- progress template :: 68
+- progress standard :: 68
+- progress ownership :: 68
+- progress checklist :: 68
+- progress kanban :: 68
+- progress drum :: 68
+- progress buffer :: 68
+- progress rope :: 68
+- wip maintenance :: 68
+- wip repeatability :: 68
+- wip template :: 67
+- wip standard :: 67
+- wip ownership :: 67
+- wip checklist :: 67
+- wip kanban :: 67
+- wip drum :: 67
+- wip buffer :: 67
+- wip rope :: 67
+- wip choke :: 67
+- maintenance repeatability :: 67
+- maintenance template :: 67
+- maintenance standard :: 67
+- maintenance ownership :: 67
+- maintenance checklist :: 67
+- maintenance kanban :: 67
+- maintenance drum :: 67
+- maintenance buffer :: 67
+- maintenance rope :: 67
+- maintenance choke :: 67
+- maintenance point :: 67
+- repeatability template :: 67
+- repeatability standard :: 67
+- repeatability ownership :: 67
+- repeatability checklist :: 67
+- repeatability kanban :: 67
+- repeatability drum :: 66
+- repeatability buffer :: 66
+- repeatability rope :: 66
+- repeatability choke :: 66
+- repeatability point :: 66
+- repeatability constraint :: 66
+- template standard :: 66
+- template ownership :: 66
+- template checklist :: 66
+- template kanban :: 66
+- template drum :: 66
+- template buffer :: 66
+- template rope :: 66
+- template choke :: 66
+- template point :: 66
+- template constraint :: 66
+- template rate :: 66
+- standard ownership :: 66
+- standard checklist :: 66
+- standard kanban :: 66
+- standard drum :: 66
+- standard buffer :: 66
+- standard rope :: 66
+- standard choke :: 66
+- standard point :: 66
+- standard constraint :: 65
+- standard rate :: 65
+- standard limiter :: 65
+- ownership checklist :: 65
+- ownership kanban :: 65
+- ownership drum :: 65
+- ownership buffer :: 65
+- ownership rope :: 65
+- ownership choke :: 65
+- ownership point :: 65
+- ownership constraint :: 65
+- ownership rate :: 65
+- ownership limiter :: 65
+- ownership drag :: 65
+- checklist kanban :: 65
+- checklist drum :: 65
+- checklist buffer :: 65
+- checklist rope :: 65
+- checklist choke :: 65
+- checklist point :: 65
+- checklist constraint :: 65
+- checklist rate :: 65
+- checklist limiter :: 65
+- checklist drag :: 65
+- checklist rework :: 65
+
+## triplets
+
+- under current bottleneck :: 100
+- under local bottleneck :: 100
+- under bounded bottleneck :: 100
+- under finite bottleneck :: 100
+- under open bottleneck :: 100
+- under live bottleneck :: 100
+- within current bottleneck :: 100
+- within local bottleneck :: 100
+- within bounded bottleneck :: 100
+- within finite bottleneck :: 100
+- within open bottleneck :: 100
+- within live bottleneck :: 100
+- across current bottleneck :: 100
+- across local bottleneck :: 100
+- across bounded bottleneck :: 100
+- across finite bottleneck :: 100
+- across open bottleneck :: 100
+- across live bottleneck :: 100
+- between current bottleneck :: 100
+- between local bottleneck :: 100
+- between bounded bottleneck :: 100
+- between finite bottleneck :: 100
+- between open bottleneck :: 100
+- between live bottleneck :: 100
+- through current bottleneck :: 100
+- through local bottleneck :: 99
+- through bounded bottleneck :: 99
+- through finite bottleneck :: 99
+- through open bottleneck :: 99
+- through live bottleneck :: 99
+- before current bottleneck :: 99
+- before local bottleneck :: 99
+- before bounded bottleneck :: 99
+- before finite bottleneck :: 99
+- before open bottleneck :: 99
+- before live bottleneck :: 99
+- bottleneck evidence path :: 99
+- bottleneck support path :: 99
+- bottleneck path path :: 99
+- bottleneck surface path :: 99
+- bottleneck packet path :: 99
+- bottleneck receipt path :: 99
+- bottleneck trace path :: 99
+- bottleneck result path :: 99
+- bottleneck scope path :: 99
+- bottleneck boundary path :: 99
+- check bottleneck receipt :: 99
+- compare bottleneck receipt :: 99
+- observe bottleneck receipt :: 99
+- measure bottleneck receipt :: 99
+- test bottleneck receipt :: 98
+- verify bottleneck receipt :: 98
+- hold bottleneck receipt :: 98
+- preserve bottleneck receipt :: 98
+- under current queue :: 98
+- under local queue :: 98
+- under bounded queue :: 98
+- under finite queue :: 98
+- under open queue :: 98
+- under live queue :: 98
+- within current queue :: 98
+- within local queue :: 98
+- within bounded queue :: 98
+- within finite queue :: 98
+- within open queue :: 98
+- within live queue :: 98
+- across current queue :: 98
+- across local queue :: 98
+- across bounded queue :: 98
+- across finite queue :: 98
+- across open queue :: 98
+- across live queue :: 98
+- between current queue :: 98
+- between local queue :: 98
+- between bounded queue :: 98
+- between finite queue :: 97
+- between open queue :: 97
+- between live queue :: 97
+- through current queue :: 97
+- through local queue :: 97
+- through bounded queue :: 97
+- through finite queue :: 97
+- through open queue :: 97
+- through live queue :: 97
+- before current queue :: 97
+- before local queue :: 97
+- before bounded queue :: 97
+- before finite queue :: 97
+- before open queue :: 97
+- before live queue :: 97
+- queue evidence path :: 97
+- queue support path :: 97
+- queue path path :: 97
+- queue surface path :: 97
+- queue packet path :: 97
+- queue receipt path :: 97
+- queue trace path :: 97
+- queue result path :: 97
+- queue scope path :: 97
+- queue boundary path :: 97
+- check queue receipt :: 96
+- compare queue receipt :: 96
+- observe queue receipt :: 96
+- measure queue receipt :: 96
+- test queue receipt :: 96
+- verify queue receipt :: 96
+- hold queue receipt :: 96
+- preserve queue receipt :: 96
+- under current throughput :: 96
+- under local throughput :: 96
+- under bounded throughput :: 96
+- under finite throughput :: 96
+- under open throughput :: 96
+- under live throughput :: 96
+- within current throughput :: 96
+- within local throughput :: 96
+- within bounded throughput :: 96
+- within finite throughput :: 96
+- within open throughput :: 96
+- within live throughput :: 96
+- across current throughput :: 96
+- across local throughput :: 96
+- across bounded throughput :: 96
+- across finite throughput :: 96
+- across open throughput :: 96
+- across live throughput :: 95
+- between current throughput :: 95
+- between local throughput :: 95
+- between bounded throughput :: 95
+- between finite throughput :: 95
+- between open throughput :: 95
+- between live throughput :: 95
+- through current throughput :: 95
+- through local throughput :: 95
+- through bounded throughput :: 95
+- through finite throughput :: 95
+- through open throughput :: 95
+- through live throughput :: 95
+- before current throughput :: 95
+- before local throughput :: 95
+- before bounded throughput :: 95
+- before finite throughput :: 95
+- before open throughput :: 95
+- before live throughput :: 95
+- throughput evidence path :: 95
+- throughput support path :: 95
+- throughput path path :: 95
+- throughput surface path :: 95
+- throughput packet path :: 95
+- throughput receipt path :: 95
+- throughput trace path :: 94
+- throughput result path :: 94
+- throughput scope path :: 94
+- throughput boundary path :: 94
+- check throughput receipt :: 94
+- compare throughput receipt :: 94
+- observe throughput receipt :: 94
+- measure throughput receipt :: 94
+- test throughput receipt :: 94
+- verify throughput receipt :: 94
+- hold throughput receipt :: 94
+- preserve throughput receipt :: 94
+- under current handoff :: 94
+- under local handoff :: 94
+- under bounded handoff :: 94
+- under finite handoff :: 94
+- under open handoff :: 94
+- under live handoff :: 94
+- within current handoff :: 94
+- within local handoff :: 94
+- within bounded handoff :: 94
+- within finite handoff :: 94
+- within open handoff :: 94
+- within live handoff :: 94
+- across current handoff :: 94
+- across local handoff :: 93
+- across bounded handoff :: 93
+- across finite handoff :: 93
+- across open handoff :: 93
+- across live handoff :: 93
+- between current handoff :: 93
+- between local handoff :: 93
+- between bounded handoff :: 93
+- between finite handoff :: 93
+- between open handoff :: 93
+- between live handoff :: 93
+- through current handoff :: 93
+- through local handoff :: 93
+- through bounded handoff :: 93
+- through finite handoff :: 93
+- through open handoff :: 93
+- through live handoff :: 93
+- before current handoff :: 93
+- before local handoff :: 93
+- before bounded handoff :: 93
+- before finite handoff :: 93
+- before open handoff :: 93
+- before live handoff :: 93
+- handoff evidence path :: 93
+- handoff support path :: 93
+- handoff path path :: 92
+- handoff surface path :: 92
+- handoff packet path :: 92
+- handoff receipt path :: 92
+- handoff trace path :: 92
+- handoff result path :: 92
+- handoff scope path :: 92
+- handoff boundary path :: 92
+- check handoff receipt :: 92
+- compare handoff receipt :: 92
+- observe handoff receipt :: 92
+- measure handoff receipt :: 92
+- test handoff receipt :: 92
+- verify handoff receipt :: 92
+- hold handoff receipt :: 92
+- preserve handoff receipt :: 92
+- under current choke :: 92
+- under local choke :: 92
+- under bounded choke :: 92
+- under finite choke :: 92
+- under open choke :: 92
+- under live choke :: 92
+- within current choke :: 92
+- within local choke :: 92
+- within bounded choke :: 92
+- within finite choke :: 91
+- within open choke :: 91
+- within live choke :: 91
+- across current choke :: 91
+- across local choke :: 91
+- across bounded choke :: 91
+- across finite choke :: 91
+- across open choke :: 91
+- across live choke :: 91
+- between current choke :: 91
+- between local choke :: 91
+- between bounded choke :: 91
+- between finite choke :: 91
+- between open choke :: 91
+- between live choke :: 91
+- theory of constraints :: 91
+- drum buffer rope :: 91
+- work in process :: 91
+- work in progress :: 91
+- under factory throughput :: 91
+- under factory bottleneck :: 91
+- under factory queue :: 91
+- under factory handoff :: 91
+- under throughput bottleneck :: 91
+- under throughput queue :: 91
+- under throughput handoff :: 90
+- under throughput workcell :: 90
+- under bottleneck queue :: 90
+- under bottleneck handoff :: 90
+- under bottleneck workcell :: 90
+- under bottleneck flow :: 90
+- under queue handoff :: 90
+- under queue workcell :: 90
+- under queue flow :: 90
+- under queue capacity :: 90
+- under handoff workcell :: 90
+- under handoff flow :: 90
+- under handoff capacity :: 90
+- under handoff latency :: 90
+- under workcell flow :: 90
+- under workcell capacity :: 90
+- under workcell latency :: 90
+- under workcell batch :: 90
+- under flow capacity :: 90
+- under flow latency :: 90
+- under flow batch :: 90
+- under flow work :: 90
+- under capacity latency :: 90
+- under capacity batch :: 90
+- under capacity work :: 90
+- under capacity progress :: 89
+- under latency batch :: 89
+- under latency work :: 89
+- under latency progress :: 89
+- under latency wip :: 89
+- under batch work :: 89
+- under batch progress :: 89
+- under batch wip :: 89
+- under batch maintenance :: 89
+- under work progress :: 89
+- under work wip :: 89
+- under work maintenance :: 89
+- under work repeatability :: 89
+- under progress wip :: 89
+- under progress maintenance :: 89
+- under progress repeatability :: 89
+- under progress template :: 89
+- under wip maintenance :: 89
+- under wip repeatability :: 89
+- under wip template :: 89
+- under wip standard :: 89
+- under maintenance repeatability :: 89
+- under maintenance template :: 89
+- under maintenance standard :: 89
+- under maintenance ownership :: 89
+- under repeatability template :: 88
+- under repeatability standard :: 88
+- under repeatability ownership :: 88
+- under repeatability checklist :: 88
+- under template standard :: 88
+- under template ownership :: 88
+- under template checklist :: 88
+- under template kanban :: 88
+- under standard ownership :: 88
+- under standard checklist :: 88
+- under standard kanban :: 88
+- under standard drum :: 88
+- under ownership checklist :: 88
+- under ownership kanban :: 88
+- under ownership drum :: 88
+- under ownership buffer :: 88
+- under checklist kanban :: 88
+- under checklist drum :: 88
+- under checklist buffer :: 88
+- under checklist rope :: 88
+- under kanban drum :: 88
+- under kanban buffer :: 88
+- under kanban rope :: 88
+- under kanban choke :: 88
+- within factory throughput :: 88
+- within factory bottleneck :: 87
+- within factory queue :: 87
+- within factory handoff :: 87
+- within throughput bottleneck :: 87
+- within throughput queue :: 87
+- within throughput handoff :: 87
+- within throughput workcell :: 87
+- within bottleneck queue :: 87
+- within bottleneck handoff :: 87
+- within bottleneck workcell :: 87
+- within bottleneck flow :: 87
+- within queue handoff :: 87
+- within queue workcell :: 87
+- within queue flow :: 87
+- within queue capacity :: 87
+- within handoff workcell :: 87
+- within handoff flow :: 87
+- within handoff capacity :: 87
+- within handoff latency :: 87
+- within workcell flow :: 87
+- within workcell capacity :: 87
+- within workcell latency :: 87
+- within workcell batch :: 87
+- within flow capacity :: 87
+- within flow latency :: 87
+- within flow batch :: 86
+- within flow work :: 86
+- within capacity latency :: 86
+- within capacity batch :: 86
+- within capacity work :: 86
+- within capacity progress :: 86
+- within latency batch :: 86
+- within latency work :: 86
+- within latency progress :: 86
+- within latency wip :: 86
+- within batch work :: 86
+- within batch progress :: 86
+- within batch wip :: 86
+- within batch maintenance :: 86
+- within work progress :: 86
+- within work wip :: 86
+- within work maintenance :: 86
+- within work repeatability :: 86
+- within progress wip :: 86
+- within progress maintenance :: 86
+- within progress repeatability :: 86
+- within progress template :: 86
+- within wip maintenance :: 86
+- within wip repeatability :: 86
+- within wip template :: 86
+- within wip standard :: 85
+- within maintenance repeatability :: 85
+- within maintenance template :: 85
+- within maintenance standard :: 85
+- within maintenance ownership :: 85
+- within repeatability template :: 85
+- within repeatability standard :: 85
+- within repeatability ownership :: 85
+- within repeatability checklist :: 85
+- within template standard :: 85
+- within template ownership :: 85
+- within template checklist :: 85
+- within template kanban :: 85
+- within standard ownership :: 85
+- within standard checklist :: 85
+- within standard kanban :: 85
+- within standard drum :: 85
+- within ownership checklist :: 85
+- within ownership kanban :: 85
+- within ownership drum :: 85
+- within ownership buffer :: 85
+- within checklist kanban :: 85
+- within checklist drum :: 85
+- within checklist buffer :: 85
+- within checklist rope :: 85
+- within kanban drum :: 84
+- within kanban buffer :: 84
+- within kanban rope :: 84
+- within kanban choke :: 84
+- across factory throughput :: 84
+- across factory bottleneck :: 84
+- across factory queue :: 84
+- across factory handoff :: 84
+- across throughput bottleneck :: 84
+- across throughput queue :: 84
+- across throughput handoff :: 84
+- across throughput workcell :: 84
+- across bottleneck queue :: 84
+- across bottleneck handoff :: 84
+- across bottleneck workcell :: 84
+- across bottleneck flow :: 84
+- across queue handoff :: 84
+- across queue workcell :: 84
+- across queue flow :: 84
+- across queue capacity :: 84
+- across handoff workcell :: 84
+- across handoff flow :: 84
+- across handoff capacity :: 84
+- across handoff latency :: 84
+- across workcell flow :: 84
+- across workcell capacity :: 83
+- across workcell latency :: 83
+- across workcell batch :: 83
+- across flow capacity :: 83
+- across flow latency :: 83
+- across flow batch :: 83
+- across flow work :: 83
+- across capacity latency :: 83
+- across capacity batch :: 83
+- across capacity work :: 83
+- across capacity progress :: 83
+- across latency batch :: 83
+- across latency work :: 83
+- across latency progress :: 83
+- across latency wip :: 83
+- across batch work :: 83
+- across batch progress :: 83
+- across batch wip :: 83
+- across batch maintenance :: 83
+- across work progress :: 83
+- across work wip :: 83
+- across work maintenance :: 83
+- across work repeatability :: 83
+- across progress wip :: 83
+- across progress maintenance :: 83
+- across progress repeatability :: 82
+- across progress template :: 82
+- across wip maintenance :: 82
+- across wip repeatability :: 82
+- across wip template :: 82
+- across wip standard :: 82
+- across maintenance repeatability :: 82
+- across maintenance template :: 82
+- across maintenance standard :: 82
+- across maintenance ownership :: 82
+- across repeatability template :: 82
+- across repeatability standard :: 82
+- across repeatability ownership :: 82
+- across repeatability checklist :: 82
+- across template standard :: 82
+- across template ownership :: 82
+- across template checklist :: 82
+- across template kanban :: 82
+- across standard ownership :: 82
+- across standard checklist :: 82
+- across standard kanban :: 82
+- across standard drum :: 82
+- across ownership checklist :: 82
+- across ownership kanban :: 82
+- across ownership drum :: 82
+- across ownership buffer :: 81
+- across checklist kanban :: 81
+- across checklist drum :: 81
+- across checklist buffer :: 81
+- across checklist rope :: 81
+- across kanban drum :: 81
+- across kanban buffer :: 81
+- across kanban rope :: 81
+- across kanban choke :: 81
+- between factory throughput :: 81
+- between factory bottleneck :: 81
+- between factory queue :: 81
+- between factory handoff :: 81
+- between throughput bottleneck :: 81
+- between throughput queue :: 81
+- between throughput handoff :: 81
+- between throughput workcell :: 81
+- between bottleneck queue :: 81
+- between bottleneck handoff :: 81
+- between bottleneck workcell :: 81
+- between bottleneck flow :: 81
+- between queue handoff :: 81
+- between queue workcell :: 81
+- between queue flow :: 81
+- between queue capacity :: 81
+- between handoff workcell :: 80
+- between handoff flow :: 80
+- between handoff capacity :: 80
+- between handoff latency :: 80
+- between workcell flow :: 80
+- between workcell capacity :: 80
+- between workcell latency :: 80
+- between workcell batch :: 80
+- between flow capacity :: 80
+- between flow latency :: 80
+- between flow batch :: 80
+- between flow work :: 80
+- between capacity latency :: 80
+- between capacity batch :: 80
+- between capacity work :: 80
+- between capacity progress :: 80
+- between latency batch :: 80
+- between latency work :: 80
+- between latency progress :: 80
+- between latency wip :: 80
+- between batch work :: 80
+- between batch progress :: 80
+- between batch wip :: 80
+- between batch maintenance :: 80
+- between work progress :: 80
+- between work wip :: 79
+- between work maintenance :: 79
+- between work repeatability :: 79
+- between progress wip :: 79
+- between progress maintenance :: 79
+- between progress repeatability :: 79
+- between progress template :: 79
+- between wip maintenance :: 79
+- between wip repeatability :: 79
+- between wip template :: 79
+- between wip standard :: 79
+- between maintenance repeatability :: 79
+- between maintenance template :: 79
+- between maintenance standard :: 79
+- between maintenance ownership :: 79
+- between repeatability template :: 79
+- between repeatability standard :: 79
+- between repeatability ownership :: 79
+- between repeatability checklist :: 79
+- between template standard :: 79
+- between template ownership :: 79
+- between template checklist :: 79
+- between template kanban :: 79
+- between standard ownership :: 79
+- between standard checklist :: 79
+- between standard kanban :: 78
+- between standard drum :: 78
+- between ownership checklist :: 78
+- between ownership kanban :: 78
+- between ownership drum :: 78
+- between ownership buffer :: 78
+- between checklist kanban :: 78
+- between checklist drum :: 78
+- between checklist buffer :: 78
+- between checklist rope :: 78
+- between kanban drum :: 78
+- between kanban buffer :: 78
+- between kanban rope :: 78
+- between kanban choke :: 78
+- through factory throughput :: 78
+- through factory bottleneck :: 78
+- through factory queue :: 78
+- through factory handoff :: 78
+- through throughput bottleneck :: 78
+- through throughput queue :: 78
+- through throughput handoff :: 78
+- through throughput workcell :: 78
+- through bottleneck queue :: 78
+- through bottleneck handoff :: 78
+- through bottleneck workcell :: 78
+- through bottleneck flow :: 77
+- through queue handoff :: 77
+- through queue workcell :: 77
+- through queue flow :: 77
+- through queue capacity :: 77
+- through handoff workcell :: 77
+- through handoff flow :: 77
+- through handoff capacity :: 77
+- through handoff latency :: 77
+- through workcell flow :: 77
+- through workcell capacity :: 77
+- through workcell latency :: 77
+- through workcell batch :: 77
+- through flow capacity :: 77
+- through flow latency :: 77
+- through flow batch :: 77
+- through flow work :: 77
+- through capacity latency :: 77
+- through capacity batch :: 77
+- through capacity work :: 77
+- through capacity progress :: 77
+- through latency batch :: 77
+- through latency work :: 77
+- through latency progress :: 77
+- through latency wip :: 77
+- through batch work :: 76
+- through batch progress :: 76
+- through batch wip :: 76
+- through batch maintenance :: 76
+- through work progress :: 76
+- through work wip :: 76
+- through work maintenance :: 76
+- through work repeatability :: 76
+- through progress wip :: 76
+- through progress maintenance :: 76
+- through progress repeatability :: 76
+- through progress template :: 76
+- through wip maintenance :: 76
+- through wip repeatability :: 76
+- through wip template :: 76
+- through wip standard :: 76
+- through maintenance repeatability :: 76
+- through maintenance template :: 76
+- through maintenance standard :: 76
+- through maintenance ownership :: 76
+- through repeatability template :: 76
+- through repeatability standard :: 76
+- through repeatability ownership :: 76
+- through repeatability checklist :: 76
+- through template standard :: 76
+- through template ownership :: 75
+- through template checklist :: 75
+- through template kanban :: 75
+- through standard ownership :: 75
+- through standard checklist :: 75
+- through standard kanban :: 75
+- through standard drum :: 75
+- through ownership checklist :: 75
+- through ownership kanban :: 75
+- through ownership drum :: 75
+- through ownership buffer :: 75
+- through checklist kanban :: 75
+- through checklist drum :: 75
+- through checklist buffer :: 75
+- through checklist rope :: 75
+- through kanban drum :: 75
+- through kanban buffer :: 75
+- through kanban rope :: 75
+- through kanban choke :: 75
+- before factory throughput :: 75
+- before factory bottleneck :: 75
+- before factory queue :: 75
+- before factory handoff :: 75
+- before throughput bottleneck :: 75
+- before throughput queue :: 75
+- before throughput handoff :: 74
+- before throughput workcell :: 74
+- before bottleneck queue :: 74
+- before bottleneck handoff :: 74
+- before bottleneck workcell :: 74
+- before bottleneck flow :: 74
+- before queue handoff :: 74
+- before queue workcell :: 74
+- before queue flow :: 74
+- before queue capacity :: 74
+- before handoff workcell :: 74
+- before handoff flow :: 74
+- before handoff capacity :: 74
+- before handoff latency :: 74
+- before workcell flow :: 74
+- before workcell capacity :: 74
+- before workcell latency :: 74
+- before workcell batch :: 74
+- before flow capacity :: 74
+- before flow latency :: 74
+- before flow batch :: 74
+- before flow work :: 74
+- before capacity latency :: 74
+- before capacity batch :: 74
+- before capacity work :: 74
+- before capacity progress :: 73
+- before latency batch :: 73
+- before latency work :: 73
+- before latency progress :: 73
+- before latency wip :: 73
+- before batch work :: 73
+- before batch progress :: 73
+- before batch wip :: 73
+- before batch maintenance :: 73
+- before work progress :: 73
+- before work wip :: 73
+- before work maintenance :: 73
+- before work repeatability :: 73
+- before progress wip :: 73
+- before progress maintenance :: 73
+- before progress repeatability :: 73
+- before progress template :: 73
+- before wip maintenance :: 73
+- before wip repeatability :: 73
+- before wip template :: 73
+- before wip standard :: 73
+- before maintenance repeatability :: 73
+- before maintenance template :: 73
+- before maintenance standard :: 73
+- before maintenance ownership :: 73
+- before repeatability template :: 72
+- before repeatability standard :: 72
+- before repeatability ownership :: 72
+- before repeatability checklist :: 72
+- before template standard :: 72
+- before template ownership :: 72
+- before template checklist :: 72
+- before template kanban :: 72
+- before standard ownership :: 72
+- before standard checklist :: 72
+- before standard kanban :: 72
+- before standard drum :: 72
+- before ownership checklist :: 72
+- before ownership kanban :: 72
+- before ownership drum :: 72
+- before ownership buffer :: 72
+- before checklist kanban :: 72
+- before checklist drum :: 72
+- before checklist buffer :: 72
+- before checklist rope :: 72
+- before kanban drum :: 72
+- before kanban buffer :: 72
+- before kanban rope :: 72
+- before kanban choke :: 72
+- after factory throughput :: 72
+- after factory bottleneck :: 71
+- after factory queue :: 71
+- after factory handoff :: 71
+- after throughput bottleneck :: 71
+- after throughput queue :: 71
+- after throughput handoff :: 71
+- after throughput workcell :: 71
+- after bottleneck queue :: 71
+- after bottleneck handoff :: 71
+- after bottleneck workcell :: 71
+- after bottleneck flow :: 71
+- after queue handoff :: 71
+- after queue workcell :: 71
+- after queue flow :: 71
+- after queue capacity :: 71
+- after handoff workcell :: 71
+- after handoff flow :: 71
+- after handoff capacity :: 71
+- after handoff latency :: 71
+- after workcell flow :: 71
+- after workcell capacity :: 71
+- after workcell latency :: 71
+- after workcell batch :: 71
+- after flow capacity :: 71
+- after flow latency :: 71
+- after flow batch :: 70
+- after flow work :: 70
+- after capacity latency :: 70
+- after capacity batch :: 70
+- after capacity work :: 70
+- after capacity progress :: 70
+- after latency batch :: 70
+- after latency work :: 70
+- after latency progress :: 70
+- after latency wip :: 70
+- after batch work :: 70
+- after batch progress :: 70
+- after batch wip :: 70
+- after batch maintenance :: 70
+- after work progress :: 70
+- after work wip :: 70
+- after work maintenance :: 70
+- after work repeatability :: 70
+- after progress wip :: 70
+- after progress maintenance :: 70
+- after progress repeatability :: 70
+- after progress template :: 70
+- after wip maintenance :: 70
+- after wip repeatability :: 70
+- after wip template :: 70
+- after wip standard :: 69
+- after maintenance repeatability :: 69
+- after maintenance template :: 69
+- after maintenance standard :: 69
+- after maintenance ownership :: 69
+- after repeatability template :: 69
+- after repeatability standard :: 69
+- after repeatability ownership :: 69
+- after repeatability checklist :: 69
+- after template standard :: 69
+- after template ownership :: 69
+- after template checklist :: 69
+- after template kanban :: 69
+- after standard ownership :: 69
+- after standard checklist :: 69
+- after standard kanban :: 69
+- after standard drum :: 69
+- after ownership checklist :: 69
+- after ownership kanban :: 69
+- after ownership drum :: 69
+- after ownership buffer :: 69
+- after checklist kanban :: 69
+- after checklist drum :: 69
+- after checklist buffer :: 69
+- after checklist rope :: 69
+- after kanban drum :: 68
+- after kanban buffer :: 68
+- after kanban rope :: 68
+- after kanban choke :: 68
+- during factory throughput :: 68
+- during factory bottleneck :: 68
+- during factory queue :: 68
+- during factory handoff :: 68
+- during throughput bottleneck :: 68
+- during throughput queue :: 68
+- during throughput handoff :: 68
+- during throughput workcell :: 68
+- during bottleneck queue :: 68
+- during bottleneck handoff :: 68
+- during bottleneck workcell :: 68
+- during bottleneck flow :: 68
+- during queue handoff :: 68
+- during queue workcell :: 68
+- during queue flow :: 68
+- during queue capacity :: 68
+- during handoff workcell :: 68
+- during handoff flow :: 68
+- during handoff capacity :: 68
+- during handoff latency :: 68
+- during workcell flow :: 68
+- during workcell capacity :: 67
+- during workcell latency :: 67
+- during workcell batch :: 67
+- during flow capacity :: 67
+- during flow latency :: 67
+- during flow batch :: 67
+- during flow work :: 67
+- during capacity latency :: 67
+- during capacity batch :: 67
+- during capacity work :: 67
+- during capacity progress :: 67
+- during latency batch :: 67
+- during latency work :: 67
+- during latency progress :: 67
+- during latency wip :: 67
+- during batch work :: 67
+- during batch progress :: 67
+- during batch wip :: 67
+- during batch maintenance :: 67
+- during work progress :: 67
+- during work wip :: 67
+- during work maintenance :: 67
+- during work repeatability :: 67
+- during progress wip :: 67
+- during progress maintenance :: 67
+- during progress repeatability :: 66
+- during progress template :: 66
+- during wip maintenance :: 66
+- during wip repeatability :: 66
+- during wip template :: 66
+- during wip standard :: 66
+- during maintenance repeatability :: 66
+- during maintenance template :: 66
+- during maintenance standard :: 66
+- during maintenance ownership :: 66
+- during repeatability template :: 66
+- during repeatability standard :: 66
+- during repeatability ownership :: 66
+- during repeatability checklist :: 66
+- during template standard :: 66
+- during template ownership :: 66
+- during template checklist :: 66
+- during template kanban :: 66
+- during standard ownership :: 66
+- during standard checklist :: 66
+- during standard kanban :: 66
+- during standard drum :: 66
+- during ownership checklist :: 66
+- during ownership kanban :: 66
+- during ownership drum :: 66
+- during ownership buffer :: 65
+- during checklist kanban :: 65
+- during checklist drum :: 65
+- during checklist buffer :: 65
+- during checklist rope :: 65
+- during kanban drum :: 65
+- during kanban buffer :: 65
+- during kanban rope :: 65
+- during kanban choke :: 65
+- until factory throughput :: 65
+- until factory bottleneck :: 65
+- until factory queue :: 65
+- until factory handoff :: 65
+- until throughput bottleneck :: 65
+- until throughput queue :: 65
+- until throughput handoff :: 65
+- until throughput workcell :: 65
+- until bottleneck queue :: 65
+- until bottleneck handoff :: 65
+- until bottleneck workcell :: 65
+- until bottleneck flow :: 65
+- until queue handoff :: 65
+- until queue workcell :: 65
+- until queue flow :: 65
+- until queue capacity :: 65
+- until handoff workcell :: 64
+- until handoff flow :: 64
+- until handoff capacity :: 64
+- until handoff latency :: 64
+- until workcell flow :: 64
+- until workcell capacity :: 64
+- until workcell latency :: 64
+- until workcell batch :: 64
+- until flow capacity :: 64
+- until flow latency :: 64
+- until flow batch :: 64
+- until flow work :: 64
+- until capacity latency :: 64
+- until capacity batch :: 64
+- until capacity work :: 64
+- until capacity progress :: 64
+- until latency batch :: 64
+- until latency work :: 64
+- until latency progress :: 64
+- until latency wip :: 64
+- until batch work :: 64
+- until batch progress :: 64
+- until batch wip :: 64
+- until batch maintenance :: 64
+- until work progress :: 64
+- until work wip :: 63
+- until work maintenance :: 63
+- until work repeatability :: 63
+- until progress wip :: 63
+- until progress maintenance :: 63
+- until progress repeatability :: 63
+- until progress template :: 63
+- until wip maintenance :: 63
+- until wip repeatability :: 63
+- until wip template :: 63
+- until wip standard :: 63
+- until maintenance repeatability :: 63
+- until maintenance template :: 63
+- until maintenance standard :: 63
+- until maintenance ownership :: 63
+- until repeatability template :: 63
+- until repeatability standard :: 63
+- until repeatability ownership :: 63
+- until repeatability checklist :: 63
+- until template standard :: 63
+- until template ownership :: 63
+- until template checklist :: 63
+- until template kanban :: 63
+- until standard ownership :: 63
+- until standard checklist :: 63
+- until standard kanban :: 62
+- until standard drum :: 62
+- until ownership checklist :: 62
+- until ownership kanban :: 62
+- until ownership drum :: 62
+- until ownership buffer :: 62
+- until checklist kanban :: 62
+- until checklist drum :: 62
+- until checklist buffer :: 62
+- until checklist rope :: 62
+- until kanban drum :: 62
+- until kanban buffer :: 62
+- until kanban rope :: 62
+- until kanban choke :: 62
+- since factory throughput :: 62
+- since factory bottleneck :: 62
+- since factory queue :: 62
+- since factory handoff :: 62
+- since throughput bottleneck :: 62
+- since throughput queue :: 62
+- since throughput handoff :: 62
+- since throughput workcell :: 62
+- since bottleneck queue :: 62
+- since bottleneck handoff :: 62
+- since bottleneck workcell :: 62
+- since bottleneck flow :: 61
+- since queue handoff :: 61
+- since queue workcell :: 61
+- since queue flow :: 61
+- since queue capacity :: 61
+- since handoff workcell :: 61
+- since handoff flow :: 61
+- since handoff capacity :: 61
+- since handoff latency :: 61
+- since workcell flow :: 61
+- since workcell capacity :: 61
+- since workcell latency :: 61
+- since workcell batch :: 61
+- since flow capacity :: 61
+- since flow latency :: 61
+- since flow batch :: 61
+- since flow work :: 61
+- since capacity latency :: 61
+- since capacity batch :: 61
+- since capacity work :: 61
+- since capacity progress :: 61
+- since latency batch :: 61
+- since latency work :: 61
+- since latency progress :: 61
+- since latency wip :: 61
+- since batch work :: 60
+- since batch progress :: 60
+- since batch wip :: 60
+- since batch maintenance :: 60
+- since work progress :: 60
+- since work wip :: 60
+- since work maintenance :: 60
+- since work repeatability :: 60
+- since progress wip :: 60
+- since progress maintenance :: 60
+- since progress repeatability :: 60
+- since progress template :: 60
+- since wip maintenance :: 60
+- since wip repeatability :: 60
+- since wip template :: 60
+- since wip standard :: 60
+- since maintenance repeatability :: 60
+- since maintenance template :: 60
+- since maintenance standard :: 60
+- since maintenance ownership :: 60
+- since repeatability template :: 60
+- since repeatability standard :: 60
+- since repeatability ownership :: 60
+- since repeatability checklist :: 60
+- since template standard :: 60
+- since template ownership :: 59
+- since template checklist :: 59
+- since template kanban :: 59
+- since standard ownership :: 59
+- since standard checklist :: 59
+- since standard kanban :: 59
+- since standard drum :: 59
+- since ownership checklist :: 59
+- since ownership kanban :: 59
+- since ownership drum :: 59
+- since ownership buffer :: 59
+- since checklist kanban :: 59
+- since checklist drum :: 59
+- since checklist buffer :: 59
+- since checklist rope :: 59
+- since kanban drum :: 59
+- since kanban buffer :: 59
+- since kanban rope :: 59
+- since kanban choke :: 59
+- factory throughput bottleneck :: 59
+- factory throughput queue :: 59
+- factory throughput handoff :: 59
+- factory bottleneck queue :: 59
+- factory bottleneck handoff :: 59
+- factory queue bottleneck :: 59
+- factory queue handoff :: 58
+- factory handoff bottleneck :: 58
+- factory handoff queue :: 58
+- factory workcell bottleneck :: 58
+- factory workcell queue :: 58
+- factory workcell handoff :: 58
+- throughput bottleneck queue :: 58
+- throughput bottleneck handoff :: 58
+- throughput bottleneck workcell :: 58
+- throughput queue handoff :: 58
+- throughput queue workcell :: 58
+- throughput handoff queue :: 58
+- throughput handoff workcell :: 58
+- throughput workcell queue :: 58
+- throughput workcell handoff :: 58
+- throughput flow queue :: 58
+- throughput flow handoff :: 58
+- throughput flow workcell :: 58
+- bottleneck queue handoff :: 58
+- bottleneck queue workcell :: 58
+- bottleneck queue flow :: 58
+- bottleneck handoff workcell :: 58
+- bottleneck handoff flow :: 58
+- bottleneck workcell handoff :: 58
+- bottleneck workcell flow :: 58
+- bottleneck flow handoff :: 57
+- bottleneck flow workcell :: 57
+- bottleneck capacity handoff :: 57
+- bottleneck capacity workcell :: 57
+- bottleneck capacity flow :: 57
+- queue handoff workcell :: 57
+- queue handoff flow :: 57
+- queue handoff capacity :: 57
+- queue workcell flow :: 57
+- queue workcell capacity :: 57
+- queue flow workcell :: 57
+- queue flow capacity :: 57
+- queue capacity workcell :: 57
+- queue capacity flow :: 57
+- queue latency workcell :: 57
+- queue latency flow :: 57
+- queue latency capacity :: 57
+- handoff workcell flow :: 57
+- handoff workcell capacity :: 57
+- handoff workcell latency :: 57
+- handoff flow capacity :: 57
+- handoff flow latency :: 57
+- handoff capacity flow :: 57
+- handoff capacity latency :: 57
+- handoff latency flow :: 57
+- handoff latency capacity :: 56
+- handoff batch flow :: 56
+- handoff batch capacity :: 56
+- handoff batch latency :: 56
+- workcell flow capacity :: 56
+- workcell flow latency :: 56
+- workcell flow batch :: 56
+- workcell capacity latency :: 56
+- workcell capacity batch :: 56
+- workcell latency capacity :: 56
+- workcell latency batch :: 56
+- workcell batch capacity :: 56
+- workcell batch latency :: 56
+- workcell work capacity :: 56
+- workcell work latency :: 56
+- workcell work batch :: 56
+- flow capacity latency :: 56
+- flow capacity batch :: 56
+- flow capacity work :: 56
+- flow latency batch :: 56
+- flow latency work :: 56
+- flow batch latency :: 56
+- flow batch work :: 56
+- flow work latency :: 56
+- flow work batch :: 56
+- flow progress latency :: 55
+- flow progress batch :: 55
+- flow progress work :: 55
+- capacity latency batch :: 55
+- capacity latency work :: 55
+- capacity latency progress :: 55
+- capacity batch work :: 55
+- capacity batch progress :: 55
+- capacity work batch :: 55
+- capacity work progress :: 55
+- capacity progress batch :: 55
+- capacity progress work :: 55
+- capacity wip batch :: 55
+- capacity wip work :: 55
+- capacity wip progress :: 55
+- latency batch work :: 55
+- latency batch progress :: 55
+- latency batch wip :: 55
+- latency work progress :: 55
+- latency work wip :: 55
+- latency progress work :: 55
+- latency progress wip :: 55
+- latency wip work :: 55
+- latency wip progress :: 55
+- latency maintenance work :: 55
+- latency maintenance progress :: 54
+- latency maintenance wip :: 54
+- batch work progress :: 54
+- batch work wip :: 54
+- batch work maintenance :: 54
+- batch progress wip :: 54
+- batch progress maintenance :: 54
+- batch wip progress :: 54
+- batch wip maintenance :: 54
+- batch maintenance progress :: 54
+- batch maintenance wip :: 54
+- batch repeatability progress :: 54
+- batch repeatability wip :: 54
+- batch repeatability maintenance :: 54
+- work progress wip :: 54
+- work progress maintenance :: 54
+- work progress repeatability :: 54
+- work wip maintenance :: 54
+- work wip repeatability :: 54
+- work maintenance wip :: 54
+- work maintenance repeatability :: 54
+- work repeatability wip :: 54
+- work repeatability maintenance :: 54
+- work template wip :: 54
+- work template maintenance :: 54
+- work template repeatability :: 53
+- progress wip maintenance :: 53
+- progress wip repeatability :: 53
+- progress wip template :: 53
+- progress maintenance repeatability :: 53
+- progress maintenance template :: 53
+- progress repeatability maintenance :: 53
+- progress repeatability template :: 53
+- progress template maintenance :: 53
+- progress template repeatability :: 53
+- progress standard maintenance :: 53
+- progress standard repeatability :: 53
+- progress standard template :: 53
+- wip maintenance repeatability :: 53
+- wip maintenance template :: 53
+- wip maintenance standard :: 53
+- wip repeatability template :: 53
+- wip repeatability standard :: 53
+- wip template repeatability :: 53
+- wip template standard :: 53
+- wip standard repeatability :: 53
+- wip standard template :: 53
+- wip ownership repeatability :: 53
+- wip ownership template :: 53
+- wip ownership standard :: 53
+- maintenance repeatability template :: 52
+- maintenance repeatability standard :: 52
+- maintenance repeatability ownership :: 52
+- maintenance template standard :: 52
+- maintenance template ownership :: 52
+- maintenance standard template :: 52
+- maintenance standard ownership :: 52
+- maintenance ownership template :: 52
+- maintenance ownership standard :: 52
+- maintenance checklist template :: 52
+- maintenance checklist standard :: 52
+- maintenance checklist ownership :: 52
+- repeatability template standard :: 52
+- repeatability template ownership :: 52
+- repeatability template checklist :: 52
+- repeatability standard ownership :: 52
+- repeatability standard checklist :: 52
+- repeatability ownership standard :: 52
+- repeatability ownership checklist :: 52
+- repeatability checklist standard :: 52
+- repeatability checklist ownership :: 52
+- repeatability kanban standard :: 52
+- repeatability kanban ownership :: 52
+- repeatability kanban checklist :: 52
+- template standard ownership :: 52
+- template standard checklist :: 51
+- template standard kanban :: 51
+- template ownership checklist :: 51
+- template ownership kanban :: 51
+- template checklist ownership :: 51
+- template checklist kanban :: 51
+- template kanban ownership :: 51
+- template kanban checklist :: 51
+- template drum ownership :: 51
+- template drum checklist :: 51
+- template drum kanban :: 51
+- standard ownership checklist :: 51
+- standard ownership kanban :: 51
+- standard ownership drum :: 51
+- standard checklist kanban :: 51
+- standard checklist drum :: 51
+- standard kanban checklist :: 51
+- standard kanban drum :: 51
+- standard drum checklist :: 51
+- standard drum kanban :: 51
+- standard buffer checklist :: 51
+- standard buffer kanban :: 51
+- standard buffer drum :: 51
+- ownership checklist kanban :: 51
+- ownership checklist drum :: 51
+- ownership checklist buffer :: 50
+- ownership kanban drum :: 50
+- ownership kanban buffer :: 50
+- ownership drum kanban :: 50
+- ownership drum buffer :: 50
+- ownership buffer kanban :: 50
+- ownership buffer drum :: 50
+- ownership rope kanban :: 50
+- ownership rope drum :: 50
+- ownership rope buffer :: 50
+- checklist kanban drum :: 50
+- checklist kanban buffer :: 50
+- checklist kanban rope :: 50
+- checklist drum buffer :: 50
+- checklist drum rope :: 50
+- checklist buffer drum :: 50
+- checklist buffer rope :: 50
+- checklist rope drum :: 50
+- checklist rope buffer :: 50
+- checklist choke drum :: 50
+- checklist choke buffer :: 50
+- checklist choke rope :: 50
+- kanban drum buffer :: 50
+- kanban drum rope :: 50
+- kanban drum choke :: 50
+- kanban buffer rope :: 49
+- kanban buffer choke :: 49
+- kanban rope buffer :: 49
+- kanban rope choke :: 49
+- kanban choke buffer :: 49
+- kanban choke rope :: 49
+- kanban point buffer :: 49
+- kanban point rope :: 49
+- kanban point choke :: 49
+- drum buffer choke :: 49
+- drum buffer point :: 49
+- drum rope choke :: 49
+- drum rope point :: 49
+- drum choke rope :: 49
+- drum choke point :: 49
+- drum point rope :: 49
+- drum point choke :: 49
+- drum constraint rope :: 49
+- drum constraint choke :: 49
+- drum constraint point :: 49
+- buffer rope choke :: 49
+- buffer rope point :: 49
+- buffer rope constraint :: 49
+- buffer choke point :: 49
+- buffer choke constraint :: 49
+- buffer point choke :: 48
+- buffer point constraint :: 48
+- buffer constraint choke :: 48
+- buffer constraint point :: 48
+- buffer rate choke :: 48
+- buffer rate point :: 48
+- buffer rate constraint :: 48
+- rope choke point :: 48
+- rope choke constraint :: 48
+- rope choke rate :: 48
+- rope point constraint :: 48
+- rope point rate :: 48
+- rope constraint point :: 48
+- rope constraint rate :: 48
+- rope rate point :: 48
+- rope rate constraint :: 48
+- rope limiter point :: 48
+- rope limiter constraint :: 48
+- rope limiter rate :: 48
+- choke point constraint :: 48
+- choke point rate :: 48
+- choke point limiter :: 48
+- choke constraint rate :: 48
+- choke constraint limiter :: 48
+- choke rate constraint :: 48
+- choke rate limiter :: 47
+- choke limiter constraint :: 47
+- choke limiter rate :: 47
+- choke drag constraint :: 47
+- choke drag rate :: 47
+- choke drag limiter :: 47
+- point constraint rate :: 47
+- point constraint limiter :: 47
+- point constraint drag :: 47
+- point rate limiter :: 47
+- point rate drag :: 47
+- point limiter rate :: 47
+- point limiter drag :: 47
+- point drag rate :: 47
+- point drag limiter :: 47
+- point rework rate :: 47
+- point rework limiter :: 47
+- point rework drag :: 47
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- Toyota Production System
+- waste
+- lead time
+- quality
+- jidoka
+- just-in-time
+- andon
+- abnormality
+- kanban
+- pull system
+- kaizen
+- takt
+- incident review
+
+### Couplings
+
+- eliminate waste
+- shorten lead times
+- pull system
+- jidoka andon
+- visible abnormality
+- quality at source
+
+### Triplets
+
+- jidoka andon abnormality
+- waste lead-time flow
+- kanban pull kaizen

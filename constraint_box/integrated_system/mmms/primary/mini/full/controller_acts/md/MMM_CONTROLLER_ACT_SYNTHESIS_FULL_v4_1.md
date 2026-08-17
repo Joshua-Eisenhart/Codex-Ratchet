@@ -1,0 +1,2491 @@
+# 🧩 Synthesis Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Controller synthesis loads this only after receipts; it is not execution.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `SYNTHESIS` and remapped to v4.1 canon category `controller_acts`.
+
+---
+
+# MMM_VOICE_SYNTHESIS_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- synthesis :: 100
+- compose :: 100
+- composition :: 100
+- receipt :: 100
+- distinct :: 100
+- preserve :: 100
+- carry :: 100
+- merge :: 100
+- nonmerge :: 100
+- tension :: 100
+- split :: 100
+- surviving :: 100
+- difference :: 100
+- held :: 100
+- apart :: 100
+- accepted :: 100
+- convergence :: 100
+- named :: 100
+- divergence :: 100
+- dropped :: 100
+- thread :: 100
+- controller :: 100
+- act :: 100
+- structure :: 100
+- boundary :: 100
+- not merged :: 99
+- not collapsed :: 99
+- held apart :: 99
+- surviving split :: 99
+- excluded :: 99
+- bounded exclusion :: 99
+- unresolved :: 99
+- contradiction :: 99
+- after receipts :: 99
+- controller act :: 99
+- preserved difference :: 99
+- no consensus :: 99
+- live remainder :: 99
+- refusal :: 99
+- pair :: 99
+- compare :: 99
+- carried :: 99
+- visible :: 99
+- dissent :: 99
+- set :: 99
+- aside :: 99
+- later :: 99
+- under :: 99
+- within :: 99
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 97
+- prior :: 97
+- separate :: 97
+- together :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- surface :: 96
+- packet :: 96
+- artifact :: 96
+- trace :: 96
+- result :: 96
+- support :: 96
+- evidence :: 96
+- scope :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 95
+- perception :: 95
+- conjunction :: 95
+- resemblance :: 95
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 94
+- satisfiable :: 94
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- test :: 94
+- check :: 94
+- verify :: 94
+- sample :: 94
+- route :: 94
+- lane :: 94
+- voice :: 94
+- lens :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- blocker :: 93
+- deferred :: 93
+- blocked :: 93
+- spawned :: 93
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 93
+- according :: 93
+- locally :: 93
+- jointly :: 93
+- separately :: 93
+- rather :: 93
+- instead :: 93
+- still :: 93
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+- seems :: 92
+- appears :: 92
+- likely :: 92
+- possible :: 92
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+- limited :: 92
+- case :: 92
+- instance :: 92
+- word :: 92
+- regularity :: 92
+- distinction :: 92
+- similarity :: 92
+- comparison :: 92
+- inference :: 92
+- estimate :: 92
+- uncertainty :: 92
+- frequency :: 92
+
+## couplings
+
+- under receipt :: 100
+- within receipt :: 100
+- across receipt :: 100
+- between receipt :: 100
+- through receipt :: 100
+- before receipt :: 100
+- after receipt :: 100
+- until receipt :: 100
+- where receipt :: 100
+- while receipt :: 100
+- receipt evidence :: 100
+- receipt support :: 100
+- receipt path :: 100
+- receipt surface :: 100
+- receipt packet :: 100
+- receipt receipt :: 100
+- receipt trace :: 100
+- receipt result :: 100
+- receipt scope :: 100
+- receipt boundary :: 100
+- receipt status :: 100
+- receipt candidate :: 100
+- receipt witness :: 100
+- receipt probe :: 100
+- receipt constraint :: 100
+- check receipt :: 99
+- compare receipt :: 99
+- observe receipt :: 99
+- measure receipt :: 99
+- test receipt :: 99
+- verify receipt :: 99
+- hold receipt :: 99
+- preserve receipt :: 99
+- split receipt :: 99
+- narrow receipt :: 99
+- under preserve :: 99
+- within preserve :: 99
+- across preserve :: 99
+- between preserve :: 99
+- through preserve :: 99
+- before preserve :: 99
+- after preserve :: 99
+- until preserve :: 99
+- where preserve :: 99
+- while preserve :: 99
+- preserve evidence :: 99
+- preserve support :: 99
+- preserve path :: 99
+- preserve surface :: 99
+- preserve packet :: 99
+- preserve trace :: 98
+- preserve result :: 98
+- preserve scope :: 98
+- preserve boundary :: 98
+- preserve status :: 98
+- preserve candidate :: 98
+- preserve witness :: 98
+- preserve probe :: 98
+- preserve constraint :: 98
+- check preserve :: 98
+- compare preserve :: 98
+- observe preserve :: 98
+- measure preserve :: 98
+- test preserve :: 98
+- verify preserve :: 98
+- hold preserve :: 98
+- preserve preserve :: 98
+- split preserve :: 98
+- narrow preserve :: 98
+- under distinct :: 98
+- within distinct :: 98
+- across distinct :: 98
+- between distinct :: 98
+- through distinct :: 98
+- before distinct :: 98
+- after distinct :: 97
+- until distinct :: 97
+- where distinct :: 97
+- while distinct :: 97
+- distinct evidence :: 97
+- distinct support :: 97
+- distinct path :: 97
+- distinct surface :: 97
+- distinct packet :: 97
+- distinct receipt :: 97
+- distinct trace :: 97
+- distinct result :: 97
+- distinct scope :: 97
+- distinct boundary :: 97
+- distinct status :: 97
+- distinct candidate :: 97
+- distinct witness :: 97
+- distinct probe :: 97
+- distinct constraint :: 97
+- check distinct :: 97
+- compare distinct :: 97
+- observe distinct :: 97
+- measure distinct :: 97
+- test distinct :: 97
+- verify distinct :: 97
+- hold distinct :: 96
+- preserve distinct :: 96
+- split distinct :: 96
+- narrow distinct :: 96
+- under refusal :: 96
+- within refusal :: 96
+- across refusal :: 96
+- between refusal :: 96
+- through refusal :: 96
+- before refusal :: 96
+- after refusal :: 96
+- until refusal :: 96
+- where refusal :: 96
+- while refusal :: 96
+- refusal evidence :: 96
+- refusal support :: 96
+- refusal path :: 96
+- refusal surface :: 96
+- refusal packet :: 96
+- refusal receipt :: 96
+- refusal trace :: 96
+- refusal result :: 96
+- refusal scope :: 96
+- refusal boundary :: 96
+- refusal status :: 96
+- refusal candidate :: 95
+- refusal witness :: 95
+- refusal probe :: 95
+- refusal constraint :: 95
+- check refusal :: 95
+- compare refusal :: 95
+- observe refusal :: 95
+- measure refusal :: 95
+- test refusal :: 95
+- verify refusal :: 95
+- hold refusal :: 95
+- preserve refusal :: 95
+- split refusal :: 95
+- narrow refusal :: 95
+- under merge :: 95
+- within merge :: 95
+- across merge :: 95
+- between merge :: 95
+- through merge :: 95
+- before merge :: 95
+- after merge :: 95
+- until merge :: 95
+- where merge :: 95
+- while merge :: 95
+- merge evidence :: 95
+- merge support :: 94
+- merge path :: 94
+- merge surface :: 94
+- merge packet :: 94
+- merge receipt :: 94
+- merge trace :: 94
+- merge result :: 94
+- merge scope :: 94
+- merge boundary :: 94
+- merge status :: 94
+- merge candidate :: 94
+- merge witness :: 94
+- merge probe :: 94
+- merge constraint :: 94
+- check merge :: 94
+- compare merge :: 94
+- observe merge :: 94
+- measure merge :: 94
+- test merge :: 94
+- verify merge :: 94
+- hold merge :: 94
+- preserve merge :: 94
+- split merge :: 94
+- narrow merge :: 94
+- under pair :: 94
+- within pair :: 93
+- across pair :: 93
+- between pair :: 93
+- through pair :: 93
+- before pair :: 93
+- after pair :: 93
+- until pair :: 93
+- where pair :: 93
+- while pair :: 93
+- pair evidence :: 93
+- pair support :: 93
+- pair path :: 93
+- pair surface :: 93
+- pair packet :: 93
+- pair receipt :: 93
+- pair trace :: 93
+- pair result :: 93
+- pair scope :: 93
+- pair boundary :: 93
+- pair status :: 93
+- pair candidate :: 93
+- pair witness :: 93
+- pair probe :: 93
+- pair constraint :: 93
+- check pair :: 93
+- compare pair :: 92
+- observe pair :: 92
+- measure pair :: 92
+- test pair :: 92
+- verify pair :: 92
+- hold pair :: 92
+- preserve pair :: 92
+- split pair :: 92
+- narrow pair :: 92
+- under tension :: 92
+- within tension :: 92
+- across tension :: 92
+- between tension :: 92
+- through tension :: 92
+- before tension :: 92
+- after tension :: 92
+- until tension :: 92
+- where tension :: 92
+- while tension :: 92
+- tension evidence :: 92
+- tension support :: 92
+- tension path :: 92
+- tension surface :: 92
+- tension packet :: 92
+- tension receipt :: 92
+- tension trace :: 91
+- tension result :: 91
+- tension scope :: 91
+- tension boundary :: 91
+- tension status :: 91
+- tension candidate :: 91
+- tension witness :: 91
+- tension probe :: 91
+- tension constraint :: 91
+- check tension :: 91
+- compare tension :: 91
+- observe tension :: 91
+- measure tension :: 91
+- test tension :: 91
+- verify tension :: 91
+- hold tension :: 91
+- preserve tension :: 91
+- split tension :: 91
+- narrow tension :: 91
+- under held :: 91
+- within held :: 91
+- across held :: 91
+- between held :: 91
+- through held :: 91
+- before held :: 91
+- after held :: 90
+- until held :: 90
+- where held :: 90
+- while held :: 90
+- held evidence :: 90
+- held support :: 90
+- held path :: 90
+- held surface :: 90
+- held packet :: 90
+- held receipt :: 90
+- held trace :: 90
+- held result :: 90
+- held scope :: 90
+- held boundary :: 90
+- held status :: 90
+- held candidate :: 90
+- held witness :: 90
+- held probe :: 90
+- held constraint :: 90
+- check held :: 90
+- compare held :: 90
+- observe held :: 90
+- measure held :: 90
+- test held :: 90
+- verify held :: 90
+- hold held :: 89
+- preserve held :: 89
+- split held :: 89
+- narrow held :: 89
+- under compare :: 88
+- within compare :: 88
+- across compare :: 88
+- between compare :: 88
+- through compare :: 88
+- before compare :: 88
+- after compare :: 88
+- until compare :: 88
+- where compare :: 88
+- while compare :: 88
+- compare evidence :: 88
+- compare support :: 87
+- compare path :: 87
+- compare surface :: 87
+- compare packet :: 87
+- compare trace :: 87
+- compare result :: 87
+- compare scope :: 87
+- compare boundary :: 87
+- compare status :: 87
+- compare candidate :: 87
+- compare witness :: 87
+- compare probe :: 87
+- compare constraint :: 87
+- check compare :: 87
+- compare compare :: 87
+- not merged :: 87
+- not collapsed :: 87
+- held apart :: 87
+- surviving split :: 87
+- bounded exclusion :: 87
+- after receipts :: 87
+- controller act :: 87
+- preserved difference :: 87
+- no consensus :: 87
+- live remainder :: 87
+- compose :: 86
+- carry :: 86
+- receipt :: 86
+- distinct :: 86
+- excluded :: 86
+- unresolved :: 86
+- tension :: 86
+- contradiction :: 86
+- synthesis :: 86
+- under synthesis :: 86
+- under compose :: 86
+- under composition :: 86
+- under carry :: 86
+- under nonmerge :: 86
+- under split :: 86
+- under surviving :: 86
+- under difference :: 86
+- under apart :: 86
+- under accepted :: 86
+- under convergence :: 86
+- under named :: 86
+- under divergence :: 86
+- under dropped :: 86
+- within synthesis :: 86
+- within compose :: 86
+- within composition :: 85
+- within carry :: 85
+- within nonmerge :: 85
+- within split :: 85
+- within surviving :: 85
+- within difference :: 85
+- within apart :: 85
+- within accepted :: 85
+- within convergence :: 85
+- within named :: 85
+- within divergence :: 85
+- within dropped :: 85
+- across synthesis :: 85
+- across compose :: 85
+- across composition :: 85
+- across carry :: 85
+- across nonmerge :: 85
+- across split :: 85
+- across surviving :: 85
+- across difference :: 85
+- across apart :: 85
+- across accepted :: 85
+- across convergence :: 85
+- across named :: 85
+- across divergence :: 85
+- across dropped :: 84
+- between synthesis :: 84
+- between compose :: 84
+- between composition :: 84
+- between carry :: 84
+- between nonmerge :: 84
+- between split :: 84
+- between surviving :: 84
+- between difference :: 84
+- between apart :: 84
+- between accepted :: 84
+- between convergence :: 84
+- between named :: 84
+- between divergence :: 84
+- between dropped :: 84
+- through synthesis :: 84
+- through compose :: 84
+- through composition :: 84
+- through carry :: 84
+- through nonmerge :: 84
+- through split :: 84
+- through surviving :: 84
+- through difference :: 84
+- through apart :: 84
+- through accepted :: 84
+- through convergence :: 83
+- through named :: 83
+- through divergence :: 83
+- through dropped :: 83
+- before synthesis :: 83
+- before compose :: 83
+- before composition :: 83
+- before carry :: 83
+- before nonmerge :: 83
+- before split :: 83
+- before surviving :: 83
+- before difference :: 83
+- before apart :: 83
+- before accepted :: 83
+- before convergence :: 83
+- before named :: 83
+- before divergence :: 83
+- before dropped :: 83
+- after synthesis :: 83
+- after compose :: 83
+- after composition :: 83
+- after carry :: 83
+- after nonmerge :: 83
+- after split :: 83
+- after surviving :: 83
+- after difference :: 82
+- after apart :: 82
+- after accepted :: 82
+- after convergence :: 82
+- after named :: 82
+- after divergence :: 82
+- after dropped :: 82
+- during synthesis :: 82
+- during compose :: 82
+- during composition :: 82
+- during receipt :: 82
+- during distinct :: 82
+- during preserve :: 82
+- during carry :: 82
+- during merge :: 82
+- during nonmerge :: 82
+- during tension :: 82
+- during split :: 82
+- during surviving :: 82
+- during difference :: 82
+- during held :: 82
+- during apart :: 82
+- during accepted :: 82
+- during convergence :: 82
+- during named :: 82
+- during divergence :: 81
+- during dropped :: 81
+- until synthesis :: 81
+- until compose :: 81
+- until composition :: 81
+- until carry :: 81
+- until nonmerge :: 81
+- until split :: 81
+- until surviving :: 81
+- until difference :: 81
+- until apart :: 81
+- until accepted :: 81
+- until convergence :: 81
+- until named :: 81
+- until divergence :: 81
+- until dropped :: 81
+- since synthesis :: 81
+- since compose :: 81
+- since composition :: 81
+- since receipt :: 81
+- since distinct :: 81
+- since preserve :: 81
+- since carry :: 81
+- since merge :: 81
+- since nonmerge :: 81
+- since tension :: 80
+- since split :: 80
+- since surviving :: 80
+- since difference :: 80
+- since held :: 80
+- since apart :: 80
+- since accepted :: 80
+- since convergence :: 80
+- since named :: 80
+- since divergence :: 80
+- since dropped :: 80
+- from synthesis :: 80
+- from compose :: 80
+- from composition :: 80
+- from receipt :: 80
+- from distinct :: 80
+- from preserve :: 80
+- from carry :: 80
+- from merge :: 80
+- from nonmerge :: 80
+- from tension :: 80
+- from split :: 80
+- from surviving :: 80
+- from difference :: 80
+- from held :: 80
+- from apart :: 79
+- from accepted :: 79
+- from convergence :: 79
+- from named :: 79
+- from divergence :: 79
+- from dropped :: 79
+- by synthesis :: 79
+- by compose :: 79
+- by composition :: 79
+- by receipt :: 79
+- by distinct :: 79
+- by preserve :: 79
+- by carry :: 79
+- by merge :: 79
+- by nonmerge :: 79
+- by tension :: 79
+- by split :: 79
+- by surviving :: 79
+- by difference :: 79
+- by held :: 79
+- by apart :: 79
+- by accepted :: 79
+- by convergence :: 79
+- by named :: 79
+- by divergence :: 79
+- by dropped :: 78
+- with synthesis :: 78
+- with compose :: 78
+- with composition :: 78
+- with receipt :: 78
+- with distinct :: 78
+- with preserve :: 78
+- with carry :: 78
+- with merge :: 78
+- with nonmerge :: 78
+- with tension :: 78
+- with split :: 78
+- with surviving :: 78
+- with difference :: 78
+- with held :: 78
+- with apart :: 78
+- with accepted :: 78
+- with convergence :: 78
+- with named :: 78
+- with divergence :: 78
+- with dropped :: 78
+- without synthesis :: 78
+- without compose :: 78
+- without composition :: 78
+- without receipt :: 78
+- without distinct :: 77
+- without preserve :: 77
+- without carry :: 77
+- without merge :: 77
+- without nonmerge :: 77
+- without tension :: 77
+- without split :: 77
+- without surviving :: 77
+- without difference :: 77
+- without held :: 77
+- without apart :: 77
+- without accepted :: 77
+- without convergence :: 77
+- without named :: 77
+- without divergence :: 77
+- without dropped :: 77
+- against synthesis :: 77
+- against compose :: 77
+- against composition :: 77
+- against receipt :: 77
+- against distinct :: 77
+- against preserve :: 77
+- against carry :: 77
+- against merge :: 77
+- against nonmerge :: 77
+- against tension :: 76
+- against split :: 76
+- against surviving :: 76
+- against difference :: 76
+- against held :: 76
+- against apart :: 76
+- against accepted :: 76
+- against convergence :: 76
+- against named :: 76
+- against divergence :: 76
+- against dropped :: 76
+- toward synthesis :: 76
+- toward compose :: 76
+- toward composition :: 76
+- toward receipt :: 76
+- toward distinct :: 76
+- toward preserve :: 76
+- toward carry :: 76
+- toward merge :: 76
+- toward nonmerge :: 76
+- toward tension :: 76
+- toward split :: 76
+- toward surviving :: 76
+- toward difference :: 76
+- toward held :: 76
+- toward apart :: 75
+- toward accepted :: 75
+- toward convergence :: 75
+- toward named :: 75
+- toward divergence :: 75
+- toward dropped :: 75
+- near synthesis :: 75
+- near compose :: 75
+- near composition :: 75
+- near receipt :: 75
+- near distinct :: 75
+- near preserve :: 75
+- near carry :: 75
+- near merge :: 75
+- near nonmerge :: 75
+- near tension :: 75
+- near split :: 75
+- near surviving :: 75
+- near difference :: 75
+- near held :: 75
+- near apart :: 75
+- near accepted :: 75
+- near convergence :: 75
+- near named :: 75
+- near divergence :: 75
+- near dropped :: 74
+- relative synthesis :: 74
+- relative compose :: 74
+- relative composition :: 74
+- relative receipt :: 74
+- relative distinct :: 74
+- relative preserve :: 74
+- relative carry :: 74
+- relative merge :: 74
+- relative nonmerge :: 74
+- relative tension :: 74
+- relative split :: 74
+- relative surviving :: 74
+- relative difference :: 74
+- relative held :: 74
+- relative apart :: 74
+- relative accepted :: 74
+- relative convergence :: 74
+- relative named :: 74
+- relative divergence :: 74
+- relative dropped :: 74
+- synthesis compose :: 74
+- synthesis composition :: 74
+- synthesis receipt :: 74
+- synthesis distinct :: 74
+- synthesis preserve :: 73
+- synthesis carry :: 73
+- synthesis merge :: 73
+- synthesis nonmerge :: 73
+- synthesis tension :: 73
+- synthesis split :: 73
+- synthesis surviving :: 73
+- compose composition :: 73
+- compose receipt :: 73
+- compose distinct :: 73
+- compose preserve :: 73
+- compose carry :: 73
+- compose merge :: 73
+- compose nonmerge :: 73
+- compose tension :: 73
+- compose split :: 73
+- compose surviving :: 73
+- compose difference :: 73
+- composition receipt :: 73
+- composition distinct :: 73
+- composition preserve :: 73
+- composition carry :: 73
+- composition merge :: 73
+- composition nonmerge :: 73
+- composition tension :: 73
+- composition split :: 72
+- composition surviving :: 72
+- composition difference :: 72
+- composition held :: 72
+- receipt distinct :: 72
+- receipt preserve :: 72
+- receipt carry :: 72
+- receipt merge :: 72
+- receipt nonmerge :: 72
+- receipt tension :: 72
+- receipt split :: 72
+- receipt surviving :: 72
+- receipt difference :: 72
+- receipt held :: 72
+- receipt apart :: 72
+- distinct preserve :: 72
+- distinct carry :: 72
+- distinct merge :: 72
+- distinct nonmerge :: 72
+- distinct tension :: 72
+- distinct split :: 72
+- distinct surviving :: 72
+- distinct difference :: 72
+- distinct held :: 72
+- distinct apart :: 72
+- distinct accepted :: 71
+- preserve carry :: 71
+- preserve nonmerge :: 71
+- preserve split :: 71
+- preserve surviving :: 71
+- preserve difference :: 71
+- preserve apart :: 71
+- preserve accepted :: 71
+- preserve convergence :: 71
+- carry merge :: 71
+- carry nonmerge :: 71
+- carry tension :: 71
+- carry split :: 71
+- carry surviving :: 71
+- carry difference :: 71
+- carry held :: 71
+- carry apart :: 71
+- carry accepted :: 71
+- carry convergence :: 71
+- carry named :: 71
+- merge nonmerge :: 71
+- merge tension :: 71
+- merge split :: 71
+- merge surviving :: 71
+- merge difference :: 71
+- merge held :: 70
+- merge apart :: 70
+- merge accepted :: 70
+- merge convergence :: 70
+- merge named :: 70
+- merge divergence :: 70
+- nonmerge tension :: 70
+- nonmerge split :: 70
+- nonmerge surviving :: 70
+- nonmerge difference :: 70
+- nonmerge held :: 70
+- nonmerge apart :: 70
+- nonmerge accepted :: 70
+- nonmerge convergence :: 70
+- nonmerge named :: 70
+- nonmerge divergence :: 70
+- nonmerge dropped :: 70
+- tension split :: 70
+- tension surviving :: 70
+- tension difference :: 70
+- tension held :: 70
+- tension apart :: 70
+- tension accepted :: 70
+- tension convergence :: 70
+- tension named :: 70
+- tension divergence :: 69
+- tension dropped :: 69
+- tension thread :: 69
+- split surviving :: 69
+- split difference :: 69
+- split apart :: 69
+- split accepted :: 69
+- split convergence :: 69
+- split named :: 69
+- split divergence :: 69
+- split dropped :: 69
+- split thread :: 69
+- split controller :: 69
+- surviving difference :: 69
+- surviving held :: 69
+- surviving apart :: 69
+- surviving accepted :: 69
+- surviving convergence :: 69
+- surviving named :: 69
+- surviving divergence :: 69
+- surviving dropped :: 69
+- surviving thread :: 69
+- surviving controller :: 69
+- surviving act :: 69
+- difference held :: 69
+- difference apart :: 68
+- difference accepted :: 68
+- difference convergence :: 68
+- difference named :: 68
+- difference divergence :: 68
+- difference dropped :: 68
+- difference thread :: 68
+- difference controller :: 68
+- difference act :: 68
+- difference structure :: 68
+- held accepted :: 68
+- held convergence :: 68
+- held named :: 68
+- held divergence :: 68
+- held dropped :: 68
+- held thread :: 68
+- held controller :: 68
+- held act :: 68
+- held structure :: 68
+- apart accepted :: 68
+- apart convergence :: 68
+- apart named :: 68
+- apart divergence :: 68
+- apart dropped :: 68
+- apart thread :: 68
+- apart controller :: 67
+- apart act :: 67
+- apart structure :: 67
+- apart boundary :: 67
+- apart not merged :: 67
+- accepted convergence :: 67
+- accepted named :: 67
+- accepted divergence :: 67
+- accepted dropped :: 67
+- accepted thread :: 67
+- accepted controller :: 67
+- accepted act :: 67
+- accepted structure :: 67
+- accepted boundary :: 67
+- accepted not merged :: 67
+- accepted not collapsed :: 67
+- convergence named :: 67
+- convergence divergence :: 67
+- convergence dropped :: 67
+- convergence thread :: 67
+- convergence controller :: 67
+- convergence act :: 67
+- convergence structure :: 67
+- convergence boundary :: 67
+- convergence not merged :: 67
+- convergence not collapsed :: 66
+- convergence held apart :: 66
+- named divergence :: 66
+- named dropped :: 66
+- named thread :: 66
+- named controller :: 66
+- named act :: 66
+- named structure :: 66
+- named boundary :: 66
+- named not merged :: 66
+- named not collapsed :: 66
+- named held apart :: 66
+- named surviving split :: 66
+- divergence dropped :: 66
+- divergence thread :: 66
+- divergence controller :: 66
+- divergence act :: 66
+- divergence structure :: 66
+- divergence boundary :: 66
+- divergence not merged :: 66
+- divergence not collapsed :: 66
+- divergence held apart :: 66
+- divergence surviving split :: 66
+- divergence excluded :: 66
+- dropped thread :: 66
+- dropped controller :: 65
+- dropped act :: 65
+- dropped structure :: 65
+- dropped boundary :: 65
+- dropped not merged :: 65
+- dropped not collapsed :: 65
+- dropped held apart :: 65
+- dropped surviving split :: 65
+- dropped excluded :: 65
+- dropped bounded exclusion :: 65
+- thread controller :: 65
+- thread act :: 65
+- thread structure :: 65
+- thread boundary :: 65
+- thread not merged :: 65
+- thread not collapsed :: 65
+- thread held apart :: 65
+- thread surviving split :: 65
+- thread excluded :: 65
+- thread bounded exclusion :: 65
+- thread unresolved :: 65
+- controller structure :: 65
+- controller boundary :: 65
+- controller not merged :: 65
+- controller not collapsed :: 65
+
+## triplets
+
+- under current receipt :: 100
+- under local receipt :: 100
+- under bounded receipt :: 100
+- under finite receipt :: 100
+- under open receipt :: 100
+- under live receipt :: 100
+- within current receipt :: 100
+- within local receipt :: 100
+- within bounded receipt :: 100
+- within finite receipt :: 100
+- within open receipt :: 100
+- within live receipt :: 100
+- across current receipt :: 100
+- across local receipt :: 100
+- across bounded receipt :: 100
+- across finite receipt :: 100
+- across open receipt :: 100
+- across live receipt :: 100
+- between current receipt :: 100
+- between local receipt :: 100
+- between bounded receipt :: 100
+- between finite receipt :: 100
+- between open receipt :: 100
+- between live receipt :: 100
+- through current receipt :: 100
+- through local receipt :: 99
+- through bounded receipt :: 99
+- through finite receipt :: 99
+- through open receipt :: 99
+- through live receipt :: 99
+- before current receipt :: 99
+- before local receipt :: 99
+- before bounded receipt :: 99
+- before finite receipt :: 99
+- before open receipt :: 99
+- before live receipt :: 99
+- receipt evidence path :: 99
+- receipt support path :: 99
+- receipt path path :: 99
+- receipt surface path :: 99
+- receipt packet path :: 99
+- receipt receipt path :: 99
+- receipt trace path :: 99
+- receipt result path :: 99
+- receipt scope path :: 99
+- receipt boundary path :: 99
+- check receipt receipt :: 99
+- compare receipt receipt :: 99
+- observe receipt receipt :: 99
+- measure receipt receipt :: 99
+- test receipt receipt :: 98
+- verify receipt receipt :: 98
+- hold receipt receipt :: 98
+- preserve receipt receipt :: 98
+- under current preserve :: 98
+- under local preserve :: 98
+- under bounded preserve :: 98
+- under finite preserve :: 98
+- under open preserve :: 98
+- under live preserve :: 98
+- within current preserve :: 98
+- within local preserve :: 98
+- within bounded preserve :: 98
+- within finite preserve :: 98
+- within open preserve :: 98
+- within live preserve :: 98
+- across current preserve :: 98
+- across local preserve :: 98
+- across bounded preserve :: 98
+- across finite preserve :: 98
+- across open preserve :: 98
+- across live preserve :: 98
+- between current preserve :: 98
+- between local preserve :: 98
+- between bounded preserve :: 98
+- between finite preserve :: 97
+- between open preserve :: 97
+- between live preserve :: 97
+- through current preserve :: 97
+- through local preserve :: 97
+- through bounded preserve :: 97
+- through finite preserve :: 97
+- through open preserve :: 97
+- through live preserve :: 97
+- before current preserve :: 97
+- before local preserve :: 97
+- before bounded preserve :: 97
+- before finite preserve :: 97
+- before open preserve :: 97
+- before live preserve :: 97
+- preserve evidence path :: 97
+- preserve support path :: 97
+- preserve path path :: 97
+- preserve surface path :: 97
+- preserve packet path :: 97
+- preserve receipt path :: 97
+- preserve trace path :: 97
+- preserve result path :: 97
+- preserve scope path :: 97
+- preserve boundary path :: 97
+- check preserve receipt :: 96
+- compare preserve receipt :: 96
+- observe preserve receipt :: 96
+- measure preserve receipt :: 96
+- test preserve receipt :: 96
+- verify preserve receipt :: 96
+- hold preserve receipt :: 96
+- preserve preserve receipt :: 96
+- under current distinct :: 96
+- under local distinct :: 96
+- under bounded distinct :: 96
+- under finite distinct :: 96
+- under open distinct :: 96
+- under live distinct :: 96
+- within current distinct :: 96
+- within local distinct :: 96
+- within bounded distinct :: 96
+- within finite distinct :: 96
+- within open distinct :: 96
+- within live distinct :: 96
+- across current distinct :: 96
+- across local distinct :: 96
+- across bounded distinct :: 96
+- across finite distinct :: 96
+- across open distinct :: 96
+- across live distinct :: 95
+- between current distinct :: 95
+- between local distinct :: 95
+- between bounded distinct :: 95
+- between finite distinct :: 95
+- between open distinct :: 95
+- between live distinct :: 95
+- through current distinct :: 95
+- through local distinct :: 95
+- through bounded distinct :: 95
+- through finite distinct :: 95
+- through open distinct :: 95
+- through live distinct :: 95
+- before current distinct :: 95
+- before local distinct :: 95
+- before bounded distinct :: 95
+- before finite distinct :: 95
+- before open distinct :: 95
+- before live distinct :: 95
+- distinct evidence path :: 95
+- distinct support path :: 95
+- distinct path path :: 95
+- distinct surface path :: 95
+- distinct packet path :: 95
+- distinct receipt path :: 95
+- distinct trace path :: 94
+- distinct result path :: 94
+- distinct scope path :: 94
+- distinct boundary path :: 94
+- check distinct receipt :: 94
+- compare distinct receipt :: 94
+- observe distinct receipt :: 94
+- measure distinct receipt :: 94
+- test distinct receipt :: 94
+- verify distinct receipt :: 94
+- hold distinct receipt :: 94
+- preserve distinct receipt :: 94
+- under current refusal :: 94
+- under local refusal :: 94
+- under bounded refusal :: 94
+- under finite refusal :: 94
+- under open refusal :: 94
+- under live refusal :: 94
+- within current refusal :: 94
+- within local refusal :: 94
+- within bounded refusal :: 94
+- within finite refusal :: 94
+- within open refusal :: 94
+- within live refusal :: 94
+- across current refusal :: 94
+- across local refusal :: 93
+- across bounded refusal :: 93
+- across finite refusal :: 93
+- across open refusal :: 93
+- across live refusal :: 93
+- between current refusal :: 93
+- between local refusal :: 93
+- between bounded refusal :: 93
+- between finite refusal :: 93
+- between open refusal :: 93
+- between live refusal :: 93
+- through current refusal :: 93
+- through local refusal :: 93
+- through bounded refusal :: 93
+- through finite refusal :: 93
+- through open refusal :: 93
+- through live refusal :: 93
+- before current refusal :: 93
+- before local refusal :: 93
+- before bounded refusal :: 93
+- before finite refusal :: 93
+- before open refusal :: 93
+- before live refusal :: 93
+- refusal evidence path :: 93
+- refusal support path :: 93
+- refusal path path :: 92
+- refusal surface path :: 92
+- refusal packet path :: 92
+- refusal receipt path :: 92
+- refusal trace path :: 92
+- refusal result path :: 92
+- refusal scope path :: 92
+- refusal boundary path :: 92
+- check refusal receipt :: 92
+- compare refusal receipt :: 92
+- observe refusal receipt :: 92
+- measure refusal receipt :: 92
+- test refusal receipt :: 92
+- verify refusal receipt :: 92
+- hold refusal receipt :: 92
+- preserve refusal receipt :: 92
+- under current merge :: 92
+- under local merge :: 92
+- under bounded merge :: 92
+- under finite merge :: 92
+- under open merge :: 92
+- under live merge :: 92
+- within current merge :: 92
+- within local merge :: 92
+- within bounded merge :: 92
+- within finite merge :: 91
+- within open merge :: 91
+- within live merge :: 91
+- across current merge :: 91
+- across local merge :: 91
+- across bounded merge :: 91
+- across finite merge :: 91
+- across open merge :: 91
+- across live merge :: 91
+- between current merge :: 91
+- between local merge :: 91
+- between bounded merge :: 91
+- between finite merge :: 91
+- between open merge :: 91
+- between live merge :: 91
+- under synthesis compose :: 91
+- under synthesis composition :: 91
+- under synthesis receipt :: 91
+- under synthesis distinct :: 91
+- under compose composition :: 91
+- under compose receipt :: 91
+- under compose distinct :: 91
+- under compose preserve :: 91
+- under composition receipt :: 91
+- under composition distinct :: 91
+- under composition preserve :: 90
+- under composition carry :: 90
+- under receipt distinct :: 90
+- under receipt preserve :: 90
+- under receipt carry :: 90
+- under receipt merge :: 90
+- under distinct preserve :: 90
+- under distinct carry :: 90
+- under distinct merge :: 90
+- under distinct nonmerge :: 90
+- under preserve carry :: 90
+- under preserve merge :: 90
+- under preserve nonmerge :: 90
+- under preserve tension :: 90
+- under carry merge :: 90
+- under carry nonmerge :: 90
+- under carry tension :: 90
+- under carry split :: 90
+- under merge nonmerge :: 90
+- under merge tension :: 90
+- under merge split :: 90
+- under merge surviving :: 90
+- under nonmerge tension :: 90
+- under nonmerge split :: 90
+- under nonmerge surviving :: 90
+- under nonmerge difference :: 89
+- under tension split :: 89
+- under tension surviving :: 89
+- under tension difference :: 89
+- under tension held :: 89
+- under split surviving :: 89
+- under split difference :: 89
+- under split held :: 89
+- under split apart :: 89
+- under surviving difference :: 89
+- under surviving held :: 89
+- under surviving apart :: 89
+- under surviving accepted :: 89
+- under difference held :: 89
+- under difference apart :: 89
+- under difference accepted :: 89
+- under difference convergence :: 89
+- under held apart :: 89
+- under held accepted :: 89
+- under held convergence :: 89
+- under held named :: 89
+- under apart accepted :: 89
+- under apart convergence :: 89
+- under apart named :: 89
+- under apart divergence :: 89
+- under accepted convergence :: 88
+- under accepted named :: 88
+- under accepted divergence :: 88
+- under accepted dropped :: 88
+- under convergence named :: 88
+- under convergence divergence :: 88
+- under convergence dropped :: 88
+- under convergence thread :: 88
+- under named divergence :: 88
+- under named dropped :: 88
+- under named thread :: 88
+- under named controller :: 88
+- under divergence dropped :: 88
+- under divergence thread :: 88
+- under divergence controller :: 88
+- under divergence act :: 88
+- under dropped thread :: 88
+- under dropped controller :: 88
+- under dropped act :: 88
+- under dropped structure :: 88
+- within synthesis compose :: 88
+- within synthesis composition :: 88
+- within synthesis receipt :: 88
+- within synthesis distinct :: 88
+- within compose composition :: 88
+- within compose receipt :: 87
+- within compose distinct :: 87
+- within compose preserve :: 87
+- within composition receipt :: 87
+- within composition distinct :: 87
+- within composition preserve :: 87
+- within composition carry :: 87
+- within receipt distinct :: 87
+- within receipt preserve :: 87
+- within receipt carry :: 87
+- within receipt merge :: 87
+- within distinct preserve :: 87
+- within distinct carry :: 87
+- within distinct merge :: 87
+- within distinct nonmerge :: 87
+- within preserve carry :: 87
+- within preserve merge :: 87
+- within preserve nonmerge :: 87
+- within preserve tension :: 87
+- within carry merge :: 87
+- within carry nonmerge :: 87
+- within carry tension :: 87
+- within carry split :: 87
+- within merge nonmerge :: 87
+- within merge tension :: 87
+- within merge split :: 86
+- within merge surviving :: 86
+- within nonmerge tension :: 86
+- within nonmerge split :: 86
+- within nonmerge surviving :: 86
+- within nonmerge difference :: 86
+- within tension split :: 86
+- within tension surviving :: 86
+- within tension difference :: 86
+- within tension held :: 86
+- within split surviving :: 86
+- within split difference :: 86
+- within split held :: 86
+- within split apart :: 86
+- within surviving difference :: 86
+- within surviving held :: 86
+- within surviving apart :: 86
+- within surviving accepted :: 86
+- within difference held :: 86
+- within difference apart :: 86
+- within difference accepted :: 86
+- within difference convergence :: 86
+- within held apart :: 86
+- within held accepted :: 86
+- within held convergence :: 86
+- within held named :: 85
+- within apart accepted :: 85
+- within apart convergence :: 85
+- within apart named :: 85
+- within apart divergence :: 85
+- within accepted convergence :: 85
+- within accepted named :: 85
+- within accepted divergence :: 85
+- within accepted dropped :: 85
+- within convergence named :: 85
+- within convergence divergence :: 85
+- within convergence dropped :: 85
+- within convergence thread :: 85
+- within named divergence :: 85
+- within named dropped :: 85
+- within named thread :: 85
+- within named controller :: 85
+- within divergence dropped :: 85
+- within divergence thread :: 85
+- within divergence controller :: 85
+- within divergence act :: 85
+- within dropped thread :: 85
+- within dropped controller :: 85
+- within dropped act :: 85
+- within dropped structure :: 85
+- across synthesis compose :: 84
+- across synthesis composition :: 84
+- across synthesis receipt :: 84
+- across synthesis distinct :: 84
+- across compose composition :: 84
+- across compose receipt :: 84
+- across compose distinct :: 84
+- across compose preserve :: 84
+- across composition receipt :: 84
+- across composition distinct :: 84
+- across composition preserve :: 84
+- across composition carry :: 84
+- across receipt distinct :: 84
+- across receipt preserve :: 84
+- across receipt carry :: 84
+- across receipt merge :: 84
+- across distinct preserve :: 84
+- across distinct carry :: 84
+- across distinct merge :: 84
+- across distinct nonmerge :: 84
+- across preserve carry :: 84
+- across preserve merge :: 84
+- across preserve nonmerge :: 84
+- across preserve tension :: 84
+- across carry merge :: 84
+- across carry nonmerge :: 83
+- across carry tension :: 83
+- across carry split :: 83
+- across merge nonmerge :: 83
+- across merge tension :: 83
+- across merge split :: 83
+- across merge surviving :: 83
+- across nonmerge tension :: 83
+- across nonmerge split :: 83
+- across nonmerge surviving :: 83
+- across nonmerge difference :: 83
+- across tension split :: 83
+- across tension surviving :: 83
+- across tension difference :: 83
+- across tension held :: 83
+- across split surviving :: 83
+- across split difference :: 83
+- across split held :: 83
+- across split apart :: 83
+- across surviving difference :: 83
+- across surviving held :: 83
+- across surviving apart :: 83
+- across surviving accepted :: 83
+- across difference held :: 83
+- across difference apart :: 83
+- across difference accepted :: 82
+- across difference convergence :: 82
+- across held apart :: 82
+- across held accepted :: 82
+- across held convergence :: 82
+- across held named :: 82
+- across apart accepted :: 82
+- across apart convergence :: 82
+- across apart named :: 82
+- across apart divergence :: 82
+- across accepted convergence :: 82
+- across accepted named :: 82
+- across accepted divergence :: 82
+- across accepted dropped :: 82
+- across convergence named :: 82
+- across convergence divergence :: 82
+- across convergence dropped :: 82
+- across convergence thread :: 82
+- across named divergence :: 82
+- across named dropped :: 82
+- across named thread :: 82
+- across named controller :: 82
+- across divergence dropped :: 82
+- across divergence thread :: 82
+- across divergence controller :: 82
+- across divergence act :: 81
+- across dropped thread :: 81
+- across dropped controller :: 81
+- across dropped act :: 81
+- across dropped structure :: 81
+- between synthesis compose :: 81
+- between synthesis composition :: 81
+- between synthesis receipt :: 81
+- between synthesis distinct :: 81
+- between compose composition :: 81
+- between compose receipt :: 81
+- between compose distinct :: 81
+- between compose preserve :: 81
+- between composition receipt :: 81
+- between composition distinct :: 81
+- between composition preserve :: 81
+- between composition carry :: 81
+- between receipt distinct :: 81
+- between receipt preserve :: 81
+- between receipt carry :: 81
+- between receipt merge :: 81
+- between distinct preserve :: 81
+- between distinct carry :: 81
+- between distinct merge :: 81
+- between distinct nonmerge :: 81
+- between preserve carry :: 80
+- between preserve merge :: 80
+- between preserve nonmerge :: 80
+- between preserve tension :: 80
+- between carry merge :: 80
+- between carry nonmerge :: 80
+- between carry tension :: 80
+- between carry split :: 80
+- between merge nonmerge :: 80
+- between merge tension :: 80
+- between merge split :: 80
+- between merge surviving :: 80
+- between nonmerge tension :: 80
+- between nonmerge split :: 80
+- between nonmerge surviving :: 80
+- between nonmerge difference :: 80
+- between tension split :: 80
+- between tension surviving :: 80
+- between tension difference :: 80
+- between tension held :: 80
+- between split surviving :: 80
+- between split difference :: 80
+- between split held :: 80
+- between split apart :: 80
+- between surviving difference :: 80
+- between surviving held :: 79
+- between surviving apart :: 79
+- between surviving accepted :: 79
+- between difference held :: 79
+- between difference apart :: 79
+- between difference accepted :: 79
+- between difference convergence :: 79
+- between held apart :: 79
+- between held accepted :: 79
+- between held convergence :: 79
+- between held named :: 79
+- between apart accepted :: 79
+- between apart convergence :: 79
+- between apart named :: 79
+- between apart divergence :: 79
+- between accepted convergence :: 79
+- between accepted named :: 79
+- between accepted divergence :: 79
+- between accepted dropped :: 79
+- between convergence named :: 79
+- between convergence divergence :: 79
+- between convergence dropped :: 79
+- between convergence thread :: 79
+- between named divergence :: 79
+- between named dropped :: 79
+- between named thread :: 78
+- between named controller :: 78
+- between divergence dropped :: 78
+- between divergence thread :: 78
+- between divergence controller :: 78
+- between divergence act :: 78
+- between dropped thread :: 78
+- between dropped controller :: 78
+- between dropped act :: 78
+- between dropped structure :: 78
+- through synthesis compose :: 78
+- through synthesis composition :: 78
+- through synthesis receipt :: 78
+- through synthesis distinct :: 78
+- through compose composition :: 78
+- through compose receipt :: 78
+- through compose distinct :: 78
+- through compose preserve :: 78
+- through composition receipt :: 78
+- through composition distinct :: 78
+- through composition preserve :: 78
+- through composition carry :: 78
+- through receipt distinct :: 78
+- through receipt preserve :: 78
+- through receipt carry :: 78
+- through receipt merge :: 77
+- through distinct preserve :: 77
+- through distinct carry :: 77
+- through distinct merge :: 77
+- through distinct nonmerge :: 77
+- through preserve carry :: 77
+- through preserve merge :: 77
+- through preserve nonmerge :: 77
+- through preserve tension :: 77
+- through carry merge :: 77
+- through carry nonmerge :: 77
+- through carry tension :: 77
+- through carry split :: 77
+- through merge nonmerge :: 77
+- through merge tension :: 77
+- through merge split :: 77
+- through merge surviving :: 77
+- through nonmerge tension :: 77
+- through nonmerge split :: 77
+- through nonmerge surviving :: 77
+- through nonmerge difference :: 77
+- through tension split :: 77
+- through tension surviving :: 77
+- through tension difference :: 77
+- through tension held :: 77
+- through split surviving :: 76
+- through split difference :: 76
+- through split held :: 76
+- through split apart :: 76
+- through surviving difference :: 76
+- through surviving held :: 76
+- through surviving apart :: 76
+- through surviving accepted :: 76
+- through difference held :: 76
+- through difference apart :: 76
+- through difference accepted :: 76
+- through difference convergence :: 76
+- through held apart :: 76
+- through held accepted :: 76
+- through held convergence :: 76
+- through held named :: 76
+- through apart accepted :: 76
+- through apart convergence :: 76
+- through apart named :: 76
+- through apart divergence :: 76
+- through accepted convergence :: 76
+- through accepted named :: 76
+- through accepted divergence :: 76
+- through accepted dropped :: 76
+- through convergence named :: 76
+- through convergence divergence :: 75
+- through convergence dropped :: 75
+- through convergence thread :: 75
+- through named divergence :: 75
+- through named dropped :: 75
+- through named thread :: 75
+- through named controller :: 75
+- through divergence dropped :: 75
+- through divergence thread :: 75
+- through divergence controller :: 75
+- through divergence act :: 75
+- through dropped thread :: 75
+- through dropped controller :: 75
+- through dropped act :: 75
+- through dropped structure :: 75
+- before synthesis compose :: 75
+- before synthesis composition :: 75
+- before synthesis receipt :: 75
+- before synthesis distinct :: 75
+- before compose composition :: 75
+- before compose receipt :: 75
+- before compose distinct :: 75
+- before compose preserve :: 75
+- before composition receipt :: 75
+- before composition distinct :: 75
+- before composition preserve :: 74
+- before composition carry :: 74
+- before receipt distinct :: 74
+- before receipt preserve :: 74
+- before receipt carry :: 74
+- before receipt merge :: 74
+- before distinct preserve :: 74
+- before distinct carry :: 74
+- before distinct merge :: 74
+- before distinct nonmerge :: 74
+- before preserve carry :: 74
+- before preserve merge :: 74
+- before preserve nonmerge :: 74
+- before preserve tension :: 74
+- before carry merge :: 74
+- before carry nonmerge :: 74
+- before carry tension :: 74
+- before carry split :: 74
+- before merge nonmerge :: 74
+- before merge tension :: 74
+- before merge split :: 74
+- before merge surviving :: 74
+- before nonmerge tension :: 74
+- before nonmerge split :: 74
+- before nonmerge surviving :: 74
+- before nonmerge difference :: 73
+- before tension split :: 73
+- before tension surviving :: 73
+- before tension difference :: 73
+- before tension held :: 73
+- before split surviving :: 73
+- before split difference :: 73
+- before split held :: 73
+- before split apart :: 73
+- before surviving difference :: 73
+- before surviving held :: 73
+- before surviving apart :: 73
+- before surviving accepted :: 73
+- before difference held :: 73
+- before difference apart :: 73
+- before difference accepted :: 73
+- before difference convergence :: 73
+- before held apart :: 73
+- before held accepted :: 73
+- before held convergence :: 73
+- before held named :: 73
+- before apart accepted :: 73
+- before apart convergence :: 73
+- before apart named :: 73
+- before apart divergence :: 73
+- before accepted convergence :: 72
+- before accepted named :: 72
+- before accepted divergence :: 72
+- before accepted dropped :: 72
+- before convergence named :: 72
+- before convergence divergence :: 72
+- before convergence dropped :: 72
+- before convergence thread :: 72
+- before named divergence :: 72
+- before named dropped :: 72
+- before named thread :: 72
+- before named controller :: 72
+- before divergence dropped :: 72
+- before divergence thread :: 72
+- before divergence controller :: 72
+- before divergence act :: 72
+- before dropped thread :: 72
+- before dropped controller :: 72
+- before dropped act :: 72
+- before dropped structure :: 72
+- after synthesis compose :: 72
+- after synthesis composition :: 72
+- after synthesis receipt :: 72
+- after synthesis distinct :: 72
+- after compose composition :: 72
+- after compose receipt :: 71
+- after compose distinct :: 71
+- after compose preserve :: 71
+- after composition receipt :: 71
+- after composition distinct :: 71
+- after composition preserve :: 71
+- after composition carry :: 71
+- after receipt distinct :: 71
+- after receipt preserve :: 71
+- after receipt carry :: 71
+- after receipt merge :: 71
+- after distinct preserve :: 71
+- after distinct carry :: 71
+- after distinct merge :: 71
+- after distinct nonmerge :: 71
+- after preserve carry :: 71
+- after preserve merge :: 71
+- after preserve nonmerge :: 71
+- after preserve tension :: 71
+- after carry merge :: 71
+- after carry nonmerge :: 71
+- after carry tension :: 71
+- after carry split :: 71
+- after merge nonmerge :: 71
+- after merge tension :: 71
+- after merge split :: 70
+- after merge surviving :: 70
+- after nonmerge tension :: 70
+- after nonmerge split :: 70
+- after nonmerge surviving :: 70
+- after nonmerge difference :: 70
+- after tension split :: 70
+- after tension surviving :: 70
+- after tension difference :: 70
+- after tension held :: 70
+- after split surviving :: 70
+- after split difference :: 70
+- after split held :: 70
+- after split apart :: 70
+- after surviving difference :: 70
+- after surviving held :: 70
+- after surviving apart :: 70
+- after surviving accepted :: 70
+- after difference held :: 70
+- after difference apart :: 70
+- after difference accepted :: 70
+- after difference convergence :: 70
+- after held apart :: 70
+- after held accepted :: 70
+- after held convergence :: 70
+- after held named :: 69
+- after apart accepted :: 69
+- after apart convergence :: 69
+- after apart named :: 69
+- after apart divergence :: 69
+- after accepted convergence :: 69
+- after accepted named :: 69
+- after accepted divergence :: 69
+- after accepted dropped :: 69
+- after convergence named :: 69
+- after convergence divergence :: 69
+- after convergence dropped :: 69
+- after convergence thread :: 69
+- after named divergence :: 69
+- after named dropped :: 69
+- after named thread :: 69
+- after named controller :: 69
+- after divergence dropped :: 69
+- after divergence thread :: 69
+- after divergence controller :: 69
+- after divergence act :: 69
+- after dropped thread :: 69
+- after dropped controller :: 69
+- after dropped act :: 69
+- after dropped structure :: 69
+- during synthesis compose :: 68
+- during synthesis composition :: 68
+- during synthesis receipt :: 68
+- during synthesis distinct :: 68
+- during compose composition :: 68
+- during compose receipt :: 68
+- during compose distinct :: 68
+- during compose preserve :: 68
+- during composition receipt :: 68
+- during composition distinct :: 68
+- during composition preserve :: 68
+- during composition carry :: 68
+- during receipt distinct :: 68
+- during receipt preserve :: 68
+- during receipt carry :: 68
+- during receipt merge :: 68
+- during distinct preserve :: 68
+- during distinct carry :: 68
+- during distinct merge :: 68
+- during distinct nonmerge :: 68
+- during preserve carry :: 68
+- during preserve merge :: 68
+- during preserve nonmerge :: 68
+- during preserve tension :: 68
+- during carry merge :: 68
+- during carry nonmerge :: 67
+- during carry tension :: 67
+- during carry split :: 67
+- during merge nonmerge :: 67
+- during merge tension :: 67
+- during merge split :: 67
+- during merge surviving :: 67
+- during nonmerge tension :: 67
+- during nonmerge split :: 67
+- during nonmerge surviving :: 67
+- during nonmerge difference :: 67
+- during tension split :: 67
+- during tension surviving :: 67
+- during tension difference :: 67
+- during tension held :: 67
+- during split surviving :: 67
+- during split difference :: 67
+- during split held :: 67
+- during split apart :: 67
+- during surviving difference :: 67
+- during surviving held :: 67
+- during surviving apart :: 67
+- during surviving accepted :: 67
+- during difference held :: 67
+- during difference apart :: 67
+- during difference accepted :: 66
+- during difference convergence :: 66
+- during held apart :: 66
+- during held accepted :: 66
+- during held convergence :: 66
+- during held named :: 66
+- during apart accepted :: 66
+- during apart convergence :: 66
+- during apart named :: 66
+- during apart divergence :: 66
+- during accepted convergence :: 66
+- during accepted named :: 66
+- during accepted divergence :: 66
+- during accepted dropped :: 66
+- during convergence named :: 66
+- during convergence divergence :: 66
+- during convergence dropped :: 66
+- during convergence thread :: 66
+- during named divergence :: 66
+- during named dropped :: 66
+- during named thread :: 66
+- during named controller :: 66
+- during divergence dropped :: 66
+- during divergence thread :: 66
+- during divergence controller :: 66
+- during divergence act :: 65
+- during dropped thread :: 65
+- during dropped controller :: 65
+- during dropped act :: 65
+- during dropped structure :: 65
+- until synthesis compose :: 65
+- until synthesis composition :: 65
+- until synthesis receipt :: 65
+- until synthesis distinct :: 65
+- until compose composition :: 65
+- until compose receipt :: 65
+- until compose distinct :: 65
+- until compose preserve :: 65
+- until composition receipt :: 65
+- until composition distinct :: 65
+- until composition preserve :: 65
+- until composition carry :: 65
+- until receipt distinct :: 65
+- until receipt preserve :: 65
+- until receipt carry :: 65
+- until receipt merge :: 65
+- until distinct preserve :: 65
+- until distinct carry :: 65
+- until distinct merge :: 65
+- until distinct nonmerge :: 65
+- until preserve carry :: 64
+- until preserve merge :: 64
+- until preserve nonmerge :: 64
+- until preserve tension :: 64
+- until carry merge :: 64
+- until carry nonmerge :: 64
+- until carry tension :: 64
+- until carry split :: 64
+- until merge nonmerge :: 64
+- until merge tension :: 64
+- until merge split :: 64
+- until merge surviving :: 64
+- until nonmerge tension :: 64
+- until nonmerge split :: 64
+- until nonmerge surviving :: 64
+- until nonmerge difference :: 64
+- until tension split :: 64
+- until tension surviving :: 64
+- until tension difference :: 64
+- until tension held :: 64
+- until split surviving :: 64
+- until split difference :: 64
+- until split held :: 64
+- until split apart :: 64
+- until surviving difference :: 64
+- until surviving held :: 63
+- until surviving apart :: 63
+- until surviving accepted :: 63
+- until difference held :: 63
+- until difference apart :: 63
+- until difference accepted :: 63
+- until difference convergence :: 63
+- until held apart :: 63
+- until held accepted :: 63
+- until held convergence :: 63
+- until held named :: 63
+- until apart accepted :: 63
+- until apart convergence :: 63
+- until apart named :: 63
+- until apart divergence :: 63
+- until accepted convergence :: 63
+- until accepted named :: 63
+- until accepted divergence :: 63
+- until accepted dropped :: 63
+- until convergence named :: 63
+- until convergence divergence :: 63
+- until convergence dropped :: 63
+- until convergence thread :: 63
+- until named divergence :: 63
+- until named dropped :: 63
+- until named thread :: 62
+- until named controller :: 62
+- until divergence dropped :: 62
+- until divergence thread :: 62
+- until divergence controller :: 62
+- until divergence act :: 62
+- until dropped thread :: 62
+- until dropped controller :: 62
+- until dropped act :: 62
+- until dropped structure :: 62
+- since synthesis compose :: 62
+- since synthesis composition :: 62
+- since synthesis receipt :: 62
+- since synthesis distinct :: 62
+- since compose composition :: 62
+- since compose receipt :: 62
+- since compose distinct :: 62
+- since compose preserve :: 62
+- since composition receipt :: 62
+- since composition distinct :: 62
+- since composition preserve :: 62
+- since composition carry :: 62
+- since receipt distinct :: 62
+- since receipt preserve :: 62
+- since receipt carry :: 62
+- since receipt merge :: 61
+- since distinct preserve :: 61
+- since distinct carry :: 61
+- since distinct merge :: 61
+- since distinct nonmerge :: 61
+- since preserve carry :: 61
+- since preserve merge :: 61
+- since preserve nonmerge :: 61
+- since preserve tension :: 61
+- since carry merge :: 61
+- since carry nonmerge :: 61
+- since carry tension :: 61
+- since carry split :: 61
+- since merge nonmerge :: 61
+- since merge tension :: 61
+- since merge split :: 61
+- since merge surviving :: 61
+- since nonmerge tension :: 61
+- since nonmerge split :: 61
+- since nonmerge surviving :: 61
+- since nonmerge difference :: 61
+- since tension split :: 61
+- since tension surviving :: 61
+- since tension difference :: 61
+- since tension held :: 61
+- since split surviving :: 60
+- since split difference :: 60
+- since split held :: 60
+- since split apart :: 60
+- since surviving difference :: 60
+- since surviving held :: 60
+- since surviving apart :: 60
+- since surviving accepted :: 60
+- since difference held :: 60
+- since difference apart :: 60
+- since difference accepted :: 60
+- since difference convergence :: 60
+- since held apart :: 60
+- since held accepted :: 60
+- since held convergence :: 60
+- since held named :: 60
+- since apart accepted :: 60
+- since apart convergence :: 60
+- since apart named :: 60
+- since apart divergence :: 60
+- since accepted convergence :: 60
+- since accepted named :: 60
+- since accepted divergence :: 60
+- since accepted dropped :: 60
+- since convergence named :: 60
+- since convergence divergence :: 59
+- since convergence dropped :: 59
+- since convergence thread :: 59
+- since named divergence :: 59
+- since named dropped :: 59
+- since named thread :: 59
+- since named controller :: 59
+- since divergence dropped :: 59
+- since divergence thread :: 59
+- since divergence controller :: 59
+- since divergence act :: 59
+- since dropped thread :: 59
+- since dropped controller :: 59
+- since dropped act :: 59
+- since dropped structure :: 59
+- synthesis compose composition :: 59
+- synthesis compose receipt :: 59
+- synthesis compose distinct :: 59
+- synthesis composition receipt :: 59
+- synthesis composition distinct :: 59
+- synthesis receipt composition :: 59
+- synthesis receipt distinct :: 59
+- synthesis distinct composition :: 59
+- synthesis distinct receipt :: 59
+- synthesis preserve composition :: 59
+- synthesis preserve receipt :: 58
+- synthesis preserve distinct :: 58
+- compose composition receipt :: 58
+- compose composition distinct :: 58
+- compose composition preserve :: 58
+- compose receipt distinct :: 58
+- compose receipt preserve :: 58
+- compose distinct receipt :: 58
+- compose distinct preserve :: 58
+- compose preserve receipt :: 58
+- compose preserve distinct :: 58
+- compose carry receipt :: 58
+- compose carry distinct :: 58
+- compose carry preserve :: 58
+- composition receipt distinct :: 58
+- composition receipt preserve :: 58
+- composition receipt carry :: 58
+- composition distinct preserve :: 58
+- composition distinct carry :: 58
+- composition preserve distinct :: 58
+- composition preserve carry :: 58
+- composition carry distinct :: 58
+- composition carry preserve :: 58
+- composition merge distinct :: 58
+- composition merge preserve :: 58
+- composition merge carry :: 57
+- receipt distinct preserve :: 57
+- receipt distinct carry :: 57
+- receipt distinct merge :: 57
+- receipt preserve carry :: 57
+- receipt preserve merge :: 57
+- receipt carry preserve :: 57
+- receipt carry merge :: 57
+- receipt merge preserve :: 57
+- receipt merge carry :: 57
+- receipt nonmerge preserve :: 57
+- receipt nonmerge carry :: 57
+- receipt nonmerge merge :: 57
+- distinct preserve carry :: 57
+- distinct preserve merge :: 57
+- distinct preserve nonmerge :: 57
+- distinct carry merge :: 57
+- distinct carry nonmerge :: 57
+- distinct merge carry :: 57
+- distinct merge nonmerge :: 57
+- distinct nonmerge carry :: 57
+- distinct nonmerge merge :: 57
+- distinct tension carry :: 57
+- distinct tension merge :: 57
+- distinct tension nonmerge :: 57
+- preserve carry merge :: 56
+- preserve carry nonmerge :: 56
+- preserve carry tension :: 56
+- preserve merge nonmerge :: 56
+- preserve merge tension :: 56
+- preserve nonmerge merge :: 56
+- preserve nonmerge tension :: 56
+- preserve tension merge :: 56
+- preserve tension nonmerge :: 56
+- preserve split merge :: 56
+- preserve split nonmerge :: 56
+- preserve split tension :: 56
+- carry merge nonmerge :: 56
+- carry merge tension :: 56
+- carry merge split :: 56
+- carry nonmerge tension :: 56
+- carry nonmerge split :: 56
+- carry tension nonmerge :: 56
+- carry tension split :: 56
+- carry split nonmerge :: 56
+- carry split tension :: 56
+- carry surviving nonmerge :: 56
+- carry surviving tension :: 56
+- carry surviving split :: 56
+- merge nonmerge tension :: 56
+- merge nonmerge split :: 55
+- merge nonmerge surviving :: 55
+- merge tension split :: 55
+- merge tension surviving :: 55
+- merge split tension :: 55
+- merge split surviving :: 55
+- merge surviving tension :: 55
+- merge surviving split :: 55
+- merge difference tension :: 55
+- merge difference split :: 55
+- merge difference surviving :: 55
+- nonmerge tension split :: 55
+- nonmerge tension surviving :: 55
+- nonmerge tension difference :: 55
+- nonmerge split surviving :: 55
+- nonmerge split difference :: 55
+- nonmerge surviving split :: 55
+- nonmerge surviving difference :: 55
+- nonmerge difference split :: 55
+- nonmerge difference surviving :: 55
+- nonmerge held split :: 55
+- nonmerge held surviving :: 55
+- nonmerge held difference :: 55
+- tension split surviving :: 55
+- tension split difference :: 55
+- tension split held :: 54
+- tension surviving difference :: 54
+- tension surviving held :: 54
+- tension difference surviving :: 54
+- tension difference held :: 54
+- tension held surviving :: 54
+- tension held difference :: 54
+- tension apart surviving :: 54
+- tension apart difference :: 54
+- tension apart held :: 54
+- split surviving difference :: 54
+- split surviving held :: 54
+- split surviving apart :: 54
+- split difference held :: 54
+- split difference apart :: 54
+- split held difference :: 54
+- split held apart :: 54
+- split apart difference :: 54
+- split apart held :: 54
+- split accepted difference :: 54
+- split accepted held :: 54
+- split accepted apart :: 54
+- surviving difference held :: 54
+- surviving difference apart :: 54
+- surviving difference accepted :: 54
+- surviving held apart :: 53
+- surviving held accepted :: 53
+- surviving apart held :: 53
+- surviving apart accepted :: 53
+- surviving accepted held :: 53
+- surviving accepted apart :: 53
+- surviving convergence held :: 53
+- surviving convergence apart :: 53
+- surviving convergence accepted :: 53
+- difference held apart :: 53
+- difference held accepted :: 53
+- difference held convergence :: 53
+- difference apart accepted :: 53
+- difference apart convergence :: 53
+- difference accepted apart :: 53
+- difference accepted convergence :: 53
+- difference convergence apart :: 53
+- difference convergence accepted :: 53
+- difference named apart :: 53
+- difference named accepted :: 53
+- difference named convergence :: 53
+- held apart accepted :: 53
+- held apart convergence :: 53
+- held apart named :: 53
+- held accepted convergence :: 53
+- held accepted named :: 52
+- held convergence accepted :: 52
+- held convergence named :: 52
+- held named accepted :: 52
+- held named convergence :: 52
+- held divergence accepted :: 52
+- held divergence convergence :: 52
+- held divergence named :: 52
+- apart accepted convergence :: 52
+- apart accepted named :: 52
+- apart accepted divergence :: 52
+- apart convergence named :: 52
+- apart convergence divergence :: 52
+- apart named convergence :: 52
+- apart named divergence :: 52
+- apart divergence convergence :: 52
+- apart divergence named :: 52
+- apart dropped convergence :: 52
+- apart dropped named :: 52
+- apart dropped divergence :: 52
+- accepted convergence named :: 52
+- accepted convergence divergence :: 52
+- accepted convergence dropped :: 52
+- accepted named divergence :: 52
+- accepted named dropped :: 52
+- accepted divergence named :: 51
+- accepted divergence dropped :: 51
+- accepted dropped named :: 51
+- accepted dropped divergence :: 51
+- accepted thread named :: 51
+- accepted thread divergence :: 51
+- accepted thread dropped :: 51
+- convergence named divergence :: 51
+- convergence named dropped :: 51
+- convergence named thread :: 51
+- convergence divergence dropped :: 51
+- convergence divergence thread :: 51
+- convergence dropped divergence :: 51
+- convergence dropped thread :: 51
+- convergence thread divergence :: 51
+- convergence thread dropped :: 51
+- convergence controller divergence :: 51
+- convergence controller dropped :: 51
+- convergence controller thread :: 51
+- named divergence dropped :: 51
+- named divergence thread :: 51
+- named divergence controller :: 51
+- named dropped thread :: 51
+- named dropped controller :: 51
+- named thread dropped :: 51
+- named thread controller :: 50
+- named controller dropped :: 50
+- named controller thread :: 50
+- named act dropped :: 50
+- named act thread :: 50
+- named act controller :: 50
+- divergence dropped thread :: 50
+- divergence dropped controller :: 50
+- divergence dropped act :: 50
+- divergence thread controller :: 50
+- divergence thread act :: 50
+- divergence controller thread :: 50
+- divergence controller act :: 50
+- divergence act thread :: 50
+- divergence act controller :: 50
+- divergence structure thread :: 50
+- divergence structure controller :: 50
+- divergence structure act :: 50
+- dropped thread controller :: 50
+- dropped thread act :: 50
+- dropped thread structure :: 50
+- dropped controller act :: 50
+- dropped controller structure :: 50
+- dropped act controller :: 50
+- dropped act structure :: 50
+- dropped structure controller :: 49
+- dropped structure act :: 49
+- dropped boundary controller :: 49
+- dropped boundary act :: 49
+- dropped boundary structure :: 49
+- thread controller act :: 49
+- thread controller structure :: 49
+- thread controller boundary :: 49
+- thread act structure :: 49
+- thread act boundary :: 49
+- thread structure act :: 49
+- thread structure boundary :: 49
+- thread boundary act :: 49
+- thread boundary structure :: 49
+- thread not merged act :: 49
+- thread not merged structure :: 49
+- thread not merged boundary :: 49
+- controller act structure :: 49
+- controller act boundary :: 49
+- controller act not merged :: 49
+- controller structure boundary :: 49
+- controller structure not merged :: 49
+- controller boundary structure :: 49
+- controller boundary not merged :: 49
+- controller not merged structure :: 49
+- controller not merged boundary :: 48
+- controller not collapsed structure :: 48
+- controller not collapsed boundary :: 48
+- controller not collapsed not merged :: 48
+- act structure boundary :: 48
+- act structure not merged :: 48
+- act structure not collapsed :: 48
+- act boundary not merged :: 48
+- act boundary not collapsed :: 48
+- act not merged boundary :: 48
+- act not merged not collapsed :: 48
+- act not collapsed boundary :: 48
+- act not collapsed not merged :: 48
+- act held apart boundary :: 48
+- act held apart not merged :: 48
+- act held apart not collapsed :: 48
+- structure boundary not merged :: 48
+- structure boundary not collapsed :: 48
+- structure boundary held apart :: 48
+- structure not merged not collapsed :: 48
+- structure not merged held apart :: 48
+- structure not collapsed not merged :: 48
+- structure not collapsed held apart :: 48
+- structure held apart not merged :: 48
+- structure held apart not collapsed :: 48
+- structure surviving split not merged :: 47
+- structure surviving split not collapsed :: 47
+- structure surviving split held apart :: 47
+- boundary not merged not collapsed :: 47
+- boundary not merged held apart :: 47
+- boundary not merged surviving split :: 47
+- boundary not collapsed held apart :: 47
+- boundary not collapsed surviving split :: 47
+- boundary held apart not collapsed :: 47
+- boundary held apart surviving split :: 47
+- boundary surviving split not collapsed :: 47
+- boundary surviving split held apart :: 47
+- boundary excluded not collapsed :: 47
+- boundary excluded held apart :: 47
+- boundary excluded surviving split :: 47
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- merge without collapse
+- surviving disagreement
+- receipt boundary
+- source-aware filtering
+- preserved tension
+
+### Couplings
+
+- merge without collapse
+- surviving disagreement
+- receipt boundary
+
+### Triplets
+
+- receipt tension synthesis

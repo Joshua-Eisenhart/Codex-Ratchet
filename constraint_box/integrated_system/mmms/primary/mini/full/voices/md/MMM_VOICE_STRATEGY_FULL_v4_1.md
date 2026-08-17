@@ -1,0 +1,2586 @@
+# ♟️ Strategy Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `STRATEGY` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_STRATEGY_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- strategy :: 100
+- campaign :: 100
+- sequence :: 100
+- priority :: 100
+- resource :: 100
+- timing :: 100
+- front :: 100
+- decisive :: 100
+- retreat :: 100
+- hold :: 100
+- advance :: 100
+- defer :: 100
+- split :: 100
+- merge :: 100
+- tradeoff :: 100
+- objective :: 100
+- mission :: 100
+- position :: 100
+- terrain :: 100
+- initiative :: 100
+- commitment :: 100
+- scarce :: 100
+- drift :: 100
+- condition :: 100
+- return :: 100
+- reserve :: 99
+- line :: 99
+- effort :: 99
+- course :: 99
+- action :: 99
+- option :: 99
+- value :: 99
+- center of gravity :: 99
+- decisive point :: 99
+- friction :: 99
+- fog of war :: 99
+- line of operation :: 99
+- culminating point :: 99
+- means and ends :: 99
+- retreat condition :: 99
+- economy of force :: 99
+- strategic reserve :: 99
+- decisive front :: 99
+- role :: 99
+- order :: 99
+- drift condition :: 99
+- first move :: 99
+- return trigger :: 99
+- cost :: 99
+- leverage :: 99
+- direction :: 98
+- route :: 98
+- staged :: 98
+- choice :: 98
+- under :: 98
+- within :: 98
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 97
+- only :: 97
+- not :: 97
+- no :: 97
+- yet :: 97
+- then :: 97
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 96
+- careful :: 96
+- honest :: 96
+- first :: 96
+- next :: 96
+- prior :: 96
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- surface :: 96
+- packet :: 95
+- artifact :: 95
+- receipt :: 95
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- scope :: 95
+- boundary :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 94
+- impression :: 94
+- idea :: 94
+- perception :: 94
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- model :: 94
+- solver :: 94
+- satisfiable :: 94
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 93
+- test :: 93
+- check :: 93
+- verify :: 93
+- compare :: 93
+- sample :: 93
+- lane :: 93
+- voice :: 93
+- lens :: 93
+- council :: 93
+- audit :: 93
+- finding :: 93
+- blocker :: 93
+- deferred :: 93
+- blocked :: 93
+- spawned :: 93
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 92
+- relative :: 92
+- according :: 92
+- locally :: 92
+- jointly :: 92
+- separately :: 92
+- rather :: 92
+- instead :: 92
+- still :: 92
+- often :: 92
+- sometimes :: 92
+- usually :: 92
+- seems :: 92
+- appears :: 92
+- likely :: 92
+- possible :: 92
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+
+## couplings
+
+- under campaign :: 100
+- within campaign :: 100
+- across campaign :: 100
+- between campaign :: 100
+- through campaign :: 100
+- before campaign :: 100
+- after campaign :: 100
+- until campaign :: 100
+- where campaign :: 100
+- while campaign :: 100
+- campaign evidence :: 100
+- campaign support :: 100
+- campaign path :: 100
+- campaign surface :: 100
+- campaign packet :: 100
+- campaign receipt :: 100
+- campaign trace :: 100
+- campaign result :: 100
+- campaign scope :: 100
+- campaign boundary :: 100
+- campaign status :: 100
+- campaign candidate :: 100
+- campaign witness :: 100
+- campaign probe :: 100
+- campaign constraint :: 100
+- check campaign :: 99
+- compare campaign :: 99
+- observe campaign :: 99
+- measure campaign :: 99
+- test campaign :: 99
+- verify campaign :: 99
+- hold campaign :: 99
+- preserve campaign :: 99
+- split campaign :: 99
+- narrow campaign :: 99
+- under sequence :: 99
+- within sequence :: 99
+- across sequence :: 99
+- between sequence :: 99
+- through sequence :: 99
+- before sequence :: 99
+- after sequence :: 99
+- until sequence :: 99
+- where sequence :: 99
+- while sequence :: 99
+- sequence evidence :: 99
+- sequence support :: 99
+- sequence path :: 99
+- sequence surface :: 99
+- sequence packet :: 99
+- sequence receipt :: 98
+- sequence trace :: 98
+- sequence result :: 98
+- sequence scope :: 98
+- sequence boundary :: 98
+- sequence status :: 98
+- sequence candidate :: 98
+- sequence witness :: 98
+- sequence probe :: 98
+- sequence constraint :: 98
+- check sequence :: 98
+- compare sequence :: 98
+- observe sequence :: 98
+- measure sequence :: 98
+- test sequence :: 98
+- verify sequence :: 98
+- hold sequence :: 98
+- preserve sequence :: 98
+- split sequence :: 98
+- narrow sequence :: 98
+- under front :: 98
+- within front :: 98
+- across front :: 98
+- between front :: 98
+- through front :: 98
+- before front :: 97
+- after front :: 97
+- until front :: 97
+- where front :: 97
+- while front :: 97
+- front evidence :: 97
+- front support :: 97
+- front path :: 97
+- front surface :: 97
+- front packet :: 97
+- front receipt :: 97
+- front trace :: 97
+- front result :: 97
+- front scope :: 97
+- front boundary :: 97
+- front status :: 97
+- front candidate :: 97
+- front witness :: 97
+- front probe :: 97
+- front constraint :: 97
+- check front :: 97
+- compare front :: 97
+- observe front :: 97
+- measure front :: 97
+- test front :: 97
+- verify front :: 96
+- hold front :: 96
+- preserve front :: 96
+- split front :: 96
+- narrow front :: 96
+- under retreat :: 96
+- within retreat :: 96
+- across retreat :: 96
+- between retreat :: 96
+- through retreat :: 96
+- before retreat :: 96
+- after retreat :: 96
+- until retreat :: 96
+- where retreat :: 96
+- while retreat :: 96
+- retreat evidence :: 96
+- retreat support :: 96
+- retreat path :: 96
+- retreat surface :: 96
+- retreat packet :: 96
+- retreat receipt :: 96
+- retreat trace :: 96
+- retreat result :: 96
+- retreat scope :: 96
+- retreat boundary :: 96
+- retreat status :: 95
+- retreat candidate :: 95
+- retreat witness :: 95
+- retreat probe :: 95
+- retreat constraint :: 95
+- check retreat :: 95
+- compare retreat :: 95
+- observe retreat :: 95
+- measure retreat :: 95
+- test retreat :: 95
+- verify retreat :: 95
+- hold retreat :: 95
+- preserve retreat :: 95
+- split retreat :: 95
+- narrow retreat :: 95
+- under hold :: 95
+- within hold :: 95
+- across hold :: 95
+- between hold :: 95
+- through hold :: 95
+- before hold :: 95
+- after hold :: 95
+- until hold :: 95
+- where hold :: 95
+- while hold :: 95
+- hold evidence :: 94
+- hold support :: 94
+- hold path :: 94
+- hold surface :: 94
+- hold packet :: 94
+- hold receipt :: 94
+- hold trace :: 94
+- hold result :: 94
+- hold scope :: 94
+- hold boundary :: 94
+- hold status :: 94
+- hold candidate :: 94
+- hold witness :: 94
+- hold probe :: 94
+- hold constraint :: 94
+- check hold :: 94
+- compare hold :: 94
+- observe hold :: 94
+- measure hold :: 94
+- test hold :: 94
+- verify hold :: 94
+- hold hold :: 94
+- preserve hold :: 94
+- split hold :: 94
+- narrow hold :: 94
+- under defer :: 93
+- within defer :: 93
+- across defer :: 93
+- between defer :: 93
+- through defer :: 93
+- before defer :: 93
+- after defer :: 93
+- until defer :: 93
+- where defer :: 93
+- while defer :: 93
+- defer evidence :: 93
+- defer support :: 93
+- defer path :: 93
+- defer surface :: 93
+- defer packet :: 93
+- defer receipt :: 93
+- defer trace :: 93
+- defer result :: 93
+- defer scope :: 93
+- defer boundary :: 93
+- defer status :: 93
+- defer candidate :: 93
+- defer witness :: 93
+- defer probe :: 93
+- defer constraint :: 93
+- check defer :: 92
+- compare defer :: 92
+- observe defer :: 92
+- measure defer :: 92
+- test defer :: 92
+- verify defer :: 92
+- hold defer :: 92
+- preserve defer :: 92
+- split defer :: 92
+- narrow defer :: 92
+- under split :: 92
+- within split :: 92
+- across split :: 92
+- between split :: 92
+- through split :: 92
+- before split :: 92
+- after split :: 92
+- until split :: 92
+- where split :: 92
+- while split :: 92
+- split evidence :: 92
+- split support :: 92
+- split path :: 92
+- split surface :: 92
+- split packet :: 92
+- split receipt :: 91
+- split trace :: 91
+- split result :: 91
+- split scope :: 91
+- split boundary :: 91
+- split status :: 91
+- split candidate :: 91
+- split witness :: 91
+- split probe :: 91
+- split constraint :: 91
+- check split :: 91
+- compare split :: 91
+- observe split :: 91
+- measure split :: 91
+- test split :: 91
+- verify split :: 91
+- hold split :: 91
+- preserve split :: 91
+- split split :: 91
+- narrow split :: 91
+- under merge :: 91
+- within merge :: 91
+- across merge :: 91
+- between merge :: 91
+- through merge :: 91
+- before merge :: 90
+- after merge :: 90
+- until merge :: 90
+- where merge :: 90
+- while merge :: 90
+- merge evidence :: 90
+- merge support :: 90
+- merge path :: 90
+- merge surface :: 90
+- merge packet :: 90
+- merge receipt :: 90
+- merge trace :: 90
+- merge result :: 90
+- merge scope :: 90
+- merge boundary :: 90
+- merge status :: 90
+- merge candidate :: 90
+- merge witness :: 90
+- merge probe :: 90
+- merge constraint :: 90
+- check merge :: 90
+- compare merge :: 90
+- observe merge :: 90
+- measure merge :: 90
+- test merge :: 90
+- verify merge :: 89
+- hold merge :: 89
+- preserve merge :: 89
+- split merge :: 89
+- narrow merge :: 89
+- under resource :: 89
+- within resource :: 89
+- across resource :: 89
+- between resource :: 89
+- through resource :: 89
+- before resource :: 89
+- after resource :: 89
+- until resource :: 89
+- where resource :: 89
+- while resource :: 89
+- resource evidence :: 89
+- resource support :: 89
+- resource path :: 89
+- resource surface :: 89
+- resource packet :: 89
+- resource receipt :: 89
+- resource trace :: 89
+- resource result :: 89
+- resource scope :: 89
+- resource boundary :: 89
+- resource status :: 88
+- resource candidate :: 88
+- resource witness :: 88
+- resource probe :: 88
+- resource constraint :: 88
+- check resource :: 88
+- compare resource :: 88
+- observe resource :: 88
+- measure resource :: 88
+- test resource :: 88
+- verify resource :: 88
+- hold resource :: 88
+- preserve resource :: 88
+- split resource :: 88
+- narrow resource :: 88
+- under scarce :: 88
+- within scarce :: 88
+- across scarce :: 88
+- between scarce :: 88
+- through scarce :: 88
+- before scarce :: 88
+- after scarce :: 88
+- until scarce :: 88
+- where scarce :: 88
+- while scarce :: 88
+- scarce evidence :: 87
+- scarce support :: 87
+- scarce path :: 87
+- scarce surface :: 87
+- scarce packet :: 87
+- scarce receipt :: 87
+- scarce trace :: 87
+- scarce result :: 87
+- scarce scope :: 87
+- scarce boundary :: 87
+- scarce status :: 87
+- scarce candidate :: 87
+- scarce witness :: 87
+- scarce probe :: 87
+- scarce constraint :: 87
+- decisive point :: 87
+- culminating point :: 87
+- retreat condition :: 87
+- strategic reserve :: 87
+- decisive front :: 87
+- drift condition :: 87
+- first move :: 87
+- return trigger :: 87
+- center of gravity :: 87
+- friction :: 87
+- fog of war :: 86
+- line of operation :: 86
+- means and ends :: 86
+- economy of force :: 86
+- campaign :: 86
+- sequence :: 86
+- priority :: 86
+- resource :: 86
+- scarce :: 86
+- timing :: 86
+- hold :: 86
+- defer :: 86
+- retreat :: 86
+- advance :: 86
+- split :: 86
+- merge :: 86
+- role :: 86
+- order :: 86
+- cost :: 86
+- leverage :: 86
+- front :: 86
+- mission :: 86
+- under strategy :: 86
+- under priority :: 86
+- under timing :: 86
+- under decisive :: 85
+- under advance :: 85
+- under tradeoff :: 85
+- under objective :: 85
+- under mission :: 85
+- under position :: 85
+- under terrain :: 85
+- under initiative :: 85
+- within strategy :: 85
+- within priority :: 85
+- within timing :: 85
+- within decisive :: 85
+- within advance :: 85
+- within tradeoff :: 85
+- within objective :: 85
+- within mission :: 85
+- within position :: 85
+- within terrain :: 85
+- within initiative :: 85
+- across strategy :: 85
+- across priority :: 85
+- across timing :: 85
+- across decisive :: 85
+- across advance :: 85
+- across tradeoff :: 85
+- across objective :: 84
+- across mission :: 84
+- across position :: 84
+- across terrain :: 84
+- across initiative :: 84
+- between strategy :: 84
+- between priority :: 84
+- between timing :: 84
+- between decisive :: 84
+- between advance :: 84
+- between tradeoff :: 84
+- between objective :: 84
+- between mission :: 84
+- between position :: 84
+- between terrain :: 84
+- between initiative :: 84
+- through strategy :: 84
+- through priority :: 84
+- through timing :: 84
+- through decisive :: 84
+- through advance :: 84
+- through tradeoff :: 84
+- through objective :: 84
+- through mission :: 84
+- through position :: 84
+- through terrain :: 83
+- through initiative :: 83
+- before strategy :: 83
+- before priority :: 83
+- before timing :: 83
+- before decisive :: 83
+- before advance :: 83
+- before tradeoff :: 83
+- before objective :: 83
+- before mission :: 83
+- before position :: 83
+- before terrain :: 83
+- before initiative :: 83
+- after strategy :: 83
+- after priority :: 83
+- after timing :: 83
+- after decisive :: 83
+- after advance :: 83
+- after tradeoff :: 83
+- after objective :: 83
+- after mission :: 83
+- after position :: 83
+- after terrain :: 83
+- after initiative :: 83
+- during strategy :: 83
+- during campaign :: 82
+- during sequence :: 82
+- during priority :: 82
+- during resource :: 82
+- during timing :: 82
+- during front :: 82
+- during decisive :: 82
+- during retreat :: 82
+- during hold :: 82
+- during advance :: 82
+- during defer :: 82
+- during split :: 82
+- during merge :: 82
+- during tradeoff :: 82
+- during objective :: 82
+- during mission :: 82
+- during position :: 82
+- during terrain :: 82
+- during initiative :: 82
+- until strategy :: 82
+- until priority :: 82
+- until timing :: 82
+- until decisive :: 82
+- until advance :: 82
+- until tradeoff :: 82
+- until objective :: 81
+- until mission :: 81
+- until position :: 81
+- until terrain :: 81
+- until initiative :: 81
+- since strategy :: 81
+- since campaign :: 81
+- since sequence :: 81
+- since priority :: 81
+- since resource :: 81
+- since timing :: 81
+- since front :: 81
+- since decisive :: 81
+- since retreat :: 81
+- since hold :: 81
+- since advance :: 81
+- since defer :: 81
+- since split :: 81
+- since merge :: 81
+- since tradeoff :: 81
+- since objective :: 81
+- since mission :: 81
+- since position :: 81
+- since terrain :: 81
+- since initiative :: 81
+- from strategy :: 80
+- from campaign :: 80
+- from sequence :: 80
+- from priority :: 80
+- from resource :: 80
+- from timing :: 80
+- from front :: 80
+- from decisive :: 80
+- from retreat :: 80
+- from hold :: 80
+- from advance :: 80
+- from defer :: 80
+- from split :: 80
+- from merge :: 80
+- from tradeoff :: 80
+- from objective :: 80
+- from mission :: 80
+- from position :: 80
+- from terrain :: 80
+- from initiative :: 80
+- by strategy :: 80
+- by campaign :: 80
+- by sequence :: 80
+- by priority :: 80
+- by resource :: 80
+- by timing :: 79
+- by front :: 79
+- by decisive :: 79
+- by retreat :: 79
+- by hold :: 79
+- by advance :: 79
+- by defer :: 79
+- by split :: 79
+- by merge :: 79
+- by tradeoff :: 79
+- by objective :: 79
+- by mission :: 79
+- by position :: 79
+- by terrain :: 79
+- by initiative :: 79
+- with strategy :: 79
+- with campaign :: 79
+- with sequence :: 79
+- with priority :: 79
+- with resource :: 79
+- with timing :: 79
+- with front :: 79
+- with decisive :: 79
+- with retreat :: 79
+- with hold :: 79
+- with advance :: 78
+- with defer :: 78
+- with split :: 78
+- with merge :: 78
+- with tradeoff :: 78
+- with objective :: 78
+- with mission :: 78
+- with position :: 78
+- with terrain :: 78
+- with initiative :: 78
+- without strategy :: 78
+- without campaign :: 78
+- without sequence :: 78
+- without priority :: 78
+- without resource :: 78
+- without timing :: 78
+- without front :: 78
+- without decisive :: 78
+- without retreat :: 78
+- without hold :: 78
+- without advance :: 78
+- without defer :: 78
+- without split :: 78
+- without merge :: 78
+- without tradeoff :: 78
+- without objective :: 77
+- without mission :: 77
+- without position :: 77
+- without terrain :: 77
+- without initiative :: 77
+- against strategy :: 77
+- against campaign :: 77
+- against sequence :: 77
+- against priority :: 77
+- against resource :: 77
+- against timing :: 77
+- against front :: 77
+- against decisive :: 77
+- against retreat :: 77
+- against hold :: 77
+- against advance :: 77
+- against defer :: 77
+- against split :: 77
+- against merge :: 77
+- against tradeoff :: 77
+- against objective :: 77
+- against mission :: 77
+- against position :: 77
+- against terrain :: 77
+- against initiative :: 77
+- toward strategy :: 76
+- toward campaign :: 76
+- toward sequence :: 76
+- toward priority :: 76
+- toward resource :: 76
+- toward timing :: 76
+- toward front :: 76
+- toward decisive :: 76
+- toward retreat :: 76
+- toward hold :: 76
+- toward advance :: 76
+- toward defer :: 76
+- toward split :: 76
+- toward merge :: 76
+- toward tradeoff :: 76
+- toward objective :: 76
+- toward mission :: 76
+- toward position :: 76
+- toward terrain :: 76
+- toward initiative :: 76
+- near strategy :: 76
+- near campaign :: 76
+- near sequence :: 76
+- near priority :: 76
+- near resource :: 76
+- near timing :: 75
+- near front :: 75
+- near decisive :: 75
+- near retreat :: 75
+- near hold :: 75
+- near advance :: 75
+- near defer :: 75
+- near split :: 75
+- near merge :: 75
+- near tradeoff :: 75
+- near objective :: 75
+- near mission :: 75
+- near position :: 75
+- near terrain :: 75
+- near initiative :: 75
+- relative strategy :: 75
+- relative campaign :: 75
+- relative sequence :: 75
+- relative priority :: 75
+- relative resource :: 75
+- relative timing :: 75
+- relative front :: 75
+- relative decisive :: 75
+- relative retreat :: 75
+- relative hold :: 75
+- relative advance :: 74
+- relative defer :: 74
+- relative split :: 74
+- relative merge :: 74
+- relative tradeoff :: 74
+- relative objective :: 74
+- relative mission :: 74
+- relative position :: 74
+- relative terrain :: 74
+- relative initiative :: 74
+- strategy campaign :: 74
+- strategy sequence :: 74
+- strategy priority :: 74
+- strategy resource :: 74
+- strategy timing :: 74
+- strategy front :: 74
+- strategy decisive :: 74
+- strategy retreat :: 74
+- strategy hold :: 74
+- strategy advance :: 74
+- strategy defer :: 74
+- campaign sequence :: 74
+- campaign priority :: 74
+- campaign resource :: 74
+- campaign timing :: 74
+- campaign front :: 73
+- campaign decisive :: 73
+- campaign retreat :: 73
+- campaign hold :: 73
+- campaign advance :: 73
+- campaign defer :: 73
+- campaign split :: 73
+- sequence priority :: 73
+- sequence resource :: 73
+- sequence timing :: 73
+- sequence front :: 73
+- sequence decisive :: 73
+- sequence retreat :: 73
+- sequence hold :: 73
+- sequence advance :: 73
+- sequence defer :: 73
+- sequence split :: 73
+- sequence merge :: 73
+- priority resource :: 73
+- priority timing :: 73
+- priority front :: 73
+- priority decisive :: 73
+- priority retreat :: 73
+- priority hold :: 73
+- priority advance :: 73
+- priority defer :: 72
+- priority split :: 72
+- priority merge :: 72
+- priority tradeoff :: 72
+- resource timing :: 72
+- resource front :: 72
+- resource decisive :: 72
+- resource retreat :: 72
+- resource hold :: 72
+- resource advance :: 72
+- resource defer :: 72
+- resource split :: 72
+- resource merge :: 72
+- resource tradeoff :: 72
+- resource objective :: 72
+- timing front :: 72
+- timing decisive :: 72
+- timing retreat :: 72
+- timing hold :: 72
+- timing advance :: 72
+- timing defer :: 72
+- timing split :: 72
+- timing merge :: 72
+- timing tradeoff :: 72
+- timing objective :: 72
+- timing mission :: 71
+- front decisive :: 71
+- front retreat :: 71
+- front hold :: 71
+- front advance :: 71
+- front defer :: 71
+- front split :: 71
+- front merge :: 71
+- front tradeoff :: 71
+- front objective :: 71
+- front mission :: 71
+- front position :: 71
+- decisive retreat :: 71
+- decisive hold :: 71
+- decisive advance :: 71
+- decisive defer :: 71
+- decisive split :: 71
+- decisive merge :: 71
+- decisive tradeoff :: 71
+- decisive objective :: 71
+- decisive mission :: 71
+- decisive position :: 71
+- decisive terrain :: 71
+- retreat hold :: 71
+- retreat advance :: 71
+- retreat defer :: 70
+- retreat split :: 70
+- retreat merge :: 70
+- retreat tradeoff :: 70
+- retreat objective :: 70
+- retreat mission :: 70
+- retreat position :: 70
+- retreat terrain :: 70
+- retreat initiative :: 70
+- hold advance :: 70
+- hold tradeoff :: 70
+- hold objective :: 70
+- hold mission :: 70
+- hold position :: 70
+- hold terrain :: 70
+- hold initiative :: 70
+- hold commitment :: 70
+- advance defer :: 70
+- advance split :: 70
+- advance merge :: 70
+- advance tradeoff :: 70
+- advance objective :: 70
+- advance mission :: 70
+- advance position :: 70
+- advance terrain :: 70
+- advance initiative :: 69
+- advance commitment :: 69
+- advance scarce :: 69
+- defer split :: 69
+- defer merge :: 69
+- defer tradeoff :: 69
+- defer objective :: 69
+- defer mission :: 69
+- defer position :: 69
+- defer terrain :: 69
+- defer initiative :: 69
+- defer commitment :: 69
+- defer scarce :: 69
+- defer drift :: 69
+- split tradeoff :: 69
+- split objective :: 69
+- split mission :: 69
+- split position :: 69
+- split terrain :: 69
+- split initiative :: 69
+- split commitment :: 69
+- split scarce :: 69
+- split drift :: 69
+- split condition :: 69
+- merge tradeoff :: 69
+- merge objective :: 68
+- merge mission :: 68
+- merge position :: 68
+- merge terrain :: 68
+- merge initiative :: 68
+- merge commitment :: 68
+- merge scarce :: 68
+- merge drift :: 68
+- merge condition :: 68
+- merge return :: 68
+- tradeoff objective :: 68
+- tradeoff mission :: 68
+- tradeoff position :: 68
+- tradeoff terrain :: 68
+- tradeoff initiative :: 68
+- tradeoff commitment :: 68
+- tradeoff scarce :: 68
+- tradeoff drift :: 68
+- tradeoff condition :: 68
+- tradeoff return :: 68
+- tradeoff reserve :: 68
+- objective mission :: 68
+- objective position :: 68
+- objective terrain :: 68
+- objective initiative :: 68
+- objective commitment :: 67
+- objective scarce :: 67
+- objective drift :: 67
+- objective condition :: 67
+- objective return :: 67
+- objective reserve :: 67
+- objective line :: 67
+- mission position :: 67
+- mission terrain :: 67
+- mission initiative :: 67
+- mission commitment :: 67
+- mission scarce :: 67
+- mission drift :: 67
+- mission condition :: 67
+- mission return :: 67
+- mission reserve :: 67
+- mission line :: 67
+- mission effort :: 67
+- position terrain :: 67
+- position initiative :: 67
+- position commitment :: 67
+- position scarce :: 67
+- position drift :: 67
+- position condition :: 67
+- position return :: 67
+- position reserve :: 66
+- position line :: 66
+- position effort :: 66
+- position course :: 66
+- terrain initiative :: 66
+- terrain commitment :: 66
+- terrain scarce :: 66
+- terrain drift :: 66
+- terrain condition :: 66
+- terrain return :: 66
+- terrain reserve :: 66
+- terrain line :: 66
+- terrain effort :: 66
+- terrain course :: 66
+- terrain action :: 66
+- initiative commitment :: 66
+- initiative scarce :: 66
+- initiative drift :: 66
+- initiative condition :: 66
+- initiative return :: 66
+- initiative reserve :: 66
+- initiative line :: 66
+- initiative effort :: 66
+- initiative course :: 66
+- initiative action :: 66
+- initiative option :: 65
+- commitment scarce :: 65
+- commitment drift :: 65
+- commitment condition :: 65
+- commitment return :: 65
+- commitment reserve :: 65
+- commitment line :: 65
+- commitment effort :: 65
+- commitment course :: 65
+- commitment action :: 65
+- commitment option :: 65
+- commitment value :: 65
+- scarce drift :: 65
+- scarce condition :: 65
+- scarce return :: 65
+- scarce reserve :: 65
+- scarce line :: 65
+- scarce effort :: 65
+- scarce course :: 65
+- scarce action :: 65
+- scarce option :: 65
+- scarce value :: 65
+- scarce center of gravity :: 65
+- drift return :: 65
+- drift reserve :: 65
+
+## triplets
+
+- under current campaign :: 100
+- under local campaign :: 100
+- under bounded campaign :: 100
+- under finite campaign :: 100
+- under open campaign :: 100
+- under live campaign :: 100
+- within current campaign :: 100
+- within local campaign :: 100
+- within bounded campaign :: 100
+- within finite campaign :: 100
+- within open campaign :: 100
+- within live campaign :: 100
+- across current campaign :: 100
+- across local campaign :: 100
+- across bounded campaign :: 100
+- across finite campaign :: 100
+- across open campaign :: 100
+- across live campaign :: 100
+- between current campaign :: 100
+- between local campaign :: 100
+- between bounded campaign :: 100
+- between finite campaign :: 100
+- between open campaign :: 100
+- between live campaign :: 100
+- through current campaign :: 100
+- through local campaign :: 99
+- through bounded campaign :: 99
+- through finite campaign :: 99
+- through open campaign :: 99
+- through live campaign :: 99
+- before current campaign :: 99
+- before local campaign :: 99
+- before bounded campaign :: 99
+- before finite campaign :: 99
+- before open campaign :: 99
+- before live campaign :: 99
+- campaign evidence path :: 99
+- campaign support path :: 99
+- campaign path path :: 99
+- campaign surface path :: 99
+- campaign packet path :: 99
+- campaign receipt path :: 99
+- campaign trace path :: 99
+- campaign result path :: 99
+- campaign scope path :: 99
+- campaign boundary path :: 99
+- check campaign receipt :: 99
+- compare campaign receipt :: 99
+- observe campaign receipt :: 99
+- measure campaign receipt :: 99
+- test campaign receipt :: 98
+- verify campaign receipt :: 98
+- hold campaign receipt :: 98
+- preserve campaign receipt :: 98
+- under current sequence :: 98
+- under local sequence :: 98
+- under bounded sequence :: 98
+- under finite sequence :: 98
+- under open sequence :: 98
+- under live sequence :: 98
+- within current sequence :: 98
+- within local sequence :: 98
+- within bounded sequence :: 98
+- within finite sequence :: 98
+- within open sequence :: 98
+- within live sequence :: 98
+- across current sequence :: 98
+- across local sequence :: 98
+- across bounded sequence :: 98
+- across finite sequence :: 98
+- across open sequence :: 98
+- across live sequence :: 98
+- between current sequence :: 98
+- between local sequence :: 98
+- between bounded sequence :: 98
+- between finite sequence :: 97
+- between open sequence :: 97
+- between live sequence :: 97
+- through current sequence :: 97
+- through local sequence :: 97
+- through bounded sequence :: 97
+- through finite sequence :: 97
+- through open sequence :: 97
+- through live sequence :: 97
+- before current sequence :: 97
+- before local sequence :: 97
+- before bounded sequence :: 97
+- before finite sequence :: 97
+- before open sequence :: 97
+- before live sequence :: 97
+- sequence evidence path :: 97
+- sequence support path :: 97
+- sequence path path :: 97
+- sequence surface path :: 97
+- sequence packet path :: 97
+- sequence receipt path :: 97
+- sequence trace path :: 97
+- sequence result path :: 97
+- sequence scope path :: 97
+- sequence boundary path :: 97
+- check sequence receipt :: 96
+- compare sequence receipt :: 96
+- observe sequence receipt :: 96
+- measure sequence receipt :: 96
+- test sequence receipt :: 96
+- verify sequence receipt :: 96
+- hold sequence receipt :: 96
+- preserve sequence receipt :: 96
+- under current front :: 96
+- under local front :: 96
+- under bounded front :: 96
+- under finite front :: 96
+- under open front :: 96
+- under live front :: 96
+- within current front :: 96
+- within local front :: 96
+- within bounded front :: 96
+- within finite front :: 96
+- within open front :: 96
+- within live front :: 96
+- across current front :: 96
+- across local front :: 96
+- across bounded front :: 96
+- across finite front :: 96
+- across open front :: 96
+- across live front :: 95
+- between current front :: 95
+- between local front :: 95
+- between bounded front :: 95
+- between finite front :: 95
+- between open front :: 95
+- between live front :: 95
+- through current front :: 95
+- through local front :: 95
+- through bounded front :: 95
+- through finite front :: 95
+- through open front :: 95
+- through live front :: 95
+- before current front :: 95
+- before local front :: 95
+- before bounded front :: 95
+- before finite front :: 95
+- before open front :: 95
+- before live front :: 95
+- front evidence path :: 95
+- front support path :: 95
+- front path path :: 95
+- front surface path :: 95
+- front packet path :: 95
+- front receipt path :: 95
+- front trace path :: 94
+- front result path :: 94
+- front scope path :: 94
+- front boundary path :: 94
+- check front receipt :: 94
+- compare front receipt :: 94
+- observe front receipt :: 94
+- measure front receipt :: 94
+- test front receipt :: 94
+- verify front receipt :: 94
+- hold front receipt :: 94
+- preserve front receipt :: 94
+- under current retreat :: 94
+- under local retreat :: 94
+- under bounded retreat :: 94
+- under finite retreat :: 94
+- under open retreat :: 94
+- under live retreat :: 94
+- within current retreat :: 94
+- within local retreat :: 94
+- within bounded retreat :: 94
+- within finite retreat :: 94
+- within open retreat :: 94
+- within live retreat :: 94
+- across current retreat :: 94
+- across local retreat :: 93
+- across bounded retreat :: 93
+- across finite retreat :: 93
+- across open retreat :: 93
+- across live retreat :: 93
+- between current retreat :: 93
+- between local retreat :: 93
+- between bounded retreat :: 93
+- between finite retreat :: 93
+- between open retreat :: 93
+- between live retreat :: 93
+- through current retreat :: 93
+- through local retreat :: 93
+- through bounded retreat :: 93
+- through finite retreat :: 93
+- through open retreat :: 93
+- through live retreat :: 93
+- before current retreat :: 93
+- before local retreat :: 93
+- before bounded retreat :: 93
+- before finite retreat :: 93
+- before open retreat :: 93
+- before live retreat :: 93
+- retreat evidence path :: 93
+- retreat support path :: 93
+- retreat path path :: 92
+- retreat surface path :: 92
+- retreat packet path :: 92
+- retreat receipt path :: 92
+- retreat trace path :: 92
+- retreat result path :: 92
+- retreat scope path :: 92
+- retreat boundary path :: 92
+- check retreat receipt :: 92
+- compare retreat receipt :: 92
+- observe retreat receipt :: 92
+- measure retreat receipt :: 92
+- test retreat receipt :: 92
+- verify retreat receipt :: 92
+- hold retreat receipt :: 92
+- preserve retreat receipt :: 92
+- under current hold :: 92
+- under local hold :: 92
+- under bounded hold :: 92
+- under finite hold :: 92
+- under open hold :: 92
+- under live hold :: 92
+- within current hold :: 92
+- within local hold :: 92
+- within bounded hold :: 92
+- within finite hold :: 91
+- within open hold :: 91
+- within live hold :: 91
+- across current hold :: 91
+- across local hold :: 91
+- across bounded hold :: 91
+- across finite hold :: 91
+- across open hold :: 91
+- across live hold :: 91
+- between current hold :: 91
+- between local hold :: 91
+- between bounded hold :: 91
+- between finite hold :: 91
+- between open hold :: 91
+- between live hold :: 91
+- center of gravity :: 91
+- fog of war :: 91
+- line of operation :: 91
+- means and ends :: 91
+- economy of force :: 91
+- under strategy campaign :: 91
+- under strategy sequence :: 91
+- under strategy priority :: 91
+- under strategy resource :: 91
+- under campaign sequence :: 91
+- under campaign priority :: 90
+- under campaign resource :: 90
+- under campaign timing :: 90
+- under sequence priority :: 90
+- under sequence resource :: 90
+- under sequence timing :: 90
+- under sequence front :: 90
+- under priority resource :: 90
+- under priority timing :: 90
+- under priority front :: 90
+- under priority decisive :: 90
+- under resource timing :: 90
+- under resource front :: 90
+- under resource decisive :: 90
+- under resource retreat :: 90
+- under timing front :: 90
+- under timing decisive :: 90
+- under timing retreat :: 90
+- under timing hold :: 90
+- under front decisive :: 90
+- under front retreat :: 90
+- under front hold :: 90
+- under front advance :: 90
+- under decisive retreat :: 90
+- under decisive hold :: 90
+- under decisive advance :: 89
+- under decisive defer :: 89
+- under retreat hold :: 89
+- under retreat advance :: 89
+- under retreat defer :: 89
+- under retreat split :: 89
+- under hold advance :: 89
+- under hold defer :: 89
+- under hold split :: 89
+- under hold merge :: 89
+- under advance defer :: 89
+- under advance split :: 89
+- under advance merge :: 89
+- under advance tradeoff :: 89
+- under defer split :: 89
+- under defer merge :: 89
+- under defer tradeoff :: 89
+- under defer objective :: 89
+- under split merge :: 89
+- under split tradeoff :: 89
+- under split objective :: 89
+- under split mission :: 89
+- under merge tradeoff :: 89
+- under merge objective :: 89
+- under merge mission :: 89
+- under merge position :: 88
+- under tradeoff objective :: 88
+- under tradeoff mission :: 88
+- under tradeoff position :: 88
+- under tradeoff terrain :: 88
+- under objective mission :: 88
+- under objective position :: 88
+- under objective terrain :: 88
+- under objective initiative :: 88
+- under mission position :: 88
+- under mission terrain :: 88
+- under mission initiative :: 88
+- under mission commitment :: 88
+- under position terrain :: 88
+- under position initiative :: 88
+- under position commitment :: 88
+- under position scarce :: 88
+- under terrain initiative :: 88
+- under terrain commitment :: 88
+- under terrain scarce :: 88
+- under terrain drift :: 88
+- under initiative commitment :: 88
+- under initiative scarce :: 88
+- under initiative drift :: 88
+- under initiative condition :: 88
+- within strategy campaign :: 87
+- within strategy sequence :: 87
+- within strategy priority :: 87
+- within strategy resource :: 87
+- within campaign sequence :: 87
+- within campaign priority :: 87
+- within campaign resource :: 87
+- within campaign timing :: 87
+- within sequence priority :: 87
+- within sequence resource :: 87
+- within sequence timing :: 87
+- within sequence front :: 87
+- within priority resource :: 87
+- within priority timing :: 87
+- within priority front :: 87
+- within priority decisive :: 87
+- within resource timing :: 87
+- within resource front :: 87
+- within resource decisive :: 87
+- within resource retreat :: 87
+- within timing front :: 87
+- within timing decisive :: 87
+- within timing retreat :: 87
+- within timing hold :: 87
+- within front decisive :: 87
+- within front retreat :: 86
+- within front hold :: 86
+- within front advance :: 86
+- within decisive retreat :: 86
+- within decisive hold :: 86
+- within decisive advance :: 86
+- within decisive defer :: 86
+- within retreat hold :: 86
+- within retreat advance :: 86
+- within retreat defer :: 86
+- within retreat split :: 86
+- within hold advance :: 86
+- within hold defer :: 86
+- within hold split :: 86
+- within hold merge :: 86
+- within advance defer :: 86
+- within advance split :: 86
+- within advance merge :: 86
+- within advance tradeoff :: 86
+- within defer split :: 86
+- within defer merge :: 86
+- within defer tradeoff :: 86
+- within defer objective :: 86
+- within split merge :: 86
+- within split tradeoff :: 86
+- within split objective :: 85
+- within split mission :: 85
+- within merge tradeoff :: 85
+- within merge objective :: 85
+- within merge mission :: 85
+- within merge position :: 85
+- within tradeoff objective :: 85
+- within tradeoff mission :: 85
+- within tradeoff position :: 85
+- within tradeoff terrain :: 85
+- within objective mission :: 85
+- within objective position :: 85
+- within objective terrain :: 85
+- within objective initiative :: 85
+- within mission position :: 85
+- within mission terrain :: 85
+- within mission initiative :: 85
+- within mission commitment :: 85
+- within position terrain :: 85
+- within position initiative :: 85
+- within position commitment :: 85
+- within position scarce :: 85
+- within terrain initiative :: 85
+- within terrain commitment :: 85
+- within terrain scarce :: 85
+- within terrain drift :: 84
+- within initiative commitment :: 84
+- within initiative scarce :: 84
+- within initiative drift :: 84
+- within initiative condition :: 84
+- across strategy campaign :: 84
+- across strategy sequence :: 84
+- across strategy priority :: 84
+- across strategy resource :: 84
+- across campaign sequence :: 84
+- across campaign priority :: 84
+- across campaign resource :: 84
+- across campaign timing :: 84
+- across sequence priority :: 84
+- across sequence resource :: 84
+- across sequence timing :: 84
+- across sequence front :: 84
+- across priority resource :: 84
+- across priority timing :: 84
+- across priority front :: 84
+- across priority decisive :: 84
+- across resource timing :: 84
+- across resource front :: 84
+- across resource decisive :: 84
+- across resource retreat :: 84
+- across timing front :: 83
+- across timing decisive :: 83
+- across timing retreat :: 83
+- across timing hold :: 83
+- across front decisive :: 83
+- across front retreat :: 83
+- across front hold :: 83
+- across front advance :: 83
+- across decisive retreat :: 83
+- across decisive hold :: 83
+- across decisive advance :: 83
+- across decisive defer :: 83
+- across retreat hold :: 83
+- across retreat advance :: 83
+- across retreat defer :: 83
+- across retreat split :: 83
+- across hold advance :: 83
+- across hold defer :: 83
+- across hold split :: 83
+- across hold merge :: 83
+- across advance defer :: 83
+- across advance split :: 83
+- across advance merge :: 83
+- across advance tradeoff :: 83
+- across defer split :: 83
+- across defer merge :: 82
+- across defer tradeoff :: 82
+- across defer objective :: 82
+- across split merge :: 82
+- across split tradeoff :: 82
+- across split objective :: 82
+- across split mission :: 82
+- across merge tradeoff :: 82
+- across merge objective :: 82
+- across merge mission :: 82
+- across merge position :: 82
+- across tradeoff objective :: 82
+- across tradeoff mission :: 82
+- across tradeoff position :: 82
+- across tradeoff terrain :: 82
+- across objective mission :: 82
+- across objective position :: 82
+- across objective terrain :: 82
+- across objective initiative :: 82
+- across mission position :: 82
+- across mission terrain :: 82
+- across mission initiative :: 82
+- across mission commitment :: 82
+- across position terrain :: 82
+- across position initiative :: 82
+- across position commitment :: 81
+- across position scarce :: 81
+- across terrain initiative :: 81
+- across terrain commitment :: 81
+- across terrain scarce :: 81
+- across terrain drift :: 81
+- across initiative commitment :: 81
+- across initiative scarce :: 81
+- across initiative drift :: 81
+- across initiative condition :: 81
+- between strategy campaign :: 81
+- between strategy sequence :: 81
+- between strategy priority :: 81
+- between strategy resource :: 81
+- between campaign sequence :: 81
+- between campaign priority :: 81
+- between campaign resource :: 81
+- between campaign timing :: 81
+- between sequence priority :: 81
+- between sequence resource :: 81
+- between sequence timing :: 81
+- between sequence front :: 81
+- between priority resource :: 81
+- between priority timing :: 81
+- between priority front :: 81
+- between priority decisive :: 80
+- between resource timing :: 80
+- between resource front :: 80
+- between resource decisive :: 80
+- between resource retreat :: 80
+- between timing front :: 80
+- between timing decisive :: 80
+- between timing retreat :: 80
+- between timing hold :: 80
+- between front decisive :: 80
+- between front retreat :: 80
+- between front hold :: 80
+- between front advance :: 80
+- between decisive retreat :: 80
+- between decisive hold :: 80
+- between decisive advance :: 80
+- between decisive defer :: 80
+- between retreat hold :: 80
+- between retreat advance :: 80
+- between retreat defer :: 80
+- between retreat split :: 80
+- between hold advance :: 80
+- between hold defer :: 80
+- between hold split :: 80
+- between hold merge :: 80
+- between advance defer :: 79
+- between advance split :: 79
+- between advance merge :: 79
+- between advance tradeoff :: 79
+- between defer split :: 79
+- between defer merge :: 79
+- between defer tradeoff :: 79
+- between defer objective :: 79
+- between split merge :: 79
+- between split tradeoff :: 79
+- between split objective :: 79
+- between split mission :: 79
+- between merge tradeoff :: 79
+- between merge objective :: 79
+- between merge mission :: 79
+- between merge position :: 79
+- between tradeoff objective :: 79
+- between tradeoff mission :: 79
+- between tradeoff position :: 79
+- between tradeoff terrain :: 79
+- between objective mission :: 79
+- between objective position :: 79
+- between objective terrain :: 79
+- between objective initiative :: 79
+- between mission position :: 79
+- between mission terrain :: 78
+- between mission initiative :: 78
+- between mission commitment :: 78
+- between position terrain :: 78
+- between position initiative :: 78
+- between position commitment :: 78
+- between position scarce :: 78
+- between terrain initiative :: 78
+- between terrain commitment :: 78
+- between terrain scarce :: 78
+- between terrain drift :: 78
+- between initiative commitment :: 78
+- between initiative scarce :: 78
+- between initiative drift :: 78
+- between initiative condition :: 78
+- through strategy campaign :: 78
+- through strategy sequence :: 78
+- through strategy priority :: 78
+- through strategy resource :: 78
+- through campaign sequence :: 78
+- through campaign priority :: 78
+- through campaign resource :: 78
+- through campaign timing :: 78
+- through sequence priority :: 78
+- through sequence resource :: 78
+- through sequence timing :: 77
+- through sequence front :: 77
+- through priority resource :: 77
+- through priority timing :: 77
+- through priority front :: 77
+- through priority decisive :: 77
+- through resource timing :: 77
+- through resource front :: 77
+- through resource decisive :: 77
+- through resource retreat :: 77
+- through timing front :: 77
+- through timing decisive :: 77
+- through timing retreat :: 77
+- through timing hold :: 77
+- through front decisive :: 77
+- through front retreat :: 77
+- through front hold :: 77
+- through front advance :: 77
+- through decisive retreat :: 77
+- through decisive hold :: 77
+- through decisive advance :: 77
+- through decisive defer :: 77
+- through retreat hold :: 77
+- through retreat advance :: 77
+- through retreat defer :: 77
+- through retreat split :: 76
+- through hold advance :: 76
+- through hold defer :: 76
+- through hold split :: 76
+- through hold merge :: 76
+- through advance defer :: 76
+- through advance split :: 76
+- through advance merge :: 76
+- through advance tradeoff :: 76
+- through defer split :: 76
+- through defer merge :: 76
+- through defer tradeoff :: 76
+- through defer objective :: 76
+- through split merge :: 76
+- through split tradeoff :: 76
+- through split objective :: 76
+- through split mission :: 76
+- through merge tradeoff :: 76
+- through merge objective :: 76
+- through merge mission :: 76
+- through merge position :: 76
+- through tradeoff objective :: 76
+- through tradeoff mission :: 76
+- through tradeoff position :: 76
+- through tradeoff terrain :: 76
+- through objective mission :: 75
+- through objective position :: 75
+- through objective terrain :: 75
+- through objective initiative :: 75
+- through mission position :: 75
+- through mission terrain :: 75
+- through mission initiative :: 75
+- through mission commitment :: 75
+- through position terrain :: 75
+- through position initiative :: 75
+- through position commitment :: 75
+- through position scarce :: 75
+- through terrain initiative :: 75
+- through terrain commitment :: 75
+- through terrain scarce :: 75
+- through terrain drift :: 75
+- through initiative commitment :: 75
+- through initiative scarce :: 75
+- through initiative drift :: 75
+- through initiative condition :: 75
+- before strategy campaign :: 75
+- before strategy sequence :: 75
+- before strategy priority :: 75
+- before strategy resource :: 75
+- before campaign sequence :: 75
+- before campaign priority :: 74
+- before campaign resource :: 74
+- before campaign timing :: 74
+- before sequence priority :: 74
+- before sequence resource :: 74
+- before sequence timing :: 74
+- before sequence front :: 74
+- before priority resource :: 74
+- before priority timing :: 74
+- before priority front :: 74
+- before priority decisive :: 74
+- before resource timing :: 74
+- before resource front :: 74
+- before resource decisive :: 74
+- before resource retreat :: 74
+- before timing front :: 74
+- before timing decisive :: 74
+- before timing retreat :: 74
+- before timing hold :: 74
+- before front decisive :: 74
+- before front retreat :: 74
+- before front hold :: 74
+- before front advance :: 74
+- before decisive retreat :: 74
+- before decisive hold :: 74
+- before decisive advance :: 73
+- before decisive defer :: 73
+- before retreat hold :: 73
+- before retreat advance :: 73
+- before retreat defer :: 73
+- before retreat split :: 73
+- before hold advance :: 73
+- before hold defer :: 73
+- before hold split :: 73
+- before hold merge :: 73
+- before advance defer :: 73
+- before advance split :: 73
+- before advance merge :: 73
+- before advance tradeoff :: 73
+- before defer split :: 73
+- before defer merge :: 73
+- before defer tradeoff :: 73
+- before defer objective :: 73
+- before split merge :: 73
+- before split tradeoff :: 73
+- before split objective :: 73
+- before split mission :: 73
+- before merge tradeoff :: 73
+- before merge objective :: 73
+- before merge mission :: 73
+- before merge position :: 72
+- before tradeoff objective :: 72
+- before tradeoff mission :: 72
+- before tradeoff position :: 72
+- before tradeoff terrain :: 72
+- before objective mission :: 72
+- before objective position :: 72
+- before objective terrain :: 72
+- before objective initiative :: 72
+- before mission position :: 72
+- before mission terrain :: 72
+- before mission initiative :: 72
+- before mission commitment :: 72
+- before position terrain :: 72
+- before position initiative :: 72
+- before position commitment :: 72
+- before position scarce :: 72
+- before terrain initiative :: 72
+- before terrain commitment :: 72
+- before terrain scarce :: 72
+- before terrain drift :: 72
+- before initiative commitment :: 72
+- before initiative scarce :: 72
+- before initiative drift :: 72
+- before initiative condition :: 72
+- after strategy campaign :: 71
+- after strategy sequence :: 71
+- after strategy priority :: 71
+- after strategy resource :: 71
+- after campaign sequence :: 71
+- after campaign priority :: 71
+- after campaign resource :: 71
+- after campaign timing :: 71
+- after sequence priority :: 71
+- after sequence resource :: 71
+- after sequence timing :: 71
+- after sequence front :: 71
+- after priority resource :: 71
+- after priority timing :: 71
+- after priority front :: 71
+- after priority decisive :: 71
+- after resource timing :: 71
+- after resource front :: 71
+- after resource decisive :: 71
+- after resource retreat :: 71
+- after timing front :: 71
+- after timing decisive :: 71
+- after timing retreat :: 71
+- after timing hold :: 71
+- after front decisive :: 71
+- after front retreat :: 70
+- after front hold :: 70
+- after front advance :: 70
+- after decisive retreat :: 70
+- after decisive hold :: 70
+- after decisive advance :: 70
+- after decisive defer :: 70
+- after retreat hold :: 70
+- after retreat advance :: 70
+- after retreat defer :: 70
+- after retreat split :: 70
+- after hold advance :: 70
+- after hold defer :: 70
+- after hold split :: 70
+- after hold merge :: 70
+- after advance defer :: 70
+- after advance split :: 70
+- after advance merge :: 70
+- after advance tradeoff :: 70
+- after defer split :: 70
+- after defer merge :: 70
+- after defer tradeoff :: 70
+- after defer objective :: 70
+- after split merge :: 70
+- after split tradeoff :: 70
+- after split objective :: 69
+- after split mission :: 69
+- after merge tradeoff :: 69
+- after merge objective :: 69
+- after merge mission :: 69
+- after merge position :: 69
+- after tradeoff objective :: 69
+- after tradeoff mission :: 69
+- after tradeoff position :: 69
+- after tradeoff terrain :: 69
+- after objective mission :: 69
+- after objective position :: 69
+- after objective terrain :: 69
+- after objective initiative :: 69
+- after mission position :: 69
+- after mission terrain :: 69
+- after mission initiative :: 69
+- after mission commitment :: 69
+- after position terrain :: 69
+- after position initiative :: 69
+- after position commitment :: 69
+- after position scarce :: 69
+- after terrain initiative :: 69
+- after terrain commitment :: 69
+- after terrain scarce :: 69
+- after terrain drift :: 68
+- after initiative commitment :: 68
+- after initiative scarce :: 68
+- after initiative drift :: 68
+- after initiative condition :: 68
+- during strategy campaign :: 68
+- during strategy sequence :: 68
+- during strategy priority :: 68
+- during strategy resource :: 68
+- during campaign sequence :: 68
+- during campaign priority :: 68
+- during campaign resource :: 68
+- during campaign timing :: 68
+- during sequence priority :: 68
+- during sequence resource :: 68
+- during sequence timing :: 68
+- during sequence front :: 68
+- during priority resource :: 68
+- during priority timing :: 68
+- during priority front :: 68
+- during priority decisive :: 68
+- during resource timing :: 68
+- during resource front :: 68
+- during resource decisive :: 68
+- during resource retreat :: 68
+- during timing front :: 67
+- during timing decisive :: 67
+- during timing retreat :: 67
+- during timing hold :: 67
+- during front decisive :: 67
+- during front retreat :: 67
+- during front hold :: 67
+- during front advance :: 67
+- during decisive retreat :: 67
+- during decisive hold :: 67
+- during decisive advance :: 67
+- during decisive defer :: 67
+- during retreat hold :: 67
+- during retreat advance :: 67
+- during retreat defer :: 67
+- during retreat split :: 67
+- during hold advance :: 67
+- during hold defer :: 67
+- during hold split :: 67
+- during hold merge :: 67
+- during advance defer :: 67
+- during advance split :: 67
+- during advance merge :: 67
+- during advance tradeoff :: 67
+- during defer split :: 67
+- during defer merge :: 66
+- during defer tradeoff :: 66
+- during defer objective :: 66
+- during split merge :: 66
+- during split tradeoff :: 66
+- during split objective :: 66
+- during split mission :: 66
+- during merge tradeoff :: 66
+- during merge objective :: 66
+- during merge mission :: 66
+- during merge position :: 66
+- during tradeoff objective :: 66
+- during tradeoff mission :: 66
+- during tradeoff position :: 66
+- during tradeoff terrain :: 66
+- during objective mission :: 66
+- during objective position :: 66
+- during objective terrain :: 66
+- during objective initiative :: 66
+- during mission position :: 66
+- during mission terrain :: 66
+- during mission initiative :: 66
+- during mission commitment :: 66
+- during position terrain :: 66
+- during position initiative :: 66
+- during position commitment :: 65
+- during position scarce :: 65
+- during terrain initiative :: 65
+- during terrain commitment :: 65
+- during terrain scarce :: 65
+- during terrain drift :: 65
+- during initiative commitment :: 65
+- during initiative scarce :: 65
+- during initiative drift :: 65
+- during initiative condition :: 65
+- until strategy campaign :: 65
+- until strategy sequence :: 65
+- until strategy priority :: 65
+- until strategy resource :: 65
+- until campaign sequence :: 65
+- until campaign priority :: 65
+- until campaign resource :: 65
+- until campaign timing :: 65
+- until sequence priority :: 65
+- until sequence resource :: 65
+- until sequence timing :: 65
+- until sequence front :: 65
+- until priority resource :: 65
+- until priority timing :: 65
+- until priority front :: 65
+- until priority decisive :: 64
+- until resource timing :: 64
+- until resource front :: 64
+- until resource decisive :: 64
+- until resource retreat :: 64
+- until timing front :: 64
+- until timing decisive :: 64
+- until timing retreat :: 64
+- until timing hold :: 64
+- until front decisive :: 64
+- until front retreat :: 64
+- until front hold :: 64
+- until front advance :: 64
+- until decisive retreat :: 64
+- until decisive hold :: 64
+- until decisive advance :: 64
+- until decisive defer :: 64
+- until retreat hold :: 64
+- until retreat advance :: 64
+- until retreat defer :: 64
+- until retreat split :: 64
+- until hold advance :: 64
+- until hold defer :: 64
+- until hold split :: 64
+- until hold merge :: 64
+- until advance defer :: 63
+- until advance split :: 63
+- until advance merge :: 63
+- until advance tradeoff :: 63
+- until defer split :: 63
+- until defer merge :: 63
+- until defer tradeoff :: 63
+- until defer objective :: 63
+- until split merge :: 63
+- until split tradeoff :: 63
+- until split objective :: 63
+- until split mission :: 63
+- until merge tradeoff :: 63
+- until merge objective :: 63
+- until merge mission :: 63
+- until merge position :: 63
+- until tradeoff objective :: 63
+- until tradeoff mission :: 63
+- until tradeoff position :: 63
+- until tradeoff terrain :: 63
+- until objective mission :: 63
+- until objective position :: 63
+- until objective terrain :: 63
+- until objective initiative :: 63
+- until mission position :: 63
+- until mission terrain :: 62
+- until mission initiative :: 62
+- until mission commitment :: 62
+- until position terrain :: 62
+- until position initiative :: 62
+- until position commitment :: 62
+- until position scarce :: 62
+- until terrain initiative :: 62
+- until terrain commitment :: 62
+- until terrain scarce :: 62
+- until terrain drift :: 62
+- until initiative commitment :: 62
+- until initiative scarce :: 62
+- until initiative drift :: 62
+- until initiative condition :: 62
+- since strategy campaign :: 62
+- since strategy sequence :: 62
+- since strategy priority :: 62
+- since strategy resource :: 62
+- since campaign sequence :: 62
+- since campaign priority :: 62
+- since campaign resource :: 62
+- since campaign timing :: 62
+- since sequence priority :: 62
+- since sequence resource :: 62
+- since sequence timing :: 61
+- since sequence front :: 61
+- since priority resource :: 61
+- since priority timing :: 61
+- since priority front :: 61
+- since priority decisive :: 61
+- since resource timing :: 61
+- since resource front :: 61
+- since resource decisive :: 61
+- since resource retreat :: 61
+- since timing front :: 61
+- since timing decisive :: 61
+- since timing retreat :: 61
+- since timing hold :: 61
+- since front decisive :: 61
+- since front retreat :: 61
+- since front hold :: 61
+- since front advance :: 61
+- since decisive retreat :: 61
+- since decisive hold :: 61
+- since decisive advance :: 61
+- since decisive defer :: 61
+- since retreat hold :: 61
+- since retreat advance :: 61
+- since retreat defer :: 61
+- since retreat split :: 60
+- since hold advance :: 60
+- since hold defer :: 60
+- since hold split :: 60
+- since hold merge :: 60
+- since advance defer :: 60
+- since advance split :: 60
+- since advance merge :: 60
+- since advance tradeoff :: 60
+- since defer split :: 60
+- since defer merge :: 60
+- since defer tradeoff :: 60
+- since defer objective :: 60
+- since split merge :: 60
+- since split tradeoff :: 60
+- since split objective :: 60
+- since split mission :: 60
+- since merge tradeoff :: 60
+- since merge objective :: 60
+- since merge mission :: 60
+- since merge position :: 60
+- since tradeoff objective :: 60
+- since tradeoff mission :: 60
+- since tradeoff position :: 60
+- since tradeoff terrain :: 60
+- since objective mission :: 59
+- since objective position :: 59
+- since objective terrain :: 59
+- since objective initiative :: 59
+- since mission position :: 59
+- since mission terrain :: 59
+- since mission initiative :: 59
+- since mission commitment :: 59
+- since position terrain :: 59
+- since position initiative :: 59
+- since position commitment :: 59
+- since position scarce :: 59
+- since terrain initiative :: 59
+- since terrain commitment :: 59
+- since terrain scarce :: 59
+- since terrain drift :: 59
+- since initiative commitment :: 59
+- since initiative scarce :: 59
+- since initiative drift :: 59
+- since initiative condition :: 59
+- strategy campaign sequence :: 59
+- strategy campaign priority :: 59
+- strategy campaign resource :: 59
+- strategy sequence priority :: 59
+- strategy sequence resource :: 59
+- strategy priority sequence :: 58
+- strategy priority resource :: 58
+- strategy resource sequence :: 58
+- strategy resource priority :: 58
+- strategy timing sequence :: 58
+- strategy timing priority :: 58
+- strategy timing resource :: 58
+- campaign sequence priority :: 58
+- campaign sequence resource :: 58
+- campaign sequence timing :: 58
+- campaign priority resource :: 58
+- campaign priority timing :: 58
+- campaign resource priority :: 58
+- campaign resource timing :: 58
+- campaign timing priority :: 58
+- campaign timing resource :: 58
+- campaign front priority :: 58
+- campaign front resource :: 58
+- campaign front timing :: 58
+- sequence priority resource :: 58
+- sequence priority timing :: 58
+- sequence priority front :: 58
+- sequence resource timing :: 58
+- sequence resource front :: 58
+- sequence timing resource :: 58
+- sequence timing front :: 57
+- sequence front resource :: 57
+- sequence front timing :: 57
+- sequence decisive resource :: 57
+- sequence decisive timing :: 57
+- sequence decisive front :: 57
+- priority resource timing :: 57
+- priority resource front :: 57
+- priority resource decisive :: 57
+- priority timing front :: 57
+- priority timing decisive :: 57
+- priority front timing :: 57
+- priority front decisive :: 57
+- priority decisive timing :: 57
+- priority decisive front :: 57
+- priority retreat timing :: 57
+- priority retreat front :: 57
+- priority retreat decisive :: 57
+- resource timing front :: 57
+- resource timing decisive :: 57
+- resource timing retreat :: 57
+- resource front decisive :: 57
+- resource front retreat :: 57
+- resource decisive front :: 57
+- resource decisive retreat :: 57
+- resource retreat front :: 56
+- resource retreat decisive :: 56
+- resource hold front :: 56
+- resource hold decisive :: 56
+- resource hold retreat :: 56
+- timing front decisive :: 56
+- timing front retreat :: 56
+- timing front hold :: 56
+- timing decisive retreat :: 56
+- timing decisive hold :: 56
+- timing retreat decisive :: 56
+- timing retreat hold :: 56
+- timing hold decisive :: 56
+- timing hold retreat :: 56
+- timing advance decisive :: 56
+- timing advance retreat :: 56
+- timing advance hold :: 56
+- front decisive retreat :: 56
+- front decisive hold :: 56
+- front decisive advance :: 56
+- front retreat hold :: 56
+- front retreat advance :: 56
+- front hold retreat :: 56
+- front hold advance :: 56
+- front advance retreat :: 56
+- front advance hold :: 55
+- front defer retreat :: 55
+- front defer hold :: 55
+- front defer advance :: 55
+- decisive retreat hold :: 55
+- decisive retreat advance :: 55
+- decisive retreat defer :: 55
+- decisive hold advance :: 55
+- decisive hold defer :: 55
+- decisive advance hold :: 55
+- decisive advance defer :: 55
+- decisive defer hold :: 55
+- decisive defer advance :: 55
+- decisive split hold :: 55
+- decisive split advance :: 55
+- decisive split defer :: 55
+- retreat hold advance :: 55
+- retreat hold defer :: 55
+- retreat hold split :: 55
+- retreat advance defer :: 55
+- retreat advance split :: 55
+- retreat defer advance :: 55
+- retreat defer split :: 55
+- retreat split advance :: 55
+- retreat split defer :: 55
+- retreat merge advance :: 54
+- retreat merge defer :: 54
+- retreat merge split :: 54
+- hold advance defer :: 54
+- hold advance split :: 54
+- hold advance merge :: 54
+- hold defer split :: 54
+- hold defer merge :: 54
+- hold split defer :: 54
+- hold split merge :: 54
+- hold merge defer :: 54
+- hold merge split :: 54
+- hold tradeoff defer :: 54
+- hold tradeoff split :: 54
+- hold tradeoff merge :: 54
+- advance defer split :: 54
+- advance defer merge :: 54
+- advance defer tradeoff :: 54
+- advance split merge :: 54
+- advance split tradeoff :: 54
+- advance merge split :: 54
+- advance merge tradeoff :: 54
+- advance tradeoff split :: 54
+- advance tradeoff merge :: 54
+- advance objective split :: 54
+- advance objective merge :: 53
+- advance objective tradeoff :: 53
+- defer split merge :: 53
+- defer split tradeoff :: 53
+- defer split objective :: 53
+- defer merge tradeoff :: 53
+- defer merge objective :: 53
+- defer tradeoff merge :: 53
+- defer tradeoff objective :: 53
+- defer objective merge :: 53
+- defer objective tradeoff :: 53
+- defer mission merge :: 53
+- defer mission tradeoff :: 53
+- defer mission objective :: 53
+- split merge tradeoff :: 53
+- split merge objective :: 53
+- split merge mission :: 53
+- split tradeoff objective :: 53
+- split tradeoff mission :: 53
+- split objective tradeoff :: 53
+- split objective mission :: 53
+- split mission tradeoff :: 53
+- split mission objective :: 53
+- split position tradeoff :: 53
+- split position objective :: 53
+- split position mission :: 52
+- merge tradeoff objective :: 52
+- merge tradeoff mission :: 52
+- merge tradeoff position :: 52
+- merge objective mission :: 52
+- merge objective position :: 52
+- merge mission objective :: 52
+- merge mission position :: 52
+- merge position objective :: 52
+- merge position mission :: 52
+- merge terrain objective :: 52
+- merge terrain mission :: 52
+- merge terrain position :: 52
+- tradeoff objective mission :: 52
+- tradeoff objective position :: 52
+- tradeoff objective terrain :: 52
+- tradeoff mission position :: 52
+- tradeoff mission terrain :: 52
+- tradeoff position mission :: 52
+- tradeoff position terrain :: 52
+- tradeoff terrain mission :: 52
+- tradeoff terrain position :: 52
+- tradeoff initiative mission :: 52
+- tradeoff initiative position :: 52
+- tradeoff initiative terrain :: 52
+- objective mission position :: 51
+- objective mission terrain :: 51
+- objective mission initiative :: 51
+- objective position terrain :: 51
+- objective position initiative :: 51
+- objective terrain position :: 51
+- objective terrain initiative :: 51
+- objective initiative position :: 51
+- objective initiative terrain :: 51
+- objective commitment position :: 51
+- objective commitment terrain :: 51
+- objective commitment initiative :: 51
+- mission position terrain :: 51
+- mission position initiative :: 51
+- mission position commitment :: 51
+- mission terrain initiative :: 51
+- mission terrain commitment :: 51
+- mission initiative terrain :: 51
+- mission initiative commitment :: 51
+- mission commitment terrain :: 51
+- mission commitment initiative :: 51
+- mission scarce terrain :: 51
+- mission scarce initiative :: 51
+- mission scarce commitment :: 51
+- position terrain initiative :: 51
+- position terrain commitment :: 50
+- position terrain scarce :: 50
+- position initiative commitment :: 50
+- position initiative scarce :: 50
+- position commitment initiative :: 50
+- position commitment scarce :: 50
+- position scarce initiative :: 50
+- position scarce commitment :: 50
+- position drift initiative :: 50
+- position drift commitment :: 50
+- position drift scarce :: 50
+- terrain initiative commitment :: 50
+- terrain initiative scarce :: 50
+- terrain initiative drift :: 50
+- terrain commitment scarce :: 50
+- terrain commitment drift :: 50
+- terrain scarce commitment :: 50
+- terrain scarce drift :: 50
+- terrain drift commitment :: 50
+- terrain drift scarce :: 50
+- terrain condition commitment :: 50
+- terrain condition scarce :: 50
+- terrain condition drift :: 50
+- initiative commitment scarce :: 50
+- initiative commitment drift :: 50
+- initiative commitment condition :: 49
+- initiative scarce drift :: 49
+- initiative scarce condition :: 49
+- initiative drift scarce :: 49
+- initiative drift condition :: 49
+- initiative condition scarce :: 49
+- initiative condition drift :: 49
+- initiative return scarce :: 49
+- initiative return drift :: 49
+- initiative return condition :: 49
+- commitment scarce drift :: 49
+- commitment scarce condition :: 49
+- commitment scarce return :: 49
+- commitment drift condition :: 49
+- commitment drift return :: 49
+- commitment condition drift :: 49
+- commitment condition return :: 49
+- commitment return drift :: 49
+- commitment return condition :: 49
+- commitment reserve drift :: 49
+- commitment reserve condition :: 49
+- commitment reserve return :: 49
+- scarce drift condition :: 49
+- scarce drift return :: 49
+- scarce drift reserve :: 49
+- scarce condition return :: 48
+- scarce condition reserve :: 48
+- scarce return condition :: 48
+- scarce return reserve :: 48
+- scarce reserve condition :: 48
+- scarce reserve return :: 48
+- scarce line condition :: 48
+- scarce line return :: 48
+- scarce line reserve :: 48
+- drift condition return :: 48
+- drift condition reserve :: 48
+- drift condition line :: 48
+- drift return reserve :: 48
+- drift return line :: 48
+- drift reserve return :: 48
+- drift reserve line :: 48
+- drift line return :: 48
+- drift line reserve :: 48
+- drift effort return :: 48
+- drift effort reserve :: 48
+- drift effort line :: 48
+- condition return reserve :: 48
+- condition return line :: 48
+- condition return effort :: 48
+- condition reserve line :: 48
+- condition reserve effort :: 47
+- condition line reserve :: 47
+- condition line effort :: 47
+- condition effort reserve :: 47
+- condition effort line :: 47
+- condition course reserve :: 47
+- condition course line :: 47
+- condition course effort :: 47
+- return reserve line :: 47
+- return reserve effort :: 47
+- return reserve course :: 47
+- return line effort :: 47
+- return line course :: 47
+- return effort line :: 47
+- return effort course :: 47
+- return course line :: 47
+- return course effort :: 47
+- return action line :: 47
+- return action effort :: 47
+- return action course :: 47
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- observe
+- orient
+- decide
+- act
+- campaign
+- objective
+- terrain
+- disposition
+- movement
+- tempo
+- decisive point
+- initiative
+- reserve
+- Boyd
+- OODA
+- Clausewitz
+- Sunzi
+
+### Couplings
+
+- observe orient
+- decide act
+- campaign objective
+- tempo and reserve
+- decisive point
+
+### Triplets
+
+- observe orient decide
+- campaign tempo reserve
+- terrain disposition movement

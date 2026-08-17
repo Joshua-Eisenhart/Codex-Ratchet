@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe live PyPI facts for every row in the 91-tool CB Light manifest."""
+"""Observe live PyPI facts for every row in the CB Light proposal manifest."""
 
 from __future__ import annotations
 
@@ -37,8 +37,17 @@ def load_manifest(path: pathlib.Path) -> dict[str, Any]:
     observed = hashlib.sha256(canonical_json(identity)).hexdigest()
     if body.get("schema") != "constraintbox.cb-light-tool-manifest.v1" or claimed != observed:
         raise ValueError("invalid or tampered CB Light manifest")
-    if len(body.get("tools", [])) != 91:
-        raise ValueError("CB Light manifest must contain exactly 91 rows")
+    tools = body.get("tools")
+    expected_rows = (body.get("counts") or {}).get("tools")
+    if not isinstance(tools, list) or not tools:
+        raise ValueError("CB Light manifest must contain a nonempty tool domain")
+    if not isinstance(expected_rows, int) or expected_rows != len(tools):
+        raise ValueError("CB Light manifest tool count does not bind its rows")
+    names = [row.get("normalized_name") if isinstance(row, dict) else None for row in tools]
+    if any(not isinstance(name, str) or not name for name in names):
+        raise ValueError("CB Light manifest tool identity missing")
+    if len(set(names)) != len(names):
+        raise ValueError("CB Light manifest has duplicate tool identities")
     return body
 
 
@@ -313,13 +322,13 @@ def main() -> int:
         print(
             f"CB Light pinned metadata: {counts['local_metadata_admit']} ADMIT, "
             f"{counts['local_metadata_hold']} HOLD; full candidate bar "
-            f"{counts['candidate_metadata_bar_satisfied']}/91"
+            f"{counts['candidate_metadata_bar_satisfied']}/{len(rows)}"
         )
         for row in rows:
             if row["disposition"] == "HOLD":
                 print(f"  HOLD {row['distribution']}: {', '.join(row['failed_predicates'])}")
         print(f"receipt: {args.output}")
-    return 0 if counts["authority_available"] == 91 else 1
+    return 0 if counts["authority_available"] == len(rows) else 1
 
 
 if __name__ == "__main__":

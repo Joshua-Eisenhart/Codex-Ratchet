@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-premortem-wave-v1",
+  "purpose": "Find prospective failure mechanisms, try finite repairs, and rerun the same lenses.",
+  "children": [
+    {"id": "likely_failure", "skill": "cb-premortem-cell", "operation": "likely_failure", "tools": ["source_inspection", "test_runner"]},
+    {"id": "dangerous_failure", "skill": "cb-premortem-cell", "operation": "dangerous_failure", "tools": ["dependency_graph", "negative_tests"]},
+    {"id": "hidden_assumption", "skill": "cb-premortem-cell", "operation": "hidden_assumption", "tools": ["contract_diff", "mutation_probe"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 3, "repair_then_exact_rerun": true, "stop_reasons": ["no_material_delta", "falsifiers_settled", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["child_receipts", "preload_receipts", "provider_call_receipt", "cancellation_state", "disagreement_state", "output_digest", "repair_digest", "rerun_delta"]},
+  "claim_ceiling": "Embedded prospective failure evidence only; no execution, promotion, or release authority."
+}

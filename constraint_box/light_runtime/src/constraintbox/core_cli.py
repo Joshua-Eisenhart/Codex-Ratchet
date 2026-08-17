@@ -14,9 +14,8 @@ from pathlib import Path
 from .core_tools import doctor, exercise
 
 
-# This is deliberately an optional-profile gate, not a CB Light base-tool
-# admission.  The base environment must remain usable without these packages;
-# only the typed local control-plane/wave commands require these exact pins.
+# These pins bind the typed local control-plane operations. They are also in
+# the earned working-set core when installed/exercised with CB consumer path.
 _CONTROL_PLANE_EXACT_PINS = {
     "pydantic": "2.12.5",
     "jsonschema": "4.26.0",
@@ -28,30 +27,218 @@ _PREMORTEM_CLI_CLAIM_CEILING = (
     "model, MMM, formal agent, repair action, browser, UI, or CB Heavy work."
 )
 
+# Entry-gate modes for wave/premortem:
+#   local_core_probe (default) — fast earned-core probe matrix (runnable spine)
+#   broker_status — full contained cb_light_cli status (slow live boundary)
+#   cached — reuse fingerprint-bound cache written after a green gate
+_ENTRY_GATE_CACHE_NAME = "cb_light_entry_gate_cache.json"
+_ENTRY_GATE_MAX_AGE_S = 3600
 
-def _current_cb_light_evaluation_for_wave() -> tuple[bool, str, dict[str, object]]:
-    """Require the real contained Light gate before a fixture wave can start.
+# These are checkout-owned bindings read directly by the public contained
+# broker/status route.  Executable Python sources are intentionally *not*
+# listed here: they are discovered from their loaded module paths below.
+_ENTRY_GATE_ROOT_BINDINGS = (
+    "config/core_tool_registry_v9.json",
+    "scripts/cb_light_cli.py",
+)
+_ENTRY_GATE_CONSTRAINTBOX_SOURCE_NAMES = (
+    "core_cli.py",
+    "core_tools.py",
+    "cb_light_probes.py",
+    "control_plane.py",
+    "mini_lev_bridge.py",
+    "transition_mini_lev.py",
+    "verify_operation.py",
+    "premortem_contracts.py",
+    "premortem_remediation.py",
+    "wave_adapters.py",
+    "wave_contracts.py",
+    "wave_controller.py",
+)
+_ENTRY_GATE_HOOKKERNEL_SOURCE_NAMES = (
+    "cb_light_runtime.py",
+    "cb_light_domain.py",
+    "cb_light_state.py",
+    "cb_light_minilev_state.py",
+    "cb_light_wave_state.py",
+)
 
-    This is deliberately a subprocess through the public contained broker
-    status route rather than a copy of its receipt logic.  That route checks
-    current sources/receipts and re-runs the fresh-wheel plus actual-runtime
-    boundary audit in a verifier-owned temporary location.
+
+def _entry_gate_mode() -> str:
+    import os
+
+    mode = (os.environ.get("CB_LIGHT_ENTRY_GATE_MODE") or "local_core_probe").strip()
+    if mode not in {"local_core_probe", "broker_status", "cached"}:
+        return "local_core_probe"
+    return mode
+
+
+def _entry_gate_loaded_source_paths() -> tuple[tuple[str, Path], ...]:
+    """Return executable sibling paths without importing optional wave modules."""
+
+    # ``cb_light_runtime`` is the one hookkernel import already required by the
+    # public entry gate to discover ``ROOT``.  Every other file is only a path
+    # sibling: importing it here would turn a missing optional dependency into
+    # an exception before the typed dependency gate can return HOLD.
+    from hookkernel import cb_light_runtime
+
+    constraintbox_dir = Path(__file__).resolve().parent
+    hookkernel_dir = Path(cb_light_runtime.__file__).resolve().parent
+    return tuple(
+        (f"constraintbox/{name}", constraintbox_dir / name)
+        for name in _ENTRY_GATE_CONSTRAINTBOX_SOURCE_NAMES
+    ) + tuple(
+        (f"hookkernel/{name}", hookkernel_dir / name)
+        for name in _ENTRY_GATE_HOOKKERNEL_SOURCE_NAMES
+    )
+
+
+def _entry_gate_fingerprint(root: Path) -> str:
+    """Hash loaded Light code plus checkout bindings used directly at runtime.
+
+    ``root/src/constraintbox`` and ``root/light_runtime/src`` are deliberately
+    absent from the code half of this fingerprint.  They are checkout copies,
+    not proof of which bytes the installed public route imported.
     """
 
-    from hookkernel.cb_light_runtime import MANDATED_INTERPRETER, ROOT
+    h = hashlib.sha256()
+    for label, path in _entry_gate_loaded_source_paths():
+        h.update(label.encode("utf-8"))
+        h.update(b"\0")
+        if path.is_file():
+            h.update(path.read_bytes())
+        h.update(b"\n")
+    for rel in _ENTRY_GATE_ROOT_BINDINGS:
+        path = root / rel
+        h.update(rel.encode("utf-8"))
+        h.update(b"\0")
+        if path.is_file():
+            h.update(path.read_bytes())
+        h.update(b"\n")
+    return h.hexdigest()
 
-    status_script = ROOT / "scripts" / "cb_light_cli.py"
+
+def _read_entry_gate_cache(
+    root: Path, fingerprint: str
+) -> tuple[bool, str, dict[str, object]] | None:
+    import time
+
+    path = root / "receipts" / _ENTRY_GATE_CACHE_NAME
+    if not path.is_file():
+        return None
+    try:
+        body = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(body, dict):
+        return None
+    if body.get("fingerprint") != fingerprint:
+        return None
+    if body.get("evaluation_allowed") is not True:
+        return None
+    captured = body.get("captured_at_unix")
+    if not isinstance(captured, (int, float)):
+        return None
+    age = time.time() - float(captured)
+    if age < 0 or age > _ENTRY_GATE_MAX_AGE_S:
+        return None
+    binding = {
+        "mode": "entry_gate_cache",
+        "cache_path": str(path),
+        "fingerprint": fingerprint,
+        "age_s": round(age, 3),
+        "source_reason": body.get("reason_code"),
+        "source_mode": body.get("source_mode"),
+    }
+    return True, "CB_LIGHT_EVALUATION_GATE_CURRENT_CACHED", binding
+
+
+def _write_entry_gate_cache(
+    root: Path,
+    *,
+    fingerprint: str,
+    allowed: bool,
+    reason_code: str,
+    source_mode: str,
+) -> None:
+    import time
+
+    if not allowed:
+        return
+    path = root / "receipts" / _ENTRY_GATE_CACHE_NAME
+    path.parent.mkdir(parents=True, exist_ok=True)
+    body = {
+        "schema": "constraintbox.cb-light-entry-gate-cache.v1",
+        "fingerprint": fingerprint,
+        "evaluation_allowed": True,
+        "reason_code": reason_code,
+        "source_mode": source_mode,
+        "captured_at_unix": time.time(),
+        "max_age_s": _ENTRY_GATE_MAX_AGE_S,
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "fingerprint-bound local entry-gate cache only; not completion/adoption"
+        ),
+    }
+    path.write_text(json.dumps(body, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _evaluation_via_local_core_probe(
+    root: Path, fingerprint: str
+) -> tuple[bool, str, dict[str, object]]:
+    """Fast runnable-spine gate: earned-core probe matrix must be fully satisfied."""
+
+    binding: dict[str, object] = {
+        "mode": "local_core_probe_matrix",
+        "fingerprint": fingerprint,
+        "interpreter": sys.executable,
+    }
+    try:
+        from .cb_light_probes import run_core_probe_matrix
+
+        matrix = run_core_probe_matrix()
+    except Exception as exc:  # noqa: BLE001 — gate must fail closed
+        binding["error"] = type(exc).__name__
+        return False, f"CB_LIGHT_LOCAL_CORE_PROBE_ERROR:{type(exc).__name__}", binding
+    binding["all_contracts_satisfied"] = bool(matrix.get("all_contracts_satisfied"))
+    binding["contract_set_sha256"] = matrix.get("contract_set_sha256")
+    binding["evidence_set_sha256"] = matrix.get("evidence_set_sha256")
+    binding["claim_ceiling"] = matrix.get("claim_ceiling")
+    allowed = matrix.get("all_contracts_satisfied") is True
+    reason = (
+        "CB_LIGHT_LOCAL_CORE_PROBE_CURRENT"
+        if allowed
+        else "CB_LIGHT_LOCAL_CORE_PROBE_INCOMPLETE"
+    )
+    if allowed:
+        _write_entry_gate_cache(
+            root,
+            fingerprint=fingerprint,
+            allowed=True,
+            reason_code=reason,
+            source_mode="local_core_probe",
+        )
+    return allowed, reason, binding
+
+
+def _evaluation_via_broker_status(
+    root: Path, fingerprint: str
+) -> tuple[bool, str, dict[str, object]]:
+    from hookkernel.cb_light_runtime import MANDATED_INTERPRETER
+
+    status_script = root / "scripts" / "cb_light_cli.py"
     binding: dict[str, object] = {
         "mode": "contained_cb_light_status_live_boundary",
         "interpreter": str(MANDATED_INTERPRETER),
         "status_script": str(status_script),
+        "fingerprint": fingerprint,
     }
     if not MANDATED_INTERPRETER.is_file() or not status_script.is_file():
         return False, "CB_LIGHT_EVALUATION_GATE_UNAVAILABLE", binding
     try:
         completed = subprocess.run(
             [str(MANDATED_INTERPRETER), "-I", str(status_script), "status"],
-            cwd=ROOT.parent,
+            cwd=root.parent,
             capture_output=True,
             text=True,
             check=False,
@@ -74,26 +261,77 @@ def _current_cb_light_evaluation_for_wave() -> tuple[bool, str, dict[str, object
         return False, "CB_LIGHT_EVALUATION_GATE_OUTPUT_INVALID", binding
     binding["evaluation_reason_code"] = str(status.get("reason_code", ""))
     allowed = completed.returncode == 0 and status.get("evaluation_allowed") is True
-    return (
-        bool(allowed),
-        (
-            "CB_LIGHT_EVALUATION_GATE_CURRENT"
-            if allowed
-            else f"CB_LIGHT_EVALUATION_GATE_HOLD:{binding['evaluation_reason_code']}"
-        ),
-        binding,
+    reason = (
+        "CB_LIGHT_EVALUATION_GATE_CURRENT"
+        if allowed
+        else f"CB_LIGHT_EVALUATION_GATE_HOLD:{binding['evaluation_reason_code']}"
     )
+    if allowed:
+        _write_entry_gate_cache(
+            root,
+            fingerprint=fingerprint,
+            allowed=True,
+            reason_code=reason,
+            source_mode="broker_status",
+        )
+    return bool(allowed), reason, binding
+
+
+def _current_cb_light_evaluation_for_wave() -> tuple[bool, str, dict[str, object]]:
+    """Gate wave/premortem on a current CB Light evaluation surface.
+
+    Default is the fast local earned-core probe matrix (runnable spine map).
+    Set CB_LIGHT_ENTRY_GATE_MODE=broker_status for the slow contained status
+    boundary, or =cached to require a fingerprint-bound cache hit only.
+    """
+
+    from hookkernel.cb_light_basin_view import hold_result_if_incomplete
+    from hookkernel.cb_light_runtime import ROOT
+
+    held = hold_result_if_incomplete()
+    if held is not None:
+        return (
+            False,
+            "HOLD_BASIN_FIELD_INCOMPLETE",
+            {
+                "mode": "current_basin_view",
+                "evaluation_reason_code": held["reason_code"],
+                "basin_view": held["basin_view"],
+            },
+        )
+
+    fingerprint = _entry_gate_fingerprint(ROOT)
+    mode = _entry_gate_mode()
+
+    cached = _read_entry_gate_cache(ROOT, fingerprint)
+    if mode == "cached":
+        if cached is not None:
+            return cached
+        return (
+            False,
+            "CB_LIGHT_ENTRY_GATE_CACHE_MISS",
+            {
+                "mode": "entry_gate_cache",
+                "fingerprint": fingerprint,
+                "cache_path": str(ROOT / "receipts" / _ENTRY_GATE_CACHE_NAME),
+            },
+        )
+    if cached is not None and mode in {"local_core_probe", "broker_status"}:
+        # Reuse only when caller did not force a fresh broker re-run.
+        if mode == "local_core_probe":
+            return cached
+
+    if mode == "broker_status":
+        return _evaluation_via_broker_status(ROOT, fingerprint)
+    return _evaluation_via_local_core_probe(ROOT, fingerprint)
 
 
 def _current_control_plane_dependencies_for_wave() -> tuple[bool, str, dict[str, object]]:
-    """Require the exact typed-profile dependencies before opening a wave DB.
+    """Require exact typed-operation dependencies before opening a wave DB.
 
-    The base CB Light gate intentionally does not include Pydantic or
-    JSONSchema.  A wave is an optional typed control-plane operation, however,
-    so its public CLI must verify the installed interpreter imports the two
-    exact declared pins at the moment the operation starts.  This is a live
-    operational check, not an assertion that either package belongs to the
-    91-root CB Light candidate domain.
+    A typed control-plane operation verifies that its current interpreter can
+    import the two exact pins at the moment it starts.  That is operation
+    evidence, not a permanent admission or authority claim for either tool.
     """
 
     binding: dict[str, object] = {
@@ -248,6 +486,32 @@ def build_parser() -> argparse.ArgumentParser:
     control_plane.add_argument("--request", type=Path, required=True)
     control_plane.add_argument("--db", type=Path)
     control_plane.add_argument("--output", type=Path)
+    mini_lev = commands.add_parser(
+        "mini-lev",
+        help="run one bounded receipt-bound CB Light Mini-Lev operation",
+    )
+    mini_lev.add_argument("--request", type=Path, required=True)
+    mini_lev.add_argument("--db", type=Path)
+    mini_lev.add_argument("--output", type=Path)
+    transition_mini_lev = commands.add_parser(
+        "mini-lev-transition",
+        help="run one fixed finite-state receipt-bound CB Light Mini-Lev operation",
+    )
+    transition_mini_lev.add_argument("--request", type=Path, required=True)
+    transition_mini_lev.add_argument("--db", type=Path)
+    transition_mini_lev.add_argument("--output", type=Path)
+    verify_operation = commands.add_parser(
+        "verify-operation",
+        help=(
+            "read-only bind one supplied candidate-evaluation output to its "
+            "existing CB Light SQLite row"
+        ),
+    )
+    verify_operation.add_argument("--receipt", type=Path, required=True)
+    verify_operation.add_argument("--db", type=Path)
+    selector = verify_operation.add_mutually_exclusive_group(required=True)
+    selector.add_argument("--operation-id")
+    selector.add_argument("--request-id")
     wave = commands.add_parser(
         "wave",
         help="run the bounded local three-probe CB Light fixture wave",
@@ -292,6 +556,74 @@ def main(argv: list[str] | None = None) -> None:
             args.output.write_text(rendered, encoding="utf-8")
         print(rendered, end="")
         if body["disposition"] != "CANDIDATE_EVALUATED_LOCAL":
+            raise SystemExit(2)
+        return
+
+    if args.command == "mini-lev":
+        from .mini_lev_bridge import SUCCESS, run_mini_lev_bridge_file
+        from hookkernel.cb_light_state import default_db_path
+
+        body = run_mini_lev_bridge_file(
+            args.request,
+            db_path=args.db or default_db_path(),
+        )
+        rendered = json.dumps(body, sort_keys=True, indent=2) + "\n"
+        if args.output is not None:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered, encoding="utf-8")
+        print(rendered, end="")
+        if body["disposition"] != SUCCESS:
+            raise SystemExit(2)
+        return
+
+    if args.command == "mini-lev-transition":
+        from .transition_mini_lev import (
+            SUCCESS,
+            TransitionMiniLevError,
+            _attest_executing_source_custody,
+            _result,
+            run_transition_mini_lev_file,
+        )
+
+        # This preflight is deliberately ahead of both request parsing and the
+        # SQLite default-path import.  The transition operation's own custody
+        # attestation binds the executing module and checkout logical sources
+        # to the generated Light manifest; it is not a cached wave/status
+        # decision and it does not repeat the parent-operation checks below.
+        try:
+            _attest_executing_source_custody()
+        except TransitionMiniLevError as exc:
+            body = _result("HOLD", exc.reason_code, detail=exc.detail)
+            _render_structured_json(body, args.output)
+            raise SystemExit(2)
+
+        from hookkernel.cb_light_state import default_db_path
+
+        body = run_transition_mini_lev_file(
+            args.request,
+            db_path=args.db or default_db_path(),
+        )
+        rendered = json.dumps(body, sort_keys=True, indent=2) + "\n"
+        if args.output is not None:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered, encoding="utf-8")
+        print(rendered, end="")
+        if body["disposition"] != SUCCESS:
+            raise SystemExit(2)
+        return
+
+    if args.command == "verify-operation":
+        from .verify_operation import SUCCESS, verify_operation_file
+        from hookkernel.cb_light_state import default_db_path
+
+        body = verify_operation_file(
+            args.receipt,
+            db_path=args.db or default_db_path(),
+            operation_id=args.operation_id,
+            request_id=args.request_id,
+        )
+        print(json.dumps(body, sort_keys=True, indent=2))
+        if body["verification_status"] != SUCCESS:
             raise SystemExit(2)
         return
 
@@ -376,12 +708,14 @@ def main(argv: list[str] | None = None) -> None:
     if args.as_json:
         print(json.dumps(body, indent=2, sort_keys=True))
     elif args.command == "doctor":
-        print("ConstraintBox Light core tools")
+        print("ConstraintBox Light declared tool contracts")
         for row in body["rows"]:
             state = "visible" if row["import_visible"] else "missing"
             print(f"- {row['id']}: {state} ({row['version'] or 'no distribution version'})")
     else:
-        print(f"ConstraintBox Light exercised {len(body['observations'])} core tools")
+        print(
+            f"ConstraintBox Light exercised {len(body['observations'])} declared tool contracts"
+        )
         print(f"observation_sha256={body['observation_sha256']}")
 
 

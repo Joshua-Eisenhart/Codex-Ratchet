@@ -1,0 +1,195 @@
+{
+  "boundary_edge_count": 40,
+  "boundary_queue_sample": [
+    {
+      "axis": "mixture_angle",
+      "left": "c2304",
+      "left_recall_class": 0,
+      "right": "c3072",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2307",
+      "left_recall_class": 0,
+      "right": "c3075",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2328",
+      "left_recall_class": 0,
+      "right": "c3096",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2331",
+      "left_recall_class": 0,
+      "right": "c3099",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2352",
+      "left_recall_class": 0,
+      "right": "c3120",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2355",
+      "left_recall_class": 0,
+      "right": "c3123",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2376",
+      "left_recall_class": 0,
+      "right": "c3144",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2379",
+      "left_recall_class": 0,
+      "right": "c3147",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2496",
+      "left_recall_class": 0,
+      "right": "c3264",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2499",
+      "left_recall_class": 0,
+      "right": "c3267",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2520",
+      "left_recall_class": 0,
+      "right": "c3288",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2523",
+      "left_recall_class": 0,
+      "right": "c3291",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2544",
+      "left_recall_class": 0,
+      "right": "c3312",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2547",
+      "left_recall_class": 0,
+      "right": "c3315",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2568",
+      "left_recall_class": 0,
+      "right": "c3336",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2571",
+      "left_recall_class": 0,
+      "right": "c3339",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2688",
+      "left_recall_class": 0,
+      "right": "c3456",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2691",
+      "left_recall_class": 0,
+      "right": "c3459",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2712",
+      "left_recall_class": 0,
+      "right": "c3480",
+      "right_recall_class": 1
+    },
+    {
+      "axis": "mixture_angle",
+      "left": "c2715",
+      "left_recall_class": 0,
+      "right": "c3483",
+      "right_recall_class": 1
+    }
+  ],
+  "component_sizes": [
+    836,
+    136
+  ],
+  "components": 2,
+  "edge_axes": {
+    "bond_geometry": 528,
+    "corruption_angle": 428,
+    "corruption_bit": 832,
+    "dephasing": 486,
+    "mixture_angle": 628,
+    "rotation_sign": 452
+  },
+  "edges": 3354,
+  "map_kind": "one_dof_mutation_graph_over_gated_probe_rows",
+  "map_sha256": "3aa9e3667c78db4010cdad3ea9c8fc5498582b0c1f08bf2da6f7203c6980be61",
+  "mixture_axis_ablation": {
+    "boundary_edge_count": 0,
+    "components": 18,
+    "removes_cross_recall_boundary": true
+  },
+  "nodes": 972,
+  "recall_region_counts": {
+    "0": 486,
+    "1": 486
+  },
+  "recall_region_renyi0_bits": 1.0,
+  "recall_region_shannon_bits": 1.0,
+  "same_edge_count_wrong_structure": {
+    "boundary_edge_count": 12,
+    "changes_map": true,
+    "components": 1,
+    "edges": 3354,
+    "nodes": 972
+  },
+  "tool_call": {
+    "boundary_case": "empty survivor set maps to zero nodes",
+    "demotion_condition": "rewiring is observationally identical or mixture-axis ablation leaves recall boundary",
+    "gates": [
+      "map_integrity",
+      "wrong_structure",
+      "mixture_axis_ablation"
+    ],
+    "input_object": "gated finite candidate rows and one-DOF neighbor rules",
+    "negative/erased_control": "same-edge-count circulant rewiring changes components or recall boundary",
+    "output_object": "components, boundary edges, recall-region mass",
+    "positive_case": "survivor graph is constructed from selected rows",
+    "qualified_api/function": "rustworkx.PyGraph + connected_components",
+    "tool": "rustworkx"
+  }
+}

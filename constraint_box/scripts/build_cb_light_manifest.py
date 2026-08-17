@@ -333,11 +333,11 @@ def build(root: Path) -> dict[str, object]:
         # A Light manifest must not name a shared Ratchet or Heavy runtime as
         # its bootstrap.  The contained venv is both the launcher target and
         # the runtime observed by the admission predicates.
-        "bootstrap_interpreter": str(root / ".venv/bin/python"),
+        "bootstrap_interpreter": ".venv/bin/python",
         # Preserve the contained interpreter path itself.  Resolving the final
         # symlink would collapse a venv back onto its Homebrew base executable
         # after the venv exists and would make the manifest depend on build time.
-        "mandated_interpreter": str(root / ".venv/bin/python"),
+        "mandated_interpreter": ".venv/bin/python",
         "runtime_environment": ".venv",
         "supported_current_execution": {
             "python": "3.13",

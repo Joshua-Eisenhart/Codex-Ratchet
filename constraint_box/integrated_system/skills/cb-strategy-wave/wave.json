@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-strategy-wave-v1",
+  "purpose": "Check local repairs against whole-project context, feedback loops, object preservation, and divergent futures.",
+  "children": [
+    {"id": "systems_boundary", "skill": "wizard-systems-strategy", "operation": "inspect_feedback_and_second_order_effects", "tools": ["context_diff", "receipt_graph"]},
+    {"id": "object_preservation", "skill": "three-council-wizard-v4-3", "operation": "check_primary_object_and_proxy_drift", "tools": ["object_card_validator", "source_lift"]},
+    {"id": "divergent_futures", "skill": "wizard-loophole-auditor", "operation": "preserve_alternative_interpretations_and_find_shortcuts", "tools": ["branch_inventory", "negative_tests"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "distinct_sets_within_round": true},
+  "loop": {"max_rounds": 2, "repair_then_exact_rerun": true, "stop_reasons": ["continue_candidate", "split_target", "request_context", "reject_local_optimum", "cancelled", "max_rounds"]},
+  "completion": {"required_evidence": ["target_digest", "context_snapshot_digest", "failure_receipt", "repair_receipt", "preload_receipts", "provider_call_receipt", "child_receipts", "contradiction_set", "minority_branches", "context_delta", "compiled_disposition", "cancellation_state", "disagreement_state", "output_digest"]},
+  "claim_ceiling": "Project-direction and context evidence only; no test, gate, adoption, model-policy, promotion, or release authority."
+}

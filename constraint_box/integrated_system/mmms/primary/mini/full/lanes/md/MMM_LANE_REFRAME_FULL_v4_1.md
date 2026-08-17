@@ -1,0 +1,1933 @@
+# 🪞 Reframe Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this lane. It is normally surfaced through Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `REFRAME` and remapped to v4.1 canon category `lanes`.
+
+---
+
+# MMM_LANE_REFRAME_FULL_v4_1
+
+## words
+
+- reframe :: 100
+- frame :: 100
+- problem :: 100
+- shape :: 100
+- new :: 100
+- wrong :: 100
+- question :: 100
+- shift :: 100
+- rename :: 100
+- recast :: 100
+- different :: 100
+- reading :: 100
+- constraint :: 100
+- surface :: 100
+- move :: 100
+- boundary :: 100
+- assumption :: 100
+- wrong question :: 100
+- replace :: 100
+- hidden premise :: 100
+- false binary :: 100
+- different problem :: 100
+- smaller question :: 100
+- context :: 100
+- lens :: 100
+- angle :: 99
+- narrowing :: 99
+- misfit :: 99
+- reshape :: 99
+- map :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 99
+- among :: 99
+- inside :: 99
+- outside :: 99
+- near :: 99
+- beside :: 99
+- over :: 99
+- from :: 99
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- bounded :: 98
+- finite :: 98
+- open :: 98
+- live :: 98
+- distinct :: 98
+- concrete :: 98
+- plain :: 98
+- observed :: 98
+- inferred :: 98
+- known :: 98
+- unknown :: 98
+- checked :: 98
+- missing :: 98
+- stale :: 98
+- narrow :: 98
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 97
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 97
+- compared :: 97
+- measured :: 97
+- named :: 97
+- used :: 97
+- fit :: 97
+- viable :: 97
+- direct :: 97
+- alternate :: 97
+- branch :: 97
+- path :: 97
+- packet :: 97
+- artifact :: 96
+- receipt :: 96
+- trace :: 96
+- result :: 96
+- support :: 96
+- evidence :: 96
+- scope :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 96
+- probe :: 96
+- name :: 96
+- term :: 96
+- use :: 96
+- role :: 96
+- practice :: 96
+- custom :: 96
+- habit :: 96
+- experience :: 96
+- observation :: 96
+- impression :: 96
+- idea :: 95
+- perception :: 95
+- conjunction :: 95
+- resemblance :: 95
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 95
+- countermodel :: 95
+- counterexample :: 95
+- equivalence :: 95
+- indistinguishable :: 95
+- readout :: 95
+- measure :: 95
+- measurement :: 95
+- operation :: 95
+- procedure :: 95
+- instrument :: 95
+- experiment :: 95
+- test :: 95
+- check :: 94
+- verify :: 94
+- compare :: 94
+- sample :: 94
+- route :: 94
+- lane :: 94
+- voice :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- blocker :: 94
+- deferred :: 94
+- blocked :: 94
+- spawned :: 94
+- diagnostic :: 94
+- untried :: 94
+- preload :: 94
+- salience :: 94
+- language :: 94
+- body :: 94
+- during :: 94
+- since :: 94
+- by :: 94
+- toward :: 94
+- relative :: 94
+- according :: 93
+- locally :: 93
+- jointly :: 93
+- separately :: 93
+- rather :: 93
+
+## couplings
+
+- under reframe :: 100
+- within reframe :: 100
+- across reframe :: 100
+- between reframe :: 100
+- through reframe :: 100
+- before reframe :: 100
+- after reframe :: 100
+- until reframe :: 100
+- where reframe :: 100
+- while reframe :: 100
+- reframe evidence :: 100
+- reframe support :: 100
+- reframe path :: 100
+- reframe surface :: 100
+- reframe packet :: 100
+- reframe receipt :: 100
+- reframe trace :: 100
+- reframe result :: 100
+- reframe scope :: 100
+- reframe boundary :: 100
+- reframe status :: 100
+- reframe candidate :: 100
+- reframe witness :: 100
+- reframe probe :: 100
+- reframe constraint :: 100
+- check reframe :: 99
+- compare reframe :: 99
+- observe reframe :: 99
+- measure reframe :: 99
+- test reframe :: 99
+- verify reframe :: 99
+- hold reframe :: 99
+- preserve reframe :: 99
+- split reframe :: 99
+- narrow reframe :: 99
+- under frame :: 99
+- within frame :: 99
+- across frame :: 99
+- between frame :: 99
+- through frame :: 99
+- before frame :: 99
+- after frame :: 99
+- until frame :: 99
+- where frame :: 99
+- while frame :: 99
+- frame evidence :: 99
+- frame support :: 99
+- frame path :: 99
+- frame surface :: 99
+- frame packet :: 99
+- frame receipt :: 98
+- frame trace :: 98
+- frame result :: 98
+- frame scope :: 98
+- frame boundary :: 98
+- frame status :: 98
+- frame candidate :: 98
+- frame witness :: 98
+- frame probe :: 98
+- frame constraint :: 98
+- check frame :: 98
+- compare frame :: 98
+- observe frame :: 98
+- measure frame :: 98
+- test frame :: 98
+- verify frame :: 98
+- hold frame :: 98
+- preserve frame :: 98
+- split frame :: 98
+- narrow frame :: 98
+- under recast :: 98
+- within recast :: 98
+- across recast :: 98
+- between recast :: 98
+- through recast :: 98
+- before recast :: 97
+- after recast :: 97
+- until recast :: 97
+- where recast :: 97
+- while recast :: 97
+- recast evidence :: 97
+- recast support :: 97
+- recast path :: 97
+- recast surface :: 97
+- recast packet :: 97
+- recast receipt :: 97
+- recast trace :: 97
+- recast result :: 97
+- recast scope :: 97
+- recast boundary :: 97
+- recast status :: 97
+- recast candidate :: 97
+- recast witness :: 97
+- recast probe :: 97
+- recast constraint :: 97
+- check recast :: 97
+- compare recast :: 97
+- observe recast :: 97
+- measure recast :: 97
+- test recast :: 97
+- verify recast :: 96
+- hold recast :: 96
+- preserve recast :: 96
+- split recast :: 96
+- narrow recast :: 96
+- under surface :: 96
+- within surface :: 96
+- across surface :: 96
+- between surface :: 96
+- through surface :: 96
+- before surface :: 96
+- after surface :: 96
+- until surface :: 96
+- where surface :: 96
+- while surface :: 96
+- surface evidence :: 96
+- surface support :: 96
+- surface path :: 96
+- surface surface :: 96
+- surface packet :: 96
+- surface receipt :: 96
+- surface trace :: 96
+- surface result :: 96
+- surface scope :: 96
+- surface boundary :: 96
+- surface status :: 95
+- surface candidate :: 95
+- surface witness :: 95
+- surface probe :: 95
+- surface constraint :: 95
+- check surface :: 95
+- compare surface :: 95
+- observe surface :: 95
+- measure surface :: 95
+- test surface :: 95
+- verify surface :: 95
+- hold surface :: 95
+- preserve surface :: 95
+- split surface :: 95
+- narrow surface :: 95
+- under context :: 95
+- within context :: 95
+- across context :: 95
+- between context :: 95
+- through context :: 95
+- before context :: 95
+- after context :: 95
+- until context :: 95
+- where context :: 95
+- while context :: 95
+- context evidence :: 94
+- context support :: 94
+- context path :: 94
+- context surface :: 94
+- context packet :: 94
+- context receipt :: 94
+- context trace :: 94
+- context result :: 94
+- context scope :: 94
+- context boundary :: 94
+- context status :: 94
+- context candidate :: 94
+- context witness :: 94
+- context probe :: 94
+- context constraint :: 94
+- check context :: 94
+- compare context :: 94
+- observe context :: 94
+- measure context :: 94
+- test context :: 94
+- verify context :: 94
+- hold context :: 94
+- preserve context :: 94
+- split context :: 94
+- narrow context :: 94
+- under lens :: 93
+- within lens :: 93
+- across lens :: 93
+- between lens :: 93
+- through lens :: 93
+- before lens :: 93
+- after lens :: 93
+- until lens :: 93
+- where lens :: 93
+- while lens :: 93
+- lens evidence :: 93
+- lens support :: 93
+- lens path :: 93
+- lens surface :: 93
+- lens packet :: 93
+- lens receipt :: 93
+- lens trace :: 93
+- lens result :: 93
+- lens scope :: 93
+- lens boundary :: 93
+- lens status :: 93
+- lens candidate :: 93
+- lens witness :: 93
+- lens probe :: 93
+- lens constraint :: 93
+- check lens :: 92
+- compare lens :: 92
+- observe lens :: 92
+- measure lens :: 92
+- test lens :: 92
+- verify lens :: 92
+- hold lens :: 92
+- preserve lens :: 92
+- split lens :: 92
+- narrow lens :: 92
+- under angle :: 92
+- within angle :: 92
+- across angle :: 92
+- between angle :: 92
+- through angle :: 92
+- before angle :: 92
+- after angle :: 92
+- until angle :: 92
+- where angle :: 92
+- while angle :: 92
+- angle evidence :: 92
+- angle support :: 92
+- angle path :: 92
+- angle surface :: 92
+- angle packet :: 92
+- angle receipt :: 91
+- angle trace :: 91
+- angle result :: 91
+- angle scope :: 91
+- angle boundary :: 91
+- angle status :: 91
+- angle candidate :: 91
+- angle witness :: 91
+- angle probe :: 91
+- angle constraint :: 91
+- check angle :: 91
+- compare angle :: 91
+- observe angle :: 91
+- measure angle :: 91
+- test angle :: 91
+- verify angle :: 91
+- hold angle :: 91
+- preserve angle :: 91
+- split angle :: 91
+- narrow angle :: 91
+- under narrowing :: 91
+- within narrowing :: 91
+- across narrowing :: 91
+- between narrowing :: 91
+- through narrowing :: 91
+- before narrowing :: 90
+- after narrowing :: 90
+- until narrowing :: 90
+- where narrowing :: 90
+- while narrowing :: 90
+- narrowing evidence :: 90
+- narrowing support :: 90
+- narrowing path :: 90
+- narrowing surface :: 90
+- narrowing packet :: 90
+- narrowing receipt :: 90
+- narrowing trace :: 90
+- narrowing result :: 90
+- narrowing scope :: 90
+- narrowing boundary :: 90
+- narrowing status :: 90
+- narrowing candidate :: 90
+- narrowing witness :: 90
+- narrowing probe :: 90
+- narrowing constraint :: 90
+- check narrowing :: 90
+- compare narrowing :: 90
+- observe narrowing :: 90
+- measure narrowing :: 90
+- test narrowing :: 90
+- verify narrowing :: 89
+- hold narrowing :: 89
+- preserve narrowing :: 89
+- split narrowing :: 89
+- narrow narrowing :: 89
+- under misfit :: 89
+- within misfit :: 89
+- across misfit :: 89
+- between misfit :: 89
+- through misfit :: 89
+- before misfit :: 89
+- after misfit :: 89
+- until misfit :: 89
+- where misfit :: 89
+- while misfit :: 89
+- misfit evidence :: 89
+- misfit support :: 89
+- misfit path :: 89
+- misfit surface :: 89
+- misfit packet :: 89
+- misfit receipt :: 89
+- misfit trace :: 89
+- misfit result :: 89
+- misfit scope :: 89
+- misfit boundary :: 89
+- misfit status :: 88
+- misfit candidate :: 88
+- misfit witness :: 88
+- misfit probe :: 88
+- misfit constraint :: 88
+- check misfit :: 88
+- compare misfit :: 88
+- observe misfit :: 88
+- measure misfit :: 88
+- test misfit :: 88
+- verify misfit :: 88
+- hold misfit :: 88
+- preserve misfit :: 88
+- split misfit :: 88
+- narrow misfit :: 88
+- under reshape :: 88
+- within reshape :: 88
+- across reshape :: 88
+- between reshape :: 88
+- through reshape :: 88
+- before reshape :: 88
+- after reshape :: 88
+- until reshape :: 88
+- where reshape :: 88
+- while reshape :: 88
+- reshape evidence :: 87
+- reshape support :: 87
+- reshape path :: 87
+- reshape surface :: 87
+- reshape packet :: 87
+- reshape receipt :: 87
+- reshape trace :: 87
+- reshape result :: 87
+- reshape scope :: 87
+- reshape boundary :: 87
+- reshape status :: 87
+- reshape candidate :: 87
+- reshape witness :: 87
+- reshape probe :: 87
+- reshape constraint :: 87
+- wrong question :: 87
+- hidden premise :: 87
+- false binary :: 87
+- different problem :: 87
+- smaller question :: 87
+- frame :: 87
+- assumption :: 87
+- recast :: 87
+- replace :: 87
+- under problem :: 87
+- under shape :: 86
+- under new :: 86
+- under wrong :: 86
+- under question :: 86
+- under shift :: 86
+- under rename :: 86
+- under different :: 86
+- under reading :: 86
+- under constraint :: 86
+- under move :: 86
+- under boundary :: 86
+- under assumption :: 86
+- under wrong question :: 86
+- under replace :: 86
+- under hidden premise :: 86
+- within problem :: 86
+- within shape :: 86
+- within new :: 86
+- within wrong :: 86
+- within question :: 86
+- within shift :: 86
+- within rename :: 86
+- within different :: 86
+- within reading :: 86
+- within constraint :: 86
+- within move :: 85
+- within boundary :: 85
+- within assumption :: 85
+- within wrong question :: 85
+- within replace :: 85
+- within hidden premise :: 85
+- across problem :: 85
+- across shape :: 85
+- across new :: 85
+- across wrong :: 85
+- across question :: 85
+- across shift :: 85
+- across rename :: 85
+- across different :: 85
+- across reading :: 85
+- across constraint :: 85
+- across move :: 85
+- across boundary :: 85
+- across assumption :: 85
+- across wrong question :: 85
+- across replace :: 85
+- across hidden premise :: 85
+- between problem :: 85
+- between shape :: 85
+- between new :: 85
+- between wrong :: 84
+- between question :: 84
+- between shift :: 84
+- between rename :: 84
+- between different :: 84
+- between reading :: 84
+- between constraint :: 84
+- between move :: 84
+- between boundary :: 84
+- between assumption :: 84
+- between wrong question :: 84
+- between replace :: 84
+- between hidden premise :: 84
+- through problem :: 84
+- through shape :: 84
+- through new :: 84
+- through wrong :: 84
+- through question :: 84
+- through shift :: 84
+- through rename :: 84
+- through different :: 84
+- through reading :: 84
+- through constraint :: 84
+- through move :: 84
+- through boundary :: 84
+- through assumption :: 83
+- through wrong question :: 83
+- through replace :: 83
+- through hidden premise :: 83
+- before problem :: 83
+- before shape :: 83
+- before new :: 83
+- before wrong :: 83
+- before question :: 83
+- before shift :: 83
+- before rename :: 83
+- before different :: 83
+- before reading :: 83
+- before constraint :: 83
+- before move :: 83
+- before boundary :: 83
+- before assumption :: 83
+- before wrong question :: 83
+- before replace :: 83
+- before hidden premise :: 83
+- after problem :: 83
+- after shape :: 83
+- after new :: 83
+- after wrong :: 83
+- after question :: 83
+- after shift :: 82
+- after rename :: 82
+- after different :: 82
+- after reading :: 82
+- after constraint :: 82
+- after move :: 82
+- after boundary :: 82
+- after assumption :: 82
+- after wrong question :: 82
+- after replace :: 82
+- after hidden premise :: 82
+- during reframe :: 82
+- during frame :: 82
+- during problem :: 82
+- during shape :: 82
+- during new :: 82
+- during wrong :: 82
+- during question :: 82
+- during shift :: 82
+- during rename :: 82
+- during recast :: 82
+- during different :: 82
+- during reading :: 82
+- during constraint :: 82
+- during surface :: 82
+- during move :: 81
+- during boundary :: 81
+- during assumption :: 81
+- during wrong question :: 81
+- during replace :: 81
+- during hidden premise :: 81
+- until problem :: 81
+- until shape :: 81
+- until new :: 81
+- until wrong :: 81
+- until question :: 81
+- until shift :: 81
+- until rename :: 81
+- until different :: 81
+- until reading :: 81
+- until constraint :: 81
+- until move :: 81
+- until boundary :: 81
+- until assumption :: 81
+- until wrong question :: 81
+- until replace :: 81
+- until hidden premise :: 81
+- since reframe :: 81
+- since frame :: 81
+- since problem :: 81
+- since shape :: 80
+- since new :: 80
+- since wrong :: 80
+- since question :: 80
+- since shift :: 80
+- since rename :: 80
+- since recast :: 80
+- since different :: 80
+- since reading :: 80
+- since constraint :: 80
+- since surface :: 80
+- since move :: 80
+- since boundary :: 80
+- since assumption :: 80
+- since wrong question :: 80
+- since replace :: 80
+- since hidden premise :: 80
+- from reframe :: 80
+- from frame :: 80
+- from problem :: 80
+- from shape :: 80
+- from new :: 80
+- from wrong :: 80
+- from question :: 80
+- from shift :: 80
+- from rename :: 79
+- from recast :: 79
+- from different :: 79
+- from reading :: 79
+- from constraint :: 79
+- from surface :: 79
+- from move :: 79
+- from boundary :: 79
+- from assumption :: 79
+- from wrong question :: 79
+- from replace :: 79
+- from hidden premise :: 79
+- by reframe :: 79
+- by frame :: 79
+- by problem :: 79
+- by shape :: 79
+- by new :: 79
+- by wrong :: 79
+- by question :: 79
+- by shift :: 79
+- by rename :: 79
+- by recast :: 79
+- by different :: 79
+- by reading :: 79
+- by constraint :: 79
+- by surface :: 78
+- by move :: 78
+- by boundary :: 78
+- by assumption :: 78
+- by wrong question :: 78
+- by replace :: 78
+- by hidden premise :: 78
+- with reframe :: 78
+- with frame :: 78
+- with problem :: 78
+- with shape :: 78
+- with new :: 78
+- with wrong :: 78
+- with question :: 78
+- with shift :: 78
+- with rename :: 78
+- with recast :: 78
+- with different :: 78
+- with reading :: 78
+- with constraint :: 78
+- with surface :: 78
+- with move :: 78
+- with boundary :: 78
+- with assumption :: 78
+- with wrong question :: 78
+- with replace :: 77
+- with hidden premise :: 77
+- without reframe :: 77
+- without frame :: 77
+- without problem :: 77
+- without shape :: 77
+- without new :: 77
+- without wrong :: 77
+- without question :: 77
+- without shift :: 77
+- without rename :: 77
+- without recast :: 77
+- without different :: 77
+- without reading :: 77
+- without constraint :: 77
+- without surface :: 77
+- without move :: 77
+- without boundary :: 77
+- without assumption :: 77
+- without wrong question :: 77
+- without replace :: 77
+- without hidden premise :: 77
+- against reframe :: 77
+- against frame :: 77
+- against problem :: 77
+- against shape :: 76
+- against new :: 76
+- against wrong :: 76
+- against question :: 76
+- against shift :: 76
+- against rename :: 76
+- against recast :: 76
+- against different :: 76
+- against reading :: 76
+- against constraint :: 76
+- against surface :: 76
+- against move :: 76
+- against boundary :: 76
+- against assumption :: 76
+- against wrong question :: 76
+- against replace :: 76
+- against hidden premise :: 76
+- toward reframe :: 76
+- toward frame :: 76
+- toward problem :: 76
+- toward shape :: 76
+- toward new :: 76
+- toward wrong :: 76
+- toward question :: 76
+- toward shift :: 76
+- toward rename :: 75
+- toward recast :: 75
+- toward different :: 75
+- toward reading :: 75
+- toward constraint :: 75
+- toward surface :: 75
+- toward move :: 75
+- toward boundary :: 75
+- toward assumption :: 75
+- toward wrong question :: 75
+- toward replace :: 75
+- toward hidden premise :: 75
+- near reframe :: 75
+- near frame :: 75
+- near problem :: 75
+- near shape :: 75
+- near new :: 75
+- near wrong :: 75
+- near question :: 75
+- near shift :: 75
+- near rename :: 75
+- near recast :: 75
+- near different :: 75
+- near reading :: 75
+- near constraint :: 75
+- near surface :: 74
+- near move :: 74
+- near boundary :: 74
+- near assumption :: 74
+- near wrong question :: 74
+- near replace :: 74
+- near hidden premise :: 74
+- relative reframe :: 74
+- relative frame :: 74
+- relative problem :: 74
+- relative shape :: 74
+- relative new :: 74
+- relative wrong :: 74
+- relative question :: 74
+- relative shift :: 74
+- relative rename :: 74
+- relative recast :: 74
+- relative different :: 74
+- relative reading :: 74
+- relative constraint :: 74
+- relative surface :: 74
+- relative move :: 74
+- relative boundary :: 74
+- relative assumption :: 74
+- relative wrong question :: 74
+- relative replace :: 73
+- relative hidden premise :: 73
+- reframe frame :: 73
+- reframe problem :: 73
+- reframe shape :: 73
+- reframe new :: 73
+- reframe wrong :: 73
+- reframe question :: 73
+- reframe shift :: 73
+- reframe rename :: 73
+- reframe recast :: 73
+- reframe different :: 73
+- reframe reading :: 73
+- frame problem :: 73
+- frame shape :: 73
+- frame new :: 73
+- frame wrong :: 73
+- frame question :: 73
+- frame shift :: 73
+- frame rename :: 73
+- frame recast :: 73
+- frame different :: 73
+- frame reading :: 73
+- problem shape :: 73
+- problem new :: 73
+
+## triplets
+
+- under current reframe :: 100
+- under local reframe :: 100
+- under bounded reframe :: 100
+- under finite reframe :: 100
+- under open reframe :: 100
+- under live reframe :: 100
+- within current reframe :: 100
+- within local reframe :: 100
+- within bounded reframe :: 100
+- within finite reframe :: 100
+- within open reframe :: 100
+- within live reframe :: 100
+- across current reframe :: 100
+- across local reframe :: 100
+- across bounded reframe :: 100
+- across finite reframe :: 100
+- across open reframe :: 100
+- across live reframe :: 100
+- between current reframe :: 100
+- between local reframe :: 100
+- between bounded reframe :: 100
+- between finite reframe :: 100
+- between open reframe :: 100
+- between live reframe :: 100
+- through current reframe :: 100
+- through local reframe :: 99
+- through bounded reframe :: 99
+- through finite reframe :: 99
+- through open reframe :: 99
+- through live reframe :: 99
+- before current reframe :: 99
+- before local reframe :: 99
+- before bounded reframe :: 99
+- before finite reframe :: 99
+- before open reframe :: 99
+- before live reframe :: 99
+- reframe evidence path :: 99
+- reframe support path :: 99
+- reframe path path :: 99
+- reframe surface path :: 99
+- reframe packet path :: 99
+- reframe receipt path :: 99
+- reframe trace path :: 99
+- reframe result path :: 99
+- reframe scope path :: 99
+- reframe boundary path :: 99
+- check reframe receipt :: 99
+- compare reframe receipt :: 99
+- observe reframe receipt :: 99
+- measure reframe receipt :: 99
+- test reframe receipt :: 98
+- verify reframe receipt :: 98
+- hold reframe receipt :: 98
+- preserve reframe receipt :: 98
+- under current frame :: 98
+- under local frame :: 98
+- under bounded frame :: 98
+- under finite frame :: 98
+- under open frame :: 98
+- under live frame :: 98
+- within current frame :: 98
+- within local frame :: 98
+- within bounded frame :: 98
+- within finite frame :: 98
+- within open frame :: 98
+- within live frame :: 98
+- across current frame :: 98
+- across local frame :: 98
+- across bounded frame :: 98
+- across finite frame :: 98
+- across open frame :: 98
+- across live frame :: 98
+- between current frame :: 98
+- between local frame :: 98
+- between bounded frame :: 98
+- between finite frame :: 97
+- between open frame :: 97
+- between live frame :: 97
+- through current frame :: 97
+- through local frame :: 97
+- through bounded frame :: 97
+- through finite frame :: 97
+- through open frame :: 97
+- through live frame :: 97
+- before current frame :: 97
+- before local frame :: 97
+- before bounded frame :: 97
+- before finite frame :: 97
+- before open frame :: 97
+- before live frame :: 97
+- frame evidence path :: 97
+- frame support path :: 97
+- frame path path :: 97
+- frame surface path :: 97
+- frame packet path :: 97
+- frame receipt path :: 97
+- frame trace path :: 97
+- frame result path :: 97
+- frame scope path :: 97
+- frame boundary path :: 97
+- check frame receipt :: 96
+- compare frame receipt :: 96
+- observe frame receipt :: 96
+- measure frame receipt :: 96
+- test frame receipt :: 96
+- verify frame receipt :: 96
+- hold frame receipt :: 96
+- preserve frame receipt :: 96
+- under current recast :: 96
+- under local recast :: 96
+- under bounded recast :: 96
+- under finite recast :: 96
+- under open recast :: 96
+- under live recast :: 96
+- within current recast :: 96
+- within local recast :: 96
+- within bounded recast :: 96
+- within finite recast :: 96
+- within open recast :: 96
+- within live recast :: 96
+- across current recast :: 96
+- across local recast :: 96
+- across bounded recast :: 96
+- across finite recast :: 96
+- across open recast :: 96
+- across live recast :: 95
+- between current recast :: 95
+- between local recast :: 95
+- between bounded recast :: 95
+- between finite recast :: 95
+- between open recast :: 95
+- between live recast :: 95
+- through current recast :: 95
+- through local recast :: 95
+- through bounded recast :: 95
+- through finite recast :: 95
+- through open recast :: 95
+- through live recast :: 95
+- before current recast :: 95
+- before local recast :: 95
+- before bounded recast :: 95
+- before finite recast :: 95
+- before open recast :: 95
+- before live recast :: 95
+- recast evidence path :: 95
+- recast support path :: 95
+- recast path path :: 95
+- recast surface path :: 95
+- recast packet path :: 95
+- recast receipt path :: 95
+- recast trace path :: 94
+- recast result path :: 94
+- recast scope path :: 94
+- recast boundary path :: 94
+- check recast receipt :: 94
+- compare recast receipt :: 94
+- observe recast receipt :: 94
+- measure recast receipt :: 94
+- test recast receipt :: 94
+- verify recast receipt :: 94
+- hold recast receipt :: 94
+- preserve recast receipt :: 94
+- under current surface :: 94
+- under local surface :: 94
+- under bounded surface :: 94
+- under finite surface :: 94
+- under open surface :: 94
+- under live surface :: 94
+- within current surface :: 94
+- within local surface :: 94
+- within bounded surface :: 94
+- within finite surface :: 94
+- within open surface :: 94
+- within live surface :: 94
+- across current surface :: 94
+- across local surface :: 93
+- across bounded surface :: 93
+- across finite surface :: 93
+- across open surface :: 93
+- across live surface :: 93
+- between current surface :: 93
+- between local surface :: 93
+- between bounded surface :: 93
+- between finite surface :: 93
+- between open surface :: 93
+- between live surface :: 93
+- through current surface :: 93
+- through local surface :: 93
+- through bounded surface :: 93
+- through finite surface :: 93
+- through open surface :: 93
+- through live surface :: 93
+- before current surface :: 93
+- before local surface :: 93
+- before bounded surface :: 93
+- before finite surface :: 93
+- before open surface :: 93
+- before live surface :: 93
+- surface evidence path :: 93
+- surface support path :: 93
+- surface path path :: 92
+- surface surface path :: 92
+- surface packet path :: 92
+- surface receipt path :: 92
+- surface trace path :: 92
+- surface result path :: 92
+- surface scope path :: 92
+- surface boundary path :: 92
+- check surface receipt :: 92
+- compare surface receipt :: 92
+- observe surface receipt :: 92
+- measure surface receipt :: 92
+- test surface receipt :: 92
+- verify surface receipt :: 92
+- hold surface receipt :: 92
+- preserve surface receipt :: 92
+- under current context :: 92
+- under local context :: 92
+- under bounded context :: 92
+- under finite context :: 92
+- under open context :: 92
+- under live context :: 92
+- within current context :: 92
+- within local context :: 92
+- within bounded context :: 92
+- within finite context :: 91
+- within open context :: 91
+- within live context :: 91
+- across current context :: 91
+- across local context :: 91
+- across bounded context :: 91
+- across finite context :: 91
+- across open context :: 91
+- across live context :: 91
+- between current context :: 91
+- between local context :: 91
+- between bounded context :: 91
+- between finite context :: 91
+- between open context :: 91
+- between live context :: 91
+- under reframe frame :: 91
+- under reframe problem :: 91
+- under reframe shape :: 91
+- under reframe new :: 91
+- under frame problem :: 91
+- under frame shape :: 91
+- under frame new :: 91
+- under frame wrong :: 91
+- under problem shape :: 91
+- under problem new :: 91
+- under problem wrong :: 90
+- under problem question :: 90
+- under shape new :: 90
+- under shape wrong :: 90
+- under shape question :: 90
+- under shape shift :: 90
+- under new wrong :: 90
+- under new question :: 90
+- under new shift :: 90
+- under new rename :: 90
+- under wrong question :: 90
+- under wrong shift :: 90
+- under wrong rename :: 90
+- under wrong recast :: 90
+- under question shift :: 90
+- under question rename :: 90
+- under question recast :: 90
+- under question different :: 90
+- under shift rename :: 90
+- under shift recast :: 90
+- under shift different :: 90
+- under shift reading :: 90
+- under rename recast :: 90
+- under rename different :: 90
+- under rename reading :: 90
+- under rename constraint :: 89
+- under recast different :: 89
+- under recast reading :: 89
+- under recast constraint :: 89
+- under recast surface :: 89
+- under different reading :: 89
+- under different constraint :: 89
+- under different surface :: 89
+- under different move :: 89
+- under reading constraint :: 89
+- under reading surface :: 89
+- under reading move :: 89
+- under reading boundary :: 89
+- under constraint surface :: 89
+- under constraint move :: 89
+- under constraint boundary :: 89
+- under constraint assumption :: 89
+- under surface move :: 89
+- under surface boundary :: 89
+- under surface assumption :: 89
+- under surface wrong question :: 89
+- under move boundary :: 89
+- under move assumption :: 89
+- under move wrong question :: 89
+- under move replace :: 89
+- under boundary assumption :: 88
+- under boundary wrong question :: 88
+- under boundary replace :: 88
+- under boundary hidden premise :: 88
+- under assumption wrong question :: 88
+- under assumption replace :: 88
+- under assumption hidden premise :: 88
+- under assumption false binary :: 88
+- under wrong question replace :: 88
+- under wrong question hidden premise :: 88
+- under wrong question false binary :: 88
+- under wrong question different problem :: 88
+- under replace hidden premise :: 88
+- under replace false binary :: 88
+- under replace different problem :: 88
+- under replace smaller question :: 88
+- under hidden premise false binary :: 88
+- under hidden premise different problem :: 88
+- under hidden premise smaller question :: 88
+- under hidden premise context :: 88
+- within reframe frame :: 88
+- within reframe problem :: 88
+- within reframe shape :: 88
+- within reframe new :: 88
+- within frame problem :: 88
+- within frame shape :: 87
+- within frame new :: 87
+- within frame wrong :: 87
+- within problem shape :: 87
+- within problem new :: 87
+- within problem wrong :: 87
+- within problem question :: 87
+- within shape new :: 87
+- within shape wrong :: 87
+- within shape question :: 87
+- within shape shift :: 87
+- within new wrong :: 87
+- within new question :: 87
+- within new shift :: 87
+- within new rename :: 87
+- within wrong question :: 87
+- within wrong shift :: 87
+- within wrong rename :: 87
+- within wrong recast :: 87
+- within question shift :: 87
+- within question rename :: 87
+- within question recast :: 87
+- within question different :: 87
+- within shift rename :: 87
+- within shift recast :: 87
+- within shift different :: 86
+- within shift reading :: 86
+- within rename recast :: 86
+- within rename different :: 86
+- within rename reading :: 86
+- within rename constraint :: 86
+- within recast different :: 86
+- within recast reading :: 86
+- within recast constraint :: 86
+- within recast surface :: 86
+- within different reading :: 86
+- within different constraint :: 86
+- within different surface :: 86
+- within different move :: 86
+- within reading constraint :: 86
+- within reading surface :: 86
+- within reading move :: 86
+- within reading boundary :: 86
+- within constraint surface :: 86
+- within constraint move :: 86
+- within constraint boundary :: 86
+- within constraint assumption :: 86
+- within surface move :: 86
+- within surface boundary :: 86
+- within surface assumption :: 86
+- within surface wrong question :: 85
+- within move boundary :: 85
+- within move assumption :: 85
+- within move wrong question :: 85
+- within move replace :: 85
+- within boundary assumption :: 85
+- within boundary wrong question :: 85
+- within boundary replace :: 85
+- within boundary hidden premise :: 85
+- within assumption wrong question :: 85
+- within assumption replace :: 85
+- within assumption hidden premise :: 85
+- within assumption false binary :: 85
+- within wrong question replace :: 85
+- within wrong question hidden premise :: 85
+- within wrong question false binary :: 85
+- within wrong question different problem :: 85
+- within replace hidden premise :: 85
+- within replace false binary :: 85
+- within replace different problem :: 85
+- within replace smaller question :: 85
+- within hidden premise false binary :: 85
+- within hidden premise different problem :: 85
+- within hidden premise smaller question :: 85
+- within hidden premise context :: 85
+- across reframe frame :: 84
+- across reframe problem :: 84
+- across reframe shape :: 84
+- across reframe new :: 84
+- across frame problem :: 84
+- across frame shape :: 84
+- across frame new :: 84
+- across frame wrong :: 84
+- across problem shape :: 84
+- across problem new :: 84
+- across problem wrong :: 84
+- across problem question :: 84
+- across shape new :: 84
+- across shape wrong :: 84
+- across shape question :: 84
+- across shape shift :: 84
+- across new wrong :: 84
+- across new question :: 84
+- across new shift :: 84
+- across new rename :: 84
+- across wrong question :: 84
+- across wrong shift :: 84
+- across wrong rename :: 84
+- across wrong recast :: 84
+- across question shift :: 84
+- across question rename :: 83
+- across question recast :: 83
+- across question different :: 83
+- across shift rename :: 83
+- across shift recast :: 83
+- across shift different :: 83
+- across shift reading :: 83
+- across rename recast :: 83
+- across rename different :: 83
+- across rename reading :: 83
+- across rename constraint :: 83
+- across recast different :: 83
+- across recast reading :: 83
+- across recast constraint :: 83
+- across recast surface :: 83
+- across different reading :: 83
+- across different constraint :: 83
+- across different surface :: 83
+- across different move :: 83
+- across reading constraint :: 83
+- across reading surface :: 83
+- across reading move :: 83
+- across reading boundary :: 83
+- across constraint surface :: 83
+- across constraint move :: 83
+- across constraint boundary :: 82
+- across constraint assumption :: 82
+- across surface move :: 82
+- across surface boundary :: 82
+- across surface assumption :: 82
+- across surface wrong question :: 82
+- across move boundary :: 82
+- across move assumption :: 82
+- across move wrong question :: 82
+- across move replace :: 82
+- across boundary assumption :: 82
+- across boundary wrong question :: 82
+- across boundary replace :: 82
+- across boundary hidden premise :: 82
+- across assumption wrong question :: 82
+- across assumption replace :: 82
+- across assumption hidden premise :: 82
+- across assumption false binary :: 82
+- across wrong question replace :: 82
+- across wrong question hidden premise :: 82
+- across wrong question false binary :: 82
+- across wrong question different problem :: 82
+- across replace hidden premise :: 82
+- across replace false binary :: 82
+- across replace different problem :: 82
+- across replace smaller question :: 81
+- across hidden premise false binary :: 81
+- across hidden premise different problem :: 81
+- across hidden premise smaller question :: 81
+- across hidden premise context :: 81
+- between reframe frame :: 81
+- between reframe problem :: 81
+- between reframe shape :: 81
+- between reframe new :: 81
+- between frame problem :: 81
+- between frame shape :: 81
+- between frame new :: 81
+- between frame wrong :: 81
+- between problem shape :: 81
+- between problem new :: 81
+- between problem wrong :: 81
+- between problem question :: 81
+- between shape new :: 81
+- between shape wrong :: 81
+- between shape question :: 81
+- between shape shift :: 81
+- between new wrong :: 81
+- between new question :: 81
+- between new shift :: 81
+- between new rename :: 81
+- between wrong question :: 80
+- between wrong shift :: 80
+- between wrong rename :: 80
+- between wrong recast :: 80
+- between question shift :: 80
+- between question rename :: 80
+- between question recast :: 80
+- between question different :: 80
+- between shift rename :: 80
+- between shift recast :: 80
+- between shift different :: 80
+- between shift reading :: 80
+- between rename recast :: 80
+- between rename different :: 80
+- between rename reading :: 80
+- between rename constraint :: 80
+- between recast different :: 80
+- between recast reading :: 80
+- between recast constraint :: 80
+- between recast surface :: 80
+- between different reading :: 80
+- between different constraint :: 80
+- between different surface :: 80
+- between different move :: 80
+- between reading constraint :: 80
+- between reading surface :: 79
+- between reading move :: 79
+- between reading boundary :: 79
+- between constraint surface :: 79
+- between constraint move :: 79
+- between constraint boundary :: 79
+- between constraint assumption :: 79
+- between surface move :: 79
+- between surface boundary :: 79
+- between surface assumption :: 79
+- between surface wrong question :: 79
+- between move boundary :: 79
+- between move assumption :: 79
+- between move wrong question :: 79
+- between move replace :: 79
+- between boundary assumption :: 79
+- between boundary wrong question :: 79
+- between boundary replace :: 79
+- between boundary hidden premise :: 79
+- between assumption wrong question :: 79
+- between assumption replace :: 79
+- between assumption hidden premise :: 79
+- between assumption false binary :: 79
+- between wrong question replace :: 79
+- between wrong question hidden premise :: 79
+- between wrong question false binary :: 78
+- between wrong question different problem :: 78
+- between replace hidden premise :: 78
+- between replace false binary :: 78
+- between replace different problem :: 78
+- between replace smaller question :: 78
+- between hidden premise false binary :: 78
+- between hidden premise different problem :: 78
+- between hidden premise smaller question :: 78
+- between hidden premise context :: 78
+- through reframe frame :: 78
+- through reframe problem :: 78
+- through reframe shape :: 78
+- through reframe new :: 78
+- through frame problem :: 78
+- through frame shape :: 78
+- through frame new :: 78
+- through frame wrong :: 78
+- through problem shape :: 78
+- through problem new :: 78
+- through problem wrong :: 78
+- through problem question :: 78
+- through shape new :: 78
+- through shape wrong :: 78
+- through shape question :: 78
+- through shape shift :: 77
+- through new wrong :: 77
+- through new question :: 77
+- through new shift :: 77
+- through new rename :: 77
+- through wrong question :: 77
+- through wrong shift :: 77
+- through wrong rename :: 77
+- through wrong recast :: 77
+- through question shift :: 77
+- through question rename :: 77
+- through question recast :: 77
+- through question different :: 77
+- through shift rename :: 77
+- through shift recast :: 77
+- through shift different :: 77
+- through shift reading :: 77
+- through rename recast :: 77
+- through rename different :: 77
+- through rename reading :: 77
+- through rename constraint :: 77
+- through recast different :: 77
+- through recast reading :: 77
+- through recast constraint :: 77
+- through recast surface :: 77
+- through different reading :: 76
+- through different constraint :: 76
+- through different surface :: 76
+- through different move :: 76
+- through reading constraint :: 76
+- through reading surface :: 76
+- through reading move :: 76
+- through reading boundary :: 76
+- through constraint surface :: 76
+- through constraint move :: 76
+- through constraint boundary :: 76
+- through constraint assumption :: 76
+- through surface move :: 76
+- through surface boundary :: 76
+- through surface assumption :: 76
+- through surface wrong question :: 76
+- through move boundary :: 76
+- through move assumption :: 76
+- through move wrong question :: 76
+- through move replace :: 76
+- through boundary assumption :: 76
+- through boundary wrong question :: 76
+- through boundary replace :: 76
+- through boundary hidden premise :: 76
+- through assumption wrong question :: 76
+- through assumption replace :: 75
+- through assumption hidden premise :: 75
+- through assumption false binary :: 75
+- through wrong question replace :: 75
+- through wrong question hidden premise :: 75
+- through wrong question false binary :: 75
+- through wrong question different problem :: 75
+- through replace hidden premise :: 75
+- through replace false binary :: 75
+- through replace different problem :: 75
+- through replace smaller question :: 75
+- through hidden premise false binary :: 75
+- through hidden premise different problem :: 75
+- through hidden premise smaller question :: 75
+- through hidden premise context :: 75
+- before reframe frame :: 75
+- before reframe problem :: 75
+- before reframe shape :: 75
+- before reframe new :: 75
+- before frame problem :: 75
+- before frame shape :: 75
+- before frame new :: 75
+- before frame wrong :: 75
+- before problem shape :: 75
+- before problem new :: 75
+- before problem wrong :: 74
+- before problem question :: 74
+- before shape new :: 74
+- before shape wrong :: 74
+- before shape question :: 74
+- before shape shift :: 74
+- before new wrong :: 74
+- before new question :: 74
+- before new shift :: 74
+- before new rename :: 74
+- before wrong question :: 74
+- before wrong shift :: 74
+- before wrong rename :: 74
+- before wrong recast :: 74
+- before question shift :: 74
+- before question rename :: 74
+- before question recast :: 74
+- before question different :: 74
+- before shift rename :: 74
+- before shift recast :: 74
+- before shift different :: 74
+- before shift reading :: 74
+- before rename recast :: 74
+- before rename different :: 74
+- before rename reading :: 74
+- before rename constraint :: 73
+- before recast different :: 73
+- before recast reading :: 73
+- before recast constraint :: 73
+- before recast surface :: 73
+- before different reading :: 73
+- before different constraint :: 73
+- before different surface :: 73
+- before different move :: 73
+- before reading constraint :: 73
+- before reading surface :: 73
+- before reading move :: 73
+- before reading boundary :: 73
+- before constraint surface :: 73
+- before constraint move :: 73
+- before constraint boundary :: 73
+- before constraint assumption :: 73
+- before surface move :: 73
+- before surface boundary :: 73
+- before surface assumption :: 73
+- before surface wrong question :: 73
+- before move boundary :: 73
+- before move assumption :: 73
+- before move wrong question :: 73
+- before move replace :: 73
+- before boundary assumption :: 72
+- before boundary wrong question :: 72
+- before boundary replace :: 72
+- before boundary hidden premise :: 72
+- before assumption wrong question :: 72
+- before assumption replace :: 72
+- before assumption hidden premise :: 72
+- before assumption false binary :: 72
+- before wrong question replace :: 72
+- before wrong question hidden premise :: 72
+- before wrong question false binary :: 72
+- before wrong question different problem :: 72
+- before replace hidden premise :: 72
+- before replace false binary :: 72
+- before replace different problem :: 72
+- before replace smaller question :: 72
+- before hidden premise false binary :: 72
+- before hidden premise different problem :: 72
+- before hidden premise smaller question :: 72
+- before hidden premise context :: 72
+- after reframe frame :: 72
+- after reframe problem :: 72
+- after reframe shape :: 72
+- after reframe new :: 72
+- after frame problem :: 72
+- after frame shape :: 71
+- after frame new :: 71
+- after frame wrong :: 71
+- after problem shape :: 71
+- after problem new :: 71
+- after problem wrong :: 71
+- after problem question :: 71
+- after shape new :: 71
+- after shape wrong :: 71
+- after shape question :: 71
+- after shape shift :: 71
+- after new wrong :: 71
+- after new question :: 71
+- after new shift :: 71
+- after new rename :: 71
+- after wrong question :: 71
+- after wrong shift :: 71
+- after wrong rename :: 71
+- after wrong recast :: 71
+- after question shift :: 71
+- after question rename :: 71
+- after question recast :: 71
+- after question different :: 71
+- after shift rename :: 71
+- after shift recast :: 71
+- after shift different :: 70
+- after shift reading :: 70
+- after rename recast :: 70
+- after rename different :: 70
+- after rename reading :: 70
+- after rename constraint :: 70
+- after recast different :: 70
+- after recast reading :: 70
+- after recast constraint :: 70
+- after recast surface :: 70
+- after different reading :: 70
+- after different constraint :: 70
+- after different surface :: 70
+- after different move :: 70
+- after reading constraint :: 70
+- after reading surface :: 70
+- after reading move :: 70
+- after reading boundary :: 70
+- after constraint surface :: 70
+- after constraint move :: 70
+- after constraint boundary :: 70
+- after constraint assumption :: 70
+- after surface move :: 70
+- after surface boundary :: 70
+- after surface assumption :: 70
+- after surface wrong question :: 69
+- after move boundary :: 69
+- after move assumption :: 69
+- after move wrong question :: 69
+- after move replace :: 69
+- after boundary assumption :: 69
+- after boundary wrong question :: 69
+- after boundary replace :: 69
+- after boundary hidden premise :: 69
+- after assumption wrong question :: 69
+- after assumption replace :: 69
+- after assumption hidden premise :: 69
+- after assumption false binary :: 69
+- after wrong question replace :: 69
+- after wrong question hidden premise :: 69
+- after wrong question false binary :: 69
+- after wrong question different problem :: 69
+- after replace hidden premise :: 69
+- after replace false binary :: 69
+- after replace different problem :: 69
+- after replace smaller question :: 69
+- after hidden premise false binary :: 69
+- after hidden premise different problem :: 69
+- after hidden premise smaller question :: 69
+- after hidden premise context :: 69
+- during reframe frame :: 68
+- during reframe problem :: 68
+- during reframe shape :: 68
+- during reframe new :: 68
+- during frame problem :: 68
+- during frame shape :: 68
+- during frame new :: 68
+- during frame wrong :: 68
+- during problem shape :: 68
+- during problem new :: 68
+- during problem wrong :: 68
+- during problem question :: 68
+- during shape new :: 68
+- during shape wrong :: 68
+- during shape question :: 68
+- during shape shift :: 68
+- during new wrong :: 68
+- during new question :: 68
+- during new shift :: 68
+- during new rename :: 68
+- during wrong question :: 68
+- during wrong shift :: 68
+- during wrong rename :: 68
+- during wrong recast :: 68
+- during question shift :: 68
+- during question rename :: 67
+- during question recast :: 67
+- during question different :: 67
+- during shift rename :: 67
+- during shift recast :: 67
+- during shift different :: 67
+- during shift reading :: 67
+- during rename recast :: 67
+- during rename different :: 67
+- during rename reading :: 67
+- during rename constraint :: 67
+- during recast different :: 67
+- during recast reading :: 67
+- during recast constraint :: 67
+- during recast surface :: 67
+- during different reading :: 67
+- during different constraint :: 67
+- during different surface :: 67
+- during different move :: 67
+- during reading constraint :: 67
+- during reading surface :: 67
+- during reading move :: 67
+- during reading boundary :: 67
+- during constraint surface :: 67
+- during constraint move :: 67
+- during constraint boundary :: 66
+- during constraint assumption :: 66
+- during surface move :: 66
+- during surface boundary :: 66
+- during surface assumption :: 66
+- during surface wrong question :: 66
+- during move boundary :: 66
+- during move assumption :: 66
+- during move wrong question :: 66
+- during move replace :: 66
+- during boundary assumption :: 66
+- during boundary wrong question :: 66
+- during boundary replace :: 66
+- during boundary hidden premise :: 66
+- during assumption wrong question :: 66
+- during assumption replace :: 66
+- during assumption hidden premise :: 66
+- during assumption false binary :: 66
+- during wrong question replace :: 66
+- during wrong question hidden premise :: 66
+- during wrong question false binary :: 66
+- during wrong question different problem :: 66
+- during replace hidden premise :: 66
+- during replace false binary :: 66
+- during replace different problem :: 66
+- during replace smaller question :: 65
+- during hidden premise false binary :: 65
+- during hidden premise different problem :: 65
+- during hidden premise smaller question :: 65
+- during hidden premise context :: 65
+- until reframe frame :: 65
+- until reframe problem :: 65
+- until reframe shape :: 65
+- until reframe new :: 65
+- until frame problem :: 65
+- until frame shape :: 65
+- until frame new :: 65
+- until frame wrong :: 65
+- until problem shape :: 65
+- until problem new :: 65
+- until problem wrong :: 65
+- until problem question :: 65
+- until shape new :: 65
+- until shape wrong :: 65
+- until shape question :: 65
+- until shape shift :: 65
+- until new wrong :: 65
+- until new question :: 65
+- until new shift :: 65
+- until new rename :: 65
+- until wrong question :: 64
+- until wrong shift :: 64
+- until wrong rename :: 64
+- until wrong recast :: 64
+- until question shift :: 64
+- until question rename :: 64
+- until question recast :: 64
+- until question different :: 64
+- until shift rename :: 64
+- until shift recast :: 64
+- until shift different :: 64
+- until shift reading :: 64
+- until rename recast :: 64
+- until rename different :: 64
+- until rename reading :: 64
+- until rename constraint :: 64
+- until recast different :: 64
+- until recast reading :: 64
+- until recast constraint :: 64
+- until recast surface :: 64
+- until different reading :: 64
+- until different constraint :: 64
+- until different surface :: 64
+- until different move :: 64
+- until reading constraint :: 64
+- until reading surface :: 63
+- until reading move :: 63
+- until reading boundary :: 63
+- until constraint surface :: 63
+- until constraint move :: 63
+- until constraint boundary :: 63
+- until constraint assumption :: 63
+- until surface move :: 63
+- until surface boundary :: 63
+- until surface assumption :: 63
+- until surface wrong question :: 63
+- until move boundary :: 63
+- until move assumption :: 63
+- until move wrong question :: 63
+- until move replace :: 63
+- until boundary assumption :: 63
+- until boundary wrong question :: 63
+- until boundary replace :: 63
+- until boundary hidden premise :: 63
+- until assumption wrong question :: 63
+- until assumption replace :: 63
+- until assumption hidden premise :: 63
+- until assumption false binary :: 63
+- until wrong question replace :: 63
+- until wrong question hidden premise :: 63
+- until wrong question false binary :: 62
+- until wrong question different problem :: 62
+- until replace hidden premise :: 62
+- until replace false binary :: 62
+- until replace different problem :: 62
+- until replace smaller question :: 62
+- until hidden premise false binary :: 62
+- until hidden premise different problem :: 62
+- until hidden premise smaller question :: 62
+- until hidden premise context :: 62
+- since reframe frame :: 62
+- since reframe problem :: 62
+- since reframe shape :: 62
+- since reframe new :: 62
+- since frame problem :: 62
+- since frame shape :: 62
+- since frame new :: 62
+- since frame wrong :: 62
+- since problem shape :: 62
+- since problem new :: 62
+- since problem wrong :: 62
+- since problem question :: 62
+- since shape new :: 62
+- since shape wrong :: 62
+- since shape question :: 62
+- since shape shift :: 61
+- since new wrong :: 61
+- since new question :: 61
+- since new shift :: 61
+- since new rename :: 61
+- since wrong question :: 61
+- since wrong shift :: 61
+- since wrong rename :: 61
+- since wrong recast :: 61
+- since question shift :: 61
+- since question rename :: 61
+- since question recast :: 61
+- since question different :: 61
+- since shift rename :: 61
+- since shift recast :: 61
+- since shift different :: 61
+- since shift reading :: 61
+- since rename recast :: 61
+- since rename different :: 61
+- since rename reading :: 61
+- since rename constraint :: 61
+- since recast different :: 61
+- since recast reading :: 61
+- since recast constraint :: 61
+- since recast surface :: 61
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- assumption
+- boundary
+- unit
+- objective
+- scope
+
+### Couplings
+
+- changed boundary
+- unit of work
+- objective rewrite
+
+### Triplets
+
+- assumption boundary scope

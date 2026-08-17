@@ -1,0 +1,459 @@
+# 🧨 Popper Mini-MMM COMPACT v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `POPPER` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_POPPER_COMPACT_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- conjecture :: 100
+- killed :: 100
+- conjectures and refutations :: 100
+- severe test :: 100
+- risky prediction :: 100
+- refuted claim :: 100
+- refute :: 100
+- decisive check :: 100
+- failure condition :: 100
+- what would break :: 100
+- not yet survived :: 100
+- survived :: 100
+- falsifier :: 100
+- exposure :: 100
+- what would rule out :: 100
+- claim :: 100
+- counterexample :: 100
+- bold conjecture :: 100
+- refutation :: 100
+- test pressure :: 100
+- open :: 100
+- survive :: 100
+- unsupported :: 100
+- falsification :: 100
+- severe :: 100
+- prediction :: 100
+- testable :: 100
+- critical :: 100
+- error :: 100
+- corroboration :: 100
+- counterinstance :: 100
+- bold :: 100
+- critical rationalism :: 100
+- falsifiable hypothesis :: 100
+- problem situation :: 100
+- error elimination :: 100
+- corroborated theory :: 100
+- falsify :: 100
+- tested :: 100
+- risky :: 100
+- trial :: 100
+- stress :: 100
+- challenge :: 100
+- break :: 100
+- problem :: 100
+- fail :: 100
+- strongest :: 100
+- decisive :: 100
+- pressure :: 100
+- risk :: 100
+- target :: 100
+- check :: 100
+- live :: 100
+- evidence :: 100
+- path :: 100
+- actual :: 100
+- concrete :: 100
+- distinct :: 100
+- inferred :: 100
+- plain :: 100
+- known :: 100
+- unknown :: 100
+- narrow :: 100
+- anomaly :: 100
+- background :: 100
+- basic :: 100
+- content :: 100
+- correction :: 100
+- criticism :: 100
+- demarcation :: 100
+- empirical :: 100
+- falsifiability :: 100
+- incompatible :: 100
+- informative :: 100
+- knowledge :: 100
+- piecemeal :: 100
+- refutable :: 100
+- refuted :: 100
+- statement :: 100
+- testability :: 100
+
+## couplings
+
+- severe test :: 100
+- risky prediction :: 100
+- refuted claim :: 100
+- decisive check :: 100
+- falsifier evidence :: 100
+- falsifier support :: 100
+- falsifier path :: 100
+- falsifier surface :: 100
+- falsifier packet :: 100
+- falsifier receipt :: 100
+- falsifier trace :: 100
+- falsifier result :: 100
+- falsifier scope :: 100
+- falsifier boundary :: 100
+- falsifier status :: 100
+- falsifier candidate :: 100
+- falsifier witness :: 100
+- failure condition :: 100
+- claim :: 100
+- conjecture :: 100
+- falsifier :: 100
+- refute :: 100
+- killed :: 100
+- counterexample :: 100
+- exposure :: 100
+- what would break :: 100
+- falsifier probe :: 100
+- falsifier constraint :: 100
+- check falsifier :: 100
+- compare falsifier :: 100
+- observe falsifier :: 100
+- measure falsifier :: 100
+- test falsifier :: 100
+- verify falsifier :: 100
+- hold falsifier :: 100
+- split falsifier :: 100
+- narrow falsifier :: 100
+- under falsifier :: 100
+- within falsifier :: 100
+- across falsifier :: 100
+- between falsifier :: 100
+- through falsifier :: 100
+- before falsifier :: 100
+- after falsifier :: 100
+- until falsifier :: 100
+- where falsifier :: 100
+- while falsifier :: 100
+- conjectures and refutations :: 100
+- claim evidence :: 100
+- claim support :: 100
+- claim path :: 100
+- claim surface :: 100
+- claim packet :: 100
+- claim receipt :: 100
+- claim trace :: 100
+- claim scope :: 100
+- claim boundary :: 100
+- claim status :: 100
+- claim candidate :: 100
+- claim witness :: 100
+- claim probe :: 100
+- claim constraint :: 100
+- check claim :: 100
+- compare claim :: 100
+- observe claim :: 100
+- measure claim :: 100
+- test claim :: 100
+- verify claim :: 100
+- hold claim :: 100
+- preserve claim :: 100
+- split claim :: 100
+- narrow claim :: 100
+- where claim :: 100
+- while claim :: 100
+- preserve falsifier :: 100
+- conjecture refutation :: 100
+- conjecture falsifier :: 100
+- refutation falsifier :: 100
+- claim result :: 100
+- open :: 100
+- killed evidence :: 100
+- killed support :: 100
+- survive killed :: 100
+- killed path :: 100
+- killed surface :: 100
+- killed packet :: 100
+- what would rule out :: 100
+- killed survived :: 100
+- killed claim :: 100
+- killed receipt :: 100
+- killed trace :: 100
+- killed result :: 100
+- killed scope :: 100
+- killed boundary :: 100
+- killed status :: 100
+- killed candidate :: 100
+- killed witness :: 100
+- killed probe :: 100
+- killed constraint :: 100
+- check killed :: 100
+- compare killed :: 100
+- observe killed :: 100
+- measure killed :: 100
+- test killed :: 100
+- verify killed :: 100
+- hold killed :: 100
+- preserve killed :: 100
+- split killed :: 100
+- narrow killed :: 100
+- survived claim :: 100
+- survived exposure :: 100
+- where killed :: 100
+- while killed :: 100
+- survive open :: 100
+- survived evidence :: 100
+- survived support :: 100
+- survived path :: 100
+- survived surface :: 100
+- survived packet :: 100
+- survived receipt :: 100
+- survived trace :: 100
+- survived result :: 100
+- survived scope :: 100
+- survived boundary :: 100
+- killed open :: 100
+- open survived :: 100
+- open claim :: 100
+- open exposure :: 100
+- survived status :: 100
+- survived candidate :: 100
+- survived witness :: 100
+- anomalous result :: 100
+- apparent falsifier :: 100
+- background knowledge :: 100
+- basic statement :: 100
+- bold conjecture :: 100
+- claim under test :: 100
+- conjecture and refutation :: 100
+- corroborated theory :: 100
+- counter instance :: 100
+- counterinstance check :: 100
+- critical test :: 100
+- decisive counterexample :: 100
+- demarcation problem :: 100
+- empirical falsification :: 100
+- error correction :: 100
+- falsifiability criterion :: 100
+- informative content :: 100
+- inter subjective test :: 100
+- open falsifier :: 100
+
+## triplets
+
+- under open falsifier :: 100
+- within open falsifier :: 100
+- across open falsifier :: 100
+- between open falsifier :: 100
+- through open falsifier :: 100
+- before open falsifier :: 100
+- under open claim :: 100
+- within open claim :: 100
+- across open claim :: 100
+- between open claim :: 100
+- through open claim :: 100
+- before open claim :: 100
+- what would break :: 100
+- conjectures and refutations :: 100
+- under conjecture falsifier :: 100
+- under refutation falsifier :: 100
+- within conjecture falsifier :: 100
+- falsifier evidence path :: 100
+- falsifier support path :: 100
+- falsifier path path :: 100
+- falsifier surface path :: 100
+- falsifier packet path :: 100
+- within refutation falsifier :: 100
+- under live falsifier :: 100
+- falsifier receipt path :: 100
+- falsifier trace path :: 100
+- falsifier result path :: 100
+- falsifier scope path :: 100
+- falsifier boundary path :: 100
+- check falsifier receipt :: 100
+- within live falsifier :: 100
+- compare falsifier receipt :: 100
+- observe falsifier receipt :: 100
+- measure falsifier receipt :: 100
+- across live falsifier :: 100
+- between live falsifier :: 100
+- test falsifier receipt :: 100
+- verify falsifier receipt :: 100
+- hold falsifier receipt :: 100
+- preserve falsifier receipt :: 100
+- through live falsifier :: 100
+- before live falsifier :: 100
+- across conjecture falsifier :: 100
+- across refutation falsifier :: 100
+- under open falsify :: 100
+- within open falsify :: 100
+- across open falsify :: 100
+- between conjecture falsifier :: 100
+- between refutation falsifier :: 100
+- between open falsify :: 100
+- through open falsify :: 100
+- before open falsify :: 100
+- through conjecture falsifier :: 100
+- through refutation falsifier :: 100
+- claim evidence path :: 100
+- claim support path :: 100
+- claim path path :: 100
+- claim surface path :: 100
+- claim packet path :: 100
+- claim receipt path :: 100
+- under live claim :: 100
+- within live claim :: 100
+- anomaly remains open :: 100
+- background knowledge challenged :: 100
+- basic statement evidence :: 100
+- bold conjecture stress :: 100
+- claim falsifier check :: 100
+- conjecture refutation test :: 100
+- counterexample kills claim :: 100
+- empirical falsification path :: 100
+- informative content risk :: 100
+- killed open survived :: 100
+- piecemeal criticism route :: 100
+- risky prediction checked :: 100
+- severe test result :: 100
+- target claim falsifier :: 100
+- testability demarcation criterion :: 100
+- not yet survived :: 99
+- under conjecture refutation :: 99
+- under survive killed :: 97
+- under survive open :: 97
+- under killed open :: 97
+- under killed survived :: 97
+- under open survived :: 97
+- within conjecture refutation :: 97
+- within survive killed :: 95
+- within survive open :: 95
+- within killed open :: 95
+- within killed survived :: 95
+- within open survived :: 95
+- across conjecture refutation :: 94
+- across survive killed :: 93
+- across survive open :: 93
+- across killed open :: 93
+- across killed survived :: 93
+- across open survived :: 93
+- between conjecture refutation :: 93
+- between survive killed :: 91
+- between survive open :: 91
+- between killed open :: 91
+- between killed survived :: 91
+- between open survived :: 91
+- through conjecture refutation :: 91
+- under current falsifier :: 88
+- under local falsifier :: 88
+- under bounded falsifier :: 88
+- under finite falsifier :: 88
+- within current falsifier :: 88
+- within local falsifier :: 88
+- within bounded falsifier :: 88
+- within finite falsifier :: 88
+- across current falsifier :: 88
+- across local falsifier :: 88
+- across bounded falsifier :: 88
+- across finite falsifier :: 88
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (COMPACT)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- problem
+- theory
+- risky prediction
+- falsifier
+- counter-instance
+- basic statement
+- corroboration
+- refutation
+- intersubjective test
+- critical rationalism
+
+### Couplings
+
+- risky prediction
+- basic statement
+- provisional corroboration
+- single genuine counter-instance
+- conjecture and refutation
+
+### Triplets
+
+- claim falsifier check
+- theory prediction counterinstance
+- problem theory refutation

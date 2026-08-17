@@ -1,0 +1,737 @@
+# 🧹 All-C Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Composition workers load this only for an assigned composition route, normally as Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `ALL_C` and remapped to v4.1 canon category `compositions`.
+
+---
+
+# MMM_LANE_ALL_C_FULL_v4_1
+
+## words
+
+- closeout :: 100
+- hygiene :: 100
+- security :: 100
+- factory :: 100
+- audit :: 100
+- done :: 100
+- condition :: 100
+- cleanup :: 100
+- bundle :: 100
+- safe :: 100
+- close :: 100
+- landed :: 100
+- artifact :: 100
+- done condition :: 100
+- plain wording :: 100
+- stale surface :: 100
+- trust boundary :: 100
+- bottleneck :: 100
+- evidence missing :: 100
+- audit overclaim :: 100
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- from :: 99
+- by :: 99
+- with :: 99
+- without :: 99
+- against :: 99
+- relative :: 99
+- locally :: 99
+- rather :: 99
+- instead :: 99
+- only :: 99
+- still :: 99
+- likely :: 99
+- possible :: 99
+- bounded :: 98
+- finite :: 98
+- local :: 98
+- current :: 98
+- observed :: 98
+- measured :: 98
+- checked :: 98
+- open :: 98
+- partial :: 98
+- limited :: 98
+- constraint :: 98
+- evidence :: 98
+- observation :: 98
+- measurement :: 98
+- test :: 98
+- trace :: 98
+- sample :: 98
+- case :: 98
+- instance :: 98
+- name :: 98
+- term :: 97
+- word :: 97
+- use :: 97
+- relation :: 97
+- distinction :: 97
+- comparison :: 97
+- support :: 97
+- estimate :: 97
+- uncertainty :: 97
+- model :: 97
+- witness :: 97
+- counterexample :: 97
+- candidate :: 97
+- survivor :: 97
+- surface :: 97
+- boundary :: 97
+- scope :: 97
+- result :: 97
+- path :: 97
+- branch :: 97
+- fork :: 96
+- plurality :: 96
+- reading :: 96
+- perspective :: 96
+- claim :: 96
+- route :: 96
+- receipt :: 96
+- voice :: 96
+- lane :: 96
+- all-c :: 96
+- risk :: 96
+- composite :: 96
+- when :: 96
+- work :: 96
+- near :: 96
+- closure :: 96
+- and :: 96
+- drift :: 96
+- wording :: 96
+- are :: 96
+- the :: 95
+- threats :: 95
+- compose :: 95
+- direct :: 95
+- orwell :: 95
+- repo :: 95
+- target :: 95
+- cut :: 95
+- fog :: 95
+- check :: 95
+- boundaries :: 95
+- inspect :: 95
+- maintenance :: 95
+- drag :: 95
+- block :: 95
+- missing :: 95
+- not :: 95
+- default :: 95
+- execution :: 95
+- exploration :: 95
+- broad :: 94
+- redesign :: 94
+- ceremonial :: 94
+- closing :: 94
+- that :: 94
+- creates :: 94
+- theater :: 94
+- polish :: 94
+- hides :: 94
+- mostly :: 94
+- but :: 94
+- cleanly :: 94
+- closed :: 94
+- which :: 94
+- residue :: 94
+- will :: 94
+- harm :: 94
+- future :: 94
+- runs :: 94
+- blocks :: 94
+- promotion :: 93
+- active :: 93
+- problem :: 93
+- solving :: 93
+- preservation :: 93
+- actual :: 93
+- exposure :: 93
+- analysis :: 93
+- inside :: 93
+- plain :: 93
+- stale :: 93
+- trust :: 93
+- closes :: 93
+- cleans :: 93
+- all-a :: 93
+- advances :: 93
+- tests :: 93
+- reduces :: 93
+- all-b :: 93
+
+## couplings
+
+- under closeout :: 100
+- under hygiene :: 100
+- under security :: 100
+- under factory :: 100
+- under audit :: 100
+- under done :: 100
+- under condition :: 100
+- under cleanup :: 100
+- under bundle :: 100
+- under safe :: 100
+- under close :: 100
+- under landed :: 100
+- under artifact :: 100
+- under done condition :: 100
+- under plain wording :: 100
+- within closeout :: 100
+- within hygiene :: 100
+- within security :: 100
+- within factory :: 100
+- within audit :: 100
+- within done :: 99
+- within condition :: 99
+- within cleanup :: 99
+- within bundle :: 99
+- within safe :: 99
+- within close :: 99
+- within landed :: 99
+- within artifact :: 99
+- within done condition :: 99
+- within plain wording :: 99
+- across closeout :: 99
+- across hygiene :: 99
+- across security :: 99
+- across factory :: 99
+- across audit :: 99
+- across done :: 99
+- across condition :: 99
+- across cleanup :: 99
+- across bundle :: 99
+- across safe :: 99
+- across close :: 98
+- across landed :: 98
+- across artifact :: 98
+- across done condition :: 98
+- across plain wording :: 98
+- between closeout :: 98
+- between hygiene :: 98
+- between security :: 98
+- between factory :: 98
+- between audit :: 98
+- between done :: 98
+- between condition :: 98
+- between cleanup :: 98
+- between bundle :: 98
+- between safe :: 98
+- between close :: 98
+- between landed :: 98
+- between artifact :: 98
+- between done condition :: 98
+- between plain wording :: 98
+- through closeout :: 97
+- through hygiene :: 97
+- through security :: 97
+- through factory :: 97
+- through audit :: 97
+- through done :: 97
+- through condition :: 97
+- through cleanup :: 97
+- through bundle :: 97
+- through safe :: 97
+- through close :: 97
+- through landed :: 97
+- through artifact :: 97
+- through done condition :: 97
+- through plain wording :: 97
+- before closeout :: 97
+- before hygiene :: 97
+- before security :: 97
+- before factory :: 97
+- before audit :: 97
+- before done :: 96
+- before condition :: 96
+- before cleanup :: 96
+- before bundle :: 96
+- before safe :: 96
+- before close :: 96
+- before landed :: 96
+- before artifact :: 96
+- before done condition :: 96
+- before plain wording :: 96
+- after closeout :: 96
+- after hygiene :: 96
+- after security :: 96
+- after factory :: 96
+- after audit :: 96
+- after done :: 96
+- after condition :: 96
+- after cleanup :: 96
+- after bundle :: 96
+- after safe :: 96
+- after close :: 95
+- after landed :: 95
+- after artifact :: 95
+- after done condition :: 95
+- after plain wording :: 95
+- from closeout :: 95
+- from hygiene :: 95
+- from security :: 95
+- from factory :: 95
+- from audit :: 95
+- from done :: 95
+- from condition :: 95
+- from cleanup :: 95
+- from bundle :: 95
+- from safe :: 95
+- from close :: 95
+- from landed :: 95
+- from artifact :: 95
+- from done condition :: 95
+- from plain wording :: 95
+- by closeout :: 94
+- by hygiene :: 94
+- by security :: 94
+- by factory :: 94
+- by audit :: 94
+- by done :: 94
+- by condition :: 94
+- by cleanup :: 94
+- by bundle :: 94
+- by safe :: 94
+- by close :: 94
+- by landed :: 94
+- by artifact :: 94
+- by done condition :: 94
+- by plain wording :: 94
+- with closeout :: 94
+- with hygiene :: 94
+- with security :: 94
+- with factory :: 94
+- with audit :: 94
+- with done :: 93
+- with condition :: 93
+- with cleanup :: 93
+- with bundle :: 93
+- with safe :: 93
+- with close :: 93
+- with landed :: 93
+- with artifact :: 93
+- with done condition :: 93
+- with plain wording :: 93
+- without closeout :: 93
+- without hygiene :: 93
+- without security :: 93
+- without factory :: 93
+- without audit :: 93
+- without done :: 93
+- without condition :: 93
+- without cleanup :: 93
+- without bundle :: 93
+- without safe :: 93
+- without close :: 92
+- without landed :: 92
+- without artifact :: 92
+- without done condition :: 92
+- without plain wording :: 92
+- against closeout :: 92
+- against hygiene :: 92
+- against security :: 92
+- against factory :: 92
+- against audit :: 92
+- against done :: 92
+- against condition :: 92
+- against cleanup :: 92
+- against bundle :: 92
+- against safe :: 92
+- against close :: 92
+- against landed :: 92
+- against artifact :: 92
+- against done condition :: 92
+- against plain wording :: 92
+- closeout hygiene :: 91
+- closeout security :: 91
+- closeout factory :: 91
+- closeout audit :: 91
+- closeout done :: 91
+- closeout condition :: 91
+- closeout cleanup :: 91
+- hygiene security :: 91
+- hygiene factory :: 91
+- hygiene audit :: 91
+- hygiene done :: 91
+- hygiene condition :: 91
+- hygiene cleanup :: 91
+- hygiene bundle :: 91
+- security factory :: 91
+- security audit :: 91
+- security done :: 91
+- security condition :: 91
+- security cleanup :: 91
+- security bundle :: 91
+- security safe :: 90
+- factory audit :: 90
+- factory done :: 90
+- factory condition :: 90
+- factory cleanup :: 90
+- factory bundle :: 90
+- factory safe :: 90
+- factory close :: 90
+- audit done :: 90
+- audit condition :: 90
+- audit cleanup :: 90
+- audit bundle :: 90
+- audit safe :: 90
+- audit close :: 90
+- audit landed :: 90
+- done condition :: 90
+- done cleanup :: 90
+- done bundle :: 90
+- done safe :: 90
+- done close :: 90
+- done landed :: 89
+- done artifact :: 89
+- condition cleanup :: 89
+- condition bundle :: 89
+- condition safe :: 89
+- condition close :: 89
+- condition landed :: 89
+- condition artifact :: 89
+- condition done condition :: 89
+- cleanup bundle :: 89
+- cleanup safe :: 89
+- cleanup close :: 89
+- cleanup landed :: 89
+- cleanup artifact :: 89
+- cleanup done condition :: 89
+- cleanup plain wording :: 89
+- bundle safe :: 89
+- bundle close :: 89
+- bundle landed :: 89
+- bundle artifact :: 89
+- bundle done condition :: 88
+- bundle plain wording :: 88
+- bundle stale surface :: 88
+- safe close :: 88
+- safe landed :: 88
+- safe artifact :: 88
+- safe done condition :: 88
+- safe plain wording :: 88
+- safe stale surface :: 88
+- safe trust boundary :: 88
+- close landed :: 88
+- close artifact :: 88
+- close done condition :: 88
+- close plain wording :: 88
+- close stale surface :: 88
+- close trust boundary :: 88
+- close bottleneck :: 88
+- landed artifact :: 88
+- landed done condition :: 88
+- landed plain wording :: 88
+- landed stale surface :: 87
+- landed trust boundary :: 87
+- landed bottleneck :: 87
+- landed evidence missing :: 87
+- artifact done condition :: 87
+- artifact plain wording :: 87
+- artifact stale surface :: 87
+- artifact trust boundary :: 87
+- artifact bottleneck :: 87
+- artifact evidence missing :: 87
+- artifact audit overclaim :: 87
+- done condition plain wording :: 87
+- done condition stale surface :: 87
+- done condition trust boundary :: 87
+- done condition bottleneck :: 87
+- done condition evidence missing :: 87
+- done condition audit overclaim :: 87
+- done condition under :: 87
+- plain wording stale surface :: 87
+- plain wording trust boundary :: 87
+- plain wording bottleneck :: 86
+- plain wording evidence missing :: 86
+- plain wording audit overclaim :: 86
+- plain wording under :: 86
+- plain wording within :: 86
+- stale surface trust boundary :: 86
+- stale surface bottleneck :: 86
+- stale surface evidence missing :: 86
+- stale surface audit overclaim :: 86
+- stale surface under :: 86
+- stale surface within :: 86
+- stale surface across :: 86
+- trust boundary bottleneck :: 86
+- trust boundary evidence missing :: 86
+- trust boundary audit overclaim :: 86
+- trust boundary under :: 86
+- trust boundary within :: 86
+- trust boundary across :: 86
+- trust boundary between :: 86
+- bottleneck evidence missing :: 86
+- bottleneck audit overclaim :: 85
+- bottleneck under :: 85
+- bottleneck within :: 85
+- bottleneck across :: 85
+- bottleneck between :: 85
+- bottleneck through :: 85
+- evidence missing audit overclaim :: 85
+- evidence missing under :: 85
+- evidence missing within :: 85
+- evidence missing across :: 85
+- evidence missing between :: 85
+- evidence missing through :: 85
+- evidence missing before :: 85
+- audit overclaim under :: 85
+- audit overclaim within :: 85
+- audit overclaim across :: 85
+- audit overclaim between :: 85
+- audit overclaim through :: 85
+- audit overclaim before :: 85
+- audit overclaim after :: 85
+- under within :: 84
+- under across :: 84
+- under between :: 84
+- under through :: 84
+- under before :: 84
+- under after :: 84
+- under from :: 84
+- within across :: 84
+- within between :: 84
+- within through :: 84
+- within before :: 84
+- within after :: 84
+- within from :: 84
+- within by :: 84
+- across between :: 84
+- across through :: 84
+- across before :: 84
+- across after :: 84
+- across from :: 84
+- across by :: 84
+- across with :: 83
+- between through :: 83
+- between before :: 83
+- between after :: 83
+- between from :: 83
+- between by :: 83
+- between with :: 83
+- between without :: 83
+- through before :: 83
+- through after :: 83
+
+## triplets
+
+- under closeout hygiene :: 100
+- under closeout security :: 100
+- under closeout factory :: 100
+- under closeout audit :: 100
+- under closeout done :: 100
+- under closeout condition :: 100
+- under closeout cleanup :: 100
+- within hygiene security :: 100
+- within hygiene factory :: 100
+- within hygiene audit :: 100
+- within hygiene done :: 100
+- within hygiene condition :: 100
+- within hygiene cleanup :: 100
+- within hygiene bundle :: 100
+- across security factory :: 100
+- across security audit :: 100
+- across security done :: 100
+- across security condition :: 100
+- across security cleanup :: 100
+- across security bundle :: 100
+- across security safe :: 99
+- between factory audit :: 99
+- between factory done :: 99
+- between factory condition :: 99
+- between factory cleanup :: 99
+- between factory bundle :: 99
+- between factory safe :: 99
+- between factory close :: 99
+- through audit done :: 99
+- through audit condition :: 99
+- through audit cleanup :: 99
+- through audit bundle :: 99
+- through audit safe :: 99
+- through audit close :: 99
+- through audit landed :: 99
+- before done condition :: 99
+- before done cleanup :: 99
+- before done bundle :: 99
+- before done safe :: 99
+- before done close :: 99
+- before done landed :: 98
+- before done artifact :: 98
+- after condition cleanup :: 98
+- after condition bundle :: 98
+- after condition safe :: 98
+- after condition close :: 98
+- after condition landed :: 98
+- after condition artifact :: 98
+- after condition done condition :: 98
+- from cleanup bundle :: 98
+- from cleanup safe :: 98
+- from cleanup close :: 98
+- from cleanup landed :: 98
+- from cleanup artifact :: 98
+- from cleanup done condition :: 98
+- from cleanup plain wording :: 98
+- by bundle safe :: 98
+- by bundle close :: 98
+- by bundle landed :: 98
+- by bundle artifact :: 98
+- by bundle done condition :: 97
+- by bundle plain wording :: 97
+- by bundle stale surface :: 97
+- with safe close :: 97
+- with safe landed :: 97
+- with safe artifact :: 97
+- with safe done condition :: 97
+- with safe plain wording :: 97
+- with safe stale surface :: 97
+- with safe trust boundary :: 97
+- without close landed :: 97
+- without close artifact :: 97
+- without close done condition :: 97
+- without close plain wording :: 97
+- without close stale surface :: 97
+- without close trust boundary :: 97
+- without close bottleneck :: 97
+- against landed artifact :: 97
+- against landed done condition :: 97
+- against landed plain wording :: 97
+- against landed stale surface :: 96
+- against landed trust boundary :: 96
+- against landed bottleneck :: 96
+- against landed evidence missing :: 96
+- relative artifact done condition :: 96
+- relative artifact plain wording :: 96
+- relative artifact stale surface :: 96
+- relative artifact trust boundary :: 96
+- relative artifact bottleneck :: 96
+- relative artifact evidence missing :: 96
+- relative artifact audit overclaim :: 96
+- locally done condition plain wording :: 96
+- locally done condition stale surface :: 96
+- locally done condition trust boundary :: 96
+- locally done condition bottleneck :: 96
+- locally done condition evidence missing :: 96
+- locally done condition audit overclaim :: 96
+- locally done condition under :: 96
+- rather plain wording stale surface :: 96
+- rather plain wording trust boundary :: 96
+- rather plain wording bottleneck :: 95
+- rather plain wording evidence missing :: 95
+- rather plain wording audit overclaim :: 95
+- rather plain wording under :: 95
+- rather plain wording within :: 95
+- instead stale surface trust boundary :: 95
+- instead stale surface bottleneck :: 95
+- instead stale surface evidence missing :: 95
+- instead stale surface audit overclaim :: 95
+- instead stale surface under :: 95
+- instead stale surface within :: 95
+- instead stale surface across :: 95
+- only trust boundary bottleneck :: 95
+- only trust boundary evidence missing :: 95
+- only trust boundary audit overclaim :: 95
+- only trust boundary under :: 95
+- only trust boundary within :: 95
+- only trust boundary across :: 95
+- only trust boundary between :: 95
+- still bottleneck evidence missing :: 95
+- still bottleneck audit overclaim :: 94
+- still bottleneck under :: 94
+- still bottleneck within :: 94
+- still bottleneck across :: 94
+- still bottleneck between :: 94
+- still bottleneck through :: 94
+- likely evidence missing audit overclaim :: 94
+- likely evidence missing under :: 94
+- likely evidence missing within :: 94
+- likely evidence missing across :: 94
+- likely evidence missing between :: 94
+- likely evidence missing through :: 94
+- likely evidence missing before :: 94
+- possible audit overclaim under :: 94
+- possible audit overclaim within :: 94
+- possible audit overclaim across :: 94
+- possible audit overclaim between :: 94
+- possible audit overclaim through :: 94
+- possible audit overclaim before :: 94
+- possible audit overclaim after :: 94
+- bounded under within :: 93
+- bounded under across :: 93
+- bounded under between :: 93
+- bounded under through :: 93
+- bounded under before :: 93
+- bounded under after :: 93
+- bounded under from :: 93
+- finite within across :: 93
+- finite within between :: 93
+- finite within through :: 93
+- finite within before :: 93
+- finite within after :: 93
+- finite within from :: 93
+- finite within by :: 93
+- local across between :: 93
+- local across through :: 93
+- local across before :: 93
+- local across after :: 93
+- local across from :: 93
+- local across by :: 93
+- local across with :: 92
+- current between through :: 92
+- current between before :: 92
+- current between after :: 92
+- current between from :: 92
+- current between by :: 92
+- current between with :: 92
+- current between without :: 92
+- observed through before :: 92
+- observed through after :: 92
+- observed through from :: 92
+- observed through by :: 92
+- observed through with :: 92
+- observed through without :: 92
+- observed through against :: 92
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- final bounded move
+- concrete wording
+- readability check
+- security check
+- handoff check
+
+### Couplings
+
+- closeout hygiene
+- control-law security
+- bottleneck handoff
+
+### Triplets
+
+- wording hygiene security

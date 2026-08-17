@@ -1,0 +1,2445 @@
+# ✂️ Orwell Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `ORWELL` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_ORWELL_FULL_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- plain :: 100
+- concrete :: 100
+- short :: 100
+- clear :: 100
+- cut :: 100
+- fog :: 100
+- euphemism :: 100
+- inflated :: 100
+- dead :: 100
+- phrase :: 100
+- jargon :: 100
+- bureaucratic :: 100
+- vague :: 100
+- muddy :: 100
+- pretentious :: 100
+- noun :: 100
+- image :: 100
+- metaphor :: 100
+- active :: 100
+- simple :: 100
+- verb :: 100
+- ordinary :: 100
+- word :: 100
+- exact :: 100
+- name :: 99
+- hard :: 99
+- soft :: 99
+- padding :: 99
+- cliche :: 99
+- stale :: 99
+- politics and english language :: 99
+- dying metaphor :: 99
+- verbal false limb :: 99
+- pretentious diction :: 99
+- meaningless word :: 99
+- cut a word :: 99
+- short word :: 99
+- active verb :: 99
+- plain english :: 99
+- stale image :: 99
+- remove :: 99
+- replace :: 99
+- direct :: 99
+- dead phrase :: 99
+- soft word :: 99
+- blocked :: 99
+- missing :: 99
+- wrong :: 99
+- inferred :: 99
+- untested :: 98
+- artifact :: 98
+- action :: 98
+- owner :: 98
+- test :: 98
+- prune :: 98
+- clean :: 98
+- blunt :: 98
+- visible :: 98
+- surface :: 98
+- under :: 98
+- within :: 98
+- across :: 98
+- between :: 98
+- through :: 98
+- before :: 98
+- after :: 98
+- until :: 98
+- where :: 98
+- while :: 98
+- against :: 98
+- along :: 98
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 97
+- near :: 97
+- beside :: 97
+- over :: 97
+- from :: 97
+- with :: 97
+- without :: 97
+- only :: 97
+- not :: 97
+- no :: 97
+- yet :: 97
+- then :: 97
+- current :: 97
+- actual :: 97
+- local :: 97
+- bounded :: 97
+- finite :: 97
+- open :: 97
+- live :: 97
+- distinct :: 97
+- observed :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- narrow :: 97
+- small :: 96
+- warm :: 96
+- careful :: 96
+- honest :: 96
+- first :: 96
+- next :: 96
+- prior :: 96
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- path :: 96
+- packet :: 96
+- receipt :: 95
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- scope :: 95
+- boundary :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 95
+- observation :: 95
+- impression :: 95
+- idea :: 94
+- perception :: 94
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- predicate :: 94
+- class :: 94
+- model :: 94
+- solver :: 94
+- satisfiable :: 94
+- unsatisfiable :: 94
+- countermodel :: 94
+- counterexample :: 94
+- equivalence :: 94
+- indistinguishable :: 94
+- readout :: 94
+- measure :: 94
+- measurement :: 94
+- operation :: 94
+- procedure :: 94
+- instrument :: 94
+- experiment :: 94
+- check :: 94
+- verify :: 93
+- compare :: 93
+- sample :: 93
+- route :: 93
+- lane :: 93
+- voice :: 93
+- lens :: 93
+- council :: 93
+- audit :: 93
+- finding :: 93
+- blocker :: 93
+- deferred :: 93
+- spawned :: 93
+- diagnostic :: 93
+- untried :: 93
+- preload :: 93
+- salience :: 93
+- language :: 93
+- body :: 93
+- during :: 93
+- since :: 93
+- by :: 93
+- toward :: 93
+- relative :: 93
+- according :: 93
+- locally :: 92
+- jointly :: 92
+- separately :: 92
+- rather :: 92
+- instead :: 92
+- still :: 92
+- often :: 92
+- sometimes :: 92
+- usually :: 92
+- seems :: 92
+- appears :: 92
+- likely :: 92
+- possible :: 92
+- plausible :: 92
+- tentative :: 92
+- provisional :: 92
+- partial :: 92
+- limited :: 92
+- case :: 92
+- instance :: 92
+
+## couplings
+
+- under plain :: 100
+- within plain :: 100
+- across plain :: 100
+- between plain :: 100
+- through plain :: 100
+- before plain :: 100
+- after plain :: 100
+- until plain :: 100
+- where plain :: 100
+- while plain :: 100
+- plain evidence :: 100
+- plain support :: 100
+- plain path :: 100
+- plain surface :: 100
+- plain packet :: 100
+- plain receipt :: 100
+- plain trace :: 100
+- plain result :: 100
+- plain scope :: 100
+- plain boundary :: 100
+- plain status :: 100
+- plain candidate :: 100
+- plain witness :: 100
+- plain probe :: 100
+- plain constraint :: 100
+- check plain :: 99
+- compare plain :: 99
+- observe plain :: 99
+- measure plain :: 99
+- test plain :: 99
+- verify plain :: 99
+- hold plain :: 99
+- preserve plain :: 99
+- split plain :: 99
+- narrow plain :: 99
+- under cut :: 99
+- within cut :: 99
+- across cut :: 99
+- between cut :: 99
+- through cut :: 99
+- before cut :: 99
+- after cut :: 99
+- until cut :: 99
+- where cut :: 99
+- while cut :: 99
+- cut evidence :: 99
+- cut support :: 99
+- cut path :: 99
+- cut surface :: 99
+- cut packet :: 99
+- cut receipt :: 98
+- cut trace :: 98
+- cut result :: 98
+- cut scope :: 98
+- cut boundary :: 98
+- cut status :: 98
+- cut candidate :: 98
+- cut witness :: 98
+- cut probe :: 98
+- cut constraint :: 98
+- check cut :: 98
+- compare cut :: 98
+- observe cut :: 98
+- measure cut :: 98
+- test cut :: 98
+- verify cut :: 98
+- hold cut :: 98
+- preserve cut :: 98
+- split cut :: 98
+- narrow cut :: 98
+- under short :: 98
+- within short :: 98
+- across short :: 98
+- between short :: 98
+- through short :: 98
+- before short :: 97
+- after short :: 97
+- until short :: 97
+- where short :: 97
+- while short :: 97
+- short evidence :: 97
+- short support :: 97
+- short path :: 97
+- short surface :: 97
+- short packet :: 97
+- short receipt :: 97
+- short trace :: 97
+- short result :: 97
+- short scope :: 97
+- short boundary :: 97
+- short status :: 97
+- short candidate :: 97
+- short witness :: 97
+- short probe :: 97
+- short constraint :: 97
+- check short :: 97
+- compare short :: 97
+- observe short :: 97
+- measure short :: 97
+- test short :: 97
+- verify short :: 96
+- hold short :: 96
+- preserve short :: 96
+- split short :: 96
+- narrow short :: 96
+- under concrete :: 96
+- within concrete :: 96
+- across concrete :: 96
+- between concrete :: 96
+- through concrete :: 96
+- before concrete :: 96
+- after concrete :: 96
+- until concrete :: 96
+- where concrete :: 96
+- while concrete :: 96
+- concrete evidence :: 96
+- concrete support :: 96
+- concrete path :: 96
+- concrete surface :: 96
+- concrete packet :: 96
+- concrete receipt :: 96
+- concrete trace :: 96
+- concrete result :: 96
+- concrete scope :: 96
+- concrete boundary :: 96
+- concrete status :: 95
+- concrete candidate :: 95
+- concrete witness :: 95
+- concrete probe :: 95
+- concrete constraint :: 95
+- check concrete :: 95
+- compare concrete :: 95
+- observe concrete :: 95
+- measure concrete :: 95
+- test concrete :: 95
+- verify concrete :: 95
+- hold concrete :: 95
+- preserve concrete :: 95
+- split concrete :: 95
+- narrow concrete :: 95
+- under word :: 95
+- within word :: 95
+- across word :: 95
+- between word :: 95
+- through word :: 95
+- before word :: 95
+- after word :: 95
+- until word :: 95
+- where word :: 95
+- while word :: 95
+- word evidence :: 94
+- word support :: 94
+- word path :: 94
+- word surface :: 94
+- word packet :: 94
+- word receipt :: 94
+- word trace :: 94
+- word result :: 94
+- word scope :: 94
+- word boundary :: 94
+- word status :: 94
+- word witness :: 94
+- word probe :: 94
+- word constraint :: 94
+- check word :: 94
+- compare word :: 94
+- observe word :: 94
+- measure word :: 94
+- test word :: 94
+- verify word :: 94
+- hold word :: 94
+- preserve word :: 94
+- split word :: 94
+- narrow word :: 94
+- under phrase :: 93
+- within phrase :: 93
+- across phrase :: 93
+- between phrase :: 93
+- through phrase :: 93
+- before phrase :: 93
+- after phrase :: 93
+- until phrase :: 93
+- where phrase :: 93
+- while phrase :: 93
+- phrase evidence :: 93
+- phrase support :: 93
+- phrase path :: 93
+- phrase surface :: 93
+- phrase packet :: 93
+- phrase receipt :: 93
+- phrase trace :: 93
+- phrase result :: 93
+- phrase scope :: 93
+- phrase boundary :: 93
+- phrase status :: 93
+- phrase witness :: 93
+- phrase probe :: 93
+- phrase constraint :: 93
+- check phrase :: 92
+- compare phrase :: 92
+- observe phrase :: 92
+- measure phrase :: 92
+- test phrase :: 92
+- verify phrase :: 92
+- hold phrase :: 92
+- preserve phrase :: 92
+- split phrase :: 92
+- narrow phrase :: 92
+- under name :: 92
+- within name :: 92
+- across name :: 92
+- between name :: 92
+- through name :: 92
+- before name :: 92
+- after name :: 92
+- until name :: 92
+- where name :: 92
+- while name :: 92
+- name evidence :: 92
+- name support :: 92
+- name path :: 92
+- name surface :: 92
+- name packet :: 92
+- name receipt :: 91
+- name trace :: 91
+- name result :: 91
+- name scope :: 91
+- name boundary :: 91
+- name status :: 91
+- name candidate :: 91
+- name witness :: 91
+- name probe :: 91
+- name constraint :: 91
+- check name :: 91
+- compare name :: 91
+- observe name :: 91
+- measure name :: 91
+- test name :: 91
+- verify name :: 91
+- hold name :: 91
+- preserve name :: 91
+- split name :: 91
+- narrow name :: 91
+- under fog :: 91
+- within fog :: 91
+- across fog :: 91
+- between fog :: 91
+- through fog :: 91
+- before fog :: 90
+- after fog :: 90
+- until fog :: 90
+- where fog :: 90
+- while fog :: 90
+- fog evidence :: 90
+- fog support :: 90
+- fog path :: 90
+- fog surface :: 90
+- fog packet :: 90
+- fog receipt :: 90
+- fog trace :: 90
+- fog result :: 90
+- fog scope :: 90
+- fog boundary :: 90
+- fog status :: 90
+- fog candidate :: 90
+- fog witness :: 90
+- fog probe :: 90
+- fog constraint :: 90
+- check fog :: 90
+- compare fog :: 90
+- observe fog :: 90
+- measure fog :: 90
+- test fog :: 90
+- verify fog :: 89
+- hold fog :: 89
+- preserve fog :: 89
+- split fog :: 89
+- narrow fog :: 89
+- under dead :: 89
+- within dead :: 89
+- across dead :: 89
+- between dead :: 89
+- through dead :: 89
+- before dead :: 89
+- after dead :: 89
+- until dead :: 89
+- where dead :: 89
+- while dead :: 89
+- dead evidence :: 89
+- dead support :: 89
+- dead path :: 89
+- dead surface :: 89
+- dead packet :: 89
+- dead receipt :: 89
+- dead trace :: 89
+- dead result :: 89
+- dead scope :: 89
+- dead boundary :: 89
+- dead status :: 88
+- dead witness :: 88
+- dead probe :: 88
+- dead constraint :: 88
+- check dead :: 88
+- compare dead :: 88
+- observe dead :: 88
+- measure dead :: 88
+- test dead :: 88
+- verify dead :: 88
+- hold dead :: 88
+- preserve dead :: 88
+- split dead :: 88
+- narrow dead :: 88
+- under inflated :: 88
+- within inflated :: 88
+- across inflated :: 88
+- between inflated :: 88
+- through inflated :: 88
+- before inflated :: 88
+- after inflated :: 88
+- until inflated :: 88
+- where inflated :: 88
+- while inflated :: 88
+- inflated evidence :: 87
+- inflated support :: 87
+- inflated path :: 87
+- inflated surface :: 87
+- inflated packet :: 87
+- inflated receipt :: 87
+- inflated trace :: 87
+- inflated result :: 87
+- inflated scope :: 87
+- inflated boundary :: 87
+- inflated status :: 87
+- inflated candidate :: 87
+- inflated witness :: 87
+- inflated probe :: 87
+- inflated constraint :: 87
+- dying metaphor :: 87
+- pretentious diction :: 87
+- meaningless word :: 87
+- short word :: 87
+- active verb :: 87
+- plain english :: 87
+- stale image :: 87
+- dead phrase :: 87
+- soft word :: 87
+- politics and english language :: 87
+- verbal false limb :: 86
+- cut a word :: 86
+- plain :: 86
+- cut :: 86
+- remove :: 86
+- replace :: 86
+- name :: 86
+- concrete :: 86
+- direct :: 86
+- short :: 86
+- clear :: 86
+- fog :: 86
+- vague :: 86
+- inflated :: 86
+- euphemism :: 86
+- blocked :: 86
+- stale :: 86
+- missing :: 86
+- wrong :: 86
+- inferred :: 86
+- untested :: 86
+- artifact :: 86
+- action :: 86
+- owner :: 86
+- test :: 86
+- under clear :: 85
+- under euphemism :: 85
+- under jargon :: 85
+- under bureaucratic :: 85
+- under vague :: 85
+- under muddy :: 85
+- under pretentious :: 85
+- under noun :: 85
+- under image :: 85
+- under metaphor :: 85
+- under active :: 85
+- within clear :: 85
+- within euphemism :: 85
+- within jargon :: 85
+- within bureaucratic :: 85
+- within vague :: 85
+- within muddy :: 85
+- within pretentious :: 85
+- within noun :: 85
+- within image :: 85
+- within metaphor :: 85
+- within active :: 85
+- across clear :: 85
+- across euphemism :: 84
+- across jargon :: 84
+- across bureaucratic :: 84
+- across vague :: 84
+- across muddy :: 84
+- across pretentious :: 84
+- across noun :: 84
+- across image :: 84
+- across metaphor :: 84
+- across active :: 84
+- between clear :: 84
+- between euphemism :: 84
+- between jargon :: 84
+- between bureaucratic :: 84
+- between vague :: 84
+- between muddy :: 84
+- between pretentious :: 84
+- between noun :: 84
+- between image :: 84
+- between metaphor :: 84
+- between active :: 84
+- through clear :: 84
+- through euphemism :: 84
+- through jargon :: 83
+- through bureaucratic :: 83
+- through vague :: 83
+- through muddy :: 83
+- through pretentious :: 83
+- through noun :: 83
+- through image :: 83
+- through metaphor :: 83
+- through active :: 83
+- before clear :: 83
+- before euphemism :: 83
+- before jargon :: 83
+- before bureaucratic :: 83
+- before vague :: 83
+- before muddy :: 83
+- before pretentious :: 83
+- before noun :: 83
+- before image :: 83
+- before metaphor :: 83
+- before active :: 83
+- after clear :: 83
+- after euphemism :: 83
+- after jargon :: 83
+- after bureaucratic :: 82
+- after vague :: 82
+- after muddy :: 82
+- after pretentious :: 82
+- after noun :: 82
+- after image :: 82
+- after metaphor :: 82
+- after active :: 82
+- during plain :: 82
+- during concrete :: 82
+- during short :: 82
+- during clear :: 82
+- during cut :: 82
+- during fog :: 82
+- during euphemism :: 82
+- during inflated :: 82
+- during dead :: 82
+- during phrase :: 82
+- during jargon :: 82
+- during bureaucratic :: 82
+- during vague :: 82
+- during muddy :: 82
+- during pretentious :: 82
+- during noun :: 81
+- during image :: 81
+- during metaphor :: 81
+- during active :: 81
+- until clear :: 81
+- until euphemism :: 81
+- until jargon :: 81
+- until bureaucratic :: 81
+- until vague :: 81
+- until muddy :: 81
+- until pretentious :: 81
+- until noun :: 81
+- until image :: 81
+- until metaphor :: 81
+- until active :: 81
+- since plain :: 81
+- since concrete :: 81
+- since short :: 81
+- since clear :: 81
+- since cut :: 81
+- since fog :: 81
+- since euphemism :: 81
+- since inflated :: 81
+- since dead :: 81
+- since phrase :: 80
+- since jargon :: 80
+- since bureaucratic :: 80
+- since vague :: 80
+- since muddy :: 80
+- since pretentious :: 80
+- since noun :: 80
+- since image :: 80
+- since metaphor :: 80
+- since active :: 80
+- from plain :: 80
+- from concrete :: 80
+- from short :: 80
+- from clear :: 80
+- from cut :: 80
+- from fog :: 80
+- from euphemism :: 80
+- from inflated :: 80
+- from dead :: 80
+- from phrase :: 80
+- from jargon :: 80
+- from bureaucratic :: 80
+- from vague :: 80
+- from muddy :: 80
+- from pretentious :: 79
+- from noun :: 79
+- from image :: 79
+- from metaphor :: 79
+- from active :: 79
+- by plain :: 79
+- by concrete :: 79
+- by short :: 79
+- by clear :: 79
+- by cut :: 79
+- by fog :: 79
+- by euphemism :: 79
+- by inflated :: 79
+- by dead :: 79
+- by phrase :: 79
+- by jargon :: 79
+- by bureaucratic :: 79
+- by vague :: 79
+- by muddy :: 79
+- by pretentious :: 79
+- by noun :: 79
+- by image :: 79
+- by metaphor :: 79
+- by active :: 78
+- with plain :: 78
+- with concrete :: 78
+- with short :: 78
+- with clear :: 78
+- with cut :: 78
+- with fog :: 78
+- with euphemism :: 78
+- with inflated :: 78
+- with dead :: 78
+- with phrase :: 78
+- with jargon :: 78
+- with bureaucratic :: 78
+- with vague :: 78
+- with muddy :: 78
+- with pretentious :: 78
+- with noun :: 78
+- with image :: 78
+- with metaphor :: 78
+- with active :: 78
+- without plain :: 78
+- without concrete :: 78
+- without short :: 78
+- without clear :: 78
+- without cut :: 77
+- without fog :: 77
+- without euphemism :: 77
+- without inflated :: 77
+- without dead :: 77
+- without phrase :: 77
+- without jargon :: 77
+- without bureaucratic :: 77
+- without vague :: 77
+- without muddy :: 77
+- without pretentious :: 77
+- without noun :: 77
+- without image :: 77
+- without metaphor :: 77
+- without active :: 77
+- against plain :: 77
+- against concrete :: 77
+- against short :: 77
+- against clear :: 77
+- against cut :: 77
+- against fog :: 77
+- against euphemism :: 77
+- against inflated :: 77
+- against dead :: 77
+- against phrase :: 76
+- against jargon :: 76
+- against bureaucratic :: 76
+- against vague :: 76
+- against muddy :: 76
+- against pretentious :: 76
+- against noun :: 76
+- against image :: 76
+- against metaphor :: 76
+- against active :: 76
+- toward plain :: 76
+- toward concrete :: 76
+- toward short :: 76
+- toward clear :: 76
+- toward cut :: 76
+- toward fog :: 76
+- toward euphemism :: 76
+- toward inflated :: 76
+- toward dead :: 76
+- toward phrase :: 76
+- toward jargon :: 76
+- toward bureaucratic :: 76
+- toward vague :: 76
+- toward muddy :: 76
+- toward pretentious :: 75
+- toward noun :: 75
+- toward image :: 75
+- toward metaphor :: 75
+- toward active :: 75
+- near plain :: 75
+- near concrete :: 75
+- near short :: 75
+- near clear :: 75
+- near cut :: 75
+- near fog :: 75
+- near euphemism :: 75
+- near inflated :: 75
+- near dead :: 75
+- near phrase :: 75
+- near jargon :: 75
+- near bureaucratic :: 75
+- near vague :: 75
+- near muddy :: 75
+- near pretentious :: 75
+- near noun :: 75
+- near image :: 75
+- near metaphor :: 75
+- near active :: 74
+- relative plain :: 74
+- relative concrete :: 74
+- relative short :: 74
+- relative clear :: 74
+- relative cut :: 74
+- relative fog :: 74
+- relative euphemism :: 74
+- relative inflated :: 74
+- relative dead :: 74
+- relative phrase :: 74
+- relative jargon :: 74
+- relative bureaucratic :: 74
+- relative vague :: 74
+- relative muddy :: 74
+- relative pretentious :: 74
+- relative noun :: 74
+- relative image :: 74
+- relative metaphor :: 74
+- relative active :: 74
+- plain concrete :: 74
+- plain short :: 74
+- plain clear :: 74
+- plain cut :: 74
+- plain fog :: 73
+- plain euphemism :: 73
+- plain inflated :: 73
+- plain dead :: 73
+- plain phrase :: 73
+- plain jargon :: 73
+- plain bureaucratic :: 73
+- concrete short :: 73
+- concrete clear :: 73
+- concrete cut :: 73
+- concrete fog :: 73
+- concrete euphemism :: 73
+- concrete inflated :: 73
+- concrete dead :: 73
+- concrete phrase :: 73
+- concrete jargon :: 73
+- concrete bureaucratic :: 73
+- concrete vague :: 73
+- short clear :: 73
+- short cut :: 73
+- short fog :: 73
+- short euphemism :: 73
+- short inflated :: 73
+- short dead :: 73
+- short phrase :: 73
+- short jargon :: 72
+- short bureaucratic :: 72
+- short vague :: 72
+- short muddy :: 72
+- clear cut :: 72
+- clear fog :: 72
+- clear euphemism :: 72
+- clear inflated :: 72
+- clear dead :: 72
+- clear phrase :: 72
+- clear jargon :: 72
+- clear bureaucratic :: 72
+- clear vague :: 72
+- clear muddy :: 72
+- clear pretentious :: 72
+- cut fog :: 72
+- cut euphemism :: 72
+- cut inflated :: 72
+- cut dead :: 72
+- cut phrase :: 72
+- cut jargon :: 72
+- cut bureaucratic :: 72
+- cut vague :: 72
+- cut muddy :: 72
+- cut pretentious :: 72
+- cut abstract :: 71
+- fog euphemism :: 71
+- fog inflated :: 71
+- fog dead :: 71
+- fog phrase :: 71
+- fog jargon :: 71
+- fog bureaucratic :: 71
+- fog vague :: 71
+- fog muddy :: 71
+- fog pretentious :: 71
+- fog abstract :: 71
+- fog noun :: 71
+- euphemism inflated :: 71
+- euphemism dead :: 71
+- euphemism phrase :: 71
+- euphemism jargon :: 71
+- euphemism bureaucratic :: 71
+- euphemism vague :: 71
+- euphemism muddy :: 71
+- euphemism pretentious :: 71
+- euphemism abstract :: 71
+- euphemism noun :: 71
+- euphemism image :: 71
+- inflated dead :: 71
+- inflated phrase :: 71
+- inflated jargon :: 70
+- inflated bureaucratic :: 70
+- inflated vague :: 70
+- inflated muddy :: 70
+- inflated pretentious :: 70
+- inflated abstract :: 70
+- inflated noun :: 70
+- inflated image :: 70
+- inflated metaphor :: 70
+- dead jargon :: 70
+- dead bureaucratic :: 70
+- dead vague :: 70
+- dead muddy :: 70
+- dead pretentious :: 70
+- dead abstract :: 70
+- dead noun :: 70
+- dead image :: 70
+- dead metaphor :: 70
+- dead active :: 70
+- phrase jargon :: 70
+- phrase bureaucratic :: 70
+- phrase vague :: 70
+- phrase muddy :: 70
+- phrase pretentious :: 70
+- phrase abstract :: 70
+- phrase noun :: 69
+- phrase image :: 69
+- phrase metaphor :: 69
+- phrase active :: 69
+- phrase simple :: 69
+- jargon bureaucratic :: 69
+- jargon vague :: 69
+- jargon muddy :: 69
+- jargon pretentious :: 69
+- jargon abstract :: 69
+- jargon noun :: 69
+- jargon image :: 69
+- jargon metaphor :: 69
+- jargon active :: 69
+- jargon simple :: 69
+- jargon verb :: 69
+- bureaucratic vague :: 69
+- bureaucratic muddy :: 69
+- bureaucratic pretentious :: 69
+- bureaucratic abstract :: 69
+- bureaucratic noun :: 69
+- bureaucratic image :: 69
+- bureaucratic metaphor :: 69
+- bureaucratic active :: 69
+- bureaucratic simple :: 69
+- bureaucratic verb :: 68
+- bureaucratic ordinary :: 68
+- vague muddy :: 68
+- vague pretentious :: 68
+- vague abstract :: 68
+- vague noun :: 68
+- vague image :: 68
+- vague metaphor :: 68
+- vague active :: 68
+- vague simple :: 68
+- vague verb :: 68
+- vague ordinary :: 68
+- vague word :: 68
+- muddy pretentious :: 68
+- muddy abstract :: 68
+- muddy noun :: 68
+- muddy image :: 68
+- muddy metaphor :: 68
+- muddy active :: 68
+- muddy simple :: 68
+- muddy verb :: 68
+- muddy ordinary :: 68
+- muddy word :: 68
+- muddy exact :: 68
+- pretentious abstract :: 68
+- pretentious noun :: 67
+- pretentious image :: 67
+- pretentious metaphor :: 67
+- pretentious active :: 67
+- pretentious simple :: 67
+- pretentious verb :: 67
+- pretentious ordinary :: 67
+- pretentious word :: 67
+- pretentious exact :: 67
+- pretentious name :: 67
+- abstract noun :: 67
+- noun image :: 67
+- noun metaphor :: 67
+- noun active :: 67
+- noun simple :: 67
+- noun verb :: 66
+- noun ordinary :: 66
+- noun word :: 66
+- noun exact :: 66
+- noun name :: 66
+- noun hard :: 66
+- noun soft :: 66
+- image metaphor :: 66
+- image active :: 66
+- image simple :: 66
+- image verb :: 66
+- image ordinary :: 66
+- image word :: 66
+- image exact :: 66
+- image name :: 66
+- image hard :: 66
+- image soft :: 66
+- image padding :: 66
+- metaphor active :: 66
+- metaphor simple :: 66
+- metaphor verb :: 66
+- metaphor ordinary :: 66
+- metaphor word :: 66
+- metaphor exact :: 66
+- metaphor name :: 66
+- metaphor hard :: 65
+- metaphor soft :: 65
+- metaphor padding :: 65
+- metaphor cliche :: 65
+- active simple :: 65
+- active ordinary :: 65
+- active word :: 65
+- active exact :: 65
+- active name :: 65
+- active hard :: 65
+- active soft :: 65
+- active padding :: 65
+- active cliche :: 65
+- active stale :: 65
+- simple verb :: 65
+- simple ordinary :: 65
+- simple word :: 65
+- simple exact :: 65
+- simple name :: 65
+- simple hard :: 65
+- simple soft :: 65
+- simple padding :: 65
+- simple cliche :: 65
+- simple stale :: 65
+- simple politics and english language :: 65
+
+## triplets
+
+- under current plain :: 100
+- under local plain :: 100
+- under bounded plain :: 100
+- under finite plain :: 100
+- under open plain :: 100
+- under live plain :: 100
+- within current plain :: 100
+- within local plain :: 100
+- within bounded plain :: 100
+- within finite plain :: 100
+- within open plain :: 100
+- within live plain :: 100
+- across current plain :: 100
+- across local plain :: 100
+- across bounded plain :: 100
+- across finite plain :: 100
+- across open plain :: 100
+- across live plain :: 100
+- between current plain :: 100
+- between local plain :: 100
+- between bounded plain :: 100
+- between finite plain :: 100
+- between open plain :: 100
+- between live plain :: 100
+- through current plain :: 100
+- through local plain :: 99
+- through bounded plain :: 99
+- through finite plain :: 99
+- through open plain :: 99
+- through live plain :: 99
+- before current plain :: 99
+- before local plain :: 99
+- before bounded plain :: 99
+- before finite plain :: 99
+- before open plain :: 99
+- before live plain :: 99
+- plain evidence path :: 99
+- plain support path :: 99
+- plain path path :: 99
+- plain surface path :: 99
+- plain packet path :: 99
+- plain receipt path :: 99
+- plain trace path :: 99
+- plain result path :: 99
+- plain scope path :: 99
+- plain boundary path :: 99
+- check plain receipt :: 99
+- compare plain receipt :: 99
+- observe plain receipt :: 99
+- measure plain receipt :: 99
+- test plain receipt :: 98
+- verify plain receipt :: 98
+- hold plain receipt :: 98
+- preserve plain receipt :: 98
+- under current cut :: 98
+- under local cut :: 98
+- under bounded cut :: 98
+- under finite cut :: 98
+- under open cut :: 98
+- under live cut :: 98
+- within current cut :: 98
+- within local cut :: 98
+- within bounded cut :: 98
+- within finite cut :: 98
+- within open cut :: 98
+- within live cut :: 98
+- across current cut :: 98
+- across local cut :: 98
+- across bounded cut :: 98
+- across finite cut :: 98
+- across open cut :: 98
+- across live cut :: 98
+- between current cut :: 98
+- between local cut :: 98
+- between bounded cut :: 98
+- between finite cut :: 97
+- between open cut :: 97
+- between live cut :: 97
+- through current cut :: 97
+- through local cut :: 97
+- through bounded cut :: 97
+- through finite cut :: 97
+- through open cut :: 97
+- through live cut :: 97
+- before current cut :: 97
+- before local cut :: 97
+- before bounded cut :: 97
+- before finite cut :: 97
+- before open cut :: 97
+- before live cut :: 97
+- cut evidence path :: 97
+- cut support path :: 97
+- cut path path :: 97
+- cut surface path :: 97
+- cut packet path :: 97
+- cut receipt path :: 97
+- cut trace path :: 97
+- cut result path :: 97
+- cut scope path :: 97
+- cut boundary path :: 97
+- check cut receipt :: 96
+- compare cut receipt :: 96
+- observe cut receipt :: 96
+- measure cut receipt :: 96
+- test cut receipt :: 96
+- verify cut receipt :: 96
+- hold cut receipt :: 96
+- preserve cut receipt :: 96
+- under current short :: 96
+- under local short :: 96
+- under bounded short :: 96
+- under finite short :: 96
+- under open short :: 96
+- under live short :: 96
+- within current short :: 96
+- within local short :: 96
+- within bounded short :: 96
+- within finite short :: 96
+- within open short :: 96
+- within live short :: 96
+- across current short :: 96
+- across local short :: 96
+- across bounded short :: 96
+- across finite short :: 96
+- across open short :: 96
+- across live short :: 95
+- between current short :: 95
+- between local short :: 95
+- between bounded short :: 95
+- between finite short :: 95
+- between open short :: 95
+- between live short :: 95
+- through current short :: 95
+- through local short :: 95
+- through bounded short :: 95
+- through finite short :: 95
+- through open short :: 95
+- through live short :: 95
+- before current short :: 95
+- before local short :: 95
+- before bounded short :: 95
+- before finite short :: 95
+- before open short :: 95
+- before live short :: 95
+- short evidence path :: 95
+- short support path :: 95
+- short path path :: 95
+- short surface path :: 95
+- short packet path :: 95
+- short receipt path :: 95
+- short trace path :: 94
+- short result path :: 94
+- short scope path :: 94
+- short boundary path :: 94
+- check short receipt :: 94
+- compare short receipt :: 94
+- observe short receipt :: 94
+- measure short receipt :: 94
+- test short receipt :: 94
+- verify short receipt :: 94
+- hold short receipt :: 94
+- preserve short receipt :: 94
+- under current concrete :: 94
+- under local concrete :: 94
+- under bounded concrete :: 94
+- under finite concrete :: 94
+- under open concrete :: 94
+- under live concrete :: 94
+- within current concrete :: 94
+- within local concrete :: 94
+- within bounded concrete :: 94
+- within finite concrete :: 94
+- within open concrete :: 94
+- within live concrete :: 94
+- across current concrete :: 94
+- across local concrete :: 93
+- across bounded concrete :: 93
+- across finite concrete :: 93
+- across open concrete :: 93
+- across live concrete :: 93
+- between current concrete :: 93
+- between local concrete :: 93
+- between bounded concrete :: 93
+- between finite concrete :: 93
+- between open concrete :: 93
+- between live concrete :: 93
+- through current concrete :: 93
+- through local concrete :: 93
+- through bounded concrete :: 93
+- through finite concrete :: 93
+- through open concrete :: 93
+- through live concrete :: 93
+- before current concrete :: 93
+- before local concrete :: 93
+- before bounded concrete :: 93
+- before finite concrete :: 93
+- before open concrete :: 93
+- before live concrete :: 93
+- concrete evidence path :: 93
+- concrete support path :: 93
+- concrete path path :: 92
+- concrete surface path :: 92
+- concrete packet path :: 92
+- concrete receipt path :: 92
+- concrete trace path :: 92
+- concrete result path :: 92
+- concrete scope path :: 92
+- concrete boundary path :: 92
+- check concrete receipt :: 92
+- compare concrete receipt :: 92
+- observe concrete receipt :: 92
+- measure concrete receipt :: 92
+- test concrete receipt :: 92
+- verify concrete receipt :: 92
+- hold concrete receipt :: 92
+- preserve concrete receipt :: 92
+- under current word :: 92
+- under local word :: 92
+- under bounded word :: 92
+- under finite word :: 92
+- under open word :: 92
+- under live word :: 92
+- within current word :: 92
+- within local word :: 92
+- within bounded word :: 92
+- within finite word :: 91
+- within open word :: 91
+- within live word :: 91
+- across current word :: 91
+- across local word :: 91
+- across bounded word :: 91
+- across finite word :: 91
+- across open word :: 91
+- across live word :: 91
+- between current word :: 91
+- between local word :: 91
+- between bounded word :: 91
+- between finite word :: 91
+- between open word :: 91
+- between live word :: 91
+- verbal false limb :: 91
+- cut a word :: 91
+- under plain concrete :: 91
+- under plain short :: 91
+- under plain clear :: 91
+- under plain cut :: 91
+- under concrete short :: 91
+- under concrete clear :: 91
+- under concrete cut :: 91
+- under concrete fog :: 91
+- under short clear :: 90
+- under short cut :: 90
+- under short fog :: 90
+- under short euphemism :: 90
+- under clear cut :: 90
+- under clear fog :: 90
+- under clear euphemism :: 90
+- under clear inflated :: 90
+- under cut fog :: 90
+- under cut euphemism :: 90
+- under cut inflated :: 90
+- under cut dead :: 90
+- under fog euphemism :: 90
+- under fog inflated :: 90
+- under fog dead :: 90
+- under fog phrase :: 90
+- under euphemism inflated :: 90
+- under euphemism dead :: 90
+- under euphemism phrase :: 90
+- under euphemism jargon :: 90
+- under inflated dead :: 90
+- under inflated phrase :: 90
+- under inflated jargon :: 90
+- under inflated bureaucratic :: 90
+- under dead phrase :: 90
+- under dead jargon :: 89
+- under dead bureaucratic :: 89
+- under dead vague :: 89
+- under phrase jargon :: 89
+- under phrase bureaucratic :: 89
+- under phrase vague :: 89
+- under phrase muddy :: 89
+- under jargon bureaucratic :: 89
+- under jargon vague :: 89
+- under jargon muddy :: 89
+- under jargon pretentious :: 89
+- under bureaucratic vague :: 89
+- under bureaucratic muddy :: 89
+- under bureaucratic pretentious :: 89
+- under vague muddy :: 89
+- under vague pretentious :: 89
+- under vague noun :: 89
+- under muddy pretentious :: 89
+- under muddy noun :: 89
+- under muddy image :: 89
+- under pretentious noun :: 89
+- under pretentious image :: 88
+- under pretentious metaphor :: 88
+- under noun image :: 88
+- under noun metaphor :: 88
+- under noun active :: 88
+- under noun simple :: 88
+- under image metaphor :: 88
+- under image active :: 88
+- under image simple :: 88
+- under image verb :: 88
+- under metaphor active :: 88
+- under metaphor simple :: 88
+- under metaphor verb :: 88
+- under metaphor ordinary :: 88
+- under active simple :: 88
+- under active verb :: 88
+- under active ordinary :: 88
+- under active word :: 88
+- within plain concrete :: 88
+- within plain short :: 88
+- within plain clear :: 88
+- within plain cut :: 87
+- within concrete short :: 87
+- within concrete clear :: 87
+- within concrete cut :: 87
+- within concrete fog :: 87
+- within short clear :: 87
+- within short cut :: 87
+- within short fog :: 87
+- within short euphemism :: 87
+- within clear cut :: 87
+- within clear fog :: 87
+- within clear euphemism :: 87
+- within clear inflated :: 87
+- within cut fog :: 87
+- within cut euphemism :: 87
+- within cut inflated :: 87
+- within cut dead :: 87
+- within fog euphemism :: 87
+- within fog inflated :: 87
+- within fog dead :: 87
+- within fog phrase :: 87
+- within euphemism inflated :: 87
+- within euphemism dead :: 87
+- within euphemism phrase :: 87
+- within euphemism jargon :: 87
+- within inflated dead :: 86
+- within inflated phrase :: 86
+- within inflated jargon :: 86
+- within inflated bureaucratic :: 86
+- within dead phrase :: 86
+- within dead jargon :: 86
+- within dead bureaucratic :: 86
+- within dead vague :: 86
+- within phrase jargon :: 86
+- within phrase bureaucratic :: 86
+- within phrase vague :: 86
+- within phrase muddy :: 86
+- within jargon bureaucratic :: 86
+- within jargon vague :: 86
+- within jargon muddy :: 86
+- within jargon pretentious :: 86
+- within bureaucratic vague :: 86
+- within bureaucratic muddy :: 86
+- within bureaucratic pretentious :: 86
+- within vague muddy :: 86
+- within vague pretentious :: 86
+- within vague noun :: 86
+- within muddy pretentious :: 86
+- within muddy noun :: 85
+- within muddy image :: 85
+- within pretentious noun :: 85
+- within pretentious image :: 85
+- within pretentious metaphor :: 85
+- within noun image :: 85
+- within noun metaphor :: 85
+- within noun active :: 85
+- within noun simple :: 85
+- within image metaphor :: 85
+- within image active :: 85
+- within image simple :: 85
+- within image verb :: 85
+- within metaphor active :: 85
+- within metaphor simple :: 85
+- within metaphor verb :: 85
+- within metaphor ordinary :: 85
+- within active simple :: 85
+- within active verb :: 85
+- within active ordinary :: 84
+- within active word :: 84
+- across plain concrete :: 84
+- across plain short :: 84
+- across plain clear :: 84
+- across plain cut :: 84
+- across concrete short :: 84
+- across concrete clear :: 84
+- across concrete cut :: 84
+- across concrete fog :: 84
+- across short clear :: 84
+- across short cut :: 84
+- across short fog :: 84
+- across short euphemism :: 84
+- across clear cut :: 84
+- across clear fog :: 84
+- across clear euphemism :: 84
+- across clear inflated :: 84
+- across cut fog :: 84
+- across cut euphemism :: 84
+- across cut inflated :: 84
+- across cut dead :: 84
+- across fog euphemism :: 84
+- across fog inflated :: 84
+- across fog dead :: 84
+- across fog phrase :: 83
+- across euphemism inflated :: 83
+- across euphemism dead :: 83
+- across euphemism phrase :: 83
+- across euphemism jargon :: 83
+- across inflated dead :: 83
+- across inflated phrase :: 83
+- across inflated jargon :: 83
+- across inflated bureaucratic :: 83
+- across dead phrase :: 83
+- across dead jargon :: 83
+- across dead bureaucratic :: 83
+- across dead vague :: 83
+- across phrase jargon :: 83
+- across phrase bureaucratic :: 83
+- across phrase vague :: 83
+- across phrase muddy :: 83
+- across jargon bureaucratic :: 83
+- across jargon vague :: 83
+- across jargon muddy :: 83
+- across jargon pretentious :: 83
+- across bureaucratic vague :: 83
+- across bureaucratic muddy :: 83
+- across bureaucratic pretentious :: 83
+- across vague muddy :: 82
+- across vague pretentious :: 82
+- across vague noun :: 82
+- across muddy pretentious :: 82
+- across muddy noun :: 82
+- across muddy image :: 82
+- across pretentious noun :: 82
+- across pretentious image :: 82
+- across pretentious metaphor :: 82
+- across noun image :: 82
+- across noun metaphor :: 82
+- across noun active :: 82
+- across noun simple :: 82
+- across image metaphor :: 82
+- across image active :: 82
+- across image simple :: 82
+- across image verb :: 82
+- across metaphor active :: 82
+- across metaphor simple :: 81
+- across metaphor verb :: 81
+- across metaphor ordinary :: 81
+- across active simple :: 81
+- across active verb :: 81
+- across active ordinary :: 81
+- across active word :: 81
+- between plain concrete :: 81
+- between plain short :: 81
+- between plain clear :: 81
+- between plain cut :: 81
+- between concrete short :: 81
+- between concrete clear :: 81
+- between concrete cut :: 81
+- between concrete fog :: 81
+- between short clear :: 81
+- between short cut :: 81
+- between short fog :: 81
+- between short euphemism :: 81
+- between clear cut :: 81
+- between clear fog :: 81
+- between clear euphemism :: 81
+- between clear inflated :: 81
+- between cut fog :: 81
+- between cut euphemism :: 81
+- between cut inflated :: 80
+- between cut dead :: 80
+- between fog euphemism :: 80
+- between fog inflated :: 80
+- between fog dead :: 80
+- between fog phrase :: 80
+- between euphemism inflated :: 80
+- between euphemism dead :: 80
+- between euphemism phrase :: 80
+- between euphemism jargon :: 80
+- between inflated dead :: 80
+- between inflated phrase :: 80
+- between inflated jargon :: 80
+- between inflated bureaucratic :: 80
+- between dead phrase :: 80
+- between dead jargon :: 80
+- between dead bureaucratic :: 80
+- between dead vague :: 80
+- between phrase jargon :: 80
+- between phrase bureaucratic :: 80
+- between phrase vague :: 80
+- between phrase muddy :: 80
+- between jargon bureaucratic :: 80
+- between jargon vague :: 80
+- between jargon muddy :: 80
+- between jargon pretentious :: 79
+- between bureaucratic vague :: 79
+- between bureaucratic muddy :: 79
+- between bureaucratic pretentious :: 79
+- between vague muddy :: 79
+- between vague pretentious :: 79
+- between vague noun :: 79
+- between muddy pretentious :: 79
+- between muddy noun :: 79
+- between muddy image :: 79
+- between pretentious noun :: 79
+- between pretentious image :: 79
+- between pretentious metaphor :: 79
+- between noun image :: 79
+- between noun metaphor :: 79
+- between noun active :: 79
+- between noun simple :: 79
+- between image metaphor :: 78
+- between image active :: 78
+- between image simple :: 78
+- between image verb :: 78
+- between metaphor active :: 78
+- between metaphor simple :: 78
+- between metaphor verb :: 78
+- between metaphor ordinary :: 78
+- between active simple :: 78
+- between active verb :: 78
+- between active ordinary :: 78
+- between active word :: 78
+- through plain concrete :: 78
+- through plain short :: 78
+- through plain clear :: 78
+- through plain cut :: 78
+- through concrete short :: 78
+- through concrete clear :: 78
+- through concrete cut :: 78
+- through concrete fog :: 78
+- through short clear :: 78
+- through short cut :: 78
+- through short fog :: 78
+- through short euphemism :: 78
+- through clear cut :: 78
+- through clear fog :: 77
+- through clear euphemism :: 77
+- through clear inflated :: 77
+- through cut fog :: 77
+- through cut euphemism :: 77
+- through cut inflated :: 77
+- through cut dead :: 77
+- through fog euphemism :: 77
+- through fog inflated :: 77
+- through fog dead :: 77
+- through fog phrase :: 77
+- through euphemism inflated :: 77
+- through euphemism dead :: 77
+- through euphemism phrase :: 77
+- through euphemism jargon :: 77
+- through inflated dead :: 77
+- through inflated phrase :: 77
+- through inflated jargon :: 77
+- through inflated bureaucratic :: 77
+- through dead phrase :: 77
+- through dead jargon :: 77
+- through dead bureaucratic :: 77
+- through dead vague :: 77
+- through phrase jargon :: 77
+- through phrase bureaucratic :: 77
+- through phrase vague :: 76
+- through phrase muddy :: 76
+- through jargon bureaucratic :: 76
+- through jargon vague :: 76
+- through jargon muddy :: 76
+- through jargon pretentious :: 76
+- through bureaucratic vague :: 76
+- through bureaucratic muddy :: 76
+- through bureaucratic pretentious :: 76
+- through vague muddy :: 76
+- through vague pretentious :: 76
+- through vague noun :: 76
+- through muddy pretentious :: 76
+- through muddy noun :: 76
+- through muddy image :: 76
+- through pretentious noun :: 76
+- through pretentious image :: 76
+- through pretentious metaphor :: 76
+- through noun image :: 75
+- through noun metaphor :: 75
+- through noun active :: 75
+- through noun simple :: 75
+- through image metaphor :: 75
+- through image active :: 75
+- through image simple :: 75
+- through image verb :: 75
+- through metaphor active :: 75
+- through metaphor simple :: 75
+- through metaphor verb :: 75
+- through metaphor ordinary :: 75
+- through active simple :: 75
+- through active verb :: 75
+- through active ordinary :: 75
+- through active word :: 75
+- before plain concrete :: 75
+- before plain short :: 75
+- before plain clear :: 75
+- before plain cut :: 75
+- before concrete short :: 75
+- before concrete clear :: 75
+- before concrete cut :: 75
+- before concrete fog :: 75
+- before short clear :: 74
+- before short cut :: 74
+- before short fog :: 74
+- before short euphemism :: 74
+- before clear cut :: 74
+- before clear fog :: 74
+- before clear euphemism :: 74
+- before clear inflated :: 74
+- before cut fog :: 74
+- before cut euphemism :: 74
+- before cut inflated :: 74
+- before cut dead :: 74
+- before fog euphemism :: 74
+- before fog inflated :: 74
+- before fog dead :: 74
+- before fog phrase :: 74
+- before euphemism inflated :: 74
+- before euphemism dead :: 74
+- before euphemism phrase :: 74
+- before euphemism jargon :: 74
+- before inflated dead :: 74
+- before inflated phrase :: 74
+- before inflated jargon :: 74
+- before inflated bureaucratic :: 74
+- before dead phrase :: 74
+- before dead jargon :: 73
+- before dead bureaucratic :: 73
+- before dead vague :: 73
+- before phrase jargon :: 73
+- before phrase bureaucratic :: 73
+- before phrase vague :: 73
+- before phrase muddy :: 73
+- before jargon bureaucratic :: 73
+- before jargon vague :: 73
+- before jargon muddy :: 73
+- before jargon pretentious :: 73
+- before bureaucratic vague :: 73
+- before bureaucratic muddy :: 73
+- before bureaucratic pretentious :: 73
+- before vague muddy :: 73
+- before vague pretentious :: 73
+- before vague noun :: 73
+- before muddy pretentious :: 73
+- before muddy noun :: 73
+- before muddy image :: 73
+- before pretentious noun :: 73
+- before pretentious image :: 72
+- before pretentious metaphor :: 72
+- before noun image :: 72
+- before noun metaphor :: 72
+- before noun active :: 72
+- before noun simple :: 72
+- before image metaphor :: 72
+- before image active :: 72
+- before image simple :: 72
+- before image verb :: 72
+- before metaphor active :: 72
+- before metaphor simple :: 72
+- before metaphor verb :: 72
+- before metaphor ordinary :: 72
+- before active simple :: 72
+- before active verb :: 72
+- before active ordinary :: 72
+- before active word :: 72
+- after plain concrete :: 72
+- after plain short :: 72
+- after plain clear :: 72
+- after plain cut :: 71
+- after concrete short :: 71
+- after concrete clear :: 71
+- after concrete cut :: 71
+- after concrete fog :: 71
+- after short clear :: 71
+- after short cut :: 71
+- after short fog :: 71
+- after short euphemism :: 71
+- after clear cut :: 71
+- after clear fog :: 71
+- after clear euphemism :: 71
+- after clear inflated :: 71
+- after cut fog :: 71
+- after cut euphemism :: 71
+- after cut inflated :: 71
+- after cut dead :: 71
+- after fog euphemism :: 71
+- after fog inflated :: 71
+- after fog dead :: 71
+- after fog phrase :: 71
+- after euphemism inflated :: 71
+- after euphemism dead :: 71
+- after euphemism phrase :: 71
+- after euphemism jargon :: 71
+- after inflated dead :: 70
+- after inflated phrase :: 70
+- after inflated jargon :: 70
+- after inflated bureaucratic :: 70
+- after dead phrase :: 70
+- after dead jargon :: 70
+- after dead bureaucratic :: 70
+- after dead vague :: 70
+- after phrase jargon :: 70
+- after phrase bureaucratic :: 70
+- after phrase vague :: 70
+- after phrase muddy :: 70
+- after jargon bureaucratic :: 70
+- after jargon vague :: 70
+- after jargon muddy :: 70
+- after jargon pretentious :: 70
+- after bureaucratic vague :: 70
+- after bureaucratic muddy :: 70
+- after bureaucratic pretentious :: 70
+- after vague muddy :: 70
+- after vague pretentious :: 70
+- after vague noun :: 70
+- after muddy pretentious :: 70
+- after muddy noun :: 69
+- after muddy image :: 69
+- after pretentious noun :: 69
+- after pretentious image :: 69
+- after pretentious metaphor :: 69
+- after noun image :: 69
+- after noun metaphor :: 69
+- after noun active :: 69
+- after noun simple :: 69
+- after image metaphor :: 69
+- after image active :: 69
+- after image simple :: 69
+- after image verb :: 69
+- after metaphor active :: 69
+- after metaphor simple :: 69
+- after metaphor verb :: 69
+- after metaphor ordinary :: 69
+- after active simple :: 69
+- after active verb :: 69
+- after active ordinary :: 68
+- after active word :: 68
+- during plain concrete :: 68
+- during plain short :: 68
+- during plain clear :: 68
+- during plain cut :: 68
+- during concrete short :: 68
+- during concrete clear :: 68
+- during concrete cut :: 68
+- during concrete fog :: 68
+- during short clear :: 68
+- during short cut :: 68
+- during short fog :: 68
+- during short euphemism :: 68
+- during clear cut :: 68
+- during clear fog :: 68
+- during clear euphemism :: 68
+- during clear inflated :: 68
+- during cut fog :: 68
+- during cut euphemism :: 68
+- during cut inflated :: 68
+- during cut dead :: 68
+- during fog euphemism :: 68
+- during fog inflated :: 68
+- during fog dead :: 68
+- during fog phrase :: 67
+- during euphemism inflated :: 67
+- during euphemism dead :: 67
+- during euphemism phrase :: 67
+- during euphemism jargon :: 67
+- during inflated dead :: 67
+- during inflated phrase :: 67
+- during inflated jargon :: 67
+- during inflated bureaucratic :: 67
+- during dead phrase :: 67
+- during dead jargon :: 67
+- during dead bureaucratic :: 67
+- during dead vague :: 67
+- during phrase jargon :: 67
+- during phrase bureaucratic :: 67
+- during phrase vague :: 67
+- during phrase muddy :: 67
+- during jargon bureaucratic :: 67
+- during jargon vague :: 67
+- during jargon muddy :: 67
+- during jargon pretentious :: 67
+- during bureaucratic vague :: 67
+- during bureaucratic muddy :: 67
+- during bureaucratic pretentious :: 67
+- during vague muddy :: 66
+- during vague pretentious :: 66
+- during vague noun :: 66
+- during muddy pretentious :: 66
+- during muddy noun :: 66
+- during muddy image :: 66
+- during pretentious noun :: 66
+- during pretentious image :: 66
+- during pretentious metaphor :: 66
+- during noun image :: 66
+- during noun metaphor :: 66
+- during noun active :: 66
+- during noun simple :: 66
+- during image metaphor :: 66
+- during image active :: 66
+- during image simple :: 66
+- during image verb :: 66
+- during metaphor active :: 66
+- during metaphor simple :: 65
+- during metaphor verb :: 65
+- during metaphor ordinary :: 65
+- during active simple :: 65
+- during active verb :: 65
+- during active ordinary :: 65
+- during active word :: 65
+- until plain concrete :: 65
+- until plain short :: 65
+- until plain clear :: 65
+- until plain cut :: 65
+- until concrete short :: 65
+- until concrete clear :: 65
+- until concrete cut :: 65
+- until concrete fog :: 65
+- until short clear :: 65
+- until short cut :: 65
+- until short fog :: 65
+- until short euphemism :: 65
+- until clear cut :: 65
+- until clear fog :: 65
+- until clear euphemism :: 65
+- until clear inflated :: 65
+- until cut fog :: 65
+- until cut euphemism :: 65
+- until cut inflated :: 64
+- until cut dead :: 64
+- until fog euphemism :: 64
+- until fog inflated :: 64
+- until fog dead :: 64
+- until fog phrase :: 64
+- until euphemism inflated :: 64
+- until euphemism dead :: 64
+- until euphemism phrase :: 64
+- until euphemism jargon :: 64
+- until inflated dead :: 64
+- until inflated phrase :: 64
+- until inflated jargon :: 64
+- until inflated bureaucratic :: 64
+- until dead phrase :: 64
+- until dead jargon :: 64
+- until dead bureaucratic :: 64
+- until dead vague :: 64
+- until phrase jargon :: 64
+- until phrase bureaucratic :: 64
+- until phrase vague :: 64
+- until phrase muddy :: 64
+- until jargon bureaucratic :: 64
+- until jargon vague :: 64
+- until jargon muddy :: 64
+- until jargon pretentious :: 63
+- until bureaucratic vague :: 63
+- until bureaucratic muddy :: 63
+- until bureaucratic pretentious :: 63
+- until vague muddy :: 63
+- until vague pretentious :: 63
+- until vague noun :: 63
+- until muddy pretentious :: 63
+- until muddy noun :: 63
+- until muddy image :: 63
+- until pretentious noun :: 63
+- until pretentious image :: 63
+- until pretentious metaphor :: 63
+- until noun image :: 63
+- until noun metaphor :: 63
+- until noun active :: 63
+- until noun simple :: 63
+- until image metaphor :: 62
+- until image active :: 62
+- until image simple :: 62
+- until image verb :: 62
+- until metaphor active :: 62
+- until metaphor simple :: 62
+- until metaphor verb :: 62
+- until metaphor ordinary :: 62
+- until active simple :: 62
+- until active verb :: 62
+- until active ordinary :: 62
+- until active word :: 62
+- since plain concrete :: 62
+- since plain short :: 62
+- since plain clear :: 62
+- since plain cut :: 62
+- since concrete short :: 62
+- since concrete clear :: 62
+- since concrete cut :: 62
+- since concrete fog :: 62
+- since short clear :: 62
+- since short cut :: 62
+- since short fog :: 62
+- since short euphemism :: 62
+- since clear cut :: 62
+- since clear fog :: 61
+- since clear euphemism :: 61
+- since clear inflated :: 61
+- since cut fog :: 61
+- since cut euphemism :: 61
+- since cut inflated :: 61
+- since cut dead :: 61
+- since fog euphemism :: 61
+- since fog inflated :: 61
+- since fog dead :: 61
+- since fog phrase :: 61
+- since euphemism inflated :: 61
+- since euphemism dead :: 61
+- since euphemism phrase :: 61
+- since euphemism jargon :: 61
+- since inflated dead :: 61
+- since inflated phrase :: 61
+- since inflated jargon :: 61
+- since inflated bureaucratic :: 61
+- since dead phrase :: 61
+- since dead jargon :: 61
+- since dead bureaucratic :: 61
+- since dead vague :: 61
+- since phrase jargon :: 61
+- since phrase bureaucratic :: 61
+- since phrase vague :: 60
+- since phrase muddy :: 60
+- since jargon bureaucratic :: 60
+- since jargon vague :: 60
+- since jargon muddy :: 60
+- since jargon pretentious :: 60
+- since bureaucratic vague :: 60
+- since bureaucratic muddy :: 60
+- since bureaucratic pretentious :: 60
+- since vague muddy :: 60
+- since vague pretentious :: 60
+- since vague noun :: 60
+- since muddy pretentious :: 60
+- since muddy noun :: 60
+- since muddy image :: 60
+- since pretentious noun :: 60
+- since pretentious image :: 60
+- since pretentious metaphor :: 60
+- since noun image :: 59
+- since noun metaphor :: 59
+- since noun active :: 59
+- since noun simple :: 59
+- since image metaphor :: 59
+- since image active :: 59
+- since image simple :: 59
+- since image verb :: 59
+- since metaphor active :: 59
+- since metaphor simple :: 59
+- since metaphor verb :: 59
+- since metaphor ordinary :: 59
+- since active simple :: 59
+- since active verb :: 59
+- since active ordinary :: 59
+- since active word :: 59
+- plain concrete short :: 59
+- plain concrete clear :: 59
+- plain concrete cut :: 59
+- plain short clear :: 59
+- plain short cut :: 59
+- plain clear short :: 59
+- plain clear cut :: 59
+- plain cut short :: 59
+- plain cut clear :: 58
+- plain fog short :: 58
+- plain fog clear :: 58
+- plain fog cut :: 58
+- concrete short clear :: 58
+- concrete short cut :: 58
+- concrete short fog :: 58
+- concrete clear cut :: 58
+- concrete clear fog :: 58
+- concrete cut clear :: 58
+- concrete cut fog :: 58
+- concrete fog clear :: 58
+- concrete fog cut :: 58
+- concrete euphemism clear :: 58
+- concrete euphemism cut :: 58
+- concrete euphemism fog :: 58
+- short clear cut :: 58
+- short clear fog :: 58
+- short clear euphemism :: 58
+- short cut fog :: 58
+- short cut euphemism :: 58
+- short fog cut :: 58
+- short fog euphemism :: 58
+- short euphemism cut :: 58
+- short euphemism fog :: 58
+- short inflated cut :: 57
+- short inflated fog :: 57
+- short inflated euphemism :: 57
+- clear cut fog :: 57
+- clear cut euphemism :: 57
+- clear cut inflated :: 57
+- clear fog euphemism :: 57
+- clear fog inflated :: 57
+- clear euphemism fog :: 57
+- clear euphemism inflated :: 57
+- clear inflated fog :: 57
+- clear inflated euphemism :: 57
+- clear dead fog :: 57
+- clear dead euphemism :: 57
+- clear dead inflated :: 57
+- cut fog euphemism :: 57
+- cut fog inflated :: 57
+- cut fog dead :: 57
+- cut euphemism inflated :: 57
+- cut euphemism dead :: 57
+- cut inflated euphemism :: 57
+- cut inflated dead :: 57
+- cut dead euphemism :: 57
+- cut dead inflated :: 57
+- cut phrase euphemism :: 57
+- cut phrase inflated :: 56
+- cut phrase dead :: 56
+- fog euphemism inflated :: 56
+- fog euphemism dead :: 56
+- fog euphemism phrase :: 56
+- fog inflated dead :: 56
+- fog inflated phrase :: 56
+- fog dead inflated :: 56
+- fog dead phrase :: 56
+- fog phrase inflated :: 56
+- fog phrase dead :: 56
+- fog jargon inflated :: 56
+- fog jargon dead :: 56
+- fog jargon phrase :: 56
+- euphemism inflated dead :: 56
+- euphemism inflated phrase :: 56
+- euphemism inflated jargon :: 56
+- euphemism dead phrase :: 56
+- euphemism dead jargon :: 56
+- euphemism phrase dead :: 56
+- euphemism phrase jargon :: 56
+- euphemism jargon dead :: 56
+- euphemism jargon phrase :: 56
+- euphemism bureaucratic dead :: 56
+- euphemism bureaucratic phrase :: 56
+- euphemism bureaucratic jargon :: 55
+- inflated dead phrase :: 55
+- inflated dead jargon :: 55
+- inflated dead bureaucratic :: 55
+- inflated phrase jargon :: 55
+- inflated phrase bureaucratic :: 55
+- inflated jargon phrase :: 55
+- inflated jargon bureaucratic :: 55
+- inflated bureaucratic phrase :: 55
+- inflated bureaucratic jargon :: 55
+- inflated vague phrase :: 55
+- inflated vague jargon :: 55
+- inflated vague bureaucratic :: 55
+- dead phrase jargon :: 55
+- dead phrase bureaucratic :: 55
+- dead phrase vague :: 55
+- dead jargon bureaucratic :: 55
+- dead jargon vague :: 55
+- dead bureaucratic jargon :: 55
+- dead bureaucratic vague :: 55
+- dead vague jargon :: 55
+- dead vague bureaucratic :: 55
+- dead muddy jargon :: 55
+- dead muddy bureaucratic :: 55
+- dead muddy vague :: 55
+- phrase jargon bureaucratic :: 54
+- phrase jargon vague :: 54
+- phrase jargon muddy :: 54
+- phrase bureaucratic vague :: 54
+- phrase bureaucratic muddy :: 54
+- phrase vague bureaucratic :: 54
+- phrase vague muddy :: 54
+- phrase muddy bureaucratic :: 54
+- phrase muddy vague :: 54
+- phrase pretentious bureaucratic :: 54
+- phrase pretentious vague :: 54
+- phrase pretentious muddy :: 54
+- jargon bureaucratic vague :: 54
+- jargon bureaucratic muddy :: 54
+- jargon bureaucratic pretentious :: 54
+- jargon vague muddy :: 54
+- jargon vague pretentious :: 54
+- jargon muddy vague :: 54
+- jargon muddy pretentious :: 54
+- jargon pretentious vague :: 54
+- jargon pretentious muddy :: 54
+- jargon abstract vague :: 54
+- jargon abstract muddy :: 54
+- jargon abstract pretentious :: 54
+- bureaucratic vague muddy :: 54
+- bureaucratic vague pretentious :: 53
+- bureaucratic vague abstract :: 53
+- bureaucratic muddy pretentious :: 53
+- bureaucratic muddy abstract :: 53
+- bureaucratic pretentious muddy :: 53
+- bureaucratic pretentious abstract :: 53
+- bureaucratic abstract muddy :: 53
+- bureaucratic abstract pretentious :: 53
+- bureaucratic noun muddy :: 53
+- bureaucratic noun pretentious :: 53
+- bureaucratic noun abstract :: 53
+- vague muddy pretentious :: 53
+- vague muddy abstract :: 53
+- vague muddy noun :: 53
+- vague pretentious abstract :: 53
+- vague pretentious noun :: 53
+- vague abstract pretentious :: 53
+- vague abstract noun :: 53
+- vague noun pretentious :: 53
+- vague noun abstract :: 53
+- vague image pretentious :: 53
+- vague image noun :: 53
+- muddy pretentious abstract :: 53
+- muddy pretentious noun :: 53
+- muddy pretentious image :: 52
+- muddy abstract noun :: 52
+- muddy noun abstract :: 52
+- muddy noun image :: 52
+- muddy image noun :: 52
+- muddy metaphor noun :: 52
+- muddy metaphor image :: 52
+- pretentious abstract noun :: 52
+- pretentious noun image :: 52
+- pretentious noun metaphor :: 52
+- pretentious image noun :: 52
+- pretentious image metaphor :: 52
+- pretentious metaphor noun :: 52
+- pretentious metaphor image :: 52
+- pretentious active noun :: 52
+- pretentious active image :: 52
+- pretentious active metaphor :: 52
+- noun image metaphor :: 51
+- noun image active :: 51
+- noun image simple :: 51
+- noun metaphor active :: 51
+- noun metaphor simple :: 51
+- noun active metaphor :: 51
+- noun active simple :: 51
+- noun simple metaphor :: 51
+- noun simple active :: 51
+- noun verb metaphor :: 51
+- noun verb active :: 51
+- noun verb simple :: 51
+- image metaphor active :: 51
+- image metaphor simple :: 51
+- image metaphor verb :: 51
+- image active simple :: 51
+- image active verb :: 50
+- image simple active :: 50
+- image simple verb :: 50
+- image verb active :: 50
+- image verb simple :: 50
+- image ordinary active :: 50
+- image ordinary simple :: 50
+- image ordinary verb :: 50
+- metaphor active simple :: 50
+- metaphor active verb :: 50
+- metaphor active ordinary :: 50
+- metaphor simple verb :: 50
+- metaphor simple ordinary :: 50
+- metaphor verb simple :: 50
+- metaphor verb ordinary :: 50
+- metaphor ordinary simple :: 50
+- metaphor ordinary verb :: 50
+- metaphor word simple :: 50
+- metaphor word verb :: 50
+- metaphor word ordinary :: 50
+- active simple verb :: 50
+- active simple ordinary :: 50
+- active simple word :: 50
+- active verb ordinary :: 50
+- active verb word :: 50
+- active ordinary verb :: 49
+- active ordinary word :: 49
+- active word verb :: 49
+- active word ordinary :: 49
+- active exact verb :: 49
+- active exact ordinary :: 49
+- active exact word :: 49
+- simple verb ordinary :: 49
+- simple verb word :: 49
+- simple verb exact :: 49
+- simple ordinary word :: 49
+- simple ordinary exact :: 49
+- simple word ordinary :: 49
+- simple word exact :: 49
+- simple exact ordinary :: 49
+- simple exact word :: 49
+- simple name ordinary :: 49
+- simple name word :: 49
+- simple name exact :: 49
+- verb ordinary word :: 49
+- verb ordinary exact :: 49
+- verb ordinary name :: 49
+- verb word exact :: 49
+- verb word name :: 49
+- verb exact word :: 49
+- verb exact name :: 48
+- verb name word :: 48
+- verb name exact :: 48
+- verb hard word :: 48
+- verb hard exact :: 48
+- verb hard name :: 48
+- ordinary word exact :: 48
+- ordinary word name :: 48
+- ordinary word hard :: 48
+- ordinary exact name :: 48
+- ordinary exact hard :: 48
+- ordinary name exact :: 48
+- ordinary name hard :: 48
+- ordinary hard exact :: 48
+- ordinary hard name :: 48
+- ordinary soft exact :: 48
+- ordinary soft name :: 48
+- ordinary soft hard :: 48
+- word exact name :: 48
+- word exact hard :: 48
+- word exact soft :: 48
+- word name hard :: 48
+- word name soft :: 48
+- word hard name :: 48
+- word hard soft :: 48
+- word soft name :: 47
+- word soft hard :: 47
+- word padding name :: 47
+- word padding hard :: 47
+- word padding soft :: 47
+- exact name hard :: 47
+- exact name soft :: 47
+- exact name padding :: 47
+- exact hard soft :: 47
+- exact hard padding :: 47
+- exact soft hard :: 47
+- exact soft padding :: 47
+- exact padding hard :: 47
+- exact padding soft :: 47
+- exact cliche hard :: 47
+- exact cliche soft :: 47
+- exact cliche padding :: 47
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- short word
+- cut word
+- active voice
+- everyday English
+- concrete detail
+- euphemism
+- dead metaphor
+- plain English
+- concrete noun
+
+### Couplings
+
+- plain English
+- active voice
+- cut the word
+- clear language against euphemism
+- concrete nouns
+
+### Triplets
+
+- plain active concrete
+- cut euphemism fog
+- word detail truth

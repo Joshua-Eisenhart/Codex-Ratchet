@@ -1,0 +1,1933 @@
+# 🃏 Wildcard Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this lane. It is normally surfaced through Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `WILDCARD` and remapped to v4.1 canon category `lanes`.
+
+---
+
+# MMM_LANE_WILDCARD_FULL_v4_1
+
+## words
+
+- wildcard :: 100
+- surprise :: 100
+- unexpected :: 100
+- odd :: 100
+- path :: 100
+- unlock :: 100
+- probe :: 100
+- creative :: 100
+- angle :: 100
+- nonobvious :: 100
+- strange :: 100
+- fit :: 100
+- side :: 100
+- door :: 100
+- small :: 100
+- experiment :: 100
+- cheap :: 100
+- unusual :: 100
+- route :: 100
+- cheap test :: 100
+- edge move :: 100
+- bounded :: 100
+- upside :: 100
+- blocker :: 100
+- small experiment :: 100
+- leverage :: 99
+- stress :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 99
+- among :: 99
+- inside :: 99
+- outside :: 99
+- near :: 99
+- beside :: 99
+- over :: 99
+- from :: 99
+- with :: 99
+- without :: 99
+- only :: 99
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- finite :: 98
+- open :: 98
+- live :: 98
+- distinct :: 98
+- concrete :: 98
+- plain :: 98
+- observed :: 98
+- inferred :: 98
+- known :: 98
+- unknown :: 98
+- checked :: 98
+- missing :: 98
+- stale :: 98
+- narrow :: 98
+- warm :: 98
+- careful :: 98
+- honest :: 98
+- first :: 98
+- next :: 97
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 97
+- compared :: 97
+- measured :: 97
+- named :: 97
+- used :: 97
+- viable :: 97
+- direct :: 97
+- different :: 97
+- alternate :: 97
+- branch :: 97
+- surface :: 97
+- packet :: 97
+- artifact :: 97
+- receipt :: 97
+- trace :: 97
+- result :: 97
+- support :: 97
+- evidence :: 96
+- scope :: 96
+- boundary :: 96
+- gate :: 96
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 96
+- constraint :: 96
+- name :: 96
+- term :: 96
+- use :: 96
+- role :: 96
+- practice :: 96
+- custom :: 96
+- habit :: 96
+- experience :: 96
+- observation :: 96
+- impression :: 96
+- idea :: 96
+- perception :: 96
+- conjunction :: 96
+- resemblance :: 96
+- relation :: 95
+- probability :: 95
+- particular :: 95
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 95
+- countermodel :: 95
+- counterexample :: 95
+- equivalence :: 95
+- indistinguishable :: 95
+- readout :: 95
+- measure :: 95
+- measurement :: 95
+- operation :: 95
+- procedure :: 95
+- instrument :: 95
+- test :: 95
+- check :: 95
+- verify :: 95
+- compare :: 95
+- sample :: 95
+- lane :: 95
+- voice :: 94
+- lens :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- deferred :: 94
+- blocked :: 94
+- spawned :: 94
+- diagnostic :: 94
+- untried :: 94
+- preload :: 94
+- salience :: 94
+- language :: 94
+- body :: 94
+- during :: 94
+- since :: 94
+- by :: 94
+- toward :: 94
+- relative :: 94
+- according :: 94
+- locally :: 94
+- jointly :: 94
+- separately :: 94
+- rather :: 94
+- instead :: 94
+- still :: 93
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+- seems :: 93
+
+## couplings
+
+- under wildcard :: 100
+- within wildcard :: 100
+- across wildcard :: 100
+- between wildcard :: 100
+- through wildcard :: 100
+- before wildcard :: 100
+- after wildcard :: 100
+- until wildcard :: 100
+- where wildcard :: 100
+- while wildcard :: 100
+- wildcard evidence :: 100
+- wildcard support :: 100
+- wildcard path :: 100
+- wildcard surface :: 100
+- wildcard packet :: 100
+- wildcard receipt :: 100
+- wildcard trace :: 100
+- wildcard result :: 100
+- wildcard scope :: 100
+- wildcard boundary :: 100
+- wildcard status :: 100
+- wildcard candidate :: 100
+- wildcard witness :: 100
+- wildcard probe :: 100
+- wildcard constraint :: 100
+- check wildcard :: 99
+- compare wildcard :: 99
+- observe wildcard :: 99
+- measure wildcard :: 99
+- test wildcard :: 99
+- verify wildcard :: 99
+- hold wildcard :: 99
+- preserve wildcard :: 99
+- split wildcard :: 99
+- narrow wildcard :: 99
+- under unexpected :: 99
+- within unexpected :: 99
+- across unexpected :: 99
+- between unexpected :: 99
+- through unexpected :: 99
+- before unexpected :: 99
+- after unexpected :: 99
+- until unexpected :: 99
+- where unexpected :: 99
+- while unexpected :: 99
+- unexpected evidence :: 99
+- unexpected support :: 99
+- unexpected path :: 99
+- unexpected surface :: 99
+- unexpected packet :: 99
+- unexpected receipt :: 98
+- unexpected trace :: 98
+- unexpected result :: 98
+- unexpected scope :: 98
+- unexpected boundary :: 98
+- unexpected status :: 98
+- unexpected candidate :: 98
+- unexpected witness :: 98
+- unexpected probe :: 98
+- unexpected constraint :: 98
+- check unexpected :: 98
+- compare unexpected :: 98
+- observe unexpected :: 98
+- measure unexpected :: 98
+- test unexpected :: 98
+- verify unexpected :: 98
+- hold unexpected :: 98
+- preserve unexpected :: 98
+- split unexpected :: 98
+- narrow unexpected :: 98
+- under nonobvious :: 98
+- within nonobvious :: 98
+- across nonobvious :: 98
+- between nonobvious :: 98
+- through nonobvious :: 98
+- before nonobvious :: 97
+- after nonobvious :: 97
+- until nonobvious :: 97
+- where nonobvious :: 97
+- while nonobvious :: 97
+- nonobvious evidence :: 97
+- nonobvious support :: 97
+- nonobvious path :: 97
+- nonobvious surface :: 97
+- nonobvious packet :: 97
+- nonobvious receipt :: 97
+- nonobvious trace :: 97
+- nonobvious result :: 97
+- nonobvious scope :: 97
+- nonobvious boundary :: 97
+- nonobvious status :: 97
+- nonobvious candidate :: 97
+- nonobvious witness :: 97
+- nonobvious probe :: 97
+- nonobvious constraint :: 97
+- check nonobvious :: 97
+- compare nonobvious :: 97
+- observe nonobvious :: 97
+- measure nonobvious :: 97
+- test nonobvious :: 97
+- verify nonobvious :: 96
+- hold nonobvious :: 96
+- preserve nonobvious :: 96
+- split nonobvious :: 96
+- narrow nonobvious :: 96
+- under probe :: 96
+- within probe :: 96
+- across probe :: 96
+- between probe :: 96
+- through probe :: 96
+- before probe :: 96
+- after probe :: 96
+- until probe :: 96
+- where probe :: 96
+- while probe :: 96
+- probe evidence :: 96
+- probe support :: 96
+- probe path :: 96
+- probe surface :: 96
+- probe packet :: 96
+- probe receipt :: 96
+- probe trace :: 96
+- probe result :: 96
+- probe scope :: 96
+- probe boundary :: 96
+- probe status :: 95
+- probe candidate :: 95
+- probe witness :: 95
+- probe probe :: 95
+- probe constraint :: 95
+- check probe :: 95
+- compare probe :: 95
+- observe probe :: 95
+- measure probe :: 95
+- test probe :: 95
+- verify probe :: 95
+- hold probe :: 95
+- preserve probe :: 95
+- split probe :: 95
+- narrow probe :: 95
+- under unlock :: 95
+- within unlock :: 95
+- across unlock :: 95
+- between unlock :: 95
+- through unlock :: 95
+- before unlock :: 95
+- after unlock :: 95
+- until unlock :: 95
+- where unlock :: 95
+- while unlock :: 95
+- unlock evidence :: 94
+- unlock support :: 94
+- unlock path :: 94
+- unlock surface :: 94
+- unlock packet :: 94
+- unlock receipt :: 94
+- unlock trace :: 94
+- unlock result :: 94
+- unlock scope :: 94
+- unlock boundary :: 94
+- unlock status :: 94
+- unlock candidate :: 94
+- unlock witness :: 94
+- unlock probe :: 94
+- unlock constraint :: 94
+- check unlock :: 94
+- compare unlock :: 94
+- observe unlock :: 94
+- measure unlock :: 94
+- test unlock :: 94
+- verify unlock :: 94
+- hold unlock :: 94
+- preserve unlock :: 94
+- split unlock :: 94
+- narrow unlock :: 94
+- under angle :: 93
+- within angle :: 93
+- across angle :: 93
+- between angle :: 93
+- through angle :: 93
+- before angle :: 93
+- after angle :: 93
+- until angle :: 93
+- where angle :: 93
+- while angle :: 93
+- angle evidence :: 93
+- angle support :: 93
+- angle path :: 93
+- angle surface :: 93
+- angle packet :: 93
+- angle receipt :: 93
+- angle trace :: 93
+- angle result :: 93
+- angle scope :: 93
+- angle boundary :: 93
+- angle status :: 93
+- angle candidate :: 93
+- angle witness :: 93
+- angle probe :: 93
+- angle constraint :: 93
+- check angle :: 92
+- compare angle :: 92
+- observe angle :: 92
+- measure angle :: 92
+- test angle :: 92
+- verify angle :: 92
+- hold angle :: 92
+- preserve angle :: 92
+- split angle :: 92
+- narrow angle :: 92
+- under surprise :: 92
+- within surprise :: 92
+- across surprise :: 92
+- between surprise :: 92
+- through surprise :: 92
+- before surprise :: 92
+- after surprise :: 92
+- until surprise :: 92
+- where surprise :: 92
+- while surprise :: 92
+- surprise evidence :: 92
+- surprise support :: 92
+- surprise path :: 92
+- surprise surface :: 92
+- surprise packet :: 92
+- surprise receipt :: 91
+- surprise trace :: 91
+- surprise result :: 91
+- surprise scope :: 91
+- surprise boundary :: 91
+- surprise status :: 91
+- surprise candidate :: 91
+- surprise witness :: 91
+- surprise probe :: 91
+- surprise constraint :: 91
+- check surprise :: 91
+- compare surprise :: 91
+- observe surprise :: 91
+- measure surprise :: 91
+- test surprise :: 91
+- verify surprise :: 91
+- hold surprise :: 91
+- preserve surprise :: 91
+- split surprise :: 91
+- narrow surprise :: 91
+- under side :: 91
+- within side :: 91
+- across side :: 91
+- between side :: 91
+- through side :: 91
+- before side :: 90
+- after side :: 90
+- until side :: 90
+- where side :: 90
+- while side :: 90
+- side evidence :: 90
+- side support :: 90
+- side path :: 90
+- side surface :: 90
+- side packet :: 90
+- side receipt :: 90
+- side trace :: 90
+- side result :: 90
+- side scope :: 90
+- side boundary :: 90
+- side status :: 90
+- side candidate :: 90
+- side witness :: 90
+- side probe :: 90
+- side constraint :: 90
+- check side :: 90
+- compare side :: 90
+- observe side :: 90
+- measure side :: 90
+- test side :: 90
+- verify side :: 89
+- hold side :: 89
+- preserve side :: 89
+- split side :: 89
+- narrow side :: 89
+- under path :: 89
+- within path :: 89
+- across path :: 89
+- between path :: 89
+- through path :: 89
+- before path :: 89
+- after path :: 89
+- until path :: 89
+- where path :: 89
+- while path :: 89
+- path evidence :: 89
+- path support :: 89
+- path path :: 89
+- path surface :: 89
+- path packet :: 89
+- path receipt :: 89
+- path trace :: 89
+- path result :: 89
+- path scope :: 89
+- path boundary :: 89
+- path status :: 88
+- path candidate :: 88
+- path witness :: 88
+- path probe :: 88
+- path constraint :: 88
+- check path :: 88
+- compare path :: 88
+- observe path :: 88
+- measure path :: 88
+- test path :: 88
+- verify path :: 88
+- hold path :: 88
+- preserve path :: 88
+- split path :: 88
+- narrow path :: 88
+- under odd :: 88
+- within odd :: 88
+- across odd :: 88
+- between odd :: 88
+- through odd :: 88
+- before odd :: 88
+- after odd :: 88
+- until odd :: 88
+- where odd :: 88
+- while odd :: 88
+- odd evidence :: 87
+- odd support :: 87
+- odd path :: 87
+- odd surface :: 87
+- odd packet :: 87
+- odd receipt :: 87
+- odd trace :: 87
+- odd result :: 87
+- odd scope :: 87
+- odd boundary :: 87
+- odd status :: 87
+- odd candidate :: 87
+- odd witness :: 87
+- odd probe :: 87
+- odd constraint :: 87
+- cheap test :: 87
+- edge move :: 87
+- small experiment :: 87
+- probe :: 87
+- unexpected :: 87
+- odd :: 87
+- unlock :: 87
+- surprise :: 87
+- bounded :: 87
+- upside :: 87
+- blocker :: 86
+- under creative :: 86
+- under strange :: 86
+- under fit :: 86
+- under door :: 86
+- under small :: 86
+- under experiment :: 86
+- under cheap :: 86
+- under unusual :: 86
+- under route :: 86
+- under cheap test :: 86
+- within creative :: 86
+- within strange :: 86
+- within fit :: 86
+- within door :: 86
+- within small :: 86
+- within experiment :: 86
+- within cheap :: 86
+- within unusual :: 86
+- within route :: 86
+- within cheap test :: 86
+- across creative :: 86
+- across strange :: 86
+- across fit :: 86
+- across door :: 86
+- across small :: 85
+- across experiment :: 85
+- across cheap :: 85
+- across unusual :: 85
+- across route :: 85
+- across cheap test :: 85
+- between creative :: 85
+- between strange :: 85
+- between fit :: 85
+- between door :: 85
+- between small :: 85
+- between experiment :: 85
+- between cheap :: 85
+- between unusual :: 85
+- between route :: 85
+- between cheap test :: 85
+- through creative :: 85
+- through strange :: 85
+- through fit :: 85
+- through door :: 85
+- through small :: 85
+- through experiment :: 85
+- through cheap :: 85
+- through unusual :: 85
+- through route :: 85
+- through cheap test :: 84
+- before creative :: 84
+- before strange :: 84
+- before fit :: 84
+- before door :: 84
+- before small :: 84
+- before experiment :: 84
+- before cheap :: 84
+- before unusual :: 84
+- before route :: 84
+- before cheap test :: 84
+- after creative :: 84
+- after strange :: 84
+- after fit :: 84
+- after door :: 84
+- after small :: 84
+- after experiment :: 84
+- after cheap :: 84
+- after unusual :: 84
+- after route :: 84
+- after cheap test :: 84
+- during wildcard :: 84
+- during surprise :: 84
+- during unexpected :: 84
+- during odd :: 84
+- during path :: 83
+- during unlock :: 83
+- during probe :: 83
+- during creative :: 83
+- during angle :: 83
+- during nonobvious :: 83
+- during strange :: 83
+- during fit :: 83
+- during side :: 83
+- during door :: 83
+- during small :: 83
+- during experiment :: 83
+- during cheap :: 83
+- during unusual :: 83
+- during route :: 83
+- during cheap test :: 83
+- until creative :: 83
+- until strange :: 83
+- until fit :: 83
+- until door :: 83
+- until small :: 83
+- until experiment :: 83
+- until cheap :: 83
+- until unusual :: 83
+- until route :: 83
+- until cheap test :: 82
+- since wildcard :: 82
+- since surprise :: 82
+- since unexpected :: 82
+- since odd :: 82
+- since path :: 82
+- since unlock :: 82
+- since probe :: 82
+- since creative :: 82
+- since angle :: 82
+- since nonobvious :: 82
+- since strange :: 82
+- since fit :: 82
+- since side :: 82
+- since door :: 82
+- since small :: 82
+- since experiment :: 82
+- since cheap :: 82
+- since unusual :: 82
+- since route :: 82
+- since cheap test :: 82
+- from wildcard :: 82
+- from surprise :: 82
+- from unexpected :: 82
+- from odd :: 82
+- from path :: 81
+- from unlock :: 81
+- from probe :: 81
+- from creative :: 81
+- from angle :: 81
+- from nonobvious :: 81
+- from strange :: 81
+- from fit :: 81
+- from side :: 81
+- from door :: 81
+- from small :: 81
+- from experiment :: 81
+- from cheap :: 81
+- from unusual :: 81
+- from route :: 81
+- from cheap test :: 81
+- by wildcard :: 81
+- by surprise :: 81
+- by unexpected :: 81
+- by odd :: 81
+- by path :: 81
+- by unlock :: 81
+- by probe :: 81
+- by creative :: 81
+- by angle :: 81
+- by nonobvious :: 80
+- by strange :: 80
+- by fit :: 80
+- by side :: 80
+- by door :: 80
+- by small :: 80
+- by experiment :: 80
+- by cheap :: 80
+- by unusual :: 80
+- by route :: 80
+- by cheap test :: 80
+- with wildcard :: 80
+- with surprise :: 80
+- with unexpected :: 80
+- with odd :: 80
+- with path :: 80
+- with unlock :: 80
+- with probe :: 80
+- with creative :: 80
+- with angle :: 80
+- with nonobvious :: 80
+- with strange :: 80
+- with fit :: 80
+- with side :: 80
+- with door :: 80
+- with small :: 79
+- with experiment :: 79
+- with cheap :: 79
+- with unusual :: 79
+- with route :: 79
+- with cheap test :: 79
+- without wildcard :: 79
+- without surprise :: 79
+- without unexpected :: 79
+- without odd :: 79
+- without path :: 79
+- without unlock :: 79
+- without probe :: 79
+- without creative :: 79
+- without angle :: 79
+- without nonobvious :: 79
+- without strange :: 79
+- without fit :: 79
+- without side :: 79
+- without door :: 79
+- without small :: 79
+- without experiment :: 79
+- without cheap :: 79
+- without unusual :: 79
+- without route :: 79
+- without cheap test :: 78
+- against wildcard :: 78
+- against surprise :: 78
+- against unexpected :: 78
+- against odd :: 78
+- against path :: 78
+- against unlock :: 78
+- against probe :: 78
+- against creative :: 78
+- against angle :: 78
+- against nonobvious :: 78
+- against strange :: 78
+- against fit :: 78
+- against side :: 78
+- against door :: 78
+- against small :: 78
+- against experiment :: 78
+- against cheap :: 78
+- against unusual :: 78
+- against route :: 78
+- against cheap test :: 78
+- toward wildcard :: 78
+- toward surprise :: 78
+- toward unexpected :: 78
+- toward odd :: 78
+- toward path :: 77
+- toward unlock :: 77
+- toward probe :: 77
+- toward creative :: 77
+- toward angle :: 77
+- toward nonobvious :: 77
+- toward strange :: 77
+- toward fit :: 77
+- toward side :: 77
+- toward door :: 77
+- toward small :: 77
+- toward experiment :: 77
+- toward cheap :: 77
+- toward unusual :: 77
+- toward route :: 77
+- toward cheap test :: 77
+- near wildcard :: 77
+- near surprise :: 77
+- near unexpected :: 77
+- near odd :: 77
+- near path :: 77
+- near unlock :: 77
+- near probe :: 77
+- near creative :: 77
+- near angle :: 77
+- near nonobvious :: 76
+- near strange :: 76
+- near fit :: 76
+- near side :: 76
+- near door :: 76
+- near small :: 76
+- near experiment :: 76
+- near cheap :: 76
+- near unusual :: 76
+- near route :: 76
+- near cheap test :: 76
+- relative wildcard :: 76
+- relative surprise :: 76
+- relative unexpected :: 76
+- relative odd :: 76
+- relative path :: 76
+- relative unlock :: 76
+- relative probe :: 76
+- relative creative :: 76
+- relative angle :: 76
+- relative nonobvious :: 76
+- relative strange :: 76
+- relative fit :: 76
+- relative side :: 76
+- relative door :: 76
+- relative small :: 75
+- relative experiment :: 75
+- relative cheap :: 75
+- relative unusual :: 75
+- relative route :: 75
+- relative cheap test :: 75
+- wildcard surprise :: 75
+- wildcard unexpected :: 75
+- wildcard odd :: 75
+- wildcard unlock :: 75
+- wildcard creative :: 75
+- wildcard angle :: 75
+- wildcard nonobvious :: 75
+- wildcard strange :: 75
+- wildcard fit :: 75
+- surprise unexpected :: 75
+- surprise odd :: 75
+- surprise unlock :: 75
+- surprise creative :: 75
+- surprise angle :: 75
+- surprise nonobvious :: 75
+- surprise strange :: 75
+- surprise fit :: 75
+- surprise side :: 75
+- unexpected odd :: 75
+- unexpected unlock :: 74
+- unexpected creative :: 74
+- unexpected angle :: 74
+- unexpected nonobvious :: 74
+- unexpected strange :: 74
+- unexpected fit :: 74
+- unexpected side :: 74
+- unexpected door :: 74
+- odd unlock :: 74
+- odd creative :: 74
+- odd angle :: 74
+- odd nonobvious :: 74
+- odd strange :: 74
+- odd fit :: 74
+- odd side :: 74
+- odd door :: 74
+- odd small :: 74
+- path unlock :: 74
+- path creative :: 74
+- path angle :: 74
+- path nonobvious :: 74
+- path strange :: 74
+- path fit :: 74
+- path side :: 74
+- path door :: 74
+- path small :: 73
+- path experiment :: 73
+- unlock creative :: 73
+- unlock angle :: 73
+- unlock nonobvious :: 73
+- unlock strange :: 73
+- unlock fit :: 73
+- unlock side :: 73
+- unlock door :: 73
+- unlock small :: 73
+- unlock experiment :: 73
+- unlock cheap :: 73
+- probe creative :: 73
+- probe angle :: 73
+- probe nonobvious :: 73
+- probe strange :: 73
+- probe fit :: 73
+- probe side :: 73
+- probe door :: 73
+- probe small :: 73
+- probe experiment :: 73
+- probe cheap :: 73
+- probe unusual :: 73
+- creative angle :: 73
+- creative nonobvious :: 73
+
+## triplets
+
+- under current wildcard :: 100
+- under local wildcard :: 100
+- under bounded wildcard :: 100
+- under finite wildcard :: 100
+- under open wildcard :: 100
+- under live wildcard :: 100
+- within current wildcard :: 100
+- within local wildcard :: 100
+- within bounded wildcard :: 100
+- within finite wildcard :: 100
+- within open wildcard :: 100
+- within live wildcard :: 100
+- across current wildcard :: 100
+- across local wildcard :: 100
+- across bounded wildcard :: 100
+- across finite wildcard :: 100
+- across open wildcard :: 100
+- across live wildcard :: 100
+- between current wildcard :: 100
+- between local wildcard :: 100
+- between bounded wildcard :: 100
+- between finite wildcard :: 100
+- between open wildcard :: 100
+- between live wildcard :: 100
+- through current wildcard :: 100
+- through local wildcard :: 99
+- through bounded wildcard :: 99
+- through finite wildcard :: 99
+- through open wildcard :: 99
+- through live wildcard :: 99
+- before current wildcard :: 99
+- before local wildcard :: 99
+- before bounded wildcard :: 99
+- before finite wildcard :: 99
+- before open wildcard :: 99
+- before live wildcard :: 99
+- wildcard evidence path :: 99
+- wildcard support path :: 99
+- wildcard path path :: 99
+- wildcard surface path :: 99
+- wildcard packet path :: 99
+- wildcard receipt path :: 99
+- wildcard trace path :: 99
+- wildcard result path :: 99
+- wildcard scope path :: 99
+- wildcard boundary path :: 99
+- check wildcard receipt :: 99
+- compare wildcard receipt :: 99
+- observe wildcard receipt :: 99
+- measure wildcard receipt :: 99
+- test wildcard receipt :: 98
+- verify wildcard receipt :: 98
+- hold wildcard receipt :: 98
+- preserve wildcard receipt :: 98
+- under current unexpected :: 98
+- under local unexpected :: 98
+- under bounded unexpected :: 98
+- under finite unexpected :: 98
+- under open unexpected :: 98
+- under live unexpected :: 98
+- within current unexpected :: 98
+- within local unexpected :: 98
+- within bounded unexpected :: 98
+- within finite unexpected :: 98
+- within open unexpected :: 98
+- within live unexpected :: 98
+- across current unexpected :: 98
+- across local unexpected :: 98
+- across bounded unexpected :: 98
+- across finite unexpected :: 98
+- across open unexpected :: 98
+- across live unexpected :: 98
+- between current unexpected :: 98
+- between local unexpected :: 98
+- between bounded unexpected :: 98
+- between finite unexpected :: 97
+- between open unexpected :: 97
+- between live unexpected :: 97
+- through current unexpected :: 97
+- through local unexpected :: 97
+- through bounded unexpected :: 97
+- through finite unexpected :: 97
+- through open unexpected :: 97
+- through live unexpected :: 97
+- before current unexpected :: 97
+- before local unexpected :: 97
+- before bounded unexpected :: 97
+- before finite unexpected :: 97
+- before open unexpected :: 97
+- before live unexpected :: 97
+- unexpected evidence path :: 97
+- unexpected support path :: 97
+- unexpected path path :: 97
+- unexpected surface path :: 97
+- unexpected packet path :: 97
+- unexpected receipt path :: 97
+- unexpected trace path :: 97
+- unexpected result path :: 97
+- unexpected scope path :: 97
+- unexpected boundary path :: 97
+- check unexpected receipt :: 96
+- compare unexpected receipt :: 96
+- observe unexpected receipt :: 96
+- measure unexpected receipt :: 96
+- test unexpected receipt :: 96
+- verify unexpected receipt :: 96
+- hold unexpected receipt :: 96
+- preserve unexpected receipt :: 96
+- under current nonobvious :: 96
+- under local nonobvious :: 96
+- under bounded nonobvious :: 96
+- under finite nonobvious :: 96
+- under open nonobvious :: 96
+- under live nonobvious :: 96
+- within current nonobvious :: 96
+- within local nonobvious :: 96
+- within bounded nonobvious :: 96
+- within finite nonobvious :: 96
+- within open nonobvious :: 96
+- within live nonobvious :: 96
+- across current nonobvious :: 96
+- across local nonobvious :: 96
+- across bounded nonobvious :: 96
+- across finite nonobvious :: 96
+- across open nonobvious :: 96
+- across live nonobvious :: 95
+- between current nonobvious :: 95
+- between local nonobvious :: 95
+- between bounded nonobvious :: 95
+- between finite nonobvious :: 95
+- between open nonobvious :: 95
+- between live nonobvious :: 95
+- through current nonobvious :: 95
+- through local nonobvious :: 95
+- through bounded nonobvious :: 95
+- through finite nonobvious :: 95
+- through open nonobvious :: 95
+- through live nonobvious :: 95
+- before current nonobvious :: 95
+- before local nonobvious :: 95
+- before bounded nonobvious :: 95
+- before finite nonobvious :: 95
+- before open nonobvious :: 95
+- before live nonobvious :: 95
+- nonobvious evidence path :: 95
+- nonobvious support path :: 95
+- nonobvious path path :: 95
+- nonobvious surface path :: 95
+- nonobvious packet path :: 95
+- nonobvious receipt path :: 95
+- nonobvious trace path :: 94
+- nonobvious result path :: 94
+- nonobvious scope path :: 94
+- nonobvious boundary path :: 94
+- check nonobvious receipt :: 94
+- compare nonobvious receipt :: 94
+- observe nonobvious receipt :: 94
+- measure nonobvious receipt :: 94
+- test nonobvious receipt :: 94
+- verify nonobvious receipt :: 94
+- hold nonobvious receipt :: 94
+- preserve nonobvious receipt :: 94
+- under current probe :: 94
+- under local probe :: 94
+- under bounded probe :: 94
+- under finite probe :: 94
+- under open probe :: 94
+- under live probe :: 94
+- within current probe :: 94
+- within local probe :: 94
+- within bounded probe :: 94
+- within finite probe :: 94
+- within open probe :: 94
+- within live probe :: 94
+- across current probe :: 94
+- across local probe :: 93
+- across bounded probe :: 93
+- across finite probe :: 93
+- across open probe :: 93
+- across live probe :: 93
+- between current probe :: 93
+- between local probe :: 93
+- between bounded probe :: 93
+- between finite probe :: 93
+- between open probe :: 93
+- between live probe :: 93
+- through current probe :: 93
+- through local probe :: 93
+- through bounded probe :: 93
+- through finite probe :: 93
+- through open probe :: 93
+- through live probe :: 93
+- before current probe :: 93
+- before local probe :: 93
+- before bounded probe :: 93
+- before finite probe :: 93
+- before open probe :: 93
+- before live probe :: 93
+- probe evidence path :: 93
+- probe support path :: 93
+- probe path path :: 92
+- probe surface path :: 92
+- probe packet path :: 92
+- probe receipt path :: 92
+- probe trace path :: 92
+- probe result path :: 92
+- probe scope path :: 92
+- probe boundary path :: 92
+- check probe receipt :: 92
+- compare probe receipt :: 92
+- observe probe receipt :: 92
+- measure probe receipt :: 92
+- test probe receipt :: 92
+- verify probe receipt :: 92
+- hold probe receipt :: 92
+- preserve probe receipt :: 92
+- under current unlock :: 92
+- under local unlock :: 92
+- under bounded unlock :: 92
+- under finite unlock :: 92
+- under open unlock :: 92
+- under live unlock :: 92
+- within current unlock :: 92
+- within local unlock :: 92
+- within bounded unlock :: 92
+- within finite unlock :: 91
+- within open unlock :: 91
+- within live unlock :: 91
+- across current unlock :: 91
+- across local unlock :: 91
+- across bounded unlock :: 91
+- across finite unlock :: 91
+- across open unlock :: 91
+- across live unlock :: 91
+- between current unlock :: 91
+- between local unlock :: 91
+- between bounded unlock :: 91
+- between finite unlock :: 91
+- between open unlock :: 91
+- between live unlock :: 91
+- under wildcard surprise :: 91
+- under wildcard unexpected :: 91
+- under wildcard odd :: 91
+- under wildcard path :: 91
+- under surprise unexpected :: 91
+- under surprise odd :: 91
+- under surprise path :: 91
+- under surprise unlock :: 91
+- under unexpected odd :: 91
+- under unexpected path :: 91
+- under unexpected unlock :: 90
+- under unexpected probe :: 90
+- under odd path :: 90
+- under odd unlock :: 90
+- under odd probe :: 90
+- under odd creative :: 90
+- under path unlock :: 90
+- under path probe :: 90
+- under path creative :: 90
+- under path angle :: 90
+- under unlock probe :: 90
+- under unlock creative :: 90
+- under unlock angle :: 90
+- under unlock nonobvious :: 90
+- under probe creative :: 90
+- under probe angle :: 90
+- under probe nonobvious :: 90
+- under probe strange :: 90
+- under creative angle :: 90
+- under creative nonobvious :: 90
+- under creative strange :: 90
+- under creative fit :: 90
+- under angle nonobvious :: 90
+- under angle strange :: 90
+- under angle fit :: 90
+- under angle side :: 89
+- under nonobvious strange :: 89
+- under nonobvious fit :: 89
+- under nonobvious side :: 89
+- under nonobvious door :: 89
+- under strange fit :: 89
+- under strange side :: 89
+- under strange door :: 89
+- under strange small :: 89
+- under fit side :: 89
+- under fit door :: 89
+- under fit small :: 89
+- under fit experiment :: 89
+- under side door :: 89
+- under side small :: 89
+- under side experiment :: 89
+- under side cheap :: 89
+- under door small :: 89
+- under door experiment :: 89
+- under door cheap :: 89
+- under door unusual :: 89
+- under small experiment :: 89
+- under small cheap :: 89
+- under small unusual :: 89
+- under small route :: 89
+- under experiment cheap :: 88
+- under experiment unusual :: 88
+- under experiment route :: 88
+- under experiment cheap test :: 88
+- under cheap unusual :: 88
+- under cheap route :: 88
+- under cheap cheap test :: 88
+- under cheap edge move :: 88
+- under unusual route :: 88
+- under unusual cheap test :: 88
+- under unusual edge move :: 88
+- under unusual bounded :: 88
+- under route cheap test :: 88
+- under route edge move :: 88
+- under route bounded :: 88
+- under route upside :: 88
+- under cheap test edge move :: 88
+- under cheap test bounded :: 88
+- under cheap test upside :: 88
+- under cheap test blocker :: 88
+- within wildcard surprise :: 88
+- within wildcard unexpected :: 88
+- within wildcard odd :: 88
+- within wildcard path :: 88
+- within surprise unexpected :: 88
+- within surprise odd :: 87
+- within surprise path :: 87
+- within surprise unlock :: 87
+- within unexpected odd :: 87
+- within unexpected path :: 87
+- within unexpected unlock :: 87
+- within unexpected probe :: 87
+- within odd path :: 87
+- within odd unlock :: 87
+- within odd probe :: 87
+- within odd creative :: 87
+- within path unlock :: 87
+- within path probe :: 87
+- within path creative :: 87
+- within path angle :: 87
+- within unlock probe :: 87
+- within unlock creative :: 87
+- within unlock angle :: 87
+- within unlock nonobvious :: 87
+- within probe creative :: 87
+- within probe angle :: 87
+- within probe nonobvious :: 87
+- within probe strange :: 87
+- within creative angle :: 87
+- within creative nonobvious :: 87
+- within creative strange :: 86
+- within creative fit :: 86
+- within angle nonobvious :: 86
+- within angle strange :: 86
+- within angle fit :: 86
+- within angle side :: 86
+- within nonobvious strange :: 86
+- within nonobvious fit :: 86
+- within nonobvious side :: 86
+- within nonobvious door :: 86
+- within strange fit :: 86
+- within strange side :: 86
+- within strange door :: 86
+- within strange small :: 86
+- within fit side :: 86
+- within fit door :: 86
+- within fit small :: 86
+- within fit experiment :: 86
+- within side door :: 86
+- within side small :: 86
+- within side experiment :: 86
+- within side cheap :: 86
+- within door small :: 86
+- within door experiment :: 86
+- within door cheap :: 86
+- within door unusual :: 85
+- within small experiment :: 85
+- within small cheap :: 85
+- within small unusual :: 85
+- within small route :: 85
+- within experiment cheap :: 85
+- within experiment unusual :: 85
+- within experiment route :: 85
+- within experiment cheap test :: 85
+- within cheap unusual :: 85
+- within cheap route :: 85
+- within cheap cheap test :: 85
+- within cheap edge move :: 85
+- within unusual route :: 85
+- within unusual cheap test :: 85
+- within unusual edge move :: 85
+- within unusual bounded :: 85
+- within route cheap test :: 85
+- within route edge move :: 85
+- within route bounded :: 85
+- within route upside :: 85
+- within cheap test edge move :: 85
+- within cheap test bounded :: 85
+- within cheap test upside :: 85
+- within cheap test blocker :: 85
+- across wildcard surprise :: 84
+- across wildcard unexpected :: 84
+- across wildcard odd :: 84
+- across wildcard path :: 84
+- across surprise unexpected :: 84
+- across surprise odd :: 84
+- across surprise path :: 84
+- across surprise unlock :: 84
+- across unexpected odd :: 84
+- across unexpected path :: 84
+- across unexpected unlock :: 84
+- across unexpected probe :: 84
+- across odd path :: 84
+- across odd unlock :: 84
+- across odd probe :: 84
+- across odd creative :: 84
+- across path unlock :: 84
+- across path probe :: 84
+- across path creative :: 84
+- across path angle :: 84
+- across unlock probe :: 84
+- across unlock creative :: 84
+- across unlock angle :: 84
+- across unlock nonobvious :: 84
+- across probe creative :: 84
+- across probe angle :: 83
+- across probe nonobvious :: 83
+- across probe strange :: 83
+- across creative angle :: 83
+- across creative nonobvious :: 83
+- across creative strange :: 83
+- across creative fit :: 83
+- across angle nonobvious :: 83
+- across angle strange :: 83
+- across angle fit :: 83
+- across angle side :: 83
+- across nonobvious strange :: 83
+- across nonobvious fit :: 83
+- across nonobvious side :: 83
+- across nonobvious door :: 83
+- across strange fit :: 83
+- across strange side :: 83
+- across strange door :: 83
+- across strange small :: 83
+- across fit side :: 83
+- across fit door :: 83
+- across fit small :: 83
+- across fit experiment :: 83
+- across side door :: 83
+- across side small :: 83
+- across side experiment :: 82
+- across side cheap :: 82
+- across door small :: 82
+- across door experiment :: 82
+- across door cheap :: 82
+- across door unusual :: 82
+- across small experiment :: 82
+- across small cheap :: 82
+- across small unusual :: 82
+- across small route :: 82
+- across experiment cheap :: 82
+- across experiment unusual :: 82
+- across experiment route :: 82
+- across experiment cheap test :: 82
+- across cheap unusual :: 82
+- across cheap route :: 82
+- across cheap cheap test :: 82
+- across cheap edge move :: 82
+- across unusual route :: 82
+- across unusual cheap test :: 82
+- across unusual edge move :: 82
+- across unusual bounded :: 82
+- across route cheap test :: 82
+- across route edge move :: 82
+- across route bounded :: 82
+- across route upside :: 81
+- across cheap test edge move :: 81
+- across cheap test bounded :: 81
+- across cheap test upside :: 81
+- across cheap test blocker :: 81
+- between wildcard surprise :: 81
+- between wildcard unexpected :: 81
+- between wildcard odd :: 81
+- between wildcard path :: 81
+- between surprise unexpected :: 81
+- between surprise odd :: 81
+- between surprise path :: 81
+- between surprise unlock :: 81
+- between unexpected odd :: 81
+- between unexpected path :: 81
+- between unexpected unlock :: 81
+- between unexpected probe :: 81
+- between odd path :: 81
+- between odd unlock :: 81
+- between odd probe :: 81
+- between odd creative :: 81
+- between path unlock :: 81
+- between path probe :: 81
+- between path creative :: 81
+- between path angle :: 81
+- between unlock probe :: 80
+- between unlock creative :: 80
+- between unlock angle :: 80
+- between unlock nonobvious :: 80
+- between probe creative :: 80
+- between probe angle :: 80
+- between probe nonobvious :: 80
+- between probe strange :: 80
+- between creative angle :: 80
+- between creative nonobvious :: 80
+- between creative strange :: 80
+- between creative fit :: 80
+- between angle nonobvious :: 80
+- between angle strange :: 80
+- between angle fit :: 80
+- between angle side :: 80
+- between nonobvious strange :: 80
+- between nonobvious fit :: 80
+- between nonobvious side :: 80
+- between nonobvious door :: 80
+- between strange fit :: 80
+- between strange side :: 80
+- between strange door :: 80
+- between strange small :: 80
+- between fit side :: 80
+- between fit door :: 79
+- between fit small :: 79
+- between fit experiment :: 79
+- between side door :: 79
+- between side small :: 79
+- between side experiment :: 79
+- between side cheap :: 79
+- between door small :: 79
+- between door experiment :: 79
+- between door cheap :: 79
+- between door unusual :: 79
+- between small experiment :: 79
+- between small cheap :: 79
+- between small unusual :: 79
+- between small route :: 79
+- between experiment cheap :: 79
+- between experiment unusual :: 79
+- between experiment route :: 79
+- between experiment cheap test :: 79
+- between cheap unusual :: 79
+- between cheap route :: 79
+- between cheap cheap test :: 79
+- between cheap edge move :: 79
+- between unusual route :: 79
+- between unusual cheap test :: 79
+- between unusual edge move :: 78
+- between unusual bounded :: 78
+- between route cheap test :: 78
+- between route edge move :: 78
+- between route bounded :: 78
+- between route upside :: 78
+- between cheap test edge move :: 78
+- between cheap test bounded :: 78
+- between cheap test upside :: 78
+- between cheap test blocker :: 78
+- through wildcard surprise :: 78
+- through wildcard unexpected :: 78
+- through wildcard odd :: 78
+- through wildcard path :: 78
+- through surprise unexpected :: 78
+- through surprise odd :: 78
+- through surprise path :: 78
+- through surprise unlock :: 78
+- through unexpected odd :: 78
+- through unexpected path :: 78
+- through unexpected unlock :: 78
+- through unexpected probe :: 78
+- through odd path :: 78
+- through odd unlock :: 78
+- through odd probe :: 78
+- through odd creative :: 77
+- through path unlock :: 77
+- through path probe :: 77
+- through path creative :: 77
+- through path angle :: 77
+- through unlock probe :: 77
+- through unlock creative :: 77
+- through unlock angle :: 77
+- through unlock nonobvious :: 77
+- through probe creative :: 77
+- through probe angle :: 77
+- through probe nonobvious :: 77
+- through probe strange :: 77
+- through creative angle :: 77
+- through creative nonobvious :: 77
+- through creative strange :: 77
+- through creative fit :: 77
+- through angle nonobvious :: 77
+- through angle strange :: 77
+- through angle fit :: 77
+- through angle side :: 77
+- through nonobvious strange :: 77
+- through nonobvious fit :: 77
+- through nonobvious side :: 77
+- through nonobvious door :: 77
+- through strange fit :: 76
+- through strange side :: 76
+- through strange door :: 76
+- through strange small :: 76
+- through fit side :: 76
+- through fit door :: 76
+- through fit small :: 76
+- through fit experiment :: 76
+- through side door :: 76
+- through side small :: 76
+- through side experiment :: 76
+- through side cheap :: 76
+- through door small :: 76
+- through door experiment :: 76
+- through door cheap :: 76
+- through door unusual :: 76
+- through small experiment :: 76
+- through small cheap :: 76
+- through small unusual :: 76
+- through small route :: 76
+- through experiment cheap :: 76
+- through experiment unusual :: 76
+- through experiment route :: 76
+- through experiment cheap test :: 76
+- through cheap unusual :: 76
+- through cheap route :: 75
+- through cheap cheap test :: 75
+- through cheap edge move :: 75
+- through unusual route :: 75
+- through unusual cheap test :: 75
+- through unusual edge move :: 75
+- through unusual bounded :: 75
+- through route cheap test :: 75
+- through route edge move :: 75
+- through route bounded :: 75
+- through route upside :: 75
+- through cheap test edge move :: 75
+- through cheap test bounded :: 75
+- through cheap test upside :: 75
+- through cheap test blocker :: 75
+- before wildcard surprise :: 75
+- before wildcard unexpected :: 75
+- before wildcard odd :: 75
+- before wildcard path :: 75
+- before surprise unexpected :: 75
+- before surprise odd :: 75
+- before surprise path :: 75
+- before surprise unlock :: 75
+- before unexpected odd :: 75
+- before unexpected path :: 75
+- before unexpected unlock :: 74
+- before unexpected probe :: 74
+- before odd path :: 74
+- before odd unlock :: 74
+- before odd probe :: 74
+- before odd creative :: 74
+- before path unlock :: 74
+- before path probe :: 74
+- before path creative :: 74
+- before path angle :: 74
+- before unlock probe :: 74
+- before unlock creative :: 74
+- before unlock angle :: 74
+- before unlock nonobvious :: 74
+- before probe creative :: 74
+- before probe angle :: 74
+- before probe nonobvious :: 74
+- before probe strange :: 74
+- before creative angle :: 74
+- before creative nonobvious :: 74
+- before creative strange :: 74
+- before creative fit :: 74
+- before angle nonobvious :: 74
+- before angle strange :: 74
+- before angle fit :: 74
+- before angle side :: 73
+- before nonobvious strange :: 73
+- before nonobvious fit :: 73
+- before nonobvious side :: 73
+- before nonobvious door :: 73
+- before strange fit :: 73
+- before strange side :: 73
+- before strange door :: 73
+- before strange small :: 73
+- before fit side :: 73
+- before fit door :: 73
+- before fit small :: 73
+- before fit experiment :: 73
+- before side door :: 73
+- before side small :: 73
+- before side experiment :: 73
+- before side cheap :: 73
+- before door small :: 73
+- before door experiment :: 73
+- before door cheap :: 73
+- before door unusual :: 73
+- before small experiment :: 73
+- before small cheap :: 73
+- before small unusual :: 73
+- before small route :: 73
+- before experiment cheap :: 72
+- before experiment unusual :: 72
+- before experiment route :: 72
+- before experiment cheap test :: 72
+- before cheap unusual :: 72
+- before cheap route :: 72
+- before cheap cheap test :: 72
+- before cheap edge move :: 72
+- before unusual route :: 72
+- before unusual cheap test :: 72
+- before unusual edge move :: 72
+- before unusual bounded :: 72
+- before route cheap test :: 72
+- before route edge move :: 72
+- before route bounded :: 72
+- before route upside :: 72
+- before cheap test edge move :: 72
+- before cheap test bounded :: 72
+- before cheap test upside :: 72
+- before cheap test blocker :: 72
+- after wildcard surprise :: 72
+- after wildcard unexpected :: 72
+- after wildcard odd :: 72
+- after wildcard path :: 72
+- after surprise unexpected :: 72
+- after surprise odd :: 71
+- after surprise path :: 71
+- after surprise unlock :: 71
+- after unexpected odd :: 71
+- after unexpected path :: 71
+- after unexpected unlock :: 71
+- after unexpected probe :: 71
+- after odd path :: 71
+- after odd unlock :: 71
+- after odd probe :: 71
+- after odd creative :: 71
+- after path unlock :: 71
+- after path probe :: 71
+- after path creative :: 71
+- after path angle :: 71
+- after unlock probe :: 71
+- after unlock creative :: 71
+- after unlock angle :: 71
+- after unlock nonobvious :: 71
+- after probe creative :: 71
+- after probe angle :: 71
+- after probe nonobvious :: 71
+- after probe strange :: 71
+- after creative angle :: 71
+- after creative nonobvious :: 71
+- after creative strange :: 70
+- after creative fit :: 70
+- after angle nonobvious :: 70
+- after angle strange :: 70
+- after angle fit :: 70
+- after angle side :: 70
+- after nonobvious strange :: 70
+- after nonobvious fit :: 70
+- after nonobvious side :: 70
+- after nonobvious door :: 70
+- after strange fit :: 70
+- after strange side :: 70
+- after strange door :: 70
+- after strange small :: 70
+- after fit side :: 70
+- after fit door :: 70
+- after fit small :: 70
+- after fit experiment :: 70
+- after side door :: 70
+- after side small :: 70
+- after side experiment :: 70
+- after side cheap :: 70
+- after door small :: 70
+- after door experiment :: 70
+- after door cheap :: 70
+- after door unusual :: 69
+- after small experiment :: 69
+- after small cheap :: 69
+- after small unusual :: 69
+- after small route :: 69
+- after experiment cheap :: 69
+- after experiment unusual :: 69
+- after experiment route :: 69
+- after experiment cheap test :: 69
+- after cheap unusual :: 69
+- after cheap route :: 69
+- after cheap cheap test :: 69
+- after cheap edge move :: 69
+- after unusual route :: 69
+- after unusual cheap test :: 69
+- after unusual edge move :: 69
+- after unusual bounded :: 69
+- after route cheap test :: 69
+- after route edge move :: 69
+- after route bounded :: 69
+- after route upside :: 69
+- after cheap test edge move :: 69
+- after cheap test bounded :: 69
+- after cheap test upside :: 69
+- after cheap test blocker :: 69
+- during wildcard surprise :: 68
+- during wildcard unexpected :: 68
+- during wildcard odd :: 68
+- during wildcard path :: 68
+- during surprise unexpected :: 68
+- during surprise odd :: 68
+- during surprise path :: 68
+- during surprise unlock :: 68
+- during unexpected odd :: 68
+- during unexpected path :: 68
+- during unexpected unlock :: 68
+- during unexpected probe :: 68
+- during odd path :: 68
+- during odd unlock :: 68
+- during odd probe :: 68
+- during odd creative :: 68
+- during path unlock :: 68
+- during path probe :: 68
+- during path creative :: 68
+- during path angle :: 68
+- during unlock probe :: 68
+- during unlock creative :: 68
+- during unlock angle :: 68
+- during unlock nonobvious :: 68
+- during probe creative :: 68
+- during probe angle :: 67
+- during probe nonobvious :: 67
+- during probe strange :: 67
+- during creative angle :: 67
+- during creative nonobvious :: 67
+- during creative strange :: 67
+- during creative fit :: 67
+- during angle nonobvious :: 67
+- during angle strange :: 67
+- during angle fit :: 67
+- during angle side :: 67
+- during nonobvious strange :: 67
+- during nonobvious fit :: 67
+- during nonobvious side :: 67
+- during nonobvious door :: 67
+- during strange fit :: 67
+- during strange side :: 67
+- during strange door :: 67
+- during strange small :: 67
+- during fit side :: 67
+- during fit door :: 67
+- during fit small :: 67
+- during fit experiment :: 67
+- during side door :: 67
+- during side small :: 67
+- during side experiment :: 66
+- during side cheap :: 66
+- during door small :: 66
+- during door experiment :: 66
+- during door cheap :: 66
+- during door unusual :: 66
+- during small experiment :: 66
+- during small cheap :: 66
+- during small unusual :: 66
+- during small route :: 66
+- during experiment cheap :: 66
+- during experiment unusual :: 66
+- during experiment route :: 66
+- during experiment cheap test :: 66
+- during cheap unusual :: 66
+- during cheap route :: 66
+- during cheap cheap test :: 66
+- during cheap edge move :: 66
+- during unusual route :: 66
+- during unusual cheap test :: 66
+- during unusual edge move :: 66
+- during unusual bounded :: 66
+- during route cheap test :: 66
+- during route edge move :: 66
+- during route bounded :: 66
+- during route upside :: 65
+- during cheap test edge move :: 65
+- during cheap test bounded :: 65
+- during cheap test upside :: 65
+- during cheap test blocker :: 65
+- until wildcard surprise :: 65
+- until wildcard unexpected :: 65
+- until wildcard odd :: 65
+- until wildcard path :: 65
+- until surprise unexpected :: 65
+- until surprise odd :: 65
+- until surprise path :: 65
+- until surprise unlock :: 65
+- until unexpected odd :: 65
+- until unexpected path :: 65
+- until unexpected unlock :: 65
+- until unexpected probe :: 65
+- until odd path :: 65
+- until odd unlock :: 65
+- until odd probe :: 65
+- until odd creative :: 65
+- until path unlock :: 65
+- until path probe :: 65
+- until path creative :: 65
+- until path angle :: 65
+- until unlock probe :: 64
+- until unlock creative :: 64
+- until unlock angle :: 64
+- until unlock nonobvious :: 64
+- until probe creative :: 64
+- until probe angle :: 64
+- until probe nonobvious :: 64
+- until probe strange :: 64
+- until creative angle :: 64
+- until creative nonobvious :: 64
+- until creative strange :: 64
+- until creative fit :: 64
+- until angle nonobvious :: 64
+- until angle strange :: 64
+- until angle fit :: 64
+- until angle side :: 64
+- until nonobvious strange :: 64
+- until nonobvious fit :: 64
+- until nonobvious side :: 64
+- until nonobvious door :: 64
+- until strange fit :: 64
+- until strange side :: 64
+- until strange door :: 64
+- until strange small :: 64
+- until fit side :: 64
+- until fit door :: 63
+- until fit small :: 63
+- until fit experiment :: 63
+- until side door :: 63
+- until side small :: 63
+- until side experiment :: 63
+- until side cheap :: 63
+- until door small :: 63
+- until door experiment :: 63
+- until door cheap :: 63
+- until door unusual :: 63
+- until small experiment :: 63
+- until small cheap :: 63
+- until small unusual :: 63
+- until small route :: 63
+- until experiment cheap :: 63
+- until experiment unusual :: 63
+- until experiment route :: 63
+- until experiment cheap test :: 63
+- until cheap unusual :: 63
+- until cheap route :: 63
+- until cheap cheap test :: 63
+- until cheap edge move :: 63
+- until unusual route :: 63
+- until unusual cheap test :: 63
+- until unusual edge move :: 62
+- until unusual bounded :: 62
+- until route cheap test :: 62
+- until route edge move :: 62
+- until route bounded :: 62
+- until route upside :: 62
+- until cheap test edge move :: 62
+- until cheap test bounded :: 62
+- until cheap test upside :: 62
+- until cheap test blocker :: 62
+- since wildcard surprise :: 62
+- since wildcard unexpected :: 62
+- since wildcard odd :: 62
+- since wildcard path :: 62
+- since surprise unexpected :: 62
+- since surprise odd :: 62
+- since surprise path :: 62
+- since surprise unlock :: 62
+- since unexpected odd :: 62
+- since unexpected path :: 62
+- since unexpected unlock :: 62
+- since unexpected probe :: 62
+- since odd path :: 62
+- since odd unlock :: 62
+- since odd probe :: 62
+- since odd creative :: 61
+- since path unlock :: 61
+- since path probe :: 61
+- since path creative :: 61
+- since path angle :: 61
+- since unlock probe :: 61
+- since unlock creative :: 61
+- since unlock angle :: 61
+- since unlock nonobvious :: 61
+- since probe creative :: 61
+- since probe angle :: 61
+- since probe nonobvious :: 61
+- since probe strange :: 61
+- since creative angle :: 61
+- since creative nonobvious :: 61
+- since creative strange :: 61
+- since creative fit :: 61
+- since angle nonobvious :: 61
+- since angle strange :: 61
+- since angle fit :: 61
+- since angle side :: 61
+- since nonobvious strange :: 61
+- since nonobvious fit :: 61
+- since nonobvious side :: 61
+- since nonobvious door :: 61
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- probe
+- scout
+- excursion
+- wedge
+- unlock
+
+### Couplings
+
+- off-axis probe
+- scout path
+- unlock wedge
+
+### Triplets
+
+- probe scout unlock

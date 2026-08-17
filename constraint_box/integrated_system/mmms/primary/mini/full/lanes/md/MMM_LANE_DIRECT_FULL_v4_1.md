@@ -1,0 +1,1933 @@
+# 🎯 Direct Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this lane. It is normally surfaced through Follow-up.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `DIRECT` and remapped to v4.1 canon category `lanes`.
+
+---
+
+# MMM_LANE_DIRECT_FULL_v4_1
+
+## words
+
+- direct :: 100
+- next :: 100
+- move :: 100
+- smallest :: 100
+- immediate :: 100
+- action :: 100
+- shortest :: 100
+- path :: 100
+- bounded :: 100
+- deliverable :: 100
+- acceptance :: 100
+- this :: 100
+- landed :: 100
+- blocker :: 100
+- now :: 100
+- first :: 100
+- packet :: 100
+- minimal :: 100
+- patch :: 100
+- artifact :: 100
+- done condition :: 100
+- step :: 100
+- result :: 100
+- concrete :: 100
+- target :: 99
+- closeout :: 99
+- useful :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 99
+- among :: 99
+- inside :: 99
+- outside :: 99
+- near :: 99
+- beside :: 99
+- over :: 99
+- from :: 99
+- with :: 99
+- without :: 99
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- finite :: 98
+- open :: 98
+- live :: 98
+- distinct :: 98
+- plain :: 98
+- observed :: 98
+- inferred :: 98
+- known :: 98
+- unknown :: 98
+- checked :: 98
+- missing :: 98
+- stale :: 98
+- narrow :: 98
+- small :: 98
+- warm :: 98
+- careful :: 98
+- honest :: 98
+- prior :: 97
+- later :: 97
+- separate :: 97
+- together :: 97
+- apart :: 97
+- held :: 97
+- returned :: 97
+- found :: 97
+- compared :: 97
+- measured :: 97
+- named :: 97
+- used :: 97
+- fit :: 97
+- viable :: 97
+- different :: 97
+- alternate :: 97
+- branch :: 97
+- surface :: 97
+- receipt :: 97
+- trace :: 97
+- support :: 97
+- evidence :: 97
+- scope :: 97
+- boundary :: 97
+- gate :: 97
+- guard :: 96
+- rung :: 96
+- status :: 96
+- candidate :: 96
+- survivor :: 96
+- witness :: 96
+- probe :: 96
+- constraint :: 96
+- name :: 96
+- term :: 96
+- use :: 96
+- role :: 96
+- practice :: 96
+- custom :: 96
+- habit :: 96
+- experience :: 96
+- observation :: 96
+- impression :: 96
+- idea :: 96
+- perception :: 96
+- conjunction :: 96
+- resemblance :: 96
+- relation :: 96
+- probability :: 96
+- particular :: 96
+- predicate :: 95
+- class :: 95
+- model :: 95
+- solver :: 95
+- satisfiable :: 95
+- unsatisfiable :: 95
+- countermodel :: 95
+- counterexample :: 95
+- equivalence :: 95
+- indistinguishable :: 95
+- readout :: 95
+- measure :: 95
+- measurement :: 95
+- operation :: 95
+- procedure :: 95
+- instrument :: 95
+- experiment :: 95
+- test :: 95
+- check :: 95
+- verify :: 95
+- compare :: 95
+- sample :: 95
+- route :: 95
+- lane :: 95
+- voice :: 95
+- lens :: 94
+- council :: 94
+- audit :: 94
+- finding :: 94
+- deferred :: 94
+- blocked :: 94
+- spawned :: 94
+- diagnostic :: 94
+- untried :: 94
+- preload :: 94
+- salience :: 94
+- language :: 94
+- body :: 94
+- during :: 94
+- since :: 94
+- by :: 94
+- toward :: 94
+- relative :: 94
+- according :: 94
+- locally :: 94
+- jointly :: 94
+- separately :: 94
+- rather :: 94
+- instead :: 94
+- still :: 94
+- often :: 93
+- sometimes :: 93
+- usually :: 93
+- seems :: 93
+- appears :: 93
+
+## couplings
+
+- under next :: 100
+- within next :: 100
+- across next :: 100
+- between next :: 100
+- through next :: 100
+- before next :: 100
+- after next :: 100
+- until next :: 100
+- where next :: 100
+- while next :: 100
+- next evidence :: 100
+- next support :: 100
+- next path :: 100
+- next surface :: 100
+- next packet :: 100
+- next receipt :: 100
+- next trace :: 100
+- next result :: 100
+- next scope :: 100
+- next boundary :: 100
+- next status :: 100
+- next candidate :: 100
+- next witness :: 100
+- next probe :: 100
+- next constraint :: 100
+- check next :: 99
+- compare next :: 99
+- observe next :: 99
+- measure next :: 99
+- test next :: 99
+- verify next :: 99
+- hold next :: 99
+- preserve next :: 99
+- split next :: 99
+- narrow next :: 99
+- under bounded :: 99
+- within bounded :: 99
+- across bounded :: 99
+- between bounded :: 99
+- through bounded :: 99
+- before bounded :: 99
+- after bounded :: 99
+- until bounded :: 99
+- where bounded :: 99
+- while bounded :: 99
+- bounded evidence :: 99
+- bounded support :: 99
+- bounded path :: 99
+- bounded surface :: 99
+- bounded packet :: 99
+- bounded receipt :: 98
+- bounded trace :: 98
+- bounded result :: 98
+- bounded scope :: 98
+- bounded boundary :: 98
+- bounded status :: 98
+- bounded candidate :: 98
+- bounded witness :: 98
+- bounded probe :: 98
+- bounded constraint :: 98
+- check bounded :: 98
+- compare bounded :: 98
+- observe bounded :: 98
+- measure bounded :: 98
+- test bounded :: 98
+- verify bounded :: 98
+- hold bounded :: 98
+- preserve bounded :: 98
+- split bounded :: 98
+- narrow bounded :: 98
+- under move :: 98
+- within move :: 98
+- across move :: 98
+- between move :: 98
+- through move :: 98
+- before move :: 97
+- after move :: 97
+- until move :: 97
+- where move :: 97
+- while move :: 97
+- move evidence :: 97
+- move support :: 97
+- move path :: 97
+- move surface :: 97
+- move packet :: 97
+- move receipt :: 97
+- move trace :: 97
+- move result :: 97
+- move scope :: 97
+- move boundary :: 97
+- move status :: 97
+- move candidate :: 97
+- move witness :: 97
+- move probe :: 97
+- move constraint :: 97
+- check move :: 97
+- compare move :: 97
+- observe move :: 97
+- measure move :: 97
+- test move :: 97
+- verify move :: 96
+- hold move :: 96
+- preserve move :: 96
+- split move :: 96
+- narrow move :: 96
+- under shortest :: 96
+- within shortest :: 96
+- across shortest :: 96
+- between shortest :: 96
+- through shortest :: 96
+- before shortest :: 96
+- after shortest :: 96
+- until shortest :: 96
+- where shortest :: 96
+- while shortest :: 96
+- shortest evidence :: 96
+- shortest support :: 96
+- shortest path :: 96
+- shortest surface :: 96
+- shortest packet :: 96
+- shortest receipt :: 96
+- shortest trace :: 96
+- shortest result :: 96
+- shortest scope :: 96
+- shortest boundary :: 96
+- shortest status :: 95
+- shortest candidate :: 95
+- shortest witness :: 95
+- shortest probe :: 95
+- shortest constraint :: 95
+- check shortest :: 95
+- compare shortest :: 95
+- observe shortest :: 95
+- measure shortest :: 95
+- test shortest :: 95
+- verify shortest :: 95
+- hold shortest :: 95
+- preserve shortest :: 95
+- split shortest :: 95
+- narrow shortest :: 95
+- under path :: 95
+- within path :: 95
+- across path :: 95
+- between path :: 95
+- through path :: 95
+- before path :: 95
+- after path :: 95
+- until path :: 95
+- where path :: 95
+- while path :: 95
+- path evidence :: 94
+- path support :: 94
+- path path :: 94
+- path surface :: 94
+- path packet :: 94
+- path receipt :: 94
+- path trace :: 94
+- path result :: 94
+- path scope :: 94
+- path boundary :: 94
+- path status :: 94
+- path candidate :: 94
+- path witness :: 94
+- path probe :: 94
+- path constraint :: 94
+- check path :: 94
+- compare path :: 94
+- observe path :: 94
+- measure path :: 94
+- test path :: 94
+- verify path :: 94
+- hold path :: 94
+- preserve path :: 94
+- split path :: 94
+- narrow path :: 94
+- under action :: 93
+- within action :: 93
+- across action :: 93
+- between action :: 93
+- through action :: 93
+- before action :: 93
+- after action :: 93
+- until action :: 93
+- where action :: 93
+- while action :: 93
+- action evidence :: 93
+- action support :: 93
+- action path :: 93
+- action surface :: 93
+- action packet :: 93
+- action receipt :: 93
+- action trace :: 93
+- action result :: 93
+- action scope :: 93
+- action boundary :: 93
+- action status :: 93
+- action candidate :: 93
+- action witness :: 93
+- action probe :: 93
+- action constraint :: 93
+- check action :: 92
+- compare action :: 92
+- observe action :: 92
+- measure action :: 92
+- test action :: 92
+- verify action :: 92
+- hold action :: 92
+- preserve action :: 92
+- split action :: 92
+- narrow action :: 92
+- under artifact :: 92
+- within artifact :: 92
+- across artifact :: 92
+- between artifact :: 92
+- through artifact :: 92
+- before artifact :: 92
+- after artifact :: 92
+- until artifact :: 92
+- where artifact :: 92
+- while artifact :: 92
+- artifact evidence :: 92
+- artifact support :: 92
+- artifact path :: 92
+- artifact surface :: 92
+- artifact packet :: 92
+- artifact receipt :: 91
+- artifact trace :: 91
+- artifact result :: 91
+- artifact scope :: 91
+- artifact boundary :: 91
+- artifact status :: 91
+- artifact candidate :: 91
+- artifact witness :: 91
+- artifact probe :: 91
+- artifact constraint :: 91
+- check artifact :: 91
+- compare artifact :: 91
+- observe artifact :: 91
+- measure artifact :: 91
+- test artifact :: 91
+- verify artifact :: 91
+- hold artifact :: 91
+- preserve artifact :: 91
+- split artifact :: 91
+- narrow artifact :: 91
+- under deliverable :: 91
+- within deliverable :: 91
+- across deliverable :: 91
+- between deliverable :: 91
+- through deliverable :: 91
+- before deliverable :: 90
+- after deliverable :: 90
+- until deliverable :: 90
+- where deliverable :: 90
+- while deliverable :: 90
+- deliverable evidence :: 90
+- deliverable support :: 90
+- deliverable path :: 90
+- deliverable surface :: 90
+- deliverable packet :: 90
+- deliverable receipt :: 90
+- deliverable trace :: 90
+- deliverable result :: 90
+- deliverable scope :: 90
+- deliverable boundary :: 90
+- deliverable status :: 90
+- deliverable candidate :: 90
+- deliverable witness :: 90
+- deliverable probe :: 90
+- deliverable constraint :: 90
+- check deliverable :: 90
+- compare deliverable :: 90
+- observe deliverable :: 90
+- measure deliverable :: 90
+- test deliverable :: 90
+- verify deliverable :: 89
+- hold deliverable :: 89
+- preserve deliverable :: 89
+- split deliverable :: 89
+- narrow deliverable :: 89
+- under immediate :: 89
+- within immediate :: 89
+- across immediate :: 89
+- between immediate :: 89
+- through immediate :: 89
+- before immediate :: 89
+- after immediate :: 89
+- until immediate :: 89
+- where immediate :: 89
+- while immediate :: 89
+- immediate evidence :: 89
+- immediate support :: 89
+- immediate path :: 89
+- immediate surface :: 89
+- immediate packet :: 89
+- immediate receipt :: 89
+- immediate trace :: 89
+- immediate result :: 89
+- immediate scope :: 89
+- immediate boundary :: 89
+- immediate status :: 88
+- immediate candidate :: 88
+- immediate witness :: 88
+- immediate probe :: 88
+- immediate constraint :: 88
+- check immediate :: 88
+- compare immediate :: 88
+- observe immediate :: 88
+- measure immediate :: 88
+- test immediate :: 88
+- verify immediate :: 88
+- hold immediate :: 88
+- preserve immediate :: 88
+- split immediate :: 88
+- narrow immediate :: 88
+- under result :: 88
+- within result :: 88
+- across result :: 88
+- between result :: 88
+- through result :: 88
+- before result :: 88
+- after result :: 88
+- until result :: 88
+- where result :: 88
+- while result :: 88
+- result evidence :: 87
+- result support :: 87
+- result path :: 87
+- result surface :: 87
+- result packet :: 87
+- result receipt :: 87
+- result trace :: 87
+- result result :: 87
+- result scope :: 87
+- result boundary :: 87
+- result status :: 87
+- result candidate :: 87
+- result witness :: 87
+- result probe :: 87
+- result constraint :: 87
+- done condition :: 87
+- next :: 87
+- smallest :: 87
+- bounded :: 87
+- direct :: 87
+- artifact :: 87
+- deliverable :: 87
+- acceptance :: 87
+- blocker :: 87
+- path :: 87
+- step :: 86
+- now :: 86
+- under direct :: 86
+- under smallest :: 86
+- under acceptance :: 86
+- under this :: 86
+- under landed :: 86
+- under complete :: 86
+- under blocker :: 86
+- under now :: 86
+- under first :: 86
+- under packet :: 86
+- under minimal :: 86
+- under patch :: 86
+- within direct :: 86
+- within smallest :: 86
+- within acceptance :: 86
+- within this :: 86
+- within landed :: 86
+- within complete :: 86
+- within blocker :: 86
+- within now :: 86
+- within first :: 86
+- within packet :: 86
+- within minimal :: 86
+- within patch :: 85
+- across direct :: 85
+- across smallest :: 85
+- across acceptance :: 85
+- across this :: 85
+- across landed :: 85
+- across complete :: 85
+- across blocker :: 85
+- across now :: 85
+- across first :: 85
+- across packet :: 85
+- across minimal :: 85
+- across patch :: 85
+- between direct :: 85
+- between smallest :: 85
+- between acceptance :: 85
+- between this :: 85
+- between landed :: 85
+- between complete :: 85
+- between blocker :: 85
+- between now :: 85
+- between first :: 85
+- between packet :: 85
+- between minimal :: 85
+- between patch :: 85
+- through direct :: 84
+- through smallest :: 84
+- through acceptance :: 84
+- through this :: 84
+- through landed :: 84
+- through complete :: 84
+- through blocker :: 84
+- through now :: 84
+- through first :: 84
+- through packet :: 84
+- through minimal :: 84
+- through patch :: 84
+- before direct :: 84
+- before smallest :: 84
+- before acceptance :: 84
+- before this :: 84
+- before landed :: 84
+- before complete :: 84
+- before blocker :: 84
+- before now :: 84
+- before first :: 84
+- before packet :: 84
+- before minimal :: 84
+- before patch :: 84
+- after direct :: 84
+- after smallest :: 83
+- after acceptance :: 83
+- after this :: 83
+- after landed :: 83
+- after complete :: 83
+- after blocker :: 83
+- after now :: 83
+- after first :: 83
+- after packet :: 83
+- after minimal :: 83
+- after patch :: 83
+- during direct :: 83
+- during next :: 83
+- during move :: 83
+- during smallest :: 83
+- during immediate :: 83
+- during action :: 83
+- during shortest :: 83
+- during path :: 83
+- during bounded :: 83
+- during deliverable :: 83
+- during acceptance :: 83
+- during this :: 83
+- during landed :: 83
+- during complete :: 83
+- during blocker :: 82
+- during now :: 82
+- during first :: 82
+- during packet :: 82
+- during minimal :: 82
+- during patch :: 82
+- until direct :: 82
+- until smallest :: 82
+- until acceptance :: 82
+- until this :: 82
+- until landed :: 82
+- until complete :: 82
+- until blocker :: 82
+- until now :: 82
+- until first :: 82
+- until packet :: 82
+- until minimal :: 82
+- until patch :: 82
+- since direct :: 82
+- since next :: 82
+- since move :: 82
+- since smallest :: 82
+- since immediate :: 82
+- since action :: 82
+- since shortest :: 82
+- since path :: 81
+- since bounded :: 81
+- since deliverable :: 81
+- since acceptance :: 81
+- since this :: 81
+- since landed :: 81
+- since complete :: 81
+- since blocker :: 81
+- since now :: 81
+- since first :: 81
+- since packet :: 81
+- since minimal :: 81
+- since patch :: 81
+- from direct :: 81
+- from next :: 81
+- from move :: 81
+- from smallest :: 81
+- from immediate :: 81
+- from action :: 81
+- from shortest :: 81
+- from path :: 81
+- from bounded :: 81
+- from deliverable :: 81
+- from acceptance :: 81
+- from this :: 81
+- from landed :: 80
+- from complete :: 80
+- from blocker :: 80
+- from now :: 80
+- from first :: 80
+- from packet :: 80
+- from minimal :: 80
+- from patch :: 80
+- by direct :: 80
+- by next :: 80
+- by move :: 80
+- by smallest :: 80
+- by immediate :: 80
+- by action :: 80
+- by shortest :: 80
+- by path :: 80
+- by bounded :: 80
+- by deliverable :: 80
+- by acceptance :: 80
+- by this :: 80
+- by landed :: 80
+- by complete :: 80
+- by blocker :: 80
+- by now :: 80
+- by first :: 80
+- by packet :: 79
+- by minimal :: 79
+- by patch :: 79
+- with direct :: 79
+- with next :: 79
+- with move :: 79
+- with smallest :: 79
+- with immediate :: 79
+- with action :: 79
+- with shortest :: 79
+- with path :: 79
+- with bounded :: 79
+- with deliverable :: 79
+- with acceptance :: 79
+- with this :: 79
+- with landed :: 79
+- with complete :: 79
+- with blocker :: 79
+- with now :: 79
+- with first :: 79
+- with packet :: 79
+- with minimal :: 79
+- with patch :: 79
+- without direct :: 79
+- without next :: 79
+- without move :: 78
+- without smallest :: 78
+- without immediate :: 78
+- without action :: 78
+- without shortest :: 78
+- without path :: 78
+- without bounded :: 78
+- without deliverable :: 78
+- without acceptance :: 78
+- without this :: 78
+- without landed :: 78
+- without complete :: 78
+- without blocker :: 78
+- without now :: 78
+- without first :: 78
+- without packet :: 78
+- without minimal :: 78
+- without patch :: 78
+- against direct :: 78
+- against next :: 78
+- against move :: 78
+- against smallest :: 78
+- against immediate :: 78
+- against action :: 78
+- against shortest :: 78
+- against path :: 77
+- against bounded :: 77
+- against deliverable :: 77
+- against acceptance :: 77
+- against this :: 77
+- against landed :: 77
+- against complete :: 77
+- against blocker :: 77
+- against now :: 77
+- against first :: 77
+- against packet :: 77
+- against minimal :: 77
+- against patch :: 77
+- toward direct :: 77
+- toward next :: 77
+- toward move :: 77
+- toward smallest :: 77
+- toward immediate :: 77
+- toward action :: 77
+- toward shortest :: 77
+- toward path :: 77
+- toward bounded :: 77
+- toward deliverable :: 77
+- toward acceptance :: 77
+- toward this :: 77
+- toward landed :: 76
+- toward complete :: 76
+- toward blocker :: 76
+- toward now :: 76
+- toward first :: 76
+- toward packet :: 76
+- toward minimal :: 76
+- toward patch :: 76
+- near direct :: 76
+- near next :: 76
+- near move :: 76
+- near smallest :: 76
+- near immediate :: 76
+- near action :: 76
+- near shortest :: 76
+- near path :: 76
+- near bounded :: 76
+- near deliverable :: 76
+- near acceptance :: 76
+- near this :: 76
+- near landed :: 76
+- near complete :: 76
+- near blocker :: 76
+- near now :: 76
+- near first :: 76
+- near packet :: 75
+- near minimal :: 75
+- near patch :: 75
+- relative direct :: 75
+- relative next :: 75
+- relative move :: 75
+- relative smallest :: 75
+- relative immediate :: 75
+- relative action :: 75
+- relative shortest :: 75
+- relative path :: 75
+- relative bounded :: 75
+- relative deliverable :: 75
+- relative acceptance :: 75
+- relative this :: 75
+- relative landed :: 75
+- relative complete :: 75
+- relative blocker :: 75
+- relative now :: 75
+- relative first :: 75
+- relative packet :: 75
+- relative minimal :: 75
+- relative patch :: 75
+- direct next :: 75
+- direct move :: 75
+- direct smallest :: 74
+- direct immediate :: 74
+- direct action :: 74
+- direct shortest :: 74
+- direct path :: 74
+- direct bounded :: 74
+- direct deliverable :: 74
+- direct acceptance :: 74
+- direct this :: 74
+- next move :: 74
+- next smallest :: 74
+- next immediate :: 74
+- next action :: 74
+- next shortest :: 74
+- next bounded :: 74
+- next deliverable :: 74
+- next acceptance :: 74
+- next this :: 74
+- next landed :: 74
+- move smallest :: 74
+- move immediate :: 74
+- move action :: 74
+- move shortest :: 74
+- move bounded :: 74
+- move deliverable :: 74
+- move acceptance :: 73
+- move this :: 73
+- move landed :: 73
+- move complete :: 73
+- smallest immediate :: 73
+- smallest action :: 73
+- smallest shortest :: 73
+- smallest path :: 73
+- smallest bounded :: 73
+- smallest deliverable :: 73
+- smallest acceptance :: 73
+- smallest this :: 73
+- smallest landed :: 73
+- smallest complete :: 73
+- smallest blocker :: 73
+- immediate action :: 73
+- immediate shortest :: 73
+- immediate bounded :: 73
+- immediate deliverable :: 73
+- immediate acceptance :: 73
+- immediate this :: 73
+- immediate landed :: 73
+- immediate complete :: 73
+- immediate blocker :: 73
+- immediate now :: 73
+
+## triplets
+
+- under current next :: 100
+- under local next :: 100
+- under bounded next :: 100
+- under finite next :: 100
+- under open next :: 100
+- under live next :: 100
+- within current next :: 100
+- within local next :: 100
+- within bounded next :: 100
+- within finite next :: 100
+- within open next :: 100
+- within live next :: 100
+- across current next :: 100
+- across local next :: 100
+- across bounded next :: 100
+- across finite next :: 100
+- across open next :: 100
+- across live next :: 100
+- between current next :: 100
+- between local next :: 100
+- between bounded next :: 100
+- between finite next :: 100
+- between open next :: 100
+- between live next :: 100
+- through current next :: 100
+- through local next :: 99
+- through bounded next :: 99
+- through finite next :: 99
+- through open next :: 99
+- through live next :: 99
+- before current next :: 99
+- before local next :: 99
+- before bounded next :: 99
+- before finite next :: 99
+- before open next :: 99
+- before live next :: 99
+- next evidence path :: 99
+- next support path :: 99
+- next path path :: 99
+- next surface path :: 99
+- next packet path :: 99
+- next receipt path :: 99
+- next trace path :: 99
+- next result path :: 99
+- next scope path :: 99
+- next boundary path :: 99
+- check next receipt :: 99
+- compare next receipt :: 99
+- observe next receipt :: 99
+- measure next receipt :: 99
+- test next receipt :: 98
+- verify next receipt :: 98
+- hold next receipt :: 98
+- preserve next receipt :: 98
+- under current bounded :: 98
+- under local bounded :: 98
+- under bounded bounded :: 98
+- under finite bounded :: 98
+- under open bounded :: 98
+- under live bounded :: 98
+- within current bounded :: 98
+- within local bounded :: 98
+- within bounded bounded :: 98
+- within finite bounded :: 98
+- within open bounded :: 98
+- within live bounded :: 98
+- across current bounded :: 98
+- across local bounded :: 98
+- across bounded bounded :: 98
+- across finite bounded :: 98
+- across open bounded :: 98
+- across live bounded :: 98
+- between current bounded :: 98
+- between local bounded :: 98
+- between bounded bounded :: 98
+- between finite bounded :: 97
+- between open bounded :: 97
+- between live bounded :: 97
+- through current bounded :: 97
+- through local bounded :: 97
+- through bounded bounded :: 97
+- through finite bounded :: 97
+- through open bounded :: 97
+- through live bounded :: 97
+- before current bounded :: 97
+- before local bounded :: 97
+- before bounded bounded :: 97
+- before finite bounded :: 97
+- before open bounded :: 97
+- before live bounded :: 97
+- bounded evidence path :: 97
+- bounded support path :: 97
+- bounded path path :: 97
+- bounded surface path :: 97
+- bounded packet path :: 97
+- bounded receipt path :: 97
+- bounded trace path :: 97
+- bounded result path :: 97
+- bounded scope path :: 97
+- bounded boundary path :: 97
+- check bounded receipt :: 96
+- compare bounded receipt :: 96
+- observe bounded receipt :: 96
+- measure bounded receipt :: 96
+- test bounded receipt :: 96
+- verify bounded receipt :: 96
+- hold bounded receipt :: 96
+- preserve bounded receipt :: 96
+- under current move :: 96
+- under local move :: 96
+- under bounded move :: 96
+- under finite move :: 96
+- under open move :: 96
+- under live move :: 96
+- within current move :: 96
+- within local move :: 96
+- within bounded move :: 96
+- within finite move :: 96
+- within open move :: 96
+- within live move :: 96
+- across current move :: 96
+- across local move :: 96
+- across bounded move :: 96
+- across finite move :: 96
+- across open move :: 96
+- across live move :: 95
+- between current move :: 95
+- between local move :: 95
+- between bounded move :: 95
+- between finite move :: 95
+- between open move :: 95
+- between live move :: 95
+- through current move :: 95
+- through local move :: 95
+- through bounded move :: 95
+- through finite move :: 95
+- through open move :: 95
+- through live move :: 95
+- before current move :: 95
+- before local move :: 95
+- before bounded move :: 95
+- before finite move :: 95
+- before open move :: 95
+- before live move :: 95
+- move evidence path :: 95
+- move support path :: 95
+- move path path :: 95
+- move surface path :: 95
+- move packet path :: 95
+- move receipt path :: 95
+- move trace path :: 94
+- move result path :: 94
+- move scope path :: 94
+- move boundary path :: 94
+- check move receipt :: 94
+- compare move receipt :: 94
+- observe move receipt :: 94
+- measure move receipt :: 94
+- test move receipt :: 94
+- verify move receipt :: 94
+- hold move receipt :: 94
+- preserve move receipt :: 94
+- under current shortest :: 94
+- under local shortest :: 94
+- under bounded shortest :: 94
+- under finite shortest :: 94
+- under open shortest :: 94
+- under live shortest :: 94
+- within current shortest :: 94
+- within local shortest :: 94
+- within bounded shortest :: 94
+- within finite shortest :: 94
+- within open shortest :: 94
+- within live shortest :: 94
+- across current shortest :: 94
+- across local shortest :: 93
+- across bounded shortest :: 93
+- across finite shortest :: 93
+- across open shortest :: 93
+- across live shortest :: 93
+- between current shortest :: 93
+- between local shortest :: 93
+- between bounded shortest :: 93
+- between finite shortest :: 93
+- between open shortest :: 93
+- between live shortest :: 93
+- through current shortest :: 93
+- through local shortest :: 93
+- through bounded shortest :: 93
+- through finite shortest :: 93
+- through open shortest :: 93
+- through live shortest :: 93
+- before current shortest :: 93
+- before local shortest :: 93
+- before bounded shortest :: 93
+- before finite shortest :: 93
+- before open shortest :: 93
+- before live shortest :: 93
+- shortest evidence path :: 93
+- shortest support path :: 93
+- shortest path path :: 92
+- shortest surface path :: 92
+- shortest packet path :: 92
+- shortest receipt path :: 92
+- shortest trace path :: 92
+- shortest result path :: 92
+- shortest scope path :: 92
+- shortest boundary path :: 92
+- check shortest receipt :: 92
+- compare shortest receipt :: 92
+- observe shortest receipt :: 92
+- measure shortest receipt :: 92
+- test shortest receipt :: 92
+- verify shortest receipt :: 92
+- hold shortest receipt :: 92
+- preserve shortest receipt :: 92
+- under current path :: 92
+- under local path :: 92
+- under bounded path :: 92
+- under finite path :: 92
+- under open path :: 92
+- under live path :: 92
+- within current path :: 92
+- within local path :: 92
+- within bounded path :: 92
+- within finite path :: 91
+- within open path :: 91
+- within live path :: 91
+- across current path :: 91
+- across local path :: 91
+- across bounded path :: 91
+- across finite path :: 91
+- across open path :: 91
+- across live path :: 91
+- between current path :: 91
+- between local path :: 91
+- between bounded path :: 91
+- between finite path :: 91
+- between open path :: 91
+- between live path :: 91
+- under direct next :: 91
+- under direct move :: 91
+- under direct smallest :: 91
+- under direct immediate :: 91
+- under next move :: 91
+- under next smallest :: 91
+- under next immediate :: 91
+- under next action :: 91
+- under move smallest :: 91
+- under move immediate :: 91
+- under move action :: 90
+- under move shortest :: 90
+- under smallest immediate :: 90
+- under smallest action :: 90
+- under smallest shortest :: 90
+- under smallest path :: 90
+- under immediate action :: 90
+- under immediate shortest :: 90
+- under immediate path :: 90
+- under immediate bounded :: 90
+- under action shortest :: 90
+- under action path :: 90
+- under action bounded :: 90
+- under action deliverable :: 90
+- under shortest path :: 90
+- under shortest bounded :: 90
+- under shortest deliverable :: 90
+- under shortest acceptance :: 90
+- under path bounded :: 90
+- under path deliverable :: 90
+- under path acceptance :: 90
+- under path this :: 90
+- under bounded deliverable :: 90
+- under bounded acceptance :: 90
+- under bounded this :: 90
+- under bounded landed :: 89
+- under deliverable acceptance :: 89
+- under deliverable this :: 89
+- under deliverable landed :: 89
+- under deliverable complete :: 89
+- under acceptance this :: 89
+- under acceptance landed :: 89
+- under acceptance complete :: 89
+- under acceptance blocker :: 89
+- under this landed :: 89
+- under this complete :: 89
+- under this blocker :: 89
+- under this now :: 89
+- under landed complete :: 89
+- under landed blocker :: 89
+- under landed now :: 89
+- under landed first :: 89
+- under complete blocker :: 89
+- under complete now :: 89
+- under complete first :: 89
+- under complete packet :: 89
+- under blocker now :: 89
+- under blocker first :: 89
+- under blocker packet :: 89
+- under blocker minimal :: 89
+- under now first :: 88
+- under now packet :: 88
+- under now minimal :: 88
+- under now patch :: 88
+- under first packet :: 88
+- under first minimal :: 88
+- under first patch :: 88
+- under first artifact :: 88
+- under packet minimal :: 88
+- under packet patch :: 88
+- under packet artifact :: 88
+- under packet done condition :: 88
+- under minimal patch :: 88
+- under minimal artifact :: 88
+- under minimal done condition :: 88
+- under minimal step :: 88
+- under patch artifact :: 88
+- under patch done condition :: 88
+- under patch step :: 88
+- under patch result :: 88
+- within direct next :: 88
+- within direct move :: 88
+- within direct smallest :: 88
+- within direct immediate :: 88
+- within next move :: 88
+- within next smallest :: 87
+- within next immediate :: 87
+- within next action :: 87
+- within move smallest :: 87
+- within move immediate :: 87
+- within move action :: 87
+- within move shortest :: 87
+- within smallest immediate :: 87
+- within smallest action :: 87
+- within smallest shortest :: 87
+- within smallest path :: 87
+- within immediate action :: 87
+- within immediate shortest :: 87
+- within immediate path :: 87
+- within immediate bounded :: 87
+- within action shortest :: 87
+- within action path :: 87
+- within action bounded :: 87
+- within action deliverable :: 87
+- within shortest path :: 87
+- within shortest bounded :: 87
+- within shortest deliverable :: 87
+- within shortest acceptance :: 87
+- within path bounded :: 87
+- within path deliverable :: 87
+- within path acceptance :: 86
+- within path this :: 86
+- within bounded deliverable :: 86
+- within bounded acceptance :: 86
+- within bounded this :: 86
+- within bounded landed :: 86
+- within deliverable acceptance :: 86
+- within deliverable this :: 86
+- within deliverable landed :: 86
+- within deliverable complete :: 86
+- within acceptance this :: 86
+- within acceptance landed :: 86
+- within acceptance complete :: 86
+- within acceptance blocker :: 86
+- within this landed :: 86
+- within this complete :: 86
+- within this blocker :: 86
+- within this now :: 86
+- within landed complete :: 86
+- within landed blocker :: 86
+- within landed now :: 86
+- within landed first :: 86
+- within complete blocker :: 86
+- within complete now :: 86
+- within complete first :: 86
+- within complete packet :: 85
+- within blocker now :: 85
+- within blocker first :: 85
+- within blocker packet :: 85
+- within blocker minimal :: 85
+- within now first :: 85
+- within now packet :: 85
+- within now minimal :: 85
+- within now patch :: 85
+- within first packet :: 85
+- within first minimal :: 85
+- within first patch :: 85
+- within first artifact :: 85
+- within packet minimal :: 85
+- within packet patch :: 85
+- within packet artifact :: 85
+- within packet done condition :: 85
+- within minimal patch :: 85
+- within minimal artifact :: 85
+- within minimal done condition :: 85
+- within minimal step :: 85
+- within patch artifact :: 85
+- within patch done condition :: 85
+- within patch step :: 85
+- within patch result :: 85
+- across direct next :: 84
+- across direct move :: 84
+- across direct smallest :: 84
+- across direct immediate :: 84
+- across next move :: 84
+- across next smallest :: 84
+- across next immediate :: 84
+- across next action :: 84
+- across move smallest :: 84
+- across move immediate :: 84
+- across move action :: 84
+- across move shortest :: 84
+- across smallest immediate :: 84
+- across smallest action :: 84
+- across smallest shortest :: 84
+- across smallest path :: 84
+- across immediate action :: 84
+- across immediate shortest :: 84
+- across immediate path :: 84
+- across immediate bounded :: 84
+- across action shortest :: 84
+- across action path :: 84
+- across action bounded :: 84
+- across action deliverable :: 84
+- across shortest path :: 84
+- across shortest bounded :: 83
+- across shortest deliverable :: 83
+- across shortest acceptance :: 83
+- across path bounded :: 83
+- across path deliverable :: 83
+- across path acceptance :: 83
+- across path this :: 83
+- across bounded deliverable :: 83
+- across bounded acceptance :: 83
+- across bounded this :: 83
+- across bounded landed :: 83
+- across deliverable acceptance :: 83
+- across deliverable this :: 83
+- across deliverable landed :: 83
+- across deliverable complete :: 83
+- across acceptance this :: 83
+- across acceptance landed :: 83
+- across acceptance complete :: 83
+- across acceptance blocker :: 83
+- across this landed :: 83
+- across this complete :: 83
+- across this blocker :: 83
+- across this now :: 83
+- across landed complete :: 83
+- across landed blocker :: 83
+- across landed now :: 82
+- across landed first :: 82
+- across complete blocker :: 82
+- across complete now :: 82
+- across complete first :: 82
+- across complete packet :: 82
+- across blocker now :: 82
+- across blocker first :: 82
+- across blocker packet :: 82
+- across blocker minimal :: 82
+- across now first :: 82
+- across now packet :: 82
+- across now minimal :: 82
+- across now patch :: 82
+- across first packet :: 82
+- across first minimal :: 82
+- across first patch :: 82
+- across first artifact :: 82
+- across packet minimal :: 82
+- across packet patch :: 82
+- across packet artifact :: 82
+- across packet done condition :: 82
+- across minimal patch :: 82
+- across minimal artifact :: 82
+- across minimal done condition :: 82
+- across minimal step :: 81
+- across patch artifact :: 81
+- across patch done condition :: 81
+- across patch step :: 81
+- across patch result :: 81
+- between direct next :: 81
+- between direct move :: 81
+- between direct smallest :: 81
+- between direct immediate :: 81
+- between next move :: 81
+- between next smallest :: 81
+- between next immediate :: 81
+- between next action :: 81
+- between move smallest :: 81
+- between move immediate :: 81
+- between move action :: 81
+- between move shortest :: 81
+- between smallest immediate :: 81
+- between smallest action :: 81
+- between smallest shortest :: 81
+- between smallest path :: 81
+- between immediate action :: 81
+- between immediate shortest :: 81
+- between immediate path :: 81
+- between immediate bounded :: 81
+- between action shortest :: 80
+- between action path :: 80
+- between action bounded :: 80
+- between action deliverable :: 80
+- between shortest path :: 80
+- between shortest bounded :: 80
+- between shortest deliverable :: 80
+- between shortest acceptance :: 80
+- between path bounded :: 80
+- between path deliverable :: 80
+- between path acceptance :: 80
+- between path this :: 80
+- between bounded deliverable :: 80
+- between bounded acceptance :: 80
+- between bounded this :: 80
+- between bounded landed :: 80
+- between deliverable acceptance :: 80
+- between deliverable this :: 80
+- between deliverable landed :: 80
+- between deliverable complete :: 80
+- between acceptance this :: 80
+- between acceptance landed :: 80
+- between acceptance complete :: 80
+- between acceptance blocker :: 80
+- between this landed :: 80
+- between this complete :: 79
+- between this blocker :: 79
+- between this now :: 79
+- between landed complete :: 79
+- between landed blocker :: 79
+- between landed now :: 79
+- between landed first :: 79
+- between complete blocker :: 79
+- between complete now :: 79
+- between complete first :: 79
+- between complete packet :: 79
+- between blocker now :: 79
+- between blocker first :: 79
+- between blocker packet :: 79
+- between blocker minimal :: 79
+- between now first :: 79
+- between now packet :: 79
+- between now minimal :: 79
+- between now patch :: 79
+- between first packet :: 79
+- between first minimal :: 79
+- between first patch :: 79
+- between first artifact :: 79
+- between packet minimal :: 79
+- between packet patch :: 79
+- between packet artifact :: 78
+- between packet done condition :: 78
+- between minimal patch :: 78
+- between minimal artifact :: 78
+- between minimal done condition :: 78
+- between minimal step :: 78
+- between patch artifact :: 78
+- between patch done condition :: 78
+- between patch step :: 78
+- between patch result :: 78
+- through direct next :: 78
+- through direct move :: 78
+- through direct smallest :: 78
+- through direct immediate :: 78
+- through next move :: 78
+- through next smallest :: 78
+- through next immediate :: 78
+- through next action :: 78
+- through move smallest :: 78
+- through move immediate :: 78
+- through move action :: 78
+- through move shortest :: 78
+- through smallest immediate :: 78
+- through smallest action :: 78
+- through smallest shortest :: 78
+- through smallest path :: 77
+- through immediate action :: 77
+- through immediate shortest :: 77
+- through immediate path :: 77
+- through immediate bounded :: 77
+- through action shortest :: 77
+- through action path :: 77
+- through action bounded :: 77
+- through action deliverable :: 77
+- through shortest path :: 77
+- through shortest bounded :: 77
+- through shortest deliverable :: 77
+- through shortest acceptance :: 77
+- through path bounded :: 77
+- through path deliverable :: 77
+- through path acceptance :: 77
+- through path this :: 77
+- through bounded deliverable :: 77
+- through bounded acceptance :: 77
+- through bounded this :: 77
+- through bounded landed :: 77
+- through deliverable acceptance :: 77
+- through deliverable this :: 77
+- through deliverable landed :: 77
+- through deliverable complete :: 77
+- through acceptance this :: 76
+- through acceptance landed :: 76
+- through acceptance complete :: 76
+- through acceptance blocker :: 76
+- through this landed :: 76
+- through this complete :: 76
+- through this blocker :: 76
+- through this now :: 76
+- through landed complete :: 76
+- through landed blocker :: 76
+- through landed now :: 76
+- through landed first :: 76
+- through complete blocker :: 76
+- through complete now :: 76
+- through complete first :: 76
+- through complete packet :: 76
+- through blocker now :: 76
+- through blocker first :: 76
+- through blocker packet :: 76
+- through blocker minimal :: 76
+- through now first :: 76
+- through now packet :: 76
+- through now minimal :: 76
+- through now patch :: 76
+- through first packet :: 76
+- through first minimal :: 75
+- through first patch :: 75
+- through first artifact :: 75
+- through packet minimal :: 75
+- through packet patch :: 75
+- through packet artifact :: 75
+- through packet done condition :: 75
+- through minimal patch :: 75
+- through minimal artifact :: 75
+- through minimal done condition :: 75
+- through minimal step :: 75
+- through patch artifact :: 75
+- through patch done condition :: 75
+- through patch step :: 75
+- through patch result :: 75
+- before direct next :: 75
+- before direct move :: 75
+- before direct smallest :: 75
+- before direct immediate :: 75
+- before next move :: 75
+- before next smallest :: 75
+- before next immediate :: 75
+- before next action :: 75
+- before move smallest :: 75
+- before move immediate :: 75
+- before move action :: 74
+- before move shortest :: 74
+- before smallest immediate :: 74
+- before smallest action :: 74
+- before smallest shortest :: 74
+- before smallest path :: 74
+- before immediate action :: 74
+- before immediate shortest :: 74
+- before immediate path :: 74
+- before immediate bounded :: 74
+- before action shortest :: 74
+- before action path :: 74
+- before action bounded :: 74
+- before action deliverable :: 74
+- before shortest path :: 74
+- before shortest bounded :: 74
+- before shortest deliverable :: 74
+- before shortest acceptance :: 74
+- before path bounded :: 74
+- before path deliverable :: 74
+- before path acceptance :: 74
+- before path this :: 74
+- before bounded deliverable :: 74
+- before bounded acceptance :: 74
+- before bounded this :: 74
+- before bounded landed :: 73
+- before deliverable acceptance :: 73
+- before deliverable this :: 73
+- before deliverable landed :: 73
+- before deliverable complete :: 73
+- before acceptance this :: 73
+- before acceptance landed :: 73
+- before acceptance complete :: 73
+- before acceptance blocker :: 73
+- before this landed :: 73
+- before this complete :: 73
+- before this blocker :: 73
+- before this now :: 73
+- before landed complete :: 73
+- before landed blocker :: 73
+- before landed now :: 73
+- before landed first :: 73
+- before complete blocker :: 73
+- before complete now :: 73
+- before complete first :: 73
+- before complete packet :: 73
+- before blocker now :: 73
+- before blocker first :: 73
+- before blocker packet :: 73
+- before blocker minimal :: 73
+- before now first :: 72
+- before now packet :: 72
+- before now minimal :: 72
+- before now patch :: 72
+- before first packet :: 72
+- before first minimal :: 72
+- before first patch :: 72
+- before first artifact :: 72
+- before packet minimal :: 72
+- before packet patch :: 72
+- before packet artifact :: 72
+- before packet done condition :: 72
+- before minimal patch :: 72
+- before minimal artifact :: 72
+- before minimal done condition :: 72
+- before minimal step :: 72
+- before patch artifact :: 72
+- before patch done condition :: 72
+- before patch step :: 72
+- before patch result :: 72
+- after direct next :: 72
+- after direct move :: 72
+- after direct smallest :: 72
+- after direct immediate :: 72
+- after next move :: 72
+- after next smallest :: 71
+- after next immediate :: 71
+- after next action :: 71
+- after move smallest :: 71
+- after move immediate :: 71
+- after move action :: 71
+- after move shortest :: 71
+- after smallest immediate :: 71
+- after smallest action :: 71
+- after smallest shortest :: 71
+- after smallest path :: 71
+- after immediate action :: 71
+- after immediate shortest :: 71
+- after immediate path :: 71
+- after immediate bounded :: 71
+- after action shortest :: 71
+- after action path :: 71
+- after action bounded :: 71
+- after action deliverable :: 71
+- after shortest path :: 71
+- after shortest bounded :: 71
+- after shortest deliverable :: 71
+- after shortest acceptance :: 71
+- after path bounded :: 71
+- after path deliverable :: 71
+- after path acceptance :: 70
+- after path this :: 70
+- after bounded deliverable :: 70
+- after bounded acceptance :: 70
+- after bounded this :: 70
+- after bounded landed :: 70
+- after deliverable acceptance :: 70
+- after deliverable this :: 70
+- after deliverable landed :: 70
+- after deliverable complete :: 70
+- after acceptance this :: 70
+- after acceptance landed :: 70
+- after acceptance complete :: 70
+- after acceptance blocker :: 70
+- after this landed :: 70
+- after this complete :: 70
+- after this blocker :: 70
+- after this now :: 70
+- after landed complete :: 70
+- after landed blocker :: 70
+- after landed now :: 70
+- after landed first :: 70
+- after complete blocker :: 70
+- after complete now :: 70
+- after complete first :: 70
+- after complete packet :: 69
+- after blocker now :: 69
+- after blocker first :: 69
+- after blocker packet :: 69
+- after blocker minimal :: 69
+- after now first :: 69
+- after now packet :: 69
+- after now minimal :: 69
+- after now patch :: 69
+- after first packet :: 69
+- after first minimal :: 69
+- after first patch :: 69
+- after first artifact :: 69
+- after packet minimal :: 69
+- after packet patch :: 69
+- after packet artifact :: 69
+- after packet done condition :: 69
+- after minimal patch :: 69
+- after minimal artifact :: 69
+- after minimal done condition :: 69
+- after minimal step :: 69
+- after patch artifact :: 69
+- after patch done condition :: 69
+- after patch step :: 69
+- after patch result :: 69
+- during direct next :: 68
+- during direct move :: 68
+- during direct smallest :: 68
+- during direct immediate :: 68
+- during next move :: 68
+- during next smallest :: 68
+- during next immediate :: 68
+- during next action :: 68
+- during move smallest :: 68
+- during move immediate :: 68
+- during move action :: 68
+- during move shortest :: 68
+- during smallest immediate :: 68
+- during smallest action :: 68
+- during smallest shortest :: 68
+- during smallest path :: 68
+- during immediate action :: 68
+- during immediate shortest :: 68
+- during immediate path :: 68
+- during immediate bounded :: 68
+- during action shortest :: 68
+- during action path :: 68
+- during action bounded :: 68
+- during action deliverable :: 68
+- during shortest path :: 68
+- during shortest bounded :: 67
+- during shortest deliverable :: 67
+- during shortest acceptance :: 67
+- during path bounded :: 67
+- during path deliverable :: 67
+- during path acceptance :: 67
+- during path this :: 67
+- during bounded deliverable :: 67
+- during bounded acceptance :: 67
+- during bounded this :: 67
+- during bounded landed :: 67
+- during deliverable acceptance :: 67
+- during deliverable this :: 67
+- during deliverable landed :: 67
+- during deliverable complete :: 67
+- during acceptance this :: 67
+- during acceptance landed :: 67
+- during acceptance complete :: 67
+- during acceptance blocker :: 67
+- during this landed :: 67
+- during this complete :: 67
+- during this blocker :: 67
+- during this now :: 67
+- during landed complete :: 67
+- during landed blocker :: 67
+- during landed now :: 66
+- during landed first :: 66
+- during complete blocker :: 66
+- during complete now :: 66
+- during complete first :: 66
+- during complete packet :: 66
+- during blocker now :: 66
+- during blocker first :: 66
+- during blocker packet :: 66
+- during blocker minimal :: 66
+- during now first :: 66
+- during now packet :: 66
+- during now minimal :: 66
+- during now patch :: 66
+- during first packet :: 66
+- during first minimal :: 66
+- during first patch :: 66
+- during first artifact :: 66
+- during packet minimal :: 66
+- during packet patch :: 66
+- during packet artifact :: 66
+- during packet done condition :: 66
+- during minimal patch :: 66
+- during minimal artifact :: 66
+- during minimal done condition :: 66
+- during minimal step :: 65
+- during patch artifact :: 65
+- during patch done condition :: 65
+- during patch step :: 65
+- during patch result :: 65
+- until direct next :: 65
+- until direct move :: 65
+- until direct smallest :: 65
+- until direct immediate :: 65
+- until next move :: 65
+- until next smallest :: 65
+- until next immediate :: 65
+- until next action :: 65
+- until move smallest :: 65
+- until move immediate :: 65
+- until move action :: 65
+- until move shortest :: 65
+- until smallest immediate :: 65
+- until smallest action :: 65
+- until smallest shortest :: 65
+- until smallest path :: 65
+- until immediate action :: 65
+- until immediate shortest :: 65
+- until immediate path :: 65
+- until immediate bounded :: 65
+- until action shortest :: 64
+- until action path :: 64
+- until action bounded :: 64
+- until action deliverable :: 64
+- until shortest path :: 64
+- until shortest bounded :: 64
+- until shortest deliverable :: 64
+- until shortest acceptance :: 64
+- until path bounded :: 64
+- until path deliverable :: 64
+- until path acceptance :: 64
+- until path this :: 64
+- until bounded deliverable :: 64
+- until bounded acceptance :: 64
+- until bounded this :: 64
+- until bounded landed :: 64
+- until deliverable acceptance :: 64
+- until deliverable this :: 64
+- until deliverable landed :: 64
+- until deliverable complete :: 64
+- until acceptance this :: 64
+- until acceptance landed :: 64
+- until acceptance complete :: 64
+- until acceptance blocker :: 64
+- until this landed :: 64
+- until this complete :: 63
+- until this blocker :: 63
+- until this now :: 63
+- until landed complete :: 63
+- until landed blocker :: 63
+- until landed now :: 63
+- until landed first :: 63
+- until complete blocker :: 63
+- until complete now :: 63
+- until complete first :: 63
+- until complete packet :: 63
+- until blocker now :: 63
+- until blocker first :: 63
+- until blocker packet :: 63
+- until blocker minimal :: 63
+- until now first :: 63
+- until now packet :: 63
+- until now minimal :: 63
+- until now patch :: 63
+- until first packet :: 63
+- until first minimal :: 63
+- until first patch :: 63
+- until first artifact :: 63
+- until packet minimal :: 63
+- until packet patch :: 63
+- until packet artifact :: 62
+- until packet done condition :: 62
+- until minimal patch :: 62
+- until minimal artifact :: 62
+- until minimal done condition :: 62
+- until minimal step :: 62
+- until patch artifact :: 62
+- until patch done condition :: 62
+- until patch step :: 62
+- until patch result :: 62
+- since direct next :: 62
+- since direct move :: 62
+- since direct smallest :: 62
+- since direct immediate :: 62
+- since next move :: 62
+- since next smallest :: 62
+- since next immediate :: 62
+- since next action :: 62
+- since move smallest :: 62
+- since move immediate :: 62
+- since move action :: 62
+- since move shortest :: 62
+- since smallest immediate :: 62
+- since smallest action :: 62
+- since smallest shortest :: 62
+- since smallest path :: 61
+- since immediate action :: 61
+- since immediate shortest :: 61
+- since immediate path :: 61
+- since immediate bounded :: 61
+- since action shortest :: 61
+- since action path :: 61
+- since action bounded :: 61
+- since action deliverable :: 61
+- since shortest path :: 61
+- since shortest bounded :: 61
+- since shortest deliverable :: 61
+- since shortest acceptance :: 61
+- since path bounded :: 61
+- since path deliverable :: 61
+- since path acceptance :: 61
+- since path this :: 61
+- since bounded deliverable :: 61
+- since bounded acceptance :: 61
+- since bounded this :: 61
+- since bounded landed :: 61
+- since deliverable acceptance :: 61
+- since deliverable this :: 61
+- since deliverable landed :: 61
+- since deliverable complete :: 61
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- artifact
+- move
+- unblock
+- proof
+- receipt
+- gate
+
+### Couplings
+
+- bounded artifact
+- proof gate
+- smallest move
+
+### Triplets
+
+- artifact proof gate

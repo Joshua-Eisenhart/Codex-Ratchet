@@ -1,0 +1,71 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-context-strategy-wave-v1",
+  "purpose": "Step back from local work, inventory prompt vs output corpora, draft user and project MMMs as source-bound compressions, and name what must not be lost.",
+  "children": [
+    {
+      "id": "inventory",
+      "skill": "cb-context-strategy-wave",
+      "operation": "inventory_corpora",
+      "tools": ["sha256", "quote_extract", "receipt_scan", "byte_budget"]
+    },
+    {
+      "id": "user_mmm_draft",
+      "skill": "a1-from-a2-distillation",
+      "operation": "distill_prompt_corpus",
+      "tools": ["quote_extract", "source_span_check"]
+    },
+    {
+      "id": "project_mmm_draft",
+      "skill": "a1-from-a2-distillation",
+      "operation": "distill_output_corpus",
+      "tools": ["receipt_scan", "source_span_check"]
+    },
+    {
+      "id": "admission_guard",
+      "skill": "a2-a1-memory-admission-guard",
+      "operation": "refuse_if_source_lost",
+      "tools": ["source_span_check", "surface_class_check"]
+    },
+    {
+      "id": "step_back",
+      "skill": "wizard-systems-strategy",
+      "operation": "name_what_must_not_be_lost",
+      "tools": ["context_diff", "live_tension_list"]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true
+  },
+  "loop": {
+    "max_rounds": 2,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "context_snapshot_ready",
+      "hold_source_lost",
+      "refuse_merged_corpora",
+      "cancelled",
+      "max_rounds"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "prompt_corpus_digest",
+      "output_corpus_digest",
+      "user_mmm_draft_digest",
+      "project_mmm_draft_digest",
+      "admission_disposition",
+      "must_not_lose"
+    ]
+  },
+  "claim_ceiling": "Context inventory and proposal-only MMM drafts only; not Light geometry, not FEP, not pack admission, not promotion."
+}

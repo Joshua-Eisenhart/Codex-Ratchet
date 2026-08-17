@@ -1,0 +1,409 @@
+#!/usr/bin/env python3
+"""Public launcher for the integrated ConstraintBox source/bundle."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import platform
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+
+def roots() -> tuple[Path, Path, Path]:
+    here = Path(__file__).resolve()
+    bundle_root = here.parents[1]
+    bundled_box = bundle_root / "PROJECT" / "constraint_box"
+    if bundled_box.is_dir():
+        return bundle_root, bundled_box, bundled_box / "integrated_system"
+    box_root = here.parents[2]
+    return box_root.parent, box_root, box_root / "integrated_system"
+
+
+def declared_python(value: str | None, fallback: Path) -> Path:
+    path = Path(value).expanduser().absolute() if value else fallback.absolute()
+    if not path.is_file() or not os.access(path, os.X_OK):
+        raise SystemExit(f"HOLD_INTERPRETER_MISSING:{path}")
+    return path
+
+
+def run(argv: list[str], *, cwd: Path, env: dict[str, str] | None = None) -> int:
+    return subprocess.run(argv, cwd=cwd, env=env, check=False).returncode
+
+
+def bootstrap_light(box: Path) -> int:
+    """Create and populate the contained Light runtime on a fresh extraction."""
+
+    if sys.version_info[:2] != (3, 13):
+        print(
+            json.dumps(
+                {
+                    "schema": "constraintbox.integrated-bootstrap.v1",
+                    "status": "HOLD",
+                    "reason_code": "HOLD_BOOTSTRAP_REQUIRES_PYTHON_3_13",
+                    "observed_python": platform.python_version(),
+                    "promotion_allowed": False,
+                },
+                sort_keys=True,
+            )
+        )
+        return 2
+    if platform.system() != "Darwin" or platform.machine() != "arm64":
+        print(
+            json.dumps(
+                {
+                    "schema": "constraintbox.integrated-bootstrap.v1",
+                    "status": "HOLD",
+                    "reason_code": "HOLD_BOOTSTRAP_REQUIRES_MACOS_ARM64_LOCK",
+                    "observed_platform": platform.system(),
+                    "observed_machine": platform.machine(),
+                    "promotion_allowed": False,
+                },
+                sort_keys=True,
+            )
+        )
+        return 2
+    required = [
+        box / "scripts" / "cb_light_cli.py",
+        box / "requirements" / "locks" / "constraintbox-py313-macos-estate.lock",
+        box / "light_runtime" / "pyproject.toml",
+    ]
+    missing = [str(path) for path in required if not path.is_file()]
+    if missing:
+        print(
+            json.dumps(
+                {
+                    "schema": "constraintbox.integrated-bootstrap.v1",
+                    "status": "REFUSE",
+                    "reason_code": "REFUSE_BOOTSTRAP_SOURCE_INCOMPLETE",
+                    "missing_paths": missing,
+                    "promotion_allowed": False,
+                },
+                sort_keys=True,
+            )
+        )
+        return 2
+    target = box / ".venv"
+    builder = box / ".bootstrap-light-build"
+    created = subprocess.run(
+        [sys.executable, "-m", "venv", "--clear", str(builder)], cwd=box, check=False
+    )
+    if created.returncode != 0:
+        return created.returncode
+    builder_python = builder / "bin" / "python"
+    build_backend = subprocess.run(
+        [
+            str(builder_python),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            "--quiet",
+            "--isolated",
+            "--no-input",
+            "setuptools>=68",
+        ],
+        cwd=box,
+        check=False,
+    )
+    if build_backend.returncode != 0:
+        shutil.rmtree(builder, ignore_errors=True)
+        return build_backend.returncode
+    bootstrap_env = os.environ.copy()
+    bootstrap_env.update(
+        {
+            "PYTHONNOUSERSITE": "1",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "PYTHONPATH": str(box / "light_runtime" / "src"),
+            "CB_LIGHT_ROOT": str(box),
+            "CB_LIGHT_BUILD_INTERPRETER": str(builder_python),
+        }
+    )
+    installed = subprocess.run(
+        [
+            str(builder_python),
+            str(box / "scripts" / "cb_light_cli.py"),
+            "install",
+            "--rebuild-manifest",
+        ],
+        cwd=box,
+        env=bootstrap_env,
+        check=False,
+    )
+    if installed.returncode != 0:
+        shutil.rmtree(builder, ignore_errors=True)
+        return installed.returncode
+    contained = target / "bin" / "python"
+    return subprocess.run(
+        [str(contained), "-I", str(box / "scripts" / "cb_light_cli.py"), "status"],
+        cwd=box,
+        check=False,
+    ).returncode
+
+
+def runtime_env(box: Path, system: Path, light_python: Path) -> dict[str, str]:
+    env = os.environ.copy()
+    controller = system / "runtime" / "controller_src"
+    zip_runtime = system / "runtime" / "zip_agent_src"
+    source_roots = [
+        str(zip_runtime if zip_runtime.is_dir() else box / "zip_agent" / "src")
+    ]
+    if controller.is_dir():
+        source_roots.append(str(controller))
+    else:
+        source_roots.append(str(box / "light_runtime" / "src"))
+    env.update(
+        {
+            "PYTHONNOUSERSITE": "1",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "CB_BOX_ROOT": str(box),
+            "CB_SKILLS_ROOT": str(system / "skills"),
+            "CB_MMM_ROOT": str(system / "mmms" / "primary"),
+            "CB_MMM_PACKS_ROOT": str(box / "mmm" / "packs"),
+            "CB_LIGHT_PYTHON": str(light_python),
+            "CB_LIGHT_ROOT": str(box),
+            "CB_LIGHT_INTERPRETER": str(light_python),
+            "CB_CONTROLLER_SRC": str(controller if controller.is_dir() else box / "src"),
+            "PYTHONPATH": os.pathsep.join(source_roots),
+        }
+    )
+    build_python = box / ".bootstrap-light-build" / "bin" / "python"
+    if build_python.is_file():
+        env["CB_LIGHT_BUILD_INTERPRETER"] = str(build_python)
+    return env
+
+
+def probe_module(python: Path, module: str) -> dict[str, object]:
+    code = (
+        "import importlib,json,pathlib,sys; "
+        "m=importlib.import_module(sys.argv[1]); "
+        "print(json.dumps({'module':sys.argv[1],'version':str(getattr(m,'__version__',None)),'origin':getattr(m,'__file__',None),'executable':sys.executable,'realpath':str(pathlib.Path(sys.executable).resolve()),'prefix':sys.prefix},sort_keys=True))"
+    )
+    proc = subprocess.run(
+        [str(python), "-I", "-c", code, module],
+        check=False,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    if proc.returncode != 0:
+        return {
+            "status": "HOLD",
+            "module": module,
+            "returncode": proc.returncode,
+            "stderr": (proc.stderr or "")[-500:],
+        }
+    return {"status": "PASS", **json.loads(proc.stdout)}
+
+
+def supported_jax_version(value: object) -> bool:
+    """The current numerical profile is tested against the JAX 0.10 series."""
+
+    try:
+        major, minor, *_ = (int(part) for part in str(value).split("."))
+    except (TypeError, ValueError):
+        return False
+    return (major, minor) == (0, 10)
+
+
+def doctor(box: Path, system: Path, light_python: Path, jax_python: Path | None) -> int:
+    light_jax_observation = probe_module(light_python, "jax")
+    light_jax = {
+        "status": "PASS" if light_jax_observation["status"] == "HOLD" else "REFUSE_JAX_IN_LIGHT",
+        "expected": "jax import fails",
+        "observation": light_jax_observation,
+    }
+    jax = probe_module(jax_python, "jax") if jax_python is not None else {"status": "HOLD", "reason": "JAX_INTERPRETER_UNDECLARED"}
+    if jax.get("status") == "PASS" and not supported_jax_version(jax.get("version")):
+        jax["status"] = "HOLD"
+        jax["reason"] = "HOLD_JAX_VERSION_PROFILE_MISMATCH"
+        jax["required_profile"] = ">=0.10.0,<0.11.0"
+    zip_protocol = box / "zip_agent" / "src" / "constraintbox_zip_agent" / "protocol.py"
+    if not zip_protocol.is_file():
+        zip_protocol = system / "runtime" / "zip_agent_src" / "constraintbox_zip_agent" / "protocol.py"
+    required = [
+        box / "scripts" / "contained_light" / "seed_check.py",
+        zip_protocol,
+        system / "skills" / "MANIFEST.txt",
+        system / "context" / "current" / "OWNER_OBJECT.md",
+        system / "state" / "GENESIS.json",
+    ]
+    missing = [str(path) for path in required if not path.is_file()]
+    status = "PASS" if not missing and light_jax["status"] == "PASS" and jax["status"] == "PASS" else "HOLD"
+    body = {
+        "schema": "constraintbox.integrated-doctor.v1",
+        "status": status,
+        "box_root": str(box),
+        "system_root": str(system),
+        "light_python": str(light_python),
+        "light_jax_negative": light_jax,
+        "jax_runtime": jax,
+        "missing_paths": missing,
+        "boundaries": {
+            "one_system": True,
+            "interpreter_count": 2 if jax_python is not None else 1,
+            "light_must_not_import_jax": True,
+            "model_roster_in_kernel": False,
+        },
+        "claim_ceiling": "local path/import boundary check only; not admission or portability",
+        "promotion_allowed": False,
+    }
+    print(json.dumps(body, indent=2, sort_keys=True))
+    return 0 if status == "PASS" else 2
+
+
+def main(argv: list[str] | None = None) -> int:
+    _, box, system = roots()
+    caller_cwd = Path.cwd()
+
+    def user_path(path: Path) -> Path:
+        return path if path.is_absolute() else (caller_cwd / path).absolute()
+
+    parser = argparse.ArgumentParser(prog="cb")
+    parser.add_argument("--light-python", default=os.environ.get("CB_LIGHT_PYTHON"))
+    parser.add_argument("--jax-python", default=os.environ.get("CB_JAX_PYTHON"))
+    sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("bootstrap-light")
+    sub.add_parser("doctor")
+    seed = sub.add_parser("light-seed")
+    seed.add_argument("--out", type=Path)
+    zip_cmd = sub.add_parser("zip")
+    zip_cmd.add_argument("args", nargs=argparse.REMAINDER)
+    hook = sub.add_parser("hook")
+    hook.add_argument("host", nargs="?")
+    wave = sub.add_parser("jax-wave")
+    wave.add_argument("--output-dir", required=True, type=Path)
+    structured = sub.add_parser("structured-probe")
+    structured.add_argument("--engine", choices=("exact", "dual"), default="exact")
+    structured.add_argument("--output", required=True, type=Path)
+    sub.add_parser("context")
+    verify = sub.add_parser("verify")
+    verify.add_argument("--output", type=Path)
+    bundle = sub.add_parser("bundle")
+    bundle.add_argument("--output", required=True, type=Path)
+    args = parser.parse_args(argv)
+
+    if args.command == "bootstrap-light":
+        return bootstrap_light(box)
+
+    light = declared_python(args.light_python, box / ".venv" / "bin" / "python")
+    jax = None
+    if args.jax_python:
+        jax = declared_python(args.jax_python, Path(args.jax_python))
+    elif (Path.home() / ".local/share/sim-stack/bin/python3").is_file():
+        jax = declared_python(None, Path.home() / ".local/share/sim-stack/bin/python3")
+    env = runtime_env(box, system, light)
+
+    if args.command == "doctor":
+        return doctor(box, system, light, jax)
+    if args.command == "light-seed":
+        command = [str(light), str(box / "scripts/contained_light/seed_check.py"), "--root", str(box)]
+        if args.out is not None:
+            command.extend(["--out", str(user_path(args.out))])
+        return run(command, cwd=box, env=env)
+    if args.command == "zip":
+        return run(
+            [str(light), "-m", "constraintbox_zip_agent", *args.args],
+            cwd=Path.cwd(),
+            env=env,
+        )
+    if args.command == "hook":
+        command = [str(light), str(box / "src" / "constraintbox" / "hook_adapter.py")]
+        if (system / "runtime" / "controller_src" / "constraintbox" / "hook_adapter.py").is_file():
+            command = [str(light), "-m", "constraintbox.hook_adapter"]
+        if args.host:
+            command.append(args.host)
+        return run(command, cwd=Path.cwd(), env=env)
+    if args.command == "jax-wave":
+        if jax is None:
+            raise SystemExit("HOLD_JAX_INTERPRETER_UNDECLARED")
+        return run(
+            [
+                str(light),
+                str(system / "scripts/run_light_jax_wave_bridge.py"),
+                "--box-root",
+                str(box),
+                "--light-python",
+                str(light),
+                "--jax-python",
+                str(jax),
+                "--skills-root",
+                str(system / "skills"),
+                "--mmm-root",
+                str(system / "mmms/primary"),
+                "--output-dir",
+                str(user_path(args.output_dir)),
+            ],
+            cwd=box,
+            env=env,
+        )
+    if args.command == "structured-probe":
+        engine_python = light if args.engine == "exact" else jax
+        if engine_python is None:
+            raise SystemExit("HOLD_JAX_INTERPRETER_UNDECLARED")
+        return run(
+            [
+                str(engine_python),
+                str(system / "scripts/structured_open_bind_probe.py"),
+                "--input",
+                str(system / "fixtures/structured_open_bind_v1.json"),
+                "--output",
+                str(user_path(args.output)),
+                "--engine",
+                args.engine,
+            ],
+            cwd=box,
+            env=env,
+        )
+    if args.command == "context":
+        print(
+            json.dumps(
+                {
+                    "schema": "constraintbox.integrated-context-locator.v1",
+                    "owner_object": str(system / "context/current/OWNER_OBJECT.md"),
+                    "current_plan": str(system / "context/current/CURRENT_PLAN.md"),
+                    "failure_memory": str(system / "context/current/FAILURE_MEMORY.md"),
+                    "full_corpus": str(system / "context/full/prompt_plan_progress_corpus.jsonl"),
+                    "genesis": str(system / "state/GENESIS.json"),
+                    "promotion_allowed": False,
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 0
+    if args.command == "verify":
+        command = [
+            str(light),
+            str(system / "scripts/verify_integrated_system.py"),
+            "--box-root",
+            str(box),
+            "--light-python",
+            str(light),
+        ]
+        if jax is not None:
+            command.extend(["--jax-python", str(jax)])
+        if args.output is not None:
+            command.extend(["--output", str(user_path(args.output))])
+        return run(command, cwd=box, env=env)
+    if args.command == "bundle":
+        return run(
+            [
+                str(light),
+                str(system / "scripts/build_system_bundle.py"),
+                "--box-root",
+                str(box),
+                "--output",
+                str(user_path(args.output)),
+            ],
+            cwd=box,
+            env=env,
+        )
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

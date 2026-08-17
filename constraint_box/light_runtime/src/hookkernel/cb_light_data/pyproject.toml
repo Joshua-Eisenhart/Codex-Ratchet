@@ -13,21 +13,26 @@ dependencies = [
     "sympy>=1.14.0,<1.15.0",
     "rustworkx>=0.17.0,<0.18.0",
     "maude==1.6.0",
+    "automaton==3.4.0",
+    "pydantic==2.12.5",
+    "jsonschema==4.26.0",
 ]
 
 [project.optional-dependencies]
-# These five are the pinned contract, asserted by tests/test_package_resources.py.
-# Do not add extras that widen the declared core: the core registry names exactly five
-# tools and three boundary tests enforce it. libcst was briefly added as a sixth hard
-# dependency on 2026-08-09 and removed; gate_integrity_ast.py must degrade without it.
+# Earned working core is the install dependency set above: tools that are
+# actually integrated and exercised in CB today.  That set expands when a
+# package earns a real CB consumer path, probes, and receipts.  It is not a
+# permanent closed ontology.  Optional extras below are non-core workloads
+# or test-only surfaces.  libcst was briefly added as a hard dependency on
+# 2026-08-09 and removed; gate_integrity_ast.py must degrade without it.
 symbolic = ["sympy>=1.14.0,<1.15.0"]
 graph = ["rustworkx>=0.17.0,<0.18.0"]
 # Maude is a required bounded formal/rewrite gate, not an optional simulation extra.
 rewrite = []
 numeric = ["numpy==2.3.4"]
 test = ["hypothesis==6.151.12"]
-# This optional profile is a bounded candidate-evaluation surface.  It does
-# not widen the declared five-tool core or establish CB Light membership.
+# Legacy name kept for callers that still install the former optional profile.
+# pydantic/jsonschema are now earned hard dependencies of the working core.
 control-plane = [
     "pydantic==2.12.5",
     "jsonschema==4.26.0",

@@ -1,4 +1,4 @@
-"""Bounded, subprocess-isolated probes for the five current CB Light tools."""
+"""Bounded, subprocess-isolated probes for declared CB Light tool contracts."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from . import core_tools
 
 
 ROOT = Path(__file__).resolve().parents[2]
+_LIGHT_SOURCE_ROOT = Path(__file__).resolve().parents[1]
 _MARKER = "CB_LIGHT_PROBE_JSON="
 _TOOL_FUNCTIONS = {
     "python.z3": core_tools._exercise_z3,
@@ -26,6 +27,9 @@ _TOOL_FUNCTIONS = {
     "python.sympy": core_tools._exercise_sympy,
     "python.rustworkx": core_tools._exercise_rustworkx,
     "python.maude": core_tools._exercise_maude,
+    "python.automaton": core_tools._exercise_automaton,
+    "python.pydantic": core_tools._exercise_pydantic,
+    "python.jsonschema": core_tools._exercise_jsonschema,
 }
 
 
@@ -150,6 +154,78 @@ def _boundary_maude(rule_label: str) -> dict[str, Any]:
     }
 
 
+def _boundary_automaton(event: str) -> dict[str, Any]:
+    """Flip only the event on the fixed transition-Mini-Lev carrier."""
+    from automaton.machines import FiniteMachine
+
+    machine = FiniteMachine()
+    for state in ("idle", "running", "done"):
+        machine.add_state(state, terminal=state == "done")
+    machine.add_transition("idle", "running", "start")
+    machine.add_transition("running", "done", "finish")
+    machine.initialize("idle")
+    try:
+        machine.process_event(event)
+    except Exception as exc:
+        return {
+            "input": {"initial_state": "idle", "event": event},
+            "verdict": "REFUSE",
+            "reason_code": "AUTOMATON_EVENT_REFUSED",
+            "exception_type": type(exc).__name__,
+        }
+    return {
+        "input": {"initial_state": "idle", "event": event},
+        "verdict": "ADMIT",
+        "reason_code": "AUTOMATON_EVENT_ADMITTED",
+        "state": machine.current_state,
+        "terminated": bool(machine.terminated),
+    }
+
+
+def _boundary_pydantic(maximum: int) -> dict[str, Any]:
+    from pydantic import ValidationError
+
+    payload = {"operation": "bounded_request", "maximum": maximum}
+    try:
+        normalized = core_tools._validate_pydantic_boundary(payload)
+    except ValidationError as exc:
+        return {
+            "input": payload,
+            "verdict": "REFUSE",
+            "reason_code": "PYDANTIC_MAXIMUM_REFUSED",
+            "error_types": sorted(
+                {str(error.get("type", "")) for error in exc.errors()}
+            ),
+        }
+    return {
+        "input": payload,
+        "verdict": "ADMIT",
+        "reason_code": "PYDANTIC_MAXIMUM_ADMITTED",
+        "normalized": normalized,
+    }
+
+
+def _boundary_jsonschema(maximum: int) -> dict[str, Any]:
+    from jsonschema import ValidationError
+
+    payload = {"operation": "bounded_request", "maximum": maximum}
+    try:
+        normalized = core_tools._validate_jsonschema_boundary(payload)
+    except ValidationError as exc:
+        return {
+            "input": payload,
+            "verdict": "REFUSE",
+            "reason_code": "JSONSCHEMA_MAXIMUM_REFUSED",
+            "validator": exc.validator,
+        }
+    return {
+        "input": payload,
+        "verdict": "ADMIT",
+        "reason_code": "JSONSCHEMA_MAXIMUM_ADMITTED",
+        "normalized": normalized,
+    }
+
+
 def _boundary(tool_id: str, admitted: bool) -> dict[str, Any]:
     if tool_id == "python.z3":
         return _boundary_z3(2 if admitted else 1)
@@ -161,7 +237,78 @@ def _boundary(tool_id: str, admitted: bool) -> dict[str, Any]:
         return _boundary_rustworkx(not admitted)
     if tool_id == "python.maude":
         return _boundary_maude("advance" if admitted else "missing")
+    if tool_id == "python.automaton":
+        return _boundary_automaton("start" if admitted else "finish")
+    if tool_id == "python.pydantic":
+        return _boundary_pydantic(2 if admitted else 3)
+    if tool_id == "python.jsonschema":
+        return _boundary_jsonschema(2 if admitted else 3)
     raise KeyError(tool_id)
+
+
+def _negative_pydantic() -> dict[str, Any]:
+    from pydantic import ValidationError
+
+    payload = {
+        "operation": "bounded_request",
+        "maximum": 2,
+        "hostile_extra": "refuse-me",
+    }
+    try:
+        core_tools._validate_pydantic_boundary(payload)
+    except ValidationError as exc:
+        error_types = {str(error.get("type", "")) for error in exc.errors()}
+        return {
+            "input": payload,
+            "verdict": "REFUSE",
+            "reason_code": (
+                "PYDANTIC_UNEXPECTED_FIELD_REFUSED"
+                if "extra_forbidden" in error_types
+                else "PYDANTIC_HOSTILE_INPUT_REFUSED"
+            ),
+            "error_types": sorted(error_types),
+        }
+    return {
+        "input": payload,
+        "verdict": "ADMIT",
+        "reason_code": "PYDANTIC_HOSTILE_INPUT_NOT_REFUSED",
+    }
+
+
+def _negative_jsonschema() -> dict[str, Any]:
+    from jsonschema import ValidationError
+
+    payload = {
+        "operation": "bounded_request",
+        "maximum": 2,
+        "hostile_extra": "refuse-me",
+    }
+    try:
+        core_tools._validate_jsonschema_boundary(payload)
+    except ValidationError as exc:
+        return {
+            "input": payload,
+            "verdict": "REFUSE",
+            "reason_code": (
+                "JSONSCHEMA_UNEXPECTED_FIELD_REFUSED"
+                if exc.validator == "additionalProperties"
+                else "JSONSCHEMA_HOSTILE_INPUT_REFUSED"
+            ),
+            "validator": exc.validator,
+        }
+    return {
+        "input": payload,
+        "verdict": "ADMIT",
+        "reason_code": "JSONSCHEMA_HOSTILE_INPUT_NOT_REFUSED",
+    }
+
+
+def _negative(tool_id: str) -> dict[str, Any]:
+    if tool_id == "python.pydantic":
+        return _negative_pydantic()
+    if tool_id == "python.jsonschema":
+        return _negative_jsonschema()
+    return _boundary(tool_id, False)
 
 
 def _reference(tool_id: str, positive: dict[str, Any]) -> dict[str, Any]:
@@ -189,6 +336,43 @@ def _reference(tool_id: str, positive: dict[str, Any]) -> dict[str, Any]:
         reference = {"s0": "s1"}
         agrees = positive.get("rewritten") == reference["s0"]
         detail = reference
+    elif tool_id == "python.automaton":
+        reference = {("idle", "start"): "running"}
+        agrees = (
+            positive.get("initial_state") == "idle"
+            and positive.get("event") == "start"
+            and positive.get("state") == reference[("idle", "start")]
+            and positive.get("terminated") is False
+            and positive.get("finish_actionable_after_start") is True
+            and positive.get("start_actionable_after_start") is False
+        )
+        detail = {
+            "initial_state": "idle",
+            "event": "start",
+            "state": "running",
+            "finish_actionable_after_start": True,
+            "start_actionable_after_start": False,
+            "reference_limit": (
+                "controller_owned_fixed_carrier_translation_crosscheck_only; "
+                "not an independent transition truth source"
+            ),
+        }
+    elif tool_id == "python.pydantic":
+        reference = {"operation": "bounded_request", "maximum": 2}
+        agrees = (
+            positive.get("payload") == reference
+            and positive.get("strict") is True
+            and positive.get("extra_policy") == "forbid"
+        )
+        detail = reference
+    elif tool_id == "python.jsonschema":
+        reference = {"operation": "bounded_request", "maximum": 2}
+        agrees = (
+            positive.get("payload") == reference
+            and positive.get("schema_draft") == "2020-12"
+            and positive.get("independent_schema_boundary") is True
+        )
+        detail = reference
     else:
         raise KeyError(tool_id)
     return {
@@ -199,12 +383,26 @@ def _reference(tool_id: str, positive: dict[str, Any]) -> dict[str, Any]:
 
 
 def _replay_projection(tool_id: str, output: dict[str, Any]) -> dict[str, Any]:
-    """Normalize process-local initialization state away from semantic replay."""
+    """Normalize process-local state away from semantic replay evidence."""
     if tool_id == "python.maude":
         return {
             "api": output.get("api"),
             "module_loaded": output.get("module_loaded"),
             "rewritten": output.get("rewritten"),
+        }
+    if tool_id == "python.pydantic":
+        return {
+            "payload": output.get("payload"),
+            "strict": output.get("strict"),
+            "extra_policy": output.get("extra_policy"),
+        }
+    if tool_id == "python.jsonschema":
+        return {
+            "payload": output.get("payload"),
+            "schema_draft": output.get("schema_draft"),
+            "independent_schema_boundary": output.get(
+                "independent_schema_boundary"
+            ),
         }
     return output
 
@@ -241,6 +439,7 @@ def _run_one_tool(tool: dict[str, Any]) -> dict[str, Any]:
     tool_id = tool["id"]
     positive_a = _TOOL_FUNCTIONS[tool_id]()
     positive_b = _TOOL_FUNCTIONS[tool_id]()
+    negative = _negative(tool_id)
     boundary_admit = _boundary(tool_id, True)
     boundary_refuse = _boundary(tool_id, False)
     changed = sorted(
@@ -259,9 +458,9 @@ def _run_one_tool(tool: dict[str, Any]) -> dict[str, Any]:
         "import": tool["import"],
         "positive": {"fired": True, "output": positive_a},
         "negative": {
-            "fired": boundary_refuse["verdict"] == "REFUSE",
-            "reason_code": boundary_refuse["reason_code"],
-            "output": boundary_refuse,
+            "fired": negative["verdict"] == "REFUSE",
+            "reason_code": negative["reason_code"],
+            "output": negative,
         },
         "boundary": {
             "admit": boundary_admit,
@@ -301,6 +500,8 @@ def _child(tool_id: str) -> int:
     except Exception as exc:
         body = {
             "tool_id": tool_id,
+            "distribution": tool["distribution"],
+            "import": tool["import"],
             "error": type(exc).__name__,
             "detail": str(exc)[:500],
             "captured_stdout_sha256": _sha(captured_stdout.getvalue().encode()),
@@ -314,11 +515,73 @@ def _source_hashes() -> dict[str, str]:
     paths = {
         "light_runtime/src/constraintbox/core_tools.py": Path(core_tools.__file__).resolve(),
         "light_runtime/src/constraintbox/cb_light_probes.py": Path(__file__).resolve(),
+        "light_runtime/src/constraintbox/control_plane.py": Path(__file__).with_name(
+            "control_plane.py"
+        ),
+        "light_runtime/src/constraintbox/transition_mini_lev.py": Path(__file__).with_name(
+            "transition_mini_lev.py"
+        ),
         "light_runtime/src/constraintbox/core_tool_registry_v9.json": core_tools._REGISTRY,
     }
     return {
         name: _sha(path.read_bytes()) for name, path in paths.items()
     }
+
+
+def _automaton_transition_consumer_bound(
+    tool: dict[str, Any], source_hashes: dict[str, str]
+) -> bool:
+    """Bind the Automaton probe to the fixed-state Mini-Lev consumer source.
+
+    The generic matrix-to-SQLite consumer applies to every declared tool.  This
+    extra condition prevents the Automaton row from claiming an operation
+    consumer merely because it can construct an unrelated finite machine.
+    """
+    consumer_name = "light_runtime/src/constraintbox/transition_mini_lev.py"
+    source_paths = tool.get("source")
+    if not isinstance(source_paths, list):
+        return False
+    if "constraint_box/light_runtime/src/constraintbox/transition_mini_lev.py" not in source_paths:
+        return False
+    consumer_path = Path(__file__).with_name("transition_mini_lev.py")
+    consumer_text = consumer_path.read_text(encoding="utf-8")
+    return (
+        consumer_name in source_hashes
+        and "pypi:automaton" in consumer_text
+        and "from automaton.machines import FiniteMachine" in consumer_text
+        and "def _automaton_witness" in consumer_text
+    )
+
+
+def _bind_child_observation(
+    tool: dict[str, Any], observed: Any
+) -> tuple[dict[str, Any], bool]:
+    """Refuse child evidence unless its full registry identity matches the row."""
+    requested_identity = {
+        "tool_id": tool["id"],
+        "distribution": tool["distribution"],
+        "import": tool["import"],
+    }
+    if isinstance(observed, dict):
+        mismatched_fields = sorted(
+            field
+            for field, expected in requested_identity.items()
+            if observed.get(field) != expected
+        )
+    else:
+        mismatched_fields = sorted(requested_identity)
+    if not mismatched_fields:
+        return observed, True
+    return (
+        {
+            "error": "CHILD_OBSERVATION_IDENTITY_MISMATCH",
+            "reason_code": "CHILD_OBSERVATION_IDENTITY_MISMATCH",
+            "requested_identity": requested_identity,
+            "mismatched_fields": mismatched_fields,
+            "rejected_observation_sha256": _sha(_canonical(observed)),
+        },
+        False,
+    )
 
 
 def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
@@ -333,6 +596,9 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
         before = time.monotonic()
         environment = os.environ.copy()
         environment["PYTHONDONTWRITEBYTECODE"] = "1"
+        # Pin child probes to this module's Light source tree.  The working
+        # directory can otherwise resolve an editable legacy package first.
+        environment["PYTHONPATH"] = str(_LIGHT_SOURCE_ROOT)
         completed = subprocess.run(
             [sys.executable, "-m", "constraintbox.cb_light_probes", "--child", tool["id"]],
             cwd=ROOT,
@@ -354,6 +620,7 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
                 "error": "MISSING_STRUCTURED_CHILD_OUTPUT",
                 "detail": completed.stderr[-500:],
             }
+        observed, child_identity_bound = _bind_child_observation(tool, observed)
         raw_runs.append(
             {
                 "tool_id": tool["id"],
@@ -361,26 +628,40 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
                 "elapsed_ms": elapsed_ms,
                 "stdout_sha256": _sha(completed.stdout.encode()),
                 "stderr_sha256": _sha(completed.stderr.encode()),
+                "child_identity_bound": child_identity_bound,
             }
         )
         installed = doctor_by_id[tool["id"]]
         import_succeeds = bool(installed["import_visible"])
         facts = {
             "candidate_bound": True,
+            "child_identity_bound": child_identity_bound,
             "installed": installed["version"] is not None,
             "import_succeeds": import_succeeds,
-            "positive_api_case": bool(observed.get("positive", {}).get("fired")),
-            "reason_specific_negative": bool(observed.get("negative", {}).get("fired"))
+            "positive_api_case": child_identity_bound
+            and bool(observed.get("positive", {}).get("fired")),
+            "reason_specific_negative": child_identity_bound
+            and bool(observed.get("negative", {}).get("fired"))
             and bool(observed.get("negative", {}).get("reason_code")),
-            "single_field_boundary_flip": bool(
+            "single_field_boundary_flip": child_identity_bound
+            and bool(
                 observed.get("boundary", {}).get("single_field_flip")
             ),
-            "deterministic_replay": bool(observed.get("replay", {}).get("equal")),
-            "severance_observed": bool(observed.get("severance", {}).get("fired")),
-            "reference_agreement": bool(observed.get("reference", {}).get("agrees")),
+            "deterministic_replay": child_identity_bound
+            and bool(observed.get("replay", {}).get("equal")),
+            "severance_observed": child_identity_bound
+            and bool(observed.get("severance", {}).get("fired")),
+            "reference_agreement": child_identity_bound
+            and bool(observed.get("reference", {}).get("agrees")),
             # This matrix is immediately consumed and revalidated by the
             # cb_light_gate SQLite transition, rather than left as loose JSON.
-            "receipt_consumer_bound": True,
+            # Automaton additionally has to bind to its actual transition
+            # Mini-Lev consumer, whose exact source bytes are in this matrix.
+            "receipt_consumer_bound": (
+                _automaton_transition_consumer_bound(tool, source_hashes)
+                if tool["id"] == "python.automaton"
+                else True
+            ),
         }
         satisfied = completed.returncode == 0 and all(facts.values())
         cases = [
@@ -432,7 +713,11 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
                 "reason_code": (
                     "PROBE_CONTRACT_SATISFIED"
                     if satisfied
-                    else "PROBE_CONTRACT_INCOMPLETE"
+                    else (
+                        "CHILD_OBSERVATION_IDENTITY_MISMATCH"
+                        if not child_identity_bound
+                        else "PROBE_CONTRACT_INCOMPLETE"
+                    )
                 ),
                 "facts": facts,
                 "cases": cases,
@@ -446,6 +731,7 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
     return {
         "schema": "constraintbox.cb-light-core-probes.v1",
         "profile": "cb_light",
+        "light_source_root": str(_LIGHT_SOURCE_ROOT),
         "interpreter": sys.executable,
         "python_version": sys.version.split()[0],
         "contract_set_sha256": contract_set_sha256,
@@ -470,7 +756,9 @@ def run_core_probe_matrix(timeout_seconds: float = 15.0) -> dict[str, Any]:
             row["disposition"] == "ADMIT" for row in tool_decisions
         ),
         "promotion_allowed": False,
-        "claim_ceiling": "five current CB Light tool probe contracts only",
+        "claim_ceiling": (
+            f"{len(tool_decisions)} current declared CB Light tool probe contracts only"
+        ),
     }
 
 

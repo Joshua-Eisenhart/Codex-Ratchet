@@ -400,7 +400,7 @@ def _load_core_contract(rows: dict[tuple[str, str], dict[str, Any]]) -> None:
     for tool in body.get("tools", []):
         name = tool.get("distribution")
         if not isinstance(name, str):
-            raise DomainError("core tool registry row has no distribution")
+            raise DomainError("declared tool registry row has no distribution")
         entry = _entry(rows, name)
         import_name = tool.get("import")
         if isinstance(import_name, str):

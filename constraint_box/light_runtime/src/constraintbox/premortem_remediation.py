@@ -700,6 +700,14 @@ def _failure(text: str) -> dict[str, Any]:
 def run_remediation(raw: Any, *, db_path: Path | None = None) -> dict[str, Any]:
     """Run exactly one externally performed repair round, or refuse/hold it."""
 
+    from hookkernel.cb_light_basin_view import hold_result_if_incomplete
+
+    held = hold_result_if_incomplete()
+    if held is not None:
+        out = _output("HOLD", held["reason_code"], held["detail"])
+        out["basin_view"] = held["basin_view"]
+        return out
+
     connection = connect(db_path)
     try:
         try:

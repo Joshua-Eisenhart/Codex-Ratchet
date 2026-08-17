@@ -1,0 +1,22 @@
+{
+  "schema": "constraintbox.distinguishability.packet.v1",
+  "claim": "a non-finite theory must HOLD before any solver call",
+  "claim_ceiling": "exists",
+  "candidates": ["a", "b"],
+  "probes": ["color"],
+  "probe_domains": {
+    "color": ["red", "blue"]
+  },
+  "demand_D": [
+    {
+      "left": "a",
+      "right": "b",
+      "id": "a_b",
+      "why_demanded": "unused because theory is not finite"
+    }
+  ],
+  "constraints_C": [],
+  "query": "distinguish",
+  "theory": "QF_UF",
+  "authority": "none"
+}

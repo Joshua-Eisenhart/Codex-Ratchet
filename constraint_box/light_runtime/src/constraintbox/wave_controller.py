@@ -647,6 +647,12 @@ def _persist_fixture_wave(
 ) -> dict[str, Any]:
     """Append, settle, and reverify one fixture attempt atomically."""
 
+    from hookkernel.cb_light_basin_view import hold_result_if_incomplete
+
+    held = hold_result_if_incomplete()
+    if held is not None:
+        raise WaveControllerError("HOLD", held["reason_code"], held["detail"])
+
     connection = connect(db_path)
     try:
         with append_only_transaction(connection):
@@ -869,6 +875,18 @@ def run_fixture_wave(
     inside the strict Pydantic envelope and prevents topology or adapter choice
     from becoming an untrusted authority surface.
     """
+
+    from hookkernel.cb_light_basin_view import hold_result_if_incomplete
+
+    held = hold_result_if_incomplete()
+    if held is not None:
+        return _result(
+            "HOLD",
+            held["reason_code"],
+            held["detail"],
+            persisted=False,
+            basin_view=held["basin_view"],
+        )
 
     validation = validate_probe_packet(raw_packet)
     if not validation.is_validated:

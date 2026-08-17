@@ -1,0 +1,54 @@
+{
+  "schema": "constraintbox.manifold-foundation-seed.v1",
+  "foundation_id": "time-first-dual-opening-collapsed-negative",
+  "carrier": {
+    "support_ids": ["z_left", "z_right"],
+    "zero_object": {
+      "label": "Z",
+      "role": "finite support boundary/root object",
+      "scalar_zero": false
+    },
+    "capacity_name": "Hartley support capacity K(W)=log2(W)"
+  },
+  "time": {
+    "ticks": [0, 1, 2],
+    "support_counts": [2, 4, 8],
+    "capacity_bits": [1.0, 2.0, 3.0],
+    "delta_capacity_bits": [1.0, 1.0]
+  },
+  "dual_engines": {
+    "left_order": ["open", "bind"],
+    "right_order": ["bind", "open"],
+    "witness_domain": "S0={z_left,z_right}",
+    "left_output": "left:bind(open(S0))",
+    "right_output": "left:bind(open(S0))"
+  },
+  "layers": [
+    {
+      "id": "C0_finitude",
+      "constraint": "finite support and finite map domains",
+      "status": "accepted_seed",
+      "witness": "support_counts and explicit support_ids"
+    },
+    {
+      "id": "C1_time_opening_binding",
+      "constraint": "capacity change is measured between adjacent finite supports",
+      "status": "candidate",
+      "witness": "delta_capacity_bits"
+    },
+    {
+      "id": "C2_noncommutation",
+      "constraint": "the two typed compositions are order-distinct",
+      "status": "candidate",
+      "witness": "left_output != right_output"
+    },
+    {
+      "id": "C3_nonassociativity",
+      "constraint": "parenthesization may become an additional typed constraint",
+      "status": "candidate",
+      "witness": "requires explicit associator on a common codomain"
+    }
+  ],
+  "claim_ceiling": "typed finite foundation seed only; not a physical, geometric, chiral, entropy-law, or canonical-manifold claim",
+  "promotion_allowed": false
+}

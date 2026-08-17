@@ -1,0 +1,44 @@
+{
+  "schema": "constraintbox.external-release-arbitration.v1",
+  "status": "THREE_MODEL_ADVISORY_PASS",
+  "prompt_sha256": "a03f52b51c1ec61e9d33b4d19e2695ea9c355ac913a7cf3068579674ef8d4fb9",
+  "primary_mini_mmm_composed_prompt_sha256": "63d99d44a1fa972782b2189b5677364514630be2070a70561660b55c276c8bbf",
+  "provider_mmm_packs_sha256": "bf0e90c0d5dfea8afc02942b2f19a29205a32f3874103523d3c18e991a0eb12f",
+  "members": [
+    {
+      "route": "grok-cli",
+      "model_requested": "grok-4.6",
+      "model_observed": "grok-4.6-build",
+      "disposition": "OBSERVED",
+      "verdict": "PASS",
+      "provider_receipt_sha256": "484ed99ecbec267489b166ae00209c9d9d0c6b608e83142356dee553d5485ff1",
+      "output_sha256": "7b27f0530297acf4d0fe93fc1a2a372642ee310bc94381823a203414c1b7f627",
+      "dispatch_lease_revoked": true
+    },
+    {
+      "route": "claude-bridge",
+      "model_requested": "fable",
+      "model_observed": "claude-fable-5",
+      "disposition": "OBSERVED",
+      "verdict": "PASS",
+      "provider_receipt_sha256": "55af4e24e168c28642e0161f7b1e69c6410f3d249825e3ab5e789e346c654048",
+      "output_sha256": "832b0906e5d82de7085406a0dca2d0cc0c8c016a8bfca953231438aee15a686b"
+    },
+    {
+      "route": "claude-bridge",
+      "model_requested": "opus",
+      "model_observed": "claude-opus-5",
+      "disposition": "OBSERVED",
+      "verdict": "PASS",
+      "provider_receipt_sha256": "2f473e518f552cc2931c4f334996174a1e91a3654edaa4b50bf10db64412430a",
+      "output_sha256": "b30fd74acf3507b3572464f5af2e6849a4e64189525458e92fd8d1c546f4f8fc"
+    }
+  ],
+  "agreement": {
+    "p0_p1_blockers": 0,
+    "verdict": "PASS",
+    "bar": "local runnable integrated candidate"
+  },
+  "claim_ceiling": "three external model observations over one identical prompt; advisory only, not deterministic verification, promotion, or proof of model cognition",
+  "promotion_allowed": false
+}

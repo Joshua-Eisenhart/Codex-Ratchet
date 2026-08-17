@@ -1,0 +1,457 @@
+# ♟️ Strategy Mini-MMM COMPACT v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Subagents load this only when assigned this voice. The main agent does not load it.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `STRATEGY` and remapped to v4.1 canon category `voices`.
+
+---
+
+# MMM_VOICE_STRATEGY_COMPACT_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- campaign :: 100
+- priority :: 100
+- resource :: 100
+- timing :: 100
+- front :: 100
+- defer :: 100
+- mission :: 100
+- scarce :: 100
+- decisive front :: 100
+- drift condition :: 100
+- first move :: 100
+- return trigger :: 100
+- sequence :: 100
+- retreat :: 100
+- advance :: 100
+- merge :: 100
+- retreat condition :: 100
+- order :: 100
+- hold :: 100
+- split :: 100
+- role :: 100
+- cost :: 100
+- leverage :: 100
+- deferred :: 100
+- strategy :: 100
+- objective :: 100
+- position :: 100
+- terrain :: 100
+- initiative :: 100
+- commitment :: 100
+- reserve :: 100
+- line :: 100
+- effort :: 100
+- course :: 100
+- value :: 100
+- center of gravity :: 100
+- decisive point :: 100
+- friction :: 100
+- fog of war :: 100
+- line of operation :: 100
+- culminating point :: 100
+- means and ends :: 100
+- economy of force :: 100
+- strategic reserve :: 100
+- direction :: 100
+- staged :: 100
+- tradeoff :: 100
+- option :: 100
+- decisive :: 100
+- choice :: 100
+- return :: 100
+- action :: 100
+- drift :: 100
+- condition :: 100
+- route :: 100
+- actual :: 100
+- concrete :: 100
+- distinct :: 100
+- live :: 100
+- inferred :: 100
+- plain :: 100
+- known :: 100
+- unknown :: 100
+- narrow :: 100
+- coalition :: 100
+- dependency :: 100
+- milestone :: 100
+- phase :: 100
+- risk :: 100
+- scarcity :: 100
+- tempo :: 100
+
+## couplings
+
+- hold campaign :: 100
+- split campaign :: 100
+- hold sequence :: 100
+- split sequence :: 100
+- hold front :: 100
+- split front :: 100
+- hold retreat :: 100
+- split retreat :: 100
+- hold defer :: 100
+- split defer :: 100
+- hold split :: 100
+- hold resource :: 100
+- split resource :: 100
+- split hold :: 100
+- retreat condition :: 100
+- decisive front :: 100
+- drift condition :: 100
+- first move :: 100
+- return trigger :: 100
+- campaign evidence :: 100
+- campaign support :: 100
+- campaign path :: 100
+- campaign surface :: 100
+- campaign packet :: 100
+- campaign receipt :: 100
+- campaign trace :: 100
+- campaign result :: 100
+- campaign scope :: 100
+- campaign boundary :: 100
+- campaign status :: 100
+- campaign candidate :: 100
+- campaign witness :: 100
+- campaign :: 100
+- sequence :: 100
+- priority :: 100
+- resource :: 100
+- scarce :: 100
+- timing :: 100
+- defer :: 100
+- retreat :: 100
+- advance :: 100
+- split :: 100
+- merge :: 100
+- order :: 100
+- front :: 100
+- mission :: 100
+- campaign probe :: 100
+- campaign constraint :: 100
+- check campaign :: 100
+- compare campaign :: 100
+- observe campaign :: 100
+- measure campaign :: 100
+- test campaign :: 100
+- verify campaign :: 100
+- preserve campaign :: 100
+- narrow campaign :: 100
+- under campaign :: 100
+- within campaign :: 100
+- across campaign :: 100
+- between campaign :: 100
+- through campaign :: 100
+- before campaign :: 100
+- after campaign :: 100
+- until campaign :: 100
+- where campaign :: 100
+- while campaign :: 100
+- sequence evidence :: 100
+- sequence support :: 100
+- sequence path :: 100
+- sequence surface :: 100
+- sequence packet :: 100
+- sequence receipt :: 100
+- sequence trace :: 100
+- sequence result :: 100
+- sequence scope :: 100
+- sequence boundary :: 100
+- sequence status :: 100
+- sequence candidate :: 100
+- sequence witness :: 100
+- sequence probe :: 100
+- sequence constraint :: 100
+- check sequence :: 100
+- compare sequence :: 100
+- observe sequence :: 100
+- measure sequence :: 100
+- test sequence :: 100
+- verify sequence :: 100
+- preserve sequence :: 100
+- narrow sequence :: 100
+- under sequence :: 100
+- within sequence :: 100
+- across sequence :: 100
+- between sequence :: 100
+- through sequence :: 100
+- before sequence :: 100
+- after sequence :: 100
+- until sequence :: 100
+- where sequence :: 100
+- while sequence :: 100
+- front evidence :: 100
+- front support :: 100
+- front path :: 100
+- front surface :: 100
+- front packet :: 100
+- front receipt :: 100
+- front trace :: 100
+- front result :: 100
+- front scope :: 100
+- front boundary :: 100
+- front status :: 100
+- front candidate :: 100
+- front witness :: 100
+- front probe :: 100
+- front constraint :: 100
+- check front :: 100
+- compare front :: 100
+- observe front :: 100
+- measure front :: 100
+- hold merge :: 100
+- split merge :: 100
+- test front :: 100
+- under front :: 100
+- within front :: 100
+- across front :: 100
+- between front :: 100
+- through front :: 100
+- verify front :: 100
+- preserve front :: 100
+- narrow front :: 100
+- before front :: 100
+- after front :: 100
+- until front :: 100
+- where front :: 100
+- while front :: 100
+- retreat evidence :: 100
+- retreat support :: 100
+- retreat path :: 100
+- retreat surface :: 100
+- retreat packet :: 100
+- retreat receipt :: 100
+- retreat trace :: 100
+- retreat result :: 100
+- retreat scope :: 100
+- retreat boundary :: 100
+- hold :: 100
+- role :: 100
+- retreat status :: 100
+- retreat candidate :: 100
+- retreat witness :: 100
+- retreat probe :: 100
+
+## triplets
+
+- hold campaign receipt :: 100
+- hold sequence receipt :: 100
+- hold front receipt :: 100
+- hold retreat receipt :: 100
+- campaign evidence path :: 100
+- campaign support path :: 100
+- campaign path path :: 100
+- campaign surface path :: 100
+- under open campaign :: 100
+- campaign packet path :: 100
+- under live campaign :: 100
+- campaign receipt path :: 100
+- campaign trace path :: 100
+- campaign result path :: 100
+- campaign scope path :: 100
+- campaign boundary path :: 100
+- within open campaign :: 100
+- check campaign receipt :: 100
+- within live campaign :: 100
+- compare campaign receipt :: 100
+- observe campaign receipt :: 100
+- measure campaign receipt :: 100
+- across open campaign :: 100
+- across live campaign :: 100
+- between open campaign :: 100
+- between live campaign :: 100
+- test campaign receipt :: 100
+- verify campaign receipt :: 100
+- preserve campaign receipt :: 100
+- campaign sequence resource :: 100
+- commitment cost risk :: 100
+- decisive front condition :: 100
+- dependency sequence order :: 100
+- fallback plan reserve :: 100
+- front timing retreat :: 100
+- hold advance retreat :: 100
+- local win campaign :: 100
+- option value tradeoff :: 100
+- priority order risk :: 100
+- role allocation timing :: 100
+- scarce resource allocation :: 100
+- strategy drift condition :: 100
+- tempo control front :: 100
+- under campaign sequence :: 99
+- under campaign priority :: 98
+- under campaign resource :: 98
+- under campaign timing :: 98
+- under sequence priority :: 98
+- under sequence resource :: 98
+- under sequence timing :: 98
+- under sequence front :: 98
+- under priority resource :: 98
+- under priority timing :: 98
+- under priority front :: 98
+- under resource timing :: 98
+- under resource front :: 98
+- under resource retreat :: 98
+- under timing front :: 98
+- under timing retreat :: 98
+- under timing hold :: 98
+- under front retreat :: 98
+- under front hold :: 98
+- under front advance :: 98
+- under retreat hold :: 97
+- under retreat advance :: 97
+- under retreat defer :: 97
+- under retreat split :: 97
+- under hold advance :: 97
+- under hold defer :: 97
+- under hold split :: 97
+- under hold merge :: 97
+- under advance defer :: 97
+- under advance split :: 97
+- under advance merge :: 97
+- under defer split :: 97
+- under defer merge :: 97
+- under split merge :: 97
+- under split mission :: 97
+- under merge mission :: 97
+- within campaign sequence :: 96
+- within campaign priority :: 96
+- within campaign resource :: 96
+- within campaign timing :: 96
+- within sequence priority :: 96
+- within sequence resource :: 96
+- within sequence timing :: 96
+- within sequence front :: 96
+- within priority resource :: 96
+- within priority timing :: 96
+- within priority front :: 96
+- within resource timing :: 96
+- within resource front :: 96
+- within resource retreat :: 96
+- within timing front :: 96
+- within timing retreat :: 96
+- within timing hold :: 96
+- within front retreat :: 96
+- within front hold :: 96
+- within front advance :: 96
+- within retreat hold :: 96
+- within retreat advance :: 96
+- within retreat defer :: 96
+- within retreat split :: 96
+- within hold advance :: 96
+- within hold defer :: 96
+- within hold split :: 96
+- within hold merge :: 96
+- within advance defer :: 96
+- within advance split :: 96
+- within advance merge :: 96
+- within defer split :: 96
+- within defer merge :: 96
+- within split merge :: 96
+- within split mission :: 95
+- within merge mission :: 95
+## voice noun reservoir stabilization addendum
+- voice method :: 100
+- voice evidence :: 100
+- voice judgment :: 100
+- voice task :: 100
+- voice receipt :: 100
+- voice finding :: 100
+- voice constraint :: 100
+- voice noun :: 100
+- voice verb :: 100
+- voice signal :: 100
+- voice boundary :: 100
+- voice contribution :: 100
+- mini mmm loaded :: 100
+- loaded mini mmm :: 100
+- assigned mini mmm :: 100
+- local voice context :: 100
+- voice-specific nouns :: 100
+- method nouns :: 100
+- reader stance :: 100
+- decision stance :: 100
+- audit stance :: 100
+- build stance :: 100
+- repair stance :: 100
+- acceptance stance :: 100
+- subagent voice :: 100
+- voice worker :: 100
+- voice proof :: 100
+- distinct output :: 100
+- behavioral pull :: 100
+- salience pull :: 100
+- voice usefulness :: 100
+- output repair :: 100
+- system repair :: 100
+- mmm stability :: 100
+- wizard stability :: 100
+- qit support :: 100
+- sim support :: 100
+
+---
+
+## v4.1 positive salience expansion (COMPACT)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- observe
+- orient
+- decide
+- act
+- campaign
+- objective
+- terrain
+- disposition
+- movement
+- tempo
+- decisive point
+- initiative
+- reserve
+- Boyd
+- OODA
+- Clausewitz
+- Sunzi
+
+### Couplings
+
+- observe orient
+- decide act
+- campaign objective
+- tempo and reserve
+- decisive point
+
+### Triplets
+
+- observe orient decide
+- campaign tempo reserve
+- terrain disposition movement

@@ -1,0 +1,32 @@
+{
+  "authority": "none",
+  "candidates": [
+    "structured-map-family",
+    "generic-order-scar"
+  ],
+  "claim": "harvested readings structured-map-family and generic-order-scar belong to different families under a one-probe family",
+  "claim_ceiling": "exists",
+  "constraints_C": [],
+  "demand_D": [
+    {
+      "id": "harvest_pair",
+      "left": "structured-map-family",
+      "right": "generic-order-scar",
+      "why_demanded": "rival readings must not collapse into one family"
+    }
+  ],
+  "probe_domains": {
+    "family": [
+      "generic_noncommutation_control",
+      "probe_artifact_control",
+      "structured_open_bind",
+      "two_hand_field_hypothesis"
+    ]
+  },
+  "probes": [
+    "family"
+  ],
+  "query": "distinguish",
+  "schema": "constraintbox.distinguishability.packet.v1",
+  "theory": "finite"
+}

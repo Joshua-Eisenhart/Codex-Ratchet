@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute real bounded API probes for the 91-row CB Light proposal roster.
+"""Execute real bounded API probes for the CB Light proposal roster.
 
 Every tool runs in a fresh subprocess.  A tool result has a positive operation,
 a reason-specific negative, a boundary observation, a bounded reference check,
@@ -672,6 +672,41 @@ def probe_fastjsonschema() -> dict[str, Any]:
     )
 
 
+def probe_jsonschema() -> dict[str, Any]:
+    from jsonschema import Draft202012Validator, ValidationError
+
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["operation", "maximum"],
+        "properties": {
+            "operation": {"const": "bounded_request"},
+            "maximum": {"type": "integer", "minimum": 0, "maximum": 2},
+        },
+    }
+    validator = Draft202012Validator(schema)
+    payload = {"operation": "bounded_request", "maximum": 2}
+    validator.validate(payload)
+    hostile = {**payload, "hostile_extra": "refuse-me"}
+    boundary_payload = {"operation": "bounded_request", "maximum": 0}
+    return result(
+        validator.is_valid(payload),
+        catches(lambda: validator.validate(hostile), ValidationError),
+        validator.is_valid(boundary_payload) and not validator.is_valid(
+            {"operation": "bounded_request", "maximum": 3}
+        ),
+        list(validator.iter_errors(payload)) == []
+        and schema["$schema"].endswith("draft/2020-12/schema"),
+        {
+            "payload": payload,
+            "schema_draft": "2020-12",
+            "additional_properties": False,
+            "boundary": boundary_payload,
+        },
+    )
+
+
 def probe_flake8_simplify() -> dict[str, Any]:
     import flake8_simplify
 
@@ -699,6 +734,46 @@ def probe_formula() -> dict[str, Any]:
         solver({"x": 0}) == "1",
         solver({"x": -2}) == value,
         {"value": value},
+    )
+
+
+def probe_pydantic() -> dict[str, Any]:
+    from typing import Literal
+
+    from pydantic import BaseModel, ConfigDict, Field, ValidationError
+
+    class BoundedRequest(BaseModel):
+        model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+        operation: Literal["bounded_request"]
+        maximum: int = Field(ge=0, le=2)
+
+    payload = {"operation": "bounded_request", "maximum": 2}
+    normalized = BoundedRequest.model_validate(payload, strict=True).model_dump(
+        mode="json"
+    )
+    hostile = {**payload, "hostile_extra": "refuse-me"}
+    boundary_payload = {"operation": "bounded_request", "maximum": 0}
+    return result(
+        normalized == payload,
+        catches(
+            lambda: BoundedRequest.model_validate(hostile, strict=True), ValidationError
+        ),
+        BoundedRequest.model_validate(boundary_payload, strict=True).maximum == 0
+        and catches(
+            lambda: BoundedRequest.model_validate(
+                {"operation": "bounded_request", "maximum": 3}, strict=True
+            ),
+            ValidationError,
+        ),
+        BoundedRequest.model_json_schema()["additionalProperties"] is False
+        and normalized == {"maximum": 2, "operation": "bounded_request"},
+        {
+            "payload": normalized,
+            "strict": True,
+            "extra_policy": "forbid",
+            "boundary": boundary_payload,
+        },
     )
 
 
@@ -1951,8 +2026,17 @@ def load_manifest(path: pathlib.Path) -> dict[str, Any]:
         raise ValueError(
             f"manifest digest mismatch: claimed={claimed}, observed={observed}"
         )
-    if len(body.get("tools", [])) != 91:
-        raise ValueError("CB Light tool manifest must contain exactly 91 rows")
+    tools = body.get("tools")
+    expected_rows = (body.get("counts") or {}).get("tools")
+    if not isinstance(tools, list) or not tools:
+        raise ValueError("CB Light tool manifest must contain a nonempty tool domain")
+    if not isinstance(expected_rows, int) or expected_rows != len(tools):
+        raise ValueError("CB Light tool manifest count does not bind its rows")
+    names = [row.get("normalized_name") if isinstance(row, dict) else None for row in tools]
+    if any(not isinstance(name, str) or not name for name in names):
+        raise ValueError("CB Light tool manifest identity missing")
+    if len(set(names)) != len(names):
+        raise ValueError("CB Light tool manifest has duplicate identities")
     return body
 
 
@@ -2314,7 +2398,9 @@ def run_matrix(
         "counts": counts,
         "elapsed_ms": round((time.monotonic() - started) * 1000, 3),
         "tool_decisions": rows,
-        "all_operation_constraints_satisfied": counts["hold"] == 0 and len(rows) == 91,
+        "all_operation_constraints_satisfied": (
+            counts["hold"] == 0 and len(rows) == len(manifest["tools"])
+        ),
         "promotion_allowed": False,
         "claim_ceiling": (
             "bounded candidate operations in this interpreter only; no production "

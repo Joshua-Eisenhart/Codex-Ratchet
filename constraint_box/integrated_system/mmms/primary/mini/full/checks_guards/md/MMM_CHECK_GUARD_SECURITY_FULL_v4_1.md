@@ -1,0 +1,1137 @@
+# 🛡️ Security Mini-MMM FULL v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Check/guard workers load this only for audit, hygiene, or security work; it is not a voice.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `SECURITY` and remapped to v4.1 canon category `checks_guards`.
+
+---
+
+# MMM_LANE_SECURITY_FULL_v4_1
+
+## words
+
+- security :: 100
+- secret :: 100
+- permission :: 100
+- trust :: 100
+- boundary :: 100
+- exposure :: 100
+- unsafe :: 100
+- default :: 100
+- credential :: 100
+- token :: 100
+- scope :: 100
+- privilege :: 100
+- threat :: 100
+- abuse :: 100
+- path :: 100
+- leak :: 100
+- access :: 100
+- sandbox :: 100
+- policy :: 100
+- risk :: 100
+- surface :: 99
+- trust boundary :: 99
+- abuse path :: 99
+- unsafe default :: 99
+- least privilege :: 99
+- threat surface :: 99
+- blocker :: 99
+- isolation :: 99
+- under :: 99
+- within :: 99
+- across :: 99
+- between :: 99
+- through :: 99
+- before :: 99
+- after :: 99
+- until :: 99
+- where :: 99
+- while :: 99
+- against :: 99
+- along :: 99
+- around :: 98
+- among :: 98
+- inside :: 98
+- outside :: 98
+- near :: 98
+- beside :: 98
+- over :: 98
+- from :: 98
+- with :: 98
+- without :: 98
+- only :: 98
+- not :: 98
+- no :: 98
+- yet :: 98
+- then :: 98
+- current :: 98
+- actual :: 98
+- local :: 98
+- bounded :: 98
+- finite :: 98
+- open :: 97
+- live :: 97
+- distinct :: 97
+- concrete :: 97
+- plain :: 97
+- observed :: 97
+- inferred :: 97
+- known :: 97
+- unknown :: 97
+- checked :: 97
+- missing :: 97
+- stale :: 97
+- narrow :: 97
+- small :: 97
+- warm :: 97
+- careful :: 97
+- honest :: 97
+- first :: 97
+- next :: 97
+- prior :: 97
+- later :: 96
+- separate :: 96
+- together :: 96
+- apart :: 96
+- held :: 96
+- returned :: 96
+- found :: 96
+- compared :: 96
+- measured :: 96
+- named :: 96
+- used :: 96
+- fit :: 96
+- viable :: 96
+- direct :: 96
+- different :: 96
+- alternate :: 96
+- branch :: 96
+- packet :: 96
+- artifact :: 96
+- receipt :: 96
+- trace :: 95
+- result :: 95
+- support :: 95
+- evidence :: 95
+- gate :: 95
+- guard :: 95
+- rung :: 95
+- status :: 95
+- candidate :: 95
+- survivor :: 95
+- witness :: 95
+- probe :: 95
+- constraint :: 95
+- name :: 95
+- term :: 95
+- use :: 95
+- role :: 95
+- practice :: 95
+- custom :: 95
+- habit :: 95
+- experience :: 94
+- observation :: 94
+- impression :: 94
+- idea :: 94
+- perception :: 94
+- conjunction :: 94
+- resemblance :: 94
+- relation :: 94
+- probability :: 94
+- particular :: 94
+- by :: 94
+- relative :: 94
+- locally :: 94
+- rather :: 94
+- instead :: 94
+- still :: 94
+- likely :: 94
+- possible :: 94
+- partial :: 94
+- limited :: 94
+- measurement :: 93
+- test :: 93
+- sample :: 93
+- case :: 93
+- instance :: 93
+- word :: 93
+- distinction :: 93
+- comparison :: 93
+- estimate :: 93
+- uncertainty :: 93
+- model :: 93
+- counterexample :: 93
+- condition :: 93
+- fork :: 93
+- plurality :: 93
+- reading :: 93
+- perspective :: 93
+- claim :: 93
+- route :: 93
+- voice :: 93
+
+## couplings
+
+- under exposure :: 100
+- within exposure :: 100
+- across exposure :: 100
+- between exposure :: 100
+- through exposure :: 100
+- before exposure :: 100
+- after exposure :: 100
+- until exposure :: 100
+- where exposure :: 100
+- while exposure :: 100
+- exposure evidence :: 100
+- exposure support :: 100
+- exposure path :: 100
+- exposure surface :: 100
+- exposure packet :: 100
+- exposure receipt :: 100
+- exposure trace :: 100
+- exposure result :: 100
+- exposure scope :: 100
+- exposure boundary :: 100
+- exposure status :: 99
+- exposure candidate :: 99
+- exposure witness :: 99
+- exposure probe :: 99
+- exposure constraint :: 99
+- check exposure :: 99
+- compare exposure :: 99
+- observe exposure :: 99
+- measure exposure :: 99
+- test exposure :: 99
+- verify exposure :: 99
+- hold exposure :: 99
+- preserve exposure :: 99
+- split exposure :: 99
+- narrow exposure :: 99
+- under permission :: 99
+- within permission :: 99
+- across permission :: 99
+- between permission :: 99
+- through permission :: 99
+- before permission :: 98
+- after permission :: 98
+- until permission :: 98
+- where permission :: 98
+- while permission :: 98
+- permission evidence :: 98
+- permission support :: 98
+- permission path :: 98
+- permission surface :: 98
+- permission packet :: 98
+- permission receipt :: 98
+- permission trace :: 98
+- permission result :: 98
+- permission scope :: 98
+- permission boundary :: 98
+- permission status :: 98
+- permission candidate :: 98
+- permission witness :: 98
+- permission probe :: 98
+- permission constraint :: 98
+- check permission :: 97
+- compare permission :: 97
+- observe permission :: 97
+- measure permission :: 97
+- test permission :: 97
+- verify permission :: 97
+- hold permission :: 97
+- preserve permission :: 97
+- split permission :: 97
+- narrow permission :: 97
+- under secret :: 97
+- within secret :: 97
+- across secret :: 97
+- between secret :: 97
+- through secret :: 97
+- before secret :: 97
+- after secret :: 97
+- until secret :: 97
+- where secret :: 97
+- while secret :: 97
+- secret evidence :: 96
+- secret support :: 96
+- secret path :: 96
+- secret surface :: 96
+- secret packet :: 96
+- secret receipt :: 96
+- secret trace :: 96
+- secret result :: 96
+- secret scope :: 96
+- secret boundary :: 96
+- secret status :: 96
+- secret candidate :: 96
+- secret witness :: 96
+- secret probe :: 96
+- secret constraint :: 96
+- check secret :: 96
+- compare secret :: 96
+- observe secret :: 96
+- measure secret :: 96
+- test secret :: 96
+- verify secret :: 95
+- hold secret :: 95
+- preserve secret :: 95
+- split secret :: 95
+- narrow secret :: 95
+- under boundary :: 95
+- within boundary :: 95
+- across boundary :: 95
+- between boundary :: 95
+- through boundary :: 95
+- before boundary :: 95
+- after boundary :: 95
+- until boundary :: 95
+- where boundary :: 95
+- while boundary :: 95
+- boundary evidence :: 95
+- boundary support :: 95
+- boundary path :: 95
+- boundary surface :: 95
+- boundary packet :: 95
+- boundary receipt :: 94
+- boundary trace :: 94
+- boundary result :: 94
+- boundary scope :: 94
+- boundary boundary :: 94
+- boundary status :: 94
+- boundary candidate :: 94
+- boundary witness :: 94
+- boundary probe :: 94
+- boundary constraint :: 94
+- check boundary :: 94
+- compare boundary :: 94
+- observe boundary :: 94
+- measure boundary :: 94
+- test boundary :: 94
+- verify boundary :: 94
+- hold boundary :: 94
+- preserve boundary :: 94
+- split boundary :: 94
+- narrow boundary :: 94
+- under trust :: 93
+- within trust :: 93
+- across trust :: 93
+- between trust :: 93
+- through trust :: 93
+- before trust :: 93
+- after trust :: 93
+- until trust :: 93
+- where trust :: 93
+- while trust :: 93
+- trust evidence :: 93
+- trust support :: 93
+- trust path :: 93
+- trust surface :: 93
+- trust packet :: 93
+- trust receipt :: 93
+- trust trace :: 93
+- trust result :: 93
+- trust scope :: 93
+- trust boundary :: 93
+- trust status :: 92
+- trust candidate :: 92
+- trust witness :: 92
+- trust probe :: 92
+- trust constraint :: 92
+- check trust :: 92
+- compare trust :: 92
+- observe trust :: 92
+- measure trust :: 92
+- test trust :: 92
+- verify trust :: 92
+- hold trust :: 92
+- preserve trust :: 92
+- split trust :: 92
+- narrow trust :: 92
+- under default :: 92
+- within default :: 92
+- across default :: 92
+- between default :: 92
+- through default :: 92
+- before default :: 91
+- after default :: 91
+- until default :: 91
+- where default :: 91
+- while default :: 91
+- default evidence :: 91
+- default support :: 91
+- default path :: 91
+- default surface :: 91
+- default packet :: 91
+- default receipt :: 91
+- default trace :: 91
+- default result :: 91
+- default scope :: 91
+- default boundary :: 91
+- default status :: 91
+- default candidate :: 91
+- default witness :: 91
+- default probe :: 91
+- default constraint :: 91
+- under security :: 90
+- under unsafe :: 90
+- under credential :: 90
+- under token :: 90
+- under scope :: 90
+- under privilege :: 90
+- under threat :: 90
+- under abuse :: 90
+- under path :: 90
+- within security :: 90
+- within unsafe :: 90
+- within credential :: 90
+- within token :: 90
+- within scope :: 90
+- within privilege :: 90
+- within threat :: 90
+- within abuse :: 90
+- within path :: 90
+- across security :: 90
+- across unsafe :: 90
+- across credential :: 89
+- across token :: 89
+- across scope :: 89
+- across privilege :: 89
+- across threat :: 89
+- across abuse :: 89
+- across path :: 89
+- between security :: 89
+- between unsafe :: 89
+- between credential :: 89
+- between token :: 89
+- between scope :: 89
+- between privilege :: 89
+- between threat :: 89
+- between abuse :: 89
+- between path :: 89
+- through security :: 89
+- through unsafe :: 89
+- through credential :: 89
+- through token :: 89
+- through scope :: 88
+- through privilege :: 88
+- through threat :: 88
+- through abuse :: 88
+- through path :: 88
+- before security :: 88
+- before unsafe :: 88
+- before credential :: 88
+- before token :: 88
+- before scope :: 88
+- before privilege :: 88
+- before threat :: 88
+- before abuse :: 88
+- before path :: 88
+- after security :: 88
+- after unsafe :: 88
+- after credential :: 88
+- after token :: 88
+- after scope :: 88
+- after privilege :: 88
+- after threat :: 87
+- after abuse :: 87
+- after path :: 87
+- from security :: 87
+- from secret :: 87
+- from permission :: 87
+- from trust :: 87
+- from boundary :: 87
+- from exposure :: 87
+- from unsafe :: 87
+- from default :: 87
+- from credential :: 87
+- from token :: 87
+- from scope :: 87
+- from privilege :: 87
+- from threat :: 87
+- from abuse :: 87
+- from path :: 87
+- by security :: 87
+- by secret :: 87
+- by permission :: 86
+- by trust :: 86
+- by boundary :: 86
+- by exposure :: 86
+- by unsafe :: 86
+- by default :: 86
+- by credential :: 86
+- by token :: 86
+- by scope :: 86
+- by privilege :: 86
+- by threat :: 86
+- by abuse :: 86
+- by path :: 86
+- with security :: 86
+- with secret :: 86
+- with permission :: 86
+- with trust :: 86
+- with boundary :: 86
+- with exposure :: 86
+- with unsafe :: 86
+- with default :: 85
+- with credential :: 85
+- with token :: 85
+- with scope :: 85
+- with privilege :: 85
+- with threat :: 85
+- with abuse :: 85
+- with path :: 85
+- without security :: 85
+- without secret :: 85
+- without permission :: 85
+- without trust :: 85
+- without boundary :: 85
+- without exposure :: 85
+- without unsafe :: 85
+- without default :: 85
+- without credential :: 85
+- without token :: 85
+- without scope :: 85
+- without privilege :: 85
+- without threat :: 84
+- without abuse :: 84
+- without path :: 84
+- against security :: 84
+- against secret :: 84
+- against permission :: 84
+- against trust :: 84
+- against boundary :: 84
+- against exposure :: 84
+- against unsafe :: 84
+- against default :: 84
+- against credential :: 84
+- against token :: 84
+- against scope :: 84
+- against privilege :: 84
+- against threat :: 84
+- against abuse :: 84
+- against path :: 84
+- security secret :: 84
+- security permission :: 84
+- security trust :: 83
+- security boundary :: 83
+- security exposure :: 83
+- security unsafe :: 83
+- security default :: 83
+- secret permission :: 83
+- secret trust :: 83
+- secret exposure :: 83
+- secret unsafe :: 83
+- secret default :: 83
+- secret credential :: 83
+- permission trust :: 83
+- permission exposure :: 83
+- permission unsafe :: 83
+- permission default :: 83
+- permission credential :: 83
+- permission token :: 83
+- trust exposure :: 83
+- trust unsafe :: 83
+- trust default :: 83
+- trust credential :: 82
+- trust token :: 82
+- boundary exposure :: 82
+- boundary unsafe :: 82
+- boundary default :: 82
+- boundary credential :: 82
+- boundary token :: 82
+- boundary privilege :: 82
+- exposure unsafe :: 82
+- exposure default :: 82
+- exposure credential :: 82
+- exposure token :: 82
+- exposure privilege :: 82
+- exposure threat :: 82
+- unsafe default :: 82
+- unsafe credential :: 82
+- unsafe token :: 82
+- unsafe scope :: 82
+- unsafe privilege :: 82
+- unsafe threat :: 82
+- unsafe abuse :: 81
+- default credential :: 81
+- default token :: 81
+- default privilege :: 81
+- default threat :: 81
+- default abuse :: 81
+- credential token :: 81
+- credential scope :: 81
+- credential privilege :: 81
+- credential threat :: 81
+- credential abuse :: 81
+- credential path :: 81
+- credential leak :: 81
+- token scope :: 81
+- token privilege :: 81
+- token threat :: 81
+- token abuse :: 81
+- token path :: 81
+- token leak :: 81
+- token access :: 81
+- scope privilege :: 80
+- scope threat :: 80
+- scope abuse :: 80
+- scope path :: 80
+- scope leak :: 80
+- scope access :: 80
+- scope sandbox :: 80
+- privilege threat :: 80
+- privilege abuse :: 80
+- privilege path :: 80
+- privilege leak :: 80
+- privilege access :: 80
+- privilege sandbox :: 80
+- privilege policy :: 80
+- threat abuse :: 80
+- threat path :: 80
+- threat leak :: 80
+- threat access :: 80
+- threat sandbox :: 80
+- threat policy :: 80
+- threat risk :: 79
+- abuse path :: 79
+- abuse leak :: 79
+- abuse access :: 79
+- abuse sandbox :: 79
+- abuse policy :: 79
+- abuse risk :: 79
+- abuse surface :: 79
+- path leak :: 79
+- path access :: 79
+- path sandbox :: 79
+- path policy :: 79
+- path risk :: 79
+- path surface :: 79
+- path trust boundary :: 79
+- leak access :: 79
+- leak sandbox :: 79
+- leak policy :: 79
+- leak risk :: 79
+- leak surface :: 79
+- leak trust boundary :: 78
+- leak abuse path :: 78
+- access sandbox :: 78
+- access policy :: 78
+- access risk :: 78
+- access surface :: 78
+- access trust boundary :: 78
+- access abuse path :: 78
+- access unsafe default :: 78
+- sandbox policy :: 78
+- sandbox risk :: 78
+- sandbox surface :: 78
+- sandbox trust boundary :: 78
+- sandbox abuse path :: 78
+- sandbox unsafe default :: 78
+- sandbox least privilege :: 78
+- policy risk :: 78
+- policy surface :: 78
+- policy trust boundary :: 78
+- policy abuse path :: 78
+- policy unsafe default :: 77
+- policy least privilege :: 77
+- policy threat surface :: 77
+- risk surface :: 77
+- risk trust boundary :: 77
+- risk abuse path :: 77
+- risk unsafe default :: 77
+- risk least privilege :: 77
+- risk threat surface :: 77
+- risk blocker :: 77
+- surface trust boundary :: 77
+- surface abuse path :: 77
+- surface unsafe default :: 77
+- surface least privilege :: 77
+- surface threat surface :: 77
+- surface blocker :: 77
+- surface isolation :: 77
+- trust boundary abuse path :: 77
+- trust boundary unsafe default :: 77
+- trust boundary least privilege :: 77
+- trust boundary threat surface :: 76
+- trust boundary blocker :: 76
+- trust boundary isolation :: 76
+- trust boundary under :: 76
+- abuse path unsafe default :: 76
+- abuse path least privilege :: 76
+- abuse path threat surface :: 76
+- abuse path blocker :: 76
+- abuse path isolation :: 76
+- abuse path under :: 76
+- abuse path within :: 76
+- unsafe default least privilege :: 76
+- unsafe default threat surface :: 76
+- unsafe default blocker :: 76
+- unsafe default isolation :: 76
+- unsafe default under :: 76
+- unsafe default within :: 76
+- unsafe default across :: 76
+- least privilege threat surface :: 76
+- least privilege blocker :: 76
+
+## triplets
+
+- under current exposure :: 100
+- under local exposure :: 100
+- under bounded exposure :: 100
+- under finite exposure :: 100
+- under open exposure :: 100
+- under live exposure :: 100
+- within current exposure :: 100
+- within local exposure :: 100
+- within bounded exposure :: 100
+- within finite exposure :: 100
+- within open exposure :: 100
+- within live exposure :: 100
+- across current exposure :: 100
+- across local exposure :: 100
+- across bounded exposure :: 100
+- across finite exposure :: 100
+- across open exposure :: 100
+- across live exposure :: 100
+- between current exposure :: 100
+- between local exposure :: 100
+- between bounded exposure :: 99
+- between finite exposure :: 99
+- between open exposure :: 99
+- between live exposure :: 99
+- through current exposure :: 99
+- through local exposure :: 99
+- through bounded exposure :: 99
+- through finite exposure :: 99
+- through open exposure :: 99
+- through live exposure :: 99
+- before current exposure :: 99
+- before local exposure :: 99
+- before bounded exposure :: 99
+- before finite exposure :: 99
+- before open exposure :: 99
+- before live exposure :: 99
+- exposure evidence path :: 99
+- exposure support path :: 99
+- exposure path path :: 99
+- exposure surface path :: 99
+- exposure packet path :: 98
+- exposure receipt path :: 98
+- exposure trace path :: 98
+- exposure result path :: 98
+- exposure scope path :: 98
+- exposure boundary path :: 98
+- check exposure receipt :: 98
+- compare exposure receipt :: 98
+- observe exposure receipt :: 98
+- measure exposure receipt :: 98
+- test exposure receipt :: 98
+- verify exposure receipt :: 98
+- hold exposure receipt :: 98
+- preserve exposure receipt :: 98
+- under current permission :: 98
+- under local permission :: 98
+- under bounded permission :: 98
+- under finite permission :: 98
+- under open permission :: 98
+- under live permission :: 98
+- within current permission :: 97
+- within local permission :: 97
+- within bounded permission :: 97
+- within finite permission :: 97
+- within open permission :: 97
+- within live permission :: 97
+- across current permission :: 97
+- across local permission :: 97
+- across bounded permission :: 97
+- across finite permission :: 97
+- across open permission :: 97
+- across live permission :: 97
+- between current permission :: 97
+- between local permission :: 97
+- between bounded permission :: 97
+- between finite permission :: 97
+- between open permission :: 97
+- between live permission :: 97
+- through current permission :: 97
+- through local permission :: 97
+- through bounded permission :: 96
+- through finite permission :: 96
+- through open permission :: 96
+- through live permission :: 96
+- before current permission :: 96
+- before local permission :: 96
+- before bounded permission :: 96
+- before finite permission :: 96
+- before open permission :: 96
+- before live permission :: 96
+- permission evidence path :: 96
+- permission support path :: 96
+- permission path path :: 96
+- permission surface path :: 96
+- permission packet path :: 96
+- permission receipt path :: 96
+- permission trace path :: 96
+- permission result path :: 96
+- permission scope path :: 96
+- permission boundary path :: 96
+- check permission receipt :: 95
+- compare permission receipt :: 95
+- observe permission receipt :: 95
+- measure permission receipt :: 95
+- test permission receipt :: 95
+- verify permission receipt :: 95
+- hold permission receipt :: 95
+- preserve permission receipt :: 95
+- under current secret :: 95
+- under local secret :: 95
+- under bounded secret :: 95
+- under finite secret :: 95
+- under open secret :: 95
+- under live secret :: 95
+- within current secret :: 95
+- within local secret :: 95
+- within bounded secret :: 95
+- within finite secret :: 95
+- within open secret :: 95
+- within live secret :: 95
+- across current secret :: 94
+- across local secret :: 94
+- across bounded secret :: 94
+- across finite secret :: 94
+- across open secret :: 94
+- across live secret :: 94
+- between current secret :: 94
+- between local secret :: 94
+- between bounded secret :: 94
+- between finite secret :: 94
+- between open secret :: 94
+- between live secret :: 94
+- through current secret :: 94
+- through local secret :: 94
+- through bounded secret :: 94
+- through finite secret :: 94
+- through open secret :: 94
+- through live secret :: 94
+- before current secret :: 94
+- before local secret :: 94
+- before bounded secret :: 93
+- before finite secret :: 93
+- before open secret :: 93
+- before live secret :: 93
+- secret evidence path :: 93
+- secret support path :: 93
+- secret path path :: 93
+- secret surface path :: 93
+- secret packet path :: 93
+- secret receipt path :: 93
+- secret trace path :: 93
+- secret result path :: 93
+- secret scope path :: 93
+- secret boundary path :: 93
+- check secret receipt :: 93
+- compare secret receipt :: 93
+- observe secret receipt :: 93
+- measure secret receipt :: 93
+- test secret receipt :: 93
+- verify secret receipt :: 93
+- hold secret receipt :: 92
+- preserve secret receipt :: 92
+- under current boundary :: 92
+- under local boundary :: 92
+- under bounded boundary :: 92
+- under finite boundary :: 92
+- under open boundary :: 92
+- under live boundary :: 92
+- within current boundary :: 92
+- within local boundary :: 92
+- within bounded boundary :: 92
+- within finite boundary :: 92
+- within open boundary :: 92
+- within live boundary :: 92
+- across current boundary :: 92
+- across local boundary :: 92
+- across bounded boundary :: 92
+- across finite boundary :: 92
+- across open boundary :: 92
+- across live boundary :: 92
+- between current boundary :: 91
+- between local boundary :: 91
+- between bounded boundary :: 91
+- between finite boundary :: 91
+- between open boundary :: 91
+- between live boundary :: 91
+- through current boundary :: 91
+- through local boundary :: 91
+- through bounded boundary :: 91
+- through finite boundary :: 91
+- through open boundary :: 91
+- through live boundary :: 91
+- before current boundary :: 91
+- before local boundary :: 91
+- before bounded boundary :: 91
+- before finite boundary :: 91
+- before open boundary :: 91
+- before live boundary :: 91
+- boundary evidence path :: 91
+- boundary support path :: 91
+- boundary path path :: 90
+- boundary surface path :: 90
+- boundary packet path :: 90
+- boundary receipt path :: 90
+- boundary trace path :: 90
+- boundary result path :: 90
+- boundary scope path :: 90
+- boundary boundary path :: 90
+- check boundary receipt :: 90
+- compare boundary receipt :: 90
+- observe boundary receipt :: 90
+- measure boundary receipt :: 90
+- test boundary receipt :: 90
+- verify boundary receipt :: 90
+- hold boundary receipt :: 90
+- preserve boundary receipt :: 90
+- under current trust :: 90
+- under local trust :: 90
+- under bounded trust :: 90
+- under finite trust :: 90
+- under open trust :: 89
+- under live trust :: 89
+- within current trust :: 89
+- within local trust :: 89
+- within bounded trust :: 89
+- within finite trust :: 89
+- within open trust :: 89
+- within live trust :: 89
+- across current trust :: 89
+- across local trust :: 89
+- across bounded trust :: 89
+- across finite trust :: 89
+- across open trust :: 89
+- across live trust :: 89
+- between current trust :: 89
+- between local trust :: 89
+- between bounded trust :: 89
+- between finite trust :: 89
+- between open trust :: 89
+- between live trust :: 89
+- under security secret :: 88
+- under security permission :: 88
+- under security trust :: 88
+- under security boundary :: 88
+- under security exposure :: 88
+- under security unsafe :: 88
+- under security default :: 88
+- within secret permission :: 88
+- within secret trust :: 88
+- within secret boundary :: 88
+- within secret exposure :: 88
+- within secret unsafe :: 88
+- within secret default :: 88
+- within secret credential :: 88
+- across permission trust :: 88
+- across permission boundary :: 88
+- across permission exposure :: 88
+- across permission unsafe :: 88
+- across permission default :: 88
+- across permission credential :: 88
+- across permission token :: 87
+- between trust boundary :: 87
+- between trust exposure :: 87
+- between trust unsafe :: 87
+- between trust default :: 87
+- between trust credential :: 87
+- between trust token :: 87
+- between trust scope :: 87
+- through boundary exposure :: 87
+- through boundary unsafe :: 87
+- through boundary default :: 87
+- through boundary credential :: 87
+- through boundary token :: 87
+- through boundary scope :: 87
+- through boundary privilege :: 87
+- before exposure unsafe :: 87
+- before exposure default :: 87
+- before exposure credential :: 87
+- before exposure token :: 87
+- before exposure scope :: 87
+- before exposure privilege :: 86
+- before exposure threat :: 86
+- after unsafe default :: 86
+- after unsafe credential :: 86
+- after unsafe token :: 86
+- after unsafe scope :: 86
+- after unsafe privilege :: 86
+- after unsafe threat :: 86
+- after unsafe abuse :: 86
+- from default credential :: 86
+- from default token :: 86
+- from default scope :: 86
+- from default privilege :: 86
+- from default threat :: 86
+- from default abuse :: 86
+- from default path :: 86
+- by credential token :: 86
+- by credential scope :: 86
+- by credential privilege :: 86
+- by credential threat :: 86
+- by credential abuse :: 85
+- by credential path :: 85
+- by credential leak :: 85
+- with token scope :: 85
+- with token privilege :: 85
+- with token threat :: 85
+- with token abuse :: 85
+- with token path :: 85
+- with token leak :: 85
+- with token access :: 85
+- without scope privilege :: 85
+- without scope threat :: 85
+- without scope abuse :: 85
+- without scope path :: 85
+- without scope leak :: 85
+- without scope access :: 85
+- without scope sandbox :: 85
+- against privilege threat :: 85
+- against privilege abuse :: 85
+- against privilege path :: 85
+- against privilege leak :: 84
+- against privilege access :: 84
+- against privilege sandbox :: 84
+- against privilege policy :: 84
+- relative threat abuse :: 84
+- relative threat path :: 84
+- relative threat leak :: 84
+- relative threat access :: 84
+- relative threat sandbox :: 84
+- relative threat policy :: 84
+- relative threat risk :: 84
+- locally abuse path :: 84
+- locally abuse leak :: 84
+- locally abuse access :: 84
+- locally abuse sandbox :: 84
+- locally abuse policy :: 84
+- locally abuse risk :: 84
+- locally abuse surface :: 84
+- rather path leak :: 84
+- rather path access :: 84
+- rather path sandbox :: 83
+- rather path policy :: 83
+- rather path risk :: 83
+- rather path surface :: 83
+- rather path trust boundary :: 83
+- instead leak access :: 83
+- instead leak sandbox :: 83
+- instead leak policy :: 83
+- instead leak risk :: 83
+- instead leak surface :: 83
+- instead leak trust boundary :: 83
+- instead leak abuse path :: 83
+- only access sandbox :: 83
+- only access policy :: 83
+- only access risk :: 83
+- only access surface :: 83
+- only access trust boundary :: 83
+- only access abuse path :: 83
+- only access unsafe default :: 83
+- still sandbox policy :: 83
+- still sandbox risk :: 82
+- still sandbox surface :: 82
+- still sandbox trust boundary :: 82
+- still sandbox abuse path :: 82
+- still sandbox unsafe default :: 82
+- still sandbox least privilege :: 82
+- likely policy risk :: 82
+- likely policy surface :: 82
+- likely policy trust boundary :: 82
+- likely policy abuse path :: 82
+- likely policy unsafe default :: 82
+- likely policy least privilege :: 82
+- likely policy threat surface :: 82
+- possible risk surface :: 82
+- possible risk trust boundary :: 82
+- possible risk abuse path :: 82
+- possible risk unsafe default :: 82
+- possible risk least privilege :: 82
+- possible risk threat surface :: 82
+- possible risk blocker :: 82
+- bounded surface trust boundary :: 81
+- bounded surface abuse path :: 81
+- bounded surface unsafe default :: 81
+- bounded surface least privilege :: 81
+- bounded surface threat surface :: 81
+- bounded surface blocker :: 81
+- bounded surface isolation :: 81
+- finite trust boundary abuse path :: 81
+- finite trust boundary unsafe default :: 81
+- finite trust boundary least privilege :: 81
+- finite trust boundary threat surface :: 81
+- finite trust boundary blocker :: 81
+- finite trust boundary isolation :: 81
+- finite trust boundary under :: 81
+- local abuse path unsafe default :: 81
+- local abuse path least privilege :: 81
+- local abuse path threat surface :: 81
+- local abuse path blocker :: 81
+- local abuse path isolation :: 81
+- local abuse path under :: 81
+- local abuse path within :: 80
+- current unsafe default least privilege :: 80
+- current unsafe default threat surface :: 80
+- current unsafe default blocker :: 80
+- current unsafe default isolation :: 80
+- current unsafe default under :: 80
+- current unsafe default within :: 80
+- current unsafe default across :: 80
+- observed least privilege threat surface :: 80
+- observed least privilege blocker :: 80
+- observed least privilege isolation :: 80
+- observed least privilege under :: 80
+- observed least privilege within :: 80
+- observed least privilege across :: 80
+- observed least privilege between :: 80
+
+---
+
+## v4.1 positive salience expansion (FULL)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- asset
+- trust boundary
+- entry point
+- exit point
+- threat
+- mitigation
+- authorization
+- least privilege
+- unsafe default
+- OWASP
+
+### Couplings
+
+- threat model
+- trust boundary
+- least privilege
+- asset threat
+- unsafe default
+
+### Triplets
+
+- asset threat mitigation
+- entry exit boundary
+- authorization least privilege

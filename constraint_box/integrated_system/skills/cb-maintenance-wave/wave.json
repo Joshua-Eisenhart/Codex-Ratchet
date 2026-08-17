@@ -1,0 +1,14 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-maintenance-wave-v1",
+  "purpose": "Diagnose and freeze the CB workspace before a campaign loop while classifying only exact safe candidates without mutation.",
+  "children": [
+    {"id": "diagnostic", "skill": "cb-maintenance-wave", "operation": "diagnose_workspace", "tools": ["git_status", "path_digest", "ledger_head", "receipt_verifier"]},
+    {"id": "classification", "skill": "cb-maintenance-wave", "operation": "classify_candidates", "tools": ["allowlist_denylist", "freshness_check", "owner_surface_check"]},
+    {"id": "freeze", "skill": "cb-maintenance-wave", "operation": "freeze_context", "tools": ["source_digest", "context_digest", "receipt_writer"]}
+  ],
+  "mmm_profile": {"loader_skill": "mmm-preload", "mini_voices_only": true, "voice_count_range": [2, 4], "required": false, "note": "This deterministic maintenance wave is model-free; any optional reviewer is a separate receipt-bound child."},
+  "loop": {"max_rounds": 1, "repair_then_exact_rerun": true, "rerun_policy": "A rerun is a new explicit invocation with a new receipt; this wave never chains it automatically.", "stop_reasons": ["ready_for_campaign", "blocked", "refused_destructive_action", "missing_receipt", "source_drift", "cancelled"]},
+  "completion": {"required_evidence": ["maintenance_receipt", "source_digest", "context_digest", "diagnostic_state", "candidate_decisions", "blockers", "mutation_performed_false", "writes_allowed_false", "receipt_self_hash", "child_receipts", "preload_receipts", "provider_call_receipt", "cancellation_state", "disagreement_state", "output_digest"], "model_free_evidence": {"child_receipts": [], "preload_receipts": [], "provider_call_receipt": null, "cancellation_state": "NOT_REQUESTED", "disagreement_state": "NOT_APPLICABLE"}},
+  "claim_ceiling": "Bounded diagnostic and dry-run classification only; no deletion, move, rewrite, commit, push, cleanup authorization, provider proof, hook proof, MMM proof, or promotion authority."
+}

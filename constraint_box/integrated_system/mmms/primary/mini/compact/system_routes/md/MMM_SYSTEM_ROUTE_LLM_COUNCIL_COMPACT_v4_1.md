@@ -1,0 +1,415 @@
+# 🧠 LLM Council Mini-MMM COMPACT v4.1
+
+authority_status: canonical-runtime
+packet_version: v4.3-copied-mini-source
+source_lineage: v4.1 mini-MMM reservoir transferred intact; v4.3 owns this copied salience file under WIZARD_v4_3.md; filename remains v4_1 provenance until behavior-retuned.
+v4_3_overlay: this file supplies role salience only; v4.3 runtime obligations, receipt fields, management routing, and output contract come from WIZARD_v4_3.md.
+
+Positive mini-MMM reservoir.
+
+Boot scope:
+- Council workers load this only during the LLM Council wave.
+- Subagents do not load the main MMM.
+- Subsubagents receive inherited positive parent context plus exact child mini-MMM.
+- Excluded diagnostic/provenance material never boots.
+
+Source note: mined from v2.8 route `LLM_COUNCIL` and remapped to v4.1 canon category `system_routes`.
+
+---
+
+# MMM_VOICE_LLM_COUNCIL_COMPACT_v4_1
+
+## words
+- mini-MMM :: 100
+- mini MMM :: 100
+- voice shape :: 100
+- voice shaping :: 100
+- shape voice :: 100
+- shaped voice :: 100
+- voice contour :: 100
+- voice signature :: 100
+- voice localizer :: 100
+- local voice :: 100
+- aligned nouns :: 100
+- correlated thinkers :: 100
+- thinker alignment :: 100
+- noun alignment :: 100
+
+- independent route :: 100
+- route status :: 100
+- dissent :: 100
+- council :: 100
+- untried :: 100
+- diagnostic :: 100
+- comparison :: 100
+- model family :: 100
+- outside frame :: 100
+- alternate reading :: 100
+- receipt changed :: 100
+- not a vote :: 100
+- split retained :: 100
+- disagreement :: 100
+- no consensus :: 100
+- unsupported :: 100
+- blocked :: 100
+- route :: 100
+- live :: 100
+- role :: 100
+- role-family :: 100
+- roles :: 100
+- routes :: 100
+- sonnet :: 100
+- opus :: 100
+- codex :: 100
+- gemini :: 100
+- external :: 100
+- view :: 100
+- family :: 100
+- independent :: 100
+- implementation :: 100
+- harness :: 100
+- judgment :: 100
+- llm :: 100
+- model-family :: 100
+- existing :: 100
+- them :: 100
+- votes :: 100
+- reject :: 100
+- even :: 100
+- most :: 100
+- calm :: 100
+- changed :: 100
+- state :: 100
+- provide :: 100
+- outside-frame :: 100
+- replacing :: 100
+- majority :: 100
+- frame :: 100
+- vote :: 100
+- simulation :: 100
+- models :: 100
+- reporting :: 100
+- summarizing :: 100
+- they :: 100
+- voted :: 100
+- collapsing :: 100
+- generic :: 100
+- using :: 100
+- exists :: 100
+- stealing :: 100
+- deciding :: 100
+- blocker :: 100
+- challenger :: 100
+- check :: 100
+- crosscheck :: 100
+- minority :: 100
+- model :: 100
+- objection :: 100
+- outside :: 100
+- receipt :: 100
+- reviewer :: 100
+- split :: 100
+
+## couplings
+
+- council :: 100
+- untried :: 100
+- diagnostic :: 100
+- dissent :: 100
+- comparison :: 100
+- independent route :: 100
+- route status :: 100
+- council route :: 100
+- council dissent :: 100
+- council disagreement :: 100
+- route dissent :: 100
+- route untried :: 100
+- under untried :: 100
+- under diagnostic :: 100
+- dissent disagreement :: 100
+- dissent blocked :: 100
+- dissent untried :: 100
+- dissent diagnostic :: 100
+- dissent live :: 100
+- disagreement untried :: 100
+- disagreement diagnostic :: 100
+- model family :: 100
+- alternate reading :: 100
+- receipt changed :: 100
+- blocked untried :: 100
+- blocked diagnostic :: 100
+- untried diagnostic :: 100
+- untried live :: 100
+- split retained :: 100
+- live :: 100
+- within untried :: 100
+- within diagnostic :: 100
+- diagnostic live :: 100
+- across untried :: 100
+- across diagnostic :: 100
+- model route :: 100
+- outside frame :: 100
+- not a vote :: 100
+- between untried :: 100
+- between diagnostic :: 100
+- through untried :: 100
+- model family independent route :: 100
+- model family comparison :: 100
+- model family route status :: 100
+- through diagnostic :: 100
+- under council :: 100
+- role independent route :: 100
+- role comparison :: 100
+- role split retained :: 100
+- role route status :: 100
+- alternate reading independent route :: 100
+- alternate reading comparison :: 100
+- alternate reading route status :: 100
+- unsupported independent route :: 100
+- unsupported comparison :: 100
+- unsupported route status :: 100
+- receipt changed independent route :: 100
+- receipt changed comparison :: 100
+- receipt changed route status :: 100
+- before untried :: 100
+- before diagnostic :: 100
+- under dissent :: 100
+- within council :: 100
+- within dissent :: 100
+- independent route comparison :: 100
+- independent route split retained :: 100
+- independent route route status :: 100
+- after untried :: 100
+- after diagnostic :: 100
+- route :: 100
+- role :: 100
+- during council :: 100
+- unsupported :: 100
+- during dissent :: 100
+- across council :: 100
+- during untried :: 100
+- during diagnostic :: 100
+- across dissent :: 100
+- no consensus independent route :: 100
+- no consensus comparison :: 100
+- no consensus route status :: 100
+- until council :: 100
+- no consensus :: 100
+- until dissent :: 100
+- between council :: 100
+- until untried :: 100
+- until diagnostic :: 100
+- since council :: 100
+- between dissent :: 100
+- route blocked :: 100
+- through council :: 100
+- blocked :: 100
+- through dissent :: 100
+- before council :: 100
+- before dissent :: 100
+- after council :: 100
+- after dissent :: 100
+- toward council :: 100
+- council model :: 100
+- council sonnet :: 100
+- council opus :: 100
+- council codex :: 100
+- council gemini :: 100
+- council external :: 100
+- council view :: 100
+- council state :: 100
+- model dissent :: 100
+- near council :: 100
+- route disagreement :: 100
+- sonnet dissent :: 100
+- sonnet untried :: 100
+- sonnet diagnostic :: 100
+- relative council :: 100
+- opus dissent :: 100
+- opus untried :: 100
+- opus diagnostic :: 100
+- codex dissent :: 100
+- codex untried :: 100
+- codex diagnostic :: 100
+- gemini dissent :: 100
+- gemini untried :: 100
+- gemini diagnostic :: 100
+- blocked model :: 100
+- council split :: 100
+- cross model check :: 100
+- diagnostic route :: 100
+- disagreement preserved :: 100
+- external check :: 100
+- external pressure :: 100
+- independent comparison :: 100
+- independent reviewer :: 100
+- live dissent :: 100
+- minority objection :: 100
+- receipt comparison :: 100
+- route blocker :: 100
+- route state :: 100
+- untried route :: 100
+- since dissent :: 99
+- since untried :: 99
+- since diagnostic :: 99
+- from untried :: 99
+- from diagnostic :: 99
+- by untried :: 98
+- by diagnostic :: 98
+- with untried :: 98
+- with diagnostic :: 98
+- without untried :: 97
+- without diagnostic :: 97
+- against untried :: 97
+- against diagnostic :: 97
+
+## triplets
+
+- under council route :: 100
+- under dissent disagreement :: 100
+- under dissent blocked :: 100
+- under dissent untried :: 100
+- under disagreement untried :: 100
+- under disagreement diagnostic :: 100
+- under blocked untried :: 100
+- under blocked diagnostic :: 100
+- under untried diagnostic :: 100
+- under untried live :: 100
+- under diagnostic live :: 100
+- within council route :: 100
+- within dissent disagreement :: 100
+- within dissent blocked :: 100
+- within dissent untried :: 100
+- within disagreement untried :: 100
+- within disagreement diagnostic :: 100
+- within blocked untried :: 100
+- within blocked diagnostic :: 100
+- within untried diagnostic :: 100
+- within untried live :: 100
+- within diagnostic live :: 100
+- across council route :: 100
+- across dissent disagreement :: 100
+- across dissent blocked :: 100
+- across untried live :: 100
+- across diagnostic live :: 100
+- between council route :: 100
+- between untried live :: 100
+- between diagnostic live :: 100
+- through council route :: 100
+- under council model :: 100
+- under council sonnet :: 100
+- under council opus :: 100
+- under model route :: 100
+- through untried live :: 100
+- under codex dissent :: 100
+- through diagnostic live :: 100
+- under gemini dissent :: 100
+- under external dissent :: 100
+- under view dissent :: 100
+- under dissent state :: 100
+- before council route :: 100
+- under disagreement blocked :: 100
+- under state untried :: 100
+- under state diagnostic :: 100
+- under blocked live :: 100
+- under untried receipt :: 100
+- under untried family :: 100
+- under diagnostic receipt :: 100
+- before untried live :: 100
+- before diagnostic live :: 100
+- under diagnostic family :: 100
+- under diagnostic independent :: 100
+- after council route :: 100
+- not a vote :: 100
+- within council model :: 100
+- within council sonnet :: 100
+- within council opus :: 100
+- within model route :: 100
+- after untried live :: 100
+- after diagnostic live :: 100
+- during council route :: 100
+- within codex dissent :: 100
+- within gemini dissent :: 100
+- within external dissent :: 100
+- within view dissent :: 100
+- within dissent state :: 100
+- within disagreement blocked :: 100
+- during untried live :: 100
+- during diagnostic live :: 100
+- within state untried :: 100
+- within state diagnostic :: 100
+- until council route :: 100
+- blocked diagnostic untried :: 100
+- council receipt comparison :: 100
+- cross model pressure :: 100
+- independent external check :: 100
+- live dissent preserved :: 100
+- minority objection held :: 100
+- model family route :: 100
+- model route state :: 100
+- outside frame objection :: 100
+- across dissent untried :: 99
+- across disagreement untried :: 99
+- across disagreement diagnostic :: 99
+- across blocked untried :: 99
+- across blocked diagnostic :: 99
+- across untried diagnostic :: 99
+- between dissent disagreement :: 97
+- between dissent blocked :: 97
+- between dissent untried :: 97
+- between disagreement untried :: 97
+- between disagreement diagnostic :: 97
+- between blocked untried :: 97
+- between blocked diagnostic :: 97
+- between untried diagnostic :: 97
+- through dissent disagreement :: 96
+- through dissent blocked :: 96
+- through dissent untried :: 96
+- through disagreement untried :: 96
+- through disagreement diagnostic :: 96
+- through blocked untried :: 96
+- through blocked diagnostic :: 96
+- through untried diagnostic :: 96
+- before dissent disagreement :: 94
+- before dissent blocked :: 94
+- before dissent untried :: 94
+- before disagreement untried :: 94
+- before disagreement diagnostic :: 94
+- before blocked untried :: 94
+- before blocked diagnostic :: 93
+- before untried diagnostic :: 93
+- after dissent disagreement :: 92
+- after dissent blocked :: 92
+
+---
+
+## v4.1 positive salience expansion (COMPACT)
+
+Source: `deep-research-report.md`, mined as positive noun/coupling/triplet salience. This is boot-positive salience, not diagnostic/provenance material.
+
+### Words / nouns
+
+- independent proposal
+- diverse reasoning paths
+- route comparison
+- debate round
+- aggregation
+- arbitration
+- dissent preservation
+- trust calibration
+- source-aware filtering
+- self-consistency
+
+### Couplings
+
+- independence before merge
+- dissent logs
+- trust calibration
+- source-aware weighting
+- explicit blocked/deferred routes
+
+### Triplets
+
+- proposal debate arbitration
+- variance dissent calibration
+- independence merge receipt

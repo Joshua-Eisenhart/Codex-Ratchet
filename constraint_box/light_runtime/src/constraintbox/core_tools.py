@@ -1,7 +1,9 @@
-"""The v9 ConstraintBox core: exactly five third-party tools.
+"""Declared CB Light tool contracts and their bounded exercises.
 
-This module intentionally contains no optional-engine imports. Importing it is
-safe on a CB-only installation; missing tools are reported as observations.
+The registry is a current integration surface, not an official or permanent
+"core": tools become usable for a given operation only when their live probes
+and that operation's gate admit them.  This module intentionally contains no
+optional-engine imports; missing tools are reported as observations.
 """
 
 from __future__ import annotations
@@ -14,11 +16,32 @@ from pathlib import Path
 from typing import Any
 
 
-CORE_TOOL_IDS = ("python.z3", "python.cvc5", "python.sympy", "python.rustworkx", "python.maude")
 # The default CLI must work from an installed wheel, where the checkout-level
 # ``config/`` directory is intentionally absent.  Keep the registry beside the
 # code that consumes it and include it as package data.
 _REGISTRY = Path(__file__).with_name("core_tool_registry_v9.json")
+
+
+def _declared_tool_contract_ids(body: dict[str, Any]) -> tuple[str, ...]:
+    tools = body.get("tools")
+    if not isinstance(tools, list) or not tools:
+        raise RuntimeError("CB Light declared tool registry is empty")
+    ids = tuple(row.get("id") for row in tools if isinstance(row, dict))
+    if len(ids) != len(tools) or any(not isinstance(tool_id, str) or not tool_id for tool_id in ids):
+        raise RuntimeError("CB Light declared tool registry has invalid identities")
+    if len(set(ids)) != len(ids):
+        raise RuntimeError("CB Light declared tool registry has duplicate identities")
+    return ids
+
+
+def _initial_declared_tool_contract_ids() -> tuple[str, ...]:
+    return _declared_tool_contract_ids(json.loads(_REGISTRY.read_text(encoding="utf-8")))
+
+
+DECLARED_TOOL_CONTRACT_IDS = _initial_declared_tool_contract_ids()
+# Compatibility only for legacy callers.  It is derived from the packaged
+# registry rather than a hard-coded official tool membership list.
+CORE_TOOL_IDS = DECLARED_TOOL_CONTRACT_IDS
 
 
 def _import_visible(import_name: str) -> bool:
@@ -30,9 +53,7 @@ def _import_visible(import_name: str) -> bool:
 
 def load_registry() -> dict[str, Any]:
     body = json.loads(_REGISTRY.read_text(encoding="utf-8"))
-    ids = tuple(row["id"] for row in body["tools"])
-    if ids != CORE_TOOL_IDS:
-        raise RuntimeError(f"CB core registry drift: {ids!r}")
+    _declared_tool_contract_ids(body)
     return body
 
 
@@ -61,10 +82,57 @@ def doctor() -> dict[str, Any]:
     return {
         "schema": "constraintbox.core-doctor.v9",
         "product_version": registry["version"],
-        "core_tool_ids": list(CORE_TOOL_IDS),
+        "tool_contract_ids": [row["id"] for row in registry["tools"]],
+        "core_tool_ids": [row["id"] for row in registry["tools"]],
         "rows": rows,
         "missing": [row["id"] for row in rows if not row["import_visible"]],
     }
+
+
+def _pydantic_boundary_model() -> Any:
+    """Return the strict bounded model used for hostile-input refusal probes."""
+    from typing import Literal
+
+    from pydantic import BaseModel, ConfigDict, Field
+
+    class TypedHostileInputBoundary(BaseModel):
+        model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+        operation: Literal["bounded_request"]
+        maximum: int = Field(ge=0, le=2)
+
+    return TypedHostileInputBoundary
+
+
+def _validate_pydantic_boundary(raw: dict[str, Any]) -> dict[str, Any]:
+    """Use Pydantic's strict typed boundary for one finite request shape."""
+    model = _pydantic_boundary_model()
+    value = model.model_validate(dict(raw), strict=True)
+    return value.model_dump(mode="json")
+
+
+def _jsonschema_boundary_schema() -> dict[str, Any]:
+    """Return the independent finite JSON Schema boundary used by CB Light."""
+    return {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://constraintbox.local/schema/bounded-request-v1",
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["operation", "maximum"],
+        "properties": {
+            "operation": {"const": "bounded_request"},
+            "maximum": {"type": "integer", "minimum": 0, "maximum": 2},
+        },
+    }
+
+
+def _validate_jsonschema_boundary(raw: dict[str, Any]) -> dict[str, Any]:
+    """Use jsonschema's independent validator for the bounded request shape."""
+    from jsonschema import Draft202012Validator
+
+    validator = Draft202012Validator(_jsonschema_boundary_schema())
+    validator.validate(raw)
+    return {"operation": raw["operation"], "maximum": raw["maximum"]}
 
 
 def _exercise_z3() -> dict[str, Any]:
@@ -138,15 +206,90 @@ def _exercise_maude() -> dict[str, Any]:
     return {"api": ["init", "input", "getModule", "Module.parseTerm", "Term.apply"], "initialized": initialized is True, "module_loaded": module is not None, "rewritten": rewritten}
 
 
+def _exercise_automaton() -> dict[str, Any]:
+    """Cross-check the fixed state carrier consumed by transition_mini_lev."""
+    from automaton.machines import FiniteMachine
+
+    machine = FiniteMachine()
+    for state in ("idle", "running", "done"):
+        machine.add_state(state, terminal=state == "done")
+    machine.add_transition("idle", "running", "start")
+    machine.add_transition("running", "done", "finish")
+    machine.initialize("idle")
+    machine.process_event("start")
+    finish_actionable = machine.is_actionable_event("finish")
+    start_actionable = machine.is_actionable_event("start")
+    return {
+        "api": [
+            "machines.FiniteMachine",
+            "FiniteMachine.add_state",
+            "FiniteMachine.add_transition",
+            "FiniteMachine.initialize",
+            "FiniteMachine.process_event",
+            "FiniteMachine.is_actionable_event",
+        ],
+        "initial_state": "idle",
+        "event": "start",
+        "state": machine.current_state,
+        "terminated": bool(machine.terminated),
+        "finish_actionable_after_start": bool(finish_actionable),
+        "start_actionable_after_start": bool(start_actionable),
+    }
+
+
+def _exercise_pydantic() -> dict[str, Any]:
+    payload = _validate_pydantic_boundary(
+        {"operation": "bounded_request", "maximum": 2}
+    )
+    return {
+        "api": [
+            "BaseModel",
+            "ConfigDict",
+            "Field",
+            "BaseModel.model_validate",
+            "BaseModel.model_dump",
+        ],
+        "payload": payload,
+        "strict": True,
+        "extra_policy": "forbid",
+    }
+
+
+def _exercise_jsonschema() -> dict[str, Any]:
+    payload = _validate_jsonschema_boundary(
+        {"operation": "bounded_request", "maximum": 2}
+    )
+    return {
+        "api": [
+            "Draft202012Validator",
+            "Draft202012Validator.validate",
+            "ValidationError",
+        ],
+        "payload": payload,
+        "schema_draft": "2020-12",
+        "independent_schema_boundary": True,
+    }
+
+
 def exercise() -> dict[str, Any]:
     registry = load_registry()
-    observations = {
+    exercises = {
         "python.z3": _exercise_z3(),
         "python.cvc5": _exercise_cvc5(),
         "python.sympy": _exercise_sympy(),
         "python.rustworkx": _exercise_rustworkx(),
         "python.maude": _exercise_maude(),
+        "python.automaton": _exercise_automaton(),
+        "python.pydantic": _exercise_pydantic(),
+        "python.jsonschema": _exercise_jsonschema(),
     }
+    declared_ids = tuple(row["id"] for row in registry["tools"])
+    if set(exercises) != set(declared_ids):
+        raise RuntimeError(
+            "declared tool contracts and exercise adapters differ: "
+            f"declared={declared_ids!r}, adapters={tuple(exercises)!r}"
+        )
+    observations = {tool_id: exercises[tool_id] for tool_id in declared_ids}
     canonical = json.dumps(observations, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return {
         "schema": "constraintbox.core-exercise.v9",
@@ -154,6 +297,9 @@ def exercise() -> dict[str, Any]:
         "fixture": "finite_two-witness_ordered-rewrite_v1",
         "observations": observations,
         "observation_sha256": hashlib.sha256(canonical).hexdigest(),
-        "claim_ceiling": "five_tool_function_exercise_only",
+        "claim_ceiling": (
+            f"{len(observations)}_declared_tool_function_exercises_only; "
+            "no operation selection or adoption"
+        ),
         "promotion_allowed": False,
     }

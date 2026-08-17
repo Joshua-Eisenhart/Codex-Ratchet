@@ -1,0 +1,63 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-goodhart-wave-v1",
+  "purpose": "Veto a self-loop keep that Goodharted a proxy, exploded scope, or lost alignment.",
+  "children": [
+    {
+      "id": "context_strategy",
+      "skill": "cb-context-strategy-wave",
+      "operation": "inventory_and_step_back",
+      "tools": ["sha256", "quote_extract", "receipt_scan"]
+    },
+    {
+      "id": "proxy_guard",
+      "skill": "goodhart-proxy-guard",
+      "operation": "refuse_score_up_measure_down",
+      "tools": ["protected_measure_diff"]
+    },
+    {
+      "id": "paperclip_guard",
+      "skill": "paperclip-scope-guard",
+      "operation": "refuse_scope_explosion",
+      "tools": ["file_count", "untested_wave_check"]
+    },
+    {
+      "id": "drift_guard",
+      "skill": "mass-drift-guard",
+      "operation": "refuse_alignment_loss",
+      "tools": ["context_status", "antichain_width"]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "alignment_clean",
+      "refuse_proxy",
+      "refuse_paperclip",
+      "refuse_mass_drift",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "context_status",
+      "proxy_status",
+      "paperclip_status",
+      "drift_status"
+    ]
+  },
+  "claim_ceiling": "Alignment veto only; not a Light verdict, not promotion."
+}

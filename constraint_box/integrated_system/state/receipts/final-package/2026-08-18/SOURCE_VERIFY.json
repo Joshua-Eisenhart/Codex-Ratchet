@@ -1,0 +1,1134 @@
+{
+  "boundaries": {
+    "heavy_admitted": false,
+    "light_contains_jax": false,
+    "models_launched": false,
+    "provider_adapter_tests_run": false,
+    "providers_launched": false,
+    "receipt_verification_is_not_semantic_promotion": true,
+    "retained_evidence_checked": false,
+    "wave_promotion": false
+  },
+  "box_root": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+  "checks": {
+    "bridge_live": {
+      "live_replay_projection_sha256": [
+        "3e3be1cd5cbce14100247be6cc0985c3f47887b45a7ad7e2dc26a4354b850856",
+        "3e3be1cd5cbce14100247be6cc0985c3f47887b45a7ad7e2dc26a4354b850856"
+      ],
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "status": "PASS"
+    },
+    "bridge_retained": {
+      "detail": "generated local runs are excluded from the release payload",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "RETAINED_EVIDENCE_NOT_REQUESTED"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "bundle_envelope": {
+      "detail": "no directory under box_root carries SYSTEM_MANIFEST.json, BUNDLE_METADATA.json, and SHA256SUMS together",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "NOT_APPLICABLE_NO_BUNDLE_ENVELOPE"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "bundle_envelope_post": {
+      "detail": "no directory under box_root carries SYSTEM_MANIFEST.json, BUNDLE_METADATA.json, and SHA256SUMS together",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "NOT_APPLICABLE_NO_BUNDLE_ENVELOPE"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "contained_overlay": {
+      "detail": "the integrated package verifies canonical Light directly",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "OPTIONAL_LEGACY_OVERLAY_NOT_PRESENT"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "context": {
+      "corpus_bytes": 8976313,
+      "corpus_sha256": "47ec0be33bc630c4923322bd7c2d95b0977dc5fc66e35a1439774fe639dc36af",
+      "epoch": {
+        "bound_current_context_count": 6,
+        "bound_file_keys": [
+          "consolidation",
+          "corpus",
+          "corpus_manifest",
+          "current_context",
+          "refresh_ledger",
+          "retained_receipt_manifest",
+          "wave_bootstrap"
+        ],
+        "epoch_id": "epoch-00000002",
+        "epoch_parent": {
+          "path": "constraint_box/integrated_system/state/epochs/epoch-00000001.json",
+          "sha256": "9ffa4716f9f48c876e14e64966e00ff5405b0219ade919c01c18707fa8d7b8d8"
+        },
+        "epoch_path": "constraint_box/integrated_system/state/epochs/epoch-00000002.json",
+        "epoch_sequence": 2,
+        "epoch_sha256": "91e6d92117712f24402a3e03635ef1d7002af8c864c36954cbdcc582742f3d67",
+        "epoch_verifier_path": "scripts/seal_context_epoch.py",
+        "epoch_verifier_sha256": "ffc6c2b7a15d32275c2c063738c81161c9bcbeaa695c12ecdffd8fdca35af7d1",
+        "pointer_path": "state/CURRENT_EPOCH.json",
+        "pointer_sha256": "a508669f3dc756b7d0797cd541ad80bbcb5f8b37a8b77c7801d861282f4bd4aa",
+        "promotion_allowed": false,
+        "reason_codes": [],
+        "status": "PASS"
+      },
+      "epoch_verifier_path": "scripts/seal_context_epoch.py",
+      "epoch_verifier_sha256": "ffc6c2b7a15d32275c2c063738c81161c9bcbeaa695c12ecdffd8fdca35af7d1",
+      "event_count": 4713,
+      "manifest_event_count": 4713,
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "source_event_count": 4748,
+      "status": "PASS"
+    },
+    "generated_bytecode_cleanup": {
+      "cache_dirs": [],
+      "count": 0,
+      "digests": {},
+      "paths": [],
+      "promotion_allowed": false,
+      "reason_codes": [
+        "NOT_APPLICABLE_INITIAL_BUNDLE_ENVELOPE"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "git_diff_check": {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--check",
+        "--"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.181039,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "git_diff_check",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "",
+      "timeout_seconds": 900.0
+    },
+    "jax_profile": {
+      "lock_sha256": "2afd91b2b4b0c46a6201726eea2dcac3e6148785580a10332e134d42c8452a12",
+      "profile": "runtime_profiles/jax_qit",
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "requirements_sha256": "159d0f05cc20594039c761c9e32bff9f21773bb9626df7982a6ccdf76e53c98e",
+      "runtime_probe_is_live": false,
+      "status": "PASS"
+    },
+    "live_operations": {
+      "checked": {
+        "bridge_live": "PASS",
+        "doctor": "PASS",
+        "seed": "PASS",
+        "structured_live": "PASS",
+        "zip_demo": "PASS"
+      },
+      "jax_available": true,
+      "reason_codes": [],
+      "status": "PASS"
+    },
+    "retained_artifacts": {
+      "detail": "generated local runs are excluded from the release payload",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "RETAINED_EVIDENCE_NOT_REQUESTED"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "seed_command": {
+      "output_sha256": "12aa6066179e50b8c0789f9ebfea37722e56cba49d145f0ddb69487abf18226a",
+      "status": "PASS"
+    },
+    "skill_estate": {
+      "active_manifest_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77",
+      "active_wave_count": 3,
+      "authored_specs_not_active": [
+        "cb-authority-collapse-wave",
+        "cb-build-campaign-wave",
+        "cb-counterexample-wave",
+        "cb-failure-wave",
+        "cb-goodhart-wave",
+        "cb-object-loop-wave",
+        "cb-premortem-wave",
+        "cb-repair-wave",
+        "cb-strategy-wave",
+        "zip-failure-wave"
+      ],
+      "authored_specs_not_active_count": 10,
+      "catalog_definition_count": 20,
+      "catalog_sha256": "5d735071963acb3fac7376bc7658ded4bafd02f3af29806296faeb200ae0dc24",
+      "catalog_source": "bin/cb",
+      "catalog_source_sha256": "51435a7450abe2f73f534e6ef8d5aa4247c9bfe717a29d5730e59c44ed2ce738",
+      "manifest_sha256": "747193dd3959d582655255da68b258907457f33f6840a2815d0926432f7db55d",
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "runnable_wave_count": 3,
+      "runnable_wave_ids": [
+        "cb-context-strategy-wave",
+        "cb-exploration-wave",
+        "cb-maintenance-wave"
+      ],
+      "script_backed_without_wave_definition": [
+        "cb-wave-self-loop",
+        "cb-management-plane"
+      ],
+      "status": "PASS",
+      "unregistered_candidate_count": 7,
+      "unregistered_candidates": [
+        "cb-capability-probe-map-wave",
+        "cb-context-wave",
+        "cb-formalization-digger-wave",
+        "cb-objective-integrity-wave",
+        "cb-strategy-checkpoint-wave",
+        "cb-strategy-discriminator-wave",
+        "cb-strategy-framing-wave"
+      ],
+      "wave_catalog_sha256": "5d735071963acb3fac7376bc7658ded4bafd02f3af29806296faeb200ae0dc24",
+      "wave_definition_count": 20,
+      "zip_wave_definition": "zip-failure-wave/wave.json"
+    },
+    "structured_live": {
+      "dual_output_sha256": "ae4b427a8750b1e41640074189d984562e7a3b3777a5a8645f6941fef0a2a5e3",
+      "exact_output_sha256": "2d123a4263e162437985f7e222e6110d9b277da52720f7c002222fc8e86cd947",
+      "live_semantic_projection_sha256": "698c2ed50e2a2131f6874bbd142a35a7fd2f6069cdf338fbbe48dfe5b52932f7",
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "status": "PASS"
+    },
+    "structured_retained": {
+      "detail": "generated local runs are excluded from the release payload",
+      "promotion_allowed": false,
+      "reason_codes": [
+        "RETAINED_EVIDENCE_NOT_REQUESTED"
+      ],
+      "status": "NOT_APPLICABLE"
+    },
+    "tests": {
+      "groups": {
+        "curated_skills": {
+          "pytest_summary": {
+            "passed": 379
+          },
+          "reason_codes": [],
+          "status": "PASS"
+        },
+        "finite_kernel": {
+          "pytest_summary": {
+            "passed": 24,
+            "skipped": 1
+          },
+          "reason_codes": [],
+          "status": "PASS"
+        },
+        "hooks": {
+          "pytest_summary": {
+            "passed": 69
+          },
+          "reason_codes": [],
+          "status": "PASS"
+        },
+        "integrated_system": {
+          "pytest_summary": {
+            "passed": 274
+          },
+          "reason_codes": [],
+          "status": "PASS"
+        },
+        "light_core": {
+          "pytest_summary": {
+            "passed": 26
+          },
+          "reason_codes": [],
+          "status": "PASS"
+        },
+        "zip_agent": {
+          "pytest_summary": {},
+          "reason_codes": [],
+          "status": "PASS"
+        }
+      },
+      "skipped": false,
+      "status": "PASS"
+    },
+    "zip_demo": {
+      "packet_sha256": "ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81",
+      "promotion_allowed": false,
+      "reason_codes": [],
+      "replay_identical": true,
+      "return_a_sha256": "53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e",
+      "return_b_sha256": "53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e",
+      "status": "PASS"
+    }
+  },
+  "claim_ceiling": "bounded local integrated-system verification: source hashes, selected tests, ZIP replay, exact/JAX observation agreement, wave receipts, and context custody; not portable installation, provider execution, Heavy admission, scientific truth, or promotion",
+  "command_count": 19,
+  "commands": [
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/bin/cb",
+        "--light-python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "--jax-python",
+        "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "doctor"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 0.832448,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "doctor",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 2447,
+      "stdout_sha256": "400c0e245b33215b894eeaccd42455860495dbaef5740ade4dd50b80dc1241cd",
+      "stdout_tail": "{\n  \"boundaries\": {\n    \"interpreter_count\": 2,\n    \"light_must_not_import_jax\": true,\n    \"model_roster_in_kernel\": false,\n    \"one_system\": true\n  },\n  \"box_root\": \"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box\",\n  \"claim_ceiling\": \"local path/import boundary check only; not admission or portability\",\n  \"jax_profile\": {\n    \"declared_lock_sha256\": \"2afd91b2b4b0c46a6201726eea2dcac3e6148785580a10332e134d42c8452a12\",\n    \"expected_lock_sha256\": \"2afd91b2b4b0c46a6201726eea2dcac3e6148785580a10332e134d42c8452a12\",\n    \"manifest\": \"/Users/joshuaeisenhart/.local/share/jax-qit-stack/STACK_MANIFEST.json\",\n    \"manifest_sha256\": \"d0dfca40c3300c63c439db582d40f153e660644cb939fcba1a8c53a1e561e1a0\",\n    \"reason\": null,\n    \"runtime_root\": \"/Users/joshuaeisenhart/.local/share/jax-qit-stack\",\n    \"status\": \"PASS\"\n  },\n  \"jax_runtime\": {\n    \"executable\": \"/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python\",\n    \"module\": \"jax\",\n    \"origin\": \"/Users/joshuaeisenhart/.local/share/jax-qit-stack/lib/python3.13/site-packages/jax/__init__.py\",\n    \"prefix\": \"/Users/joshuaeisenhart/.local/share/jax-qit-stack\",\n    \"realpath\": \"/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13\",\n    \"status\": \"PASS\",\n    \"version\": \"0.10.1\"\n  },\n  \"light_jax_negative\": {\n    \"expected\": \"jax import fails\",\n    \"observation\": {\n      \"module\": \"jax\",\n      \"returncode\": 1,\n      \"status\": \"HOLD\",\n      \"stderr\": \"3/3.13.6/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py\\\", line 88, in import_module\\n    return _bootstrap._gcd_import(name[level:], package, level)\\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"<frozen importlib._bootstrap>\\\", line 1387, in _gcd_import\\n  File \\\"<frozen importlib._bootstrap>\\\", line 1360, in _find_and_load\\n  File \\\"<frozen importlib._bootstrap>\\\", line 1324, in _find_and_load_unlocked\\nModuleNotFoundError: No module named 'jax'\\n\"\n    },\n    \"status\": \"PASS\"\n  },\n  \"light_python\": \"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python\",\n  \"missing_paths\": [],\n  \"promotion_allowed\": false,\n  \"schema\": \"constraintbox.integrated-doctor.v1\",\n  \"status\": \"PASS\",\n  \"system_root\": \"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system\"\n}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/bin/cb",
+        "--light-python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "light-seed",
+        "--out",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-seed-h6h0qpgs.json"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 0.096126,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "light_seed",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 765,
+      "stdout_sha256": "c1e82467637c4f8de652a51bfea97e26ae70281b6e2fa7984fda71b53e689214",
+      "stdout_tail": "{\"K\": [1.0, 2.0, 3.0], \"capacity_recompute_abs_error\": 0.0, \"captured_at\": \"2026-08-18T19:24:25Z\", \"claim_ceiling\": \"time-first seed recompute only; not chirality, not measured distinguishability, not contained Light, not promotion\", \"collapsed_hands_still_gap\": false, \"delta_K\": [1.0, 1.0], \"delta_recompute_abs_error\": 0.0, \"disposition\": \"ADMIT\", \"dual_order_gap\": true, \"foundation_id\": \"time-first-dual-opening-v1\", \"honest_entropy\": \"Hartley_Renyi0_K_equals_log2_W\", \"left_order\": [\"open\", \"bind\"], \"promotion_allowed\": false, \"refuses\": [], \"right_order\": [\"bind\", \"open\"], \"schema\": \"constraintbox.seed-check.v1\", \"source_sha256\": \"06aeef15622df89e1a4a53a7e5a1bc103d0ecff12153eb11aa34bd116cc82bef\", \"support_counts\": [2, 4, 8], \"validator_status\": \"PASS\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "build-demo",
+        "--out",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.203169,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_build_demo",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 261,
+      "stdout_sha256": "28f7612cf911f4a0106c13a548931b1881127098090bcc0d7687b8942faaab5e",
+      "stdout_tail": "{\"disposition\":\"ZIP_JOB_DEMO_BUILT\",\"packet\":\"/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip\",\"packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"promotion_allowed\":false}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "validate",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.174151,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_validate_demo",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 192,
+      "stdout_sha256": "29d4eac25c5d38b754f25c6ea7faf0ce18b2df598b01b7434a517b6220c34b69",
+      "stdout_tail": "{\"disposition\":\"ZIP_JOB_VALIDATED_LOCAL\",\"job_id\":\"zip-agent-demo\",\"packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"promotion_allowed\":false,\"task_count\":1}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "run",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip",
+        "--return-zip",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-a.zip",
+        "--cache-dir",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/cache"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.242264,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_run_demo_a",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 524,
+      "stdout_sha256": "db14056207ebab2ee61eb3c4cf0b972d68938519c467ff1dd022398ced2263ee",
+      "stdout_tail": "{\"cache_index\":\"/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/cache/index.sqlite3\",\"disposition\":\"ZIP_JOB_EXECUTED_LOCAL\",\"input_packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"job_id\":\"zip-agent-demo\",\"promotion_allowed\":false,\"return_zip\":\"/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-a.zip\",\"return_zip_sha256\":\"53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "verify-return",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-a.zip",
+        "--input",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.182147,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_verify_return_a",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 273,
+      "stdout_sha256": "23bc1cbe3033ce92638a47bdfef08b8433ec2d9a79e7619b8d4875f339271f20",
+      "stdout_tail": "{\"disposition\":\"ZIP_RETURN_INTEGRITY_BOUND\",\"input_packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"job_id\":\"zip-agent-demo\",\"promotion_allowed\":false,\"return_zip_sha256\":\"53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "run",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip",
+        "--return-zip",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-b.zip",
+        "--cache-dir",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/cache"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.245903,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_run_demo_b",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 524,
+      "stdout_sha256": "88e728ff86d9cfba26e1d0108245a046be7b40caa8044554a0d27ca00322b58c",
+      "stdout_tail": "{\"cache_index\":\"/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/cache/index.sqlite3\",\"disposition\":\"ZIP_JOB_EXECUTED_LOCAL\",\"input_packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"job_id\":\"zip-agent-demo\",\"promotion_allowed\":false,\"return_zip\":\"/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-b.zip\",\"return_zip_sha256\":\"53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "constraintbox_zip_agent",
+        "verify-return",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.return-b.zip",
+        "--input",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/zip/zip-demo.zip"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.18054,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "zip_verify_return_b",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 273,
+      "stdout_sha256": "23bc1cbe3033ce92638a47bdfef08b8433ec2d9a79e7619b8d4875f339271f20",
+      "stdout_tail": "{\"disposition\":\"ZIP_RETURN_INTEGRITY_BOUND\",\"input_packet_sha256\":\"ae0ea7bc38497689e5f498529b477c820f20e41893d1d589a3f03b547e30cb81\",\"job_id\":\"zip-agent-demo\",\"promotion_allowed\":false,\"return_zip_sha256\":\"53820cf5a6874c13ae7cc974de8d260d26687a7829c37c41c3db8ecd2679c08e\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "--input",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/fixtures/structured_open_bind_v1.json",
+        "--output",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/structured/structured-exact.json",
+        "--engine",
+        "exact"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 0.17659,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "structured_probe_exact",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 3537,
+      "stdout_sha256": "2d123a4263e162437985f7e222e6110d9b277da52720f7c002222fc8e86cd947",
+      "stdout_tail": "{\n  \"claim_ceiling\": \"finite structured support-extension and observation-restriction probe only; not chirality, not a manifold, not an attractor, not promotion\",\n  \"controls\": {\n    \"all_pass\": true,\n    \"identity_bind_commutes\": true,\n    \"jax_agrees_if_requested\": true,\n    \"missing_observation_refused\": true,\n    \"relabel_invariant\": true,\n    \"solver_masks_bound\": true,\n    \"structured_has_commuting_case\": true,\n    \"structured_has_gap_case\": true,\n    \"structured_less_generic_than_random_masks\": true\n  },\n  \"engine\": \"exact\",\n  \"finding\": \"STRUCTURED_FAMILY_DIFFERS_FROM_RANDOM_MASKS\",\n  \"fixture_id\": \"two-fibres-two-probes-v1\",\n  \"fixture_sha256\": \"b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0\",\n  \"forbidden_inferences\": [\n    \"order gap is chirality\",\n    \"order gap is the odd gradient\",\n    \"static quotient component is an attractor\",\n    \"structured family result is manifold admission\"\n  ],\n  \"generic_endomap_control\": {\n    \"carrier_size\": 4,\n    \"commuting_pairs\": 2824,\n    \"comparison_note\": \"reference only; arbitrary endomap pairs are not the structured subset-mask family\",\n    \"map_count\": 256,\n    \"noncommuting_pairs\": 62712,\n    \"noncommuting_rate\": 0.9569091796875,\n    \"pair_count\": 65536\n  },\n  \"jax\": {\n    \"ran\": false,\n    \"reason\": \"exact engine\"\n  },\n  \"next_operation\": \"jax_vmap_named_bind_masks_only_if_more_width_is_needed\",\n  \"promotion_allowed\": false,\n  \"result_sha256\": \"8926612e947886fdd5866e7912127f4abb5d6f277025c5da8338c7cc58efedce\",\n  \"schema\": \"constraintbox.structured-open-bind-result.v1\",\n  \"solver\": {\n    \"agree\": true,\n    \"cvc5\": \"PASS\",\n    \"mask_set_sha256\": \"6a6eaacb452b83b58290a5bb0ef77344a54b3849562ca098abf851420c402bde\",\n    \"z3\": \"PASS\"\n  },\n  \"source_sha256\": \"f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50\",\n  \"status\": \"PASS\",\n  \"structured\": {\n    \"has_commuting_case\": true,\n    \"has_gap_case\": true,\n    \"identity_gap_zero\": true,\n    \"random_mask_case_count\": 256,\n    \"random_mask_gap_count\": 156,\n    \"random_mask_gap_rate\": 0.609375,\n    \"rows\": [\n      {\n        \"allowed_values\": [\n          \"L\"\n        ],\n        \"bind_mask\": 3,\n        \"commuting_count\": 16,\n        \"control\": null,\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-side-L\",\n        \"probe\": \"side\"\n      },\n      {\n        \"allowed_values\": [\n          \"R\"\n        ],\n        \"bind_mask\": 12,\n        \"commuting_count\": 16,\n        \"control\": null,\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-side-R\",\n        \"probe\": \"side\"\n      },\n      {\n        \"allowed_values\": [\n          \"0\"\n        ],\n        \"bind_mask\": 5,\n        \"commuting_count\": 1,\n        \"control\": null,\n        \"gap_count\": 15,\n        \"gap_rate\": 0.9375,\n        \"id\": \"bind-record-0\",\n        \"probe\": \"record\"\n      },\n      {\n        \"allowed_values\": [\n          \"1\"\n        ],\n        \"bind_mask\": 10,\n        \"commuting_count\": 1,\n        \"control\": null,\n        \"gap_count\": 15,\n        \"gap_rate\": 0.9375,\n        \"id\": \"bind-record-1\",\n        \"probe\": \"record\"\n      },\n      {\n        \"allowed_values\": [\n          \"L\",\n          \"R\"\n        ],\n        \"bind_mask\": 15,\n        \"commuting_count\": 16,\n        \"control\": \"identity\",\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-identity\",\n        \"probe\": \"side\"\n      }\n    ],\n    \"structured_noncontrol_case_count\": 64,\n    \"structured_noncontrol_gap_count\": 30,\n    \"structured_noncontrol_gap_rate\": 0.46875,\n    \"subset_count\": 16\n  }\n}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "--input",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/fixtures/structured_open_bind_v1.json",
+        "--output",
+        "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-integrated-verify-6duzgwzm/structured/structured-dual.json",
+        "--engine",
+        "dual"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 0.878236,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "structured_probe_dual",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 3780,
+      "stdout_sha256": "ae4b427a8750b1e41640074189d984562e7a3b3777a5a8645f6941fef0a2a5e3",
+      "stdout_tail": "{\n  \"claim_ceiling\": \"finite structured support-extension and observation-restriction probe only; not chirality, not a manifold, not an attractor, not promotion\",\n  \"controls\": {\n    \"all_pass\": true,\n    \"identity_bind_commutes\": true,\n    \"jax_agrees_if_requested\": true,\n    \"missing_observation_refused\": true,\n    \"relabel_invariant\": true,\n    \"solver_masks_bound\": true,\n    \"structured_has_commuting_case\": true,\n    \"structured_has_gap_case\": true,\n    \"structured_less_generic_than_random_masks\": true\n  },\n  \"engine\": \"dual\",\n  \"finding\": \"STRUCTURED_FAMILY_DIFFERS_FROM_RANDOM_MASKS\",\n  \"fixture_id\": \"two-fibres-two-probes-v1\",\n  \"fixture_sha256\": \"b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0\",\n  \"forbidden_inferences\": [\n    \"order gap is chirality\",\n    \"order gap is the odd gradient\",\n    \"static quotient component is an attractor\",\n    \"structured family result is manifold admission\"\n  ],\n  \"generic_endomap_control\": {\n    \"carrier_size\": 4,\n    \"commuting_pairs\": 2824,\n    \"comparison_note\": \"reference only; arbitrary endomap pairs are not the structured subset-mask family\",\n    \"map_count\": 256,\n    \"noncommuting_pairs\": 62712,\n    \"noncommuting_rate\": 0.9569091796875,\n    \"pair_count\": 65536\n  },\n  \"jax\": {\n    \"device\": \"cpu:0\",\n    \"exact_agreement\": true,\n    \"gap_counts\": [\n      0,\n      0,\n      15,\n      15,\n      0\n    ],\n    \"jax_version\": \"0.10.1\",\n    \"jaxlib_version\": \"0.10.1\",\n    \"output_sha256\": \"7546b1965bac13dd75385c8d338644d79caa37c8a8ea28f50e81976222d9edd2\",\n    \"ran\": true\n  },\n  \"next_operation\": \"jax_vmap_named_bind_masks_only_if_more_width_is_needed\",\n  \"promotion_allowed\": false,\n  \"result_sha256\": \"6d07bc30926932a751f50b2c464f785acb3b0d08dc7a55f2d3a7b971e18e2448\",\n  \"schema\": \"constraintbox.structured-open-bind-result.v1\",\n  \"solver\": {\n    \"agree\": true,\n    \"cvc5\": \"PASS\",\n    \"mask_set_sha256\": \"6a6eaacb452b83b58290a5bb0ef77344a54b3849562ca098abf851420c402bde\",\n    \"z3\": \"PASS\"\n  },\n  \"source_sha256\": \"f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50\",\n  \"status\": \"PASS\",\n  \"structured\": {\n    \"has_commuting_case\": true,\n    \"has_gap_case\": true,\n    \"identity_gap_zero\": true,\n    \"random_mask_case_count\": 256,\n    \"random_mask_gap_count\": 156,\n    \"random_mask_gap_rate\": 0.609375,\n    \"rows\": [\n      {\n        \"allowed_values\": [\n          \"L\"\n        ],\n        \"bind_mask\": 3,\n        \"commuting_count\": 16,\n        \"control\": null,\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-side-L\",\n        \"probe\": \"side\"\n      },\n      {\n        \"allowed_values\": [\n          \"R\"\n        ],\n        \"bind_mask\": 12,\n        \"commuting_count\": 16,\n        \"control\": null,\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-side-R\",\n        \"probe\": \"side\"\n      },\n      {\n        \"allowed_values\": [\n          \"0\"\n        ],\n        \"bind_mask\": 5,\n        \"commuting_count\": 1,\n        \"control\": null,\n        \"gap_count\": 15,\n        \"gap_rate\": 0.9375,\n        \"id\": \"bind-record-0\",\n        \"probe\": \"record\"\n      },\n      {\n        \"allowed_values\": [\n          \"1\"\n        ],\n        \"bind_mask\": 10,\n        \"commuting_count\": 1,\n        \"control\": null,\n        \"gap_count\": 15,\n        \"gap_rate\": 0.9375,\n        \"id\": \"bind-record-1\",\n        \"probe\": \"record\"\n      },\n      {\n        \"allowed_values\": [\n          \"L\",\n          \"R\"\n        ],\n        \"bind_mask\": 15,\n        \"commuting_count\": 16,\n        \"control\": \"identity\",\n        \"gap_count\": 0,\n        \"gap_rate\": 0.0,\n        \"id\": \"bind-identity\",\n        \"probe\": \"side\"\n      }\n    ],\n    \"structured_noncontrol_case_count\": 64,\n    \"structured_noncontrol_gap_count\": 30,\n    \"structured_noncontrol_gap_rate\": 0.46875,\n    \"subset_count\": 16\n  }\n}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/scripts/run_light_jax_wave_bridge.py",
+        "--box-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "--light-python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "--jax-python",
+        "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "--skills-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "--mmm-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "--output-dir",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/runs/.verify-uphxxi20/bridge-1"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 8.814727,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "light_jax_wave_bridge_1",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 205,
+      "stdout_sha256": "211c00579e9b09ff913ae09280f63c3e13c9c183606d95a7cd3bba4cc82ea180",
+      "stdout_tail": "{\"promotion_allowed\": false, \"reason_codes\": [], \"receipt_sha256\": \"97c1aeb288e1f776f8b2c837d10975950cd3099b0a674e11d3056804c5f92d03\", \"schema\": \"constraintbox.light-jax-wave-bridge.v1\", \"status\": \"PASS\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/scripts/run_light_jax_wave_bridge.py",
+        "--box-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "--light-python",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "--jax-python",
+        "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "--skills-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "--mmm-root",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "--output-dir",
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/runs/.verify-uphxxi20/bridge-2"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+      "duration_seconds": 7.769184,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "light_jax_wave_bridge_2",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 205,
+      "stdout_sha256": "9e64462d54684a2cf778ef779280af1c0bcfb2b899aae18b96643b089da7deea",
+      "stdout_tail": "{\"promotion_allowed\": false, \"reason_codes\": [], \"receipt_sha256\": \"52042ad58e31e3e0c7d9ef826406697b7ad92eb6a2c28c02a398d8b5be9b2ba2\", \"schema\": \"constraintbox.light-jax-wave-bridge.v1\", \"status\": \"PASS\"}\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/integrated_system/tests"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 17.189093,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_integrated_system",
+      "pytest_summary": {
+        "passed": 274
+      },
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 341,
+      "stdout_sha256": "99c9541760e7ecf5989ed1a531f26c05463dd2ea7fb33ffe91736dffad920c61",
+      "stdout_tail": "........................................................................ [ 26%]\n........................................................................ [ 52%]\n........................................................................ [ 78%]\n..........................................................               [100%]\n274 passed in 16.66s\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/tests/test_cb_light_system.py",
+        "constraint_box/tests/test_cb_light_core_probes.py",
+        "constraint_box/tests/test_cb_light_runtime_spine.py",
+        "constraint_box/tests/test_cb_light_heavy_separation.py"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 39.533186,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_light_core",
+      "pytest_summary": {
+        "passed": 26
+      },
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 100,
+      "stdout_sha256": "cc6d8804ae00607058469091d192a5a4285dd67b4c24015819f53767301e0eee",
+      "stdout_tail": "..........................                                               [100%]\n26 passed in 39.06s\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/tests/test_bound_quotient.py",
+        "constraint_box/tests/test_contained_light.py",
+        "constraint_box/tests/test_distinguishability.py",
+        "constraint_box/tests/test_entropic_time_field.py"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.773999,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_finite_kernel",
+      "pytest_summary": {
+        "passed": 24,
+        "skipped": 1
+      },
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 110,
+      "stdout_sha256": "051ef19b971410bd43b609b24a1189f25b561091412c5be93c418af6c63705e4",
+      "stdout_tail": "..........s..............                                                [100%]\n24 passed, 1 skipped in 0.29s\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/tests/test_hook_adapter.py",
+        "constraint_box/tests/test_hook_completion_resolution.py",
+        "constraint_box/tests/test_hook_currentness_authority.py",
+        "constraint_box/tests/test_hook_lifecycle.py"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 2.563102,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_hooks",
+      "pytest_summary": {
+        "passed": 69
+      },
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 99,
+      "stdout_sha256": "9a95e0e86febc950913487ee7edf5cfe5d38367c57daffaa1bc4ba24ba924c1c",
+      "stdout_tail": ".....................................................................    [100%]\n69 passed in 2.14s\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/zip_agent/tests"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 58.317842,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_zip_agent",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 320,
+      "stdout_sha256": "cbe5d964f93f67d215ab19d822c271dfd66c1c1649d74d61130c3d7eb77653d6",
+      "stdout_tail": "...........................................................s..s..ss..... [ 26%]\n........................................................................ [ 53%]\n........................................................................ [ 79%]\n.......................................................                  [100%]\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "constraint_box/integrated_system/skills",
+        "--ignore=constraint_box/integrated_system/skills/cb-wave-author/tests/test_wave_definitions.py",
+        "--ignore=constraint_box/integrated_system/skills/cb-wave-admission-gate/tests/test_admit.py"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 48.073742,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "pytest_curated_skills",
+      "pytest_summary": {
+        "passed": 379
+      },
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 501,
+      "stdout_sha256": "76ece8954b46ab5299cf226fe9e53bf422d83c90a702239928b408baad5e07ff",
+      "stdout_tail": "........................................................................ [ 18%]\n........................................................................ [ 37%]\n........................................................................ [ 56%]\n........................................................................ [ 75%]\n........................................................................ [ 94%]\n...................                                                      [100%]\n379 passed in 47.49s\n",
+      "timeout_seconds": 900.0
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--check",
+        "--"
+      ],
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "duration_seconds": 0.181039,
+      "env": {
+        "CB_BOX_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_CONTROLLER_SRC": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src",
+        "CB_JAX_PYTHON": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+        "CB_LIGHT_BUILD_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.bootstrap-light-build/bin/python",
+        "CB_LIGHT_INTERPRETER": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_PYTHON": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "CB_LIGHT_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box",
+        "CB_MMM_PACKS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/mmm/packs",
+        "CB_MMM_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/mmms/primary",
+        "CB_SKILLS_ROOT": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system/skills",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/light_runtime/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/zip_agent/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src:/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817"
+      },
+      "expected_returncodes": [
+        0
+      ],
+      "id": "git_diff_check",
+      "returncode": 0,
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "",
+      "timeout_seconds": 900.0
+    }
+  ],
+  "completed_at": "2026-08-18T19:27:31Z",
+  "interpreters": {
+    "jax": "/Users/joshuaeisenhart/.local/share/jax-qit-stack/bin/python",
+    "light": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+    "light_jax_separation_checked": true
+  },
+  "promotion_allowed": false,
+  "receipt_sha256": "eec4ade101095afc4204350db577f422124d5aead0af45b08d971004acea7942",
+  "repo_root": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+  "schema": "constraintbox.integrated-system-verification.v1",
+  "started_at": "2026-08-18T19:24:24Z",
+  "status": "PASS",
+  "system_root": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/integrated_system"
+}

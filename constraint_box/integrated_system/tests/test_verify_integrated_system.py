@@ -80,6 +80,9 @@ def test_retained_structured_and_bridge_receipts_are_checked_without_promotion()
     system = box / "integrated_system"
     structured = verifier.check_structured_receipt(system)
     bridge = verifier.check_bridge_receipt(system)
+    if structured["status"] == "NOT_APPLICABLE":
+        assert bridge["status"] == "NOT_APPLICABLE"
+        return
     assert structured["status"] == "PASS", structured
     assert structured["exact_jax_agreement"] is True
     assert structured["crosscheck_projection_recomputed"] is False

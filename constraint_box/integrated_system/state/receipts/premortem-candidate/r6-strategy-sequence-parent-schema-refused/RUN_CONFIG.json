@@ -1,0 +1,130 @@
+{
+  "schema": "constraintbox.premortem-zip-wave-run.v1",
+  "parent_job_id": "cb-strategy-sequence-premortem-20260818",
+  "run_id": "cb-strategy-sequence-premortem-20260818-r3",
+  "wave_id": "cb-premortem-candidate-v1",
+  "round": 1,
+  "max_rounds": 1,
+  "max_attempts": 3,
+  "seed": 2026081811,
+  "timeout_seconds": 600,
+  "members": {
+    "likely_failure": [
+      {
+        "member_id": "likely-grok",
+        "provider": "grok-cli",
+        "model_requested": "grok-4.6",
+        "model_observed_allowlist": ["grok-4.6-build"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "max_turns": 10,
+        "runner_path": "/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "likely-fable",
+        "provider": "claude-code",
+        "model_requested": "fable",
+        "model_observed_allowlist": ["claude-fable-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 5.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "likely-opus",
+        "provider": "claude-code",
+        "model_requested": "opus",
+        "model_observed_allowlist": ["claude-opus-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 4.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      }
+    ],
+    "dangerous_failure": [
+      {
+        "member_id": "dangerous-grok",
+        "provider": "grok-cli",
+        "model_requested": "grok-4.6",
+        "model_observed_allowlist": ["grok-4.6-build"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "max_turns": 10,
+        "runner_path": "/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "dangerous-fable",
+        "provider": "claude-code",
+        "model_requested": "fable",
+        "model_observed_allowlist": ["claude-fable-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 5.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "dangerous-opus",
+        "provider": "claude-code",
+        "model_requested": "opus",
+        "model_observed_allowlist": ["claude-opus-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 4.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      }
+    ],
+    "hidden_assumption": [
+      {
+        "member_id": "hidden-grok",
+        "provider": "grok-cli",
+        "model_requested": "grok-4.6",
+        "model_observed_allowlist": ["grok-4.6-build"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "max_turns": 10,
+        "runner_path": "/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "hidden-fable",
+        "provider": "claude-code",
+        "model_requested": "fable",
+        "model_observed_allowlist": ["claude-fable-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 5.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      },
+      {
+        "member_id": "hidden-opus",
+        "provider": "claude-code",
+        "model_requested": "opus",
+        "model_observed_allowlist": ["claude-opus-5"],
+        "require_model_binding": true,
+        "output_delivery": "provider_response",
+        "reasoning_effort": "high",
+        "budget_usd": 4.0,
+        "runner_path": "/usr/local/bin/claude",
+        "bridge_path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py",
+        "controller_src": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"
+      }
+    ]
+  }
+}

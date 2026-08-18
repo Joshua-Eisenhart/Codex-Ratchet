@@ -1,0 +1,27 @@
+{
+  "schema": "constraintbox.retained-premortem-candidate.v1",
+  "run": "r4-current-refused",
+  "target_sha256": "fded3badda03bc867b728dfedd4dde51e041fa293f9fc09d0b19eeb0c2866f41",
+  "files": {
+    "TARGET.md": "fded3badda03bc867b728dfedd4dde51e041fa293f9fc09d0b19eeb0c2866f41",
+    "RESULT.json": "5efb8afa5406e9815b76c7a4edf507bf978c40781f7869a44c1b5d0432ba492e",
+    "RUN_CONFIG.json": "0ff39fdc85c8b29570b9a34d35da25471ba2ccd6403475dff4481192ddd6a51f"
+  },
+  "route": {
+    "lenses_attempted": 2,
+    "requested_members_per_lens": 3,
+    "models_requested_per_lens": ["grok-4.6", "fable", "opus"],
+    "model_identity_contract": "invocation.model_observed_allowlist",
+    "output_delivery": "provider_response",
+    "strict_json_member_gate": true,
+    "max_attempts": 2
+  },
+  "disposition": "REFUSED",
+  "reason_code": "REFUSE_MD_AGENT_ROSTER_EXHAUSTED",
+  "failed_member": "dan-fable",
+  "successful_peer_members_before_refusal": ["dan-grok", "dan-opus"],
+  "semantic_vote": null,
+  "authority_disposition": null,
+  "claim_ceiling": "retained current-target provider-route failure with bounded retry evidence only; not model ranking, admission, promotion, or release",
+  "promotion_allowed": false
+}

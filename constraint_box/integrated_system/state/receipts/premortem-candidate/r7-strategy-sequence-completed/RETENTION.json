@@ -1,0 +1,31 @@
+{
+  "schema": "constraintbox.retained-premortem-candidate.v1",
+  "run": "r7-strategy-sequence-completed",
+  "files": {
+    "TARGET.md": "caaa51d9e2ebdbb4309bf461b835920cb040faf2c7eb0695f89028aef3ed5af3",
+    "RUN_CONFIG.json": "87f743b6f774c94d82a5bc2045057e259d995f6b78b95757bfbc205b54144961",
+    "RESULT.json": "0aa4b103ceb9d1783e4784fd1fe94c2bc519271dbaf7572f03870b3fcc46caf9"
+  },
+  "disposition": "PREMORTEM_ZIP_WAVE_COMPLETED",
+  "lenses_completed": ["likely_failure", "dangerous_failure", "hidden_assumption"],
+  "members_accepted": 9,
+  "provider_attempts_consumed": 11,
+  "providers": ["grok-4.6-build", "claude-fable-5", "claude-opus-5"],
+  "bounded_retry_summary": {
+    "REFUSE_MD_AGENT_SKILL_ECHO_MISSING": 1,
+    "REFUSE_MD_AGENT_OUTPUT_SCHEMA": 1
+  },
+  "delivery_evidence": {
+    "skill_echo_proved": true,
+    "mmm_echo_proved": true,
+    "tool_echo_proved": true,
+    "skill_read_proved": false,
+    "mmm_read_proved": false,
+    "skill_executed": false
+  },
+  "stop_reason": "repair_callback_absent",
+  "semantic_vote": null,
+  "authority_disposition": null,
+  "claim_ceiling": "retained bounded provider premortem observations and disagreement inventory for one frozen target; not semantic consensus, comprehension proof, admission, promotion, repair execution, or release",
+  "promotion_allowed": false
+}

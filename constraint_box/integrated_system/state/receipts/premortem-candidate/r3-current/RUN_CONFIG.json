@@ -1,0 +1,28 @@
+{
+  "schema": "constraintbox.premortem-zip-wave-run.v1",
+  "parent_job_id": "cb-premortem-live-20260818",
+  "run_id": "cb-premortem-live-20260818-r1",
+  "wave_id": "cb-premortem-candidate-v1",
+  "round": 1,
+  "seed": 2026081810,
+  "max_rounds": 1,
+  "max_attempts": 2,
+  "timeout_seconds": 600,
+  "members": {
+    "likely_failure": [
+      {"member_id":"lik-grok","provider":"grok-cli","model_requested":"grok-4.6","output_delivery":"provider_response","require_model_binding":true,"max_turns":8,"runner_path":"/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"lik-fable","provider":"claude-code","model_requested":"fable","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":5.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"lik-opus","provider":"claude-code","model_requested":"opus","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":3.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"}
+    ],
+    "dangerous_failure": [
+      {"member_id":"dan-grok","provider":"grok-cli","model_requested":"grok-4.6","output_delivery":"provider_response","require_model_binding":true,"max_turns":8,"runner_path":"/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"dan-fable","provider":"claude-code","model_requested":"fable","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":5.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"dan-opus","provider":"claude-code","model_requested":"opus","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":3.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"}
+    ],
+    "hidden_assumption": [
+      {"member_id":"hid-grok","provider":"grok-cli","model_requested":"grok-4.6","output_delivery":"provider_response","require_model_binding":true,"max_turns":8,"runner_path":"/Users/joshuaeisenhart/.grok/downloads/grok-1.0.3-macos-aarch64","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"hid-fable","provider":"claude-code","model_requested":"fable","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":5.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"},
+      {"member_id":"hid-opus","provider":"claude-code","model_requested":"opus","output_delivery":"provider_response","require_model_binding":true,"reasoning_effort":"high","budget_usd":3.0,"runner_path":"/usr/local/bin/claude","bridge_path":"/Users/joshuaeisenhart/.codex/skills/claude-bridge/scripts/claude_bridge.py","controller_src":"/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/src"}
+    ]
+  }
+}

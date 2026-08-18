@@ -1,0 +1,29 @@
+{
+  "schema": "constraintbox.retained-host-hook-install.v1",
+  "run_id": "live-hook-canary-20260818-5",
+  "files": {
+    "PLAN.json": "4e106e4b77e88b7912659a0e597593548d70c5274149323e40de4f6dce0046b2",
+    "RECEIPT.json": "d6daee09ddb88c37a1eef8ce8d4a59e59aaa99d32ce19703216a4bb95c96dfa7"
+  },
+  "plan_sha256": "082f6911bb0a9c8c0676fbd4db037c33592f7acfe7030512cfd977132442d412",
+  "receipt_sha256": "9c0a35b847e017f8be740bde4107f373964fce3eece68a3aa56dbf95eab8eb05",
+  "installer_status": "VERIFIED",
+  "targets": {
+    "codex": "5bda0c19c151d64acf0156c741bc3b597064115c1c3a05685dce452302d6a854",
+    "claude": "d88a670852eb3531e73dd2fdf3825d0c7d37f408bbb53ed661f0688ce56dce52",
+    "grok": "1e0d50456e6b89853d1d9bd172f5e93a5162c9b99c8ba587e3b40f29a5386866",
+    "hermes": "c211ecdd7e3ee0f32341cfd780f77b95a2a1ec671e6baa2695d2a3aa50f8f6cc",
+    "grok_compat": "be86d03dc45ff8d2de08c6cba12cb7b98dbcd2908762285aa79506dbcc61f69d"
+  },
+  "synthetic_no_model_smoke": {
+    "event_count": 8,
+    "allow_count": 4,
+    "refuse_unmanaged_spawn_count": 4,
+    "canonical_event_log": "integrated_system/runs/hook-events.jsonl"
+  },
+  "restart_or_reload_required": true,
+  "fresh_host_process_loading_proved": false,
+  "rollback_material_local_only": "integrated_system/runs/host-hook-installer/live-hook-canary-20260818-5",
+  "claim_ceiling": "verified live configuration mutation plus direct no-model hook-process smoke; not proof that already-running hosts reloaded configuration, not provider execution, semantic CB decision, promotion, or release",
+  "promotion_allowed": false
+}

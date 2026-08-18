@@ -1,0 +1,29 @@
+{
+  "schema": "constraintbox.retained-premortem-candidate.v1",
+  "run": "r5-strategy-sequence-refused",
+  "files": {
+    "TARGET.md": "caaa51d9e2ebdbb4309bf461b835920cb040faf2c7eb0695f89028aef3ed5af3",
+    "RUN_CONFIG.json": "fd6942db6a72c0317de36a8ff7a80b41d990c32e4c14301276a3b6c1f738ab2c",
+    "RESULT.json": "288ef1f1315576b5c1998cd301738e1c3b34c1445639602ee31240c7b8b45672"
+  },
+  "route": {
+    "lens_started": "likely_failure",
+    "later_lenses_started": false,
+    "requested_members": ["grok-4.6", "fable", "opus"],
+    "attempts_per_member": 3,
+    "strict_json_member_gate": true,
+    "provider_responses_materialized": true
+  },
+  "disposition": "REFUSED",
+  "reason_code": "REFUSE_MD_AGENT_ROSTER_EXHAUSTED",
+  "accepted_agent_count": 0,
+  "refusal_reason_summary": {
+    "REFUSE_MD_AGENT_SKILL_TOKEN_MISSING": 8,
+    "REFUSE_MD_AGENT_OUTPUT_JSON": 1
+  },
+  "diagnosis": "The exact result schema did not tell members where to place the separately required skill digest echo. Substantive target-bound responses therefore failed a hidden binding check. This is retained as a CB prompt/gate defect, not a provider-quality verdict.",
+  "semantic_vote": null,
+  "authority_disposition": null,
+  "claim_ceiling": "retained provider-route failure and gate-contradiction evidence only; not a completed council, model ranking, admission, promotion, or release",
+  "promotion_allowed": false
+}

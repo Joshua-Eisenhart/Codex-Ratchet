@@ -202,7 +202,12 @@ def test_live_failure_packet_builds_with_explicit_mmm_and_route_fixtures(tmp_pat
     for path, raw in _mmm_files().items():
         voice = path.split("/")[1][:-3]
         (mmm_root / f"MMM_VOICE_{voice.upper()}_COMPACT_v4_1.md").write_bytes(raw)
-    controller_src = Path(__file__).resolve().parents[2] / "src"
+    box_root = Path(__file__).resolve().parents[2]
+    controller_src = box_root / "src"
+    if not controller_src.is_dir():
+        controller_src = (
+            box_root / "integrated_system" / "runtime" / "controller_src"
+        )
     live_paths = {
         "codex-cli": {
             "runner_path": str(tmp_path / "codex-runner"),

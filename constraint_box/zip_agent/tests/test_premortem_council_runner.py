@@ -34,7 +34,13 @@ def test_premortem_request_uses_explicit_controller_and_no_host_defaults(tmp_pat
     controller = tmp_path / "controller"
     package = controller / "constraintbox"
     package.mkdir(parents=True)
-    source = Path(__file__).resolve().parents[2] / "src" / "constraintbox" / "mmm_load_gate.py"
+    box_root = Path(__file__).resolve().parents[2]
+    controller_source = box_root / "src"
+    if not controller_source.is_dir():
+        controller_source = (
+            box_root / "integrated_system" / "runtime" / "controller_src"
+        )
+    source = controller_source / "constraintbox" / "mmm_load_gate.py"
     (package / "mmm_load_gate.py").write_bytes(source.read_bytes())
     (tmp_path / "mmm").mkdir()
     packs = tmp_path / "mmm" / "packs"

@@ -24,7 +24,10 @@ OBJECT = b"Write one finding line.\n"
 TASK_SOURCE = b"# Provider fixture task\nWrite the declared finding.\n"
 MMM_BUNDLE = b"\n\n<!-- MMM voice:test:compact -->\n# Test mini MMM\n"
 COMPOSED_PROMPT = b"# MMM SALIENCE PRELOAD\n" + MMM_BUNDLE + b"\n\n# TASK\n" + TASK_SOURCE
-CONTROLLER_SRC = Path(__file__).resolve().parents[2] / "src"
+BOX_ROOT = Path(__file__).resolve().parents[2]
+CONTROLLER_SRC = BOX_ROOT / "src"
+if not CONTROLLER_SRC.is_dir():
+    CONTROLLER_SRC = BOX_ROOT / "integrated_system" / "runtime" / "controller_src"
 
 
 def _preload() -> bytes:

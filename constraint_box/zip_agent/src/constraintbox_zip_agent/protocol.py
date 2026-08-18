@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import io
 import json
+import os
 import re
 import stat
 import zipfile
@@ -58,21 +58,92 @@ def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def declared_controller_src(raw: object | None = None) -> Path:
+    """Resolve the optional CB controller overlay only from an explicit declaration.
+
+    ZIP Agent's deterministic transport must run without the larger CB package.
+    Provider adapters and MMM materialisation are therefore an explicit overlay,
+    never an inferred sibling checkout or an ambient installed module.  A caller
+    may declare the source in request data; the named ``CB_CONTROLLER_SRC``
+    environment variable is the process-level equivalent for a host adapter.
+    """
+
+    value = raw
+    if value is None:
+        value = os.environ.get("CB_CONTROLLER_SRC")
+    if isinstance(value, Path):
+        value = str(value)
+    if not isinstance(value, str) or not value.strip():
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_UNBOUND", "CB_CONTROLLER_SRC")
+    path = Path(value).expanduser()
+    if not path.is_absolute():
+        raise ZipJobRefusal("REFUSE_PROVIDER_CONTROLLER_PATH", str(value))
+    try:
+        resolved = path.resolve(strict=True)
+    except OSError as exc:
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MISSING", str(value)) from exc
+    if not resolved.is_dir():
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MISSING", str(value))
+    package_dir = resolved / "constraintbox"
+    if not package_dir.is_dir():
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_INVALID", str(resolved))
+    return resolved
+
+
+def controller_mmm_gate(controller_src: object | None = None) -> Any:
+    """Load the controller MMM gate from the declared source, not ``sys.path``.
+
+    This loader is deliberately local to ZIP Agent.  Importing the ZIP package
+    must not require ``constraintbox`` to be installed; only a provider route
+    with a declared controller overlay reaches this function.
+    """
+
+    import importlib.util
+
+    source = declared_controller_src(controller_src)
+    gate_path = source / "constraintbox" / "mmm_load_gate.py"
+    if not gate_path.is_file():
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MMM_GATE_MISSING", str(gate_path))
+    module_name = f"_cb_zip_controller_mmm_gate_{sha256_bytes(str(gate_path).encode())[:16]}"
+    spec = importlib.util.spec_from_file_location(module_name, gate_path)
+    if spec is None or spec.loader is None:
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MMM_GATE_INVALID", str(gate_path))
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception as exc:  # pragma: no cover - exact controller error is environment-specific
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MMM_GATE_INVALID", str(gate_path)) from exc
+    if not hasattr(module, "materialize_bound_prompt") or not hasattr(module, "MmmLoadError"):
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_MMM_GATE_INVALID", str(gate_path))
+    return module
+
+
+def materialize_controller_bound_prompt(
+    source: Path, dest: Path, controller_src: object | None = None
+) -> dict[str, Any]:
+    """Materialize MMM bytes through an explicitly declared controller overlay."""
+
+    gate = controller_mmm_gate(controller_src)
+    try:
+        return gate.materialize_bound_prompt(source, dest)
+    except gate.MmmLoadError as exc:
+        raise ZipJobRefusal(exc.reason_code, str(exc)) from exc
+
+
 def runtime_source_sha256() -> str:
+    """Hash only the ZIP Agent runtime, independent of sibling checkouts.
+
+    A controller overlay is a separately declared provider dependency and is
+    bound in that provider request.  It must not silently alter the identity of
+    model-free ZIP operations or make a relocated ZIP depend on a repository
+    path that happens to exist on the build machine.
+    """
+
     package_root = Path(__file__).resolve().parent
     registry = {
         f"constraintbox_zip_agent/{path.name}": sha256_bytes(path.read_bytes())
         for path in sorted(package_root.glob("*.py"), key=lambda item: item.name)
     }
-    adapter_root = package_root.parents[3] / "src" / "constraintbox"
-    for name in (
-        "claude_bridge_adapter.py",
-        "codex_cli_adapter.py",
-        "grok_cli_adapter.py",
-    ):
-        origin = adapter_root / name
-        if origin.is_file():
-            registry[f"constraintbox/{name}"] = sha256_bytes(origin.read_bytes())
     return sha256_bytes(canonical_json_bytes(registry))
 
 

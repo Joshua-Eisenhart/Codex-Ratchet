@@ -10,7 +10,7 @@ Internal score is not the world.
 Held-out CB measures: seed still ADMIT, control packet still BOUNDED_SAT, valid_v1 did not fall, promotion_allowed still false.
 
 ```text
-python3 ~/.codex/skills/counterfactual-impact-evaluator/scripts/evaluate_impact.py \
+python3 $CB_SKILLS_ROOT/counterfactual-impact-evaluator/scripts/evaluate_impact.py \
   --before score.json --after score.json
 ```
 

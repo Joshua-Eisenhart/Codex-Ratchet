@@ -1,10 +1,12 @@
 {
-  "audited_at": "2026-08-11T09:36:36.074937+00:00",
+  "audited_at": "2026-08-17T23:52:46.726665+00:00",
   "checked": {
     "allowed_light_hookkernel_python_paths": [
       "hookkernel/__init__.py",
+      "hookkernel/cb_light_basin_view.py",
       "hookkernel/cb_light_domain.py",
       "hookkernel/cb_light_gate.py",
+      "hookkernel/cb_light_minilev_state.py",
       "hookkernel/cb_light_runtime.py",
       "hookkernel/cb_light_solver.py",
       "hookkernel/cb_light_state.py",
@@ -68,6 +70,8 @@
       "hooks/cb_light_hook.py",
       "light_runtime/src/constraintbox/__init__.py",
       "light_runtime/src/constraintbox/__main__.py",
+      "light_runtime/src/constraintbox/basin_field.py",
+      "light_runtime/src/constraintbox/basin_field_gate.py",
       "light_runtime/src/constraintbox/cb_light_probes.py",
       "light_runtime/src/constraintbox/cb_light_selection.py",
       "light_runtime/src/constraintbox/cb_light_tool_probes.py",
@@ -76,14 +80,21 @@
       "light_runtime/src/constraintbox/core_cli.py",
       "light_runtime/src/constraintbox/core_tools.py",
       "light_runtime/src/constraintbox/dualsolve.py",
+      "light_runtime/src/constraintbox/mini_lev_bridge.py",
+      "light_runtime/src/constraintbox/operation_custody_field.py",
       "light_runtime/src/constraintbox/premortem_contracts.py",
       "light_runtime/src/constraintbox/premortem_remediation.py",
+      "light_runtime/src/constraintbox/probe_submission_gate.py",
+      "light_runtime/src/constraintbox/transition_mini_lev.py",
+      "light_runtime/src/constraintbox/verify_operation.py",
       "light_runtime/src/constraintbox/wave_adapters.py",
       "light_runtime/src/constraintbox/wave_contracts.py",
       "light_runtime/src/constraintbox/wave_controller.py",
       "light_runtime/src/hookkernel/__init__.py",
+      "light_runtime/src/hookkernel/cb_light_basin_view.py",
       "light_runtime/src/hookkernel/cb_light_domain.py",
       "light_runtime/src/hookkernel/cb_light_gate.py",
+      "light_runtime/src/hookkernel/cb_light_minilev_state.py",
       "light_runtime/src/hookkernel/cb_light_runtime.py",
       "light_runtime/src/hookkernel/cb_light_solver.py",
       "light_runtime/src/hookkernel/cb_light_state.py",
@@ -145,8 +156,10 @@
         },
         "domain_compiled": true,
         "expected_hookkernel_modules": {
+          "hookkernel.cb_light_basin_view": true,
           "hookkernel.cb_light_domain": true,
           "hookkernel.cb_light_gate": true,
+          "hookkernel.cb_light_minilev_state": true,
           "hookkernel.cb_light_runtime": true,
           "hookkernel.cb_light_solver": true,
           "hookkernel.cb_light_state": true,
@@ -179,11 +192,13 @@
           "torch_geometric": false,
           "xgi": false
         },
-        "hookkernel_file": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/lib/python3.13/site-packages/hookkernel/__init__.py",
+        "hookkernel_file": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/constraintbox-integrated-20260817/constraint_box/.venv/lib/python3.13/site-packages/hookkernel/__init__.py",
         "hookkernel_python_paths": [
           "hookkernel/__init__.py",
+          "hookkernel/cb_light_basin_view.py",
           "hookkernel/cb_light_domain.py",
           "hookkernel/cb_light_gate.py",
+          "hookkernel/cb_light_minilev_state.py",
           "hookkernel/cb_light_runtime.py",
           "hookkernel/cb_light_solver.py",
           "hookkernel/cb_light_state.py",
@@ -193,7 +208,7 @@
         "legacy_entrypoint_present": false,
         "loaded_heavy": [],
         "missing_hookkernel_python_paths": [],
-        "package_file": "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/lib/python3.13/site-packages/constraintbox/__init__.py",
+        "package_file": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/constraintbox-integrated-20260817/constraint_box/.venv/lib/python3.13/site-packages/constraintbox/__init__.py",
         "package_under_sys_prefix": true,
         "unexpected_hookkernel_python_paths": [],
         "wheel_forbidden_paths": []
@@ -239,8 +254,10 @@
         },
         "domain_compiled": true,
         "expected_hookkernel_modules": {
+          "hookkernel.cb_light_basin_view": true,
           "hookkernel.cb_light_domain": true,
           "hookkernel.cb_light_gate": true,
+          "hookkernel.cb_light_minilev_state": true,
           "hookkernel.cb_light_runtime": true,
           "hookkernel.cb_light_solver": true,
           "hookkernel.cb_light_state": true,
@@ -273,11 +290,13 @@
           "torch_geometric": false,
           "xgi": false
         },
-        "hookkernel_file": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-light-heavy-audit-opqlskon/fresh/lib/python3.13/site-packages/hookkernel/__init__.py",
+        "hookkernel_file": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-light-heavy-audit-e4q2toh6/fresh/lib/python3.13/site-packages/hookkernel/__init__.py",
         "hookkernel_python_paths": [
           "hookkernel/__init__.py",
+          "hookkernel/cb_light_basin_view.py",
           "hookkernel/cb_light_domain.py",
           "hookkernel/cb_light_gate.py",
+          "hookkernel/cb_light_minilev_state.py",
           "hookkernel/cb_light_runtime.py",
           "hookkernel/cb_light_solver.py",
           "hookkernel/cb_light_state.py",
@@ -287,7 +306,7 @@
         "legacy_entrypoint_present": false,
         "loaded_heavy": [],
         "missing_hookkernel_python_paths": [],
-        "package_file": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-light-heavy-audit-opqlskon/fresh/lib/python3.13/site-packages/constraintbox/__init__.py",
+        "package_file": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/cb-light-heavy-audit-e4q2toh6/fresh/lib/python3.13/site-packages/constraintbox/__init__.py",
         "package_under_sys_prefix": true,
         "unexpected_hookkernel_python_paths": [],
         "wheel_forbidden_paths": []
@@ -296,13 +315,13 @@
       "package_under_fresh_prefix": true,
       "passed": true,
       "reason_code": "LIGHT_WHEEL_FRESH_IMPORT_SEPARATION_VERIFIED",
-      "wheel_sha256": "22a585fafb46538fcec6d62cd08fe2d1ae04f04718d91661ea5dcff930977179"
+      "wheel_sha256": "aa93c845d6f30af75a80e501afb5509a42e5bf5ca086f99be182d0fc0f717884"
     },
     "manifest_sim_engine_members": 0
   },
   "light_project_path": "light_runtime/pyproject.toml",
-  "manifest_identity_sha256": "cce3df81bcb2e85421678d4345538cb257a25510b73ab40bf9397b7ee8b47b39",
+  "manifest_identity_sha256": "714041f3d1387e7763425044b5a08a14c0383d1f643c24fb59857f62249f8a00",
   "reason_code": "LIGHT_PACKAGE_AND_FRESH_INTERPRETER_HAVE_NO_HEAVY_SURFACE",
-  "required_source_path_count": 63,
+  "required_source_path_count": 72,
   "schema": "constraintbox.cb-light-heavy-separation-audit.v2"
 }

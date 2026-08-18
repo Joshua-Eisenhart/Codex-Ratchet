@@ -8,7 +8,7 @@ description: Preserve failed candidates, killed assumptions, counterexamples, pa
 Append-only. Recency never deletes a killed branch.
 
 ```text
-python3 ~/.codex/skills/cb-branch-failure-memory/scripts/remember.py \
+python3 $CB_SKILLS_ROOT/cb-branch-failure-memory/scripts/remember.py \
   --memory receipts/branch_failure/memory.jsonl \
   --remember '{"kind":"failed_candidate","id":"pick-winner","why":"vote is not a verifier"}'
 ```

@@ -618,6 +618,35 @@ def reference_flow_policy() -> FlowPolicy:
     )
 
 
+def reference_allowed_signals() -> dict[str, tuple[HookSignal, ...]]:
+    """Signals each reference-flow hook is allowed to emit.
+
+    These match the families registered in ``_build_runtime``. Path
+    enumeration must use this set. HOLD transitions exist on the policy
+    for controller abort; the hooks do not emit them.
+    """
+
+    return {
+        _TOPOLOGY_NODE_ID: (
+            HookSignal.PASS,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+        "proposal-observation": (HookSignal.OBSERVED, HookSignal.PARKED),
+        "proposal-gate": (
+            HookSignal.PASS,
+            HookSignal.RETRY,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+        "claim-gate": (
+            HookSignal.PASS,
+            HookSignal.BLOCKED,
+            HookSignal.PARKED,
+        ),
+    }
+
+
 def _build_runtime(
     *,
     run_id: str,

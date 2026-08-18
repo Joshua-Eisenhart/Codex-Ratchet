@@ -40,7 +40,7 @@ def _run(root: Path, package: Path, **kwargs):
 
 def test_positive_dry_run_is_ready_and_never_moves(tmp_path: Path) -> None:
     root, package = _layout(tmp_path)
-    candidate = root / "system_v3" / "runs" / "tmp__old.json"
+    candidate = root / "integrated_system" / "runs" / "tmp__old.json"
     candidate.parent.mkdir(parents=True)
     candidate.write_text("staged\n", encoding="utf-8")
     receipt = _run(root, package, candidates=[str(candidate)])

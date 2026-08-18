@@ -12,7 +12,7 @@ Kinds: `owner_statement`, `object_card`, `decision`, `branch`, `contradiction`, 
 A proposal is not canon. Rewrites refuse.
 
 ```text
-python3 ~/.codex/skills/cb-context-ledger/scripts/ledger.py \
+python3 $CB_SKILLS_ROOT/cb-context-ledger/scripts/ledger.py \
   --ledger receipts/context_ledger/ledger.jsonl \
   --append '{"kind":"owner_statement","text":"..."}'
 ```

@@ -25,29 +25,31 @@ FRESHNESS_HOURS = 72
 
 DENY_PREFIXES = (
     ".git",
+    "Archive",
     "archive",
-    "core_docs",
-    "system_v3/a1_state",
-    "system_v3/a2_state",
-    "system_v3/control_plane_bundle_work",
-    "system_v3/runtime",
-    "system_v3/specs",
-    "system_v3/tools",
-    "work/INBOX",
-    "work/curated_zips",
-    "work/zip_dropins",
-    "work/zip_job_templates",
-    "work/zip_subagents",
+    "config",
+    "requirements",
+    "light_runtime",
+    "zip_agent/src",
+    "integrated_system/bin",
+    "integrated_system/context",
+    "integrated_system/mmms",
+    "integrated_system/runtime_profiles",
+    "integrated_system/scripts",
+    "integrated_system/skills",
+    "hooks",
+    "fixtures",
+    "experiments",
 )
 ALLOW_PREFIXES = (
-    "system_v3/runs",
-    "work/system_v3",
-    "work/to_send_to_pro",
+    "integrated_system/runs",
+    "receipts/generated",
+    "RUNS",
 )
 PROTECTED_RUN_FILES = {
-    "system_v3/runs/_CURRENT_STATE",
-    "system_v3/runs/_CURRENT_RUN.txt",
-    "system_v3/runs/_RUNS_REGISTRY.jsonl",
+    "integrated_system/runs/_CURRENT_STATE",
+    "integrated_system/runs/CURRENT.json",
+    "integrated_system/runs/_RUNS_REGISTRY.jsonl",
 }
 
 

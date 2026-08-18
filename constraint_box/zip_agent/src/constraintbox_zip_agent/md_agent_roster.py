@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import importlib.util
 import subprocess
 import sys
 import tempfile
@@ -9,9 +8,16 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
-from constraintbox.mmm_load_gate import MmmLoadError, materialize_bound_prompt
-
-from .protocol import TaskSpec, ZipJobRefusal, build_packet, canonical_json_bytes, sha256_bytes, strict_json_loads
+from .protocol import (
+    TaskSpec,
+    ZipJobRefusal,
+    build_packet,
+    canonical_json_bytes,
+    declared_controller_src,
+    materialize_controller_bound_prompt,
+    sha256_bytes,
+    strict_json_loads,
+)
 
 ROSTER_SCHEMA = "constraintbox.md-agent-roster.v1"
 RECEIPT_SCHEMA = "constraintbox.md-agent-roster-receipt.v1"
@@ -92,10 +98,11 @@ def _hierarchy_binding(roster: dict[str, Any]) -> dict[str, Any] | None:
 
 def _bind_adapter_mmm(work: Path, prompt_path: Path, request: dict[str, Any]) -> dict[str, Any]:
     del work
+    controller_src = request.pop("controller_src", None)
     try:
-        fields = materialize_bound_prompt(prompt_path, prompt_path)
-    except MmmLoadError as exc:
-        raise ZipJobRefusal(exc.reason_code, str(exc)) from exc
+        fields = materialize_controller_bound_prompt(prompt_path, prompt_path, controller_src)
+    except ZipJobRefusal:
+        raise
     request = dict(request)
     request["prompt_path"] = str(prompt_path)
     request["mmm_packs"] = list(fields["mmm_packs"])
@@ -219,13 +226,16 @@ _PROVIDER_ENV_EXTRA = {
 }
 
 
-def _provider_env(provider: str) -> dict[str, str]:
+def _provider_env(provider: str, controller_src: object | None = None) -> dict[str, str]:
     names = list(_PROVIDER_ENV_COMMON)
     names.extend(_PROVIDER_ENV_EXTRA.get(provider, ()))
     env = {name: os.environ[name] for name in names if name in os.environ and os.environ[name]}
     env["PYTHONNOUSERSITE"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
-    env["PYTHONPATH"] = str(Path(__file__).resolve().parents[3] / "src")
+    if controller_src is not None:
+        controller = declared_controller_src(controller_src)
+        env["CB_CONTROLLER_SRC"] = str(controller)
+        env["PYTHONPATH"] = str(controller)
     return env
 
 
@@ -243,20 +253,12 @@ def _declared_file(agent: dict[str, Any], field: str, *, executable: bool) -> Pa
     return resolved
 
 
-def _adapter_path(provider: str) -> Path:
+def _adapter_path(provider: str, controller_src: object | None = None) -> Path:
     module_name = _ADAPTER_MODULES[provider]
-    spec = importlib.util.find_spec(module_name)
-    path = Path(spec.origin).resolve() if spec is not None and spec.origin else None
-    if path is not None and path.is_file():
-        return path
-    sibling = (
-        Path(__file__).resolve().parents[3]
-        / "src"
-        / "constraintbox"
-        / f"{module_name.rsplit('.', 1)[-1]}.py"
-    )
-    if sibling.is_file():
-        return sibling
+    controller = declared_controller_src(controller_src)
+    path = controller / "constraintbox" / f"{module_name.rsplit('.', 1)[-1]}.py"
+    if path.is_file():
+        return path.resolve()
     raise ZipJobRefusal("HOLD_PROVIDER_ADAPTER_MISSING", module_name)
 
 
@@ -294,7 +296,10 @@ def _argv(
         raise ZipJobRefusal("HOLD_DISPATCH_NONCE_UNBOUND", nonce_file) from exc
     if disk != nonce:
         raise ZipJobRefusal("HOLD_DISPATCH_NONCE_MISMATCH", nonce_file)
-    env = _provider_env(provider)
+    controller: Path | None = None
+    if provider in _ADAPTER_MODULES:
+        controller = declared_controller_src(agent.get("controller_src"))
+    env = _provider_env(provider, controller)
     model = _text(agent.get("model_requested"), "model_requested")
     request_path = work / "meta" / "provider_request.json"
     response_path = work / "meta" / "provider_response.json"
@@ -304,7 +309,7 @@ def _argv(
         if agent.get("codex_home") is None:
             raise ZipJobRefusal("HOLD_CODEX_HOME_UNBOUND", "CODEX_HOME")
         runner = _declared_file(agent, "runner_path", executable=True)
-        adapter = _adapter_path(provider)
+        _adapter_path(provider, controller)
         codex_home = Path(_text(agent.get("codex_home"), "codex_home")).expanduser()
         if not codex_home.is_absolute() or not codex_home.is_dir():
             raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", "codex_home")
@@ -319,6 +324,7 @@ def _argv(
             "sandbox_mode": "workspace-write",
             "prompt_path": str(prompt_path),
             "cwd": str(work),
+            "controller_src": str(controller),
         })))
         return (
             [sys.executable, "-m", _ADAPTER_MODULES[provider], "--request", str(request_path),
@@ -328,7 +334,7 @@ def _argv(
         )
     if provider == "grok-cli":
         runner = _declared_file(agent, "runner_path", executable=True)
-        adapter = _adapter_path(provider)
+        _adapter_path(provider, controller)
         request_path.write_bytes(canonical_json_bytes(_bind_adapter_mmm(work, prompt_path, {
             "schema": "constraintbox.grok-cli-request.v1",
             "request_id": request_id,
@@ -338,7 +344,9 @@ def _argv(
             "prompt_path": str(prompt_path),
             "cwd": str(work),
             "max_turns": int(agent.get("max_turns") or 8),
+            "tools": "",
             "permission_mode": "bypassPermissions",
+            "controller_src": str(controller),
         })))
         return (
             [sys.executable, "-m", _ADAPTER_MODULES[provider], "--request", str(request_path),
@@ -348,7 +356,7 @@ def _argv(
         )
     if provider == "claude-code":
         _declared_file(agent, "runner_path", executable=True)
-        adapter = _adapter_path(provider)
+        _adapter_path(provider, controller)
         bridge = _declared_file(agent, "bridge_path", executable=False)
         budget = agent.get("budget_usd", 1.0)
         if isinstance(budget, bool) or not isinstance(budget, (int, float)) or not 0.01 <= budget <= 5:
@@ -366,6 +374,7 @@ def _argv(
             "cwd": str(work),
             "out_dir": str(work / "meta" / "claude-output"),
             "tools": "Read,Write,Edit",
+            "controller_src": str(controller),
         })))
         return (
             [sys.executable, "-m", _ADAPTER_MODULES[provider], "--request", str(request_path),
@@ -886,7 +895,7 @@ def run_md_agent_roster(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str
         "agent_id", "agent_path", "output_path", "provider", "model_requested",
         "fixture_script", "mmm_paths", "skill_paths", "context_paths",
         "required_fragments", "forbidden_fragments", "max_output_bytes", "reasoning_effort", "budget_usd",
-        "max_turns", "runner_path", "bridge_path", "codex_home"
+        "max_turns", "runner_path", "bridge_path", "codex_home", "controller_src"
     }
     if any(set(row) - allowed_agent_fields for row in agents):
         raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", "agent_fields")

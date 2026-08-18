@@ -27,11 +27,17 @@ first install):
 python3 bin/cb bootstrap-light
 ```
 
-Then bind the separate JAX interpreter already installed on this machine:
+Plan and install the separate project-neutral JAX/QIT profile, or safely adopt
+an existing exact-lock environment:
 
 ```text
+python3 bin/cb jax-profile plan
+python3 bin/cb jax-profile install
+# Existing clean runtime only:
+python3 bin/cb jax-profile probe --adopt-existing --target /absolute/path/to/jax-qit-stack
+
 export CB_LIGHT_PYTHON="$PWD/PROJECT/constraint_box/.venv/bin/python"
-export CB_JAX_PYTHON=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
+export CB_JAX_QIT_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/jax-qit-stack"
 ```
 
 Then:
@@ -42,16 +48,21 @@ python3 bin/cb context
 python3 bin/cb light-seed
 python3 bin/cb structured-probe --engine exact --output runs/structured-exact.json
 python3 bin/cb structured-probe --engine dual --output runs/structured-dual.json
+python3 bin/cb path-mass --require-jax --output runs/path-mass.json
 python3 bin/cb jax-wave --output-dir runs/light-jax-wave
+python3 bin/cb wave list
+python3 bin/cb wave run cb-maintenance-wave
+python3 bin/cb zip --help
 python3 bin/cb verify --output runs/VERIFY.json
 ```
 
 For the source checkout use `constraint_box/integrated_system/bin/cb`; in the
 release ZIP use root `bin/cb`.
 
-Read `context/current/OWNER_OBJECT.md`, `CURRENT_PLAN.md`, and
-`FAILURE_MEMORY.md` before changing the system. Use the full JSONL corpus only
-when the compact projection lacks needed intent.
+Read `context/current/PRODUCT_CONTRACT.md`, `WORK_ASSESSMENT.md`,
+`OWNER_OBJECT.md`, `CURRENT_PLAN.md`, and `FAILURE_MEMORY.md` before changing
+the system. Use the full JSONL corpus only when the compact projection lacks
+needed intent.
 
 Claim ceiling: local integrated source/bundle candidate; no portable
 installation, provider execution, Light/Heavy admission, scientific result, or

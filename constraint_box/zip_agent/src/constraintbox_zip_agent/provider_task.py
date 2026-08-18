@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import importlib.util
 import math
 import os
 import subprocess
@@ -9,9 +8,15 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from constraintbox.mmm_load_gate import MmmLoadError, materialize_bound_prompt
-
-from .protocol import TaskSpec, ZipJobRefusal, canonical_json_bytes, sha256_bytes, strict_json_loads
+from .protocol import (
+    TaskSpec,
+    ZipJobRefusal,
+    canonical_json_bytes,
+    declared_controller_src,
+    materialize_controller_bound_prompt,
+    sha256_bytes,
+    strict_json_loads,
+)
 
 REQUEST_SCHEMA = "constraintbox.provider-zip-task-request.v1"
 SOURCE_RECEIPT_SCHEMA = "constraintbox.provider-zip-task-source-receipt.v1"
@@ -23,7 +28,6 @@ _ADAPTER_MODULES = {
     "grok-cli": "constraintbox.grok_cli_adapter",
     "claude-code": "constraintbox.claude_bridge_adapter",
 }
-_CB_SRC = Path(__file__).resolve().parents[3] / "src"
 _GROK_EFFORTS = {"", "low", "medium", "high", "max"}
 _PROVIDER_ENV_COMMON = (
     "PATH",
@@ -117,27 +121,14 @@ def _provider_file(value: object, label: str, *, executable: bool) -> Path:
     return resolved
 
 
-def _adapter_path(provider: str) -> Path:
+def _adapter_path(provider: str, controller_src: object | None = None) -> Path:
     """Locate the existing CB adapter without importing or invoking a raw CLI."""
 
     module_name = _ADAPTER_MODULES[provider]
-    try:
-        spec = importlib.util.find_spec(module_name)
-    except (ImportError, ModuleNotFoundError, ValueError):
-        spec = None
-    if spec is not None and spec.origin:
-        candidate = Path(spec.origin).resolve()
-        if candidate.is_file():
-            return candidate
-    # The ZIP-agent package is kept in a sibling checkout of the core adapters.
-    sibling = (
-        Path(__file__).resolve().parents[3]
-        / "src"
-        / "constraintbox"
-        / f"{module_name.rsplit('.', 1)[-1]}.py"
-    )
-    if sibling.is_file():
-        return sibling.resolve()
+    controller = declared_controller_src(controller_src)
+    candidate = controller / "constraintbox" / f"{module_name.rsplit('.', 1)[-1]}.py"
+    if candidate.is_file():
+        return candidate.resolve()
     raise ZipJobRefusal("HOLD_PROVIDER_ADAPTER_MISSING", module_name)
 
 
@@ -164,6 +155,7 @@ def _provider_options(request: dict[str, Any]) -> None:
         "model_requested",
         "expected_marker",
         "timeout_seconds",
+        "controller_src",
     }
     provider_fields = {
         "fixture-subprocess": {"fixture_script"},
@@ -176,7 +168,16 @@ def _provider_options(request: dict[str, Any]) -> None:
     allowed = common | provider_fields[provider]
     if set(request) - allowed:
         raise ZipJobRefusal("REFUSE_PROVIDER_REQUEST_SCHEMA", "provider_fields")
-    if provider == "grok-cli":
+    if provider in _ADAPTER_MODULES:
+        # The overlay is a request dependency, not an inferred sibling checkout.
+        declared_controller_src(request.get("controller_src"))
+    if provider == "codex-cli":
+        _provider_file(request.get("executable"), "executable", executable=True)
+        codex_home = _text(request.get("codex_home"), "codex_home")
+        home_path = Path(codex_home).expanduser()
+        if not home_path.is_absolute() or not home_path.is_dir():
+            raise ZipJobRefusal("HOLD_CODEX_HOME_UNBOUND", "codex_home")
+    elif provider == "grok-cli":
         _provider_file(request.get("runner_path"), "runner_path", executable=True)
         if "max_turns" in request:
             _int(request.get("max_turns"), "max_turns", minimum=1, maximum=16)
@@ -205,10 +206,11 @@ def _provider_options(request: dict[str, Any]) -> None:
 
 def _bind_adapter_mmm(work: Path, prompt_path: Path, request: dict[str, Any]) -> dict[str, Any]:
     del work
+    controller_src = request.pop("controller_src", None)
     try:
-        fields = materialize_bound_prompt(prompt_path, prompt_path)
-    except MmmLoadError as exc:
-        raise ZipJobRefusal(exc.reason_code, str(exc)) from exc
+        fields = materialize_controller_bound_prompt(prompt_path, prompt_path, controller_src)
+    except ZipJobRefusal:
+        raise
     request = dict(request)
     request["prompt_path"] = str(prompt_path)
     request["mmm_packs"] = list(fields["mmm_packs"])
@@ -216,15 +218,17 @@ def _bind_adapter_mmm(work: Path, prompt_path: Path, request: dict[str, Any]) ->
     return request
 
 
-def _provider_env(provider: str) -> dict[str, str]:
+def _provider_env(provider: str, controller_src: object | None = None) -> dict[str, str]:
     """Expose only runtime and route-specific credentials to a provider leaf."""
 
     names = [*_PROVIDER_ENV_COMMON, *_PROVIDER_ENV_EXTRA.get(provider, ())]
     env = {name: os.environ[name] for name in names if os.environ.get(name)}
     env["PYTHONNOUSERSITE"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
-    controller = Path(os.environ.get("CB_CONTROLLER_SRC", str(_CB_SRC))).expanduser().absolute()
-    env["PYTHONPATH"] = str(controller)
+    if controller_src is not None:
+        controller = declared_controller_src(controller_src)
+        env["CB_CONTROLLER_SRC"] = str(controller)
+        env["PYTHONPATH"] = str(controller)
     return env
 
 
@@ -287,18 +291,19 @@ def _argv(
     request: dict[str, Any], work: Path, prompt_path: Path
 ) -> tuple[list[str], dict[str, str], Path]:
     provider = _text(request.get("provider"), "provider")
-    env = _provider_env(provider)
     if provider == "fixture-subprocess":
+        env = _provider_env(provider)
         script = _text(request.get("fixture_script"), "fixture_script")
         return [sys.executable, "-c", script], env, work / PROVIDER_EVIDENCE
+    controller = declared_controller_src(request.get("controller_src"))
+    env = _provider_env(provider, controller)
     if provider == "codex-cli":
-        executable = Path(str(request.get("executable") or "/usr/local/bin/codex"))
-        if executable != Path("/usr/local/bin/codex"):
-            raise ZipJobRefusal("REFUSE_PROVIDER_EXECUTABLE", str(executable))
-        if not executable.is_file():
-            raise ZipJobRefusal("HOLD_PROVIDER_EXECUTABLE_MISSING", str(executable))
-        codex_home = Path(str(request.get("codex_home") or "/Users/joshuaeisenhart/.codex"))
-        env["CODEX_HOME"] = str(codex_home)
+        executable = _provider_file(request.get("executable"), "executable", executable=True)
+        codex_home = Path(_text(request.get("codex_home"), "codex_home")).expanduser()
+        if not codex_home.is_absolute() or not codex_home.is_dir():
+            raise ZipJobRefusal("HOLD_CODEX_HOME_UNBOUND", "codex_home")
+        _adapter_path(provider, controller)
+        env["CODEX_HOME"] = str(codex_home.resolve())
         request_path = work / "meta" / "codex_request.json"
         response_path = work / "meta" / "codex_response.jsonl"
         receipt_path = work / PROVIDER_EVIDENCE
@@ -311,6 +316,7 @@ def _argv(
             "sandbox_mode": "workspace-write",
             "prompt_path": str(prompt_path),
             "cwd": str(work),
+            "controller_src": str(controller),
         })
         request_path.write_bytes(canonical_json_bytes(adapter_request))
         return (
@@ -332,7 +338,7 @@ def _argv(
         )
     if provider == "grok-cli":
         runner = _provider_file(request.get("runner_path"), "runner_path", executable=True)
-        adapter = _adapter_path(provider)
+        _adapter_path(provider, controller)
         request_path = work / "meta" / "grok_request.json"
         response_path = work / "meta" / "grok_response.json"
         receipt_path = work / PROVIDER_EVIDENCE
@@ -346,7 +352,9 @@ def _argv(
             "max_turns": request.get("max_turns", 8),
             # The adapter makes this explicit in its request schema.  It is
             # not exposed as a free-form provider-task field.
+            "tools": "",
             "permission_mode": "bypassPermissions",
+            "controller_src": str(controller),
         })
         request_path.write_bytes(canonical_json_bytes(adapter_request))
         return (
@@ -368,7 +376,7 @@ def _argv(
         )
     if provider == "claude-code":
         bridge = _provider_file(request.get("bridge_path"), "bridge_path", executable=False)
-        adapter = _adapter_path(provider)
+        _adapter_path(provider, controller)
         request_path = work / "meta" / "claude_request.json"
         receipt_path = work / PROVIDER_EVIDENCE
         adapter_request = _bind_adapter_mmm(work, prompt_path, {
@@ -383,6 +391,7 @@ def _argv(
             "cwd": str(work),
             "out_dir": str(work / "meta" / "claude-output"),
             "tools": "Read,Write,Edit",
+            "controller_src": str(controller),
         })
         request_path.write_bytes(canonical_json_bytes(adapter_request))
         return (
@@ -654,6 +663,7 @@ def run_provider_call(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str, 
         "max_turns",
         "budget_usd",
         "effort",
+        "controller_src",
     }:
         raise ZipJobRefusal("REFUSE_PROVIDER_REQUEST_SCHEMA", "extra_fields")
     if request.get("schema") != REQUEST_SCHEMA:

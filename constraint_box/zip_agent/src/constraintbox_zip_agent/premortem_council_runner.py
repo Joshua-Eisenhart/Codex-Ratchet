@@ -10,6 +10,8 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
+from .protocol import ZipJobRefusal, declared_controller_src, materialize_controller_bound_prompt
+
 PROFILES = {
     "premortem": {
         "schema": "constraintbox.premortem-council-round.v1",
@@ -59,6 +61,7 @@ PROFILES = {
 
 REPO: Path
 MMM: Path
+CONTROLLER: Path
 PROFILE: dict[str, Any]
 LENSES: dict[str, str]
 SEEDS: dict[str, int]
@@ -71,6 +74,18 @@ def sha(raw: bytes) -> str:
 
 def canonical(value: Any) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
+
+
+def controller_env() -> dict[str, str]:
+    """Run explicit controller tools/adapters without ambient package lookup."""
+
+    if "CONTROLLER" not in globals():
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_UNBOUND", "controller_src")
+    env = dict(os.environ)
+    env["CB_CONTROLLER_SRC"] = str(CONTROLLER)
+    env["PYTHONPATH"] = str(CONTROLLER)
+    env["PYTHONNOUSERSITE"] = "1"
+    return env
 
 
 def source_bundle(target: Path) -> tuple[bytes, str, dict[str, str]]:
@@ -133,7 +148,7 @@ def prepare(root: Path, target: Path, lens: str, round_no: int, repair_note: str
         "--round", str(round_no), "--depth", "1", "--seed", str(SEEDS[lens]),
         "--voice-count", "3", "--voice-variant", "compact", "--max-bytes", "700000",
     ]
-    done = subprocess.run(command, capture_output=True, text=True, check=False)
+    done = subprocess.run(command, capture_output=True, text=True, env=controller_env(), check=False)
     if done.returncode:
         raise RuntimeError(done.stdout + done.stderr)
     return json.loads((cell / "preload" / "preload_receipt.json").read_text())
@@ -145,6 +160,7 @@ def write_request(
     prompt: Path,
     cwd: Path,
     out: Path,
+    controller_src: Path,
     *,
     grok_max_turns: int = 4,
 ) -> tuple[Path, Path, Path]:
@@ -165,7 +181,7 @@ def write_request(
         value = {
             "schema": "constraintbox.grok-cli-request.v1", "request_id": request_id,
             "runner_path": str(runner), "model": model, "prompt_path": str(prompt),
-            "cwd": str(cwd), "max_turns": grok_max_turns, "permission_mode": "plan",
+            "cwd": str(cwd), "max_turns": grok_max_turns, "tools": "", "permission_mode": "plan",
         }
     else:
         value = {
@@ -176,12 +192,10 @@ def write_request(
             "timeout_seconds": 900, "prompt_path": str(prompt), "cwd": str(cwd),
             "out_dir": str(out / "claude"), "tools": "",
         }
-    from constraintbox.mmm_load_gate import MmmLoadError, materialize_bound_prompt
-
     bound = out / "adapter_prompt.txt"
     try:
-        fields = materialize_bound_prompt(prompt, bound)
-    except MmmLoadError as exc:
+        fields = materialize_controller_bound_prompt(prompt, bound, controller_src)
+    except ZipJobRefusal as exc:
         raise RuntimeError(f"{exc.reason_code}: {exc}") from exc
     value["prompt_path"] = str(bound)
     value["mmm_packs"] = list(fields["mmm_packs"])
@@ -229,13 +243,29 @@ def call_one(
     preload = json.loads(preload_path.read_text())
     request_id = f"pm046-r{round_no}-{lens}-{member}"
     request, response, receipt_path = write_request(
-        member_spec, request_id, prompt, target, out, grok_max_turns=grok_max_turns
+        member_spec,
+        request_id,
+        prompt,
+        target,
+        out,
+        CONTROLLER,
+        grok_max_turns=grok_max_turns,
     )
     adapter_script = Path(str(member_spec["adapter_path"])).expanduser().resolve()
     command = [sys.executable, str(adapter_script), "--request", str(request), "--receipt", str(receipt_path)]
     if kind in {"codex", "grok"}:
         command.extend(["--response", str(response), "--timeout", "900"])
-    done = subprocess.run(command, capture_output=True, text=True, timeout=960, check=False)
+    env = controller_env()
+    if kind == "codex":
+        env["CODEX_HOME"] = str(Path(str(member_spec["codex_home"])).expanduser().resolve())
+    done = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        timeout=960,
+        env=env,
+        check=False,
+    )
     adapter = json.loads(receipt_path.read_text()) if receipt_path.is_file() else {
         "disposition": "FAILED", "reason_code": "MISSING_ADAPTER_RECEIPT"
     }
@@ -271,7 +301,7 @@ def call_one(
         "--expect-agent-id", lens, "--expect-parent-id", str(PROFILE["parent_id"]),
         "--expect-wave-id", str(PROFILE["wave_id"]), "--expect-round", str(round_no),
         "--expect-depth", "1",
-    ], capture_output=True, text=True, check=False)
+    ], capture_output=True, text=True, env=controller_env(), check=False)
     call["mmm_verify"] = json.loads(verify.stdout) if verify.stdout.strip() else {"disposition": "FAILED"}
     return call
 
@@ -300,7 +330,7 @@ def parse_json(raw: bytes) -> dict[str, Any] | None:
 
 
 def main() -> int:
-    global REPO, MMM, PROFILE, LENSES, SEEDS, MEMBERS
+    global REPO, MMM, CONTROLLER, PROFILE, LENSES, SEEDS, MEMBERS
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", type=Path, required=True)
     ap.add_argument("--target", type=Path, required=True)
@@ -317,6 +347,10 @@ def main() -> int:
         raise SystemExit("invalid council run config schema")
     REPO = Path(str(runtime["repo_path"])).expanduser().resolve()
     MMM = Path(str(runtime["mmm_script"])).expanduser().resolve()
+    try:
+        CONTROLLER = declared_controller_src(runtime.get("controller_src"))
+    except ZipJobRefusal as exc:
+        raise SystemExit(f"{exc.reason_code}:{exc.detail}") from exc
     member_rows = runtime.get("members")
     if not isinstance(member_rows, list) or not 2 <= len(member_rows) <= 8:
         raise SystemExit("run config needs 2..8 members")
@@ -332,6 +366,10 @@ def main() -> int:
                 raise SystemExit(f"member {member_id} missing {field}")
         if row["kind"] == "claude" and not Path(str(row.get("bridge_path") or "")).expanduser().is_file():
             raise SystemExit(f"member {member_id} missing bridge_path")
+        if row["kind"] == "codex":
+            codex_home = Path(str(row.get("codex_home") or "")).expanduser()
+            if not codex_home.is_absolute() or not codex_home.is_dir():
+                raise SystemExit(f"member {member_id} missing codex_home")
         MEMBERS[member_id] = row
     PROFILE = PROFILES[args.profile]
     LENSES = dict(PROFILE["lenses"])

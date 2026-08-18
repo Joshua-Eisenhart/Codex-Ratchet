@@ -9,16 +9,24 @@ generated verification receipt.
   dependencies.
 - Eight current declared tool contracts execute: Z3, CVC5, SymPy, Rustworkx,
   Maude, Automaton, Pydantic, and JSON Schema.
-- Light does not import JAX. The separate JAX interpreter does.
+- Light does not import JAX. The separate, lock-bound JAX/QIT profile does.
+- All 112 exact JAX/QIT lock pins matched the adopted generic runtime; its 12
+  API operations passed.
 - The current Heavy-separation audit passes for this Light route.
 - ZIP Agent builds, returns, hashes, and verifies a bounded stateless job.
-- The curated wave estate validates five active definitions; the self-loop made
-  no mutation because its bounded score did not improve.
+- Exactly three public waves run from the contained product: maintenance,
+  context-strategy, and exploration. Spec-only waves are reported inactive.
 - Two independent Light/JAX/wave runs have the same semantic projection digest.
 - Exact and JAX executions of the structured `open/bind` family have the same
   semantic projection digest.
 - Missing observations, unbound quotient inputs, and collapsed seed inputs are
   rejected or held by reason-specific negatives.
+- The prompt/plan/progress corpus was refreshed from a verified append-only
+  ledger snapshot and includes 729 owner-prompt events plus later directives.
+- The bounded Mini-Lev path-mass operation runs from a contained, source-bound
+  policy fixture, enumerates 14 legal paths, records probe-relative mass and
+  topology, settles real/erased controls with SMT, cross-checks with JAX, and
+  replays exactly.
 
 ## New measured result
 
@@ -47,7 +55,8 @@ quantum behavior, or a complete basin runtime.
 - cross-platform install on Linux or Windows;
 - CB Heavy engine installation or Light-to-Heavy replay;
 - a dense ranking of all 90+ Python packages by measured ablation;
-- spinor memory, Hopfield recall, QIT, RSB, or scientific manifold claims;
+- spinor memory, Hopfield recall, RSB, or scientific manifold claims (QIT API
+  capability ran, but no scientific QIT/manifold claim follows);
 - promotion, adoption, release, or production security.
 
 ## Next bounded work

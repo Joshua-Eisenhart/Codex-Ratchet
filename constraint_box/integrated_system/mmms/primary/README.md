@@ -12,11 +12,17 @@ framing: current
 
 This folder is the v4.3-owned MMM reservoir for `../packet-v4-3-current/`.
 
-## Boot surfaces
+## Operational and reference surfaces
 
-- `FULL_MMM_v4_3.md` — full main-agent salience reservoir.
-- `COMPACT_MMM_v4_3.md` — compact main-agent salience reservoir when context is tight.
-- `mini/MEMBER_MINI_MMM_REGISTRY_v4_3.md` — route/member mini-MMM registry.
+- `mini/full/voices/md/` — nine operational full-mini voice files.
+- `mini/compact/voices/md/` — nine operational compact-mini voice files.
+- `mini/MEMBER_MINI_MMM_REGISTRY_v4_3.md` — registry and provenance.
+- `FULL_MMM_v4_3.md` and `COMPACT_MMM_v4_3.md` — tuning/reference
+  reservoirs only. They are not operational worker preloads.
+
+Every worker or council member receives a deterministic, receipt-bound
+selection of mini-voice bytes before its task. Registry, lane, guard,
+composition, and route cards are not silently relabeled as MMMs.
 
 ## Source lineage
 

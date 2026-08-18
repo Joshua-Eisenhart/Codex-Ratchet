@@ -3,31 +3,25 @@
 ## Absolute denylist
 
 Never touch:
-- `system_v3/specs/`
-- `system_v3/a1_state/`
-- `system_v3/a2_state/`
-- `system_v3/tools/`
-- `system_v3/runtime/`
-- `system_v3/control_plane_bundle_work/`
-- `core_docs/`
 - `.git/`
-- `work/zip_job_templates/`
-- `work/zip_subagents/`
-- `work/zip_dropins/`
-- `work/curated_zips/`
-- `work/INBOX/`
+- `config/`, `requirements/`, and `light_runtime/`
+- `zip_agent/src/`
+- `integrated_system/bin/`, `scripts/`, `skills/`, `mmms/`, `context/`, and
+  `runtime_profiles/`
+- `hooks/`, `fixtures/`, and `experiments/`
 - `archive/` as a source path
+- `Archive/` as a source path
 
 ## First-wave allowlist
 
-### `system_v3/runs/`
+### `integrated_system/runs/`
 
 Allowed only for:
 - bounded archive moves
 - exact enumerated families
 - prep-supported moves
 
-### `work/to_send_to_pro/`
+### `receipts/generated/`
 
 Allowed only for:
 - archive or quarantine moves
@@ -35,7 +29,7 @@ Allowed only for:
 - `tmp__*` staging residues
 - older context packs only when clearly superseded
 
-### `work/system_v3/`
+### `RUNS/`
 
 Allowed only for:
 - quarantine moves
@@ -45,7 +39,7 @@ Allowed only for:
 
 Never move:
 - `_CURRENT_STATE`
-- `_CURRENT_RUN.txt`
+- `CURRENT.json`
 - `_RUNS_REGISTRY.jsonl`
 
 ## Freshness blocker

@@ -20,7 +20,7 @@ A later proposal that matches a stored failure without a new evidence digest is 
 Couple with `long-horizon-context-curator`. The ledger holds genealogy. This skill holds the graveyard.
 
 ```text
-python3 ~/.codex/skills/failure-memory-resurrection-checker/scripts/check_resurrection.py \
+python3 $CB_SKILLS_ROOT/failure-memory-resurrection-checker/scripts/check_resurrection.py \
   --memory receipts/failure_memory/failures.jsonl \
   --proposal '{"approach_id":"pick-winner","text":"..."}'
 ```

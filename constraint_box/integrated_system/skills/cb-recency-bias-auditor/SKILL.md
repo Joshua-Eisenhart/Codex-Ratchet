@@ -6,6 +6,6 @@ description: Compare the current projection with an earlier baseline and with th
 # CB recency-bias auditor
 
 ```text
-python3 ~/.codex/skills/cb-recency-bias-auditor/scripts/audit_recency.py \
+python3 $CB_SKILLS_ROOT/cb-recency-bias-auditor/scripts/audit_recency.py \
   --current decision.json --ablated decision.json
 ```

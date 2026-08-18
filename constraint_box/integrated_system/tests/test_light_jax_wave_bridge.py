@@ -65,6 +65,38 @@ def test_declared_interpreter_path_is_not_resolved(tmp_path: Path) -> None:
     assert declared != alias.resolve()
 
 
+def test_bridge_output_must_stay_below_product_root(tmp_path: Path) -> None:
+    box = tmp_path / "constraint_box"
+    box.mkdir()
+    inside = bridge.confined_output_dir(box, box / "integrated_system" / "runs" / "one")
+    assert inside == (box / "integrated_system" / "runs" / "one").resolve()
+    outside = tmp_path / "outside"
+    try:
+        bridge.confined_output_dir(box, outside)
+    except ValueError as exc:
+        assert str(exc) == "REFUSE_BRIDGE_OUTPUT_OUTSIDE_PRODUCT"
+    else:
+        raise AssertionError("bridge must refuse an output path outside the product")
+
+
+def test_source_checkout_uses_light_first_selected_overlay(tmp_path: Path) -> None:
+    box = tmp_path / "constraint_box"
+    light_package = box / "light_runtime" / "src" / "constraintbox"
+    root_package = box / "src" / "constraintbox"
+    light_package.mkdir(parents=True)
+    root_package.mkdir(parents=True)
+    (light_package / "__init__.py").write_text("LIGHT = True\n", encoding="utf-8")
+    (root_package / "distinguishability.py").write_text(
+        "ROOT_SELECTED = True\n", encoding="utf-8"
+    )
+    output = box / "integrated_system" / "runs" / "overlay"
+    output.mkdir(parents=True)
+    overlay = bridge.selected_controller_overlay(box, output)
+    assert overlay == output / ".controller_src"
+    assert (overlay / "constraintbox" / "__init__.py").read_text(encoding="utf-8") == "LIGHT = True\n"
+    assert (overlay / "constraintbox" / "distinguishability.py").is_file()
+
+
 def test_replay_projection_ignores_capture_time_but_not_decision() -> None:
     children = _children()
     children["seed"].update(

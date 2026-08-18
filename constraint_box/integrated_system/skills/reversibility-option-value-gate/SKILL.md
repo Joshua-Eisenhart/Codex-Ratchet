@@ -6,7 +6,7 @@ description: Prefer bounded reversible probes. Escalate irreversible actions onl
 # Reversibility and option-value gate
 
 ```text
-python3 ~/.codex/skills/reversibility-option-value-gate/scripts/check_reversibility.py \
+python3 $CB_SKILLS_ROOT/reversibility-option-value-gate/scripts/check_reversibility.py \
   --action '{"irreversible":true,"evidence_receipt":null}'
 ```
 

@@ -1,23 +1,29 @@
 # Current integration plan
 
-Status: clean-worktree integration candidate. Promotion allowed: false.
+Status: unified product integration and release candidate. Git/maintenance
+receipts report cleanliness; this plan does not. Promotion allowed: false.
 
 ## Phase 1 — runnable deterministic nucleus
 
 1. Package the canonical Light contract and its exact interpreter boundary.
 2. Package ZIP Agent without generated project-state objects or old reports.
-3. Include the tested Layer-1 wave skill subset plus exact dependencies.
+3. Expose only the three tested, script-backed, contained waves; label the
+   remaining authored/composite waves inactive.
 4. Include thin host-hook adapters as a separate optional layer.
 5. Produce one public `cb` command and one complete local verification command.
+6. Retain ZIP Agent as the communication protocol, not as an optional report
+   format.
 
 ## Phase 2 — typed Light/JAX crossing
 
-1. Light validates an exact operation request and JAX runtime binding.
-2. JAX runs either the entropic-time exact/dual check or one declared probe
+1. Ship a project-neutral JAX/QIT lock, bootstrap, safe adoption path, and
+   12-operation probe. Never copy a virtual environment into the ZIP.
+2. Light validates an exact operation request and attested JAX runtime binding.
+3. JAX runs either the entropic-time exact/dual check or one declared probe
    field and writes observation bytes only.
-3. Light verifies source/runtime/request/output hashes and retains the claim
+4. Light verifies source/runtime/request/output hashes and retains the claim
    ceiling.
-4. A wave may consume that receipt, propose counterexamples or repairs, and
+5. A wave may consume that receipt, propose counterexamples or repairs, and
    return a ZIP. It cannot change the Light disposition.
 
 ## Phase 3 — next research operation
@@ -32,6 +38,10 @@ campaign:
 - measure the order-gap rate within this family;
 - HOLD if noncommutation is merely generic.
 
+The bounded `constraint_path_mass` sidecar may enumerate and mutate actual
+Mini-Lev policy paths, but it remains a probe operation rather than a gate or
+basin.
+
 Only after that may JAX batch many bind masks. Hopfield, spinor memory,
 Dynamiqs, Quimb, Diffrax, Stim, NetKet, and RSB remain later named lifts with
 their own consumers and controls.
@@ -44,3 +54,4 @@ their own consumers and controls.
    negatives.
 4. Verify every returned ZIP and receipt digest.
 5. Commit and push only the curated branch; never sweep the original dirty tree.
+6. Put the verified ZIP and its separate verification receipt on the Desktop.

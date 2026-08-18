@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import platform
@@ -28,6 +29,23 @@ def declared_python(value: str | None, fallback: Path) -> Path:
     if not path.is_file() or not os.access(path, os.X_OK):
         raise SystemExit(f"HOLD_INTERPRETER_MISSING:{path}")
     return path
+
+
+def default_jax_python() -> Path | None:
+    """Return the project-neutral JAX/QIT runtime, if it is installed."""
+
+    configured = os.environ.get("CB_JAX_QIT_ROOT")
+    root = (
+        Path(configured).expanduser()
+        if configured
+        else Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
+        / "jax-qit-stack"
+    )
+    for name in ("python", "python3"):
+        candidate = root / "bin" / name
+        if candidate.is_file() and os.access(candidate, os.X_OK):
+            return candidate
+    return None
 
 
 def run(argv: list[str], *, cwd: Path, env: dict[str, str] | None = None) -> int:
@@ -199,6 +217,56 @@ def probe_module(python: Path, module: str) -> dict[str, object]:
     return {"status": "PASS", **json.loads(proc.stdout)}
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def jax_profile_attestation(system: Path, python: Path | None) -> dict[str, object]:
+    if python is None:
+        return {"status": "HOLD", "reason": "JAX_INTERPRETER_UNDECLARED"}
+    # A venv's executable is commonly a symlink to the base interpreter.
+    # Profile identity comes from the declared venv path, not that symlink's
+    # target outside the profile.
+    profile_root = python.expanduser().absolute().parent.parent
+    manifest_path = profile_root / "STACK_MANIFEST.json"
+    expected_lock = system / "runtime_profiles/jax_qit/requirements.lock"
+    if not manifest_path.is_file() or not expected_lock.is_file():
+        return {
+            "status": "HOLD",
+            "reason": "HOLD_JAX_PROFILE_ATTESTATION_MISSING",
+            "manifest": str(manifest_path),
+        }
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return {
+            "status": "HOLD",
+            "reason": "HOLD_JAX_PROFILE_ATTESTATION_UNREADABLE",
+            "detail": f"{type(exc).__name__}:{exc}",
+        }
+    declared_lock = (manifest.get("requirements") or {}).get("lock_sha256")
+    expected_sha = sha256_file(expected_lock)
+    valid = (
+        manifest.get("schema") == "constraintbox.jax-qit-stack-manifest.v1"
+        and manifest.get("profile") == "jax_qit"
+        and manifest.get("status") == "VERIFIED_LOCAL"
+        and declared_lock == expected_sha
+    )
+    return {
+        "status": "PASS" if valid else "HOLD",
+        "reason": None if valid else "HOLD_JAX_PROFILE_ATTESTATION_DRIFT",
+        "manifest": str(manifest_path),
+        "manifest_sha256": sha256_file(manifest_path),
+        "expected_lock_sha256": expected_sha,
+        "declared_lock_sha256": declared_lock,
+        "runtime_root": str(profile_root),
+    }
+
+
 def supported_jax_version(value: object) -> bool:
     """The current numerical profile is tested against the JAX 0.10 series."""
 
@@ -221,6 +289,7 @@ def doctor(box: Path, system: Path, light_python: Path, jax_python: Path | None)
         jax["status"] = "HOLD"
         jax["reason"] = "HOLD_JAX_VERSION_PROFILE_MISMATCH"
         jax["required_profile"] = ">=0.10.0,<0.11.0"
+    profile = jax_profile_attestation(system, jax_python)
     zip_protocol = box / "zip_agent" / "src" / "constraintbox_zip_agent" / "protocol.py"
     if not zip_protocol.is_file():
         zip_protocol = system / "runtime" / "zip_agent_src" / "constraintbox_zip_agent" / "protocol.py"
@@ -232,7 +301,14 @@ def doctor(box: Path, system: Path, light_python: Path, jax_python: Path | None)
         system / "state" / "GENESIS.json",
     ]
     missing = [str(path) for path in required if not path.is_file()]
-    status = "PASS" if not missing and light_jax["status"] == "PASS" and jax["status"] == "PASS" else "HOLD"
+    status = (
+        "PASS"
+        if not missing
+        and light_jax["status"] == "PASS"
+        and jax["status"] == "PASS"
+        and profile["status"] == "PASS"
+        else "HOLD"
+    )
     body = {
         "schema": "constraintbox.integrated-doctor.v1",
         "status": status,
@@ -241,6 +317,7 @@ def doctor(box: Path, system: Path, light_python: Path, jax_python: Path | None)
         "light_python": str(light_python),
         "light_jax_negative": light_jax,
         "jax_runtime": jax,
+        "jax_profile": profile,
         "missing_paths": missing,
         "boundaries": {
             "one_system": True,
@@ -267,6 +344,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--jax-python", default=os.environ.get("CB_JAX_PYTHON"))
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("bootstrap-light")
+    jax_profile = sub.add_parser(
+        "jax-profile",
+        help="plan, install, or probe the separate project-neutral JAX/QIT runtime",
+    )
+    jax_profile.add_argument("args", nargs=argparse.REMAINDER)
     sub.add_parser("doctor")
     seed = sub.add_parser("light-seed")
     seed.add_argument("--out", type=Path)
@@ -276,9 +358,23 @@ def main(argv: list[str] | None = None) -> int:
     hook.add_argument("host", nargs="?")
     wave = sub.add_parser("jax-wave")
     wave.add_argument("--output-dir", required=True, type=Path)
+    public_wave = sub.add_parser("wave", help="list, inspect, or run a contained wave")
+    public_wave.add_argument("action", choices=("list", "inspect", "run"))
+    public_wave.add_argument("wave_id", nargs="?")
+    public_wave.add_argument("--output-dir", type=Path)
+    public_wave.add_argument("--timeout", type=float, default=120.0)
+    public_wave.add_argument("--cancel-file", type=Path)
+    public_wave.add_argument("--run-id")
     structured = sub.add_parser("structured-probe")
     structured.add_argument("--engine", choices=("exact", "dual"), default="exact")
     structured.add_argument("--output", required=True, type=Path)
+    path_mass = sub.add_parser(
+        "path-mass",
+        help="run or replay the bounded Mini-Lev constraint-path mass probe",
+    )
+    path_mass.add_argument("--output", required=True, type=Path)
+    path_mass.add_argument("--replay", type=Path)
+    path_mass.add_argument("--require-jax", action="store_true")
     sub.add_parser("context")
     verify = sub.add_parser("verify")
     verify.add_argument("--output", type=Path)
@@ -288,13 +384,24 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "bootstrap-light":
         return bootstrap_light(box)
+    if args.command == "jax-profile":
+        return run(
+            [
+                sys.executable,
+                str(system / "runtime_profiles/jax_qit/bootstrap_jax_qit.py"),
+                *args.args,
+            ],
+            cwd=Path.cwd(),
+        )
 
     light = declared_python(args.light_python, box / ".venv" / "bin" / "python")
     jax = None
     if args.jax_python:
         jax = declared_python(args.jax_python, Path(args.jax_python))
-    elif (Path.home() / ".local/share/sim-stack/bin/python3").is_file():
-        jax = declared_python(None, Path.home() / ".local/share/sim-stack/bin/python3")
+    else:
+        discovered_jax = default_jax_python()
+        if discovered_jax is not None:
+            jax = declared_python(None, discovered_jax)
     env = runtime_env(box, system, light)
 
     if args.command == "doctor":
@@ -340,6 +447,35 @@ def main(argv: list[str] | None = None) -> int:
             cwd=box,
             env=env,
         )
+    if args.command == "wave":
+        if args.action in {"inspect", "run"} and not args.wave_id:
+            parser.error("wave inspect/run requires wave_id")
+        command = [
+            str(light),
+            str(system / "scripts/run_wave.py"),
+            args.action,
+        ]
+        if args.wave_id:
+            command.append(args.wave_id)
+        command.extend(["--system-root", str(system), "--python", str(light)])
+        if args.output_dir is not None:
+            wave_output = (
+                args.output_dir
+                if args.output_dir.is_absolute()
+                else system / args.output_dir
+            )
+            command.extend(["--output-dir", str(wave_output)])
+        if args.cancel_file is not None:
+            wave_cancel = (
+                args.cancel_file
+                if args.cancel_file.is_absolute()
+                else system / args.cancel_file
+            )
+            command.extend(["--cancel-file", str(wave_cancel)])
+        if args.run_id:
+            command.extend(["--run-id", args.run_id])
+        command.extend(["--timeout", str(args.timeout)])
+        return run(command, cwd=box, env=env)
     if args.command == "structured-probe":
         engine_python = light if args.engine == "exact" else jax
         if engine_python is None:
@@ -358,6 +494,24 @@ def main(argv: list[str] | None = None) -> int:
             cwd=box,
             env=env,
         )
+    if args.command == "path-mass":
+        if args.require_jax and jax is None:
+            raise SystemExit("HOLD_JAX_INTERPRETER_UNDECLARED")
+        command = [
+            str(light),
+            str(system / "scripts/run_constraint_path_mass.py"),
+            "--out",
+            str(user_path(args.output)),
+            "--fixture",
+            str(box / "fixtures/minilev/proposal_reference_policy_v1.json"),
+        ]
+        if jax is not None:
+            command.extend(["--jax-python", str(jax)])
+        if args.require_jax:
+            command.append("--require-jax")
+        if args.replay is not None:
+            command.extend(["--replay", str(user_path(args.replay))])
+        return run(command, cwd=box, env=env)
     if args.command == "context":
         print(
             json.dumps(

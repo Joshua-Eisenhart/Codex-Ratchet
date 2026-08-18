@@ -25,7 +25,7 @@ Rules:
 4. Couple with `failure-memory-resurrection-checker` for rejected branches.
 
 ```text
-python3 ~/.codex/skills/long-horizon-context-curator/scripts/curate_ledger.py \
+python3 $CB_SKILLS_ROOT/long-horizon-context-curator/scripts/curate_ledger.py \
   --ledger receipts/decision_ledger/ledger.jsonl \
   --append '{"kind":"proposal","text":"...","head":"<sha256>"}'
 ```

@@ -8,7 +8,7 @@ description: Require different tools or implementations to reproduce a key check
 Allowed independent deciders in Light: `z3`, `cvc5`, `enumeration`, and a fresh pytest replay.
 
 ```text
-python3 ~/.codex/skills/independent-rederivation-judge/scripts/judge_rederivation.py \
+python3 $CB_SKILLS_ROOT/independent-rederivation-judge/scripts/judge_rederivation.py \
   --receipt /path/receipt.json
 ```
 

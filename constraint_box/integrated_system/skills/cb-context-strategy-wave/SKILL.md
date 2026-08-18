@@ -57,7 +57,7 @@ Every model-backed cell uses `mmm-preload`. Distinct mini-voice sets.
 ## Deterministic runner
 
 ```text
-python3 ~/.codex/skills/cb-context-strategy-wave/scripts/run_context_strategy.py \
+python3 $CB_SKILLS_ROOT/cb-context-strategy-wave/scripts/run_context_strategy.py \
   --root /path/to/constraint_box \
   --prompt-path docs/OWNER_PROMPTS_VERBATIM_20260809.md \
   --output-path receipts \

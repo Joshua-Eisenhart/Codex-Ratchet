@@ -8,7 +8,7 @@ description: Generate cheap deterministic negative twins so positive-only testin
 Positive tests are not a family. A family needs refuse twins.
 
 ```text
-python3 ~/.codex/skills/adversarial-negative-generator/scripts/generate_negatives.py \
+python3 $CB_SKILLS_ROOT/adversarial-negative-generator/scripts/generate_negatives.py \
   --target /path/target.json
 ```
 

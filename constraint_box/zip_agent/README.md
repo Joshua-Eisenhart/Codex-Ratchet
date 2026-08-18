@@ -56,6 +56,16 @@ envelope so a fresh nonce and process receipt are issued. A direct live-provider
 run intentionally HOLDs. The current operator sequence is documented in each
 run directory; a single public composition command remains planned.
 
+Provider adapters and MMM materialisation are an explicit controller overlay,
+not a ZIP Agent package dependency. Declare the controller source in provider
+request data as `controller_src`, or set `CB_CONTROLLER_SRC` for a host-launched
+request. A missing or invalid declaration HOLDs before a provider subprocess is
+started. ZIP Agent never infers a sibling checkout, imports an ambient
+`constraintbox` package, or supplies a provider executable or home directory;
+`executable`, `runner_path`, `codex_home`, and `bridge_path` must be declared by
+the request when that route is used. Model-free ZIP operations do not require
+the overlay and remain runnable after relocating the source bundle.
+
 Project context commands:
 
 ```bash

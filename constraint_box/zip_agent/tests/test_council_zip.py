@@ -194,11 +194,48 @@ def test_bind_live_agent_fields_holds_missing_runner(tmp_path) -> None:
     assert caught.value.reason_code == "HOLD_LIVE_RUNNER_UNBOUND"
 
 
-def test_live_failure_packet_builds_with_real_wiki_minis_and_declared_binds() -> None:
+def test_live_failure_packet_builds_with_explicit_mmm_and_route_fixtures(tmp_path: Path) -> None:
     from constraintbox_zip_agent.live_failure_council import build_live_failure_council_packet
 
+    mmm_root = tmp_path / "mmm"
+    mmm_root.mkdir()
+    for path, raw in _mmm_files().items():
+        voice = path.split("/")[1][:-3]
+        (mmm_root / f"MMM_VOICE_{voice.upper()}_COMPACT_v4_1.md").write_bytes(raw)
+    controller_src = Path(__file__).resolve().parents[2] / "src"
+    live_paths = {
+        "codex-cli": {
+            "runner_path": str(tmp_path / "codex-runner"),
+            "codex_home": str(tmp_path / "codex-home"),
+            "controller_src": str(controller_src),
+        },
+        "grok-cli": {
+            "runner_path": str(tmp_path / "grok-runner"),
+            "controller_src": str(controller_src),
+        },
+        "claude-code": {
+            "runner_path": str(tmp_path / "claude-runner"),
+            "bridge_path": str(tmp_path / "claude-bridge.py"),
+            "controller_src": str(controller_src),
+        },
+    }
+    for provider, paths in live_paths.items():
+        runner = Path(paths["runner_path"])
+        runner.write_text("fixture runner\n")
+        if provider == "codex-cli":
+            Path(paths["codex_home"]).mkdir()
+        if provider == "claude-code":
+            Path(paths["bridge_path"]).write_text("fixture bridge\n")
+
     packet = build_live_failure_council_packet(
-        owner_prompt=b"Target: host-wide packet-Python file-read*. Do not promote.\n"
+        owner_prompt=b"Target: host-wide packet-Python file-read*. Do not promote.\n",
+        mmm_root=mmm_root,
+        live_paths=live_paths,
+        live_routes={
+            "likely": ("codex-cli", "fixture-codex"),
+            "dangerous": ("grok-cli", "fixture-grok"),
+            "assumption": ("claude-code", "fixture-claude"),
+        },
     )
     import io, json, zipfile
 
@@ -210,6 +247,19 @@ def test_live_failure_packet_builds_with_real_wiki_minis_and_declared_binds() ->
     assert all(name.startswith("MMMS/") and name.endswith(".md") for name in names if name.startswith("MMMS/"))
     providers = {row["provider"] for row in manifest["members"]}
     assert providers == {"codex-cli", "grok-cli", "claude-code"}
+
+
+def test_live_failure_packet_refuses_missing_run_data() -> None:
+    from constraintbox_zip_agent.live_failure_council import build_live_failure_council_packet
+
+    with pytest.raises(ZipJobRefusal) as caught:
+        build_live_failure_council_packet(
+            owner_prompt=b"target\n",
+            mmm_root=None,  # type: ignore[arg-type]
+            live_paths=None,  # type: ignore[arg-type]
+            live_routes=None,  # type: ignore[arg-type]
+        )
+    assert caught.value.reason_code == "HOLD_LIVE_RUN_DATA_UNBOUND"
 
 
 def test_mmm_assignment_is_replayable() -> None:

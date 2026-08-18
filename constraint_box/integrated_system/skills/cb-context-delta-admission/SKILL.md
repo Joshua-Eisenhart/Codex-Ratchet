@@ -6,7 +6,7 @@ description: Admit new context only after classifying it as observation, inferen
 # CB context delta admission
 
 ```text
-python3 ~/.codex/skills/cb-context-delta-admission/scripts/admit_delta.py \
+python3 $CB_SKILLS_ROOT/cb-context-delta-admission/scripts/admit_delta.py \
   --delta '{"class":"proposal","text":"...","outranks_primary":true}'
 ```
 

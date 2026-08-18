@@ -15,7 +15,7 @@ Refuse when:
 - a draft was treated as law
 
 ```text
-python3 ~/.codex/skills/mass-drift-guard/scripts/check_drift.py \
+python3 $CB_SKILLS_ROOT/mass-drift-guard/scripts/check_drift.py \
   --context /path/context-strategy.receipt.json \
   --harvest /path/exploration.receipt.json
 ```

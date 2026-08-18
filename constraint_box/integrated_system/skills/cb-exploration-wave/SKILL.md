@@ -28,7 +28,7 @@ Every model-backed cell uses `mmm-preload`. Distinct mini-voice sets.
 ## Deterministic runner
 
 ```text
-python3 ~/.codex/skills/cb-exploration-wave/scripts/run_exploration.py \
+python3 $CB_SKILLS_ROOT/cb-exploration-wave/scripts/run_exploration.py \
   --root /path/to/constraint_box \
   --seed fixtures/cr/manifold_time_first_seed_v1.json \
   --out /path/to/exploration.receipt.json

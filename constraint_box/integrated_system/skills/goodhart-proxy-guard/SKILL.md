@@ -18,7 +18,7 @@ Protected measures may not fall just because a composite score rose:
 - `test_failures` must stay empty
 
 ```text
-python3 ~/.codex/skills/goodhart-proxy-guard/scripts/check_proxy.py \
+python3 $CB_SKILLS_ROOT/goodhart-proxy-guard/scripts/check_proxy.py \
   --before /path/before.json --after /path/after.json
 ```
 

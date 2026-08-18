@@ -80,6 +80,17 @@ class BuildSystemBundleTests(unittest.TestCase):
                     names,
                 )
                 self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime_profiles/jax_qit/requirements.lock",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/scripts/run_wave.py",
+                    names,
+                )
+                self.assertFalse(
+                    [name for name in names if "/integrated_system/runs/" in name]
+                )
+                self.assertIn(
                     f"{TOP_LEVEL}/PROJECT/constraint_box/zip_agent/src/constraintbox_zip_agent/runtime.py",
                     names,
                 )
@@ -121,6 +132,8 @@ class BuildSystemBundleTests(unittest.TestCase):
                 forbidden = (
                     "__pycache__",
                     ".pytest_cache",
+                    "/.venv/",
+                    "/venv/",
                     "/cache/",
                     ".sqlite",
                     ".pyc",
@@ -136,6 +149,23 @@ class BuildSystemBundleTests(unittest.TestCase):
                 metadata = json.loads(archive.read(f"{TOP_LEVEL}/BUNDLE_METADATA.json"))
                 self.assertEqual(manifest["schema"], "constraintbox.integrated-system-manifest.v1")
                 self.assertEqual(manifest["file_count"], len(manifest["files"]))
+                closure = hashlib.sha256(
+                    json.dumps(
+                        [
+                            {
+                                "path": row["path"],
+                                "bytes": row["bytes"],
+                                "sha256": row["sha256"],
+                                "mode": row["mode"],
+                            }
+                            for row in manifest["files"]
+                        ],
+                        sort_keys=True,
+                        separators=(",", ":"),
+                    ).encode()
+                ).hexdigest()
+                self.assertEqual(manifest["source_closure_sha256"], closure)
+                self.assertEqual(metadata["source_closure_sha256"], closure)
                 self.assertEqual(metadata["manifest_sha256"], hashlib.sha256(archive.read(f"{TOP_LEVEL}/SYSTEM_MANIFEST.json")).hexdigest())
                 self.assertFalse(manifest["light_heavy_boundary"]["jax_in_light"])
                 self.assertFalse(manifest["light_heavy_boundary"]["heavy_interpreter_included"])
@@ -158,6 +188,25 @@ class BuildSystemBundleTests(unittest.TestCase):
 
                 cb_mode = archive.getinfo(f"{TOP_LEVEL}/bin/cb").external_attr >> 16
                 self.assertEqual(cb_mode & 0o111, 0o111)
+
+                active_runtime = [
+                    name
+                    for name in names
+                    if any(
+                        marker in name
+                        for marker in (
+                            "/PROJECT/constraint_box/integrated_system/scripts/",
+                            "/PROJECT/constraint_box/integrated_system/runtime_profiles/",
+                            "/PROJECT/constraint_box/integrated_system/bin/",
+                            "/PROJECT/bin/",
+                        )
+                    )
+                ]
+                original_root = str(BOX.resolve()).encode()
+                for name in active_runtime:
+                    body = archive.read(name)
+                    self.assertNotIn(original_root, body, name)
+                    self.assertNotIn(b"/Users/joshuaeisenhart/", body, name)
 
     def test_build_system_bundle_fresh_extract_imports_both_runtime_packages(self) -> None:
         with tempfile.TemporaryDirectory(prefix="cb-integrated-bundle-extract-") as directory:
@@ -189,6 +238,46 @@ class BuildSystemBundleTests(unittest.TestCase):
             self.assertIn("constraintbox 0.1.0", completed.stdout)
             self.assertIn(str(controller / "constraintbox"), completed.stdout)
             self.assertIn(str(controller / "constraintbox" / "hook_adapter.py"), completed.stdout)
+
+            # The selected Mini-Lev path-mass operation must also run from a
+            # fresh extract and replay its receipt without the source checkout
+            # on PYTHONPATH.
+            wrapper = package_root / "integrated_system" / "scripts" / "run_constraint_path_mass.py"
+            controller = package_root / "integrated_system" / "runtime" / "controller_src" / "constraintbox"
+            self.assertFalse((controller / "proposal_minilev_flow.py").exists())
+            self.assertFalse((controller / "mini_levos.py").exists())
+            output = Path(directory) / "path-mass-result.json"
+            fresh_env = dict(os.environ)
+            fresh_env["PYTHONPATH"] = os.pathsep.join((str(controller), str(zip_agent)))
+            run = subprocess.run(
+                [sys.executable, str(wrapper), "--out", str(output)],
+                cwd=extracted,
+                env=fresh_env,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=60,
+            )
+            self.assertEqual(run.returncode, 0, run.stderr or run.stdout)
+            summary = json.loads(run.stdout)
+            self.assertEqual(summary["status"], "PASS")
+            self.assertEqual(summary["n_paths"], 14)
+            replay = subprocess.run(
+                [sys.executable, str(wrapper), "--replay", str(output)],
+                cwd=extracted,
+                env=fresh_env,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=60,
+            )
+            self.assertEqual(replay.returncode, 0, replay.stderr or replay.stdout)
+            replay_summary = json.loads(replay.stdout)
+            self.assertEqual(replay_summary["status"], "PASS")
+            self.assertEqual(
+                replay_summary["stored_receipt_sha256"],
+                replay_summary["replayed_receipt_sha256"],
+            )
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 ---
 name: safe-run-maintenance
-description: Perform archive-first, fail-closed maintenance for generated run and staging artifacts without deleting or touching active owner surfaces. Use when Codex needs to reduce workspace bloat, classify stale generated artifacts, move clearly safe items to archive or quarantine, enforce hard allowlists and denylists for unattended maintenance, or design/review safe maintenance automations for paths like system_v3/runs, work/to_send_to_pro, and mirrored non-owner work trees.
+description: Perform archive-first, fail-closed maintenance for generated ConstraintBox run and staging artifacts without deleting or touching active owner or product surfaces.
 ---
 
 # Safe Run Maintenance
@@ -56,13 +56,14 @@ Hard defaults:
 - fail closed on ambiguity
 - emit a report of every move
 - do not infer stale from size alone
-- do not touch active `system_v3/a2_state`, `system_v3/a1_state`, specs, runtime, or tools
+- do not touch Light, ZIP Agent source, runtime profiles, skills, context,
+  fixtures, hooks, or product scripts
 
 ### 5. Protect run state
 
-Never move these from `system_v3/runs/`:
+Never move these from `integrated_system/runs/`:
 - `_CURRENT_STATE`
-- `_CURRENT_RUN.txt`
+- `CURRENT.json`
 - `_RUNS_REGISTRY.jsonl`
 
 For run families:

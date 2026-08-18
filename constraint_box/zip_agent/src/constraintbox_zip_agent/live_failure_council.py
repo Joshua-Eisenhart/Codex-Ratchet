@@ -11,31 +11,12 @@ from .council_zip import (
 )
 from .protocol import ZipJobRefusal
 
-WIKI_COMPACT = Path(
-    "/Users/joshuaeisenhart/wiki/wizard/packet-v4-3-current/mmm/mini/compact/voices/md"
-)
-DEFAULT_LIVE_PATHS = {
-    "codex-cli": {
-        "runner_path": "/usr/local/bin/codex",
-        "codex_home": str(Path.home() / ".codex"),
-    },
-    "grok-cli": {
-        "runner_path": str(Path.home() / ".local/bin/grok"),
-    },
-    "claude-code": {
-        "runner_path": "/usr/local/bin/claude",
-        "bridge_path": str(Path.home() / ".codex/skills/claude-bridge/scripts/claude_bridge.py"),
-    },
-}
-DEFAULT_LIVE_ROUTES = {
-    "likely": ("codex-cli", "gpt-5.6-luna"),
-    "dangerous": ("grok-cli", "grok-4.6"),
-    "assumption": ("claude-code", "claude-sonnet-5"),
-}
+def load_wiki_compact_mmm_files(root: Path) -> dict[str, bytes]:
+    """Load compact MMM bytes from an explicit run-provided directory."""
 
-
-def load_wiki_compact_mmm_files(root: Path | None = None) -> dict[str, bytes]:
-    base = root or WIKI_COMPACT
+    if not isinstance(root, Path) or not root.is_dir():
+        raise ZipJobRefusal("HOLD_WIKI_MMM_ROOT_UNBOUND", str(root))
+    base = root.resolve()
     files: dict[str, bytes] = {}
     for voice in VOICES:
         path = base / f"MMM_VOICE_{voice.upper()}_COMPACT_v4_1.md"
@@ -48,15 +29,32 @@ def load_wiki_compact_mmm_files(root: Path | None = None) -> dict[str, bytes]:
 def build_live_failure_council_packet(
     *,
     owner_prompt: bytes,
+    mmm_root: Path,
+    live_paths: dict[str, dict[str, str]],
+    live_routes: dict[str, tuple[str, str]],
     seed: int = 461,
     run_id: str = "live-failure-council",
-    live_paths: dict[str, dict[str, str]] | None = None,
 ) -> bytes:
-    paths = live_paths or DEFAULT_LIVE_PATHS
+    if not isinstance(live_paths, dict) or not isinstance(live_routes, dict):
+        raise ZipJobRefusal("HOLD_LIVE_RUN_DATA_UNBOUND", "paths_or_routes")
+    if set(live_routes) != set(FAILURE_MEMBERS):
+        raise ZipJobRefusal("REFUSE_LIVE_ROUTE_ROSTER", "member_routes")
     agents: list[dict[str, Any]] = []
     extra: dict[str, bytes] = {}
     for member in FAILURE_MEMBERS:
-        provider, model = DEFAULT_LIVE_ROUTES[member]
+        route = live_routes.get(member)
+        if (
+            not isinstance(route, (tuple, list))
+            or len(route) != 2
+            or any(not isinstance(value, str) or not value.strip() for value in route)
+        ):
+            raise ZipJobRefusal("REFUSE_LIVE_ROUTE_ROSTER", member)
+        provider, model = route
+        if provider not in {"codex-cli", "grok-cli", "claude-code"}:
+            raise ZipJobRefusal("REFUSE_LIVE_ROUTE_ROSTER", provider)
+        provider_paths = live_paths.get(provider)
+        if not isinstance(provider_paths, dict):
+            raise ZipJobRefusal("HOLD_LIVE_PROVIDER_PATHS_UNBOUND", provider)
         extra[f"AGENTS/{member}.md"] = (
             f"role: {member}\n"
             "Write only the declared output. Copy every required token. "
@@ -82,13 +80,13 @@ def build_live_failure_council_packet(
             raw["reasoning_effort"] = "high"
         if provider == "grok-cli":
             raw["max_turns"] = 8
-        agents.append(bind_live_agent_fields(raw, paths=paths[provider]))
+        agents.append(bind_live_agent_fields(raw, paths=provider_paths))
     return build_named_council_packet(
         council_id="failure",
         owner_prompt=owner_prompt,
         seed=seed,
         run_id=run_id,
         agents=agents,
-        mmm_files=load_wiki_compact_mmm_files(),
+        mmm_files=load_wiki_compact_mmm_files(mmm_root),
         extra_files=extra,
     )

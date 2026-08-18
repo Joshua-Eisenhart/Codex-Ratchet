@@ -15,7 +15,7 @@ Refuse when:
 - the claim ceiling was cut below 20 characters
 
 ```text
-python3 ~/.codex/skills/paperclip-scope-guard/scripts/check_paperclip.py \
+python3 $CB_SKILLS_ROOT/paperclip-scope-guard/scripts/check_paperclip.py \
   --mutation /path/mutation.json
 ```
 

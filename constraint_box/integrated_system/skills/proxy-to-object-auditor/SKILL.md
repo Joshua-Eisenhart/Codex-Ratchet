@@ -16,7 +16,7 @@ Required answers:
 If those three are missing, HOLD. If a named intervention is observed in the score delta, REFUSE.
 
 ```text
-python3 ~/.codex/skills/proxy-to-object-auditor/scripts/audit_proxy.py \
+python3 $CB_SKILLS_ROOT/proxy-to-object-auditor/scripts/audit_proxy.py \
   --card /path/object_proxy.json --before score.json --after score.json
 ```
 

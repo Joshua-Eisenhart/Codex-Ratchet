@@ -8,7 +8,7 @@ description: Check a proposed action against frozen non-negotiables. Local instr
 Upstream freeze: `constitution.json` in this skill directory.
 
 ```text
-python3 ~/.codex/skills/invariant-constitution-checker/scripts/check_constitution.py \
+python3 $CB_SKILLS_ROOT/invariant-constitution-checker/scripts/check_constitution.py \
   --action '{"text":"git rebase the loop","promotion_allowed":false}'
 ```
 

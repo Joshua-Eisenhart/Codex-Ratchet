@@ -14,6 +14,7 @@ from .protocol import (
     ZipJobRefusal,
     build_packet,
     canonical_json_bytes,
+    declared_controller_src,
     sha256_bytes,
     strict_json_loads,
     validate_return_zip,
@@ -138,6 +139,11 @@ def bind_live_agent_fields(agent: dict[str, Any], *, paths: dict[str, str]) -> d
     if not runner or not Path(runner).is_file():
         raise ZipJobRefusal("HOLD_LIVE_RUNNER_UNBOUND", str(provider))
     bound["runner_path"] = runner
+    controller = paths.get("controller_src")
+    try:
+        bound["controller_src"] = str(declared_controller_src(controller))
+    except ZipJobRefusal as exc:
+        raise ZipJobRefusal("HOLD_PROVIDER_CONTROLLER_UNBOUND", str(provider)) from exc
     if provider == "codex-cli":
         home = paths.get("codex_home")
         if not home or not Path(home).is_dir():

@@ -16,6 +16,6 @@ Stop when any of these hold:
 - human handoff trigger is set
 
 ```text
-python3 ~/.codex/skills/termination-enough-judge/scripts/judge_enough.py \
+python3 $CB_SKILLS_ROOT/termination-enough-judge/scripts/judge_enough.py \
   --state /path/loop_state.json
 ```

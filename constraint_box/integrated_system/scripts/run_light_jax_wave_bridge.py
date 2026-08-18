@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -47,6 +48,52 @@ def declared_interpreter(path: Path) -> Path:
     if not declared.is_file() or not os.access(declared, os.X_OK):
         raise ValueError(f"interpreter is not executable: {declared}")
     return declared
+
+
+def confined_output_dir(box_root: Path, output_dir: Path) -> Path:
+    """Require bridge artifacts to remain below the selected product root."""
+
+    product = box_root.expanduser().resolve(strict=True)
+    candidate = output_dir.expanduser().resolve(strict=False)
+    try:
+        candidate.relative_to(product)
+    except ValueError as exc:
+        raise ValueError("REFUSE_BRIDGE_OUTPUT_OUTSIDE_PRODUCT") from exc
+    return candidate
+
+
+def selected_controller_overlay(
+    box_root: Path, output_dir: Path
+) -> Path:
+    """Build a Light-first selected-controller overlay for source checkouts.
+
+    Release bundles already carry ``runtime/controller_src``.  A checkout may
+    still have only the lean Light tree, so this creates a bounded overlay in
+    the run directory: Light is copied first and only the one root module
+    required by the model-free distinguishability child is filled in.  This
+    avoids putting the legacy root package ahead of Light on ``PYTHONPATH``.
+    """
+
+    merged = box_root / "integrated_system" / "runtime" / "controller_src"
+    if merged.is_dir():
+        return merged
+    light = box_root / "light_runtime" / "src"
+    root = box_root / "src"
+    if not light.is_dir():
+        return root
+    overlay = output_dir / ".controller_src"
+    if overlay.exists():
+        return overlay
+    shutil.copytree(light, overlay)
+    selected = ("distinguishability.py",)
+    target_package = overlay / "constraintbox"
+    root_package = root / "constraintbox"
+    for name in selected:
+        source = root_package / name
+        destination = target_package / name
+        if source.is_file() and not destination.exists():
+            shutil.copy2(source, destination)
+    return overlay
 
 
 def write_json(path: Path, value: Any) -> None:
@@ -138,7 +185,9 @@ def settle(children: dict[str, dict[str, Any]]) -> tuple[str, list[str]]:
     if children["dualsolve"].get("status") != "BOUNDED_SAT":
         reasons.append("HOLD_LIGHT_SETTLEMENT")
     for name in RUN_JSON_CHILD_NAMES:
-        if children[name].get("returncode") != 0:
+        child = children.get(name)
+        returncode = child.get("returncode") if isinstance(child, dict) else None
+        if type(returncode) is not int or returncode != 0:
             reasons.append(f"HOLD_{name.upper()}_RETURNCODE")
     return ("PASS" if not reasons else "HOLD"), reasons
 
@@ -240,6 +289,7 @@ def run_bridge(
     jax_python = declared_interpreter(jax_python)
     skills_root = skills_root.resolve(strict=True)
     mmm_root = mmm_root.resolve(strict=True)
+    output_dir = confined_output_dir(box_root, output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     observations_dir = output_dir / "observations"
     observations_dir.mkdir(parents=True, exist_ok=True)
@@ -249,16 +299,8 @@ def run_bridge(
     campaign_source = box_root / "experiments/manifold_capability/v1/campaign.py"
     campaign_custody = box_root / "experiments/manifold_capability/v1/REPLAY_CUSTODY.json"
 
-    controller_src = box_root / "integrated_system/runtime/controller_src"
-    if controller_src.is_dir():
-        python_roots = [str(controller_src)]
-    else:
-        # Source-checkout compatibility.  The release bundle always carries
-        # the single merged controller tree above.
-        python_roots = [
-            str(box_root / "src"),
-            str(box_root / "light_runtime/src"),
-        ]
+    controller_src = selected_controller_overlay(box_root, output_dir)
+    python_roots = [str(controller_src), str(box_root / "zip_agent/src")]
     common_env = os.environ.copy()
     common_env.update(
         {

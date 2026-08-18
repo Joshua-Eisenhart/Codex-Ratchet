@@ -71,7 +71,8 @@ def test_context_and_skill_receipts_recompute_from_current_files() -> None:
     assert context["status"] == "PASS", context
     assert context["event_count"] == context["manifest_event_count"]
     assert skills["status"] == "PASS", skills
-    assert skills["active_wave_count"] == 5
+    assert skills["active_wave_count"] == 3
+    assert skills["wave_definition_count"] == 5
 
 
 def test_retained_structured_and_bridge_receipts_are_checked_without_promotion() -> None:
@@ -82,8 +83,12 @@ def test_retained_structured_and_bridge_receipts_are_checked_without_promotion()
     assert structured["status"] == "PASS", structured
     assert structured["exact_jax_agreement"] is True
     assert structured["crosscheck_projection_recomputed"] is False
-    assert bridge["status"] == "PASS", bridge
+    # The retained receipt predates this verifier's source changes.  It must
+    # be labeled stale rather than silently treated as a current PASS.
+    assert bridge["status"] in {"PASS", "STALE"}, bridge
     assert bridge["semantic_replay_identical"] is True
+    if bridge["status"] == "STALE":
+        assert bridge["stale_reason_codes"]
 
 
 def test_structured_projection_excludes_engine_specific_fields() -> None:
@@ -97,6 +102,18 @@ def test_test_groups_name_two_estate_wide_exclusions() -> None:
     assert any("cb-wave-author/tests/test_wave_definitions.py" in value for value in ignores)
     assert any("cb-wave-admission-gate/tests/test_admit.py" in value for value in ignores)
     assert not any("cb-wave-self-loop/tests/test_score_estate.py" in value for value in ignores)
+
+
+def test_default_verification_roster_is_model_free() -> None:
+    assert "provider_adapters" not in verifier.test_groups()
+    assert "provider_adapters" in verifier.test_groups(include_provider_adapters=True)
+
+
+def test_jax_profile_is_static_and_explicitly_external() -> None:
+    box = Path(__file__).resolve().parents[2]
+    profile = verifier.check_jax_profile(box / "integrated_system")
+    assert profile["status"] == "PASS", profile
+    assert profile["runtime_probe_is_live"] is False
 
 
 TOP_LEVEL_NAME = "constraintbox-integrated-system-v1"
@@ -132,6 +149,19 @@ def _build_bundle(root: Path, payloads: dict[str, bytes]) -> Path:
         "top_level": TOP_LEVEL_NAME,
         "file_count": len(rows),
         "payload_bytes": sum(row["bytes"] for row in rows),
+        "source_closure_sha256": hashlib.sha256(
+            verifier.canonical_json_bytes(
+                [
+                    {
+                        "path": row["path"],
+                        "bytes": row["bytes"],
+                        "sha256": row["sha256"],
+                        "mode": row["mode"],
+                    }
+                    for row in rows
+                ]
+            )
+        ).hexdigest(),
         "files": rows,
         "promotion_allowed": False,
     }
@@ -142,6 +172,7 @@ def _build_bundle(root: Path, payloads: dict[str, bytes]) -> Path:
         "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
         "payload_file_count": len(rows),
         "payload_bytes": manifest["payload_bytes"],
+        "source_closure_sha256": manifest["source_closure_sha256"],
         "promotion_allowed": False,
     }
     metadata_bytes = _write_json(bundle_root / "BUNDLE_METADATA.json", metadata)
@@ -355,6 +386,109 @@ def test_check_bridge_receipt_rejects_unsafe_paths(tmp_path: Path) -> None:
     result2 = verifier.check_bridge_receipt(system_root)
     assert result2["status"] == "FAIL"
     assert any(code.startswith("FAIL_BRIDGE_RECEIPT_PATH_PARENT_TRAVERSAL") for code in result2["reason_codes"])
+
+
+def test_check_bridge_receipt_labels_source_binding_drift_stale(tmp_path: Path) -> None:
+    system_root = tmp_path / "integrated_system"
+    runs = system_root / "runs"
+    source_root = system_root.parent
+    runs.mkdir(parents=True)
+    # The retained receipt is structurally valid but deliberately names a
+    # digest that no longer matches the current source.  This is stale
+    # evidence, not a fresh PASS and not a structural receipt failure.
+    current = {
+        "bridge_source_sha256": system_root / "scripts" / "run_light_jax_wave_bridge.py",
+        "field_source_sha256": source_root / "scripts" / "contained_light" / "entropic_time_field.py",
+        "seed_source_sha256": source_root / "scripts" / "contained_light" / "seed_check.py",
+        "fixture_sha256": source_root / "scripts" / "contained_light" / "fixtures" / "entropic_time_field_v1.json",
+        "campaign_source_sha256": source_root / "experiments" / "manifold_capability" / "v1" / "campaign.py",
+        "campaign_custody_sha256": source_root / "experiments" / "manifold_capability" / "v1" / "REPLAY_CUSTODY.json",
+    }
+    for path in current.values():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("source\n", encoding="utf-8")
+    children = {name: {"returncode": 0} for name in verifier.BRIDGE_CHILD_NAMES}
+    receipt = {
+        "status": "PASS",
+        "promotion_allowed": False,
+        "children": children,
+        "bindings": {name: "0" * 64 for name in current},
+        "replay_projection": {"stable": True},
+    }
+    receipt["replay_projection_sha256"] = verifier.sha256_bytes(
+        verifier.canonical_json_bytes(receipt["replay_projection"])
+    )
+    receipt["receipt_sha256"] = verifier.digest_without(receipt, "receipt_sha256")
+    receipt_path = runs / "a" / "bridge_receipt.json"
+    receipt_path.parent.mkdir(parents=True)
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+    replay = {
+        "status": "PASS",
+        "semantic_replay_identical": True,
+        "runs": [
+            {
+                "path": "a/bridge_receipt.json",
+                "file_sha256": verifier.sha256_file(receipt_path),
+                "replay_projection_sha256": verifier.sha256_bytes(
+                    verifier.canonical_json_bytes({"stable": True})
+                ),
+            },
+            {
+                "path": "a/bridge_receipt.json",
+                "file_sha256": verifier.sha256_file(receipt_path),
+                "replay_projection_sha256": verifier.sha256_bytes(
+                    verifier.canonical_json_bytes({"stable": True})
+                ),
+            },
+        ],
+    }
+    # Two identical rows are intentionally used only to exercise stale
+    # classification; path duplication is a separate structural refusal.
+    replay["runs"][1]["path"] = "a/bridge_receipt-copy.json"
+    copy_path = runs / "a" / "bridge_receipt-copy.json"
+    copy_path.write_text(json.dumps(receipt), encoding="utf-8")
+    replay["runs"][1]["file_sha256"] = verifier.sha256_file(copy_path)
+    _write_json(runs / "LIGHT_JAX_WAVE_REPLAY.json", replay)
+    result = verifier.check_bridge_receipt(system_root)
+    assert result["status"] == "STALE", result
+    assert any(code.startswith("STALE_BRIDGE_SOURCE_BINDING") for code in result["reason_codes"])
+
+
+def test_check_bridge_receipt_rejects_nonzero_child_even_when_receipt_says_pass(tmp_path: Path) -> None:
+    system_root = tmp_path / "integrated_system"
+    runs = system_root / "runs"
+    runs.mkdir(parents=True)
+    receipt = {
+        "status": "PASS",
+        "promotion_allowed": False,
+        "children": {
+            name: {"returncode": 7 if name == "etf_dual" else 0}
+            for name in verifier.BRIDGE_CHILD_NAMES
+        },
+        "bindings": {},
+        "replay_projection": {},
+    }
+    receipt["replay_projection_sha256"] = verifier.sha256_bytes(
+        verifier.canonical_json_bytes(receipt["replay_projection"])
+    )
+    receipt["receipt_sha256"] = verifier.digest_without(receipt, "receipt_sha256")
+    path = runs / "a.json"
+    path.write_text(json.dumps(receipt), encoding="utf-8")
+    _write_json(
+        runs / "LIGHT_JAX_WAVE_REPLAY.json",
+        {
+            "status": "PASS",
+            "semantic_replay_identical": True,
+            "runs": [
+                {"path": "a.json", "file_sha256": verifier.sha256_file(path), "replay_projection_sha256": verifier.sha256_bytes(verifier.canonical_json_bytes({}))},
+                {"path": "a.json.copy", "file_sha256": verifier.sha256_file(path), "replay_projection_sha256": verifier.sha256_bytes(verifier.canonical_json_bytes({}))},
+            ],
+        },
+    )
+    (runs / "a.json.copy").write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+    result = verifier.check_bridge_receipt(system_root)
+    assert result["status"] == "FAIL", result
+    assert any(code.startswith("FAIL_BRIDGE_CHILD_RETURNCODE") for code in result["reason_codes"])
 
 
 def test_live_operations_and_separation_flag_reflect_a_failed_doctor(tmp_path: Path) -> None:

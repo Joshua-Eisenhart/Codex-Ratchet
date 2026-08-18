@@ -24,6 +24,7 @@ OBJECT = b"Write one finding line.\n"
 TASK_SOURCE = b"# Provider fixture task\nWrite the declared finding.\n"
 MMM_BUNDLE = b"\n\n<!-- MMM voice:test:compact -->\n# Test mini MMM\n"
 COMPOSED_PROMPT = b"# MMM SALIENCE PRELOAD\n" + MMM_BUNDLE + b"\n\n# TASK\n" + TASK_SOURCE
+CONTROLLER_SRC = Path(__file__).resolve().parents[2] / "src"
 
 
 def _preload() -> bytes:
@@ -94,6 +95,10 @@ def _request(
         "expected_marker": MARKER,
         "timeout_seconds": 30,
     }
+    if provider != "fixture-subprocess":
+        # Live provider adapters are an explicit overlay dependency.  Tests
+        # bind the current source tree just as a real request must.
+        request["controller_src"] = str(CONTROLLER_SRC)
     if provider == "fixture-subprocess":
         request["fixture_script"] = script or _script(
             "Path('output/finding.md').write_text('finding: ZIP_PROVIDER_CALL_LIVE\\n', encoding='utf-8')"
@@ -346,6 +351,30 @@ def test_grok_adapter_receipt_is_normalized_into_provider_call(tmp_path: Path) -
     assert call["model_observed"] == "grok-test"
     assert call["terminal_state"] == "COMPLETED"
     assert call["source_receipt_sha256"] == sha256_bytes(members["output/source_receipt.json"])
+
+
+def test_live_provider_without_declared_controller_is_held(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("CB_CONTROLLER_SRC", raising=False)
+    runner = _grok_runner(tmp_path / "grok-runner", observed_model="grok-test")
+    request = json.loads(
+        _request(
+            provider="grok-cli",
+            model_requested="grok-test",
+            runner_path=str(runner),
+        )
+    )
+    request.pop("controller_src", None)
+    with pytest.raises(ZipJobRefusal) as caught:
+        execute_packet(_packet(request=canonical_json_bytes(request)))
+    assert caught.value.reason_code == "HOLD_PROVIDER_CONTROLLER_UNBOUND"
+
+
+def test_codex_route_requires_explicit_runner_and_home(tmp_path: Path) -> None:
+    request = json.loads(_request(provider="codex-cli", model_requested="codex-test"))
+    with pytest.raises(ZipJobRefusal) as caught:
+        execute_packet(_packet(request=canonical_json_bytes(request)))
+    assert caught.value.reason_code == "REFUSE_PROVIDER_REQUEST_SCHEMA"
+    assert caught.value.detail == "executable"
 
 
 def test_grok_adapter_model_mismatch_holds_without_return_zip(tmp_path: Path) -> None:

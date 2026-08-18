@@ -690,7 +690,7 @@ def test_codex_home_unbound_is_held(monkeypatch, tmp_path) -> None:
             request_id="x",
             timeout_seconds=5,
         )
-    assert caught.value.reason_code == "HOLD_CODEX_HOME_UNBOUND"
+    assert caught.value.reason_code == "HOLD_PROVIDER_CONTROLLER_UNBOUND"
 
 
 def test_live_provider_without_runner_is_held(monkeypatch, tmp_path) -> None:
@@ -711,4 +711,4 @@ def test_live_provider_without_runner_is_held(monkeypatch, tmp_path) -> None:
             request_id="x",
             timeout_seconds=5,
         )
-    assert caught.value.reason_code == "REFUSE_MD_AGENT_ROSTER_SCHEMA"
+    assert caught.value.reason_code == "HOLD_PROVIDER_CONTROLLER_UNBOUND"

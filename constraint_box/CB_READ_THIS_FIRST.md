@@ -1,5 +1,14 @@
 # ConstraintBox — read this first
 
+**Current package on this branch:** [`CURRENT.md`](CURRENT.md) and
+[`integrated_system/00_READ_THIS_FIRST.md`](integrated_system/00_READ_THIS_FIRST.md).
+The historical index below is not the live work directory.
+
+Current correction: the product has no permanent "official core" tool roster.
+The historical index below retains older five-tool wording for provenance.
+Current tools earn operation roles through executable consumers and controls;
+that old wording is not product policy.
+
 CLAUDE.md sends every session here before it touches `constraint_box/`. This file gives the
 reading order and a map of the ConstraintBox documents, grouped by audience, with supersessions
 named. It indexes; it does not relocate. No file was moved or renamed to produce it.

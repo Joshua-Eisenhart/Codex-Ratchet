@@ -10,7 +10,9 @@ from constraintbox.grok_cli_adapter import (
     REQUEST_SCHEMA,
     GrokCliAdapterError,
     authenticate,
+    discover_models,
     run,
+    select_available_model,
 )
 from constraintbox.mmm_load_gate import MmmLoadError
 
@@ -26,6 +28,54 @@ def _runner(path: Path, *, returncode: int = 0) -> Path:
     )
     path.chmod(0o700)
     return path
+
+
+def _model_catalogue_runner(path: Path, *, returncode: int = 0) -> Path:
+    path.write_text(
+        "#!/bin/sh\n"
+        "test \"$1\" = models || exit 9\n"
+        "test -n \"$CB_DISPATCH_NONCE\" || exit 8\n"
+        "printf '%s\\n' 'Default model: exact-default'\n"
+        "printf '%s\\n' 'Available models:'\n"
+        "printf '%s\\n' '  * exact-default (default)'\n"
+        "printf '%s\\n' '  - exact-other'\n"
+        f"exit {returncode}\n",
+        encoding="utf-8",
+    )
+    path.chmod(0o700)
+    return path
+
+
+def test_model_discovery_records_exact_catalogue_and_selection(tmp_path: Path) -> None:
+    runner = _model_catalogue_runner(tmp_path / "runner")
+    receipt = discover_models(runner, requested_model="exact-other", timeout_seconds=5)
+
+    assert receipt["disposition"] == "MODELS_DISCOVERED"
+    assert receipt["reason_code"] == "GROK_MODEL_CATALOGUE_DISCOVERED"
+    assert receipt["available_models"] == ["exact-default", "exact-other"]
+    assert receipt["default_model"] == "exact-default"
+    assert receipt["model_available"] is True
+    assert receipt["dispatch_lease"]["revoked"] is True
+    assert select_available_model(receipt, "exact-other") == "exact-other"
+
+
+def test_model_discovery_never_falls_back_for_unknown_id(tmp_path: Path) -> None:
+    runner = _model_catalogue_runner(tmp_path / "runner")
+    receipt = discover_models(runner, requested_model="exact-default-build", timeout_seconds=5)
+
+    assert receipt["disposition"] == "HOLD"
+    assert receipt["reason_code"] == "HOLD_GROK_MODEL_NOT_AVAILABLE"
+    assert receipt["available_models"] == ["exact-default", "exact-other"]
+    assert receipt["model_available"] is False
+    with pytest.raises(GrokCliAdapterError, match="not in discovered catalogue"):
+        select_available_model(receipt, "exact-default-build")
+
+
+def test_model_discovery_empty_or_nonzero_is_hold(tmp_path: Path) -> None:
+    runner = _model_catalogue_runner(tmp_path / "runner", returncode=3)
+    receipt = discover_models(runner, timeout_seconds=5)
+    assert receipt["disposition"] == "HOLD"
+    assert receipt["reason_code"] == "HOLD_GROK_MODEL_DISCOVERY_NONZERO"
 
 
 def test_model_usage_keys_are_observed(tmp_path: Path) -> None:
@@ -52,6 +102,7 @@ def _request(
     *,
     hierarchy: bool = False,
     bind_mmm: bool = True,
+    tools: str = "",
 ) -> Path:
     request = {
         "schema": REQUEST_SCHEMA,
@@ -62,6 +113,7 @@ def _request(
         "cwd": str(cwd),
         "max_turns": 1,
         "permission_mode": "plan",
+        "tools": tools,
     }
     if bind_mmm:
         request.update(mmm_bind(prompt))
@@ -96,6 +148,9 @@ def test_bounded_call_captures_model_and_response(tmp_path: Path) -> None:
     assert "--no-subagents" in receipt["argv"]
     assert "--permission-mode" in receipt["argv"]
     assert receipt["permission_mode_requested"] == "plan"
+    tools_index = receipt["argv"].index("--tools")
+    assert receipt["argv"][tools_index + 1] == ""
+    assert receipt["tools_requested"] == ""
     assert receipt["dispatch_lease"]["revoked"] is True
     assert not Path(receipt["dispatch_lease"]["nonce_file"]).exists()
 
@@ -111,6 +166,41 @@ def test_workspace_write_permission_is_explicit_request_data(tmp_path: Path) -> 
     mode_index = receipt["argv"].index("--permission-mode")
     assert receipt["argv"][mode_index + 1] == "bypassPermissions"
     assert receipt["permission_mode_requested"] == "bypassPermissions"
+
+
+def test_declared_read_only_tools_are_passed_exactly(tmp_path: Path) -> None:
+    prompt = tmp_path / "prompt.txt"
+    prompt.write_text("test", encoding="utf-8")
+    request = _request(
+        tmp_path / "request.json",
+        _runner(tmp_path / "runner"),
+        prompt,
+        tmp_path,
+        tools="read_file,grep,list_dir",
+    )
+    receipt = run(request, response_path=tmp_path / "response.json", timeout_seconds=5)
+    tools_index = receipt["argv"].index("--tools")
+    assert receipt["argv"][tools_index + 1] == "read_file,grep,list_dir"
+    assert receipt["tools_requested"] == "read_file,grep,list_dir"
+
+
+def test_unknown_tool_refuses_before_spawn(tmp_path: Path) -> None:
+    sentinel = tmp_path / "spawned"
+    runner = tmp_path / "runner"
+    runner.write_text(f"#!/bin/sh\nprintf spawned > '{sentinel}'\n", encoding="utf-8")
+    runner.chmod(0o700)
+    prompt = tmp_path / "prompt.txt"
+    prompt.write_text("test", encoding="utf-8")
+    request = _request(
+        tmp_path / "request.json",
+        runner,
+        prompt,
+        tmp_path,
+        tools="read_file,run_terminal_cmd",
+    )
+    with pytest.raises(GrokCliAdapterError, match="read-only allowlist"):
+        run(request, response_path=tmp_path / "response.json", timeout_seconds=5)
+    assert not sentinel.exists()
 
 
 def test_zip_leaf_hierarchy_is_accepted_and_bound(tmp_path: Path) -> None:

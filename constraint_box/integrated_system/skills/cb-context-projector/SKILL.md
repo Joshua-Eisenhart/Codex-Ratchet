@@ -10,7 +10,7 @@ Object continuity lives in the kernel. Input diversity lives in the lane packets
 Selection rule: relevance × authority × unresolved obligation. Not recency.
 
 ```text
-python3 ~/.codex/skills/cb-context-projector/scripts/project.py \
+python3 $CB_SKILLS_ROOT/cb-context-projector/scripts/project.py \
   --kernel /path/kernel.json --lanes /path/lanes.json --out /path/packets.json
 ```
 

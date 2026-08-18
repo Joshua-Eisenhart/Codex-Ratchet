@@ -8,7 +8,7 @@ description: Separate authorized objective, non-objectives, forbidden actions, i
 Couples to `evidence-sufficiency`. This skill names the fence. That skill checks worn vs legal ceiling.
 
 ```text
-python3 ~/.codex/skills/specification-boundary/scripts/check_boundary.py \
+python3 $CB_SKILLS_ROOT/specification-boundary/scripts/check_boundary.py \
   --spec /path/spec.json
 ```
 

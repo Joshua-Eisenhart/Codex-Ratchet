@@ -8,7 +8,7 @@ description: Name who benefits and who pays. Prevents paperclip optimization by 
 Required lists: `beneficiaries`, `bearers`, `absent`.
 
 ```text
-python3 ~/.codex/skills/stakeholder-externality-mapper/scripts/map_externalities.py \
+python3 $CB_SKILLS_ROOT/stakeholder-externality-mapper/scripts/map_externalities.py \
   --map /path/map.json
 ```
 

@@ -10,7 +10,7 @@ Do not start a loop without tripwires.
 Required fields: `failure_modes`, `tripwires`, `stop_or_demote`.
 
 ```text
-python3 ~/.codex/skills/premortem-kill-criteria/scripts/check_kill_criteria.py \
+python3 $CB_SKILLS_ROOT/premortem-kill-criteria/scripts/check_kill_criteria.py \
   --plan /path/plan.json
 ```
 

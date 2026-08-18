@@ -21,5 +21,54 @@
     "cb-strategy-wave",
     "cb-build-campaign-wave"
   ],
+  "runnable_cohort": [
+    {
+      "wave_id": "cb-maintenance-wave",
+      "definition": "skills/cb-maintenance-wave/wave.json",
+      "script": "skills/cb-maintenance-wave/scripts/run_maintenance_wave.py",
+      "script_sha256": "d5562cc49f9b9f52d69ce9d2ba411f5d26b172f5a37e92b19105fe835f37e3e2",
+      "definition_sha256": "b1763308a703d4bb675aa9fab5626df80e49ff8940a9e76a0c65588843a6ea68",
+      "expected_status": "READY",
+      "expected_returncode": 0,
+      "input_paths": [
+        "integrated_system/scripts",
+        "integrated_system/skills",
+        "integrated_system/mmms/primary/mini",
+        "light_runtime/src",
+        "zip_agent",
+        "integrated_system/context/current"
+      ],
+      "claim_ceiling": "Bounded diagnostic and dry-run classification only; no mutation or campaign authority."
+    },
+    {
+      "wave_id": "cb-context-strategy-wave",
+      "definition": "skills/cb-context-strategy-wave/wave.json",
+      "script": "skills/cb-context-strategy-wave/scripts/run_context_strategy.py",
+      "script_sha256": "fe83632dda609c1190b9a07900f68c25127fa565203f7601fcf649b0bdbcbec0",
+      "definition_sha256": "d866e335c7e873e7cf0467c302d5a8d824a7def788f797d51ffe61b2956f805c",
+      "expected_status": "CONTEXT_SNAPSHOT_READY",
+      "expected_returncode": 0,
+      "input_paths": [
+        "integrated_system/context/current",
+        "integrated_system/context/full/prompt_plan_progress_corpus.jsonl",
+        "integrated_system/state",
+        "integrated_system/WHAT_IS_PROVEN.md"
+      ],
+      "claim_ceiling": "Context inventory and proposal-only MMM drafts; not pack admission; not Light geometry; not promotion."
+    },
+    {
+      "wave_id": "cb-exploration-wave",
+      "definition": "skills/cb-exploration-wave/wave.json",
+      "script": "skills/cb-exploration-wave/scripts/run_exploration.py",
+      "script_sha256": "23d1cead6273b9b63694af9568553286240ec500c1ecd98c790c2096e1975337",
+      "definition_sha256": "7e383c6f2d52bf1dc4fe3d9d6155e760507ed28d766631c35f034653aab31db8",
+      "expected_status": "ANTICHAIN_OPEN",
+      "expected_returncode": 0,
+      "input_paths": [
+        "integrated_system/fixtures/structured_open_bind_v1.json"
+      ],
+      "claim_ceiling": "Rival-reading harvest only; not a kill; not a quotient; not promotion."
+    }
+  ],
   "promotion_allowed": false
 }

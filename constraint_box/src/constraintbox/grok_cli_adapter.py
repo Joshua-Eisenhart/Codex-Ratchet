@@ -23,12 +23,16 @@ from constraintbox.hook_adapter import issue_dispatch_lease
 REQUEST_SCHEMA = "constraintbox.grok-cli-request.v1"
 RECEIPT_SCHEMA = "constraintbox.grok-cli-receipt.v1"
 AUTH_RECEIPT_SCHEMA = "constraintbox.grok-cli-auth-receipt.v1"
+MODEL_LIST_RECEIPT_SCHEMA = "constraintbox.grok-cli-model-list-receipt.v1"
 MAX_REQUEST_BYTES = 32_768
 MAX_PROMPT_BYTES = 1_048_576
 MAX_CAPTURE_BYTES = 8_388_608
 MAX_TURNS = 16
 SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z")
 SAFE_MODEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}\Z")
+# Grok's explicit allowlist uses these internal tool IDs.  The empty string
+# is meaningful: it disables default tool injection for a no-tool observation.
+GROK_READ_ONLY_TOOLS = frozenset({"read_file", "grep", "list_dir"})
 HIERARCHY_FIELDS = {"hierarchy_bound", "parent_id", "wave_id", "round", "depth"}
 
 
@@ -108,6 +112,7 @@ def _load_request(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         "cwd",
         "max_turns",
         "permission_mode",
+        "tools",
         "mmm_packs",
         "mmm_sha256",
     }
@@ -134,6 +139,20 @@ def _load_request(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         raise GrokCliAdapterError(f"max_turns must be in 1..{MAX_TURNS}")
     if request["permission_mode"] not in {"plan", "bypassPermissions"}:
         raise GrokCliAdapterError("permission_mode is invalid")
+    if "tools" not in request:
+        raise GrokCliAdapterError("tools is required")
+    tools = request["tools"]
+    if not isinstance(tools, str):
+        raise GrokCliAdapterError("tools is invalid")
+    if tools:
+        declared = tools.split(",")
+        if (
+            any(not item or item not in GROK_READ_ONLY_TOOLS for item in declared)
+            or len(declared) != len(set(declared))
+        ):
+            raise GrokCliAdapterError(
+                "tools must be empty or a comma-separated read-only allowlist"
+            )
     _hierarchy(request)
     prompt_path = Path(request["prompt_path"]).expanduser()
     if not prompt_path.is_absolute():
@@ -196,6 +215,87 @@ def _observed_models(raw: bytes) -> list[str]:
 
     visit(value)
     return sorted(found)
+
+
+def _available_models(raw: bytes) -> tuple[list[str], str | None]:
+    """Parse the CLI's model catalogue without inventing or aliasing IDs.
+
+    ``grok models`` currently emits human-readable text, but a future CLI may
+    emit JSON.  The parser accepts both bounded forms and returns only exact
+    IDs found in the child output.  It deliberately does not transform names
+    (in particular, no ``-build`` fallback).
+    """
+
+    text = raw.decode("utf-8", errors="replace")
+    found: set[str] = set()
+    default: str | None = None
+    try:
+        value = json.loads(raw)
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        value = None
+
+    def add(value: object) -> None:
+        if isinstance(value, str) and SAFE_MODEL.fullmatch(value):
+            found.add(value)
+
+    def visit(item: Any) -> None:
+        nonlocal default
+        if isinstance(item, dict):
+            for key, child in item.items():
+                if key in {"model", "model_id", "modelId", "id"}:
+                    add(child)
+                elif key in {"models", "available_models", "availableModels"}:
+                    if isinstance(child, list):
+                        for model in child:
+                            if isinstance(model, dict):
+                                add(model.get("id"))
+                                add(model.get("model"))
+                            else:
+                                add(model)
+                    else:
+                        visit(child)
+                elif key in {"default", "default_model", "defaultModel"}:
+                    if isinstance(child, str) and SAFE_MODEL.fullmatch(child):
+                        default = child
+                        found.add(child)
+                else:
+                    visit(child)
+        elif isinstance(item, list):
+            for child in item:
+                visit(child)
+
+    if value is not None:
+        visit(value)
+    else:
+        default_match = re.search(r"^\s*Default model:\s*(\S+)\s*$", text, re.MULTILINE)
+        if default_match and SAFE_MODEL.fullmatch(default_match.group(1)):
+            default = default_match.group(1)
+            found.add(default)
+        for match in re.finditer(
+            r"^\s*[*-]\s+(\S+)(?:\s+\([^\n]*\))?\s*$", text, re.MULTILINE
+        ):
+            candidate = match.group(1)
+            if SAFE_MODEL.fullmatch(candidate):
+                found.add(candidate)
+    return sorted(found), default
+
+
+def select_available_model(receipt: dict[str, Any], requested: str) -> str:
+    """Return ``requested`` only when discovery recorded that exact ID.
+
+    Selection is a run-data operation.  This helper never substitutes an
+    alias, strips a suffix, or chooses the default model on the caller's
+    behalf.
+    """
+
+    if not isinstance(requested, str) or SAFE_MODEL.fullmatch(requested) is None:
+        raise GrokCliAdapterError("model is invalid")
+    available = receipt.get("available_models")
+    if not isinstance(available, list):
+        raise GrokCliAdapterError("model catalogue is not available")
+    if requested not in available:
+        raise GrokCliAdapterError(f"requested model is not in discovered catalogue: {requested}")
+    return requested
 
 
 def _terminal_observation(raw: bytes) -> tuple[str | None, bytes]:
@@ -312,6 +412,92 @@ def authenticate(
     return receipt
 
 
+def discover_models(
+    runner_path: Path,
+    *,
+    requested_model: str | None = None,
+    timeout_seconds: float = 60.0,
+) -> dict[str, Any]:
+    """Discover the exact model IDs exposed by this authenticated CLI route.
+
+    This invokes ``grok models`` under the same revocable CB dispatch lease as
+    a model call.  It is a catalogue operation only: no prompt is sent and no
+    model is executed.  If ``requested_model`` is supplied, the receipt says
+    whether that exact ID was present; it never falls back to another ID.
+    """
+
+    if requested_model is not None and (
+        not isinstance(requested_model, str)
+        or SAFE_MODEL.fullmatch(requested_model) is None
+    ):
+        raise GrokCliAdapterError("model is invalid")
+    runner = _resolve_runner(str(runner_path))
+    argv = [str(runner), "models"]
+    started = time.monotonic()
+    request_id = f"grok-model-discovery-{os.getpid()}"
+    with issue_dispatch_lease(request_id) as (lease_env, lease):
+        child_env = os.environ.copy()
+        child_env.update(lease_env)
+        try:
+            completed = subprocess.run(
+                argv,
+                cwd=Path.cwd(),
+                env=child_env,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=timeout_seconds,
+                check=False,
+            )
+            stdout = completed.stdout[:MAX_CAPTURE_BYTES]
+            stderr = completed.stderr[:MAX_CAPTURE_BYTES]
+            returncode: int | None = completed.returncode
+        except subprocess.TimeoutExpired as exc:
+            stdout = (exc.stdout or b"")[:MAX_CAPTURE_BYTES]
+            stderr = (exc.stderr or b"")[:MAX_CAPTURE_BYTES]
+            returncode = None
+    available, default_model = _available_models(stdout)
+    if returncode is None:
+        disposition = "HOLD"
+        reason = "HOLD_GROK_MODEL_DISCOVERY_TIMEOUT"
+    elif returncode != 0:
+        disposition = "HOLD"
+        reason = "HOLD_GROK_MODEL_DISCOVERY_NONZERO"
+    elif not available:
+        disposition = "HOLD"
+        reason = "HOLD_GROK_MODEL_DISCOVERY_EMPTY"
+    elif requested_model is not None and requested_model not in available:
+        disposition = "HOLD"
+        reason = "HOLD_GROK_MODEL_NOT_AVAILABLE"
+    else:
+        disposition = "MODELS_DISCOVERED"
+        reason = "GROK_MODEL_CATALOGUE_DISCOVERED"
+    receipt = {
+        "schema": MODEL_LIST_RECEIPT_SCHEMA,
+        "operation": "grok_cli_discover_models",
+        "request_id": request_id,
+        "runner_resolved_path": str(runner),
+        "runner_sha256": _sha256(runner.read_bytes()),
+        "argv": argv,
+        "model_requested": requested_model,
+        "available_models": available,
+        "default_model": default_model,
+        "model_available": requested_model is not None and requested_model in available,
+        "dispatch_lease": {**lease, "revoked": True},
+        "returncode": returncode,
+        "stdout_sha256": _sha256(stdout),
+        "stderr_sha256": _sha256(stderr),
+        "stderr": stderr.decode("utf-8", errors="replace"),
+        "duration_ms": int((time.monotonic() - started) * 1000),
+        "disposition": disposition,
+        "reason_code": reason,
+        "claim_ceiling": "exact provider model catalogue only; no model call or semantic claim",
+        "promotion_allowed": False,
+    }
+    receipt["receipt_sha256"] = _sha256(_canonical(receipt))
+    return receipt
+
+
 def run(
     request_path: Path,
     *,
@@ -337,6 +523,8 @@ def run(
         "--no-subagents",
         "--no-memory",
         "--disable-web-search",
+        "--tools",
+        request["tools"],
         "--permission-mode",
         request["permission_mode"],
         "--verbatim",
@@ -396,6 +584,7 @@ def run(
         "result_text_nonempty": bool(result_text.strip()),
         "semantic_completion_confirmed": semantic_completion_confirmed,
         "max_turns": request["max_turns"],
+        "tools_requested": request["tools"],
         "permission_mode_requested": request["permission_mode"],
         "dispatch_lease": {**lease, "revoked": True},
         "argv": argv,
@@ -421,15 +610,30 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--request", type=Path)
     parser.add_argument("--response", type=Path)
     parser.add_argument("--receipt", required=True, type=Path)
+    parser.add_argument(
+        "--list-models",
+        action="store_true",
+        help="discover exact model IDs via the runner's `models` command; no model call",
+    )
+    parser.add_argument(
+        "--select-model",
+        help="with --list-models, require this exact discovered model ID",
+    )
     parser.add_argument("--login", choices=("oauth", "device-code"))
     parser.add_argument("--runner", type=Path)
     parser.add_argument("--timeout", type=float, default=600.0)
     args = parser.parse_args(argv)
     try:
         if args.login is not None:
-            if args.runner is None or args.request is not None or args.response is not None:
+            if (
+                args.runner is None
+                or args.request is not None
+                or args.response is not None
+                or args.list_models
+                or args.select_model is not None
+            ):
                 raise GrokCliAdapterError(
-                    "login requires --runner and forbids --request/--response"
+                    "login requires --runner and forbids --request/--response/model discovery"
                 )
             receipt = authenticate(
                 args.runner,
@@ -437,10 +641,26 @@ def main(argv: list[str] | None = None) -> int:
                 timeout_seconds=args.timeout,
             )
             exit_code = 0 if receipt["disposition"] == "AUTHENTICATED" else 5
-        else:
-            if args.request is None or args.response is None or args.runner is not None:
+        elif args.list_models:
+            if args.runner is None or args.request is not None or args.response is not None:
                 raise GrokCliAdapterError(
-                    "model call requires --request and --response and forbids --runner"
+                    "model discovery requires --runner and forbids --request/--response"
+                )
+            receipt = discover_models(
+                args.runner,
+                requested_model=args.select_model,
+                timeout_seconds=args.timeout,
+            )
+            exit_code = 0 if receipt["disposition"] == "MODELS_DISCOVERED" else 5
+        else:
+            if (
+                args.request is None
+                or args.response is None
+                or args.runner is not None
+                or args.select_model is not None
+            ):
+                raise GrokCliAdapterError(
+                    "model call requires --request and --response and forbids --runner/model selection"
                 )
             receipt = run(
                 args.request,

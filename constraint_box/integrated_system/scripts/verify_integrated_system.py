@@ -39,6 +39,48 @@ SCHEMA = "constraintbox.integrated-system-verification.v1"
 MAX_CAPTURE_BYTES = 8_192
 DEFAULT_TIMEOUT_SECONDS = 300.0
 
+# The verifier is deliberately model-free.  Provider adapter unit tests use
+# fixture runners, but they are not part of the default release verification
+# route: an accidental provider binary in PATH must never become a side effect
+# of ``cb verify``.
+PROVIDER_TEST_PATHS = (
+    "constraint_box/tests/test_provider_call_receipt.py",
+    "constraint_box/tests/test_grok_cli_adapter.py",
+    "constraint_box/tests/test_claude_bridge_adapter.py",
+    "constraint_box/tests/test_codex_cli_adapter.py",
+)
+
+BRIDGE_CHILD_NAMES = (
+    "seed",
+    "etf_exact",
+    "etf_dual",
+    "maintenance",
+    "context",
+    "exploration",
+    "dualsolve",
+)
+
+# These are receipt fields that identify retained files/directories.  Runtime
+# identity fields such as ``interpreter`` and ``realpath`` are intentionally
+# excluded: an external JAX interpreter is a declared boundary, not a retained
+# product artifact.
+_RETAINED_PATH_KEYS = frozenset(
+    {
+        "path",
+        "root",
+        "cwd",
+        "declared_path",
+        "resolved_path",
+        "relative_path",
+        "project_mmm_draft",
+        "user_mmm_draft",
+        "output_path",
+        "input_path",
+        "source_path",
+        "fixture_path",
+    }
+)
+
 
 def canonical_json_bytes(value: Any) -> bytes:
     return json.dumps(
@@ -238,13 +280,24 @@ def make_env(box_root: Path, light_python: Path, jax_python: Path | None) -> dic
     controller = system_root / "runtime" / "controller_src"
     zip_runtime = system_root / "runtime" / "zip_agent_src"
     if controller.is_dir() and zip_runtime.is_dir():
-        roots = [repo_root, controller, zip_runtime]
+        # The merged controller and ZIP Agent roots are the only runtime
+        # authorities in an extracted product.  Do not put an ambient
+        # checkout root ahead of them: its ``src/constraintbox`` can shadow
+        # the source closure the bundle just attested.
+        roots = [controller, zip_runtime]
+        controller_source = controller
     else:
+        # A source checkout has no generated merged tree.  Prefer the
+        # selected Light overlay, then ZIP Agent, and use the historical root
+        # only as a last-resort compatibility fallback for source-only tests.
+        controller_source = box_root / "light_runtime" / "src"
+        if not controller_source.is_dir():
+            controller_source = box_root / "src"
         roots = [
-            repo_root,
-            box_root / "src",
-            box_root / "light_runtime" / "src",
+            controller_source,
             box_root / "zip_agent" / "src",
+            box_root / "src",
+            repo_root,
         ]
     env = os.environ.copy()
     env.update(
@@ -255,7 +308,7 @@ def make_env(box_root: Path, light_python: Path, jax_python: Path | None) -> dic
             "CB_LIGHT_PYTHON": str(light_python),
             "CB_LIGHT_ROOT": str(box_root),
             "CB_LIGHT_INTERPRETER": str(light_python),
-            "CB_CONTROLLER_SRC": str(controller if controller.is_dir() else box_root / "src"),
+            "CB_CONTROLLER_SRC": str(controller_source),
             "CB_SKILLS_ROOT": str(box_root / "integrated_system" / "skills"),
             "CB_MMM_ROOT": str(box_root / "integrated_system" / "mmms" / "primary"),
             "CB_MMM_PACKS_ROOT": str(box_root / "mmm" / "packs"),
@@ -350,6 +403,53 @@ def check_context(system_root: Path) -> dict[str, Any]:
     }
 
 
+def check_jax_profile(system_root: Path) -> dict[str, Any]:
+    """Attest the shipped, external JAX profile without installing or probing it."""
+
+    profile = system_root / "runtime_profiles" / "jax_qit"
+    required = (
+        "README.md",
+        "STACK_MANIFEST.template.json",
+        "bootstrap_jax_qit.py",
+        "probe_runtime.py",
+        "requirements.in",
+        "requirements.lock",
+    )
+    errors = [
+        f"FAIL_JAX_PROFILE_MISSING:{name}"
+        for name in required
+        if not (profile / name).is_file()
+    ]
+    template: dict[str, Any] = {}
+    template_path = profile / "STACK_MANIFEST.template.json"
+    if template_path.is_file():
+        try:
+            template = read_json(template_path)
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append(f"FAIL_JAX_PROFILE_TEMPLATE:{type(exc).__name__}")
+    if template:
+        if template.get("schema") != "constraintbox.jax-qit-stack-manifest.v1":
+            errors.append("FAIL_JAX_PROFILE_TEMPLATE_SCHEMA")
+        if template.get("profile") != "jax_qit":
+            errors.append("FAIL_JAX_PROFILE_TEMPLATE_PROFILE")
+        if template.get("promotion_allowed") is not False:
+            errors.append("FAIL_JAX_PROFILE_PROMOTION_FLAG")
+        boundaries = template.get("boundaries")
+        if not isinstance(boundaries, dict) or boundaries.get("cb_light_runtime") is not False:
+            errors.append("FAIL_JAX_PROFILE_LIGHT_BOUNDARY")
+        if not isinstance(boundaries, dict) or boundaries.get("project_source_installed") is not False:
+            errors.append("FAIL_JAX_PROFILE_PROJECT_BOUNDARY")
+    return {
+        "status": "PASS" if not errors else "FAIL",
+        "reason_codes": errors,
+        "profile": relative_or_absolute(profile, system_root),
+        "requirements_sha256": sha256_file(profile / "requirements.in") if (profile / "requirements.in").is_file() else None,
+        "lock_sha256": sha256_file(profile / "requirements.lock") if (profile / "requirements.lock").is_file() else None,
+        "runtime_probe_is_live": False,
+        "promotion_allowed": False,
+    }
+
+
 def check_skill_estate(system_root: Path) -> dict[str, Any]:
     skills_root = system_root / "skills"
     errors: list[str] = []
@@ -362,6 +462,7 @@ def check_skill_estate(system_root: Path) -> dict[str, Any]:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return {"status": "FAIL", "reason_codes": ["FAIL_ACTIVE_WAVE_MANIFEST", f"{type(exc).__name__}:{exc}"]}
     definitions = list(active.get("wave_definitions") or [])
+    runnable = list(active.get("runnable_cohort") or [])
     zip_definition = active.get("zip_wave_definition")
     if not definitions or not isinstance(zip_definition, str):
         errors.append("FAIL_ACTIVE_WAVE_MANIFEST_SHAPE")
@@ -387,7 +488,12 @@ def check_skill_estate(system_root: Path) -> dict[str, Any]:
         "reason_codes": errors,
         "manifest_sha256": sha256_file(manifest) if manifest.is_file() else None,
         "active_manifest_sha256": sha256_file(active_path) if active_path.is_file() else None,
-        "active_wave_count": len(definitions),
+        "active_wave_count": len(runnable),
+        "runnable_wave_count": len(runnable),
+        "runnable_wave_ids": [
+            row.get("wave_id") for row in runnable if isinstance(row, dict)
+        ],
+        "wave_definition_count": len(definitions),
         "zip_wave_definition": zip_definition,
         "script_backed_without_wave_definition": active.get("script_backed_without_wave_definition", []),
         "authored_specs_not_active": active.get("authored_specs_not_active", []),
@@ -406,8 +512,6 @@ def check_retained_artifacts(system_root: Path) -> dict[str, Any]:
         system_root / "context" / "current" / "CURRENT_PLAN.md",
         system_root / "context" / "current" / "FAILURE_MEMORY.md",
         system_root / "state" / "GENESIS.json",
-        system_root / "runs" / "LIGHT_JAX_WAVE_REPLAY.json",
-        system_root / "runs" / "STRUCTURED_OPEN_BIND_CROSSCHECK.json",
     ]
     missing = [relative_or_absolute(path, system_root) for path in required if not path.is_file()]
     errors.extend(f"FAIL_REQUIRED_ARTIFACT_MISSING:{path}" for path in missing)
@@ -449,6 +553,83 @@ def _safe_scoped_path(
     if resolved != root_resolved and root_resolved not in resolved.parents:
         return None, f"{reason_prefix}_PATH_SYMLINK_ESCAPE"
     return candidate, None
+
+
+def _retained_path_findings(
+    value: object,
+    *,
+    product_root: Path,
+    location: str = "",
+) -> list[dict[str, str]]:
+    """Find retained receipt path fields that leave the product root.
+
+    A retained receipt may be copied into a fresh extraction.  Absolute paths
+    are therefore allowed only when they still resolve below the product root
+    being verified; paths into an old checkout, a home directory, or a
+    temporary worktree are rejected.  Provider/runtime identity fields are not
+    inspected here because they intentionally identify external interpreters.
+    """
+
+    findings: list[dict[str, str]] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_location = f"{location}.{key}" if location else str(key)
+            if str(key).lower() in _RETAINED_PATH_KEYS:
+                if isinstance(child, str):
+                    candidate = Path(child).expanduser()
+                    if not candidate.is_absolute():
+                        candidate = product_root / candidate
+                    try:
+                        resolved = candidate.resolve(strict=False)
+                        product = product_root.resolve(strict=True)
+                        resolved.relative_to(product)
+                    except (OSError, ValueError):
+                        findings.append(
+                            {
+                                "location": child_location,
+                                "value": child,
+                                "reason": "OUTSIDE_PRODUCT_ROOT",
+                            }
+                        )
+                # Some receipt fields are semantic paths (for example a
+                # finite state path ``["z_left", "a"]``), not filesystem
+                # paths.  Recurse into mappings/lists, but do not mistake
+                # those sequences for retained file references.
+            findings.extend(
+                _retained_path_findings(
+                    child, product_root=product_root, location=child_location
+                )
+            )
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            findings.extend(
+                _retained_path_findings(
+                    child,
+                    product_root=product_root,
+                    location=f"{location}[{index}]" if location else f"[{index}]",
+                )
+            )
+    return findings
+
+
+def _child_file_path_findings(
+    bindings: object, *, run_root: Path
+) -> list[str]:
+    """Validate the relative keys of a receipt's child-file hash registry."""
+
+    if not isinstance(bindings, dict):
+        return []
+    children = bindings.get("child_file_sha256")
+    if not isinstance(children, dict):
+        return []
+    errors: list[str] = []
+    for relative in children:
+        path, reason = _safe_scoped_path(
+            relative, run_root, reason_prefix="FAIL_BRIDGE_CHILD_FILE"
+        )
+        if path is None:
+            errors.append(f"{reason}:{relative}")
+    return errors
 
 
 _CHECKSUM_LINE = re.compile(r"^([0-9a-fA-F]{64})[ \t][ *](.+)$")
@@ -607,6 +788,25 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
     if manifest.get("payload_bytes") != payload_bytes_total:
         errors.append("FAIL_BUNDLE_MANIFEST_PAYLOAD_BYTES_MISMATCH")
 
+    # The source-closure digest binds the complete selected payload table.  It
+    # is independent of the ZIP bytes and therefore survives extraction while
+    # still detecting a missing, added, or changed source row.
+    closure_rows = [
+        {
+            "path": row.get("path"),
+            "bytes": row.get("bytes"),
+            "sha256": row.get("sha256"),
+            "mode": row.get("mode"),
+        }
+        for row in rows
+        if isinstance(row, dict)
+    ]
+    source_closure_sha256 = sha256_bytes(canonical_json_bytes(closure_rows))
+    if manifest.get("source_closure_sha256") != source_closure_sha256:
+        errors.append("FAIL_BUNDLE_SOURCE_CLOSURE_DIGEST_MISMATCH")
+    if metadata.get("source_closure_sha256") != source_closure_sha256:
+        errors.append("FAIL_BUNDLE_METADATA_SOURCE_CLOSURE_MISMATCH")
+
     # The envelope documents themselves must also be covered by SHA256SUMS.
     expected_paths.add("SYSTEM_MANIFEST.json")
     actual_digest_by_path["SYSTEM_MANIFEST.json"] = manifest_sha256
@@ -688,6 +888,7 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
         "manifest_sha256": manifest_sha256,
         "manifest_file_count": len(rows),
         "manifest_payload_bytes": payload_bytes_total,
+        "source_closure_sha256": source_closure_sha256,
         "checksum_entry_count": len(found_checksum_paths),
         "promotion_allowed": False,
     }
@@ -715,6 +916,12 @@ def structured_projection(value: dict[str, Any]) -> dict[str, Any]:
 def check_structured_receipt(system_root: Path) -> dict[str, Any]:
     runs = system_root / "runs"
     crosscheck_path = runs / "STRUCTURED_OPEN_BIND_CROSSCHECK.json"
+    if not crosscheck_path.is_file():
+        return {
+            "status": "NOT_APPLICABLE",
+            "reason_codes": ["NOT_APPLICABLE_NO_RETAINED_STRUCTURED_RECEIPT"],
+            "promotion_allowed": False,
+        }
     errors: list[str] = []
     try:
         crosscheck = read_json(crosscheck_path)
@@ -781,7 +988,14 @@ def check_structured_receipt(system_root: Path) -> dict[str, Any]:
 
 def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
     replay_path = system_root / "runs" / "LIGHT_JAX_WAVE_REPLAY.json"
+    if not replay_path.is_file():
+        return {
+            "status": "NOT_APPLICABLE",
+            "reason_codes": ["NOT_APPLICABLE_NO_RETAINED_BRIDGE_RECEIPT"],
+            "promotion_allowed": False,
+        }
     errors: list[str] = []
+    stale_reasons: list[str] = []
     try:
         replay = read_json(replay_path)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
@@ -835,26 +1049,54 @@ def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
             errors.append(f"FAIL_BRIDGE_RECEIPT_DIGEST:{path.name}")
         if receipt.get("status") != "PASS" or receipt.get("promotion_allowed") is not False:
             errors.append(f"FAIL_BRIDGE_RECEIPT_STATUS:{path.name}")
+        errors.extend(_child_file_path_findings(receipt.get("bindings"), run_root=path.parent))
+        for finding in _retained_path_findings(
+            receipt, product_root=box_root, location=path.name
+        ):
+            errors.append(
+                "FAIL_BRIDGE_RETAINED_PATH_OUTSIDE_PRODUCT:"
+                f"{finding['location']}:{finding['value']}"
+            )
+
+        children = receipt.get("children")
+        if not isinstance(children, dict):
+            errors.append(f"FAIL_BRIDGE_CHILDREN_MISSING:{path.name}")
+        else:
+            # A child return code is part of the authority boundary.  A
+            # forged PASS body with a nonzero subprocess code is never a
+            # retained PASS receipt.
+            for child_name in BRIDGE_CHILD_NAMES:
+                child = children.get(child_name)
+                if not isinstance(child, dict):
+                    errors.append(f"FAIL_BRIDGE_CHILD_MISSING:{path.name}:{child_name}")
+                    continue
+                if child.get("returncode") != 0:
+                    errors.append(
+                        f"FAIL_BRIDGE_CHILD_RETURNCODE:{path.name}:{child_name}"
+                    )
         bindings = receipt.get("bindings")
         if not isinstance(bindings, dict):
-            errors.append(f"FAIL_BRIDGE_SOURCE_BINDINGS_MISSING:{path.name}")
+            stale_reasons.append(f"STALE_BRIDGE_SOURCE_BINDINGS_MISSING:{path.name}")
         else:
             for name, current_sha in current_bindings.items():
                 if current_sha is None:
-                    errors.append(f"FAIL_BRIDGE_CURRENT_SOURCE_MISSING:{name}")
+                    stale_reasons.append(f"STALE_BRIDGE_CURRENT_SOURCE_MISSING:{name}")
                 elif bindings.get(name) != current_sha:
-                    errors.append(f"FAIL_BRIDGE_SOURCE_DRIFT:{path.name}:{name}")
+                    stale_reasons.append(f"STALE_BRIDGE_SOURCE_BINDING:{path.name}:{name}")
     if len(receipts) >= 2:
         projections = [receipt.get("replay_projection") for receipt in receipts]
         if projections[0] != projections[1]:
             errors.append("FAIL_BRIDGE_SEMANTIC_REPLAY_MISMATCH")
+    stale_reasons = list(dict.fromkeys(stale_reasons))
+    status = "FAIL" if errors else ("STALE" if stale_reasons else "PASS")
     return {
-        "status": "PASS" if not errors else "FAIL",
-        "reason_codes": errors,
+        "status": status,
+        "reason_codes": [*errors, *stale_reasons],
         "retained_run_count": len(receipts),
         "semantic_replay_identical": replay.get("semantic_replay_identical"),
         "replay_projection_sha256": [row.get("replay_projection_sha256") for row in rows],
         "current_source_bindings": current_bindings,
+        "stale_reason_codes": stale_reasons,
         "promotion_allowed": False,
     }
 
@@ -1092,8 +1334,8 @@ def run_contained_overlay(
     return {"status": record.get("status"), "reason_codes": [] if record.get("status") == "PASS" else ["FAIL_CONTAINED_OVERLAY_VERIFY"], "root": str(root), "promotion_allowed": False}
 
 
-def test_groups() -> dict[str, list[str]]:
-    return {
+def test_groups(*, include_provider_adapters: bool = False) -> dict[str, list[str]]:
+    groups = {
         "light_core": [
             "constraint_box/tests/test_cb_light_system.py",
             "constraint_box/tests/test_cb_light_core_probes.py",
@@ -1112,12 +1354,6 @@ def test_groups() -> dict[str, list[str]]:
             "constraint_box/tests/test_hook_currentness_authority.py",
             "constraint_box/tests/test_hook_lifecycle.py",
         ],
-        "provider_adapters": [
-            "constraint_box/tests/test_provider_call_receipt.py",
-            "constraint_box/tests/test_grok_cli_adapter.py",
-            "constraint_box/tests/test_claude_bridge_adapter.py",
-            "constraint_box/tests/test_codex_cli_adapter.py",
-        ],
         "zip_agent": ["constraint_box/zip_agent/tests"],
         "curated_skills": [
             "constraint_box/integrated_system/skills",
@@ -1126,6 +1362,9 @@ def test_groups() -> dict[str, list[str]]:
         ],
         "integrated_system": ["constraint_box/integrated_system/tests"],
     }
+    if include_provider_adapters:
+        groups["provider_adapters"] = list(PROVIDER_TEST_PATHS)
+    return groups
 
 
 def run_test_groups(
@@ -1135,9 +1374,43 @@ def run_test_groups(
     env: dict[str, str],
     timeout_seconds: float,
     records: list[dict[str, Any]],
+    include_provider_adapters: bool = False,
 ) -> dict[str, dict[str, Any]]:
     results: dict[str, dict[str, Any]] = {}
-    for name, paths in test_groups().items():
+    box_root = Path(env["CB_BOX_ROOT"])
+    system_root = box_root / "integrated_system"
+    merged_controller = system_root / "runtime" / "controller_src"
+    merged_zip = system_root / "runtime" / "zip_agent_src"
+    light_source = box_root / "light_runtime" / "src"
+    root_source = box_root / "src"
+    zip_source = box_root / "zip_agent" / "src"
+
+    def group_env(name: str) -> dict[str, str]:
+        selected = dict(env)
+        if name == "light_core":
+            # ``-I`` below intentionally verifies the installed contained
+            # Light wheel. Do not let a source overlay mask stale installation.
+            selected.pop("PYTHONPATH", None)
+            selected["CB_CONTROLLER_SRC"] = str(
+                light_source if light_source.is_dir() else merged_controller
+            )
+        elif name in {"finite_kernel", "hooks", "provider_adapters"}:
+            controller = (
+                merged_controller if merged_controller.is_dir() else root_source
+            )
+            selected["PYTHONPATH"] = str(controller)
+            selected["CB_CONTROLLER_SRC"] = str(controller)
+        elif name == "zip_agent":
+            # The ZIP core and model-free operations must import standalone.
+            # Provider tests create their own declared controller fixtures.
+            standalone = merged_zip if merged_zip.is_dir() else zip_source
+            selected["PYTHONPATH"] = str(standalone)
+            selected.pop("CB_CONTROLLER_SRC", None)
+        return selected
+
+    for name, paths in test_groups(
+        include_provider_adapters=include_provider_adapters
+    ).items():
         missing = [path for path in paths if not path.startswith("--") and not (repo_root / path).exists()]
         if missing:
             record = _missing_record(f"pytest_{name}", f"FAIL_TEST_PATH_MISSING:{','.join(missing)}")
@@ -1148,7 +1421,14 @@ def run_test_groups(
         isolation = ["-I"] if name == "light_core" else []
         argv = [str(light_python), *isolation, "-m", "pytest", "-q", "-p", "no:cacheprovider", *[path for path in paths if not path.startswith("--")]]
         argv.extend(path for path in paths if path.startswith("--"))
-        record = add_command(records, f"pytest_{name}", argv, cwd=repo_root, env=env, timeout_seconds=timeout_seconds)
+        record = add_command(
+            records,
+            f"pytest_{name}",
+            argv,
+            cwd=repo_root,
+            env=group_env(name),
+            timeout_seconds=timeout_seconds,
+        )
         results[name] = {
             "status": record.get("status"),
             "reason_codes": [] if record.get("status") == "PASS" else [f"FAIL_TEST_GROUP:{name}"],
@@ -1167,25 +1447,67 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout-seconds", type=float, default=DEFAULT_TIMEOUT_SECONDS)
     parser.add_argument("--require-jax", action="store_true")
     parser.add_argument("--skip-tests", action="store_true")
+    parser.add_argument(
+        "--include-provider-adapters",
+        action="store_true",
+        help="opt in to fixture-only provider adapter unit tests; never launches a provider",
+    )
+    parser.add_argument(
+        "--include-retained-evidence",
+        action="store_true",
+        help="audit historical local run receipts; excluded from the release ZIP and default verdict",
+    )
     return parser
 
 
 def verify(args: argparse.Namespace) -> dict[str, Any]:
     started_at = utc_now()
+    include_provider_adapters = bool(getattr(args, "include_provider_adapters", False))
+    include_retained_evidence = bool(
+        getattr(args, "include_retained_evidence", False)
+    )
     box_root = args.box_root.expanduser().absolute()
     system_root = box_root / "integrated_system"
     repo_root = box_root.parent
     light = find_interpreter(str(args.light_python) if args.light_python else os.environ.get("CB_LIGHT_PYTHON"), box_root / ".venv" / "bin" / "python")
-    jax = find_interpreter(str(args.jax_python) if args.jax_python else os.environ.get("CB_JAX_PYTHON"), Path.home() / ".local/share/sim-stack/bin/python3")
+    generic_jax_root = Path(
+        os.environ.get(
+            "CB_JAX_QIT_ROOT",
+            str(Path.home() / ".local" / "share" / "jax-qit-stack"),
+        )
+    )
+    jax = find_interpreter(
+        str(args.jax_python) if args.jax_python else os.environ.get("CB_JAX_PYTHON"),
+        generic_jax_root / "bin" / "python",
+    )
     env = make_env(box_root, light or Path(args.light_python or box_root / ".venv/bin/python"), jax)
     records: list[dict[str, Any]] = []
     light_jax_separation_checked = False
+    retained_not_requested = {
+        "status": "NOT_APPLICABLE",
+        "reason_codes": ["RETAINED_EVIDENCE_NOT_REQUESTED"],
+        "detail": "generated local runs are excluded from the release payload",
+        "promotion_allowed": False,
+    }
     checks: dict[str, Any] = {
         "context": check_context(system_root),
+        "jax_profile": check_jax_profile(system_root),
         "skill_estate": check_skill_estate(system_root),
-        "retained_artifacts": check_retained_artifacts(system_root),
-        "structured_retained": check_structured_receipt(system_root),
-        "bridge_retained": check_bridge_receipt(system_root),
+        "retained_artifacts": (
+            check_retained_artifacts(system_root)
+            if include_retained_evidence
+            else dict(retained_not_requested)
+        ),
+        "structured_retained": (
+            check_structured_receipt(system_root)
+            if include_retained_evidence
+            else dict(retained_not_requested)
+        ),
+        "bridge_retained": (
+            check_bridge_receipt(system_root)
+            if include_retained_evidence
+            else dict(retained_not_requested)
+        ),
         "bundle_envelope": check_bundle_envelope(box_root),
     }
     if light is None:
@@ -1209,13 +1531,31 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             Path(seed_output.name).unlink()
         except OSError:
             pass
-        with tempfile.TemporaryDirectory(prefix="cb-integrated-verify-") as temp_name:
+        # Bridge children emit path-bearing receipts.  Keep the temporary run
+        # below the product root so those paths remain portable and auditable;
+        # the builder excludes this generated tree from release ZIPs.
+        verification_runs = system_root / "runs"
+        verification_runs.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(
+            prefix=".verify-", dir=verification_runs
+        ) as temp_name:
             temp_root = Path(temp_name)
             checks["zip_demo"] = run_zip_demo(light_python=light, repo_root=repo_root, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "zip")
             checks["structured_live"] = run_structured_probe(box_root=box_root, system_root=system_root, light_python=light, jax_python=jax, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "structured")
             checks["bridge_live"] = run_bridge_pair(box_root=box_root, system_root=system_root, light_python=light, jax_python=jax, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "bridge")
             checks["contained_overlay"] = run_contained_overlay(box_root=box_root, light_python=light, env=env, timeout_seconds=args.timeout_seconds, records=records, supplied_root=args.contained_root)
-        test_results = {} if args.skip_tests else run_test_groups(light_python=light, repo_root=repo_root, env=env, timeout_seconds=args.timeout_seconds, records=records)
+        test_results = (
+            {}
+            if args.skip_tests
+            else run_test_groups(
+                light_python=light,
+                repo_root=repo_root,
+                env=env,
+                timeout_seconds=args.timeout_seconds,
+                records=records,
+                include_provider_adapters=include_provider_adapters,
+            )
+        )
         checks["tests"] = {"status": "PASS" if all(row.get("status") == "PASS" for row in test_results.values()) else "FAIL", "groups": test_results, "skipped": args.skip_tests}
         if args.skip_tests:
             checks["tests"]["status"] = "HOLD"
@@ -1261,7 +1601,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             statuses.extend(str(row.get("status")) for row in check["groups"].values())
     statuses.extend(command_statuses(records))
     failures = [status for status in statuses if status == "FAIL"]
-    holds = [status for status in statuses if status in {"HOLD", "SKIP"}]
+    holds = [status for status in statuses if status in {"HOLD", "SKIP", "STALE"}]
     if failures:
         status = "FAIL"
     elif holds or (jax is None and not args.require_jax):
@@ -1290,6 +1630,10 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "boundaries": {
             "models_launched": False,
             "providers_launched": False,
+            "provider_adapter_tests_run": bool(
+                include_provider_adapters and not args.skip_tests
+            ),
+            "retained_evidence_checked": include_retained_evidence,
             "light_contains_jax": False,
             "heavy_admitted": False,
             "wave_promotion": False,

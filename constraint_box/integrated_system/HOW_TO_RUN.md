@@ -3,7 +3,8 @@
 ## Requirements
 
 - macOS with Python 3.13 for the current tested Light lock;
-- an existing JAX interpreter for the optional dual/JAX checks;
+- network access for a first JAX/QIT profile install, or an existing exact-lock
+  runtime that can pass explicit adoption;
 - no provider credential is required for the deterministic verification path.
 
 The current checked JAX capability profile is `>=0.10.0,<0.11.0`. A later
@@ -29,11 +30,22 @@ Create Light with the included lock (network access is required):
 python3 bin/cb bootstrap-light
 ```
 
-Then bind Light and an existing JAX interpreter:
+Install the included JAX/QIT profile (outside Light):
 
 ```text
+python3 bin/cb jax-profile plan
+python3 bin/cb jax-profile install
 export CB_LIGHT_PYTHON="$PWD/PROJECT/constraint_box/.venv/bin/python"
-export CB_JAX_PYTHON=/absolute/path/to/sim-stack/bin/python3
+export CB_JAX_QIT_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/jax-qit-stack"
+```
+
+To reuse a pre-existing clean runtime, explicitly adopt it. Adoption checks all
+112 exact lock pins and runs the 12-operation API probe before writing an
+attestation:
+
+```text
+python3 bin/cb jax-profile probe --adopt-existing \
+  --target /absolute/path/to/jax-qit-stack
 ```
 
 Then run:
@@ -45,8 +57,8 @@ python3 bin/cb light-seed
 python3 bin/cb verify --output runs/VERIFY.json
 ```
 
-`doctor` must show that Light cannot import JAX and that the declared JAX
-interpreter can.
+`doctor` must show that Light cannot import JAX, the declared JAX interpreter
+can, and its manifest is bound to the lock shipped in this extraction.
 
 ## Run the current finite operations
 
@@ -63,11 +75,36 @@ Light/JAX/wave crossing:
 python3 bin/cb jax-wave --output-dir runs/light-jax-wave
 ```
 
+Bounded Mini-Lev path-mass probe and exact replay:
+
+```text
+python3 bin/cb path-mass --require-jax --output runs/path-mass.json
+python3 bin/cb path-mass --require-jax --output runs/path-mass-replay.json \
+  --replay runs/path-mass.json
+```
+
+This operation measures a finite policy snapshot. It does not call its
+components basins or turn the retrieval comparisons into memory claims.
+
 ZIP Agent:
 
 ```text
 python3 bin/cb zip --help
 ```
+
+Contained model-free waves:
+
+```text
+python3 bin/cb wave list
+python3 bin/cb wave inspect cb-maintenance-wave
+python3 bin/cb wave run cb-maintenance-wave
+python3 bin/cb wave run cb-context-strategy-wave
+python3 bin/cb wave run cb-exploration-wave
+```
+
+Only those three are currently runnable. Failure, repair, strategy, Goodhart,
+object-loop, and management names remain inactive specs until their complete
+contained execution graphs run and emit verified receipts.
 
 The package's verifier builds and verifies a bounded demonstration ZIP rather
 than asking a model to claim that ZIP execution worked.
@@ -90,9 +127,11 @@ campaign rows.
 Start with:
 
 1. `context/current/OWNER_OBJECT.md`
-2. `context/current/CURRENT_PLAN.md`
-3. `context/current/FAILURE_MEMORY.md`
-4. `context/current/OPEN_HYPOTHESES.md`
+2. `context/current/PRODUCT_CONTRACT.md`
+3. `context/current/WORK_ASSESSMENT.md`
+4. `context/current/CURRENT_PLAN.md`
+5. `context/current/FAILURE_MEMORY.md`
+6. `context/current/OPEN_HYPOTHESES.md`
 
 Use `context/full/prompt_plan_progress_corpus.jsonl` when a compact projection
 does not contain the needed owner prompt, failure, or decision. The corpus is

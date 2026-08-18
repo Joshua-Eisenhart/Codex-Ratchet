@@ -115,6 +115,7 @@ def _load_request(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         "tools",
         "mmm_packs",
         "mmm_sha256",
+        "mmm_material_role",
     }
     if not isinstance(request, dict):
         raise GrokCliAdapterError("request fields differ")

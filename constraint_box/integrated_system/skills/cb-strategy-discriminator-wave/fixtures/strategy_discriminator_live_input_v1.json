@@ -1,0 +1,196 @@
+{
+  "schema": "constraintbox.strategy-discriminator-wave-input.v1",
+  "wave_id": "cb-strategy-discriminator-wave-v1",
+  "operation": "compare_candidate_order_to_live_profile_order",
+  "target": "strategy-stage-order-v1",
+  "target_bytes": "Compare candidate stage bytes against the current CUMULATIVE_WAVE_SEQUENCE.json profile order.",
+  "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+  "candidate_order": [
+    "cb-maintenance-wave",
+    "cb-context-strategy-wave",
+    "cb-exploration-wave"
+  ],
+  "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+  "live_order": [
+    "cb-maintenance-wave",
+    "cb-context-strategy-wave",
+    "cb-premortem-wave",
+    "cb-repair-wave",
+    "cb-exploration-wave",
+    "verification-closeout"
+  ],
+  "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+  "profile": "light",
+  "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+  "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+  "retained_cumulative_receipt": {
+    "config_schema": "constraintbox.cumulative-wave-sequence.v1",
+    "schema": "constraintbox.cumulative-wave-run.v1",
+    "run_id": "cumulative-hardening-20260818-2",
+    "profile": "light",
+    "runtime": "CB_LIGHT",
+    "status": "LOCKED",
+    "reason_code": "LOCKED_STAGE",
+    "source_binding": {
+      "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+      "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+      "manifest_path": "skills/ACTIVE_WAVES.json",
+      "manifest_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77",
+      "valid": true
+    },
+    "source_binding_after": {
+      "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+      "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+      "manifest_path": "skills/ACTIVE_WAVES.json",
+      "manifest_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77",
+      "valid": true
+    },
+    "prefixes": [
+      {
+        "prefix_id": "prefix-1",
+        "rounds": [{"round": 2, "stages": [{"stage_id": "cb-maintenance-wave", "status": "PASS", "executed": true}]}],
+        "status": "PASS",
+        "stabilized": true,
+        "stage_ids": ["cb-maintenance-wave"]
+      },
+      {
+        "prefix_id": "prefix-2",
+        "rounds": [{"round": 2, "stages": [{"stage_id": "cb-maintenance-wave", "status": "PASS", "executed": true}, {"stage_id": "cb-context-strategy-wave", "status": "PASS", "executed": true}]}],
+        "status": "PASS",
+        "stabilized": true,
+        "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave"]
+      },
+      {
+        "prefix_id": "prefix-3",
+        "status": "LOCKED",
+        "stabilized": false,
+        "blocked_stage_id": "cb-premortem-wave",
+        "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave"],
+        "stage_records": [
+          {"stage_id": "cb-maintenance-wave", "status": "NOT_RUN", "reason_code": "PREFIX_STOPPED_AT_LOCKED_STAGE", "executed": false},
+          {"stage_id": "cb-context-strategy-wave", "status": "NOT_RUN", "reason_code": "PREFIX_STOPPED_AT_LOCKED_STAGE", "executed": false},
+          {"stage_id": "cb-premortem-wave", "status": "LOCKED", "reason_code": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE", "executed": false}
+        ]
+      }
+    ],
+    "promotion_allowed": false,
+    "selection_count": 6,
+    "receipt_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993"
+  },
+  "retained_cumulative_receipt_sha256": "7a39337bffb0f5211de5b317982938cf54bf0e089a7a4fdea6540a1a5279bfc7",
+  "retained_cumulative_receipt_self_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993",
+  "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+  "context_epoch": {
+    "schema": "constraintbox.context-epoch.v2",
+    "epoch_id": "epoch-00000002",
+    "epoch_sequence": 2,
+    "epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+    "parent": {"path": "constraint_box/integrated_system/state/epochs/epoch-00000001.json", "sha256": "9ffa4716f9f48c876e14e64966e00ff5405b0219ade919c01c18707fa8d7b8d8"},
+    "state": "CURRENT",
+    "claim_ceiling": "current context epoch binding only"
+  },
+  "context_epoch_sha256": "51fa498e229743b0a7b468944c2c77dd5ee8c12ff9d7d494640eb22876daa330",
+  "branch_frontier": {
+    "schema": "constraintbox.strategy-discriminator-branch-frontier.v1",
+    "frontier_id": "strategy-sequence-order-v1",
+    "branch_ids": ["candidate_order", "live_scheduler_order"],
+    "open_branch_ids": ["candidate_order", "live_scheduler_order"],
+    "entries": [
+      {"id": "candidate_order", "order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519"},
+      {"id": "live_scheduler_order", "order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802"}
+    ],
+    "state": "OPEN",
+    "claim_ceiling": "order comparison only",
+    "winner_selected": false,
+    "activation_allowed": false,
+    "promotion_allowed": false
+  },
+  "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+  "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f",
+  "child_inputs": {
+    "bind_survivors": {
+      "operation_id": "cb-strategy-discriminator-wave.bind_survivors.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "7a39337bffb0f5211de5b317982938cf54bf0e089a7a4fdea6540a1a5279bfc7",
+        "retained_cumulative_receipt_self_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "51fa498e229743b0a7b468944c2c77dd5ee8c12ff9d7d494640eb22876daa330",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": ["candidate_order", "live_profile_order"],
+        "disagreement": "candidate_order and live_profile_order are the two surviving readings to compare",
+        "probe": {"name": "bind-order-arrays", "finite": true, "cost": 1},
+        "cancelled": false
+      },
+      "cancel_requested": false
+    },
+    "name_exact_disagreement": {
+      "operation_id": "cb-strategy-discriminator-wave.name_exact_disagreement.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "7a39337bffb0f5211de5b317982938cf54bf0e089a7a4fdea6540a1a5279bfc7",
+        "retained_cumulative_receipt_self_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "51fa498e229743b0a7b468944c2c77dd5ee8c12ff9d7d494640eb22876daa330",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": ["candidate_order", "live_profile_order"],
+        "disagreement": "candidate_order differs from live_profile_order at an exact finite index or not",
+        "probe": {"name": "first-difference-index", "finite": true, "cost": 2},
+        "cancelled": false
+      },
+      "cancel_requested": false
+    },
+    "design_finite_observable": {
+      "operation_id": "cb-strategy-discriminator-wave.design_finite_observable.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "7a39337bffb0f5211de5b317982938cf54bf0e089a7a4fdea6540a1a5279bfc7",
+        "retained_cumulative_receipt_self_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "51fa498e229743b0a7b468944c2c77dd5ee8c12ff9d7d494640eb22876daa330",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": ["candidate_order", "live_profile_order"],
+        "disagreement": "an exact array and prefix comparison distinguishes MATCH_OBSERVED from HOLD_ORDER_MISMATCH",
+        "probe": {"name": "finite-prefix-compare", "finite": true, "cost": 3},
+        "cancelled": false
+      },
+      "cancel_requested": false
+    }
+  }
+}

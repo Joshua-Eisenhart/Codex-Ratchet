@@ -17,10 +17,10 @@ The default receipt is `RUNS/seed-check/SEED_CHECK.json`.
 For the remaining verbs you need a Python that already has pytest, pydantic,
 z3-solver, and cvc5. Do not use Homebrew or `/usr/bin` `python3` for those.
 
-On this machine:
+From the extracted box root:
 
 ```text
-export CB_PYTHON=/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python
+export CB_PYTHON=.venv/bin/python
 ```
 
 ```text

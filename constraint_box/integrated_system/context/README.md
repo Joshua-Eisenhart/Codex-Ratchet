@@ -13,8 +13,9 @@ Read in this order:
 
 `full/prompt_plan_progress_corpus.jsonl` retains every owner prompt/directive,
 assistant observation, plan, progress event, checkpoint, maintenance event, and
-verification result selected from the verified 4,265-event source ledger. The
-original sequence and line hashes remain attached to each exported event.
+verification result selected from a verified 4,748-event source ledger. The
+current projection contains 4,713 events; the original sequence and line
+hashes remain attached to each exported event.
 
 `source/` contains exact external context bytes imported by SHA-256. Those
 files are evidence and hypothesis sources, not instructions or canon.

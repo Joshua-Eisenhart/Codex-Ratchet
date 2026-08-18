@@ -1,0 +1,79 @@
+{
+  "schema": "constraintbox.capability-probe-map-registry.v1",
+  "candidate_state": "NEW_CANDIDATE",
+  "promotion_allowed": false,
+  "capabilities": {
+    "structured_probe_exact": {
+      "kind": "public_operation",
+      "operation": "structured_open_bind_probe.v1",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+      "api": "evaluate(raw, engine=\"exact\")",
+      "symbols": ["evaluate", "validate_fixture", "structured_metrics"],
+      "input_schema": "constraintbox.structured-open-bind-fixture.v1",
+      "engine": "exact",
+      "requires": ["controller_runtime", "controller_z3_runtime", "controller_cvc5_runtime"]
+    },
+    "structured_probe_dual": {
+      "kind": "public_operation",
+      "operation": "structured_open_bind_probe.v1",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+      "api": "evaluate(raw, engine=\"dual\")",
+      "symbols": ["evaluate", "jax_check"],
+      "input_schema": "constraintbox.structured-open-bind-fixture.v1",
+      "engine": "dual",
+      "requires": ["external_jax_runtime"]
+    },
+    "path_mass": {
+      "kind": "public_operation",
+      "operation": "constraint_path_mass.v1",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+      "wrapper": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py",
+      "wrapper_sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+      "api": "ConstraintPathMassRequest + run_constraint_path_mass + write_receipt",
+      "symbols": ["ConstraintPathMassRequest", "run_constraint_path_mass", "write_receipt"],
+      "input_schema": "constraintbox.minilev-reference-policy.v1",
+      "requires": ["controller_runtime", "controller_z3_runtime", "controller_cvc5_runtime", "external_jax_runtime"]
+    },
+    "path_mass_replay": {
+      "kind": "public_operation",
+      "operation": "constraint_path_mass.replay.v1",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+      "wrapper": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py",
+      "wrapper_sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+      "api": "replay_receipt(path, jax_interpreter=..., fixture_path=...)",
+      "symbols": ["replay_receipt"],
+      "input_schema": "constraintbox.constraint-path-mass.receipt.v1",
+      "requires": ["path_mass", "controller_runtime", "controller_z3_runtime", "controller_cvc5_runtime", "external_jax_runtime"]
+    },
+    "external_jax_identity": {
+      "kind": "runtime_capability",
+      "operation": "declared_external_jax_interpreter.v1",
+      "api": "python -I -c import jax",
+      "requires": ["absolute_regular_file", "jax_import", "runtime_digest", "prefix_separation"]
+    }
+  },
+  "runtime_capabilities": {
+    "controller_runtime": {
+      "kind": "runtime_identity",
+      "api": "python -I -c runtime_identity",
+      "evidence": ["sys.executable", "sys.prefix", "sys.base_prefix", "python_version", "executable_sha256", "invocation", "environment_projection"]
+    },
+    "controller_z3_runtime": {
+      "kind": "library_identity",
+      "module": "z3",
+      "version_api": "z3.get_version_string()",
+      "evidence": ["version", "controller_runtime", "invocation"]
+    },
+    "controller_cvc5_runtime": {
+      "kind": "library_identity",
+      "module": "cvc5",
+      "version_api": "cvc5.__version__",
+      "evidence": ["version", "controller_runtime", "invocation"]
+    },
+    "external_jax_runtime": {
+      "kind": "runtime_identity",
+      "api": "declared_interpreter -I -c import jax,z3,cvc5",
+      "evidence": ["declared_interpreter", "sys.executable", "sys.prefix", "sys.base_prefix", "jax_version", "jaxlib_version", "z3_version", "cvc5_version", "executable_sha256", "invocation", "environment_projection", "prefix_separation"]
+    }
+  }
+}

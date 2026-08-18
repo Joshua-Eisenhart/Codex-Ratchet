@@ -103,6 +103,7 @@ def _load(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         "cwd",
         "mmm_packs",
         "mmm_sha256",
+        "mmm_material_role",
     }
     if not isinstance(request, dict):
         raise CodexCliAdapterError("request fields differ")

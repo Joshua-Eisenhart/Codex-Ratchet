@@ -23,6 +23,7 @@ HIERARCHY_FIELDS = {"hierarchy_bound", "parent_id", "wave_id", "round", "depth"}
 MAX_REQUEST_BYTES = 32_768
 MAX_PROMPT_BYTES = 1_048_576
 MAX_CAPTURE_BYTES = 8_388_608
+MAX_MODEL_OBSERVED_ALLOWLIST = 32
 
 
 class ClaudeBridgeAdapterError(ValueError):
@@ -104,6 +105,8 @@ def _load(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         "tools",
         "mmm_packs",
         "mmm_sha256",
+        "mmm_material_role",
+        "model_observed_allowlist",
     }
     if not isinstance(request, dict):
         raise ClaudeBridgeAdapterError("request fields differ")
@@ -116,6 +119,8 @@ def _load(path: Path) -> tuple[dict[str, Any], bytes, bytes]:
         raise ClaudeBridgeAdapterError("request_id is invalid")
     if not isinstance(request["model"], str) or SAFE_MODEL.fullmatch(request["model"]) is None:
         raise ClaudeBridgeAdapterError("model is invalid")
+    if "model_observed_allowlist" in request:
+        _validate_model_observed_allowlist(request["model_observed_allowlist"])
     if request["effort"] not in EFFORTS:
         raise ClaudeBridgeAdapterError("effort is invalid")
     if request["tools"] not in {"", "Read,Write,Edit"}:
@@ -152,13 +157,52 @@ def _write(path: Path, raw: bytes) -> None:
     os.replace(temporary, path)
 
 
-def _binding(requested: str, observed: list[str]) -> bool:
-    if not observed:
-        return False
-    lowered = requested.lower()
-    if lowered in {"sonnet", "haiku", "opus", "fable"}:
-        return all(lowered in name.lower() for name in observed)
-    return observed == [requested]
+def _validate_model_observed_allowlist(raw: object) -> list[str]:
+    """Validate invocation-owned exact identities for an alias route."""
+
+    if (
+        not isinstance(raw, list)
+        or not raw
+        or len(raw) > MAX_MODEL_OBSERVED_ALLOWLIST
+    ):
+        raise ClaudeBridgeAdapterError("model_observed_allowlist is invalid")
+    if any(not isinstance(value, str) or SAFE_MODEL.fullmatch(value) is None for value in raw):
+        raise ClaudeBridgeAdapterError("model_observed_allowlist is invalid")
+    if len(raw) != len(set(raw)):
+        raise ClaudeBridgeAdapterError("model_observed_allowlist is invalid")
+    return list(raw)
+
+
+def _identity_match(
+    requested: str,
+    observed: list[str],
+    model_observed_allowlist: list[str] | None,
+) -> tuple[bool, str, str | None]:
+    """Resolve one exact observed identity from invocation-owned route data."""
+
+    if not isinstance(observed, list) or any(
+        not isinstance(value, str) or not value for value in observed
+    ):
+        return False, "unverified", None
+    if observed == [requested]:
+        return True, "exact", None
+    if (
+        len(observed) == 1
+        and model_observed_allowlist
+        and observed[0] in model_observed_allowlist
+    ):
+        return True, "declared_alias", "invocation.model_observed_allowlist"
+    return False, "unverified", None
+
+
+def _binding(
+    requested: str,
+    observed: list[str],
+    model_observed_allowlist: list[str] | None = None,
+) -> bool:
+    """Compatibility boolean over the exact invocation identity contract."""
+
+    return _identity_match(requested, observed, model_observed_allowlist)[0]
 
 
 def _contained_output(raw: object, out_dir: Path) -> tuple[str | None, bytes]:
@@ -211,7 +255,10 @@ def run(request_path: Path) -> dict[str, Any]:
         (reported_receipt_path is None or nested_receipt_path is not None)
         and (reported_output_path is None or nested_output_path is not None)
     )
-    model_binding_confirmed = _binding(request["model"], observed)
+    allowlist = request.get("model_observed_allowlist")
+    model_binding_confirmed, model_identity_match_kind, alias_resolution_source = _identity_match(
+        request["model"], observed, allowlist
+    )
     observed_ok = completed.returncode == 0 and bool(nested_output_raw) and paths_contained and model_binding_confirmed
     if completed.returncode != 0:
         reason_code = "HOLD_CLAUDE_BRIDGE_NONZERO"
@@ -234,7 +281,12 @@ def run(request_path: Path) -> dict[str, Any]:
         "bridge_sha256": _sha256(bridge.read_bytes()),
         "model_requested": request["model"],
         "models_observed": observed,
+        "model_observed_values": observed,
+        "model_observed_allowlist": allowlist,
         "model_binding_confirmed": model_binding_confirmed,
+        "model_identity_match_kind": model_identity_match_kind,
+        "model_match_kind": model_identity_match_kind,
+        "alias_resolution_source": alias_resolution_source,
         "tools_requested": request["tools"],
         "returncode": completed.returncode,
         "stdout_sha256": _sha256(stdout),

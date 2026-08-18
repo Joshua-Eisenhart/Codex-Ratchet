@@ -1,0 +1,1142 @@
+{
+  "activated": false,
+  "cancellation_state": "NOT_REQUESTED",
+  "candidate_state": "NEW_CANDIDATE",
+  "capability_binding": {
+    "bound": [
+      {
+        "api": "evaluate(raw, engine=\"exact\")",
+        "capability": "structured_probe_exact",
+        "declared_source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "kind": "public_operation",
+        "operation": "structured_open_bind_probe.v1",
+        "source": {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        },
+        "status": "BOUND",
+        "symbols_present": [
+          "evaluate",
+          "structured_metrics",
+          "validate_fixture"
+        ],
+        "symbols_required": [
+          "evaluate",
+          "validate_fixture",
+          "structured_metrics"
+        ]
+      }
+    ],
+    "candidate_state": "NEW_CANDIDATE",
+    "capabilities": [
+      {
+        "api": "evaluate(raw, engine=\"exact\")",
+        "capability": "structured_probe_exact",
+        "declared_source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "kind": "public_operation",
+        "operation": "structured_open_bind_probe.v1",
+        "source": {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        },
+        "status": "BOUND",
+        "symbols_present": [
+          "evaluate",
+          "structured_metrics",
+          "validate_fixture"
+        ],
+        "symbols_required": [
+          "evaluate",
+          "validate_fixture",
+          "structured_metrics"
+        ]
+      },
+      {
+        "api": "evaluate(raw, engine=\"dual\")",
+        "capability": "structured_probe_dual",
+        "declared_source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "kind": "public_operation",
+        "missing_runtime": [
+          "external_jax_runtime"
+        ],
+        "operation": "structured_open_bind_probe.v1",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "source": {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        },
+        "status": "HOLD",
+        "symbols_present": [
+          "evaluate",
+          "jax_check"
+        ],
+        "symbols_required": [
+          "evaluate",
+          "jax_check"
+        ]
+      },
+      {
+        "api": "ConstraintPathMassRequest + run_constraint_path_mass + write_receipt",
+        "capability": "path_mass",
+        "declared_source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+        "kind": "public_operation",
+        "missing_runtime": [
+          "external_jax_runtime"
+        ],
+        "operation": "constraint_path_mass.v1",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "source": {
+          "path": "constraint_box/src/constraintbox/constraint_path_mass.py",
+          "sha256": "51846d46969d25b0df8a4d740eb3b243a1cffae9a1f757f67cf03a60d04d276e"
+        },
+        "status": "HOLD",
+        "symbols_present": [
+          "ConstraintPathMassRequest",
+          "run_constraint_path_mass",
+          "write_receipt"
+        ],
+        "symbols_required": [
+          "ConstraintPathMassRequest",
+          "run_constraint_path_mass",
+          "write_receipt"
+        ],
+        "wrapper": {
+          "digest_match": true,
+          "expected_sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+          "path": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py",
+          "sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d"
+        }
+      },
+      {
+        "api": "replay_receipt(path, jax_interpreter=..., fixture_path=...)",
+        "capability": "path_mass_replay",
+        "declared_source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+        "kind": "public_operation",
+        "missing_runtime": [
+          "path_mass",
+          "external_jax_runtime"
+        ],
+        "operation": "constraint_path_mass.replay.v1",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "source": {
+          "path": "constraint_box/src/constraintbox/constraint_path_mass.py",
+          "sha256": "51846d46969d25b0df8a4d740eb3b243a1cffae9a1f757f67cf03a60d04d276e"
+        },
+        "status": "HOLD",
+        "symbols_present": [
+          "replay_receipt"
+        ],
+        "symbols_required": [
+          "replay_receipt"
+        ],
+        "wrapper": {
+          "digest_match": true,
+          "expected_sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+          "path": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py",
+          "sha256": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d"
+        }
+      },
+      {
+        "api": "declared-interpreter -I -c import jax,z3,cvc5",
+        "capability": "external_jax_identity",
+        "declared": false,
+        "operation": "declared_external_jax_interpreter.v1",
+        "reason": "JAX_INTERPRETER_UNDECLARED",
+        "status": "HOLD"
+      }
+    ],
+    "promotion_allowed": false,
+    "registry": {
+      "path": "constraint_box/integrated_system/skills/cb-capability-probe-map-wave/registry.json",
+      "sha256": "23ded49e53cbbd2ee4d17eaec651c1915ac21d392bbba1dde3b86da1d1a2cdbe"
+    },
+    "runtime_bindings": {
+      "controller": {
+        "api": "python -I -c runtime_identity",
+        "capability": "controller_runtime",
+        "declared": true,
+        "interpreter": {
+          "declared_path": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+          "resolved_path": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+          "sha256": "0d1fc12cf4887074b3eb257241f152cb85ca5a135879120b7e8e3b9aa57d5094"
+        },
+        "invocation": {
+          "argv": [
+            "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+            "-I",
+            "-c",
+            "runtime_identity"
+          ],
+          "argv_sha256": "11ae14db3e752646a43859b3bd636aa0fe9e0e9b5c6c92f62df6f5e432d202fa",
+          "process": {
+            "environment": {
+              "credentials_passed": false,
+              "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+              "variables": {
+                "CUDA_VISIBLE_DEVICES": "",
+                "JAX_ENABLE_X64": "true",
+                "JAX_PLATFORMS": "cpu",
+                "PYTHONDONTWRITEBYTECODE": "1",
+                "PYTHONNOUSERSITE": "1"
+              }
+            },
+            "returncode": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "d2d388696bb988020585bc354ec9312f00c60671aeedf33bd350ea8b333c1529",
+            "timed_out": false
+          },
+          "source_sha256": "09ee67af7f5176eed5e9d232d7002dd323e61651a6ec446ac0a16f80157f68e7"
+        },
+        "missing_libraries": [],
+        "operation": "runtime_identity.v1",
+        "required_libraries": [
+          "z3",
+          "cvc5"
+        ],
+        "runtime": {
+          "libraries": {
+            "cvc5": {
+              "status": "BOUND",
+              "version": "1.3.3"
+            },
+            "jax": {
+              "reason": "ModuleNotFoundError",
+              "status": "HOLD"
+            },
+            "z3": {
+              "status": "BOUND",
+              "version": "4.16.0"
+            }
+          },
+          "python_executable": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+          "python_implementation": "cpython",
+          "python_version": "3.13.6",
+          "sys_base_prefix": "/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13",
+          "sys_prefix": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv"
+        },
+        "runtime_label": "controller",
+        "runtime_sha256": "b4e7ab4a4be56776ee9092d3eb353edfa5113ea890b443de67a03f370b25f693",
+        "status": "BOUND"
+      },
+      "environment_projection": {
+        "credentials_passed": false,
+        "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+        "variables": {
+          "CUDA_VISIBLE_DEVICES": "",
+          "JAX_ENABLE_X64": "true",
+          "JAX_PLATFORMS": "cpu",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONNOUSERSITE": "1"
+        }
+      },
+      "external_jax": {
+        "api": "declared-interpreter -I -c import jax,z3,cvc5",
+        "capability": "external_jax_identity",
+        "declared": false,
+        "operation": "declared_external_jax_interpreter.v1",
+        "reason": "JAX_INTERPRETER_UNDECLARED",
+        "status": "HOLD"
+      },
+      "requirements": {
+        "controller_cvc5_runtime": "BOUND",
+        "controller_runtime": "BOUND",
+        "controller_z3_runtime": "BOUND",
+        "external_jax_runtime": "HOLD"
+      }
+    },
+    "schema": "constraintbox.capability-binding.v1",
+    "status": "HOLD",
+    "unbound": [
+      {
+        "capability": "structured_probe_dual",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "status": "HOLD"
+      },
+      {
+        "capability": "path_mass",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "status": "HOLD"
+      },
+      {
+        "capability": "path_mass_replay",
+        "reason": "RUNTIME_REQUIREMENT_NOT_BOUND",
+        "status": "HOLD"
+      },
+      {
+        "capability": "external_jax_identity",
+        "reason": "JAX_INTERPRETER_UNDECLARED",
+        "status": "HOLD"
+      }
+    ]
+  },
+  "capability_map": {
+    "entries": [
+      {
+        "api": "evaluate(raw, engine='exact')",
+        "capability": "structured_probe_exact",
+        "operation": "structured_open_bind_probe.v1",
+        "status": "PASS"
+      },
+      {
+        "api": "evaluate(raw, engine='dual')",
+        "capability": "structured_probe_dual",
+        "operation": "structured_open_bind_probe.v1",
+        "runtime": "declared_external_jax_python",
+        "status": "HOLD"
+      },
+      {
+        "api": "run_constraint_path_mass + write_receipt",
+        "capability": "path_mass",
+        "operation": "constraint_path_mass.v1",
+        "status": "HOLD"
+      },
+      {
+        "api": "replay_receipt",
+        "capability": "path_mass_replay",
+        "operation": "constraint_path_mass.replay.v1",
+        "status": null
+      }
+    ],
+    "promotion_allowed": false,
+    "schema": "constraintbox.capability-map.v1"
+  },
+  "child_receipts": [
+    {
+      "id": "structured_exact",
+      "receipt_sha256": "24838e9b23c00fc4b842d7b6a3671412a58e4a9df50547240fe3dd68fcfcd3fc",
+      "status": "PASS"
+    },
+    {
+      "id": "structured_dual_external_jax",
+      "receipt_sha256": "cc1467293a639dd5aada9f7a73476446435bb3d6f29a09246bcfb109c1c28a52",
+      "status": "HOLD"
+    },
+    {
+      "id": "path_mass_and_replay",
+      "receipt_sha256": "691d930e5aa4cd93720df8e6b45c31b76ab0072a800044ef4332555974620875",
+      "status": "HOLD"
+    }
+  ],
+  "children": [
+    {
+      "api": "evaluate(raw, engine='exact')",
+      "command": [
+        "controller_python",
+        "-I",
+        "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+        "--input",
+        "constraint_box/integrated_system/skills/cb-capability-probe-map-wave/fixtures/structured_open_bind_v1.json",
+        "--output",
+        "<temporary-output>",
+        "--engine",
+        "exact"
+      ],
+      "engine": "exact",
+      "fixture_sha256": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+      "id": "structured_exact",
+      "invocation": {
+        "argv": [
+          "controller_python",
+          "-I",
+          "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "--input",
+          "constraint_box/integrated_system/skills/cb-capability-probe-map-wave/fixtures/structured_open_bind_v1.json",
+          "--output",
+          "<temporary-output>",
+          "--engine",
+          "exact"
+        ],
+        "argv_sha256": "d0e873fdfbcce831c34bc9197e6ab36b325650bbcea6b7954cb71598dd04143c",
+        "process": {
+          "environment": {
+            "credentials_passed": false,
+            "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+            "variables": {
+              "CUDA_VISIBLE_DEVICES": "",
+              "JAX_ENABLE_X64": "true",
+              "JAX_PLATFORMS": "cpu",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONNOUSERSITE": "1"
+            }
+          },
+          "returncode": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "2d123a4263e162437985f7e222e6110d9b277da52720f7c002222fc8e86cd947",
+          "timed_out": false
+        },
+        "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+      },
+      "operation": "structured_open_bind_probe.v1",
+      "process": {
+        "environment": {
+          "credentials_passed": false,
+          "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+          "variables": {
+            "CUDA_VISIBLE_DEVICES": "",
+            "JAX_ENABLE_X64": "true",
+            "JAX_PLATFORMS": "cpu",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "PYTHONNOUSERSITE": "1"
+          }
+        },
+        "returncode": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "2d123a4263e162437985f7e222e6110d9b277da52720f7c002222fc8e86cd947",
+        "timed_out": false
+      },
+      "result": {
+        "claim_ceiling": "finite structured support-extension and observation-restriction probe only; not chirality, not a manifold, not an attractor, not promotion",
+        "controls": {
+          "all_pass": true,
+          "identity_bind_commutes": true,
+          "jax_agrees_if_requested": true,
+          "missing_observation_refused": true,
+          "relabel_invariant": true,
+          "solver_masks_bound": true,
+          "structured_has_commuting_case": true,
+          "structured_has_gap_case": true,
+          "structured_less_generic_than_random_masks": true
+        },
+        "engine": "exact",
+        "finding": "STRUCTURED_FAMILY_DIFFERS_FROM_RANDOM_MASKS",
+        "fixture_id": "two-fibres-two-probes-v1",
+        "fixture_sha256": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+        "forbidden_inferences": [
+          "order gap is chirality",
+          "order gap is the odd gradient",
+          "static quotient component is an attractor",
+          "structured family result is manifold admission"
+        ],
+        "generic_endomap_control": {
+          "carrier_size": 4,
+          "commuting_pairs": 2824,
+          "comparison_note": "reference only; arbitrary endomap pairs are not the structured subset-mask family",
+          "map_count": 256,
+          "noncommuting_pairs": 62712,
+          "noncommuting_rate": 0.9569091796875,
+          "pair_count": 65536
+        },
+        "jax": {
+          "ran": false,
+          "reason": "exact engine"
+        },
+        "next_operation": "jax_vmap_named_bind_masks_only_if_more_width_is_needed",
+        "promotion_allowed": false,
+        "result_sha256": "8926612e947886fdd5866e7912127f4abb5d6f277025c5da8338c7cc58efedce",
+        "schema": "constraintbox.structured-open-bind-result.v1",
+        "solver": {
+          "agree": true,
+          "cvc5": "PASS",
+          "mask_set_sha256": "6a6eaacb452b83b58290a5bb0ef77344a54b3849562ca098abf851420c402bde",
+          "z3": "PASS"
+        },
+        "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50",
+        "status": "PASS",
+        "structured": {
+          "has_commuting_case": true,
+          "has_gap_case": true,
+          "identity_gap_zero": true,
+          "random_mask_case_count": 256,
+          "random_mask_gap_count": 156,
+          "random_mask_gap_rate": 0.609375,
+          "rows": [
+            {
+              "allowed_values": [
+                "L"
+              ],
+              "bind_mask": 3,
+              "commuting_count": 16,
+              "control": null,
+              "gap_count": 0,
+              "gap_rate": 0.0,
+              "id": "bind-side-L",
+              "probe": "side"
+            },
+            {
+              "allowed_values": [
+                "R"
+              ],
+              "bind_mask": 12,
+              "commuting_count": 16,
+              "control": null,
+              "gap_count": 0,
+              "gap_rate": 0.0,
+              "id": "bind-side-R",
+              "probe": "side"
+            },
+            {
+              "allowed_values": [
+                "0"
+              ],
+              "bind_mask": 5,
+              "commuting_count": 1,
+              "control": null,
+              "gap_count": 15,
+              "gap_rate": 0.9375,
+              "id": "bind-record-0",
+              "probe": "record"
+            },
+            {
+              "allowed_values": [
+                "1"
+              ],
+              "bind_mask": 10,
+              "commuting_count": 1,
+              "control": null,
+              "gap_count": 15,
+              "gap_rate": 0.9375,
+              "id": "bind-record-1",
+              "probe": "record"
+            },
+            {
+              "allowed_values": [
+                "L",
+                "R"
+              ],
+              "bind_mask": 15,
+              "commuting_count": 16,
+              "control": "identity",
+              "gap_count": 0,
+              "gap_rate": 0.0,
+              "id": "bind-identity",
+              "probe": "side"
+            }
+          ],
+          "structured_noncontrol_case_count": 64,
+          "structured_noncontrol_gap_count": 30,
+          "structured_noncontrol_gap_rate": 0.46875,
+          "subset_count": 16
+        }
+      },
+      "result_sha256": "becb07c2a8dc6f31af5f490e396b5d6fa6beade19e7613c9f770e6256c324efc",
+      "runtime": "controller_python",
+      "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50",
+      "status": "PASS"
+    },
+    {
+      "engine": "dual",
+      "id": "structured_dual_external_jax",
+      "operation": "structured_open_bind_probe.v1",
+      "reason": "JAX_INTERPRETER_NOT_BOUND",
+      "status": "HOLD"
+    },
+    {
+      "id": "path_mass_and_replay",
+      "operation": "constraint_path_mass.v1",
+      "reason": "PATH_MASS_EXTERNAL_JAX_NOT_BOUND",
+      "status": "HOLD"
+    }
+  ],
+  "claim_ceiling": "bounded capability binding and exact finite operation/replay evidence only; no manifold, basin, chirality, physical, provider, portability, activation, or promotion claim",
+  "disagreement_state": "STRUCTURED_EXACT_DUAL_DISAGREEMENT",
+  "environment_projection": {
+    "credentials_passed": false,
+    "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+    "variables": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "JAX_ENABLE_X64": "true",
+      "JAX_PLATFORMS": "cpu",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1"
+    }
+  },
+  "negative_control_matrix_exact": {
+    "duplicate_ids": [],
+    "missing_ids": [
+      "foreign_policy",
+      "path_missing_row",
+      "tampered_replay",
+      "unknown_probe"
+    ],
+    "observed_ids": [
+      "structured_missing_observation",
+      "structured_promotion_true"
+    ],
+    "promotion_allowed": false,
+    "required_ids": [
+      "structured_missing_observation",
+      "structured_promotion_true",
+      "path_missing_row",
+      "unknown_probe",
+      "foreign_policy",
+      "tampered_replay"
+    ],
+    "status": "HOLD",
+    "unexpected_ids": []
+  },
+  "negative_controls": {
+    "all_pass": false,
+    "duplicate_ids": [],
+    "missing_ids": [
+      "foreign_policy",
+      "path_missing_row",
+      "tampered_replay",
+      "unknown_probe"
+    ],
+    "observed_ids": [
+      "structured_missing_observation",
+      "structured_promotion_true"
+    ],
+    "promotion_allowed": false,
+    "required_ids": [
+      "structured_missing_observation",
+      "structured_promotion_true",
+      "path_missing_row",
+      "unknown_probe",
+      "foreign_policy",
+      "tampered_replay"
+    ],
+    "rows": [
+      {
+        "expected_reason": "REFUSE_UNBOUND_OBSERVATION",
+        "expected_status": "REFUSE",
+        "id": "structured_missing_observation",
+        "passed": true,
+        "reason": "REFUSE_UNBOUND_OBSERVATION",
+        "status": "REFUSE"
+      },
+      {
+        "expected_reason": "REFUSE_FIXTURE_SCHEMA",
+        "expected_status": "REFUSE",
+        "id": "structured_promotion_true",
+        "passed": true,
+        "reason": "REFUSE_FIXTURE_SCHEMA",
+        "status": "REFUSE"
+      }
+    ],
+    "status": "HOLD",
+    "unexpected_ids": []
+  },
+  "negative_controls_pass": false,
+  "optional_manifold_6144_scratch": {
+    "claim_ceiling": "no scratch observation consumed; no manifold claim",
+    "portable": false,
+    "rows": 6144,
+    "status": "NOT_CONSUMED"
+  },
+  "output_digest": "e21ff4bd1e6e79fbe368d5704d51bb315f92ca7880d0224b7cf2c1b1cb0d59b0",
+  "path_mass_replay_pass": false,
+  "positive_children_pass": false,
+  "preload_receipts": [],
+  "promotion_allowed": false,
+  "provider_call_receipt": null,
+  "reason": "HOLD_REQUIRED_CHILD_OR_CONTROL_EVIDENCE",
+  "receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+  "required_negative_control_ids": [
+    "structured_missing_observation",
+    "structured_promotion_true",
+    "path_missing_row",
+    "unknown_probe",
+    "foreign_policy",
+    "tampered_replay"
+  ],
+  "result_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+  "root": {
+    "definition_sha256": "7edc29a516b0d257dc18ac731e360e07d1aeb4b55efb66848b445805d28bc8f2",
+    "path": "<repository-root>",
+    "registry_sha256": "23ded49e53cbbd2ee4d17eaec651c1915ac21d392bbba1dde3b86da1d1a2cdbe",
+    "runner_sha256": "77397c78198bbea336ab2c5cf1887510f8309b89e41ef88133e6f23e21a4dcbd"
+  },
+  "runtime_bindings": {
+    "controller": {
+      "api": "python -I -c runtime_identity",
+      "capability": "controller_runtime",
+      "declared": true,
+      "interpreter": {
+        "declared_path": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "resolved_path": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "sha256": "0d1fc12cf4887074b3eb257241f152cb85ca5a135879120b7e8e3b9aa57d5094"
+      },
+      "invocation": {
+        "argv": [
+          "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+          "-I",
+          "-c",
+          "runtime_identity"
+        ],
+        "argv_sha256": "11ae14db3e752646a43859b3bd636aa0fe9e0e9b5c6c92f62df6f5e432d202fa",
+        "process": {
+          "environment": {
+            "credentials_passed": false,
+            "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+            "variables": {
+              "CUDA_VISIBLE_DEVICES": "",
+              "JAX_ENABLE_X64": "true",
+              "JAX_PLATFORMS": "cpu",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONNOUSERSITE": "1"
+            }
+          },
+          "returncode": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "d2d388696bb988020585bc354ec9312f00c60671aeedf33bd350ea8b333c1529",
+          "timed_out": false
+        },
+        "source_sha256": "09ee67af7f5176eed5e9d232d7002dd323e61651a6ec446ac0a16f80157f68e7"
+      },
+      "missing_libraries": [],
+      "operation": "runtime_identity.v1",
+      "required_libraries": [
+        "z3",
+        "cvc5"
+      ],
+      "runtime": {
+        "libraries": {
+          "cvc5": {
+            "status": "BOUND",
+            "version": "1.3.3"
+          },
+          "jax": {
+            "reason": "ModuleNotFoundError",
+            "status": "HOLD"
+          },
+          "z3": {
+            "status": "BOUND",
+            "version": "4.16.0"
+          }
+        },
+        "python_executable": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+        "python_implementation": "cpython",
+        "python_version": "3.13.6",
+        "sys_base_prefix": "/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13",
+        "sys_prefix": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv"
+      },
+      "runtime_label": "controller",
+      "runtime_sha256": "b4e7ab4a4be56776ee9092d3eb353edfa5113ea890b443de67a03f370b25f693",
+      "status": "BOUND"
+    },
+    "environment_projection": {
+      "credentials_passed": false,
+      "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+      "variables": {
+        "CUDA_VISIBLE_DEVICES": "",
+        "JAX_ENABLE_X64": "true",
+        "JAX_PLATFORMS": "cpu",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1"
+      }
+    },
+    "external_jax": {
+      "api": "declared-interpreter -I -c import jax,z3,cvc5",
+      "capability": "external_jax_identity",
+      "declared": false,
+      "operation": "declared_external_jax_interpreter.v1",
+      "reason": "JAX_INTERPRETER_UNDECLARED",
+      "status": "HOLD"
+    },
+    "requirements": {
+      "controller_cvc5_runtime": "BOUND",
+      "controller_runtime": "BOUND",
+      "controller_z3_runtime": "BOUND",
+      "external_jax_runtime": "HOLD"
+    }
+  },
+  "schema": "constraintbox.capability-probe-map-receipt.v1",
+  "source_fixture_binding": {
+    "all_pass": false,
+    "checks": {
+      "path_mass_fixture": false,
+      "path_mass_replay_wrapper": false,
+      "path_mass_source": false,
+      "path_mass_wrapper": false,
+      "structured_dual_fixture": false,
+      "structured_dual_source": false,
+      "structured_exact_fixture": true,
+      "structured_exact_source": true
+    },
+    "expected": {
+      "path_mass_fixture": "3bfb0b885ea16c1b96da4422ac08acb04fd3b79d8b1155734b95b6faf5ac58ac",
+      "path_mass_replay_wrapper": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+      "path_mass_source": "51846d46969d25b0df8a4d740eb3b243a1cffae9a1f757f67cf03a60d04d276e",
+      "path_mass_wrapper": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+      "structured_dual_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+      "structured_dual_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50",
+      "structured_exact_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+      "structured_exact_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+    },
+    "observed": {
+      "path_mass_fixture": null,
+      "path_mass_replay_wrapper": null,
+      "path_mass_source": null,
+      "path_mass_wrapper": null,
+      "structured_dual_fixture": null,
+      "structured_dual_source": null,
+      "structured_exact_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+      "structured_exact_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+    },
+    "promotion_allowed": false,
+    "status": "HOLD"
+  },
+  "source_fixture_binding_pass": false,
+  "status": "HOLD",
+  "structured_crosscheck": {
+    "dual_finding": null,
+    "exact_dual_structured_metrics_agree": false,
+    "exact_finding": "STRUCTURED_FAMILY_DIFFERS_FROM_RANDOM_MASKS",
+    "promotion_allowed": false,
+    "source_fixture_binding": {
+      "all_pass": false,
+      "checks": {
+        "path_mass_fixture": false,
+        "path_mass_replay_wrapper": false,
+        "path_mass_source": false,
+        "path_mass_wrapper": false,
+        "structured_dual_fixture": false,
+        "structured_dual_source": false,
+        "structured_exact_fixture": true,
+        "structured_exact_source": true
+      },
+      "expected": {
+        "path_mass_fixture": "3bfb0b885ea16c1b96da4422ac08acb04fd3b79d8b1155734b95b6faf5ac58ac",
+        "path_mass_replay_wrapper": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+        "path_mass_source": "51846d46969d25b0df8a4d740eb3b243a1cffae9a1f757f67cf03a60d04d276e",
+        "path_mass_wrapper": "3db564a142725db6739f33a2b160ed46815a50cd0605c105acecd10e8c99d23d",
+        "structured_dual_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+        "structured_dual_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50",
+        "structured_exact_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+        "structured_exact_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+      },
+      "observed": {
+        "path_mass_fixture": null,
+        "path_mass_replay_wrapper": null,
+        "path_mass_source": null,
+        "path_mass_wrapper": null,
+        "structured_dual_fixture": null,
+        "structured_dual_source": null,
+        "structured_exact_fixture": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+        "structured_exact_source": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+      },
+      "promotion_allowed": false,
+      "status": "HOLD"
+    }
+  },
+  "structured_crosscheck_pass": false,
+  "subprocess_environment": {
+    "credentials_passed": false,
+    "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+    "variables": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "JAX_ENABLE_X64": "true",
+      "JAX_PLATFORMS": "cpu",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1"
+    }
+  },
+  "tool_api_evidence": {
+    "path_mass": {
+      "api": "ConstraintPathMassRequest + run_constraint_path_mass + write_receipt",
+      "fixture_sha256": null,
+      "invocation": null,
+      "jax_crossing": null,
+      "receipt_sha256": null,
+      "source_sha256": null,
+      "wrapper_sha256": null
+    },
+    "path_mass_replay": {
+      "api": "replay_receipt(path, jax_interpreter=..., fixture_path=...)",
+      "invocation": null,
+      "replayed_receipt_sha256": null,
+      "status": null,
+      "stored_receipt_sha256": null,
+      "wrapper_sha256": null
+    },
+    "runtime_bindings": {
+      "controller": {
+        "api": "python -I -c runtime_identity",
+        "capability": "controller_runtime",
+        "declared": true,
+        "interpreter": {
+          "declared_path": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+          "resolved_path": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+          "sha256": "0d1fc12cf4887074b3eb257241f152cb85ca5a135879120b7e8e3b9aa57d5094"
+        },
+        "invocation": {
+          "argv": [
+            "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+            "-I",
+            "-c",
+            "runtime_identity"
+          ],
+          "argv_sha256": "11ae14db3e752646a43859b3bd636aa0fe9e0e9b5c6c92f62df6f5e432d202fa",
+          "process": {
+            "environment": {
+              "credentials_passed": false,
+              "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+              "variables": {
+                "CUDA_VISIBLE_DEVICES": "",
+                "JAX_ENABLE_X64": "true",
+                "JAX_PLATFORMS": "cpu",
+                "PYTHONDONTWRITEBYTECODE": "1",
+                "PYTHONNOUSERSITE": "1"
+              }
+            },
+            "returncode": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "d2d388696bb988020585bc354ec9312f00c60671aeedf33bd350ea8b333c1529",
+            "timed_out": false
+          },
+          "source_sha256": "09ee67af7f5176eed5e9d232d7002dd323e61651a6ec446ac0a16f80157f68e7"
+        },
+        "missing_libraries": [],
+        "operation": "runtime_identity.v1",
+        "required_libraries": [
+          "z3",
+          "cvc5"
+        ],
+        "runtime": {
+          "libraries": {
+            "cvc5": {
+              "status": "BOUND",
+              "version": "1.3.3"
+            },
+            "jax": {
+              "reason": "ModuleNotFoundError",
+              "status": "HOLD"
+            },
+            "z3": {
+              "status": "BOUND",
+              "version": "4.16.0"
+            }
+          },
+          "python_executable": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv/bin/python",
+          "python_implementation": "cpython",
+          "python_version": "3.13.6",
+          "sys_base_prefix": "/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13",
+          "sys_prefix": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817/constraint_box/.venv"
+        },
+        "runtime_label": "controller",
+        "runtime_sha256": "b4e7ab4a4be56776ee9092d3eb353edfa5113ea890b443de67a03f370b25f693",
+        "status": "BOUND"
+      },
+      "environment_projection": {
+        "credentials_passed": false,
+        "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+        "variables": {
+          "CUDA_VISIBLE_DEVICES": "",
+          "JAX_ENABLE_X64": "true",
+          "JAX_PLATFORMS": "cpu",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONNOUSERSITE": "1"
+        }
+      },
+      "external_jax": {
+        "api": "declared-interpreter -I -c import jax,z3,cvc5",
+        "capability": "external_jax_identity",
+        "declared": false,
+        "operation": "declared_external_jax_interpreter.v1",
+        "reason": "JAX_INTERPRETER_UNDECLARED",
+        "status": "HOLD"
+      },
+      "requirements": {
+        "controller_cvc5_runtime": "BOUND",
+        "controller_runtime": "BOUND",
+        "controller_z3_runtime": "BOUND",
+        "external_jax_runtime": "HOLD"
+      }
+    },
+    "structured_dual": {
+      "api": "evaluate(raw, engine='dual')",
+      "fixture_sha256": null,
+      "invocation": null,
+      "jax": null,
+      "source_sha256": null
+    },
+    "structured_exact": {
+      "api": "evaluate(raw, engine='exact')",
+      "fixture_sha256": "b3fd3a39c62a970d96518cf4992052e8a6d162c5d8041c1f337da12c13bb35c0",
+      "invocation": {
+        "argv": [
+          "controller_python",
+          "-I",
+          "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "--input",
+          "constraint_box/integrated_system/skills/cb-capability-probe-map-wave/fixtures/structured_open_bind_v1.json",
+          "--output",
+          "<temporary-output>",
+          "--engine",
+          "exact"
+        ],
+        "argv_sha256": "d0e873fdfbcce831c34bc9197e6ab36b325650bbcea6b7954cb71598dd04143c",
+        "process": {
+          "environment": {
+            "credentials_passed": false,
+            "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+            "variables": {
+              "CUDA_VISIBLE_DEVICES": "",
+              "JAX_ENABLE_X64": "true",
+              "JAX_PLATFORMS": "cpu",
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONNOUSERSITE": "1"
+            }
+          },
+          "returncode": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "2d123a4263e162437985f7e222e6110d9b277da52720f7c002222fc8e86cd947",
+          "timed_out": false
+        },
+        "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+      },
+      "source_sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+    },
+    "subprocess_environment": {
+      "credentials_passed": false,
+      "sha256": "e9ade60b99cfeb1df63cb023289d51bf1c5bc340ab0331b22cc8e18cc27f4802",
+      "variables": {
+        "CUDA_VISIBLE_DEVICES": "",
+        "JAX_ENABLE_X64": "true",
+        "JAX_PLATFORMS": "cpu",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1"
+      }
+    }
+  },
+  "tool_bindings": {
+    "cvc5_controller": {
+      "api": "cvc5.__version__",
+      "invocation": [
+        "<controller-interpreter>",
+        "-I",
+        "-c",
+        "runtime_identity"
+      ],
+      "receipt_fields": [
+        "sys.executable",
+        "sys.prefix",
+        "sys.base_prefix",
+        "versions",
+        "executable_sha256",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/runtime_capabilities/controller_cvc5_runtime",
+      "source": "stdlib subprocess import identity"
+    },
+    "jax_external": {
+      "api": "import jax,z3,cvc5",
+      "invocation": [
+        "<declared-external-interpreter>",
+        "-I",
+        "-c",
+        "runtime_identity"
+      ],
+      "receipt_fields": [
+        "sys.executable",
+        "sys.prefix",
+        "sys.base_prefix",
+        "jax_version",
+        "jaxlib_version",
+        "z3_version",
+        "cvc5_version",
+        "executable_sha256",
+        "prefix_comparison",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/runtime_capabilities/external_jax_runtime",
+      "source": "declared external interpreter"
+    },
+    "path_mass": {
+      "api": "ConstraintPathMassRequest + run_constraint_path_mass + write_receipt",
+      "invocation": [
+        "<controller-interpreter>",
+        "-I",
+        "run_constraint_path_mass.py",
+        "--require-jax"
+      ],
+      "receipt_fields": [
+        "source_sha256",
+        "request.fixture_sha256",
+        "jax_crossing",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/capabilities/path_mass",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+      "wrapper": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py"
+    },
+    "path_mass_replay": {
+      "api": "replay_receipt(path, jax_interpreter=..., fixture_path=...)",
+      "invocation": [
+        "<controller-interpreter>",
+        "-I",
+        "run_constraint_path_mass.py",
+        "--replay",
+        "<stored-receipt>"
+      ],
+      "receipt_fields": [
+        "stored_receipt_sha256",
+        "replayed_receipt_sha256",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/capabilities/path_mass_replay",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py"
+    },
+    "structured_probe_dual": {
+      "api": "evaluate(raw, engine=dual)",
+      "invocation": [
+        "<declared-external-interpreter>",
+        "-I",
+        "structured_open_bind_probe.py",
+        "--engine",
+        "dual"
+      ],
+      "receipt_fields": [
+        "source_sha256",
+        "fixture_sha256",
+        "jax",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/capabilities/structured_probe_dual",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py"
+    },
+    "structured_probe_exact": {
+      "api": "evaluate(raw, engine=exact)",
+      "invocation": [
+        "<controller-interpreter>",
+        "-I",
+        "structured_open_bind_probe.py",
+        "--engine",
+        "exact"
+      ],
+      "receipt_fields": [
+        "source_sha256",
+        "fixture_sha256",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/capabilities/structured_probe_exact",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py"
+    },
+    "z3_controller": {
+      "api": "z3.get_version_string()",
+      "invocation": [
+        "<controller-interpreter>",
+        "-I",
+        "-c",
+        "runtime_identity"
+      ],
+      "receipt_fields": [
+        "sys.executable",
+        "sys.prefix",
+        "sys.base_prefix",
+        "versions",
+        "executable_sha256",
+        "invocation",
+        "environment"
+      ],
+      "registry": "registry.json#/runtime_capabilities/controller_z3_runtime",
+      "source": "stdlib subprocess import identity"
+    }
+  },
+  "wave_id": "cb-capability-probe-map-wave-v1",
+  "writes": {
+    "active_manifest": false,
+    "authority_state": false,
+    "existing_operations": false,
+    "live_hooks": false,
+    "public_launcher": false,
+    "scheduler": false
+  }
+}

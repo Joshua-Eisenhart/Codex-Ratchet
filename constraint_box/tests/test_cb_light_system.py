@@ -257,7 +257,7 @@ def test_hook_wiring_covers_install_and_completion_transitions() -> None:
         "file_changed.sh",
     ):
         text = (CB / "hooks" / wrapper).read_text(encoding="utf-8")
-        assert '"$interpreter" -I ' in text
+        assert '"$interpreter" -B -I ' in text
         assert ".venv/bin/python" in text
         assert "exit 2" in text
 

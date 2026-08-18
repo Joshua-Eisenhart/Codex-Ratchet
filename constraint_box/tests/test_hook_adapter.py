@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -22,6 +24,28 @@ from constraintbox.hook_adapter import (
 
 ROOT = Path(__file__).resolve().parents[1]
 SHIM = ROOT / "hooks" / "universal" / "cb_hook.sh"
+
+
+def _contained_universal_runtime(tmp_path: Path) -> tuple[Path, Path, Path]:
+    """Build a relocatable root-shim fixture with a contained native Light."""
+
+    product = tmp_path / "product"
+    shim = product / "hooks" / "universal" / "cb_hook.sh"
+    shim.parent.mkdir(parents=True)
+    shutil.copy2(SHIM, shim)
+    shim.chmod(0o755)
+    shutil.copytree(
+        ROOT / "integrated_system" / "hooks",
+        product / "integrated_system" / "hooks",
+    )
+    light = product / "light" / "bin" / "python3"
+    light.parent.mkdir(parents=True)
+    light.symlink_to(Path(sys.executable).resolve())
+    (product / "light" / "pyvenv.cfg").write_text(
+        "home = /usr/bin\ninclude-system-site-packages = false\nversion = fixture\n",
+        encoding="utf-8",
+    )
+    return product, shim, light
 
 
 def _pre(cmd: str, event: str = "PreToolUse") -> dict:
@@ -503,17 +527,23 @@ def test_typed_proposal_receipt_write_failure_refuses(
 
 
 def test_universal_shim_blocks_bare_harness_and_records_receipt(tmp_path: Path) -> None:
-    log = tmp_path / "hook-events.jsonl"
+    product, shim, light = _contained_universal_runtime(tmp_path)
+    log = product / "integrated_system" / "runs" / "hook-events.jsonl"
     env = dict(os.environ)
-    env["CB_HOOK_ADAPTER_LOG"] = str(log)
+    # Inherited root and legacy log variables must not select another root or
+    # redirect the canonical ignored runtime log.
+    env["CB_PRODUCT_ROOT"] = str(tmp_path / "ambient-product")
+    env["CB_LIGHT_PYTHON"] = str(light)
+    env["CB_HOOK_ADAPTER_LOG"] = str(tmp_path / "outside-legacy-hook-events.jsonl")
+    env.pop("CB_HOOK_EVENT_LOG", None)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
 
     blocked = subprocess.run(
-        ["bash", str(SHIM), "claude"],
+        ["bash", str(shim), "claude"],
         input=json.dumps(_pre("codex exec hello")),
         text=True,
         capture_output=True,
-        cwd=ROOT,
+        cwd=product,
         env=env,
         check=False,
     )
@@ -523,11 +553,11 @@ def test_universal_shim_blocks_bare_harness_and_records_receipt(tmp_path: Path) 
     assert wire["hookSpecificOutput"]["permissionDecision"] == "deny"
 
     allowed = subprocess.run(
-        ["bash", str(SHIM), "claude"],
+        ["bash", str(shim), "claude"],
         input=json.dumps(_pre("python -m constraintbox doctor")),
         text=True,
         capture_output=True,
-        cwd=ROOT,
+        cwd=product,
         env=env,
         check=False,
     )
@@ -539,7 +569,91 @@ def test_universal_shim_blocks_bare_harness_and_records_receipt(tmp_path: Path) 
         "REFUSE_UNMANAGED_LLM_SPAWN",
         "ALLOW_PASSTHROUGH",
     ]
+    assert all(row["binding"]["product_root"] == str(product.resolve()) for row in rows)
     assert all("basin_view" not in row for row in rows)
+
+
+def test_universal_shim_ignores_ambient_product_and_event_roots(tmp_path: Path) -> None:
+    product, shim, light = _contained_universal_runtime(tmp_path)
+    ambient = tmp_path / "ambient-product"
+    ambient.mkdir()
+    ambient_log = ambient / "hook-events.jsonl"
+    env = dict(os.environ)
+    env.update(
+        {
+            "CB_PRODUCT_ROOT": str(ambient),
+            "CB_HOOK_EVENT_LOG": str(ambient_log),
+            "CB_LIGHT_PYTHON": str(light),
+            "PYTHONDONTWRITEBYTECODE": "1",
+        }
+    )
+    env.pop("CB_HOOK_ADAPTER_LOG", None)
+
+    blocked = subprocess.run(
+        ["bash", str(shim), "claude"],
+        input=json.dumps(_pre("codex exec hello")),
+        text=True,
+        capture_output=True,
+        cwd=product,
+        env=env,
+        check=False,
+    )
+    wire = json.loads(blocked.stdout)
+    assert blocked.returncode == 0
+    assert wire["hookSpecificOutput"]["permissionDecision"] == "deny"
+
+    allowed = subprocess.run(
+        ["bash", str(shim), "claude"],
+        input=json.dumps(_pre("python -m constraintbox doctor")),
+        text=True,
+        capture_output=True,
+        cwd=product,
+        env=env,
+        check=False,
+    )
+    assert allowed.returncode == 0
+    assert allowed.stdout == ""
+    assert not ambient_log.exists()
+
+    canonical_log = product / "integrated_system" / "runs" / "hook-events.jsonl"
+    rows = [json.loads(line) for line in canonical_log.read_text(encoding="utf-8").splitlines()]
+    assert [row["disposition"] for row in rows] == [
+        "REFUSE_UNMANAGED_LLM_SPAWN",
+        "ALLOW_PASSTHROUGH",
+    ]
+    assert all(row["binding"]["product_root"] == str(product.resolve()) for row in rows)
+
+
+def test_universal_shim_does_not_relay_legacy_log_outside_product(tmp_path: Path) -> None:
+    product, shim, light = _contained_universal_runtime(tmp_path)
+    outside_log = tmp_path / "outside" / "hook-events.jsonl"
+    env = dict(os.environ)
+    env.update(
+        {
+            "CB_PRODUCT_ROOT": str(tmp_path / "ambient-product"),
+            "CB_HOOK_ADAPTER_LOG": str(outside_log),
+            "CB_LIGHT_PYTHON": str(light),
+            "PYTHONDONTWRITEBYTECODE": "1",
+        }
+    )
+    env.pop("CB_HOOK_EVENT_LOG", None)
+
+    proc = subprocess.run(
+        ["bash", str(shim), "claude"],
+        input=json.dumps(_pre("python -m constraintbox doctor")),
+        text=True,
+        capture_output=True,
+        cwd=product,
+        env=env,
+        check=False,
+    )
+    assert proc.returncode == 0
+    assert proc.stdout == ""
+    assert not outside_log.exists()
+    canonical_log = product / "integrated_system" / "runs" / "hook-events.jsonl"
+    row = json.loads(canonical_log.read_text(encoding="utf-8").splitlines()[0])
+    assert row["disposition"] == "ALLOW_PASSTHROUGH"
+    assert row["binding"]["product_root"] == str(product.resolve())
 
 
 def test_apply_patch_payload_is_edit_data_not_a_launch() -> None:

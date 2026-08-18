@@ -1,0 +1,32 @@
+{
+  "schema": "constraintbox.structured-open-bind-fixture.v1",
+  "fixture_id": "two-fibres-two-probes-v1",
+  "states": ["a0", "a1", "b0", "b1"],
+  "parent_by_state": {
+    "a0": "a",
+    "a1": "a",
+    "b0": "b",
+    "b1": "b"
+  },
+  "probes": ["side", "record"],
+  "observations": [
+    {"state": "a0", "probe": "side", "value": "L"},
+    {"state": "a0", "probe": "record", "value": "0"},
+    {"state": "a1", "probe": "side", "value": "L"},
+    {"state": "a1", "probe": "record", "value": "1"},
+    {"state": "b0", "probe": "side", "value": "R"},
+    {"state": "b0", "probe": "record", "value": "0"},
+    {"state": "b1", "probe": "side", "value": "R"},
+    {"state": "b1", "probe": "record", "value": "1"}
+  ],
+  "bind_candidates": [
+    {"id": "bind-side-L", "probe": "side", "allowed_values": ["L"]},
+    {"id": "bind-side-R", "probe": "side", "allowed_values": ["R"]},
+    {"id": "bind-record-0", "probe": "record", "allowed_values": ["0"]},
+    {"id": "bind-record-1", "probe": "record", "allowed_values": ["1"]},
+    {"id": "bind-identity", "probe": "side", "allowed_values": ["L", "R"], "control": "identity"}
+  ],
+  "relabel_permutation": [2, 0, 3, 1],
+  "claim_ceiling": "finite structured support-extension and observation-restriction probe only; not chirality, not a manifold, not an attractor, not promotion",
+  "promotion_allowed": false
+}

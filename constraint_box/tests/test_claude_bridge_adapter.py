@@ -35,7 +35,12 @@ print(json.dumps({'parsed': {'models': ['claude-sonnet-5'], 'total_cost_usd': 0.
 
 
 def _request(
-    tmp_path: Path, *, tools: str = "", hierarchy: bool = False, bind_mmm: bool = True
+    tmp_path: Path,
+    *,
+    tools: str = "",
+    hierarchy: bool = False,
+    bind_mmm: bool = True,
+    model_observed_allowlist: list[str] | None = ["claude-sonnet-5"],
 ) -> Path:
     prompt = tmp_path / "prompt.md"
     path = tmp_path / "request.json"
@@ -66,6 +71,8 @@ def _request(
                 "depth": 2,
             }
         )
+    if model_observed_allowlist is not None:
+        request["model_observed_allowlist"] = model_observed_allowlist
     path.write_text(
         json.dumps(request, sort_keys=True),
         encoding="utf-8",
@@ -78,6 +85,10 @@ def test_write_tools_are_explicit_request_data(tmp_path: Path) -> None:
     assert receipt["disposition"] == "OBSERVED"
     assert receipt["model_binding_confirmed"] is True
     assert receipt["models_observed"] == ["claude-sonnet-5"]
+    assert receipt["model_identity_match_kind"] == "declared_alias"
+    assert receipt["alias_resolution_source"] == "invocation.model_observed_allowlist"
+    assert receipt["model_observed_values"] == ["claude-sonnet-5"]
+    assert receipt["model_observed_allowlist"] == ["claude-sonnet-5"]
     assert receipt["tools_requested"] == "Read,Write,Edit"
     tool_index = receipt["argv"].index("--tools")
     assert receipt["argv"][tool_index + 1] == "Read,Write,Edit"
@@ -141,6 +152,48 @@ def test_unbound_model_is_hold(monkeypatch, tmp_path: Path) -> None:
     assert receipt["disposition"] == "HOLD"
     assert receipt["reason_code"] == "HOLD_CLAUDE_MODEL_BINDING"
     assert receipt["model_binding_confirmed"] is False
+
+
+def test_alias_without_allowlist_is_hold(monkeypatch, tmp_path: Path) -> None:
+    request = _request(tmp_path, model_observed_allowlist=None)
+    out_dir = tmp_path / "out"
+    out_dir.mkdir(exist_ok=True)
+    output = out_dir / "result.md"
+    output.write_text("bounded result\n", encoding="utf-8")
+    stdout = json.dumps(
+        {"parsed": {"models": ["claude-sonnet-5"]}, "output_path": str(output)}
+    ).encode()
+    monkeypatch.setattr(
+        "constraintbox.claude_bridge_adapter.subprocess.run",
+        lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout=stdout, stderr=b""),
+    )
+    receipt = run(request)
+    assert receipt["disposition"] == "HOLD"
+    assert receipt["reason_code"] == "HOLD_CLAUDE_MODEL_BINDING"
+    assert receipt["model_identity_match_kind"] == "unverified"
+
+
+def test_exact_requested_model_does_not_need_allowlist(tmp_path: Path) -> None:
+    request = _request(tmp_path, model_observed_allowlist=None)
+    body = json.loads(request.read_text(encoding="utf-8"))
+    body["model"] = "claude-sonnet-5"
+    request.write_text(json.dumps(body), encoding="utf-8")
+    receipt = run(request)
+    assert receipt["disposition"] == "OBSERVED"
+    assert receipt["model_identity_match_kind"] == "exact"
+    assert receipt["alias_resolution_source"] is None
+
+
+@pytest.mark.parametrize(
+    "allowlist",
+    [[], ["claude-sonnet-5", "claude-sonnet-5"], ["not safe"], [{"model": "x"}]],
+)
+def test_model_observed_allowlist_is_strictly_validated(
+    tmp_path: Path, allowlist: object
+) -> None:
+    request = _request(tmp_path, model_observed_allowlist=allowlist)  # type: ignore[arg-type]
+    with pytest.raises(ClaudeBridgeAdapterError, match="model_observed_allowlist is invalid"):
+        run(request)
 
 
 def test_missing_mmm_refuses_before_spawn(tmp_path: Path, monkeypatch) -> None:

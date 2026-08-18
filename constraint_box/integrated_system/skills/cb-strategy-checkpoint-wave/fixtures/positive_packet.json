@@ -1,0 +1,115 @@
+{
+  "schema": "constraintbox.strategy-checkpoint-wave-input.v1",
+  "wave_id": "cb-strategy-checkpoint-wave-v1",
+  "operation": "checkpoint_after_failure_and_repair",
+  "target": "strategy-checkpoint-fixture-1",
+  "expected_source_set_sha256": "cb0c4e13fa7aeed2edd91f4c2ca0893e67d32e1aef986d2c8bee48603c764edd",
+  "before_repair": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/before_repair.json",
+    "sha256": "39db05fa97765619bfd251b38c446fa6d9ced11aa09798985f93ad92b30208cc"
+  },
+  "after_repair": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/after_repair.json",
+    "sha256": "bbf21af6ac84e7997dd4eebe5afa318263a4a7b975e11c8c4a784146a76eeb65"
+  },
+  "failure_receipt": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/failure_receipt.json",
+    "sha256": "af0e5d550054ad0e6fe9a7d689727e937bae860fceaa9822ec48608cc7336b5a"
+  },
+  "candidate_receipt": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/candidate_receipt.json",
+    "sha256": "7118ea506bc9d2d2b311c087850f493e042b2dba21e89fe16d695d66243548dc"
+  },
+  "context_epoch": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/context_epoch.json",
+    "sha256": "3d8953fb4abecf307084d037339a2c5b74429cffcfd97d5dc9162fb35de10808"
+  },
+  "branch_memory_snapshot": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/branch_memory_snapshot.jsonl",
+    "sha256": "7ac1a0ab48349c4f41cbd59476e78be997347af79d8eea47b5ac0e647d827567",
+    "format": "jsonl"
+  },
+  "current_projection": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/current_projection.json",
+    "sha256": "dd87b67f4927b3a50c3e8d859146f2af31e8ef2e4f1e977ee97adfcb40e7fa62"
+  },
+  "ablated_projection": {
+    "path": "cb-strategy-checkpoint-wave/fixtures/ablated_projection.json",
+    "sha256": "dd87b67f4927b3a50c3e8d859146f2af31e8ef2e4f1e977ee97adfcb40e7fa62"
+  },
+  "child_inputs": {
+    "repair_vs_object": {
+      "schema": "constraintbox.impact-vs-output.v1",
+      "operation": "cb-impact-vs-output-auditor.v1",
+      "target": "strategy-checkpoint-fixture-1",
+      "claim": "artifact",
+      "evidence": ["artifact"]
+    },
+    "expansion": {
+      "target_id": "strategy-checkpoint-fixture-1",
+      "operation_id": "cb-resource-expansion-cell.v1",
+      "authorized": {
+        "tools": ["sha256"],
+        "write_scope": ["receipts/checkpoint"],
+        "compute": 1,
+        "time": 10,
+        "persistence": ["ledger"],
+        "permissions": ["read"],
+        "external_actions": []
+      },
+      "used": {
+        "tools": ["sha256"],
+        "write_scope": ["receipts/checkpoint"],
+        "compute": 1,
+        "time": 10,
+        "persistence": ["ledger"],
+        "permissions": ["read"],
+        "external_actions": []
+      }
+    },
+    "rivals": {
+      "schema": "constraintbox.strategy-checkpoint-rival-input.v1",
+      "operation": "cb-branch-failure-memory.check.v1",
+      "target": "strategy-checkpoint-fixture-1",
+      "memory_path": "cb-strategy-checkpoint-wave/fixtures/branch_memory_snapshot.jsonl",
+      "memory_sha256": "7ac1a0ab48349c4f41cbd59476e78be997347af79d8eea47b5ac0e647d827567",
+      "candidate_id": "candidate-1",
+      "new_bridge": null,
+      "new_evidence": null
+    },
+    "recency": {
+      "schema": "constraintbox.strategy-checkpoint-recency-input.v1",
+      "operation": "cb-recency-bias-auditor.v1",
+      "target": "strategy-checkpoint-fixture-1",
+      "current": {
+        "schema": "constraintbox.strategy-projection.v1",
+        "target": "strategy-checkpoint-fixture-1",
+        "candidate_id": "candidate-1",
+        "decision": "continue",
+        "causal_evidence": null,
+        "split_target": false,
+        "stop_better": false,
+        "owner_amendment_needed": false,
+        "minority_branches": ["older-rival-1"],
+        "projection_sha256": "6d4d000aa63a2195db13468d4fde50b2557408879f45b19a65020bc42c1aae71"
+      },
+      "ablated": {
+        "schema": "constraintbox.strategy-projection.v1",
+        "target": "strategy-checkpoint-fixture-1",
+        "candidate_id": "candidate-1",
+        "decision": "continue",
+        "causal_evidence": null,
+        "split_target": false,
+        "stop_better": false,
+        "owner_amendment_needed": false,
+        "minority_branches": ["older-rival-1"],
+        "projection_sha256": "6d4d000aa63a2195db13468d4fde50b2557408879f45b19a65020bc42c1aae71"
+      },
+      "causal_evidence": null
+    }
+  },
+  "contradictions": ["a passing local metric is not proof of object impact"],
+  "minority_branches": ["older-rival-1"],
+  "disagreements": [],
+  "cancel_requested": false
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-strategy-framing-wave-v1",
+  "purpose": "Frame a bounded strategy portfolio before Decision; preserve the antichain, horizons, retreat options, prerequisite order, and disagreements without voting.",
+  "candidate_state": "NEW_CANDIDATE",
+  "activated": false,
+  "promotion_allowed": false,
+  "execution_mode": "model_free",
+  "children": [
+    {
+      "id": "boundary",
+      "skill": "cb-object-boundary-cell",
+      "operation": "restate_object",
+      "leaf_operation": "cb-object-boundary-cell.v1",
+      "tools": ["object_restatement"],
+      "source": "cb-object-boundary-cell/scripts/restate.py",
+      "source_sha256": "9f208857711c3846f7e4df7e1b44483b1ccd7ae40797db4c228f48ca477c4087",
+      "skill_sha256": "9d2472723649fb10e98a0d0381a28bd707ca3d785909a4205279ab94ec6320d9"
+    },
+    {
+      "id": "portfolio",
+      "skill": "cb-strategy-portfolio-cell",
+      "operation": "enumerate_six",
+      "leaf_operation": "cb-strategy-portfolio-cell.v1",
+      "tools": ["portfolio_enum"],
+      "source": "cb-strategy-portfolio-cell/scripts/portfolio.py",
+      "source_sha256": "cfad2aebc3ffde0238d87b2775c8fee42d97a8668c02de4704c326247025bed4",
+      "skill_sha256": "4c2ab0d58701bcbd0329f55cdc39d019f7e621c9cf698bdc4261cdc45b858c1f"
+    },
+    {
+      "id": "horizons",
+      "skill": "cb-multi-horizon-cell",
+      "operation": "scan_four_horizons",
+      "leaf_operation": "cb-multi-horizon-cell.v1",
+      "tools": ["horizon_scan"],
+      "source": "cb-multi-horizon-cell/scripts/horizons.py",
+      "source_sha256": "74f1e496d18f55929d019dbabab17efb366284fd3b2eb5691726e042426f355f",
+      "skill_sha256": "db01b62329fc6336c43c42ed2abba6c69d3e78486dd812d7b6c2a1e90165e8a2"
+    },
+    {
+      "id": "retreat",
+      "skill": "cb-option-value-retreat-cell",
+      "operation": "map_reversibility",
+      "leaf_operation": "cb-option-value-retreat-cell.v1",
+      "tools": ["retreat_map"],
+      "source": "cb-option-value-retreat-cell/scripts/retreat.py",
+      "source_sha256": "6f38529068367877d16ca35aa5aca99308ba71b963bafdc002c2af0a4bd89044",
+      "skill_sha256": "6006bcc48debedd6635c611ed5fbfcad74b3d75ae1b5e4ff092b3ca392d90c51"
+    },
+    {
+      "id": "sequence",
+      "skill": "cb-dependency-sequence-cell",
+      "operation": "order_by_prereq",
+      "leaf_operation": "cb-dependency-sequence-cell.v1",
+      "tools": ["prereq_order"],
+      "source": "cb-dependency-sequence-cell/scripts/sequence.py",
+      "source_sha256": "4b59e002a85a4745fe0bc66d6140cba36bed27005df8a6fdc5d6eebeea00d50e",
+      "skill_sha256": "6573278f4ee89f92a92eed9d88bf35b2e3a0e996ded82677aa524700eaa47b78"
+    },
+    {
+      "id": "discriminator",
+      "skill": "cb-strategy-discriminator-cell",
+      "operation": "design_cheapest_probe",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "tools": ["cheapest_probe"],
+      "source": "cb-strategy-discriminator-cell/scripts/discriminate.py",
+      "source_sha256": "c5dae104e6884571bfeb06f43e4a4201130844663d985c01ebd266f6bde76f4e",
+      "skill_sha256": "22f931c88dc2d1d39ff52bbf0e2a37e2d1f0e73542a2287f8efacf8c56782a72"
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true,
+    "applicability": "NOT_APPLICABLE_MODEL_FREE"
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "all_children_verified",
+      "portfolio_antichain_preserved",
+      "child_hold_or_tension_recorded",
+      "refuse_packet",
+      "source_drift",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "source_hashes",
+      "definition_hash",
+      "runner_hash",
+      "child_input_hashes",
+      "child_receipt_hashes",
+      "replay_identity",
+      "portfolio_antichain",
+      "tensions",
+      "claim_ceiling",
+      "route_truth"
+    ],
+    "not_applicable_evidence": [
+      "preload_receipts",
+      "provider_call_receipt"
+    ],
+    "model_free_receipt_state": "not_applicable_not_fabricated"
+  },
+  "claim_ceiling": "Model-free strategy framing composition only; no winner, decision, implementation, provider/MMM claim, activation, or promotion."
+}

@@ -1,0 +1,110 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-strategy-checkpoint-wave-v1",
+  "purpose": "Checkpoint one verified repair against object impact, resource scope, rival memory, and recency without voting or promotion.",
+  "candidate_state": "NEW_CANDIDATE",
+  "activated": false,
+  "promotion_allowed": false,
+  "children": [
+    {
+      "id": "repair_vs_object",
+      "skill": "cb-impact-vs-output-auditor",
+      "operation": "repair_hit_object_or_proxy",
+      "leaf_operation": "cb-impact-vs-output-auditor.v1",
+      "source": "cb-impact-vs-output-auditor/scripts/classify.py",
+      "source_sha256": "092452a9a904b11a782c13bb14854bad091354476f6e9053e4c303ed4cbdfc1d",
+      "skill_sha256": "f88b5a79c30720af3338ee664bc481afc1db617ed58915436cc8bb737d9e14de",
+      "tools": ["claim_classification", "receipt_replay"]
+    },
+    {
+      "id": "expansion",
+      "skill": "cb-resource-expansion-cell",
+      "operation": "scope_after_repair",
+      "leaf_operation": "cb-resource-expansion-cell.v1",
+      "source": "cb-resource-expansion-cell/scripts/check_expansion.py",
+      "source_sha256": "ff2ec8cc76225461045a93dabfc667dbb2ece9b372947f6119666770d5a36daa",
+      "skill_sha256": "e84c92b1d011414229311ae174a2151e870e9ecaac3c902b688e88dfa65d9026",
+      "tools": ["scope_delta", "receipt_replay"]
+    },
+    {
+      "id": "rivals",
+      "skill": "cb-branch-failure-memory",
+      "operation": "older_rival_still_live",
+      "leaf_operation": "cb-branch-failure-memory.check.v1",
+      "source": "cb-branch-failure-memory/scripts/remember.py",
+      "source_sha256": "0e60291b29c9486c24a7b396ddc06e9767bf143bbb1fb1355bd7b2239f3db5dd",
+      "skill_sha256": "d76cae4a6a10cc0593b0463cbe3d6c81f733d564fad17ec36a1b76a8276d59a3",
+      "tools": ["read_only_resurrection_check", "snapshot_digest"]
+    },
+    {
+      "id": "recency",
+      "skill": "cb-recency-bias-auditor",
+      "operation": "ablate_latest_delta",
+      "leaf_operation": "cb-recency-bias-auditor.v1",
+      "source": "cb-recency-bias-auditor/scripts/audit_recency.py",
+      "source_sha256": "92bd53f033cf62bcc070e73e2a38f12f79647e574ee7362cd89e1fec96a579da",
+      "skill_sha256": "afead546a0a738bce613b95e696c44b20d9c82675f70ac9c8d0b1dd8fe71443f",
+      "tools": ["projection_diff", "receipt_replay"]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true,
+    "required": false,
+    "fixture_execution": "model_free_no_provider_or_mmm"
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "continue_candidate",
+      "revert_repair",
+      "split_target",
+      "run_discriminator",
+      "reopen_rival",
+      "stop_satisfied",
+      "reject_local_optimum",
+      "request_owner_amendment",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "target_binding",
+      "expected_source_set_sha256",
+      "source_set_sha256",
+      "parent_cancellation_requested",
+      "before_after_artifact_bindings",
+      "failure_receipt_binding",
+      "candidate_receipt_binding",
+      "context_epoch_binding",
+      "branch_memory_snapshot_binding",
+      "current_ablated_projection_binding",
+      "child_input_digests",
+      "child_source_hashes",
+      "precedence_table",
+      "compiled_disposition",
+      "contradictions",
+      "minority_branches",
+      "route_truth",
+      "model_free_evidence",
+      "receipt_self_sha256"
+    ],
+    "model_free_evidence": {
+      "preload_receipts": [],
+      "provider_call_receipt": null,
+      "mmm_preload_applicable": false,
+      "provider_receipt_applicable": false,
+      "skill_execution_claimed": false
+    }
+  },
+  "claim_ceiling": "Source-bound checkpoint evidence and non-voting routing only; no truth verdict, provider route, MMM execution, repair, activation, or promotion."
+}

@@ -12,6 +12,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import shlex
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,7 @@ REPO = ROOT.parent
 ROOT_HOOK = REPO / ".claude" / "hooks" / "cb_pretooluse_guard.sh"
 LEGACY_ADAPTER = ROOT / "hooks" / "pre_tool.sh"
 REFUSAL = "PACKAGE_OUTSIDE_CB_LIGHT_PROPOSAL_DOMAIN"
+CANDIDATE_PYTHON = shlex.quote(str(ROOT / ".venv" / "bin" / "python"))
 
 
 def payload(command: str) -> bytes:
@@ -92,29 +94,25 @@ def main() -> int:
     cases = [
         (
             "declared_static_candidate",
-            "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python "
-            "-m pip install z3-solver==4.16.0.0",
+            f"{CANDIDATE_PYTHON} -m pip install z3-solver==4.16.0.0",
             "ADMIT",
             None,
         ),
         (
             "undeclared_heavy_adjacent_package",
-            "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python "
-            "-m pip install jax==0.6.2",
+            f"{CANDIDATE_PYTHON} -m pip install jax==0.6.2",
             "REFUSE",
             REFUSAL,
         ),
         (
             "mixed_declared_and_undeclared_package",
-            "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python "
-            "-m pip install z3-solver==4.16.0.0 requests==2.34.2",
+            f"{CANDIDATE_PYTHON} -m pip install z3-solver==4.16.0.0 requests==2.34.2",
             "REFUSE",
             REFUSAL,
         ),
         (
             "control_profile_package_not_static_candidate",
-            "/Users/joshuaeisenhart/Codex-Ratchet/constraint_box/.venv/bin/python "
-            "-m pip install pydantic==2.12.5",
+            f"{CANDIDATE_PYTHON} -m pip install pydantic==2.12.5",
             "HOLD",
             "CANDIDATE_NOT_SELECTED_FOR_INSTALL",
         ),

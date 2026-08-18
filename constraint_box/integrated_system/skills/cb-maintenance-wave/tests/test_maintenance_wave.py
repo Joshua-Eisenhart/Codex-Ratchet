@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -12,6 +13,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.run_maintenance_wave import declared_digest, run_wave
 from scripts.validate_receipt import validate
+
+
+def _git(cwd: Path, *args: str) -> str:
+    completed = subprocess.run(
+        ["git", "-C", str(cwd), *args],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return completed.stdout
 
 
 def _layout(tmp_path: Path) -> tuple[Path, Path]:
@@ -116,3 +127,51 @@ def test_source_digest_ignores_python_caches_but_tracks_source(tmp_path: Path) -
     (source / "main.py").write_text("print('changed')\n", encoding="utf-8")
     after_source, _ = declared_digest(root, ["zip_agent/src"])
     assert after_source != before
+
+
+def test_git_inventory_exposes_dirty_linked_worktree(tmp_path: Path) -> None:
+    root, package = _layout(tmp_path)
+    _git(root, "init", "-q")
+    _git(root, "config", "user.email", "cb-test@example.invalid")
+    _git(root, "config", "user.name", "ConstraintBox Test")
+    (root / "README.md").write_text("canonical\n", encoding="utf-8")
+    _git(root, "add", ".")
+    _git(root, "commit", "-qm", "initial")
+    canonical_head = _git(root, "rev-parse", "HEAD").strip()
+
+    old_desktop = tmp_path / "Desktop" / "Codex Ratchet"
+    old_desktop.parent.mkdir()
+    _git(root, "worktree", "add", "-q", "-b", "old-desktop", str(old_desktop))
+    (old_desktop / "README.md").write_text("old dirty\n", encoding="utf-8")
+
+    receipt = _run(root, package)
+    assert receipt["status"] == "READY"
+    git = receipt["diagnostics"]["git"]
+    assert git["available"] is True
+    assert git["worktrees_available"] is True
+    inventory = git["worktree_inventory"]
+    assert inventory["source"] == "git worktree list --porcelain"
+    assert inventory["count"] == 2
+
+    states = {Path(item["resolved_path"]): item for item in inventory["worktrees"]}
+    canonical = states[root.resolve()]
+    sibling = states[old_desktop.resolve()]
+    assert canonical["head"] == canonical_head
+    assert canonical["branch"] is not None
+    assert sibling["branch"] == "old-desktop"
+    assert sibling["head"] == canonical_head
+    assert sibling["status"]["available"] is True
+    assert sibling["status"]["changed_count"] >= 1
+    assert any("README.md" in line for line in sibling["status"]["entries"])
+
+
+def test_non_git_root_reports_unavailable_without_blocking_portability(tmp_path: Path) -> None:
+    root, package = _layout(tmp_path)
+    receipt = _run(root, package)
+
+    assert receipt["status"] == "READY"
+    git = receipt["diagnostics"]["git"]
+    assert git["available"] is False
+    assert git["worktrees"] == []
+    assert git["worktree_inventory"]["available"] is False
+    assert git["worktree_inventory"]["worktrees"] == []

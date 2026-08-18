@@ -1,0 +1,139 @@
+{
+  "context": {
+    "contradictions": [
+      "speed can hide a lost retreat option"
+    ],
+    "disagreements": [
+      "reuse versus a new bounded probe"
+    ],
+    "epoch": "strategy-framing-context-v1",
+    "schema": "constraintbox.strategy-framing-context.v1"
+  },
+  "child_inputs": {
+    "boundary": {
+      "amendment_authority": "owner-only",
+      "forbidden_substitutions": [
+        "winner"
+      ],
+      "invariants": [
+        "preserve object identity"
+      ],
+      "non_objectives": [
+        "implementation"
+      ],
+      "object": "the bounded strategy object",
+      "operation": "cb-object-boundary-cell.v1",
+      "operation_id": "cb-object-boundary-cell.v1",
+      "schema": "constraintbox.object-boundary.v1",
+      "target": "strategy-frontier-1"
+    },
+    "discriminator": {
+      "disagreement": "reuse versus a new bounded probe",
+      "operation": "cb-strategy-discriminator-cell.v1",
+      "operation_id": "cb-strategy-discriminator-cell.v1",
+      "probe": {
+        "cost": 1,
+        "finite": true,
+        "name": "contained replay check"
+      },
+      "schema": "constraintbox.strategy-discriminator.v1",
+      "strategies": [
+        "direct",
+        "alternative"
+      ],
+      "target": "strategy-frontier-1"
+    },
+    "horizons": {
+      "downstream": "later consumers must retain the chosen branch set",
+      "immediate": "record the current bounded packet",
+      "long_horizon": "preserve a recoverable option to retreat",
+      "maintenance": "replay and source checks remain cheap",
+      "operation": "cb-multi-horizon-cell.v1",
+      "operation_id": "cb-multi-horizon-cell.v1",
+      "schema": "constraintbox.multi-horizon.v1",
+      "target": "strategy-frontier-1"
+    },
+    "portfolio": {
+      "alternative": "reuse an approved bounded wave",
+      "back": "return to the last source-bound checkpoint",
+      "direct": "bind the current target and context",
+      "operation": "cb-strategy-portfolio-cell.v1",
+      "operation_id": "cb-strategy-portfolio-cell.v1",
+      "reframe": "ask which object boundary is actually load-bearing",
+      "schema": "constraintbox.strategy-portfolio.v1",
+      "stop": "stop while preserving all options",
+      "target": "strategy-frontier-1",
+      "wildcard": "run one finite discriminator against a hidden third reading"
+    },
+    "retreat": {
+      "hold_conditions": [
+        "child source drift"
+      ],
+      "irreversible_commitments": [],
+      "operation": "cb-option-value-retreat-cell.v1",
+      "operation_id": "cb-option-value-retreat-cell.v1",
+      "preserved_options": [
+        "stop",
+        "return to the checkpoint"
+      ],
+      "retreat_conditions": [
+        "the finite probe cannot be replayed"
+      ],
+      "reversible_probes": [
+        {
+          "name": "replay current fixture",
+          "restored_state_check": "input digest is unchanged",
+          "reversible": true,
+          "scope": "read_only",
+          "undo_operation": "discard the read-only observation"
+        }
+      ],
+      "schema": "constraintbox.option-retreat.v1",
+      "target": "strategy-frontier-1"
+    },
+    "sequence": {
+      "operation": "cb-dependency-sequence-cell.v1",
+      "operation_id": "cb-dependency-sequence-cell.v1",
+      "schema": "constraintbox.dependency-sequence.v1",
+      "steps": [
+        {
+          "id": "boundary",
+          "information_value": 5,
+          "prerequisites": []
+        },
+        {
+          "id": "portfolio",
+          "information_value": 4,
+          "prerequisites": [
+            "boundary"
+          ]
+        },
+        {
+          "id": "discriminator",
+          "information_value": 3,
+          "prerequisites": [
+            "portfolio"
+          ]
+        }
+      ],
+      "target": "strategy-frontier-1"
+    }
+  },
+  "object_card": {
+    "hard_constraints": [
+      "preserve object identity",
+      "no implementation"
+    ],
+    "non_objectives": [
+      "choosing a strategy"
+    ],
+    "object": "the bounded strategy object",
+    "schema": "constraintbox.object-card.v1",
+    "success_condition": "all six framing surfaces remain source-bound",
+    "target": "strategy-frontier-1"
+  },
+  "operation": "frame_before_decision",
+  "schema": "constraintbox.strategy-framing-wave-input.v1",
+  "target": "strategy-frontier-1",
+  "wave_id": "cb-strategy-framing-wave-v1"
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -29,6 +30,8 @@ _ADAPTER_MODULES = {
     "claude-code": "constraintbox.claude_bridge_adapter",
 }
 _GROK_EFFORTS = {"", "low", "medium", "high", "max"}
+_SAFE_MODEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}\Z")
+_MAX_MODEL_OBSERVED_ALLOWLIST = 32
 _PROVIDER_ENV_COMMON = (
     "PATH",
     "HOME",
@@ -82,6 +85,63 @@ def _object(raw: bytes, label: str) -> dict[str, Any]:
 
 def _sha256_json(value: Any) -> str:
     return sha256_bytes(canonical_json_bytes(value))
+
+
+def _validate_model_observed_allowlist(raw: object) -> list[str]:
+    """Validate invocation-owned exact identities without a model roster."""
+
+    if not isinstance(raw, list) or not raw or len(raw) > _MAX_MODEL_OBSERVED_ALLOWLIST:
+        raise ZipJobRefusal("REFUSE_PROVIDER_REQUEST_SCHEMA", "model_observed_allowlist")
+    if any(not isinstance(value, str) or _SAFE_MODEL.fullmatch(value) is None for value in raw):
+        raise ZipJobRefusal("REFUSE_PROVIDER_REQUEST_SCHEMA", "model_observed_allowlist")
+    if len(raw) != len(set(raw)):
+        raise ZipJobRefusal("REFUSE_PROVIDER_REQUEST_SCHEMA", "model_observed_allowlist")
+    return list(raw)
+
+
+def _model_identity_contract(
+    request: dict[str, Any], *, observed: str, evidence: dict[str, Any]
+) -> tuple[str, str | None]:
+    """Resolve exact/declared-alias identity from invocation data."""
+
+    requested = request["model_requested"]
+    allowlist = request.get("model_observed_allowlist")
+    if allowlist is not None:
+        allowlist = _validate_model_observed_allowlist(allowlist)
+    if observed == requested:
+        match_kind = "exact"
+        alias_source = None
+    elif allowlist is not None and observed in allowlist:
+        match_kind = "declared_alias"
+        alias_source = "invocation.model_observed_allowlist"
+    else:
+        raise ZipJobRefusal("REFUSE_PROVIDER_MODEL_MISMATCH", observed)
+    if "model_observed_allowlist" in evidence:
+        receipt_allowlist = evidence["model_observed_allowlist"]
+        if receipt_allowlist != allowlist:
+            raise ZipJobRefusal(
+                "REFUSE_PROVIDER_EVIDENCE_INVALID", "model_observed_allowlist"
+            )
+    elif request["provider"] == "claude-code":
+        # Claude receipts are produced by the owned adapter and must carry the
+        # invocation contract explicitly.  Grok's current adapter predates
+        # this field; provider_task still binds the contract in its own source
+        # receipt after checking the exact observed value.
+        raise ZipJobRefusal(
+            "REFUSE_PROVIDER_EVIDENCE_INVALID", "model_observed_allowlist"
+        )
+    receipt_kind = evidence.get("model_identity_match_kind")
+    if receipt_kind is not None and receipt_kind != match_kind:
+        raise ZipJobRefusal("REFUSE_PROVIDER_EVIDENCE_INVALID", "model_identity_match_kind")
+    receipt_source = evidence.get("alias_resolution_source")
+    if match_kind == "declared_alias":
+        if receipt_source is not None and receipt_source != alias_source:
+            raise ZipJobRefusal(
+                "REFUSE_PROVIDER_EVIDENCE_INVALID", "alias_resolution_source"
+            )
+    elif receipt_source is not None:
+        raise ZipJobRefusal("REFUSE_PROVIDER_EVIDENCE_INVALID", "alias_resolution_source")
+    return match_kind, alias_source
 
 
 def _write_workspace(work: Path, *, agent: bytes, object_bytes: bytes, prompt: bytes) -> Path:
@@ -153,6 +213,7 @@ def _provider_options(request: dict[str, Any]) -> None:
         "provider",
         "route_id",
         "model_requested",
+        "model_observed_allowlist",
         "expected_marker",
         "timeout_seconds",
         "controller_src",
@@ -171,6 +232,10 @@ def _provider_options(request: dict[str, Any]) -> None:
     if provider in _ADAPTER_MODULES:
         # The overlay is a request dependency, not an inferred sibling checkout.
         declared_controller_src(request.get("controller_src"))
+    if "model_observed_allowlist" in request:
+        request["model_observed_allowlist"] = _validate_model_observed_allowlist(
+            request["model_observed_allowlist"]
+        )
     if provider == "codex-cli":
         _provider_file(request.get("executable"), "executable", executable=True)
         codex_home = _text(request.get("codex_home"), "codex_home")
@@ -393,6 +458,10 @@ def _argv(
             "tools": "Read,Write,Edit",
             "controller_src": str(controller),
         })
+        if "model_observed_allowlist" in request:
+            adapter_request["model_observed_allowlist"] = list(
+                request["model_observed_allowlist"]
+            )
         request_path.write_bytes(canonical_json_bytes(adapter_request))
         return (
             [
@@ -463,20 +532,7 @@ def _adapter_evidence(
     ):
         raise ZipJobRefusal("REFUSE_PROVIDER_EVIDENCE_INVALID", "model_observed")
     observed = observed_values[0]
-    requested = request["model_requested"]
-    if provider == "grok-cli":
-        # The Grok adapter explicitly permits only its provider build-usage
-        # suffix; any other observed model is a mismatch, never a fallback.
-        if observed not in {requested, f"{requested}-build"}:
-            raise ZipJobRefusal("REFUSE_PROVIDER_MODEL_MISMATCH", observed)
-    else:
-        lowered = requested.lower()
-        if lowered in {"sonnet", "haiku", "opus", "fable"}:
-            matches = lowered in observed.lower()
-        else:
-            matches = observed == requested
-        if not matches:
-            raise ZipJobRefusal("REFUSE_PROVIDER_MODEL_MISMATCH", observed)
+    _model_identity_contract(request, observed=observed, evidence=evidence)
     return observed, evidence
 
 
@@ -558,6 +614,10 @@ def _build_receipts(
     provider_evidence: bytes,
     preload_receipt_sha256: str,
 ) -> tuple[bytes, bytes]:
+    provider_evidence_value = _object(provider_evidence, PROVIDER_EVIDENCE)
+    model_identity_match_kind, alias_resolution_source = _model_identity_contract(
+        request, observed=model_observed, evidence=provider_evidence_value
+    )
     response_binding = {
         "stdout_sha256": sha256_bytes(stdout.encode("utf-8")),
         "stderr_sha256": sha256_bytes(stderr.encode("utf-8")),
@@ -568,6 +628,7 @@ def _build_receipts(
         "provider": request["provider"],
         "route_id": request["route_id"],
         "model_requested": request["model_requested"],
+        "model_observed_allowlist": request.get("model_observed_allowlist"),
         "prompt_sha256": sha256_bytes(prompt_bytes),
         "agent_sha256": sha256_bytes(agent_bytes),
         "object_sha256": sha256_bytes(object_bytes),
@@ -581,7 +642,12 @@ def _build_receipts(
         "route_id": request["route_id"],
         "model_requested": request["model_requested"],
         "model_observed": model_observed,
+        "model_observed_values": [model_observed],
+        "model_observed_allowlist": request.get("model_observed_allowlist"),
         "model_binding_confirmed": True,
+        "model_identity_match_kind": model_identity_match_kind,
+        "model_match_kind": model_identity_match_kind,
+        "alias_resolution_source": alias_resolution_source,
         "prompt_sha256": sha256_bytes(prompt_bytes),
         "request_sha256": _sha256_json(request_binding),
         "response_sha256": _sha256_json(response_binding),
@@ -614,6 +680,11 @@ def _build_receipts(
         "route": request["route_id"],
         "model_requested": request["model_requested"],
         "model_observed": model_observed,
+        "model_observed_values": [model_observed],
+        "model_observed_allowlist": request.get("model_observed_allowlist"),
+        "model_identity_match_kind": model_identity_match_kind,
+        "model_match_kind": model_identity_match_kind,
+        "alias_resolution_source": alias_resolution_source,
         "terminal_state": "COMPLETED",
         "source_receipt_sha256": sha256_bytes(source_bytes),
         "claim_ceiling": "provider-call envelope bound to one in-ZIP subprocess receipt only",
@@ -652,6 +723,7 @@ def run_provider_call(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str, 
         "provider",
         "route_id",
         "model_requested",
+        "model_observed_allowlist",
         "expected_marker",
         "timeout_seconds",
         "fixture_script",

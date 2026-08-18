@@ -1,0 +1,145 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-objective-integrity-wave-v1",
+  "purpose": "Run nine independent model-free Goodhart and paperclip attack cells against one exact ObjectCard target; preserve findings and contradictions without choosing a winner.",
+  "execution_mode": "model_free",
+  "children": [
+    {
+      "id": "proxy_map",
+      "skill": "cb-object-proxy-mapper",
+      "operation": "map_object_proxy_chain",
+      "leaf_operation": "cb-object-proxy-mapper.v1",
+      "tools": ["chain_map"],
+      "source": "cb-object-proxy-mapper/scripts/map_proxy.py",
+      "source_sha256": "d4fed6b95ca97be5bdbe1b427c565083d4caa4e5730c296370f1cdbce6df2f00",
+      "skill_sha256": "f79159a0e6baedcd1bbb2a03d88f3fe462667ab5aad3561f9680f44fdb79c5c0"
+    },
+    {
+      "id": "regimes",
+      "skill": "cb-goodhart-regime-cell",
+      "operation": "split_four_regimes",
+      "leaf_operation": "cb-goodhart-regime-cell.v1",
+      "tools": ["regime_split"],
+      "source": "cb-goodhart-regime-cell/scripts/split_regimes.py",
+      "source_sha256": "859317976dcf55d8a842e998ab2f3be19172e827dadf4f250673ddcb0f086093",
+      "skill_sha256": "1991bc4767175d70323742c4bdff6341bc5d9f2f1f9cc8fb140ae477555adc6f"
+    },
+    {
+      "id": "severance",
+      "skill": "cb-proxy-severance-cell",
+      "operation": "search_proxy_up_object_down",
+      "leaf_operation": "cb-proxy-severance-cell.v1",
+      "tools": ["severance_search"],
+      "source": "cb-proxy-severance-cell/scripts/sever.py",
+      "source_sha256": "1aff50ae21cce51af2aa8fff67c913076a313c1d207e3429205da9d1ad281913",
+      "skill_sha256": "7ea193b6f8e73ec5ccbef7f38d3c82f199e4bf068be6046f81821552fc6ef484"
+    },
+    {
+      "id": "adversary",
+      "skill": "cb-optimizer-adversary-cell",
+      "operation": "run_named_attacks",
+      "leaf_operation": "cb-optimizer-adversary-cell.v1",
+      "tools": ["adversary_attacks"],
+      "source": "cb-optimizer-adversary-cell/scripts/attack.py",
+      "source_sha256": "82530867f9b57b95196270b870fbd52965647b03731573af8de7509ed12c05ba",
+      "skill_sha256": "233ea07f7781c34d9675523498a47a2c4ddacf4d8accf2df69e4a2d67f1e6fb1"
+    },
+    {
+      "id": "expansion",
+      "skill": "cb-resource-expansion-cell",
+      "operation": "compare_authorized_used",
+      "leaf_operation": "cb-resource-expansion-cell.v1",
+      "tools": ["scope_delta"],
+      "source": "cb-resource-expansion-cell/scripts/check_expansion.py",
+      "source_sha256": "ff2ec8cc76225461045a93dabfc667dbb2ece9b372947f6119666770d5a36daa",
+      "skill_sha256": "e84c92b1d011414229311ae174a2151e870e9ecaac3c902b688e88dfa65d9026"
+    },
+    {
+      "id": "externalities",
+      "skill": "cb-externality-horizon-cell",
+      "operation": "map_displaced_costs",
+      "leaf_operation": "cb-externality-horizon-cell.v1",
+      "tools": ["externality_map"],
+      "source": "cb-externality-horizon-cell/scripts/map_horizon.py",
+      "source_sha256": "11c24531b6dfb83d65cbec20dea3641716b56879b682e52c15be1706f655398d",
+      "skill_sha256": "9b4bcf3eebf031fb43fb401085570da18d067537cbc780b5f8c3c2461c0cc4f8"
+    },
+    {
+      "id": "termination",
+      "skill": "cb-termination-budget-cell",
+      "operation": "require_stop_and_cancel",
+      "leaf_operation": "cb-termination-budget-cell.v1",
+      "tools": ["stop_budget"],
+      "source": "cb-termination-budget-cell/scripts/check_budget.py",
+      "source_sha256": "b6bf13c33bc428b293ecfc3d2d696de0b522ee6f3872804faa8484ae6f6ed00e",
+      "skill_sha256": "afa92c3b521918888af66498c8518748e053eb9b30a131c986c7236b5cd28eee"
+    },
+    {
+      "id": "amendment",
+      "skill": "cb-goal-amendment-guard",
+      "operation": "refuse_unlicensed_object_change",
+      "leaf_operation": "cb-goal-amendment-guard.v1",
+      "tools": ["amendment_receipt"],
+      "source": "cb-goal-amendment-guard/scripts/guard.py",
+      "source_sha256": "2a2c8201b96e47bf2e65ad91b369872e92d31cb498c07c718ba39b30ae59ea94",
+      "skill_sha256": "af3fe054edfde29b72559541cf322d7ffc6653dc4779b502e14475a6d8e9cfbf"
+    },
+    {
+      "id": "impact",
+      "skill": "cb-impact-vs-output-auditor",
+      "operation": "classify_artifact_metric_external",
+      "leaf_operation": "cb-impact-vs-output-auditor.v1",
+      "tools": ["impact_class"],
+      "source": "cb-impact-vs-output-auditor/scripts/classify.py",
+      "source_sha256": "092452a9a904b11a782c13bb14854bad091354476f6e9053e4c303ed4cbdfc1d",
+      "skill_sha256": "f88b5a79c30720af3338ee664bc481afc1db617ed58915436cc8bb737d9e14de"
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true,
+    "applicability": "NOT_APPLICABLE_MODEL_FREE"
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "all_children_verified",
+      "child_finding_retained",
+      "refuse_packet",
+      "source_drift",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "source_hashes",
+      "definition_hash",
+      "child_input_hashes",
+      "child_receipt_hashes",
+      "findings",
+      "contradictions",
+      "route_truth"
+    ],
+    "not_applicable_evidence": [
+      "preload_receipts",
+      "provider_call_receipt"
+    ],
+    "model_free_receipt_state": "not_applicable_not_fabricated",
+    "model_free_evidence": {
+      "preload_receipts": [],
+      "provider_call_receipt": null,
+      "cancellation_state": "NOT_REQUESTED",
+      "disagreement_state": "RECORDED_DETERMINISTICALLY"
+    }
+  },
+  "claim_ceiling": "Model-free objective-integrity attack composition and receipt verification only; no truth verdict, winner, provider/MMM claim, activation, Light decision, or promotion."
+}

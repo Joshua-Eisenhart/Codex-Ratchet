@@ -1,0 +1,210 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-capability-probe-map-wave-v1",
+  "purpose": "Bind and replay already-working public structured-probe exact/dual and finite path-mass operations into an inactive capability map.",
+  "candidate_state": "NEW_CANDIDATE",
+  "activated": false,
+  "promotion_allowed": false,
+  "binding_contract": {
+    "registry": "cb-capability-probe-map-wave/registry.json",
+    "source_digest": "sha256(raw public source bytes)",
+    "structured_fixture_digest": "sha256(canonical structured fixture JSON)",
+    "path_mass_fixture_digest": "sha256(raw path-mass fixture bytes)",
+    "all_runtime_rows_require_invocation_evidence": true,
+    "all_subprocesses_require_environment_projection": true
+  },
+  "runtime_bindings": {
+    "controller_runtime": {
+      "interpreter": "sys.executable",
+      "invocation": ["<controller-interpreter>", "-I", "-c", "runtime_identity"],
+      "identity": ["sys.executable", "sys.prefix", "sys.base_prefix", "python_version", "executable_sha256"],
+      "libraries": ["controller_z3_runtime", "controller_cvc5_runtime"]
+    },
+    "controller_z3_runtime": {
+      "registry": "registry.json#/runtime_capabilities/controller_z3_runtime",
+      "module": "z3",
+      "version_api": "z3.get_version_string()",
+      "parent_runtime": "controller_runtime"
+    },
+    "controller_cvc5_runtime": {
+      "registry": "registry.json#/runtime_capabilities/controller_cvc5_runtime",
+      "module": "cvc5",
+      "version_api": "cvc5.__version__",
+      "parent_runtime": "controller_runtime"
+    },
+    "external_jax_runtime": {
+      "interpreter": "--jax-python (declared absolute path)",
+      "invocation": ["<declared-external-interpreter>", "-I", "-c", "import jax,z3,cvc5"],
+      "identity": ["sys.executable", "sys.prefix", "sys.base_prefix", "python_version", "jax_version", "jaxlib_version", "executable_sha256"],
+      "prefix_rule": "observed external sys.prefix must differ from observed controller sys.prefix"
+    },
+    "subprocess_environment": {
+      "allowlist": ["PYTHONNOUSERSITE", "PYTHONDONTWRITEBYTECODE", "JAX_PLATFORMS", "JAX_ENABLE_X64", "CUDA_VISIBLE_DEVICES"],
+      "credentials_passed": false,
+      "jax_platform": "cpu"
+    }
+  },
+  "tool_bindings": {
+    "structured_probe_exact": {
+      "registry": "registry.json#/capabilities/structured_probe_exact",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+      "api": "evaluate(raw, engine=exact)",
+      "invocation": ["<controller-interpreter>", "-I", "structured_open_bind_probe.py", "--engine", "exact"],
+      "receipt_fields": ["source_sha256", "fixture_sha256", "invocation", "environment"]
+    },
+    "structured_probe_dual": {
+      "registry": "registry.json#/capabilities/structured_probe_dual",
+      "source": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+      "api": "evaluate(raw, engine=dual)",
+      "invocation": ["<declared-external-interpreter>", "-I", "structured_open_bind_probe.py", "--engine", "dual"],
+      "receipt_fields": ["source_sha256", "fixture_sha256", "jax", "invocation", "environment"]
+    },
+    "path_mass": {
+      "registry": "registry.json#/capabilities/path_mass",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+      "wrapper": "constraint_box/integrated_system/scripts/run_constraint_path_mass.py",
+      "api": "ConstraintPathMassRequest + run_constraint_path_mass + write_receipt",
+      "invocation": ["<controller-interpreter>", "-I", "run_constraint_path_mass.py", "--require-jax"],
+      "receipt_fields": ["source_sha256", "request.fixture_sha256", "jax_crossing", "invocation", "environment"]
+    },
+    "path_mass_replay": {
+      "registry": "registry.json#/capabilities/path_mass_replay",
+      "source": "constraint_box/src/constraintbox/constraint_path_mass.py",
+      "api": "replay_receipt(path, jax_interpreter=..., fixture_path=...)",
+      "invocation": ["<controller-interpreter>", "-I", "run_constraint_path_mass.py", "--replay", "<stored-receipt>"],
+      "receipt_fields": ["stored_receipt_sha256", "replayed_receipt_sha256", "invocation", "environment"]
+    },
+    "z3_controller": {
+      "registry": "registry.json#/runtime_capabilities/controller_z3_runtime",
+      "source": "stdlib subprocess import identity",
+      "api": "z3.get_version_string()",
+      "invocation": ["<controller-interpreter>", "-I", "-c", "runtime_identity"],
+      "receipt_fields": ["sys.executable", "sys.prefix", "sys.base_prefix", "versions", "executable_sha256", "invocation", "environment"]
+    },
+    "cvc5_controller": {
+      "registry": "registry.json#/runtime_capabilities/controller_cvc5_runtime",
+      "source": "stdlib subprocess import identity",
+      "api": "cvc5.__version__",
+      "invocation": ["<controller-interpreter>", "-I", "-c", "runtime_identity"],
+      "receipt_fields": ["sys.executable", "sys.prefix", "sys.base_prefix", "versions", "executable_sha256", "invocation", "environment"]
+    },
+    "jax_external": {
+      "registry": "registry.json#/runtime_capabilities/external_jax_runtime",
+      "source": "declared external interpreter",
+      "api": "import jax,z3,cvc5",
+      "invocation": ["<declared-external-interpreter>", "-I", "-c", "runtime_identity"],
+      "receipt_fields": ["sys.executable", "sys.prefix", "sys.base_prefix", "jax_version", "jaxlib_version", "z3_version", "cvc5_version", "executable_sha256", "prefix_comparison", "invocation", "environment"]
+    }
+  },
+  "children": [
+    {
+      "id": "bind_public_operations",
+      "skill": "cb-capability-probe-map-wave",
+      "operation": "bind_public_operations",
+      "tools": [
+        "structured_open_bind_probe.evaluate",
+        "constraintbox.constraint_path_mass.ConstraintPathMassRequest",
+        "constraintbox.constraint_path_mass.run_constraint_path_mass",
+        "constraintbox.constraint_path_mass.replay_receipt",
+        "declared_external_jax_interpreter",
+        "hashlib.sha256"
+      ]
+    },
+    {
+      "id": "structured_exact",
+      "skill": "cb-capability-probe-map-wave",
+      "operation": "structured_probe_exact",
+      "tools": [
+        "structured_open_bind_probe.evaluate",
+        "structured_open_bind_probe.validate_fixture",
+        "cvc5",
+        "z3"
+      ]
+    },
+    {
+      "id": "structured_dual_external_jax",
+      "skill": "cb-capability-probe-map-wave",
+      "operation": "structured_probe_dual",
+      "tools": [
+        "structured_open_bind_probe.evaluate",
+        "structured_open_bind_probe.jax_check",
+        "declared_external_jax_interpreter"
+      ]
+    },
+    {
+      "id": "path_mass_and_replay",
+      "skill": "cb-capability-probe-map-wave",
+      "operation": "path_mass_exact_replay",
+      "tools": [
+        "constraintbox.constraint_path_mass.run_constraint_path_mass",
+        "constraintbox.constraint_path_mass.write_receipt",
+        "constraintbox.constraint_path_mass.replay_receipt",
+        "declared_external_jax_interpreter",
+        "z3",
+        "cvc5"
+      ]
+    },
+    {
+      "id": "negative_controls",
+      "skill": "cb-capability-probe-map-wave",
+      "operation": "run_reason_specific_negative_controls",
+      "tools": [
+        "structured_open_bind_probe.validate_fixture",
+        "constraintbox.constraint_path_mass.replay_receipt",
+        "receipt_digest_recompute"
+      ]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "required": false,
+    "note": "Model-free deterministic composition; no model-backed child is claimed."
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "rerun_policy": "Replay is an explicit exact rerun of the stored path-mass request; no automatic mutation or promotion occurs.",
+    "stop_reasons": [
+      "candidate_receipt_emitted",
+      "hold_external_interpreter_missing",
+      "refuse_public_operation_unbound",
+      "hold_replay_mismatch",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "capability_binding",
+      "runtime_bindings",
+      "tool_bindings",
+      "environment_projection",
+      "tool_api_evidence",
+      "structured_exact_receipt",
+      "structured_dual_receipt",
+      "path_mass_receipt",
+      "path_mass_replay_receipt",
+      "source_fixture_binding",
+      "negative_controls",
+      "negative_control_matrix_exact",
+      "claim_ceiling",
+      "promotion_allowed_false",
+      "activated_false"
+    ],
+    "model_free_evidence": {
+      "child_receipts": [],
+      "preload_receipts": [],
+      "provider_call_receipt": null,
+      "cancellation_state": "NOT_REQUESTED",
+      "disagreement_state": "NOT_APPLICABLE"
+    }
+  },
+  "claim_ceiling": "Bounded capability binding and exact finite operation/replay evidence only; no manifold, basin, chirality, physical, provider, portability, activation, or promotion claim."
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-formalization-digger-wave-v1",
+  "purpose": "Draft four digest-bound formalization proposals and compile a non-voting frontier without deciding truth or activating a gate.",
+  "candidate_state": "NEW_CANDIDATE",
+  "activated": false,
+  "promotion_allowed": false,
+  "children": [
+    {
+      "id": "axiom_digger",
+      "skill": "assumption-audit",
+      "operation": "draft_named_assumptions_and_non_objectives",
+      "tools": ["strict_proposal_schema", "epoch_digest", "source_ref_binding", "contradiction_scan"]
+    },
+    {
+      "id": "constraint_digger",
+      "skill": "distinguishability-smt",
+      "operation": "draft_finite_candidate_predicates",
+      "tools": ["finite_domain_check", "capability_receipt_verify", "candidate_status_check"]
+    },
+    {
+      "id": "gate_digger",
+      "skill": "specification-boundary",
+      "operation": "draft_candidate_gate_obligations_and_negatives",
+      "tools": ["obligation_schema", "negative_matrix", "activation_refusal", "root_confinement"]
+    },
+    {
+      "id": "basin_digger",
+      "skill": "voice-zhuangzi",
+      "operation": "draft_probe_relative_quotient_mass_topology_interpretations",
+      "tools": ["probe_relative_scope", "interpretation_schema", "non_voting_frontier", "unresolved_contradictions"]
+    }
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "distinct_sets_within_round": true,
+    "required": false,
+    "fixture_execution": "model-free; no provider call is claimed"
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "rerun_policy": "Replay the same source-bound fixture inputs; never mutate toward activation or promotion.",
+    "stop_reasons": [
+      "frontier_compiled",
+      "refuse_epoch_chain",
+      "refuse_capability_receipt",
+      "refuse_stale_producer",
+      "refuse_path_escape",
+      "refuse_proposal_schema",
+      "refuse_contradiction",
+      "cancelled"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "epoch_digest",
+      "capability_receipt_sha256",
+      "proposal_digests",
+      "raw_input_sha256",
+      "semantic_input_digest",
+      "runner_binding",
+      "verifier_bindings",
+      "source_ref_bindings",
+      "contradiction_scan",
+      "contradiction_digest",
+      "frontier_digest",
+      "truth_not_decided",
+      "gate_not_activated",
+      "terminal_state_proposal_validated",
+      "skill_execution_claimed_false",
+      "receipt_self_sha256",
+      "output_artifact_write_false",
+      "no_heavy_route"
+    ],
+    "model_free_evidence": {
+      "preload_receipts": [],
+      "provider_call_receipt": null,
+      "cancellation_state": "NOT_REQUESTED",
+      "disagreement_state": "NOT_APPLICABLE"
+    }
+  },
+  "claim_ceiling": "Deterministic validation and proposal-only frontier compilation for one finite fixture; no observations, truth decision, gate activation, basin claim, provider route, or promotion."
+}

@@ -95,6 +95,15 @@ def confirm_mmm_load(request: Mapping[str, Any], prompt: bytes) -> dict[str, Any
         )
     packs = request["mmm_packs"]
     declared = request["mmm_sha256"]
+    material_role = request.get(
+        "mmm_material_role",
+        "controller_language_packs_not_packet_mini_voice_mmm",
+    )
+    if material_role != "controller_language_packs_not_packet_mini_voice_mmm":
+        raise MmmLoadError(
+            "REFUSE_MMM_MATERIAL_ROLE",
+            "controller language packs must not be relabeled as packet mini voice MMMs",
+        )
     if not isinstance(packs, list) or not packs:
         raise MmmLoadError("REFUSE_MMM_PACKS_INVALID", "mmm_packs must be a nonempty list")
     if any(not isinstance(name, str) or SAFE_PACK.fullmatch(name) is None for name in packs):
@@ -116,6 +125,7 @@ def confirm_mmm_load(request: Mapping[str, Any], prompt: bytes) -> dict[str, Any
         )
     return {
         "mmm_packs": list(packs),
+        "mmm_material_role": material_role,
         "mmm_sha256": observed,
         "mmm_bytes": len(raw),
         "mmm_load_confirmed": True,

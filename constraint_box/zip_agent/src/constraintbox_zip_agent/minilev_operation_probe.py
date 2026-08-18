@@ -119,11 +119,30 @@ def _inside(path: Path, root: Path) -> bool:
 def _resolve_light_root(light_root: Path | str | None = None) -> Path | None:
     configured = light_root or os.environ.get(LIGHT_ROOT_ENV)
     if configured:
-        candidate = Path(configured).expanduser().absolute()
+        declared = Path(configured).expanduser().absolute()
     else:
         # ``.../constraint_box/zip_agent/src/...`` -> the checkout root.  Do
         # not search arbitrary parents or fall back to the legacy src tree.
-        candidate = Path(__file__).resolve().parents[3]
+        declared = Path(__file__).resolve().parents[3]
+    # A caller may name macOS's standard ``/tmp`` alias for the same physical
+    # ``/private/tmp`` extraction.  Canonicalize that one platform alias, but
+    # do not accept a symlink as the product root or an arbitrary symlinked
+    # parent route.
+    if declared.is_symlink():
+        return None
+    try:
+        candidate = declared.resolve(strict=True)
+    except OSError:
+        return None
+    if candidate != declared:
+        allowed_tmp_alias = (
+            len(declared.parts) >= 2
+            and declared.parts[:2] == ("/", "tmp")
+            and candidate
+            == Path("/private/tmp").joinpath(*declared.parts[2:])
+        )
+        if not allowed_tmp_alias:
+            return None
     if not (
         (candidate / "config/cb_light_contract_v1.json").is_file()
         and (candidate / "light_runtime/pyproject.toml").is_file()
@@ -348,14 +367,22 @@ def inspect_light_source_status(
         installed = {}
     mismatches: list[dict[str, Any]] = []
     purelib_raw = observed.get("purelib")
-    purelib = Path(purelib_raw).absolute() if isinstance(purelib_raw, str) and purelib_raw else None
+    purelib = (
+        Path(purelib_raw).resolve(strict=False)
+        if isinstance(purelib_raw, str) and purelib_raw
+        else None
+    )
     for installed_rel, expected_row in expected.items():
         row = installed.get(installed_rel)
         if not isinstance(row, dict):
             mismatches.append({"file": installed_rel, "reason": "INSTALLED_FILE_MISSING"})
             continue
         origin_raw = row.get("origin")
-        origin = Path(origin_raw).absolute() if isinstance(origin_raw, str) and origin_raw else None
+        origin = (
+            Path(origin_raw).resolve(strict=False)
+            if isinstance(origin_raw, str) and origin_raw
+            else None
+        )
         if origin is None or (purelib is not None and not _inside(origin, purelib)):
             mismatches.append({
                 "file": installed_rel,
@@ -371,12 +398,18 @@ def inspect_light_source_status(
                 "observed": row.get("sha256"),
             })
     declared_norm = _path_text(declared)
+    declared_identity = _path_text(declared.resolve(strict=False))
     observed_norm = _path_text(Path(str(observed.get("interpreter", "")))) if observed.get("interpreter") else ""
-    if observed_norm != declared_norm:
+    observed_identity = (
+        _path_text(Path(str(observed.get("interpreter", ""))).resolve(strict=False))
+        if observed.get("interpreter")
+        else ""
+    )
+    if observed_identity != declared_identity:
         mismatches.append({
             "file": "interpreter",
             "reason": "DECLARED_INTERPRETER_IDENTITY_MISMATCH",
-            "expected": declared_norm,
+            "expected": declared_identity,
             "observed": observed.get("interpreter"),
         })
     expected_version = None
@@ -415,7 +448,9 @@ def inspect_light_source_status(
         "expected_root": _path_text(expected_root),
         "interpreter": {
             "declared": declared_norm,
+            "resolved": declared_identity,
             "observed": observed.get("interpreter"),
+            "observed_resolved": observed_identity,
             "python_version": observed.get("python_version"),
         },
         "expected": expected,

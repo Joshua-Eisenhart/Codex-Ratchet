@@ -1,0 +1,93 @@
+{
+  "schema": "constraintbox.wave-bootstrap-state.v1",
+  "captured_at": "2026-08-18T05:57:14Z",
+  "profile": "light",
+  "context_refresh": {
+    "corpus_event_count_before": 4662,
+    "corpus_event_count_after": 4713,
+    "appended_event_count": 51,
+    "corpus_sha256": "47ec0be33bc630c4923322bd7c2d95b0977dc5fc66e35a1439774fe639dc36af",
+    "refresh_ledger": "integrated_system/context/full/CORPUS_REFRESH_LEDGER.jsonl",
+    "refresh_digest": "67c555c6921802afa051da2ac18b2d9601e5c94fac6d6b8762531d217fcb5ac6",
+    "multi_file_atomicity_proved": false,
+    "multi_file_recovery_proved": true,
+    "replay_missing_event_count": 0
+  },
+  "repaired_waves": {
+    "maintenance": {
+      "public_receipt": "integrated_system/state/receipts/boot-20260817-light-summary/prefix-1/round-2/cb-maintenance-wave/receipt.json",
+      "receipt_self_sha256": "050a9c32de9f1b6c0eeefc4da005290cce1ecdd946452d984deaa333b5c28803",
+      "receipt_file_sha256": "7362a0dd112e9d9ad0a4bd9a70083a6463b9e4a0a114ea32e2d56335cf7ec509",
+      "status": "PASS",
+      "registered_worktree_count": 3,
+      "mutation_performed": false
+    },
+    "context_strategy": {
+      "status": "PASS",
+      "owner_material_count": 729,
+      "project_material_count_before_refresh": 3930,
+      "pseudo_owner_excluded_count": 6,
+      "representative_limit_per_corpus": 40,
+      "mmm_read_proved": false
+    }
+  },
+  "cumulative_run": {
+    "run_id": "boot-20260817-light-summary",
+    "full_receipt": "integrated_system/state/receipts/boot-20260817-light-summary/receipt.json",
+    "receipt_self_sha256": "aa19d25ca81792f914ef26fe57e9de353a1c65bc9d9a1a1054965820d5a1db48",
+    "receipt_file_sha256": "390ea7315e321b7204761792e06dfa36ff129dd9192129f52392b03ab1f9db32",
+    "status": "LOCKED",
+    "reason_code": "LOCKED_STAGE",
+    "model_free_wave_executions": 6,
+    "provider_model_calls": 0,
+    "prefixes": [
+      {
+        "prefix_id": "prefix-1",
+        "stage_ids": [
+          "cb-maintenance-wave"
+        ],
+        "status": "PASS",
+        "stable_round": 2
+      },
+      {
+        "prefix_id": "prefix-2",
+        "stage_ids": [
+          "cb-maintenance-wave",
+          "cb-context-strategy-wave"
+        ],
+        "status": "PASS",
+        "stable_round": 2
+      },
+      {
+        "prefix_id": "prefix-3",
+        "stage_ids": [
+          "cb-maintenance-wave",
+          "cb-context-strategy-wave",
+          "cb-premortem-wave"
+        ],
+        "status": "LOCKED",
+        "blocked_stage_id": "cb-premortem-wave",
+        "reason_code": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE"
+      }
+    ]
+  },
+  "registered_worktrees": [
+    {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet",
+      "branch": "claimgate/bypass-regression",
+      "changed_count": 260
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "branch": "codex/constraintbox-integrated-20260817",
+      "changed_count": 25
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/v8-local-pawl-foundation",
+      "branch": "codex/v8-local-pawl-foundation-20260718",
+      "changed_count": 0
+    }
+  ],
+  "next_required_stage": "cb-premortem-wave",
+  "claim_ceiling": "The deterministic cumulative scheduler and its first two stages ran and stabilized locally. Premortem, repair, Heavy execution, provider councils, repository cleanup, promotion, and release remain unearned."
+}

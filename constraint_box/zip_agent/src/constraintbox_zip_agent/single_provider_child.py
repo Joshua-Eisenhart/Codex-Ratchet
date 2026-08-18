@@ -3,8 +3,10 @@
 The builder is deliberately model agnostic.  Provider, model, runner, MMMs,
 and task material are caller-supplied run data.  CB turns those exact bytes
 into a child roster packet, nests it under one parent packet, and later
-verifies both return layers.  The worker never writes an authoritative CB
-receipt; it writes one declared Markdown file inside its temporary workspace.
+verifies both return layers. The worker never writes an authoritative CB
+receipt. Output delivery is explicit run data: legacy workers may write the
+declared temporary file, while read-only providers may return response bytes
+that CB materializes into that same declared file before applying its gates.
 """
 
 from __future__ import annotations
@@ -65,6 +67,8 @@ class ProviderRoute(BaseModel):
     runner_path: str | None = Field(default=None, max_length=4096)
     bridge_path: str | None = Field(default=None, max_length=4096)
     codex_home: str | None = Field(default=None, max_length=4096)
+    controller_src: str | None = Field(default=None, max_length=4096)
+    output_delivery: Literal["workspace_file", "provider_response"] = "workspace_file"
 
 
 class SingleProviderChildBuild(BaseModel):
@@ -238,6 +242,7 @@ def build_single_provider_child_packet(
         "seed": request.seed,
         "provider": request.route.provider,
         "model_requested": request.route.model_requested,
+        "output_delivery": request.route.output_delivery,
         "source_rows": source_rows,
         "required_fragments": required,
         "forbidden_fragments": request.forbidden_fragments,
@@ -274,7 +279,10 @@ def build_single_provider_child_packet(
         "max_attempts": request.max_attempts,
         "timeout_seconds": request.timeout_seconds,
         "max_workers": 1,
-        "shared_paths": ["input/SINGLE_PROVIDER_BUILD_RECORD.json"],
+        # Route/model data stays in the packet's build record for CB custody,
+        # but is not delivered to the model. This keeps paired-provider prompt
+        # bytes identical when task, MMM, skill, identity, and attempt match.
+        "shared_paths": [],
         "agents": [agent],
         "parent_id": request.parent_job_id,
         "wave_id": request.wave_id,

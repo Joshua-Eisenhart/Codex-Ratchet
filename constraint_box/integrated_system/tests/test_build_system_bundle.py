@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -15,6 +16,49 @@ SYSTEM = Path(__file__).resolve().parents[1]
 BOX = SYSTEM.parent
 BUILD = SYSTEM / "scripts" / "build_system_bundle.py"
 TOP_LEVEL = "constraintbox-integrated-system-v1"
+_HOST_PATH = re.compile(rb"/(?:Users|home)/[A-Za-z0-9_.-]+/")
+_HOST_RELATIVE_PATH = re.compile(rb"(?<![A-Za-z0-9_.-])~/[^\s\"'`]+")
+
+# Portability applies to executable and configuration payloads.  The
+# append-only context corpus and MMM material are deliberately absent from
+# this list: host paths in historical prose are not runtime dependencies.
+_EXECUTION_CONFIG_PREFIXES = (
+    f"{TOP_LEVEL}/PROJECT/.claude/",
+    f"{TOP_LEVEL}/PROJECT/bin/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/config/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/requirements/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/light_runtime/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/zip_agent/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/hooks/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/bin/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/config/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/hooks/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/bin/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/scripts/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime_profiles/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime/controller_src/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime/zip_agent_src/",
+)
+_CONFIG_DATA_PREFIXES = (
+    f"{TOP_LEVEL}/PROJECT/.claude/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/config/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/requirements/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/config/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/hooks/",
+    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime_profiles/",
+)
+_CONFIG_DATA_SUFFIXES = (
+    ".cfg",
+    ".in",
+    ".ini",
+    ".json",
+    ".jsonl",
+    ".lock",
+    ".toml",
+    ".yaml",
+    ".yml",
+)
 
 
 class BuildSystemBundleTests(unittest.TestCase):
@@ -60,6 +104,14 @@ class BuildSystemBundleTests(unittest.TestCase):
                 self.assertIn(f"{TOP_LEVEL}/WHAT_IS_PROVEN.md", names)
                 self.assertIn(f"{TOP_LEVEL}/bin/cb", names)
                 self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/state/CURRENT_EPOCH.json",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/state/epochs/epoch-00000001.json",
+                    names,
+                )
+                self.assertIn(
                     f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/SYSTEM_ARCHITECTURE.md",
                     names,
                 )
@@ -84,11 +136,100 @@ class BuildSystemBundleTests(unittest.TestCase):
                     names,
                 )
                 self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime_profiles/jax_qit/README.md",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/bin/cb",
+                    names,
+                )
+                self.assertIn(
+                    b"~/.local/share",
+                    archive.read(
+                        f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/runtime_profiles/jax_qit/README.md"
+                    ),
+                )
+                self.assertIn(
+                    b'startswith("~/")',
+                    archive.read(f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/bin/cb"),
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/experiments/manifold_capability/v1/campaign.py",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/context/full/prompt_plan_progress_corpus.jsonl",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/hooks/cb_hook.sh",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/light_runtime/src/constraintbox/core_cli.py",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/zip_agent/src/constraintbox_zip_agent/runtime.py",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/skills/ACTIVE_WAVES.json",
+                    names,
+                )
+                self.assertIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/mmms/primary/mini/MEMBER_MINI_MMM_REGISTRY_v4_3.md",
+                    names,
+                )
+                load_bearing = (
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/contained_light/00_READ_THIS_FIRST.md",
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/contained_light/build.sh",
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/contained_light/seed-check",
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/contained_light/bin/cb",
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/scripts/exercise_cb_light_hook_boundaries.py",
+                )
+                for member in load_bearing:
+                    self.assertIn(member, names)
+                    self.assertIsNone(_HOST_PATH.search(archive.read(member)), member)
+                self.assertNotIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/config/sim_estate_v2.json",
+                    names,
+                )
+                self.assertNotIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/config/council_member_registry_v1.json",
+                    names,
+                )
+                self.assertNotIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/requirements/locks/constraintbox-py313-macos-full.lock",
+                    names,
+                )
+                self.assertNotIn(
+                    f"{TOP_LEVEL}/PROJECT/constraint_box/requirements/locks/constraintbox-py313-macos-gates.lock",
+                    names,
+                )
+                self.assertIn(
                     f"{TOP_LEVEL}/PROJECT/constraint_box/integrated_system/scripts/run_wave.py",
                     names,
                 )
                 self.assertFalse(
                     [name for name in names if "/integrated_system/runs/" in name]
+                )
+                self.assertFalse(
+                    [
+                        name
+                        for name in names
+                        if "/integrated_system/state/receipts/" in name
+                        and not name.endswith("/RETENTION_MANIFEST.json")
+                    ]
+                )
+                self.assertTrue(
+                    any(
+                        name.endswith("/integrated_system/state/receipts/boot-20260817-light-summary/RETENTION_MANIFEST.json")
+                        for name in names
+                    )
+                )
+                self.assertFalse(
+                    [name for name in names if "/integrated_system/state/campaigns/" in name]
                 )
                 self.assertIn(
                     f"{TOP_LEVEL}/PROJECT/constraint_box/zip_agent/src/constraintbox_zip_agent/runtime.py",
@@ -137,7 +278,8 @@ class BuildSystemBundleTests(unittest.TestCase):
                     "/cache/",
                     ".sqlite",
                     ".pyc",
-                    "/receipts/",
+                    "/campaigns/",
+                    "autoresearch",
                     "probe_rows.jsonl",
                     "gate_rows.jsonl",
                 )
@@ -189,24 +331,25 @@ class BuildSystemBundleTests(unittest.TestCase):
                 cb_mode = archive.getinfo(f"{TOP_LEVEL}/bin/cb").external_attr >> 16
                 self.assertEqual(cb_mode & 0o111, 0o111)
 
-                active_runtime = [
+                execution_config = [
                     name
                     for name in names
-                    if any(
-                        marker in name
-                        for marker in (
-                            "/PROJECT/constraint_box/integrated_system/scripts/",
-                            "/PROJECT/constraint_box/integrated_system/runtime_profiles/",
-                            "/PROJECT/constraint_box/integrated_system/bin/",
-                            "/PROJECT/bin/",
-                        )
-                    )
+                    if name.startswith(_EXECUTION_CONFIG_PREFIXES)
                 ]
+                self.assertTrue(execution_config)
                 original_root = str(BOX.resolve()).encode()
-                for name in active_runtime:
+                for name in execution_config:
                     body = archive.read(name)
                     self.assertNotIn(original_root, body, name)
-                    self.assertNotIn(b"/Users/joshuaeisenhart/", body, name)
+                    self.assertIsNone(_HOST_PATH.search(body), name)
+                config_data = [
+                    name
+                    for name in names
+                    if name.startswith(_CONFIG_DATA_PREFIXES)
+                    and any(name.endswith(suffix) for suffix in _CONFIG_DATA_SUFFIXES)
+                ]
+                for name in config_data:
+                    self.assertIsNone(_HOST_RELATIVE_PATH.search(archive.read(name)), name)
 
     def test_build_system_bundle_fresh_extract_imports_both_runtime_packages(self) -> None:
         with tempfile.TemporaryDirectory(prefix="cb-integrated-bundle-extract-") as directory:
@@ -278,6 +421,50 @@ class BuildSystemBundleTests(unittest.TestCase):
                 replay_summary["stored_receipt_sha256"],
                 replay_summary["replayed_receipt_sha256"],
             )
+
+    def test_direct_verifier_on_clean_extract_has_no_physical_mutation(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="cb-integrated-direct-verify-") as directory:
+            root = Path(directory)
+            bundle = root / "system.zip"
+            self._build(bundle)
+            extracted = root / "extract"
+            extracted.mkdir()
+            with zipfile.ZipFile(bundle) as archive:
+                archive.extractall(extracted)
+            package_root = extracted / TOP_LEVEL / "PROJECT" / "constraint_box"
+            verifier = package_root / "integrated_system" / "scripts" / "verify_integrated_system.py"
+            before = {
+                path.relative_to(extracted).as_posix()
+                for path in extracted.rglob("*")
+                if path.is_file() or path.is_symlink()
+            }
+            environment = dict(os.environ)
+            environment.pop("PYTHONDONTWRITEBYTECODE", None)
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(verifier),
+                    "--box-root",
+                    str(package_root),
+                    "--light-python",
+                    str(package_root / "missing-python"),
+                    "--skip-tests",
+                ],
+                cwd=extracted,
+                env=environment,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=120,
+            )
+            after = {
+                path.relative_to(extracted).as_posix()
+                for path in extracted.rglob("*")
+                if path.is_file() or path.is_symlink()
+            }
+            self.assertEqual(completed.returncode, 2, completed.stderr or completed.stdout)
+            self.assertEqual(before, after)
+            self.assertFalse([path for path in after if "__pycache__" in path])
 
 
 if __name__ == "__main__":

@@ -90,7 +90,13 @@ ZIP Agent:
 
 ```text
 python3 bin/cb zip --help
+python3 bin/cb provider-zip --help
 ```
+
+`provider-zip` is the bounded parent-to-one-worker route. Its JSON contract
+must declare the provider executable, model, controller source, prompt,
+agent instructions, skill, mini-MMM files, retry limit, and output fragments.
+The worker's prose is accepted only inside a verified return ZIP.
 
 Contained model-free waves:
 
@@ -101,6 +107,20 @@ python3 bin/cb wave run cb-maintenance-wave
 python3 bin/cb wave run cb-context-strategy-wave
 python3 bin/cb wave run cb-exploration-wave
 ```
+
+Run the deterministic cumulative Light schedule:
+
+```text
+python3 bin/cb campaign --profile light --run-id local-light-campaign
+```
+
+The schedule is data in `config/CUMULATIVE_WAVE_SEQUENCE.json`; an LLM does
+not select the next stage. It first stabilizes maintenance, then stabilizes
+maintenance plus context-strategy, then attempts the next cumulative prefix.
+The current schedule stops with a nonzero `LOCKED_STAGE` at premortem because
+that provider-backed ZIP wave is not yet admitted. The default stdout is a
+compact receipt-derived summary; the complete evidence remains at the printed
+`full_receipt` path.
 
 Only those three are currently runnable. Failure, repair, strategy, Goodhart,
 object-loop, and management names remain inactive specs until their complete
@@ -136,6 +156,21 @@ Start with:
 Use `context/full/prompt_plan_progress_corpus.jsonl` when a compact projection
 does not contain the needed owner prompt, failure, or decision. The corpus is
 append-only evidence; it is not a single canonical narrative.
+
+Refresh that compact corpus from one explicitly declared Codex rollout:
+
+```text
+python3 bin/cb context --refresh-source /absolute/path/to/rollout.jsonl --dry-run
+python3 bin/cb context --refresh-source /absolute/path/to/rollout.jsonl
+```
+
+The refresher retains no raw rollout. It appends only new exact message events,
+updates the corpus manifest, and writes a hash-chained refresh ledger. A
+pending-generation record makes an interrupted multi-file update recoverable;
+this is not a claim of filesystem-wide atomicity.
+
+Bounded campaign receipts that must survive ignored `runs/` cleanup are copied
+without rewriting into `state/receipts/`, with an explicit retention manifest.
 
 ## Failure meanings
 

@@ -1,0 +1,287 @@
+{
+  "schema": "constraintbox.cumulative-wave-sequence.v1",
+  "version": 1,
+  "description": "Deterministic cumulative wave order. The scheduler never asks a model to choose a stage.",
+  "profiles": {
+    "light": {
+      "runtime": "CB_LIGHT",
+      "stage_order": [
+        "cb-maintenance-wave",
+        "cb-context-strategy-wave",
+        "cb-premortem-wave",
+        "cb-repair-wave",
+        "cb-exploration-wave",
+        "verification-closeout"
+      ],
+      "active_stage_ids": [
+        "cb-maintenance-wave",
+        "cb-context-strategy-wave",
+        "cb-exploration-wave"
+      ],
+      "stages": {
+        "cb-maintenance-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.source_digest",
+            "child.context_digest",
+            "child.diagnostics.git.available",
+            "child.diagnostics.git.changed_count",
+            "child.diagnostics.git.worktrees",
+            "child.candidate_decisions",
+            "child.blockers",
+            "child.mutation_performed"
+          ],
+          "claim_ceiling": "Cumulative orchestration of the admitted public maintenance runner only; no source mutation or promotion."
+        },
+        "cb-context-strategy-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.prompt_corpus_digest",
+            "child.output_corpus_digest",
+            "child.project_mmm_draft_digest",
+            "child.user_mmm_draft_digest",
+            "child.owner_source_digest",
+            "child.project_source_digest",
+            "child.prompt_file_count",
+            "child.output_file_count"
+          ],
+          "claim_ceiling": "Cumulative orchestration of the admitted public context-strategy runner only; no source mutation or promotion."
+        },
+        "cb-exploration-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.status",
+            "child.seed_digest",
+            "child.reading_count",
+            "child.family_count",
+            "child.antichain_ids",
+            "child.antichain_digest",
+            "child.distinguish_packet_digest",
+            "child.hidden_third",
+            "child.winner_selected",
+            "child.new_rival_readings",
+            "child.epistemology.this_wave"
+          ],
+          "claim_ceiling": "Cumulative orchestration of the admitted public exploration runner only; rival-reading harvest, not falsification or promotion."
+        },
+        "cb-premortem-wave": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        },
+        "cb-repair-wave": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        },
+        "verification-closeout": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        }
+      },
+      "prefixes": [
+        {
+          "prefix_id": "prefix-1",
+          "stage_ids": ["cb-maintenance-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-2",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-3",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-4",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-5",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave", "cb-exploration-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-6",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave", "cb-exploration-wave", "verification-closeout"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        }
+      ]
+    },
+    "heavy": {
+      "runtime": "CB_HEAVY",
+      "stage_order": [
+        "cb-maintenance-wave",
+        "cb-context-strategy-wave",
+        "cb-premortem-wave",
+        "cb-repair-wave",
+        "cb-exploration-wave",
+        "verification-closeout"
+      ],
+      "active_stage_ids": [
+        "cb-maintenance-wave",
+        "cb-context-strategy-wave",
+        "cb-exploration-wave"
+      ],
+      "stages": {
+        "cb-maintenance-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.source_digest",
+            "child.context_digest",
+            "child.diagnostics.git.available",
+            "child.diagnostics.git.changed_count",
+            "child.diagnostics.git.worktrees",
+            "child.candidate_decisions",
+            "child.blockers",
+            "child.mutation_performed"
+          ],
+          "claim_ceiling": "Heavy profile may orchestrate only the same model-free Light maintenance runner; it does not make Heavy engines runnable."
+        },
+        "cb-context-strategy-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.prompt_corpus_digest",
+            "child.output_corpus_digest",
+            "child.project_mmm_draft_digest",
+            "child.user_mmm_draft_digest",
+            "child.owner_source_digest",
+            "child.project_source_digest",
+            "child.prompt_file_count",
+            "child.output_file_count"
+          ],
+          "claim_ceiling": "Heavy profile may orchestrate only the same model-free Light context runner; it does not make Heavy engines runnable."
+        },
+        "cb-exploration-wave": {
+          "mode": "ACTIVE",
+          "runner": "integrated_system/scripts/run_wave.py",
+          "allowed_terminal_statuses": ["PASS"],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [
+            "status",
+            "child.status",
+            "child.seed_digest",
+            "child.reading_count",
+            "child.family_count",
+            "child.antichain_ids",
+            "child.antichain_digest",
+            "child.distinguish_packet_digest",
+            "child.hidden_third",
+            "child.winner_selected",
+            "child.new_rival_readings",
+            "child.epistemology.this_wave"
+          ],
+          "claim_ceiling": "Heavy profile may orchestrate only the admitted public exploration runner; rival-reading harvest, not falsification or promotion."
+        },
+        "cb-premortem-wave": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        },
+        "cb-repair-wave": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        },
+        "verification-closeout": {
+          "mode": "LOCKED",
+          "runner": null,
+          "lock_reason": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+          "allowed_terminal_statuses": [],
+          "semantic_stability_rounds": 2,
+          "stability_fields": [],
+          "claim_ceiling": "No execution claim."
+        }
+      },
+      "prefixes": [
+        {
+          "prefix_id": "prefix-1",
+          "stage_ids": ["cb-maintenance-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-2",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-3",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-4",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-5",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave", "cb-exploration-wave"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        },
+        {
+          "prefix_id": "prefix-6",
+          "stage_ids": ["cb-maintenance-wave", "cb-context-strategy-wave", "cb-premortem-wave", "cb-repair-wave", "cb-exploration-wave", "verification-closeout"],
+          "max_rounds": 3,
+          "allowed_terminal_statuses": ["PASS"]
+        }
+      ]
+    }
+  }
+}

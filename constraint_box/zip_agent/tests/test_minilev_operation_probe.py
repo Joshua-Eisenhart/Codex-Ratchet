@@ -7,6 +7,7 @@ import io
 import json
 import os
 import subprocess
+import tempfile
 from pathlib import Path
 import zipfile
 
@@ -117,6 +118,34 @@ def test_unbound_light_root_holds_before_state_access(tmp_path: Path) -> None:
         "REFUSE_MINILEV_REQUEST_NOT_CANONICAL",
     }
     assert result["state_copy_only"] is True
+
+
+def _minimal_light_root(root: Path) -> Path:
+    (root / "config").mkdir(parents=True)
+    (root / "light_runtime").mkdir(parents=True)
+    (root / "config" / "cb_light_contract_v1.json").write_text("{}\n")
+    (root / "light_runtime" / "pyproject.toml").write_text("[project]\n")
+    return root
+
+
+def test_macos_tmp_alias_resolves_to_the_same_physical_light_root() -> None:
+    if Path("/tmp").resolve() != Path("/private/tmp"):
+        pytest.skip("macOS /tmp alias is not present")
+    with tempfile.TemporaryDirectory(prefix="cb-minilev-alias-", dir="/private/tmp") as directory:
+        physical = _minimal_light_root(Path(directory) / "constraint_box")
+        declared = Path("/tmp") / Path(directory).name / "constraint_box"
+        assert probe._resolve_light_root(declared) == physical.resolve()
+
+
+def test_explicit_or_parent_symlink_light_roots_remain_unbound(tmp_path: Path) -> None:
+    physical = _minimal_light_root(tmp_path / "physical" / "constraint_box")
+    direct_alias = tmp_path / "direct-alias"
+    direct_alias.symlink_to(physical, target_is_directory=True)
+    assert probe._resolve_light_root(direct_alias) is None
+
+    parent_alias = tmp_path / "parent-alias"
+    parent_alias.symlink_to(physical.parent, target_is_directory=True)
+    assert probe._resolve_light_root(parent_alias / "constraint_box") is None
 
 
 def test_one_operation_is_canonical_and_does_not_write_caller_state(

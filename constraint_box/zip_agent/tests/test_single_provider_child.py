@@ -102,6 +102,38 @@ def test_build_is_deterministic_and_model_route_is_run_data(tmp_path: Path) -> N
     assert roster["depth"] == 1
     assert roster["agents"][0]["provider"] == "fixture-subprocess"
     assert roster["agents"][0]["mmm_paths"] == ["MMMS/00.md", "MMMS/01.md"]
+    assert roster["shared_paths"] == []
+
+
+def test_provider_response_delivery_is_explicit_run_data(tmp_path: Path) -> None:
+    raw = _request(tmp_path).model_dump(mode="python", by_alias=True)
+    raw["route"] = {
+        "provider": "grok-cli",
+        "model_requested": "grok-4.6",
+        "runner_path": "/tmp/grok-fixture",
+        "controller_src": "/tmp/controller-fixture",
+        "output_delivery": "provider_response",
+    }
+    packet = build_single_provider_child_packet(
+        SingleProviderChildBuild.model_validate(raw)
+    )
+    child = _entries(_entries(packet.packet_bytes)["children/md-agent-roster.zip"])
+    roster = json.loads(child["inputs/roster.json"])
+    assert roster["agents"][0]["output_delivery"] == "provider_response"
+    record = json.loads(child["input/SINGLE_PROVIDER_BUILD_RECORD.json"])
+    assert record["output_delivery"] == "provider_response"
+    assert roster["shared_paths"] == []
+
+
+def test_controller_source_is_explicit_packet_run_data(tmp_path: Path) -> None:
+    raw = _request(tmp_path).model_dump(mode="python", by_alias=True)
+    raw["route"]["controller_src"] = str(tmp_path)
+    request = SingleProviderChildBuild.model_validate(raw)
+    packet = build_single_provider_child_packet(request)
+    entries = _entries(packet.packet_bytes)
+    child = _entries(entries["children/md-agent-roster.zip"])
+    roster = json.loads(child["inputs/roster.json"])
+    assert roster["agents"][0]["controller_src"] == str(tmp_path)
 
 
 def test_fixture_child_executes_and_both_returns_verify(tmp_path: Path) -> None:

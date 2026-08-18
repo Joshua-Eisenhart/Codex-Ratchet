@@ -1,19 +1,35 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 import subprocess
 import sys
+from importlib.machinery import SourceFileLoader
 from pathlib import Path
 
 
 ROOT = Path(__file__).parents[2]
+SYSTEM = ROOT.parent
 VALIDATOR = ROOT / "cb-wave-author/scripts/validate_wave.py"
 spec = importlib.util.spec_from_file_location("validate_wave", VALIDATOR)
 module = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
 spec.loader.exec_module(module)
+LAUNCHER = SYSTEM / "bin" / "cb"
+# Custody ceiling: this pins the checked-in Git worktree bytes only.  It is
+# not an external trust anchor or proof that a remote copy is immutable.
+EXPECTED_ACTIVE_MANIFEST_SHA256 = (
+    "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77"
+)
+launcher_spec = importlib.util.spec_from_loader(
+    "integrated_cb_launcher_for_wave_inventory",
+    SourceFileLoader("integrated_cb_launcher_for_wave_inventory", str(LAUNCHER)),
+)
+assert launcher_spec is not None and launcher_spec.loader is not None
+launcher = importlib.util.module_from_spec(launcher_spec)
+launcher_spec.loader.exec_module(launcher)
 EXEC_VALIDATOR = ROOT / "cb-wave-author/scripts/verify_wave_execution.py"
 exec_spec = importlib.util.spec_from_file_location("verify_wave_execution", EXEC_VALIDATOR)
 exec_module = importlib.util.module_from_spec(exec_spec)
@@ -21,36 +37,219 @@ assert exec_spec.loader is not None
 exec_spec.loader.exec_module(exec_module)
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _tree_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    files = [
+        item
+        for item in path.rglob("*")
+        if item.is_file()
+        and "__pycache__" not in item.relative_to(path).parts
+        and ".pytest_cache" not in item.relative_to(path).parts
+        and item.suffix not in {".pyc", ".pyo"}
+    ]
+    for item in sorted(files, key=lambda value: value.relative_to(path).as_posix()):
+        relative = item.relative_to(path).as_posix().encode("utf-8")
+        digest.update(len(relative).to_bytes(8, "big"))
+        digest.update(relative)
+        digest.update(_sha256(item).encode("ascii"))
+    return digest.hexdigest()
+
+
+def _non_symlink_product_definition(path: Path) -> bool:
+    """Return true only for a regular, product-confined definition file."""
+
+    try:
+        if path.is_symlink() or not path.is_file():
+            return False
+        root = ROOT.resolve(strict=True)
+        resolved = path.resolve(strict=True)
+        resolved.relative_to(root)
+        # The immediate product path must not rely on a symlinked ancestor.
+        current = path.absolute()
+        relative = current.relative_to(ROOT.absolute())
+        ancestor = ROOT.absolute()
+        for component in relative.parts:
+            ancestor /= component
+            if ancestor.is_symlink():
+                return False
+        return True
+    except (OSError, ValueError):
+        return False
+
+
 def definitions() -> list[Path]:
-    return sorted(ROOT.glob("cb-*-wave/wave.json"))
+    """Discover every confined product ``skills/*/wave.json`` definition."""
+
+    return sorted(
+        path
+        for path in ROOT.glob("*/wave.json")
+        if _non_symlink_product_definition(path)
+    )
 
 
 def test_every_wave_definition_is_valid_and_independent() -> None:
     paths = definitions()
-    assert {p.parent.name for p in paths} == {
-        "cb-premortem-wave",
-        "cb-counterexample-wave",
-        "cb-authority-collapse-wave",
-        "cb-failure-wave",
-        "cb-repair-wave",
-        "cb-strategy-wave",
-        "cb-build-campaign-wave",
-        "cb-maintenance-wave",
-        "cb-context-strategy-wave",
-        "cb-exploration-wave",
-        "cb-goodhart-wave",
-        "cb-object-loop-wave",
+    catalog = launcher.discover_wave_catalog(SYSTEM)
+    expected = {
+        path.relative_to(SYSTEM).as_posix(): path
+        for path in paths
+    }
+    rows = catalog["waves"]
+    by_definition = {row["definition"]: row for row in rows}
+
+    # The public catalog is the trusted inventory.  Every confined product
+    # definition must appear once, while symlinked/outside entries are omitted
+    # rather than silently followed.
+    assert catalog["catalog_state"] == "READY"
+    assert catalog["catalog_errors"] == []
+    assert catalog["claim_ceiling"] == (
+        "Checked-in product bytes and trusted manifest bindings only; "
+        "Git custody and external immutability are unproved."
+    )
+    assert catalog["duplicate_definition_wave_ids"] == []
+    assert catalog["omitted"] == []
+    assert len(paths) == len(rows) == len(by_definition)
+    assert set(expected) == set(by_definition)
+    assert len({row["wave_id"] for row in rows}) == len(rows)
+    assert len({row["definition_wave_id"] for row in rows}) == len(rows)
+
+    # These are the current candidate surfaces called out by the product
+    # contract; keeping the check ID-based avoids a frozen whole-estate list.
+    current_candidates = {
+        "cb-capability-probe-map-wave",
+        "cb-formalization-digger-wave",
         "cb-context-wave",
         "cb-objective-integrity-wave",
         "cb-strategy-framing-wave",
         "cb-strategy-checkpoint-wave",
         "cb-strategy-discriminator-wave",
     }
+    candidate_ids = {
+        row["wave_id"] for row in catalog["unregistered_candidates"]
+    }
+    assert current_candidates <= candidate_ids
+
     for path in paths:
         data = json.loads(path.read_text(encoding="utf-8"))
-        assert module.validate(data) == [], path
-        assert module.validate_tree(data, ROOT) == [], path
+        definition_errors = list(module.validate(data))
+        tree_errors = list(module.validate_tree(data, ROOT))
+        key = path.relative_to(SYSTEM).as_posix()
+        row = by_definition[key]
+        assert row["definition"] == key
+        assert row["definition_wave_id"] == data["wave_id"]
+        assert _sha256(path) == row["definition_sha256"]
+        tree_key = path.parent.relative_to(SYSTEM).as_posix()
+        tree_sha256 = _tree_sha256(path.parent)
+        assert row["tree_path"] == tree_key
+        assert row["source_path"] == tree_key
+        assert row["source_sha256"] == tree_sha256
+        assert row["tree_sha256"] == tree_sha256
+        skill = path.parent / "SKILL.md"
+        skill_key = skill.relative_to(SYSTEM).as_posix()
+        assert row["skill"] == skill_key
+        assert row["skill_sha256"] == _sha256(skill)
+        if row["classification"] != "ACTIVE":
+            assert row["source"] == [
+                {"path": tree_key, "sha256": tree_sha256}
+            ]
+
+        # The catalog must use this fixed validator and report exactly its
+        # definition/tree findings.  Authored inactive composites may retain
+        # missing-child findings; active and unregistered candidates must be
+        # clean.  ZIP-native validation remains covered by its own test below,
+        # but its generic trusted-validator findings are still observed here.
+        assert row["validation"]["validator"] == (
+            "skills/cb-wave-author/scripts/validate_wave.py"
+        )
+        assert row["validation"]["validator_available"] is True
+        assert row["validation"]["definition_errors"] == definition_errors
+        assert row["validation"]["tree_errors"] == tree_errors
+        assert row["validation"]["errors"] == definition_errors + tree_errors
+        if row["classification"] in {"ACTIVE", "UNREGISTERED_CANDIDATE"}:
+            assert definition_errors == [], path
+            assert tree_errors == [], path
+
+        assert _sha256(path) == row["definition_sha256"]
+        assert isinstance(row["source_sha256"], str)
+        assert len(row["source_sha256"]) == 64
         assert (path.parent / "SKILL.md").is_file()
+
+    manifest = json.loads(
+        (ROOT / "ACTIVE_WAVES.json").read_text(encoding="utf-8")
+    )
+    assert _sha256(ROOT / "ACTIVE_WAVES.json") == EXPECTED_ACTIVE_MANIFEST_SHA256
+    manifest_rows = manifest["runnable_cohort"]
+    active_rows = [row for row in rows if row["classification"] == "ACTIVE"]
+    assert {row["wave_id"] for row in manifest_rows} == launcher.REQUIRED_ACTIVE_WAVE_IDS
+    assert {row["wave_id"] for row in active_rows} == launcher.REQUIRED_ACTIVE_WAVE_IDS
+    assert {row["wave_id"] for row in catalog["active"]} == launcher.REQUIRED_ACTIVE_WAVE_IDS
+    assert {row["definition"] for row in catalog["active"]} == {
+        row["definition"] for row in manifest_rows
+    }
+    manifest_by_definition = {row["definition"]: row for row in manifest_rows}
+    active_by_definition = {row["definition"]: row for row in active_rows}
+    assert len(manifest_rows) == len(manifest_by_definition)
+    assert set(manifest_by_definition) == set(active_by_definition)
+
+    for definition_key, manifest_row in manifest_by_definition.items():
+        catalog_row = active_by_definition[definition_key]
+        definition = SYSTEM / definition_key
+        script_key = manifest_row["script"]
+        script = SYSTEM / script_key
+        assert catalog_row["wave_id"] == manifest_row["wave_id"]
+        assert manifest_row["skill"] == (
+            f"skills/{manifest_row['wave_id']}/SKILL.md"
+        )
+        skill = SYSTEM / manifest_row["skill"]
+        assert skill.is_file() and not skill.is_symlink()
+        assert manifest_row["skill_sha256"] == _sha256(skill)
+        assert catalog_row["skill"] == manifest_row["skill"]
+        assert catalog_row["skill_sha256"] == manifest_row["skill_sha256"]
+        assert catalog_row["runnable"] is True
+        assert catalog_row["promotion_allowed"] is False
+        assert manifest_row["definition_sha256"] == _sha256(definition)
+        assert manifest_row["definition_sha256"] == catalog_row["definition_sha256"]
+        assert script.is_file() and not script.is_symlink()
+        assert manifest_row["script_sha256"] == _sha256(script)
+        source_hashes = {
+            entry["path"]: entry["sha256"]
+            for entry in catalog_row["source"]
+        }
+        assert set(source_hashes) == {
+            definition_key,
+            script_key,
+            manifest_row["skill"],
+        }
+        assert source_hashes[definition_key] == manifest_row["definition_sha256"]
+        assert source_hashes[script_key] == manifest_row["script_sha256"]
+        assert source_hashes[manifest_row["skill"]] == manifest_row["skill_sha256"]
+
+    for row in rows:
+        assert row["promotion_allowed"] is False
+        if row["definition"] not in active_by_definition:
+            assert row["runnable"] is False
+
+
+def test_checked_in_manifest_contract_rejects_co_tamper(tmp_path: Path) -> None:
+    source = ROOT / "ACTIVE_WAVES.json"
+    tampered = tmp_path / "ACTIVE_WAVES.json"
+    raw = source.read_text(encoding="utf-8")
+    tampered.write_text(
+        raw.replace(
+            "8df4a17780f4cd65c4c19118f4cfb71b2f8f9bc18623a59fa839ef141aa23be9",
+            "f" * 64,
+            1,
+        ),
+        encoding="utf-8",
+    )
+    assert _sha256(source) == EXPECTED_ACTIVE_MANIFEST_SHA256
+    assert _sha256(tampered) != EXPECTED_ACTIVE_MANIFEST_SHA256
+    # The contract detects checked-in-byte drift; it is not an external
+    # signature and does not claim Git or a deployed copy is immutable.
 
 
 def test_runtime_assignments_in_definition_are_refused() -> None:

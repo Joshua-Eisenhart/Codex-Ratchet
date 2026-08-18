@@ -1,0 +1,95 @@
+{
+  "schema": "constraintbox.formalization-digger-registry.v1",
+  "wave_id": "cb-formalization-digger-wave-v1",
+  "candidate_state": "NEW_CANDIDATE",
+  "activated": false,
+  "promotion_allowed": false,
+  "inputs": {
+    "context_epoch": {
+      "schema": "constraintbox.context-epoch.v2",
+      "digest_field": "epoch_digest",
+      "binding": "repo-held seal_context_epoch.verify_epoch(root, path, expected_sha256)",
+      "verifier": {
+        "path": "constraint_box/integrated_system/scripts/seal_context_epoch.py",
+        "sha256": "c51efef79c2d680351af105f8ace2fb482fe3aa4b18a20c7ad3d4ca0712a9fae"
+      },
+      "full_parent_chain": true,
+      "bound_files_verified": true,
+      "fixture_source": "constraint_box/integrated_system/state/epochs/epoch-00000002.json"
+    },
+    "capability_probe_map": {
+      "schema": "constraintbox.capability-probe-map-receipt.v1",
+      "digest_field": "receipt_sha256",
+      "binding": "cb-capability-probe-map-wave/scripts/run_probe_map.py::verify_receipt",
+      "producer": {
+        "path": "constraint_box/integrated_system/skills/cb-capability-probe-map-wave/scripts/run_probe_map.py",
+        "sha256": "77397c78198bbea336ab2c5cf1887510f8309b89e41ef88133e6f23e21a4dcbd"
+      },
+      "must_bind_producer_definition_registry": true,
+      "must_bind_context_epoch": false
+    },
+    "proposal_bundle": {
+      "schema": "constraintbox.formalization-digger-proposal-bundle.v2",
+      "digest_field": "proposal_bundle_digest",
+      "binding": "sha256(canonical JSON with proposal_bundle_digest omitted)"
+    }
+  },
+  "children": {
+    "axiom_digger": {
+      "skill": "assumption-audit",
+      "output_schema": "constraintbox.formalization-digger-proposal.v2",
+      "proposal_kind": "assumptions_and_non_objectives",
+      "terminal_state": "PROPOSAL_VALIDATED",
+      "skill_execution_claimed": false
+    },
+    "constraint_digger": {
+      "skill": "distinguishability-smt",
+      "output_schema": "constraintbox.formalization-digger-proposal.v2",
+      "proposal_kind": "finite_candidate_predicates",
+      "terminal_state": "PROPOSAL_VALIDATED",
+      "skill_execution_claimed": false
+    },
+    "gate_digger": {
+      "skill": "specification-boundary",
+      "declared_gate_reference": "cb-wave-admission-gate",
+      "output_schema": "constraintbox.formalization-digger-proposal.v2",
+      "proposal_kind": "candidate_gate_obligations",
+      "terminal_state": "PROPOSAL_VALIDATED",
+      "skill_execution_claimed": false
+    },
+    "basin_digger": {
+      "skill": "voice-zhuangzi",
+      "output_schema": "constraintbox.formalization-digger-proposal.v2",
+      "proposal_kind": "probe_relative_interpretations",
+      "terminal_state": "PROPOSAL_VALIDATED",
+      "skill_execution_claimed": false
+    }
+  },
+  "deterministic_validators": [
+    "schema_validator",
+    "source_digest_validator",
+    "epoch_chain_validator",
+    "capability_receipt_verifier",
+    "producer_staleness_validator",
+    "root_path_confinement",
+    "child_set_validator",
+    "capability_current_reproduction_validator",
+    "contradiction_scan_preserve_unresolved",
+    "frontier_compiler",
+    "replay_digest_validator",
+    "refusal_exact_replay_validator",
+    "cancellation_validator",
+    "tamper_validator"
+  ],
+  "prohibitions": [
+    "no_observation_invention",
+    "no_truth_decision",
+    "no_gate_activation",
+    "no_provider_call",
+    "no_heavy_route",
+    "no_manifest_write",
+    "no_scheduler_write",
+    "no_promotion"
+  ],
+  "claim_ceiling": "Proposal-only structural validation and non-voting frontier compilation; no truth, gate, basin, provider, or promotion authority."
+}

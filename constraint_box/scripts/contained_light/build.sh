@@ -4,7 +4,7 @@ HERE=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
 CB=$(CDPATH= cd -- "$HERE/../.." && pwd)
 NAME=${NAME:-ConstraintBox_Contained_Light_2026-08-16}
 STAGE=${STAGE:-/tmp/cb-contained-stage-$$}
-DEST=${DEST:-/Users/joshuaeisenhart/Desktop/${NAME}.zip}
+DEST=${DEST:-"$PWD/${NAME}.zip"}
 
 rm -rf "$STAGE"
 ROOT="$STAGE/$NAME"
@@ -41,6 +41,7 @@ cp "$HERE/LIGHT_CONTRACT.md" "$ROOT/LIGHT_CONTRACT.md"
 cp "$HERE/bin/cb" "$ROOT/bin/cb"
 cp "$HERE/scripts/verify.sh" "$ROOT/scripts/verify.sh"
 cp "$HERE/scripts/check_receipts.py" "$ROOT/scripts/check_receipts.py"
+cp "$HERE/seed_check.py" "$ROOT/seed_check.py"
 cp "$HERE/seed_check.py" "$ROOT/scripts/seed_check.py"
 cp "$HERE/seed-check" "$ROOT/seed-check"
 printf 'receipts are written here by bin/cb\n' > "$ROOT/receipts/README.txt"
@@ -64,7 +65,6 @@ cat > "$ROOT/BUNDLE_METADATA.json" <<EOF
   "verbs": ["seed-check", "seed", "feasibility", "surface", "quotient", "status", "verify"],
   "contained_light_wheel": false,
   "promotion_allowed": false,
-  "lean_zip_considered": "/Users/joshuaeisenhart/Desktop/ConstraintBox_Lean_Clean_2026-08-16.zip",
   "claim_ceiling": "contained source overlay for seed-check + feasibility + bound quotient; solver-chosen obs are not measured distinguishability; not wheel admission; not Heavy"
 }
 EOF

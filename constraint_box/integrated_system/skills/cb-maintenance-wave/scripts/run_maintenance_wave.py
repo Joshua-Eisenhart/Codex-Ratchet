@@ -209,21 +209,164 @@ def classify_candidate(root: Path, value: str, *, now: datetime, requested_actio
     return result
 
 
-def git_status(root: Path) -> dict[str, Any]:
-    command = ["git", "-C", str(root), "status", "--porcelain=v1", "--untracked-files=normal"]
+def _git_command(command: Sequence[str]) -> tuple[bool, int | None, str, str, str | None]:
+    """Run one read-only git command and normalize unavailable-git failures."""
+
     try:
         completed = subprocess.run(command, capture_output=True, text=True, check=False)
     except OSError as exc:
-        return {"available": False, "error": f"GIT_UNAVAILABLE:{type(exc).__name__}"}
-    lines = [line for line in completed.stdout.splitlines() if line]
+        return False, None, "", "", f"GIT_UNAVAILABLE:{type(exc).__name__}"
+    return completed.returncode == 0, completed.returncode, completed.stdout, completed.stderr, None
+
+
+def _git_status_at(path: Path) -> dict[str, Any]:
+    command = ["git", "-C", str(path), "status", "--porcelain=v1", "--untracked-files=normal"]
+    available, returncode, stdout, stderr, error = _git_command(command)
+    if error:
+        return {"available": False, "error": error}
+    lines = [line for line in stdout.splitlines() if line]
     return {
-        "available": completed.returncode == 0,
-        "returncode": completed.returncode,
+        "available": available,
+        "returncode": returncode,
         "changed_count": len(lines),
         "entries": lines[:200],
         "truncated": len(lines) > 200,
-        "stderr": completed.stderr.strip()[:1000],
+        "stderr": stderr.strip()[:1000],
     }
+
+
+def _git_identity(path: Path) -> tuple[str | None, str | None]:
+    """Return the live branch and HEAD for a worktree, without changing it."""
+
+    head_ok, _head_returncode, head_stdout, _head_stderr, _head_error = _git_command(
+        ["git", "-C", str(path), "rev-parse", "--verify", "HEAD"]
+    )
+    branch_ok, _branch_returncode, branch_stdout, _branch_stderr, _branch_error = _git_command(
+        ["git", "-C", str(path), "symbolic-ref", "--quiet", "--short", "HEAD"]
+    )
+    head = head_stdout.strip() if head_ok and head_stdout.strip() else None
+    branch = branch_stdout.strip() if branch_ok and branch_stdout.strip() else None
+    return branch, head
+
+
+def _parse_worktree_porcelain(output: str) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    current: dict[str, Any] | None = None
+
+    def flush() -> None:
+        nonlocal current
+        if current is not None:
+            entries.append(current)
+        current = None
+
+    for line in output.splitlines():
+        if not line:
+            flush()
+        elif line.startswith("worktree "):
+            flush()
+            current = {"registered_path": line[len("worktree ") :]}
+        elif current is None:
+            # A malformed or future extension before the first worktree is
+            # ignored rather than being treated as a path or authority.
+            continue
+        elif line.startswith("HEAD "):
+            current["listed_head"] = line[len("HEAD ") :].strip()
+        elif line.startswith("branch "):
+            current["listed_branch_ref"] = line[len("branch ") :].strip()
+        elif line == "bare":
+            current["bare"] = True
+        elif line == "detached":
+            current["detached"] = True
+        elif line.startswith("prunable "):
+            current["prunable_reason"] = line[len("prunable ") :].strip()
+        elif line.startswith("locked"):
+            current["locked"] = True
+    flush()
+    return entries
+
+
+def _worktree_state(entry: Mapping[str, Any]) -> dict[str, Any]:
+    registered = str(entry.get("registered_path", ""))
+    path = Path(registered).expanduser().resolve(strict=False)
+    state: dict[str, Any] = {
+        "registered_path": registered,
+        "resolved_path": str(path),
+        "exists": path.exists(),
+        "listed_head": entry.get("listed_head"),
+        "listed_branch_ref": entry.get("listed_branch_ref"),
+        "bare": bool(entry.get("bare", False)),
+        "detached": bool(entry.get("detached", False)),
+        "prunable_reason": entry.get("prunable_reason"),
+        "locked": bool(entry.get("locked", False)),
+    }
+    if not path.exists() or state["bare"]:
+        state["branch"] = None
+        state["head"] = state["listed_head"]
+        state["status"] = {
+            "available": False,
+            "error": "WORKTREE_PATH_MISSING" if not path.exists() else "BARE_WORKTREE_NO_STATUS",
+        }
+        return state
+    branch, head = _git_identity(path)
+    listed_branch_ref = state.get("listed_branch_ref")
+    if branch is None and isinstance(listed_branch_ref, str) and listed_branch_ref.startswith("refs/heads/"):
+        branch = listed_branch_ref.removeprefix("refs/heads/")
+    state["branch"] = branch
+    state["head"] = head or state["listed_head"]
+    state["status"] = _git_status_at(path)
+    return state
+
+
+def git_worktree_inventory(root: Path) -> dict[str, Any]:
+    """Enumerate registered worktrees and read their identity/status only."""
+
+    command = ["git", "-C", str(root), "worktree", "list", "--porcelain"]
+    available, returncode, stdout, stderr, error = _git_command(command)
+    if error:
+        return {
+            "available": False,
+            "returncode": None,
+            "source": "git worktree list --porcelain",
+            "worktrees": [],
+            "stderr": "",
+            "error": error,
+        }
+    if not available:
+        return {
+            "available": False,
+            "returncode": returncode,
+            "source": "git worktree list --porcelain",
+            "worktrees": [],
+            "stderr": stderr.strip()[:1000],
+            "error": "GIT_REPOSITORY_UNAVAILABLE",
+        }
+    parsed = _parse_worktree_porcelain(stdout)
+    return {
+        "available": True,
+        "returncode": returncode,
+        "source": "git worktree list --porcelain",
+        "worktrees": [_worktree_state(entry) for entry in parsed],
+        "count": len(parsed),
+        "stderr": stderr.strip()[:1000],
+    }
+
+
+def git_status(root: Path) -> dict[str, Any]:
+    status = _git_status_at(root)
+    if not status.get("available"):
+        # Keep missing Git / non-repository diagnostics non-blocking for a
+        # fresh extracted ZIP.  The inventory is still explicit and empty.
+        status["worktree_inventory"] = git_worktree_inventory(root)
+        status["worktrees"] = []
+        return status
+    branch, head = _git_identity(root)
+    status["branch"] = branch
+    status["head"] = head
+    inventory = git_worktree_inventory(root)
+    status["worktree_inventory"] = inventory
+    status["worktrees"] = inventory.get("worktrees", [])
+    status["worktrees_available"] = bool(inventory.get("available"))
+    return status
 
 
 def ledger_state(root: Path, value: str | None) -> dict[str, Any]:

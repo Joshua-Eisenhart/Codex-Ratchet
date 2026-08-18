@@ -22,17 +22,21 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
 import time
+from contextlib import contextmanager
 from datetime import datetime, timezone
+from importlib.machinery import SourceFileLoader
 from pathlib import Path, PurePosixPath
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 
 SCHEMA = "constraintbox.integrated-system-verification.v1"
@@ -78,6 +82,20 @@ _RETAINED_PATH_KEYS = frozenset(
         "input_path",
         "source_path",
         "fixture_path",
+    }
+)
+
+_EPOCH_POINTER_SCHEMA = "constraintbox.current-context-epoch-pointer.v1"
+_EPOCH_SCHEMA = "constraintbox.context-epoch.v2"
+_EPOCH_BOUND_FILE_KEYS = frozenset(
+    {
+        "corpus",
+        "corpus_manifest",
+        "refresh_ledger",
+        "current_context",
+        "wave_bootstrap",
+        "consolidation",
+        "retained_receipt_manifest",
     }
 )
 
@@ -331,21 +349,169 @@ def find_interpreter(value: str | None, fallback: Path) -> Path | None:
     return None
 
 
+def _load_epoch_module(system_root: Path) -> Any:
+    """Load the canonical epoch verifier shipped beside this verifier.
+
+    The integrated verifier is also imported directly by focused tests and is
+    executed from a fresh extract, so relying on the process ``sys.path`` to
+    find ``seal_context_epoch`` would make the context gate host-dependent.
+    Loading the adjacent source file by path keeps the epoch implementation
+    the single authority in both layouts.
+    """
+
+    scripts_root = system_root / "scripts"
+    if scripts_root.is_symlink():
+        raise ValueError(f"REFUSE_EPOCH_VERIFIER_SCRIPTS_SYMLINK:{scripts_root}")
+    script = scripts_root / "seal_context_epoch.py"
+    if script.is_symlink():
+        raise ValueError(f"REFUSE_EPOCH_VERIFIER_SYMLINK:{script}")
+    if not script.exists():
+        raise FileNotFoundError(f"epoch verifier is missing: {script}")
+    if not script.is_file() or not stat.S_ISREG(script.stat().st_mode):
+        raise ValueError(f"REFUSE_EPOCH_VERIFIER_NOT_REGULAR:{script}")
+    try:
+        resolved_scripts_root = scripts_root.resolve(strict=True)
+        resolved_script = script.resolve(strict=True)
+        resolved_script.relative_to(resolved_scripts_root)
+    except (OSError, ValueError) as exc:
+        raise ValueError(
+            f"REFUSE_EPOCH_VERIFIER_PATH_ESCAPE:{script}"
+        ) from exc
+    module_sha256 = sha256_file(resolved_script)
+    spec = importlib.util.spec_from_file_location(
+        "constraintbox_integrated_seal_context_epoch", resolved_script
+    )
+    if spec is None or spec.loader is None:
+        raise ImportError(f"cannot load epoch verifier: {resolved_script}")
+    module = importlib.util.module_from_spec(spec)
+    prior_dont_write_bytecode = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.dont_write_bytecode = prior_dont_write_bytecode
+    return module, module_sha256, resolved_script
+
+
+def _verify_current_epoch(system_root: Path) -> dict[str, Any]:
+    """Verify CURRENT_EPOCH, its complete chain, and every bound file.
+
+    Epoch paths are rooted at the repository/project root (the parent of the
+    ``constraint_box`` directory), which remains true after extraction under
+    ``PROJECT/constraint_box``.  The pointer is intentionally non-authoritative
+    metadata; it is still consumed and checked because it identifies the epoch
+    selected for this product.
+    """
+
+    pointer_candidate = system_root / "state" / "CURRENT_EPOCH.json"
+    pointer_path = pointer_candidate
+    if not pointer_candidate.is_file():
+        return {
+            "status": "FAIL",
+            "reason_codes": ["FAIL_CONTEXT_CURRENT_EPOCH_MISSING"],
+            "promotion_allowed": False,
+        }
+    try:
+        # Normalize only the surrounding checkout path.  The epoch module
+        # still walks the normalized relative pointer and refuses a symlinked
+        # pointer/file component; this avoids macOS /var -> /private/var
+        # lexical mismatches when verifying a fresh extracted bundle.
+        system_path = system_root.expanduser().resolve(strict=True)
+        pointer_path = system_path / "state" / "CURRENT_EPOCH.json"
+        root = system_path.parent.parent
+        epoch_module, epoch_module_sha256, epoch_module_path = _load_epoch_module(
+            system_path
+        )
+        verified = epoch_module.verify_pointer(root, pointer_path)
+        pointer = read_json(pointer_path)
+        epoch_ref = pointer.get("epoch")
+        if not isinstance(epoch_ref, Mapping):
+            raise ValueError("CURRENT_EPOCH epoch reference is not an object")
+        epoch_path, reason = _safe_scoped_path(
+            epoch_ref.get("path"), root, reason_prefix="FAIL_CONTEXT_EPOCH"
+        )
+        if epoch_path is None:
+            raise ValueError(reason or "invalid CURRENT_EPOCH epoch path")
+        epoch = read_json(epoch_path)
+    except Exception as exc:  # the epoch module reports the precise refusal
+        return {
+            "status": "FAIL",
+            "reason_codes": [
+                f"FAIL_CONTEXT_EPOCH:{type(exc).__name__}:{exc}"
+            ],
+            "pointer_path": relative_or_absolute(pointer_path, system_root),
+            "promotion_allowed": False,
+        }
+
+    if pointer.get("schema") != _EPOCH_POINTER_SCHEMA:
+        return {
+            "status": "FAIL",
+            "reason_codes": ["FAIL_CONTEXT_EPOCH_POINTER_SCHEMA"],
+            "pointer_path": relative_or_absolute(pointer_path, system_root),
+            "promotion_allowed": False,
+        }
+    if epoch.get("schema") != _EPOCH_SCHEMA:
+        return {
+            "status": "FAIL",
+            "reason_codes": ["FAIL_CONTEXT_EPOCH_SCHEMA"],
+            "pointer_path": relative_or_absolute(pointer_path, system_root),
+            "promotion_allowed": False,
+        }
+    bound_files = epoch.get("bound_files")
+    if not isinstance(bound_files, Mapping) or set(bound_files) != _EPOCH_BOUND_FILE_KEYS:
+        return {
+            "status": "FAIL",
+            "reason_codes": ["FAIL_CONTEXT_EPOCH_BOUND_FILE_SET"],
+            "pointer_path": relative_or_absolute(pointer_path, system_root),
+            "promotion_allowed": False,
+        }
+    current_context = bound_files.get("current_context")
+    current_context_count = len(current_context) if isinstance(current_context, Mapping) else 0
+    epoch_summary = verified.get("epoch") if isinstance(verified, Mapping) else {}
+    return {
+        "status": "PASS",
+        "reason_codes": [],
+        "pointer_path": relative_or_absolute(pointer_path, system_root),
+        "epoch_verifier_path": relative_or_absolute(
+            epoch_module_path, system_root
+        ),
+        "epoch_verifier_sha256": epoch_module_sha256,
+        "pointer_sha256": sha256_file(pointer_path),
+        "epoch_path": epoch_summary.get("path"),
+        "epoch_sha256": epoch_summary.get("sha256"),
+        "epoch_id": epoch.get("epoch_id"),
+        "epoch_sequence": epoch.get("epoch_sequence"),
+        "epoch_parent": epoch.get("parent"),
+        "bound_file_keys": sorted(bound_files),
+        "bound_current_context_count": current_context_count,
+        "promotion_allowed": False,
+    }
+
+
 def check_context(system_root: Path) -> dict[str, Any]:
-    """Recompute the bounded context projection and its genesis bindings."""
+    """Recompute the context projection and require the current epoch chain.
+
+    ``GENESIS.json`` is verified only as the immutable root of the epoch chain
+    by ``seal_context_epoch``.  Mutable current documents are never compared
+    to Genesis hashes; their exact bytes are checked through the selected
+    CURRENT_EPOCH binding instead.
+    """
 
     errors: list[str] = []
+    epoch_check = _verify_current_epoch(system_root)
+    if epoch_check.get("status") != "PASS":
+        errors.extend(str(code) for code in epoch_check.get("reason_codes", []))
     manifest_path = system_root / "context" / "full" / "CORPUS_MANIFEST.json"
-    genesis_path = system_root / "state" / "GENESIS.json"
     corpus_path = system_root / "context" / "full" / "prompt_plan_progress_corpus.jsonl"
     try:
         manifest = read_json(manifest_path)
-        genesis = read_json(genesis_path)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return {
             "status": "FAIL",
-            "reason_codes": ["FAIL_CONTEXT_METADATA"],
+            "reason_codes": [*errors, "FAIL_CONTEXT_METADATA"],
             "detail": f"{type(exc).__name__}:{exc}",
+            "epoch": epoch_check,
+            "promotion_allowed": False,
         }
     if not corpus_path.is_file():
         errors.append("FAIL_CONTEXT_CORPUS_MISSING")
@@ -370,25 +536,8 @@ def check_context(system_root: Path) -> dict[str, Any]:
         errors.append("FAIL_CONTEXT_CORPUS_SIZE_MISMATCH")
     if event_count != manifest.get("selected_event_count"):
         errors.append("FAIL_CONTEXT_EVENT_COUNT_MISMATCH")
-    projection = genesis.get("context_projection")
-    if not isinstance(projection, dict) or projection.get("sha256") != corpus_sha:
-        errors.append("FAIL_GENESIS_CONTEXT_BINDING")
-    if genesis.get("promotion_allowed") is not False or manifest.get("promotion_allowed") is not False:
+    if manifest.get("promotion_allowed") is not False:
         errors.append("FAIL_CONTEXT_PROMOTION_FLAG")
-    current_hashes = genesis.get("current_context")
-    if not isinstance(current_hashes, dict):
-        errors.append("FAIL_GENESIS_CURRENT_CONTEXT")
-    else:
-        current_root = system_root / "context" / "current"
-        for name, expected in sorted(current_hashes.items()):
-            path, reason = _safe_scoped_path(name, current_root, reason_prefix="FAIL_CONTEXT_CURRENT")
-            if path is None:
-                errors.append(f"{reason}:{name}")
-                continue
-            if not path.is_file():
-                errors.append(f"FAIL_CONTEXT_CURRENT_MISSING:{name}")
-            elif sha256_file(path) != expected:
-                errors.append(f"FAIL_CONTEXT_CURRENT_DIGEST_MISMATCH:{name}")
     return {
         "status": "PASS" if not errors else "FAIL",
         "reason_codes": errors,
@@ -397,8 +546,9 @@ def check_context(system_root: Path) -> dict[str, Any]:
         "event_count": event_count,
         "manifest_event_count": manifest.get("selected_event_count"),
         "source_event_count": manifest.get("source_event_count"),
-        "genesis_head_sha256": (genesis.get("predecessor") or {}).get("head_sha256"),
-        "full_object_store_included": (genesis.get("predecessor") or {}).get("full_object_store_included"),
+        "epoch": epoch_check,
+        "epoch_verifier_path": epoch_check.get("epoch_verifier_path"),
+        "epoch_verifier_sha256": epoch_check.get("epoch_verifier_sha256"),
         "promotion_allowed": False,
     }
 
@@ -450,6 +600,76 @@ def check_jax_profile(system_root: Path) -> dict[str, Any]:
     }
 
 
+def _load_public_wave_catalog(system_root: Path) -> dict[str, Any]:
+    """Reuse the public launcher catalog without activating any wave.
+
+    ``bin/cb`` is the trusted public discovery surface.  Loading it with
+    bytecode writes disabled keeps this model-free inventory read-only while
+    preserving the launcher as the sole classification authority.
+    """
+
+    launcher = system_root / "bin" / "cb"
+    result: dict[str, Any] = {
+        "source_path": relative_or_absolute(launcher, system_root),
+        "source_sha256": None,
+        "catalog": None,
+        "error": None,
+    }
+    if launcher.is_symlink():
+        result["error"] = f"REFUSE_PUBLIC_CATALOG_SYMLINK:{launcher}"
+        return result
+    if not launcher.is_file() or not stat.S_ISREG(launcher.stat().st_mode):
+        result["error"] = f"REFUSE_PUBLIC_CATALOG_NOT_REGULAR:{launcher}"
+        return result
+    result["source_sha256"] = sha256_file(launcher)
+    try:
+        loader = SourceFileLoader("constraintbox_public_catalog_launcher", str(launcher))
+        spec = importlib.util.spec_from_loader(loader.name, loader)
+        if spec is None or spec.loader is None:
+            raise ImportError("catalog_loader_missing")
+        module = importlib.util.module_from_spec(spec)
+        prior_dont_write_bytecode = sys.dont_write_bytecode
+        sys.dont_write_bytecode = True
+        try:
+            spec.loader.exec_module(module)
+            discover = getattr(module, "discover_wave_catalog", None)
+            if not callable(discover):
+                raise AttributeError("discover_wave_catalog_missing")
+            result["catalog"] = discover(system_root=system_root)
+        finally:
+            sys.dont_write_bytecode = prior_dont_write_bytecode
+    except Exception as exc:  # fail closed at the verifier boundary
+        result["error"] = f"REFUSE_PUBLIC_CATALOG_LOAD:{type(exc).__name__}:{exc}"
+    return result
+
+
+def _catalog_projection(catalog: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Select source-bound public catalog fields for a stable digest."""
+
+    rows = catalog.get("waves")
+    if not isinstance(rows, list):
+        return []
+    projection: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, Mapping):
+            projection.append({"row": row})
+            continue
+        projection.append(
+            {
+                "wave_id": row.get("wave_id"),
+                "definition": row.get("definition"),
+                "definition_wave_id": row.get("definition_wave_id"),
+                "definition_sha256": row.get("definition_sha256"),
+                "source_sha256": row.get("source_sha256"),
+                "skill_sha256": row.get("skill_sha256"),
+                "classification": row.get("classification"),
+                "runnable": row.get("runnable"),
+                "promotion_allowed": row.get("promotion_allowed"),
+            }
+        )
+    return projection
+
+
 def check_skill_estate(system_root: Path) -> dict[str, Any]:
     skills_root = system_root / "skills"
     errors: list[str] = []
@@ -483,20 +703,100 @@ def check_skill_estate(system_root: Path) -> dict[str, Any]:
             continue
         if body.get("promotion_allowed") is True:
             errors.append(f"FAIL_WAVE_PROMOTION_FLAG:{relative}")
+    catalog_result: dict[str, Any] = {
+        "source_path": relative_or_absolute(system_root / "bin" / "cb", system_root),
+        "source_sha256": None,
+        "catalog": None,
+        "error": None,
+    }
+    catalog_rows: list[Mapping[str, Any]] = []
+    active_catalog: list[Mapping[str, Any]] = []
+    authored_catalog: list[Mapping[str, Any]] = []
+    candidate_catalog: list[Mapping[str, Any]] = []
+    catalog_sha256: str | None = None
+    if not errors:
+        catalog_result = _load_public_wave_catalog(system_root)
+        catalog = catalog_result.get("catalog")
+        if catalog_result.get("error"):
+            errors.append(str(catalog_result["error"]))
+        elif not isinstance(catalog, Mapping):
+            errors.append("FAIL_PUBLIC_WAVE_CATALOG_SHAPE")
+        else:
+            if catalog.get("catalog_state") != "READY":
+                errors.append("FAIL_PUBLIC_WAVE_CATALOG_STATE")
+            catalog_errors = catalog.get("catalog_errors")
+            if isinstance(catalog_errors, list):
+                errors.extend(f"FAIL_PUBLIC_WAVE_CATALOG:{value}" for value in catalog_errors)
+            rows = catalog.get("waves")
+            if not isinstance(rows, list):
+                errors.append("FAIL_PUBLIC_WAVE_CATALOG_WAVES_SHAPE")
+            else:
+                catalog_rows = [row for row in rows if isinstance(row, Mapping)]
+                active_catalog = [
+                    row for row in catalog_rows if row.get("classification") == "ACTIVE"
+                ]
+                authored_catalog = [
+                    row
+                    for row in catalog_rows
+                    if row.get("classification") == "AUTHORED_INACTIVE"
+                ]
+                candidate_catalog = [
+                    row
+                    for row in catalog_rows
+                    if row.get("classification") == "UNREGISTERED_CANDIDATE"
+                ]
+                for row in candidate_catalog:
+                    if row.get("runnable") is not False:
+                        errors.append(
+                            f"FAIL_PUBLIC_WAVE_CANDIDATE_RUNNABLE:{row.get('wave_id')}"
+                        )
+                    if row.get("promotion_allowed") is not False:
+                        errors.append(
+                            f"FAIL_PUBLIC_WAVE_CANDIDATE_PROMOTION:{row.get('wave_id')}"
+                        )
+                projection = {
+                    "catalog_schema": catalog.get("catalog_schema"),
+                    "catalog_state": catalog.get("catalog_state"),
+                    "manifest_sha256": sha256_file(active_path)
+                    if active_path.is_file()
+                    else None,
+                    "waves": _catalog_projection(catalog),
+                }
+                catalog_sha256 = sha256_bytes(canonical_json_bytes(projection))
+    if not catalog_rows:
+        catalog_rows = []
     return {
         "status": "PASS" if not errors else "FAIL",
         "reason_codes": errors,
         "manifest_sha256": sha256_file(manifest) if manifest.is_file() else None,
         "active_manifest_sha256": sha256_file(active_path) if active_path.is_file() else None,
-        "active_wave_count": len(runnable),
-        "runnable_wave_count": len(runnable),
+        "active_wave_count": len(active_catalog) if catalog_rows else len(runnable),
+        "runnable_wave_count": len(active_catalog) if catalog_rows else len(runnable),
         "runnable_wave_ids": [
-            row.get("wave_id") for row in runnable if isinstance(row, dict)
+            row.get("wave_id")
+            for row in (active_catalog if catalog_rows else runnable)
+            if isinstance(row, Mapping)
         ],
-        "wave_definition_count": len(definitions),
+        "wave_definition_count": len(catalog_rows) if catalog_rows else len(definitions),
+        "catalog_definition_count": len(catalog_rows) if catalog_rows else len(definitions),
+        "catalog_source": catalog_result.get("source_path"),
+        "catalog_source_sha256": catalog_result.get("source_sha256"),
+        "catalog_sha256": catalog_sha256,
+        "wave_catalog_sha256": catalog_sha256,
         "zip_wave_definition": zip_definition,
         "script_backed_without_wave_definition": active.get("script_backed_without_wave_definition", []),
-        "authored_specs_not_active": active.get("authored_specs_not_active", []),
+        "authored_specs_not_active": [
+            row.get("wave_id") for row in authored_catalog
+        ]
+        if catalog_rows
+        else active.get("authored_specs_not_active", []),
+        "authored_specs_not_active_count": (
+            len(authored_catalog)
+            if catalog_rows
+            else len(active.get("authored_specs_not_active", []))
+        ),
+        "unregistered_candidates": [row.get("wave_id") for row in candidate_catalog],
+        "unregistered_candidate_count": len(candidate_catalog),
         "promotion_allowed": False,
     }
 
@@ -538,9 +838,26 @@ def _safe_scoped_path(
 
     if not isinstance(value, str) or not value:
         return None, f"{reason_prefix}_PATH_MISSING"
+    if "\x00" in value:
+        return None, f"{reason_prefix}_PATH_MALFORMED"
+    # Check the authored spelling before PurePosixPath normalizes it.  These
+    # paths are current authority declarations; accepting ``./x`` or ``x//y``
+    # after normalization would let two spellings name one wave and would
+    # hide malformed/backslash escapes in a supposedly portable packet.
+    if "\\" in value:
+        return None, f"{reason_prefix}_PATH_BACKSLASH"
+    if "//" in value:
+        return None, f"{reason_prefix}_PATH_DUPLICATE_SEPARATOR"
+    raw_parts = value.split("/")
+    if any(part == "." for part in raw_parts):
+        return None, f"{reason_prefix}_PATH_DOT_SEGMENT"
+    if any(part == ".." for part in raw_parts):
+        return None, f"{reason_prefix}_PATH_PARENT_TRAVERSAL"
     posix = PurePosixPath(value)
     if posix.is_absolute():
         return None, f"{reason_prefix}_PATH_ABSOLUTE"
+    if any(part == "" for part in raw_parts):
+        return None, f"{reason_prefix}_PATH_EMPTY_SEGMENT"
     parts = posix.parts
     if not parts or any(part in ("", ".", "..") for part in parts):
         return None, f"{reason_prefix}_PATH_PARENT_TRAVERSAL"
@@ -561,12 +878,15 @@ def _retained_path_findings(
     product_root: Path,
     location: str = "",
 ) -> list[dict[str, str]]:
-    """Find retained receipt path fields that leave the product root.
+    """Classify path-bearing fields in historical receipts.
 
-    A retained receipt may be copied into a fresh extraction.  Absolute paths
-    are therefore allowed only when they still resolve below the product root
-    being verified; paths into an old checkout, a home directory, or a
-    temporary worktree are rejected.  Provider/runtime identity fields are not
+    Receipts under the retained-evidence boundary are historical observations,
+    not release payload authority.  A syntactically valid absolute path is
+    therefore ``STALE``: it usually names the checkout that produced the old
+    receipt and must never turn an otherwise valid product into ``FAIL`` just
+    because that checkout is absent.  Relative traversal, malformed values,
+    and symlink/executable escapes remain ``FAIL`` because they are actionable
+    path-integrity defects.  Provider/runtime identity fields are not
     inspected here because they intentionally identify external interpreters.
     """
 
@@ -575,26 +895,75 @@ def _retained_path_findings(
         for key, child in value.items():
             child_location = f"{location}.{key}" if location else str(key)
             if str(key).lower() in _RETAINED_PATH_KEYS:
-                if isinstance(child, str):
-                    candidate = Path(child).expanduser()
-                    if not candidate.is_absolute():
-                        candidate = product_root / candidate
-                    try:
-                        resolved = candidate.resolve(strict=False)
-                        product = product_root.resolve(strict=True)
-                        resolved.relative_to(product)
-                    except (OSError, ValueError):
+                # ``path`` is also used by a few finite-state projections as
+                # a list, and ``root`` can carry a diagnostic mapping.  Those
+                # containers are semantic values; recurse into them and only
+                # classify scalar path declarations.
+                if isinstance(child, (dict, list)):
+                    pass
+                elif not isinstance(child, str) or not child or "\x00" in child:
+                    findings.append(
+                        {
+                            "severity": "FAIL",
+                            "location": child_location,
+                            "value": str(child),
+                            "reason": "MALFORMED_PATH",
+                        }
+                    )
+                else:
+                    posix = PurePosixPath(child)
+                    if "\\" in child or any(
+                        part in ("", ".", "..") for part in posix.parts
+                    ):
                         findings.append(
                             {
+                                "severity": "FAIL",
                                 "location": child_location,
                                 "value": child,
-                                "reason": "OUTSIDE_PRODUCT_ROOT",
+                                "reason": "MALFORMED_OR_TRAVERSAL_PATH",
                             }
                         )
+                    else:
+                        try:
+                            candidate = Path(child).expanduser()
+                        except (OSError, RuntimeError, ValueError):
+                            findings.append(
+                                {
+                                    "severity": "FAIL",
+                                    "location": child_location,
+                                    "value": child,
+                                    "reason": "MALFORMED_PATH",
+                                }
+                            )
+                        else:
+                            if candidate.is_absolute():
+                                findings.append(
+                                    {
+                                        "severity": "STALE",
+                                        "location": child_location,
+                                        "value": child,
+                                        "reason": "ABSOLUTE_HISTORICAL_PATH",
+                                    }
+                                )
+                            else:
+                                candidate = product_root / candidate
+                                try:
+                                    resolved = candidate.resolve(strict=False)
+                                    product = product_root.resolve(strict=True)
+                                    resolved.relative_to(product)
+                                except (OSError, ValueError):
+                                    findings.append(
+                                        {
+                                            "severity": "FAIL",
+                                            "location": child_location,
+                                            "value": child,
+                                            "reason": "EXECUTABLE_PATH_ESCAPE",
+                                        }
+                                    )
                 # Some receipt fields are semantic paths (for example a
-                # finite state path ``["z_left", "a"]``), not filesystem
-                # paths.  Recurse into mappings/lists, but do not mistake
-                # those sequences for retained file references.
+                # finite state path ["z_left", "a"], not filesystem paths.
+                # Recurse into mappings/lists, but do not mistake those
+                # sequences for retained file references.
             findings.extend(
                 _retained_path_findings(
                     child, product_root=product_root, location=child_location
@@ -614,37 +983,132 @@ def _retained_path_findings(
 
 def _child_file_path_findings(
     bindings: object, *, run_root: Path
-) -> list[str]:
+) -> tuple[list[str], list[str]]:
     """Validate the relative keys of a receipt's child-file hash registry."""
 
     if not isinstance(bindings, dict):
-        return []
+        return [], []
     children = bindings.get("child_file_sha256")
     if not isinstance(children, dict):
-        return []
+        return [], []
     errors: list[str] = []
+    stale: list[str] = []
     for relative in children:
-        path, reason = _safe_scoped_path(
-            relative, run_root, reason_prefix="FAIL_BRIDGE_CHILD_FILE"
+        path, disposition, reason = _historical_receipt_path(
+            relative,
+            root=run_root,
+            reason_prefix="BRIDGE_CHILD_FILE",
         )
-        if path is None:
-            errors.append(f"{reason}:{relative}")
-    return errors
+        if disposition == "STALE" and reason:
+            stale.append(reason)
+        elif path is None:
+            errors.append(reason or f"FAIL_BRIDGE_CHILD_FILE_PATH:{relative}")
+    return errors, stale
+
+
+def _historical_receipt_path(
+    value: object,
+    *,
+    root: Path,
+    reason_prefix: str,
+) -> tuple[Path | None, str | None, str | None]:
+    """Resolve an explicitly audited receipt path with stale-path handling.
+
+    The return tuple is ``(path, disposition, reason_code)``.  ``disposition``
+    is ``STALE`` for a valid absolute historical path, ``FAIL`` for a malformed
+    or executable escape, and ``None`` for a safe relative path.
+    """
+
+    findings = _retained_path_findings(
+        {"path": value}, product_root=root, location="path"
+    )
+    if findings:
+        finding = findings[0]
+        if finding.get("severity") == "STALE":
+            return (
+                None,
+                "STALE",
+                f"STALE_{reason_prefix}_PATH_ABSOLUTE:{finding.get('value')}",
+            )
+        scoped_reason: str | None = None
+        if isinstance(value, str):
+            _scoped_path, scoped_reason = _safe_scoped_path(
+                value,
+                root,
+                reason_prefix=f"FAIL_{reason_prefix}",
+            )
+        return (
+            None,
+            "FAIL",
+            (
+                f"{scoped_reason}:{value}"
+                if scoped_reason
+                else f"FAIL_{reason_prefix}_{finding.get('reason', 'PATH_INVALID')}:{finding.get('value')}"
+            ),
+        )
+    path, reason = _safe_scoped_path(
+        value, root, reason_prefix=f"FAIL_{reason_prefix}"
+    )
+    if path is None:
+        return None, "FAIL", f"{reason}:{value}"
+    return path, None, None
 
 
 _CHECKSUM_LINE = re.compile(r"^([0-9a-fA-F]{64})[ \t][ *](.+)$")
+
+# A fresh extracted product may acquire these machine-local runtimes before
+# its envelope is rechecked.  They are deliberately an exact, product-local
+# allowlist: the roots themselves must be ordinary directories, while their
+# generated contents (including the normal venv interpreter symlink) are not
+# part of the release payload closure.
+_GENERATED_RUNTIME_ROOTS = (
+    "PROJECT/constraint_box/.venv",
+    "PROJECT/constraint_box/.venv-clean",
+    "PROJECT/constraint_box/.bootstrap-light-build",
+    "PROJECT/constraint_box/integrated_system/runs",
+    "PROJECT/constraint_box/receipts",
+)
+
+
+def _bundle_runtime_root_exclusions(
+    bundle_root: Path,
+) -> tuple[set[str], list[str]]:
+    """Return exact generated roots and refuse malformed root replacements."""
+
+    excluded: set[str] = set()
+    errors: list[str] = []
+    for relative in _GENERATED_RUNTIME_ROOTS:
+        path = bundle_root.joinpath(*PurePosixPath(relative).parts)
+        if path.is_symlink():
+            errors.append(f"FAIL_BUNDLE_RUNTIME_ROOT_SYMLINK:{relative}")
+        elif path.exists():
+            try:
+                is_regular_directory = stat.S_ISDIR(path.stat().st_mode)
+            except OSError:
+                is_regular_directory = False
+            if not is_regular_directory:
+                errors.append(f"FAIL_BUNDLE_RUNTIME_ROOT_NOT_DIRECTORY:{relative}")
+            else:
+                excluded.add(relative)
+    return excluded, errors
 
 
 def _safe_bundle_path(value: object, bundle_root: Path) -> Path | None:
     """Resolve a manifest/checksum path safely under ``bundle_root``.
 
-    Rejects empty, absolute, and ``..``-traversal paths.  Also resolves
-    symlinks and rejects any resolution that lands outside ``bundle_root``,
-    so a tampered bundle cannot use a safe-looking relative path to point at
-    a file outside the bundle root.
+    Rejects malformed raw spellings (dot segments, duplicate separators,
+    backslashes, NULs, empty segments), absolute/traversal paths, and any
+    resolution that lands outside ``bundle_root``.  A tampered bundle cannot
+    use normalization to disguise an unsafe path or a safe-looking relative
+    path to point at a file outside the bundle root.
     """
 
-    if not isinstance(value, str) or not value:
+    if not isinstance(value, str) or not value or "\x00" in value:
+        return None
+    if "\\" in value or "//" in value:
+        return None
+    raw_parts = value.split("/")
+    if any(part in ("", ".", "..") for part in raw_parts):
         return None
     posix = PurePosixPath(value)
     if posix.is_absolute():
@@ -692,6 +1156,222 @@ def find_bundle_root(box_root: Path) -> Path | None:
     return None
 
 
+def _bundle_physical_files(bundle_root: Path) -> tuple[set[str], list[str]]:
+    """Return regular physical files and reject symlinked bundle entries."""
+
+    files: set[str] = set()
+    errors: list[str] = []
+    if bundle_root.is_symlink():
+        return files, ["FAIL_BUNDLE_ROOT_SYMLINK"]
+    if not bundle_root.is_dir():
+        return files, ["FAIL_BUNDLE_ROOT_NOT_DIRECTORY"]
+    excluded_runtime_roots, runtime_root_errors = _bundle_runtime_root_exclusions(
+        bundle_root
+    )
+    errors.extend(runtime_root_errors)
+    for current, directories, names in os.walk(
+        bundle_root, topdown=True, followlinks=False
+    ):
+        current_path = Path(current)
+        kept_directories: list[str] = []
+        for name in sorted(directories):
+            path = current_path / name
+            relative = path.relative_to(bundle_root).as_posix()
+            if relative in excluded_runtime_roots:
+                continue
+            if path.is_symlink():
+                errors.append(f"FAIL_BUNDLE_SYMLINK_DIRECTORY:{path.name}")
+            elif name == "__pycache__":
+                errors.append(f"FAIL_BUNDLE_UNLISTED_CACHE_DIRECTORY:{relative}")
+            else:
+                kept_directories.append(name)
+        directories[:] = kept_directories
+        for name in sorted(names):
+            path = current_path / name
+            relative = path.relative_to(bundle_root).as_posix()
+            if path.is_symlink():
+                errors.append(f"FAIL_BUNDLE_SYMLINK_FILE:{relative}")
+            elif name == "__pycache__":
+                errors.append(f"FAIL_BUNDLE_UNLISTED_CACHE_PATH:{relative}")
+            elif not path.is_file() or not stat.S_ISREG(path.stat().st_mode):
+                errors.append(f"FAIL_BUNDLE_NONREGULAR_FILE:{relative}")
+            else:
+                files.add(relative)
+    return files, errors
+
+
+def cleanup_generated_bytecode(
+    box_root: Path, initial_envelope: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Remove only fresh, direct regular ``.pyc`` cache entries.
+
+    The initial envelope check deliberately treats every source ``__pycache__``
+    as an unexpected physical directory.  Therefore a PASS there establishes
+    the baseline: any cache found here was created by this verification run.
+    Generated runtime roots remain excluded by their exact allowlist, while a
+    malformed cache is refused before any cleanup mutation occurs.
+    """
+
+    base: dict[str, Any] = {
+        "count": 0,
+        "paths": [],
+        "digests": {},
+        "cache_dirs": [],
+        "promotion_allowed": False,
+    }
+    if initial_envelope.get("status") != "PASS":
+        return {
+            **base,
+            "status": "NOT_APPLICABLE",
+            "reason_codes": ["NOT_APPLICABLE_INITIAL_BUNDLE_ENVELOPE"],
+        }
+
+    bundle_root = find_bundle_root(box_root)
+    if bundle_root is None:
+        return {
+            **base,
+            "status": "FAIL",
+            "reason_codes": ["FAIL_GENERATED_BYTECODE_BUNDLE_ROOT_MISSING"],
+        }
+    excluded_runtime_roots, runtime_root_errors = _bundle_runtime_root_exclusions(
+        bundle_root
+    )
+    if runtime_root_errors:
+        return {
+            **base,
+            "status": "FAIL",
+            "reason_codes": runtime_root_errors,
+            "bundle_root": str(bundle_root),
+        }
+
+    errors: list[str] = []
+    cache_dirs: list[Path] = []
+
+    def walk_error(exc: OSError) -> None:
+        errors.append(
+            f"FAIL_GENERATED_BYTECODE_WALK:{type(exc).__name__}:{exc.filename}"
+        )
+
+    for current, directories, names in os.walk(
+        bundle_root,
+        topdown=True,
+        followlinks=False,
+        onerror=walk_error,
+    ):
+        current_path = Path(current)
+        kept_directories: list[str] = []
+        for name in sorted(directories):
+            path = current_path / name
+            relative = path.relative_to(bundle_root).as_posix()
+            if relative in excluded_runtime_roots:
+                continue
+            if name == "__pycache__":
+                if path.is_symlink():
+                    errors.append(f"FAIL_GENERATED_BYTECODE_CACHE_SYMLINK:{relative}")
+                else:
+                    cache_dirs.append(path)
+                continue
+            if path.is_symlink():
+                # The post-envelope scan remains authoritative for unrelated
+                # fresh symlinks; do not follow one while inventorying caches.
+                continue
+            kept_directories.append(name)
+        directories[:] = kept_directories
+        for name in sorted(names):
+            if name != "__pycache__":
+                continue
+            path = current_path / name
+            relative = path.relative_to(bundle_root).as_posix()
+            if path.is_symlink():
+                errors.append(f"FAIL_GENERATED_BYTECODE_CACHE_SYMLINK:{relative}")
+            else:
+                errors.append(f"FAIL_GENERATED_BYTECODE_CACHE_NOT_DIRECTORY:{relative}")
+
+    candidates: list[tuple[Path, str, str]] = []
+    for cache_dir in sorted(cache_dirs, key=lambda item: str(item)):
+        relative_dir = cache_dir.relative_to(bundle_root).as_posix()
+        try:
+            if cache_dir.is_symlink() or not stat.S_ISDIR(cache_dir.stat().st_mode):
+                errors.append(
+                    f"FAIL_GENERATED_BYTECODE_CACHE_NOT_DIRECTORY:{relative_dir}"
+                )
+                continue
+            entries = sorted(cache_dir.iterdir(), key=lambda item: item.name)
+        except OSError as exc:
+            errors.append(
+                f"FAIL_GENERATED_BYTECODE_CACHE_READ:{relative_dir}:{type(exc).__name__}"
+            )
+            continue
+        for entry in entries:
+            relative = entry.relative_to(bundle_root).as_posix()
+            if entry.is_symlink():
+                errors.append(f"FAIL_GENERATED_BYTECODE_SYMLINK:{relative}")
+                continue
+            try:
+                mode = entry.stat().st_mode
+            except OSError as exc:
+                errors.append(
+                    f"FAIL_GENERATED_BYTECODE_STAT:{relative}:{type(exc).__name__}"
+                )
+                continue
+            if stat.S_ISDIR(mode):
+                errors.append(f"FAIL_GENERATED_BYTECODE_NESTED_DIRECTORY:{relative}")
+                continue
+            if not stat.S_ISREG(mode):
+                errors.append(f"FAIL_GENERATED_BYTECODE_NONREGULAR:{relative}")
+                continue
+            if entry.suffix != ".pyc":
+                errors.append(f"FAIL_GENERATED_BYTECODE_FOREIGN_ENTRY:{relative}")
+                continue
+            try:
+                digest = sha256_file(entry)
+            except OSError as exc:
+                errors.append(
+                    f"FAIL_GENERATED_BYTECODE_DIGEST:{relative}:{type(exc).__name__}"
+                )
+                continue
+            candidates.append((entry, relative, digest))
+
+    # Validate the entire candidate set before unlinking anything.  A single
+    # malformed or unremovable entry must not trigger partial cache cleanup.
+    removed: list[tuple[str, str]] = []
+    if not errors:
+        for path, relative, digest in candidates:
+            try:
+                path.unlink()
+            except OSError as exc:
+                errors.append(
+                    f"FAIL_GENERATED_BYTECODE_UNLINK:{relative}:{type(exc).__name__}"
+                )
+                break
+            removed.append((relative, digest))
+        for cache_dir in sorted(cache_dirs, key=lambda item: str(item), reverse=True):
+            relative_dir = cache_dir.relative_to(bundle_root).as_posix()
+            try:
+                cache_dir.rmdir()
+            except OSError as exc:
+                errors.append(
+                    f"FAIL_GENERATED_BYTECODE_RMDIR:{relative_dir}:{type(exc).__name__}"
+                )
+
+    paths = [relative for relative, _ in removed]
+    digests = {relative: digest for relative, digest in removed}
+    return {
+        **base,
+        "status": "PASS" if not errors else "FAIL",
+        "reason_codes": errors,
+        "bundle_root": str(bundle_root),
+        "count": len(removed),
+        "paths": paths,
+        "digests": digests,
+        "cache_dirs": [
+            cache_dir.relative_to(bundle_root).as_posix()
+            for cache_dir in cache_dirs
+            if not cache_dir.exists()
+        ],
+    }
+
+
 def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
     """Verify a release bundle's manifest/metadata/checksum envelope.
 
@@ -712,6 +1392,26 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
     manifest_path = bundle_root / "SYSTEM_MANIFEST.json"
     metadata_path = bundle_root / "BUNDLE_METADATA.json"
     checksums_path = bundle_root / "SHA256SUMS"
+
+    envelope_errors: list[str] = []
+    for label, path in (
+        ("MANIFEST", manifest_path),
+        ("METADATA", metadata_path),
+        ("CHECKSUMS", checksums_path),
+    ):
+        if path.is_symlink():
+            envelope_errors.append(f"FAIL_BUNDLE_{label}_SYMLINK")
+        elif not path.is_file() or not stat.S_ISREG(path.stat().st_mode):
+            envelope_errors.append(f"FAIL_BUNDLE_{label}_NOT_REGULAR")
+    physical_paths, physical_errors = _bundle_physical_files(bundle_root)
+    envelope_errors.extend(physical_errors)
+    if envelope_errors:
+        return {
+            "status": "FAIL",
+            "reason_codes": list(dict.fromkeys(envelope_errors)),
+            "bundle_root": str(bundle_root),
+            "promotion_allowed": False,
+        }
 
     manifest_bytes = manifest_path.read_bytes()
     try:
@@ -774,7 +1474,10 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
         expected_paths.add(safe_path)
         if isinstance(declared_bytes, int):
             payload_bytes_total += declared_bytes
-        if not target.is_file():
+        if target.is_symlink():
+            errors.append(f"FAIL_BUNDLE_PAYLOAD_SYMLINK:{safe_path}")
+            continue
+        if not target.is_file() or not stat.S_ISREG(target.stat().st_mode):
             errors.append(f"FAIL_BUNDLE_PAYLOAD_MISSING:{safe_path}")
             continue
         actual_bytes = target.stat().st_size
@@ -832,10 +1535,18 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
             errors.append(f"FAIL_BUNDLE_CHECKSUMS_LINE_SHAPE:{line_number}")
             continue
         digest, entry_path = match.group(1).lower(), match.group(2)
-        posix_entry = PurePosixPath(entry_path)
-        if posix_entry.is_absolute() or len(posix_entry.parts) < 2 or any(
-            part in ("", ".", "..") for part in posix_entry.parts
+        if (
+            not isinstance(entry_path, str)
+            or not entry_path
+            or "\x00" in entry_path
+            or "\\" in entry_path
+            or "//" in entry_path
+            or any(part in ("", ".", "..") for part in entry_path.split("/"))
         ):
+            errors.append(f"FAIL_BUNDLE_CHECKSUMS_PATH_UNSAFE:{entry_path!r}")
+            continue
+        posix_entry = PurePosixPath(entry_path)
+        if posix_entry.is_absolute() or len(posix_entry.parts) < 2:
             errors.append(f"FAIL_BUNDLE_CHECKSUMS_PATH_UNSAFE:{entry_path!r}")
             continue
         prefix = posix_entry.parts[0]
@@ -863,6 +1574,11 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
         errors.append(f"FAIL_BUNDLE_CHECKSUMS_DUPLICATE:{path}")
 
     found_paths = set(found_checksum_paths)
+    # SHA256SUMS cannot include its own final digest without a recursive
+    # definition, so it is the one explicitly documented envelope exception.
+    physical_checksum_paths = physical_paths - {"SHA256SUMS"}
+    for path in sorted(physical_checksum_paths - found_paths):
+        errors.append(f"FAIL_BUNDLE_CHECKSUMS_MISSING_PHYSICAL:{path}")
     for path in sorted(expected_paths - found_paths):
         errors.append(f"FAIL_BUNDLE_CHECKSUMS_MISSING:{path}")
     for path in sorted(found_paths - expected_paths):
@@ -871,6 +1587,14 @@ def check_bundle_envelope(box_root: Path) -> dict[str, Any]:
         if path == "SHA256SUMS":
             continue
         errors.append(f"FAIL_BUNDLE_CHECKSUMS_UNEXPECTED:{path}")
+    for path in sorted(found_paths):
+        target = _safe_bundle_path(path, bundle_root)
+        if target is None:
+            errors.append(f"FAIL_BUNDLE_CHECKSUMS_PATH_UNSAFE:{path}")
+        elif target.is_symlink():
+            errors.append(f"FAIL_BUNDLE_CHECKSUMS_SYMLINK:{path}")
+        elif not target.is_file() or not stat.S_ISREG(target.stat().st_mode):
+            errors.append(f"FAIL_BUNDLE_CHECKSUMS_FILE_MISSING:{path}")
     if "SHA256SUMS" in found_checksum_paths:
         actual_digest_by_path["SHA256SUMS"] = sha256_file(checksums_path)
         if found_checksum_paths["SHA256SUMS"] != actual_digest_by_path["SHA256SUMS"]:
@@ -923,37 +1647,92 @@ def check_structured_receipt(system_root: Path) -> dict[str, Any]:
             "promotion_allowed": False,
         }
     errors: list[str] = []
+    stale_reasons: list[str] = []
     try:
         crosscheck = read_json(crosscheck_path)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return {"status": "FAIL", "reason_codes": ["FAIL_STRUCTURED_RECEIPT", f"{type(exc).__name__}:{exc}"]}
-    exact_relative = (crosscheck.get("exact") or {}).get("path")
-    dual_relative = (crosscheck.get("dual") or {}).get("path")
-    exact_path, exact_reason = _safe_scoped_path(exact_relative, runs, reason_prefix="FAIL_STRUCTURED_RECEIPT")
-    dual_path, dual_reason = _safe_scoped_path(dual_relative, runs, reason_prefix="FAIL_STRUCTURED_RECEIPT")
-    if exact_path is None or dual_path is None:
-        codes = [f"{reason}:{value}" for reason, value in ((exact_reason, exact_relative), (dual_reason, dual_relative)) if reason]
-        return {"status": "FAIL", "reason_codes": codes or ["FAIL_STRUCTURED_RECEIPT_PATH"]}
-    if exact_path == dual_path:
+    for finding in _retained_path_findings(
+        crosscheck, product_root=system_root.parent, location="crosscheck"
+    ):
+        finding_text = f"{finding['location']}:{finding['value']}"
+        if finding.get("severity") == "STALE":
+            stale_reasons.append(f"STALE_STRUCTURED_RETAINED_PATH:{finding_text}")
+        else:
+            errors.append(f"FAIL_STRUCTURED_RETAINED_PATH:{finding_text}")
+    exact_record = crosscheck.get("exact")
+    dual_record = crosscheck.get("dual")
+    exact_record = exact_record if isinstance(exact_record, dict) else {}
+    dual_record = dual_record if isinstance(dual_record, dict) else {}
+    exact_path, exact_disposition, exact_reason = _historical_receipt_path(
+        exact_record.get("path"),
+        root=runs,
+        reason_prefix="STRUCTURED_RECEIPT",
+    )
+    dual_path, dual_disposition, dual_reason = _historical_receipt_path(
+        dual_record.get("path"),
+        root=runs,
+        reason_prefix="STRUCTURED_RECEIPT",
+    )
+    for disposition, reason in (
+        (exact_disposition, exact_reason),
+        (dual_disposition, dual_reason),
+    ):
+        if reason and disposition == "STALE":
+            stale_reasons.append(reason)
+        elif reason:
+            errors.append(reason)
+    if exact_path is not None and dual_path is not None and exact_path == dual_path:
         return {"status": "FAIL", "reason_codes": ["FAIL_STRUCTURED_RECEIPT_PATH_DUPLICATE"]}
-    try:
-        exact = read_json(exact_path)
-        dual = read_json(dual_path)
-    except (OSError, ValueError, json.JSONDecodeError) as exc:
-        return {"status": "FAIL", "reason_codes": ["FAIL_STRUCTURED_RECEIPT", f"{type(exc).__name__}:{exc}"]}
+    exact: dict[str, Any] | None = None
+    dual: dict[str, Any] | None = None
+    for label, path in (("exact", exact_path), ("dual", dual_path)):
+        if path is None:
+            continue
+        try:
+            value = read_json(path)
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append(f"FAIL_STRUCTURED_RECEIPT:{label}:{type(exc).__name__}")
+            continue
+        if label == "exact":
+            exact = value
+        else:
+            dual = value
     if crosscheck.get("status") != "PASS":
         errors.append("FAIL_STRUCTURED_CROSSCHECK_STATUS")
     if crosscheck.get("exact_jax_agreement") is not True:
         errors.append("FAIL_STRUCTURED_JAX_AGREEMENT")
-    if exact.get("status") != "PASS" or dual.get("status") != "PASS":
-        errors.append("FAIL_STRUCTURED_RESULT_STATUS")
-    if exact.get("promotion_allowed") is not False or dual.get("promotion_allowed") is not False:
-        errors.append("FAIL_STRUCTURED_PROMOTION_FLAG")
-    exact_projection = structured_projection(exact)
-    dual_projection = structured_projection(dual)
-    projection_sha = sha256_bytes(canonical_json_bytes(exact_projection))
-    if exact_projection != dual_projection:
-        errors.append("FAIL_STRUCTURED_SEMANTIC_PROJECTION_MISMATCH")
+    if exact is not None and exact.get("status") != "PASS":
+        errors.append("FAIL_STRUCTURED_RESULT_STATUS:exact")
+    if dual is not None and dual.get("status") != "PASS":
+        errors.append("FAIL_STRUCTURED_RESULT_STATUS:dual")
+    if (exact_path is not None and exact is None) or (dual_path is not None and dual is None):
+        errors.append("FAIL_STRUCTURED_RESULT_MISSING")
+    if exact is not None and exact.get("promotion_allowed") is not False:
+        errors.append("FAIL_STRUCTURED_PROMOTION_FLAG:exact")
+    if dual is not None and dual.get("promotion_allowed") is not False:
+        errors.append("FAIL_STRUCTURED_PROMOTION_FLAG:dual")
+    if exact is not None and dual is not None:
+        exact_projection = structured_projection(exact)
+        dual_projection = structured_projection(dual)
+        projection_sha = sha256_bytes(canonical_json_bytes(exact_projection))
+        if exact_projection != dual_projection:
+            errors.append("FAIL_STRUCTURED_SEMANTIC_PROJECTION_MISMATCH")
+    else:
+        exact_projection = None
+        dual_projection = None
+        projection_sha = None
+    for label, value in (("exact", exact), ("dual", dual)):
+        if value is None:
+            continue
+        for finding in _retained_path_findings(
+            value, product_root=system_root.parent, location=label
+        ):
+            reason = f"{finding['location']}:{finding['value']}"
+            if finding.get("severity") == "STALE":
+                stale_reasons.append(f"STALE_STRUCTURED_RETAINED_PATH:{reason}")
+            else:
+                errors.append(f"FAIL_STRUCTURED_RETAINED_PATH:{reason}")
     expected_projection = crosscheck.get("shared_semantic_projection_sha256")
     # The historical crosscheck stores a digest but does not store the
     # projection schema/field-selection recipe that produced it.  Do not
@@ -962,20 +1741,25 @@ def check_structured_receipt(system_root: Path) -> dict[str, Any]:
     # reported as an un-recomputed historical binding instead of being used as
     # a false-green or false-red verdict.
     for path, row, value in (
-        (exact_path, crosscheck.get("exact") or {}, exact),
-        (dual_path, crosscheck.get("dual") or {}, dual),
+        (exact_path, exact_record, exact),
+        (dual_path, dual_record, dual),
     ):
+        if path is None or value is None:
+            continue
         actual_file_sha = sha256_file(path)
         if row.get("file_sha256") is not None and row.get("file_sha256") != actual_file_sha:
             errors.append(f"FAIL_STRUCTURED_FILE_DIGEST:{path.name}")
         result_sha = value.get("result_sha256")
         if result_sha is not None and result_sha != digest_without(value, "result_sha256"):
             errors.append(f"FAIL_STRUCTURED_RESULT_DIGEST:{path.name}")
+    stale_reasons = list(dict.fromkeys(stale_reasons))
+    status = "FAIL" if errors else ("STALE" if stale_reasons else "PASS")
     return {
-        "status": "PASS" if not errors else "FAIL",
-        "reason_codes": errors,
-        "exact_file_sha256": sha256_file(exact_path),
-        "dual_file_sha256": sha256_file(dual_path),
+        "status": status,
+        "reason_codes": [*errors, *stale_reasons],
+        "stale_reason_codes": stale_reasons,
+        "exact_file_sha256": sha256_file(exact_path) if exact_path is not None and exact_path.is_file() else None,
+        "dual_file_sha256": sha256_file(dual_path) if dual_path is not None and dual_path.is_file() else None,
         "semantic_projection_sha256": projection_sha,
         "crosscheck_projection_sha256": expected_projection,
         "crosscheck_projection_recomputed": False,
@@ -1008,6 +1792,14 @@ def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
         rows = []
     receipts: list[dict[str, Any]] = []
     box_root = system_root.parent
+    for finding in _retained_path_findings(
+        replay, product_root=box_root, location="replay"
+    ):
+        finding_text = f"{finding['location']}:{finding['value']}"
+        if finding.get("severity") == "STALE":
+            stale_reasons.append(f"STALE_BRIDGE_RETAINED_PATH:{finding_text}")
+        else:
+            errors.append(f"FAIL_BRIDGE_RETAINED_PATH_OUTSIDE_PRODUCT:{finding_text}")
     current_binding_paths = {
         "bridge_source_sha256": system_root / "scripts" / "run_light_jax_wave_bridge.py",
         "field_source_sha256": box_root / "scripts" / "contained_light" / "entropic_time_field.py",
@@ -1026,9 +1818,16 @@ def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
             errors.append("FAIL_BRIDGE_REPLAY_ROW_SHAPE")
             continue
         declared = row.get("path")
-        path, reason = _safe_scoped_path(declared, system_root / "runs", reason_prefix="FAIL_BRIDGE_RECEIPT")
+        path, disposition, reason = _historical_receipt_path(
+            declared,
+            root=system_root / "runs",
+            reason_prefix="BRIDGE_RECEIPT",
+        )
+        if disposition == "STALE" and reason:
+            stale_reasons.append(reason)
+            continue
         if path is None:
-            errors.append(f"{reason}:{declared}")
+            errors.append(reason or f"FAIL_BRIDGE_RECEIPT_PATH:{declared}")
             continue
         if path in seen_paths:
             errors.append(f"FAIL_BRIDGE_RECEIPT_PATH_DUPLICATE:{declared}")
@@ -1049,14 +1848,24 @@ def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
             errors.append(f"FAIL_BRIDGE_RECEIPT_DIGEST:{path.name}")
         if receipt.get("status") != "PASS" or receipt.get("promotion_allowed") is not False:
             errors.append(f"FAIL_BRIDGE_RECEIPT_STATUS:{path.name}")
-        errors.extend(_child_file_path_findings(receipt.get("bindings"), run_root=path.parent))
+        child_errors, child_stale = _child_file_path_findings(
+            receipt.get("bindings"), run_root=path.parent
+        )
+        errors.extend(child_errors)
+        stale_reasons.extend(child_stale)
         for finding in _retained_path_findings(
             receipt, product_root=box_root, location=path.name
         ):
-            errors.append(
-                "FAIL_BRIDGE_RETAINED_PATH_OUTSIDE_PRODUCT:"
-                f"{finding['location']}:{finding['value']}"
-            )
+            finding_text = f"{finding['location']}:{finding['value']}"
+            if finding.get("severity") == "STALE":
+                stale_reasons.append(
+                    f"STALE_BRIDGE_RETAINED_PATH:{finding_text}"
+                )
+            else:
+                errors.append(
+                    "FAIL_BRIDGE_RETAINED_PATH_OUTSIDE_PRODUCT:"
+                    f"{finding_text}"
+                )
 
         children = receipt.get("children")
         if not isinstance(children, dict):
@@ -1092,6 +1901,9 @@ def check_bridge_receipt(system_root: Path) -> dict[str, Any]:
     return {
         "status": status,
         "reason_codes": [*errors, *stale_reasons],
+        "stale_path_count": len(
+            [code for code in stale_reasons if "PATH" in code]
+        ),
         "retained_run_count": len(receipts),
         "semantic_replay_identical": replay.get("semantic_replay_identical"),
         "replay_projection_sha256": [row.get("replay_projection_sha256") for row in rows],
@@ -1298,6 +2110,36 @@ def run_bridge_pair(
     }
 
 
+@contextmanager
+def _bridge_output_directory(*, box_root: Path, system_root: Path):
+    """Yield a product-confined bridge staging directory and always clean it."""
+
+    verification_runs = system_root / "runs"
+    created_runs = False
+    if verification_runs.exists():
+        if verification_runs.is_symlink() or not verification_runs.is_dir():
+            raise ValueError(
+                f"REFUSE_BRIDGE_RUNS_ROOT_NOT_REGULAR:{verification_runs}"
+            )
+    else:
+        verification_runs.mkdir(parents=True, exist_ok=False)
+        created_runs = True
+    try:
+        product_root = box_root.expanduser().resolve(strict=True)
+        runs_root = verification_runs.resolve(strict=True)
+        runs_root.relative_to(product_root)
+        with tempfile.TemporaryDirectory(
+            prefix=".verify-", dir=verification_runs
+        ) as bridge_name:
+            yield Path(bridge_name)
+    finally:
+        if created_runs:
+            try:
+                verification_runs.rmdir()
+            except OSError:
+                pass
+
+
 def run_contained_overlay(
     *,
     box_root: Path,
@@ -1336,6 +2178,10 @@ def run_contained_overlay(
 
 def test_groups(*, include_provider_adapters: bool = False) -> dict[str, list[str]]:
     groups = {
+        # Keep the self-verifying integrated-system suite first.  Later groups
+        # may import source modules and create bytecode caches; this group
+        # must inspect the clean extracted envelope before that can happen.
+        "integrated_system": ["constraint_box/integrated_system/tests"],
         "light_core": [
             "constraint_box/tests/test_cb_light_system.py",
             "constraint_box/tests/test_cb_light_core_probes.py",
@@ -1360,7 +2206,6 @@ def test_groups(*, include_provider_adapters: bool = False) -> dict[str, list[st
             "--ignore=constraint_box/integrated_system/skills/cb-wave-author/tests/test_wave_definitions.py",
             "--ignore=constraint_box/integrated_system/skills/cb-wave-admission-gate/tests/test_admit.py",
         ],
-        "integrated_system": ["constraint_box/integrated_system/tests"],
     }
     if include_provider_adapters:
         groups["provider_adapters"] = list(PROVIDER_TEST_PATHS)
@@ -1418,7 +2263,11 @@ def run_test_groups(
             records.append(record)
             results[name] = {"status": "FAIL", "reason_codes": record["reason_code"], "missing": missing}
             continue
-        isolation = ["-I"] if name == "light_core" else []
+        # ``-B`` prevents test imports from creating source ``__pycache__``
+        # entries; ``-I`` keeps the installed Light wheel isolated from the
+        # checkout.  Both are required because the post-command envelope
+        # check treats any unlisted source cache as a real payload mutation.
+        isolation = ["-B", "-I"] if name == "light_core" else []
         argv = [str(light_python), *isolation, "-m", "pytest", "-q", "-p", "no:cacheprovider", *[path for path in paths if not path.startswith("--")]]
         argv.extend(path for path in paths if path.startswith("--"))
         record = add_command(
@@ -1531,18 +2380,28 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             Path(seed_output.name).unlink()
         except OSError:
             pass
-        # Bridge children emit path-bearing receipts.  Keep the temporary run
-        # below the product root so those paths remain portable and auditable;
-        # the builder excludes this generated tree from release ZIPs.
-        verification_runs = system_root / "runs"
-        verification_runs.mkdir(parents=True, exist_ok=True)
-        with tempfile.TemporaryDirectory(
-            prefix=".verify-", dir=verification_runs
-        ) as temp_name:
+        # Bridge children emit path-bearing receipts, but a documented direct
+        # verifier invocation must not retain generated observations.  ZIP and
+        # structured probes stay external; bridge outputs must be product-
+        # confined because the bridge itself enforces that boundary.  The
+        # ignored runs subtree is cleaned completely after the bridge pair.
+        with tempfile.TemporaryDirectory(prefix="cb-integrated-verify-") as temp_name:
             temp_root = Path(temp_name)
             checks["zip_demo"] = run_zip_demo(light_python=light, repo_root=repo_root, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "zip")
             checks["structured_live"] = run_structured_probe(box_root=box_root, system_root=system_root, light_python=light, jax_python=jax, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "structured")
-            checks["bridge_live"] = run_bridge_pair(box_root=box_root, system_root=system_root, light_python=light, jax_python=jax, env=env, timeout_seconds=args.timeout_seconds, records=records, temp_root=temp_root / "bridge")
+            with _bridge_output_directory(
+                box_root=box_root, system_root=system_root
+            ) as bridge_root:
+                checks["bridge_live"] = run_bridge_pair(
+                    box_root=box_root,
+                    system_root=system_root,
+                    light_python=light,
+                    jax_python=jax,
+                    env=env,
+                    timeout_seconds=args.timeout_seconds,
+                    records=records,
+                    temp_root=bridge_root,
+                )
             checks["contained_overlay"] = run_contained_overlay(box_root=box_root, light_python=light, env=env, timeout_seconds=args.timeout_seconds, records=records, supplied_root=args.contained_root)
         test_results = (
             {}
@@ -1593,6 +2452,14 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             "jax_available": jax is not None,
         }
         light_jax_separation_checked = jax is not None and doctor.get("status") == "PASS"
+    # Commands and test imports are allowed to create only the exact generated
+    # product roots accepted by ``check_bundle_envelope``.  Recheck after the
+    # final command so a clean precheck cannot hide a post-bootstrap cache or
+    # extra physical file introduced during verification.
+    checks["generated_bytecode_cleanup"] = cleanup_generated_bytecode(
+        box_root, checks["bundle_envelope"]
+    )
+    checks["bundle_envelope_post"] = check_bundle_envelope(box_root)
     statuses: list[str] = []
     for check in checks.values():
         if isinstance(check, dict) and "status" in check:

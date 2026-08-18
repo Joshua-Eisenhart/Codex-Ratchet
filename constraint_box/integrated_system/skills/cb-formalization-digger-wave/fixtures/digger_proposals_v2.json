@@ -1,0 +1,216 @@
+{
+  "schema": "constraintbox.formalization-digger-proposal-bundle.v2",
+  "bundle_id": "formalization-digger-proposals-real-input-v2",
+  "epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+  "capability_receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+  "proposal_only": true,
+  "promotion_allowed": false,
+  "claim_ceiling": "Four source-bound proposal-only diggers and an unresolved non-voting frontier.",
+  "children": [
+    {
+      "schema": "constraintbox.formalization-digger-proposal.v2",
+      "child_id": "axiom_digger",
+      "proposal_kind": "assumptions_and_non_objectives",
+      "input_epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+      "capability_receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+      "proposal_only": true,
+      "observations": [],
+      "decisions": [],
+      "activation_requested": false,
+      "source_refs": [
+        {
+          "path": "constraint_box/integrated_system/context/current/OWNER_OBJECT.md",
+          "sha256": "ff233ce2e1086e18134eccd32169ed4be57dba5070bd8aa22087116b7668822b"
+        },
+        {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        }
+      ],
+      "assumptions": [
+        {
+          "assumption_id": "finite_declared_domains",
+          "statement": "A domain declared finite by the capability receipt is a candidate finite domain.",
+          "polarity": "positive",
+          "status": "ASSUMPTION"
+        },
+        {
+          "assumption_id": "source_digest_custody",
+          "statement": "A proposal remains bound to the exact epoch and capability receipt digests.",
+          "polarity": "positive",
+          "status": "ASSUMPTION"
+        }
+      ],
+      "non_objectives": [
+        {
+          "objective_id": "axiom_truth",
+          "statement": "Do not decide truth from a named assumption.",
+          "polarity": "negative",
+          "status": "NON_OBJECTIVE"
+        },
+        {
+          "objective_id": "axiom_activation",
+          "statement": "Do not activate an obligation while drafting axioms.",
+          "polarity": "negative",
+          "status": "NON_OBJECTIVE"
+        }
+      ],
+      "claim_ceiling": "Named assumptions and non-objectives only; no truth decision."
+    },
+    {
+      "schema": "constraintbox.formalization-digger-proposal.v2",
+      "child_id": "constraint_digger",
+      "proposal_kind": "finite_candidate_predicates",
+      "input_epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+      "capability_receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+      "proposal_only": true,
+      "observations": [],
+      "decisions": [],
+      "activation_requested": false,
+      "source_refs": [
+        {
+          "path": "constraint_box/integrated_system/context/current/OWNER_OBJECT.md",
+          "sha256": "ff233ce2e1086e18134eccd32169ed4be57dba5070bd8aa22087116b7668822b"
+        },
+        {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        }
+      ],
+      "predicates": [
+        {
+          "predicate_id": "finite_probe_domain",
+          "expression": "finite(domain(probe_id))",
+          "domain": [
+            "side",
+            "record"
+          ],
+          "status": "CANDIDATE"
+        },
+        {
+          "predicate_id": "signature_quotient_candidate",
+          "expression": "same_declared_signature(x,y) implies candidate_equivalence(x,y)",
+          "domain": [
+            "side",
+            "record"
+          ],
+          "status": "CANDIDATE"
+        },
+        {
+          "predicate_id": "path_mass_row_scope",
+          "expression": "mass(rows) counts only rows in the declared finite domain",
+          "domain": [
+            "side"
+          ],
+          "status": "CANDIDATE"
+        }
+      ],
+      "claim_ceiling": "Finite candidate predicates only; no predicate is accepted as true."
+    },
+    {
+      "schema": "constraintbox.formalization-digger-proposal.v2",
+      "child_id": "gate_digger",
+      "proposal_kind": "candidate_gate_obligations",
+      "input_epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+      "capability_receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+      "proposal_only": true,
+      "observations": [],
+      "decisions": [],
+      "activation_requested": false,
+      "source_refs": [
+        {
+          "path": "constraint_box/integrated_system/context/current/OWNER_OBJECT.md",
+          "sha256": "ff233ce2e1086e18134eccd32169ed4be57dba5070bd8aa22087116b7668822b"
+        },
+        {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        }
+      ],
+      "obligations": [
+        {
+          "obligation_id": "digest_match_before_compile",
+          "requirement": "Input epoch and capability receipt digests must match before compilation.",
+          "negative_id": "neg_digest_mismatch",
+          "status": "CANDIDATE"
+        },
+        {
+          "obligation_id": "finite_domain_before_mass",
+          "requirement": "A mass interpretation must name a finite declared domain.",
+          "negative_id": "neg_non_finite_domain",
+          "status": "CANDIDATE"
+        },
+        {
+          "obligation_id": "empty_observation_surface",
+          "requirement": "A child proposal must carry an empty observation list.",
+          "negative_id": "neg_invented_observation",
+          "status": "CANDIDATE"
+        }
+      ],
+      "negatives": [
+        {
+          "negative_id": "neg_digest_mismatch",
+          "description": "A changed source digest is refused before a frontier is emitted.",
+          "expected_disposition": "REFUSE"
+        },
+        {
+          "negative_id": "neg_non_finite_domain",
+          "description": "A non-finite domain holds the candidate mass interpretation.",
+          "expected_disposition": "HOLD"
+        },
+        {
+          "negative_id": "neg_invented_observation",
+          "description": "A non-empty observation field is refused as out of scope.",
+          "expected_disposition": "REFUSE"
+        }
+      ],
+      "claim_ceiling": "Candidate obligations and negatives only; no gate is run or activated."
+    },
+    {
+      "schema": "constraintbox.formalization-digger-proposal.v2",
+      "child_id": "basin_digger",
+      "proposal_kind": "probe_relative_interpretations",
+      "input_epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db",
+      "capability_receipt_sha256": "c27d657bbaa5e51c6e8667d8489c400561d343e5c9007a1985e0ef3cde55b830",
+      "proposal_only": true,
+      "observations": [],
+      "decisions": [],
+      "activation_requested": false,
+      "source_refs": [
+        {
+          "path": "constraint_box/integrated_system/context/current/OWNER_OBJECT.md",
+          "sha256": "ff233ce2e1086e18134eccd32169ed4be57dba5070bd8aa22087116b7668822b"
+        },
+        {
+          "path": "constraint_box/integrated_system/scripts/structured_open_bind_probe.py",
+          "sha256": "f4f71d074aef521da1b9079d60108288d4f6287e72df60e241f833da2b31ac50"
+        }
+      ],
+      "interpretations": [
+        {
+          "interpretation_id": "quotient_by_declared_signature",
+          "probe_ids": [
+            "side",
+            "record"
+          ],
+          "quotient": "Rows sharing a declared probe signature form a candidate quotient class.",
+          "mass": "Count candidate rows per declared quotient class.",
+          "topology": "Keep adjacency probe-relative; do not infer a manifold.",
+          "status": "PROPOSAL"
+        },
+        {
+          "interpretation_id": "side_path_mass",
+          "probe_ids": [
+            "side"
+          ],
+          "quotient": "Side labels define a candidate path partition only.",
+          "mass": "Count declared finite paths under the candidate partition.",
+          "topology": "Treat transitions as a declared relation, not measured geometry.",
+          "status": "PROPOSAL"
+        }
+      ],
+      "claim_ceiling": "Probe-relative quotient, mass, and topology interpretations only; no basin observation."
+    }
+  ],
+  "proposal_bundle_digest": "80ef10227b2b27d7ee5cd6a64a9f4bd61980f3f6e15986c442093c6438b1798a"
+}

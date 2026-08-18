@@ -37,6 +37,9 @@ def test_confirm_matches_recomputed_bytes_in_prompt() -> None:
     assert confirmed["mmm_load_confirmed"] is True
     assert confirmed["mmm_sha256"] == digest
     assert confirmed["mmm_packs"] == ["nominalist", "smt"]
+    assert confirmed["mmm_material_role"] == (
+        "controller_language_packs_not_packet_mini_voice_mmm"
+    )
     assert confirmed["mmm_bytes"] == len(text.encode("utf-8"))
 
 

@@ -1,0 +1,151 @@
+{
+  "schema": "constraintbox.wave-definition.v1",
+  "wave_id": "cb-strategy-discriminator-wave-v1",
+  "purpose": "Compare one digest-bound candidate stage order with the live cumulative-wave profile order and return a non-authoritative frontier.",
+  "candidate_state": "NEW_CANDIDATE",
+  "execution_mode": "model_free",
+  "activated": false,
+  "promotion_allowed": false,
+  "authority_bindings": {
+    "retained_cumulative_receipt": {
+      "live": {
+        "path": "constraint_box/integrated_system/state/receipts/cumulative/cumulative-hardening-20260818-2/RECEIPT.json",
+        "raw_sha256": "fb118abd3e0e39b24c2dde30a7c2cdef811dae36f5a520d9616c2ad0660e5bb0",
+        "receipt_sha256": "258d89ee8f8fc51e9085670ffe623910f101f5bbc780512b1ccbc8096e029993",
+        "run_id": "cumulative-hardening-20260818-2"
+      },
+      "fixture": {
+        "path": "constraint_box/integrated_system/skills/cb-strategy-discriminator-wave/fixtures/authority/RECEIPT.json",
+        "raw_sha256": "23d9fe17de6f0601da0da7d418b58b09e855a0e7f944c96bbe65df7624e8ace6",
+        "receipt_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926",
+        "run_id": "cumulative-hardening-20260818-2"
+      }
+    },
+    "current_epoch_pointer": {
+      "live": {
+        "pointer_path": "constraint_box/integrated_system/state/CURRENT_EPOCH.json",
+        "pointer_sha256": "a508669f3dc756b7d0797cd541ad80bbcb5f8b37a8b77c7801d861282f4bd4aa",
+        "epoch_path": "constraint_box/integrated_system/state/epochs/epoch-00000002.json",
+        "epoch_sha256": "91e6d92117712f24402a3e03635ef1d7002af8c864c36954cbdcc582742f3d67",
+        "epoch_id": "epoch-00000002",
+        "epoch_digest": "2142b80f0223812dcb4071a5178a85ff980062c831873a14d211cc64896942db"
+      },
+      "fixture": {
+        "pointer_path": "constraint_box/integrated_system/skills/cb-strategy-discriminator-wave/fixtures/authority/CURRENT_EPOCH.json",
+        "pointer_sha256": "33e323ee2947bd7669ed76999799dae1d3189caa3a204d54e98e168614222950",
+        "epoch_path": "constraint_box/integrated_system/skills/cb-strategy-discriminator-wave/fixtures/authority/epoch-00000001.json",
+        "epoch_sha256": "9ffa4716f9f48c876e14e64966e00ff5405b0219ade919c01c18707fa8d7b8d8",
+        "epoch_id": "epoch-00000001",
+        "epoch_digest": "f738c4f51e103d55f3d3ac7fce7ce50d03649e12ba64e49fe43301927ea8bc65"
+      }
+    },
+    "active_manifest": {
+      "live_path": "constraint_box/integrated_system/skills/ACTIVE_WAVES.json",
+      "fixture_path": "constraint_box/integrated_system/skills/cb-strategy-discriminator-wave/fixtures/authority/ACTIVE_WAVES.json",
+      "raw_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77"
+    },
+    "frontier": {
+      "frontier_id": "strategy-sequence-order-v1",
+      "branch_ids": ["candidate_order", "live_scheduler_order"],
+      "order_fields": {"candidate_order": "candidate_order", "live_scheduler_order": "live_order"},
+      "entry_order_fields": {"candidate_order": "candidate_order_sha256", "live_scheduler_order": "live_order_sha256"}
+    }
+  },
+  "children": [
+    {
+      "id": "bind_survivors",
+      "skill": "cb-strategy-discriminator-cell",
+      "operation": "cb-strategy-discriminator-wave.bind_survivors.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "tools": ["strict_target_binding", "order_digest", "leaf_receipt_verify"],
+      "source": "cb-strategy-discriminator-cell/scripts/discriminate.py",
+      "source_sha256": "c5dae104e6884571bfeb06f43e4a4201130844663d985c01ebd266f6bde76f4e",
+      "skill_sha256": "22f931c88dc2d1d39ff52bbf0e2a37e2d1f0e73542a2287f8efacf8c56782a72"
+    },
+    {
+      "id": "name_exact_disagreement",
+      "skill": "cb-strategy-discriminator-cell",
+      "operation": "cb-strategy-discriminator-wave.name_exact_disagreement.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "tools": ["first_difference", "prefix_lock_projection", "leaf_receipt_verify"],
+      "source": "cb-strategy-discriminator-cell/scripts/discriminate.py",
+      "source_sha256": "c5dae104e6884571bfeb06f43e4a4201130844663d985c01ebd266f6bde76f4e",
+      "skill_sha256": "22f931c88dc2d1d39ff52bbf0e2a37e2d1f0e73542a2287f8efacf8c56782a72"
+    },
+    {
+      "id": "design_finite_observable",
+      "skill": "cb-strategy-discriminator-cell",
+      "operation": "cb-strategy-discriminator-wave.design_finite_observable.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "tools": ["finite_array_compare", "selection_count_exclusion", "leaf_receipt_verify"],
+      "source": "cb-strategy-discriminator-cell/scripts/discriminate.py",
+      "source_sha256": "c5dae104e6884571bfeb06f43e4a4201130844663d985c01ebd266f6bde76f4e",
+      "skill_sha256": "22f931c88dc2d1d39ff52bbf0e2a37e2d1f0e73542a2287f8efacf8c56782a72"
+    }
+  ],
+  "control_receipts": [
+    {"id": "duplicate_candidate_order", "operation": "cb-strategy-discriminator-wave.order_validator.v1", "mutation": "duplicate_candidate_order", "expected_status": "REFUSE", "expected_reason": "REFUSE_DUPLICATE_CANDIDATE_ORDER"},
+    {"id": "duplicate_live_profile_order", "operation": "cb-strategy-discriminator-wave.order_validator.v1", "mutation": "duplicate_live_profile_order", "expected_status": "REFUSE", "expected_reason": "REFUSE_DUPLICATE_LIVE_ORDER"},
+    {"id": "prefix_order_binding", "operation": "cb-strategy-discriminator-wave.prefix_validator.v1", "mutation": "prefix_order_binding", "expected_status": "REFUSE", "expected_reason": "REFUSE_CONFIG_PREFIX_ORDER"},
+    {"id": "leaf_duplicate_strategy", "operation": "cb-strategy-discriminator-cell.v1", "mutation": "leaf_duplicate_strategy", "expected_status": "REFUSE", "expected_reason": "REFUSE_DUPLICATE_STRATEGY"},
+    {"id": "leaf_nonfinite_probe", "operation": "cb-strategy-discriminator-cell.v1", "mutation": "leaf_nonfinite_probe", "expected_status": "REFUSE", "expected_reason": "REFUSE_NONFINITE_PROBE"},
+    {"id": "leaf_authority_shaped", "operation": "cb-strategy-discriminator-cell.v1", "mutation": "leaf_authority_shaped", "expected_status": "REFUSE", "expected_reason": "REFUSE_AUTHORITY_SHAPED"},
+    {"id": "selection_counts_excluded", "operation": "cb-strategy-discriminator-wave.compare.v1", "mutation": "selection_counts_excluded", "expected_status": "MATCH", "expected_reason": "NOT_USED_FOR_ORDER_ADMISSION"}
+  ],
+  "mmm_profile": {
+    "loader_skill": "mmm-preload",
+    "mini_voices_only": true,
+    "voice_count_range": [2, 4],
+    "applicability": "NOT_APPLICABLE_MODEL_FREE"
+  },
+  "loop": {
+    "max_rounds": 1,
+    "repair_then_exact_rerun": true,
+    "stop_reasons": [
+      "MATCH_OBSERVED",
+      "HOLD_ORDER_MISMATCH",
+      "REFUSE_SOURCE_OR_CONFIG_DRIFT",
+      "CANCELLED",
+      "REPLAY_MISMATCH"
+    ]
+  },
+  "completion": {
+    "required_evidence": [
+      "child_receipts",
+      "preload_receipts",
+      "provider_call_receipt",
+      "cancellation_state",
+      "disagreement_state",
+      "output_digest",
+      "target_bytes_digest",
+      "candidate_order_digest",
+      "live_profile_order_digest",
+      "config_path_hash",
+      "retained_cumulative_receipt_hash",
+      "retained_cumulative_run_id",
+      "context_epoch_hash",
+      "branch_frontier_hash",
+      "prefix_lock_evidence",
+      "negative_controls",
+      "control_receipts",
+      "source_hashes",
+      "expected_source_set_sha256",
+      "authority_bindings",
+      "authority_receipt_self_hash",
+      "authority_epoch_pointer_hash",
+      "attestations",
+      "retained_receipt_self_hash",
+      "retained_prefix3_lock",
+      "child_operation_ids",
+      "selection_counts_excluded",
+      "replay_digest"
+    ],
+    "model_free_evidence": {
+      "preload_receipts": [],
+      "provider_call_receipt": null,
+      "cancellation_state": "NOT_REQUESTED",
+      "disagreement_state": "RECORDED_DETERMINISTICALLY"
+    }
+  },
+  "claim_ceiling": "Digest-bound candidate/live order comparison and non-authoritative frontier projection only; no scheduler execution, winner, reorder, activation, provider/MMM, or promotion claim."
+}

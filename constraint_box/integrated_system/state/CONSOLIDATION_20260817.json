@@ -1,0 +1,67 @@
+{
+  "schema": "constraintbox.repo-consolidation.v1",
+  "captured_at": "2026-08-18T04:36:19Z",
+  "canonical_repo": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "canonical_branch": "claimgate/bypass-regression",
+  "integration_branch": "codex/constraintbox-integrated-20260817",
+  "provider_work_paused": true,
+  "administrative_moves": [
+    {
+      "source": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/constraintbox-integrated-20260817",
+      "destination": "/Users/joshuaeisenhart/Codex-Ratchet/.worktrees/constraintbox-integrated-20260817",
+      "result": "MOVED",
+      "reason": "The global Superpowers worktree contradicted the owner requirement that ConstraintBox work remain under the canonical repository."
+    },
+    {
+      "source": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet",
+      "result": "REMOVED_EMPTY_DIRECTORY"
+    }
+  ],
+  "live_inventory": {
+    "canonical_status_entries": 260,
+    "integration_status_entries": 11,
+    "canonical_dirty_files_same_as_integration": 145,
+    "canonical_dirty_files_different_from_integration": 63,
+    "canonical_untracked_files_absent_from_integration": 1502,
+    "integration_commits_ahead_of_canonical_head": 5
+  },
+  "maintenance_decisions": [
+    {
+      "path": "constraint_box/receipts/box",
+      "approximate_size_mib": 2599.23,
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "reason": "Generated run state is the main source of bloat, but activity and retained-evidence requirements have not yet been enumerated. It must not enter the product branch or release ZIP."
+    },
+    {
+      "path": "constraint_box/zip_agent/project_state",
+      "approximate_size_mib": 124.12,
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "reason": "Mixed project context and state require an exact retained-object manifest before an archive move."
+    },
+    {
+      "path": ".worktrees/constraintbox-integrated-20260817/constraint_box/.venv",
+      "approximate_size_mib": 389,
+      "decision": "KEEP_ACTIVE",
+      "reason": "Current contained-Light verification environment; excluded from Git and release ZIP."
+    },
+    {
+      "path": ".worktrees/constraintbox-integrated-20260817/constraint_box/.venv-clean",
+      "approximate_size_mib": 386,
+      "decision": "KEEP_ACTIVE",
+      "reason": "Current clean-install comparison environment; excluded from Git and release ZIP."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/v8-local-pawl-foundation",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "reason": "Separate older Git worktree. No deletion or move is licensed until unique commits and dirty state are checked."
+    }
+  ],
+  "next_finite_steps": [
+    "Review the 63 content-different files and classify source, receipt, or stale generated state.",
+    "Create an exact retained-object manifest for the two large generated-state roots.",
+    "Carry only unique source, tests, current context, and bounded receipts into the integration branch.",
+    "Commit and push the integration branch, then make the canonical checkout the sole active ConstraintBox checkout.",
+    "Remove the temporary repo-local linked worktree only after the canonical checkout points at the integrated branch."
+  ],
+  "claim_ceiling": "Inventory and safe relocation only. The canonical dirty tree is not yet reconciled, archived, or deleted."
+}

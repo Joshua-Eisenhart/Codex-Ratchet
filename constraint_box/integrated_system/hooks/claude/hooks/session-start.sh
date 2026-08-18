@@ -1,19 +1,12 @@
-#!/bin/bash
-set -u
-input=$(cat)
-repo=$(cd "$(dirname "$0")/../.." && pwd)
-python="$repo/constraint_box/.venv/bin/python"
-if [[ ! -x "$python" ]]; then
-  printf 'CB Light contained interpreter missing: %s\n' "$python" >&2
-  exit 2
+#!/bin/sh
+set -eu
+project_root=${CLAUDE_PROJECT_DIR:?CLAUDE_PROJECT_DIR_REQUIRED}
+product_root=$project_root/constraint_box
+hooks_dir=$product_root/integrated_system/hooks
+CB_PRODUCT_ROOT=$product_root
+export CB_PRODUCT_ROOT
+if [ -z "${CB_LIGHT_PYTHON:-}" ] && [ -x "$product_root/.venv/bin/python" ]; then
+  CB_LIGHT_PYTHON=$product_root/.venv/bin/python
+  export CB_LIGHT_PYTHON
 fi
-cd "$repo/constraint_box" || exit 2
-output=$("$python" -I -m hookkernel.cb_light_gate \
-  session-start --payload-json "$input" 2>&1)
-status=$?
-if [[ $status -ne 0 ]]; then
-  printf '%s\n' "$output" >&2
-  exit 2
-fi
-printf '%s\n' "$output"
-exit 0
+exec "$hooks_dir/cb_hook.sh" claude

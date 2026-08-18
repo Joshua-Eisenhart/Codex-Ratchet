@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import os
+import json
+import base64
+import re
 import subprocess
 import sys
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from .protocol import (
     TaskSpec,
@@ -22,6 +25,56 @@ from .protocol import (
 ROSTER_SCHEMA = "constraintbox.md-agent-roster.v1"
 RECEIPT_SCHEMA = "constraintbox.md-agent-roster-receipt.v1"
 CLAIM_CEILING = "local_zip_execution_with_declared_md_agents;not_host_hook;not_mmm_read;not_skill_exec;not_admission;not_release"
+PREMORTEM_CELL_FIELDS = (
+    "schema",
+    "lens",
+    "target_sha256",
+    "failure_mechanisms",
+    "evidence",
+    "limits",
+    "falsifier",
+    "warning",
+    "finite_repair",
+    "rerun_operation",
+    "claim_ceiling",
+)
+_ROSTER_RECEIPT_BASE_FIELDS = frozenset(
+    {
+        "schema",
+        "run_id",
+        "seed",
+        "required_marker",
+        "max_attempts",
+        "max_workers",
+        "accepted_agent_ids",
+        "accepted_attempt_count",
+        "accepted_attempts_consumed",
+        "attempt_count",
+        "refusal_reason_summary",
+        "agents",
+        "execution_authorized_beyond_declared_outputs",
+        "host_hooks_used",
+        "mmm_read_proved",
+        "skill_executed",
+        "skill_bytes_delivered",
+        "skill_echo_proved",
+        "mmm_echo_proved",
+        "tool_echo_proved",
+        "skill_read_proved",
+        "llm_invoked_tool",
+        "tool_request_observed",
+        "cb_tool_executed",
+        "tool_result_echo_proved_on_later_attempt",
+        "provider_env_allowlisted",
+        "promotion_allowed",
+        "claim_ceiling",
+    }
+)
+ROSTER_RECEIPT_FIELDS = {
+    "unbound": _ROSTER_RECEIPT_BASE_FIELDS | {"hierarchy_bound"},
+    "bound": _ROSTER_RECEIPT_BASE_FIELDS
+    | {"hierarchy_bound", "parent_id", "wave_id", "round", "depth"},
+}
 TOOL_EVIDENCE_PATH = "output/tool_evidence.json"
 TOOL_PAYLOAD_PATH = "inputs/tool_payload.json"
 TOOL_REQUEST_PATH = "output/tool_request.json"
@@ -50,6 +103,97 @@ _ROSTER_FIELDS = frozenset(
     }
 )
 _HIERARCHY_FIELDS = frozenset({"parent_id", "wave_id", "round", "depth"})
+_OUTPUT_DELIVERIES = frozenset({"workspace_file", "provider_response"})
+_OUTPUT_FORMATS = frozenset({"text", "strict_json_object"})
+_LIVE_PROVIDERS = frozenset(_ADAPTER_MODULES)
+_MAX_PROVIDER_RESPONSE_BYTES = 16 * 1024 * 1024
+_MAX_EMBEDDED_PROVIDER_INPUT_BYTES = 2 * 1024 * 1024
+_MODEL_MATCH_EXACT = "exact"
+_MODEL_MATCH_DECLARED_ALIAS = "declared_alias"
+_MODEL_MATCH_UNVERIFIED = "unverified"
+_SAFE_MODEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}\Z")
+_MAX_MODEL_OBSERVED_ALLOWLIST = 32
+SKILL_ECHO_PREFIX = "skill_bytes_delivered_echo:"
+MMM_ECHO_PREFIX = "mmm_bytes_delivered_echo:"
+TOOL_ECHO_PREFIX = "tool_bytes_delivered_echo:"
+
+
+def _skill_echo(path: str, digest: str) -> str:
+    return f"{SKILL_ECHO_PREFIX}path={path};sha256={digest}"
+
+
+def _mmm_echo(path: str, digest: str) -> str:
+    voice = Path(path).stem
+    return f"{MMM_ECHO_PREFIX}voice={voice};path={path};sha256={digest}"
+
+
+def _tool_echo(digest: str) -> str:
+    return f"{TOOL_ECHO_PREFIX}path={TOOL_EVIDENCE_PATH};canonical_sha256={digest}"
+
+
+def _strict_delivery_echo_status(
+    body: bytes,
+    *,
+    skill_paths: list[str],
+    delivered_sha256: Mapping[str, str],
+    mmm_paths: list[str],
+    tool_token: str,
+) -> dict[str, bool]:
+    """Check exact labeled echoes for strict premortem JSON outputs."""
+
+    try:
+        value = strict_json_loads(body, label="strict_output")
+    except ZipJobRefusal:
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    if not isinstance(value, dict) or not isinstance(value.get("evidence"), list):
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    evidence = value["evidence"]
+    if any(not isinstance(item, str) for item in evidence):
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    expected = {
+        *{
+            _skill_echo(path, delivered_sha256[path])
+            for path in skill_paths
+        },
+        *{
+            _mmm_echo(path, delivered_sha256[path])
+            for path in mmm_paths
+        },
+        _tool_echo(tool_token),
+    }
+    if any(evidence.count(item) != 1 for item in expected):
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    prefixes = (SKILL_ECHO_PREFIX, MMM_ECHO_PREFIX, TOOL_ECHO_PREFIX)
+    if any(
+        any(item.startswith(prefix) for prefix in prefixes) and item not in expected
+        for item in evidence
+    ):
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    outside = {key: item for key, item in value.items() if key != "evidence"}
+    outside_text = canonical_json_bytes(outside).decode("utf-8")
+    if any(item in outside_text for item in expected):
+        return {"skill_echo_proved": False, "mmm_echo_proved": False, "tool_echo_proved": False}
+    return {"skill_echo_proved": True, "mmm_echo_proved": True, "tool_echo_proved": True}
+
+
+def _premortem_cell_field_set(value: Mapping[str, Any]) -> tuple[bool, list[str], list[str]]:
+    required = set(PREMORTEM_CELL_FIELDS)
+    actual = set(value)
+    missing = sorted(required - actual)
+    extra = sorted(actual - required)
+    return not missing and not extra, missing, extra
+
+
+def _roster_receipt_field_set(value: Mapping[str, Any]) -> tuple[bool, list[str], list[str]]:
+    hierarchy_bound = value.get("hierarchy_bound")
+    variant = "bound" if hierarchy_bound is True else "unbound"
+    required = ROSTER_RECEIPT_FIELDS[variant]
+    actual = set(value)
+    missing = sorted(required - actual)
+    extra = sorted(actual - required)
+    if hierarchy_bound is not True and hierarchy_bound is not False:
+        missing.append("hierarchy_bound")
+    return not missing and not extra, sorted(set(missing)), extra
 
 
 def _text(value: object, label: str) -> str:
@@ -107,6 +251,7 @@ def _bind_adapter_mmm(work: Path, prompt_path: Path, request: dict[str, Any]) ->
     request["prompt_path"] = str(prompt_path)
     request["mmm_packs"] = list(fields["mmm_packs"])
     request["mmm_sha256"] = fields["mmm_sha256"]
+    request["mmm_material_role"] = fields["mmm_material_role"]
     return request
 
 
@@ -129,6 +274,115 @@ def _path_list(value: object, label: str, *, minimum: int = 0, maximum: int = 64
     if any(not isinstance(path, str) or not path for path in value) or len(value) != len(set(value)):
         raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", label)
     return list(value)
+
+
+def _model_observed_allowlist(value: object, label: str = "model_observed_allowlist") -> list[str] | None:
+    """Validate invocation-owned exact observed identities, if declared."""
+
+    if value is None:
+        return None
+    if (
+        not isinstance(value, list)
+        or not value
+        or len(value) > _MAX_MODEL_OBSERVED_ALLOWLIST
+        or any(not isinstance(item, str) or _SAFE_MODEL.fullmatch(item) is None for item in value)
+        or len(value) != len(set(value))
+    ):
+        raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", label)
+    return list(value)
+
+
+def _attempt_receipt_summary(
+    attempts: list[dict[str, Any]], *, accepted_attempt: int | None
+) -> dict[str, Any]:
+    """Summarize retry history without treating a refusal as semantic output.
+
+    ``accepted_attempt`` is the one-based number of attempts consumed before
+    acceptance (zero when the member exhausted its retry budget).  The full
+    attempt rows remain in the roster receipt; these derived fields make the
+    retry/refusal history available to parent consumers without flattening it.
+    """
+
+    refusal_reasons = [
+        reason
+        for attempt in attempts
+        if isinstance(attempt, dict)
+        for reason in [attempt.get("refusal_reason")]
+        if isinstance(reason, str) and reason
+    ]
+    reason_counts: dict[str, int] = {}
+    for reason in refusal_reasons:
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+    return {
+        "attempt_count": len(attempts),
+        "accepted_attempt_count": accepted_attempt or 0,
+        "attempts_until_acceptance": accepted_attempt,
+        "accepted_attempts": 1 if accepted_attempt is not None else 0,
+        "refusal_reasons": refusal_reasons,
+        "attempt_refusal_reasons": refusal_reasons,
+        "refusal_reason_summary": reason_counts,
+        "attempt_refusal_reason_summary": reason_counts,
+    }
+
+
+def _output_delivery(agent: dict[str, Any]) -> str:
+    """Return the per-agent delivery mode without changing the old default."""
+
+    value = agent.get("output_delivery", "workspace_file")
+    if not isinstance(value, str) or value not in _OUTPUT_DELIVERIES:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_OUTPUT_DELIVERY", "output_delivery")
+    if value == "provider_response" and agent.get("provider") not in _LIVE_PROVIDERS:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_OUTPUT_DELIVERY", "provider_response")
+    return value
+
+
+def _output_format(agent: dict[str, Any]) -> str:
+    """Return the deterministic member-output shape required by the roster.
+
+    Existing workspace-file and provider-response callers default to text so
+    the roster remains backwards-compatible.  A candidate that consumes a
+    structured provider response declares ``strict_json_object`` explicitly;
+    the member gate then checks the bytes before returning an accepted row.
+    """
+
+    value = agent.get("output_format", "text")
+    if not isinstance(value, str) or value not in _OUTPUT_FORMATS:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_OUTPUT_FORMAT", "output_format")
+    return value
+
+
+def _embedded_provider_inputs(
+    workspace: dict[str, bytes], ordered_paths: list[str]
+) -> str:
+    """Render only declared ZIP inputs into one bounded provider prompt."""
+
+    total = sum(len(workspace[path]) for path in ordered_paths)
+    if total > _MAX_EMBEDDED_PROVIDER_INPUT_BYTES:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_PROMPT_SIZE", str(total))
+    blocks: list[str] = ["BEGIN DECLARED ZIP INPUTS"]
+    for path in ordered_paths:
+        raw = workspace[path]
+        try:
+            body = raw.decode("utf-8")
+            encoding = "utf-8"
+        except UnicodeDecodeError:
+            body = base64.b64encode(raw).decode("ascii")
+            encoding = "base64"
+        header = {
+            "path": path,
+            "bytes": len(raw),
+            "sha256": sha256_bytes(raw),
+            "encoding": encoding,
+        }
+        blocks.extend(
+            [
+                canonical_json_bytes(header).decode("ascii"),
+                body,
+                "END DECLARED ZIP INPUT",
+            ]
+        )
+    blocks.append("END DECLARED ZIP INPUTS")
+    return "\n".join(blocks) + "\n"
 
 
 def _attempt_seed(
@@ -164,6 +418,10 @@ def _prompt(
     attempt: int,
     attempt_seed: str,
     prior_refusal: str | None,
+    output_delivery: str = "workspace_file",
+    output_format: str = "text",
+    embedded_inputs: str | None = None,
+    delivery_echoes: list[str] | None = None,
     hierarchy: dict[str, Any] | None = None,
 ) -> str:
     ordered = [agent_rel, *mmm_paths, *skill_paths, *context_paths]
@@ -178,6 +436,33 @@ def _prompt(
             "Hierarchy binding (include these exact values in provider request identity): "
             f"{canonical_json_bytes(_hierarchy_surface(hierarchy)).decode('ascii')}\n"
         )
+    if output_delivery == "provider_response":
+        if not embedded_inputs:
+            raise ZipJobRefusal(
+                "REFUSE_MD_AGENT_PROVIDER_PROMPT_MISSING", "embedded_inputs"
+            )
+        delivery_line = (
+            "Return exactly one bounded response through the declared provider adapter. "
+            f"Do not create {output_rel}; CB will materialize the adapter response as that file.\n"
+            "Every declared ZIP input is embedded below; do not rely on filesystem tools.\n"
+        )
+    else:
+        delivery_line = f"Write ONLY {output_rel}. Create parent directories if needed.\n"
+    format_line = ""
+    if output_format == "strict_json_object":
+        format_line = (
+            "The delivered result must be exactly one strict JSON object. Do not use "
+            "single quotes, trailing commas, markdown fences, or a prose wrapper.\n"
+        )
+    echo_lines = ""
+    if output_format == "strict_json_object" and delivery_echoes:
+        echo_lines = (
+            "The evidence array must contain each exact delivery echo below once. "
+            "Do not use unlabeled digests, duplicate/extra labels, or copy an echo "
+            "into another field:\n"
+            + "\n".join(f"- {echo}" for echo in delivery_echoes)
+            + "\nThese prove delivery echo only, not reading, execution, or comprehension.\n"
+        )
     return (
         f"You are the markdown file {agent_rel}. That file is the agent.\n"
         "Read these files in this exact order before doing the task:\n"
@@ -185,19 +470,23 @@ def _prompt(
         f"This is fresh attempt {attempt}. Deterministic attempt seed: {attempt_seed}\n"
         f"Prior deterministic refusal: {prior_refusal or 'none'}\n"
         f"{hierarchy_line}"
-        f"Write ONLY {output_rel}. Create parent directories if needed.\n"
-        f"The file must contain this exact marker: {marker}\n"
+        + delivery_line
+        + format_line
+        + echo_lines
+        + f"The file must contain this exact marker: {marker}\n"
         "The file must also contain every literal fragment below exactly as written:\n"
         f"{fragments or '- none'}\n"
         "The file must not contain any forbidden literal fragment below:\n"
         f"{forbidden or '- none'}\n"
-        f"Also copy the canonical_sha256 value from {TOOL_EVIDENCE_PATH} into the file.\n"
+        f"Place the exact labeled delivery echoes supplied above in the evidence array; "
+        f"do not substitute an unlabeled digest from {TOOL_EVIDENCE_PATH}.\n"
         f"To ask CB to run a declared TOOLS/*.py, also write {TOOL_REQUEST_PATH} "
         f"with schema {TOOL_REQUEST_SCHEMA}, script_path, and optional payload object.\n"
         "CB runs that script after this attempt and retries you with the new evidence. "
-        "On the retry, do not repeat the request; copy the new canonical_sha256 into your file.\n"
+        "On the retry, do not repeat the request; use the new exact tool delivery echo in evidence.\n"
         "If you do not write that file correctly, the result is refused and you may be retried.\n"
         "Prose is not the result. The file is the result.\n"
+        + (embedded_inputs or "")
     )
 
 
@@ -269,6 +558,7 @@ def _argv(
     *,
     request_id: str,
     timeout_seconds: int,
+    output_delivery: str = "workspace_file",
     hierarchy: dict[str, Any] | None = None,
 ) -> tuple[list[str], dict[str, str], Path | None]:
     provider = _text(agent.get("provider"), "provider")
@@ -299,6 +589,8 @@ def _argv(
     controller: Path | None = None
     if provider in _ADAPTER_MODULES:
         controller = declared_controller_src(agent.get("controller_src"))
+    if output_delivery not in _OUTPUT_DELIVERIES:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_OUTPUT_DELIVERY", "output_delivery")
     env = _provider_env(provider, controller)
     model = _text(agent.get("model_requested"), "model_requested")
     request_path = work / "meta" / "provider_request.json"
@@ -321,7 +613,7 @@ def _argv(
             "runner_path": str(runner),
             "model": model,
             "reasoning_effort": str(agent.get("reasoning_effort") or "max"),
-            "sandbox_mode": "workspace-write",
+            "sandbox_mode": "read-only" if output_delivery == "provider_response" else "workspace-write",
             "prompt_path": str(prompt_path),
             "cwd": str(work),
             "controller_src": str(controller),
@@ -361,7 +653,7 @@ def _argv(
         budget = agent.get("budget_usd", 1.0)
         if isinstance(budget, bool) or not isinstance(budget, (int, float)) or not 0.01 <= budget <= 5:
             raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", "budget_usd")
-        request_path.write_bytes(canonical_json_bytes(_bind_adapter_mmm(work, prompt_path, {
+        adapter_request = _bind_adapter_mmm(work, prompt_path, {
             "schema": "constraintbox.claude-bridge-request.v1",
             "request_id": request_id,
             **hierarchy_request,
@@ -373,9 +665,13 @@ def _argv(
             "prompt_path": str(prompt_path),
             "cwd": str(work),
             "out_dir": str(work / "meta" / "claude-output"),
-            "tools": "Read,Write,Edit",
+            "tools": "" if output_delivery == "provider_response" else "Read,Write,Edit",
             "controller_src": str(controller),
-        })))
+        })
+        allowlist = agent.get("model_observed_allowlist")
+        if allowlist is not None:
+            adapter_request["model_observed_allowlist"] = _model_observed_allowlist(allowlist)
+        request_path.write_bytes(canonical_json_bytes(adapter_request))
         return (
             [sys.executable, "-m", _ADAPTER_MODULES[provider], "--request", str(request_path),
              "--receipt", str(receipt_path)],
@@ -441,12 +737,20 @@ def _provider_evidence(
     request_id: str,
     model_requested: str | None,
     prompt: bytes,
+    model_observed_allowlist: list[str] | None = None,
 ) -> dict[str, Any]:
+    model_observed_allowlist = _model_observed_allowlist(model_observed_allowlist)
     if provider == "fixture-subprocess":
         return {
             "provider_request_id": None,
             "model_observed": ["fixture-observed"],
+            "model_observed_values": ["fixture-observed"],
             "model_binding_confirmed": False,
+            "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+            "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+            "model_alias_admitted": False,
+            "alias_resolution_source": None,
+            "model_observed_allowlist": model_observed_allowlist,
             "identity_source": "fixture",
             "composed_prompt_sha256": sha256_bytes(prompt),
             "provider_source_receipt_sha256": None,
@@ -476,15 +780,174 @@ def _provider_evidence(
         not isinstance(value, str) or not value for value in observed
     ):
         raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_observed")
+    # A provider receipt represents one observed route identity.  Multiple
+    # observed values are ambiguous (even if one happens to contain the
+    # requested alias) and must not become an admission through ``all(...)``.
+    if len(observed) != 1:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_observed")
+    observed_value = observed[0]
+    if "model_observed_allowlist" in source:
+        if source["model_observed_allowlist"] != model_observed_allowlist:
+            raise ZipJobRefusal(
+                "REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_observed_allowlist"
+            )
+    elif provider == "claude-code" and observed != [model_requested]:
+        raise ZipJobRefusal(
+            "REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_observed_allowlist"
+        )
+    model_identity_match_kind = _MODEL_MATCH_EXACT
+    alias_resolution_source: str | None = None
+    if observed == [model_requested]:
+        model_matches = True
+    elif model_observed_allowlist is not None and observed_value in model_observed_allowlist:
+        model_matches = True
+        model_identity_match_kind = _MODEL_MATCH_DECLARED_ALIAS
+        alias_resolution_source = "invocation.model_observed_allowlist"
+    else:
+        model_matches = False
+    if not model_matches:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_observed")
+    source_kind = source.get("model_identity_match_kind")
+    if (
+        provider == "claude-code" and source_kind != model_identity_match_kind
+    ) or (source_kind is not None and source_kind != model_identity_match_kind):
+        raise ZipJobRefusal(
+            "REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model_identity_match_kind"
+        )
+    source_alias = source.get("alias_resolution_source")
+    if model_identity_match_kind == _MODEL_MATCH_DECLARED_ALIAS:
+        if (
+            provider == "claude-code"
+            and source_alias != alias_resolution_source
+        ) or (source_alias is not None and source_alias != alias_resolution_source):
+            raise ZipJobRefusal(
+                "REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "alias_resolution_source"
+            )
+    elif source_alias is not None:
+        raise ZipJobRefusal(
+            "REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "alias_resolution_source"
+        )
     return {
         "provider_request_id": request_id,
         "model_observed": observed,
+        "model_observed_values": observed,
         "model_binding_confirmed": True,
+        "model_identity_match_kind": model_identity_match_kind,
+        "model_match_kind": model_identity_match_kind,
+        "model_alias_admitted": model_identity_match_kind == _MODEL_MATCH_DECLARED_ALIAS,
+        "alias_resolution_source": alias_resolution_source,
+        "model_observed_allowlist": model_observed_allowlist,
         "identity_source": "provider_adapter_receipt",
         "composed_prompt_sha256": sha256_bytes(prompt),
         "provider_source_receipt_sha256": sha256_bytes(raw),
         "provider_source_receipt": source,
     }
+
+
+def _contained_provider_artifact(work: Path, raw_path: object, label: str) -> tuple[Path, bytes]:
+    """Read one adapter artifact only when it remains inside this temp workdir."""
+
+    if not isinstance(raw_path, str) or not raw_path:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MISSING", label)
+    supplied = Path(raw_path).expanduser()
+    if not supplied.is_absolute() or supplied.is_symlink():
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_UNCONTAINED", label)
+    try:
+        resolved = supplied.resolve(strict=True)
+        resolved.relative_to(work.resolve())
+        stat_result = resolved.stat()
+    except (OSError, ValueError) as exc:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_UNCONTAINED", label) from exc
+    if not resolved.is_file() or stat_result.st_size > _MAX_PROVIDER_RESPONSE_BYTES:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MALFORMED", label)
+    try:
+        raw = resolved.read_bytes()
+    except OSError as exc:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MISSING", label) from exc
+    if not raw:
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MISSING", label)
+    return resolved, raw
+
+
+def _extract_provider_response(
+    *,
+    provider: str,
+    source: dict[str, Any],
+    work: Path,
+) -> tuple[bytes, str, str]:
+    """Extract the exact bounded response bytes from a current adapter artifact."""
+
+    if provider == "codex-cli":
+        path, raw = _contained_provider_artifact(work, source.get("response_path"), "codex.response_path")
+        expected_raw = source.get("stdout_sha256")
+        if not isinstance(expected_raw, str) or expected_raw != sha256_bytes(raw):
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER", "codex.response")
+        try:
+            text = raw.decode("utf-8")
+            messages: list[str] = []
+            for line in text.splitlines():
+                event = json.loads(line)
+                if not isinstance(event, dict) or event.get("type") != "item.completed":
+                    continue
+                item = event.get("item")
+                if isinstance(item, dict) and item.get("type") == "agent_message":
+                    message = item.get("text")
+                    if not isinstance(message, str) or not message:
+                        raise ValueError("invalid Codex agent message")
+                    messages.append(message)
+        except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MALFORMED", "codex.response") from exc
+        if not messages or source.get("agent_messages") != messages:
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MALFORMED", "codex.agent_messages")
+        response = messages[-1].encode("utf-8")
+        if source.get("final_agent_message_sha256") != sha256_bytes(response):
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER", "codex.agent_message")
+        return response, f"codex-cli:{path.name}:item.completed.agent_message[-1]", sha256_bytes(raw)
+
+    if provider == "grok-cli":
+        path, raw = _contained_provider_artifact(work, source.get("response_path"), "grok.response_path")
+        expected_raw = source.get("response_sha256")
+        if not isinstance(expected_raw, str) or expected_raw != sha256_bytes(raw):
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER", "grok.response")
+        try:
+            value = json.loads(raw)
+            stop_reason = value.get("stopReason") if isinstance(value, dict) else None
+            response_value = value.get("text") if isinstance(value, dict) else None
+            if stop_reason != "end_turn" or not isinstance(response_value, str) or not response_value.strip():
+                raise ValueError("invalid Grok terminal response")
+            response = response_value.encode("utf-8")
+        except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_MALFORMED", "grok.response") from exc
+        if source.get("result_text_sha256") != sha256_bytes(response):
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER", "grok.result_text")
+        return response, f"grok-cli:{path.name}:text", sha256_bytes(raw)
+
+    if provider == "claude-code":
+        path, raw = _contained_provider_artifact(
+            work, source.get("nested_output_path"), "claude.nested_output_path"
+        )
+        if source.get("nested_output_sha256") != sha256_bytes(raw):
+            raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER", "claude.nested_output")
+        try:
+            value = json.loads(raw)
+            result = value.get("result") if isinstance(value, dict) else None
+            if (
+                not isinstance(result, str)
+                or not result.strip()
+                or value.get("is_error") is not False
+                or value.get("subtype") != "success"
+                or value.get("terminal_reason") != "completed"
+            ):
+                raise ValueError("invalid Claude terminal result")
+            response = result.encode("utf-8")
+        except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
+            raise ZipJobRefusal(
+                "REFUSE_MD_AGENT_PROVIDER_RESPONSE_MALFORMED",
+                "claude.nested_output",
+            ) from exc
+        return response, f"claude-code:{path.name}:result", sha256_bytes(raw)
+
+    raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_RESPONSE_UNSUPPORTED", provider)
 
 
 def _run_one(
@@ -502,6 +965,9 @@ def _run_one(
     agent_id = _text(agent.get("agent_id"), "agent_id")
     agent_path = _text(agent.get("agent_path"), "agent_path")
     output_path = _text(agent.get("output_path"), "output_path")
+    output_delivery = _output_delivery(agent)
+    output_format = _output_format(agent)
+    model_observed_allowlist = _model_observed_allowlist(agent.get("model_observed_allowlist"))
     if not agent_path.startswith("AGENTS/") or not agent_path.endswith(".md"):
         raise ZipJobRefusal("REFUSE_MD_AGENT_PATH", agent_path)
     if not output_path.startswith("output/") or not output_path.endswith(".md"):
@@ -514,8 +980,11 @@ def _run_one(
     hierarchy_surface = _hierarchy_surface(hierarchy)
     tool_request_observed = False
     cb_tool_executed = False
-    tool_result_consumed_on_later_attempt = False
+    tool_result_echo_proved_on_later_attempt = False
     applied_request_sha256: str | None = None
+    provider_response_sha256: str | None = None
+    response_extraction_source: str | None = None
+    provider_response_materialized = False
     mmm_paths = _path_list(agent.get("mmm_paths"), "mmm_paths", minimum=1, maximum=9)
     skill_paths = _path_list(agent.get("skill_paths"), "skill_paths", minimum=1, maximum=16)
     context_paths = _path_list(agent.get("context_paths") or [], "context_paths", maximum=32)
@@ -537,6 +1006,7 @@ def _run_one(
             raise ZipJobRefusal("REFUSE_MD_AGENT_FILE_MISSING", path)
     delivered_sha256 = {path: sha256_bytes(workspace[path]) for path in sorted(delivered_paths)}
     tool_evidence_sha256 = delivered_sha256[TOOL_EVIDENCE_PATH]
+    skill_bytes_delivered = all(path in delivered_sha256 for path in skill_paths)
     try:
         tool_evidence = strict_json_loads(workspace[TOOL_EVIDENCE_PATH], label=TOOL_EVIDENCE_PATH)
         tool_token = tool_evidence.get("canonical_sha256")
@@ -547,6 +1017,9 @@ def _run_one(
     attempts: list[dict[str, Any]] = []
     last_error: str | None = None
     for attempt in range(1, max_attempts + 1):
+        provider_response_sha256 = None
+        response_extraction_source = None
+        provider_response_materialized = False
         with tempfile.TemporaryDirectory(prefix=f"cb-md-agent-{agent_id}-") as tmp:
             work = Path(tmp)
             _copy_workspace(work, workspace, delivered_paths)
@@ -558,6 +1031,22 @@ def _run_one(
                 hierarchy=hierarchy,
             )
             prompt_path = work / "meta" / "WORKER_PROMPT.md"
+            embedded_inputs = (
+                _embedded_provider_inputs(workspace, delivered_paths)
+                if output_delivery == "provider_response"
+                else None
+            )
+            delivery_echoes = [
+                *[
+                    _skill_echo(path, delivered_sha256[path])
+                    for path in skill_paths
+                ],
+                *[
+                    _mmm_echo(path, delivered_sha256[path])
+                    for path in mmm_paths
+                ],
+                _tool_echo(tool_token),
+            ]
             prompt_path.write_text(
                 _prompt(
                     agent_path,
@@ -571,11 +1060,20 @@ def _run_one(
                     attempt=attempt,
                     attempt_seed=seed,
                     prior_refusal=last_error,
+                    output_delivery=output_delivery,
+                    output_format=output_format,
+                    embedded_inputs=embedded_inputs,
+                    delivery_echoes=delivery_echoes,
                     hierarchy=hierarchy,
                 ),
                 encoding="utf-8",
             )
-            request_identity = {"run_id": run_id, "agent_id": agent_id, "attempt": attempt}
+            request_identity = {
+                "run_id": run_id,
+                "agent_id": agent_id,
+                "attempt": attempt,
+                "model_observed_allowlist": model_observed_allowlist,
+            }
             if hierarchy is not None:
                 request_identity.update(hierarchy_surface)
             request_id = "zip-" + sha256_bytes(canonical_json_bytes(request_identity))[:32]
@@ -585,6 +1083,7 @@ def _run_one(
                 prompt_path,
                 request_id=request_id,
                 timeout_seconds=timeout_seconds,
+                output_delivery=output_delivery,
                 hierarchy=hierarchy,
             )
             # Live adapters bind their MMM header into this exact file.  Read
@@ -618,6 +1117,13 @@ def _run_one(
                         "format_present": False,
                         "refusal_reason": last_error,
                         "output_sha256": None,
+                        "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                        "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                        "alias_resolution_source": None,
+                        "model_alias_admitted": False,
+                        "skill_bytes_delivered": skill_bytes_delivered,
+                        "skill_read_proved": False,
+                        "skill_executed": False,
                     }
                 )
                 continue
@@ -658,6 +1164,13 @@ def _run_one(
                             "tool_requested": True,
                             "tool_request_sha256": request_sha256,
                             "cb_tool_executed": True,
+                            "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                            "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                            "alias_resolution_source": None,
+                            "model_alias_admitted": False,
+                            "skill_bytes_delivered": skill_bytes_delivered,
+                            "skill_read_proved": False,
+                            "skill_executed": False,
                         }
                     )
                     continue
@@ -676,9 +1189,91 @@ def _run_one(
                             "refusal_reason": last_error,
                             "output_sha256": sha256_bytes(body) if exists else None,
                             "tool_requested": True,
+                            "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                            "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                            "alias_resolution_source": None,
+                            "model_alias_admitted": False,
+                            "skill_bytes_delivered": skill_bytes_delivered,
+                            "skill_read_proved": False,
+                            "skill_executed": False,
                         }
                     )
                     continue
+            evidence_failure: str | None = None
+            provider_receipt_summary: dict[str, Any] | None = None
+            response_refusal: str | None = None
+            evidence: dict[str, Any] = {
+                "provider_request_id": request_id,
+                "model_observed": [],
+                "model_observed_values": [],
+                "model_binding_confirmed": False,
+                "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                "model_alias_admitted": False,
+                "alias_resolution_source": None,
+                "identity_source": None,
+                "composed_prompt_sha256": sha256_bytes(prompt_bytes),
+                "provider_source_receipt_sha256": None,
+                "provider_source_receipt": None,
+            }
+            if output_delivery == "provider_response":
+                # A provider-response leaf must not accept a file the model
+                # wrote.  The only permitted output bytes are materialized by
+                # this controller after adapter evidence passes.
+                if exists:
+                    response_refusal = "REFUSE_MD_AGENT_PROVIDER_OUTPUT_WRITE"
+                else:
+                    try:
+                        evidence = _provider_evidence(
+                            provider=str(agent.get("provider")),
+                            evidence_path=evidence_path,
+                            request_id=request_id,
+                            model_requested=agent.get("model_requested"),
+                            prompt=prompt_bytes,
+                            model_observed_allowlist=model_observed_allowlist,
+                        )
+                        response, response_extraction_source, provider_response_sha256 = (
+                            _extract_provider_response(
+                                provider=str(agent.get("provider")),
+                                source=evidence["provider_source_receipt"],
+                                work=work,
+                            )
+                        )
+                        produced.parent.mkdir(parents=True, exist_ok=True)
+                        produced.write_bytes(response)
+                        body = produced.read_bytes()
+                        exists = True
+                        provider_response_materialized = True
+                    except ZipJobRefusal as exc:
+                        response_refusal = exc.reason_code
+                        evidence_failure = exc.detail or exc.reason_code
+                        source = evidence.get("provider_source_receipt")
+                        if isinstance(source, dict):
+                            provider_receipt_summary = {
+                                key: source.get(key)
+                                for key in (
+                                    "schema",
+                                    "disposition",
+                                    "reason_code",
+                                    "request_id",
+                                    "model_requested",
+                                    "model_observed",
+                                    "models_observed",
+                                    "models_observed_in_output",
+                                    "model_binding_confirmed",
+                                    "returncode",
+                                )
+                                if key in source
+                            }
+                        if evidence.get("provider_source_receipt") is None:
+                            evidence = {
+                                **evidence,
+                                "provider_source_receipt": None,
+                                "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                                "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                                "model_alias_admitted": False,
+                                "alias_resolution_source": None,
+                            }
             marker_ok = marker.encode("utf-8") in body
             size_ok = exists and len(body) <= max_output_bytes
             try:
@@ -687,14 +1282,60 @@ def _run_one(
             except UnicodeDecodeError:
                 text = ""
                 utf8_ok = False
+            json_valid: bool | None = True if output_format != "strict_json_object" else None
+            json_error: str | None = None
+            cell_field_set_ok = True
+            cell_missing_fields: list[str] = []
+            cell_extra_fields: list[str] = []
+            if output_format == "strict_json_object" and exists and utf8_ok:
+                try:
+                    parsed_output = strict_json_loads(body, label=output_path)
+                    if not isinstance(parsed_output, dict):
+                        json_valid = False
+                        json_error = "expected_json_object"
+                    else:
+                        json_valid = True
+                        if parsed_output.get("schema") == "constraintbox.premortem-cell-result.v1":
+                            (
+                                cell_field_set_ok,
+                                cell_missing_fields,
+                                cell_extra_fields,
+                            ) = _premortem_cell_field_set(parsed_output)
+                except ZipJobRefusal as exc:
+                    json_valid = False
+                    json_error = exc.detail or exc.reason_code
             fragments_ok = utf8_ok and all(fragment in text for fragment in required_fragments)
             missing_fragments = [fragment for fragment in required_fragments if fragment not in text]
             forbidden_ok = utf8_ok and all(fragment not in text for fragment in forbidden_fragments)
             present_forbidden_fragments = [fragment for fragment in forbidden_fragments if fragment in text]
-            format_ok = size_ok and fragments_ok and forbidden_ok
+            json_ok = output_format != "strict_json_object" or json_valid is True
             token_ok = utf8_ok and tool_token in text
             skill_ok = utf8_ok and all(
                 delivered_sha256[path] in text for path in skill_paths
+            )
+            if output_format == "strict_json_object":
+                echo_status = _strict_delivery_echo_status(
+                    body,
+                    skill_paths=skill_paths,
+                    delivered_sha256=delivered_sha256,
+                    mmm_paths=mmm_paths,
+                    tool_token=tool_token,
+                )
+                skill_echo_proved = echo_status["skill_echo_proved"]
+                mmm_echo_proved = echo_status["mmm_echo_proved"]
+                tool_echo_proved = echo_status["tool_echo_proved"]
+                skill_ok = skill_echo_proved
+                token_ok = tool_echo_proved
+            else:
+                skill_echo_proved = False
+                mmm_echo_proved = False
+                tool_echo_proved = False
+            format_ok = (
+                size_ok and fragments_ok and forbidden_ok and json_ok
+                and cell_field_set_ok
+                and (output_format != "strict_json_object" or (
+                    skill_echo_proved and mmm_echo_proved and tool_echo_proved
+                ))
             )
             extra_outputs = []
             modified_protected = []
@@ -719,7 +1360,9 @@ def _run_one(
                 if rel in allowed_new_files or any(rel.startswith(prefix) for prefix in allowed_new_prefixes):
                     continue
                 extra_outputs.append(rel)
-            if not exists:
+            if response_refusal is not None:
+                refusal = response_refusal
+            elif not exists:
                 refusal = "REFUSE_MD_AGENT_MISSING_OUTPUT"
             elif not size_ok:
                 refusal = "REFUSE_MD_AGENT_OUTPUT_SIZE"
@@ -727,6 +1370,16 @@ def _run_one(
                 refusal = "REFUSE_MD_AGENT_OUTPUT_UTF8"
             elif not marker_ok:
                 refusal = "REFUSE_MD_AGENT_MARKER_MISSING"
+            elif not json_ok:
+                refusal = "REFUSE_MD_AGENT_OUTPUT_JSON"
+            elif not cell_field_set_ok:
+                refusal = "REFUSE_MD_AGENT_OUTPUT_SCHEMA"
+            elif output_format == "strict_json_object" and not skill_echo_proved:
+                refusal = "REFUSE_MD_AGENT_SKILL_ECHO_MISSING"
+            elif output_format == "strict_json_object" and not mmm_echo_proved:
+                refusal = "REFUSE_MD_AGENT_MMM_ECHO_MISSING"
+            elif output_format == "strict_json_object" and not tool_echo_proved:
+                refusal = "REFUSE_MD_AGENT_TOOL_ECHO_MISSING"
             elif not fragments_ok:
                 refusal = "REFUSE_MD_AGENT_FORMAT_MISSING"
             elif not forbidden_ok:
@@ -739,48 +1392,53 @@ def _run_one(
                 refusal = "REFUSE_MD_AGENT_EXTRA_OUTPUT"
             else:
                 refusal = None
-            evidence_failure: str | None = None
-            provider_receipt_summary: dict[str, Any] | None = None
-            try:
-                evidence = _provider_evidence(
-                    provider=str(agent.get("provider")),
-                    evidence_path=evidence_path,
-                    request_id=request_id,
-                    model_requested=agent.get("model_requested"),
-                    prompt=prompt_bytes,
-                )
-            except ZipJobRefusal as exc:
-                evidence_failure = exc.detail or exc.reason_code
-                if evidence_path is not None and evidence_path.is_file():
-                    try:
-                        raw_receipt = _object(evidence_path.read_bytes(), "provider_receipt")
-                        provider_receipt_summary = {
-                            key: raw_receipt.get(key)
-                            for key in (
-                                "schema",
-                                "disposition",
-                                "reason_code",
-                                "request_id",
-                                "model_requested",
-                                "model_observed",
-                                "models_observed",
-                                "models_observed_in_output",
-                                "model_binding_confirmed",
-                                "returncode",
-                            )
-                            if key in raw_receipt
-                        }
-                    except ZipJobRefusal:
-                        provider_receipt_summary = {"invalid_provider_receipt": True}
-                evidence = {
-                    "provider_request_id": request_id,
-                    "model_observed": [],
-                    "model_binding_confirmed": False,
-                    "identity_source": None,
-                    "composed_prompt_sha256": sha256_bytes(prompt_bytes),
-                    "provider_source_receipt_sha256": None,
-                    "provider_source_receipt": None,
-                }
+            if output_delivery != "provider_response":
+                try:
+                    evidence = _provider_evidence(
+                        provider=str(agent.get("provider")),
+                        evidence_path=evidence_path,
+                        request_id=request_id,
+                        model_requested=agent.get("model_requested"),
+                        prompt=prompt_bytes,
+                        model_observed_allowlist=model_observed_allowlist,
+                    )
+                except ZipJobRefusal as exc:
+                    evidence_failure = exc.detail or exc.reason_code
+                    if evidence_path is not None and evidence_path.is_file():
+                        try:
+                            raw_receipt = _object(evidence_path.read_bytes(), "provider_receipt")
+                            provider_receipt_summary = {
+                                key: raw_receipt.get(key)
+                                for key in (
+                                    "schema",
+                                    "disposition",
+                                    "reason_code",
+                                    "request_id",
+                                    "model_requested",
+                                    "model_observed",
+                                    "models_observed",
+                                    "models_observed_in_output",
+                                    "model_binding_confirmed",
+                                    "returncode",
+                                )
+                                if key in raw_receipt
+                            }
+                        except ZipJobRefusal:
+                            provider_receipt_summary = {"invalid_provider_receipt": True}
+                    evidence = {
+                        "provider_request_id": request_id,
+                        "model_observed": [],
+                        "model_observed_values": [],
+                        "model_binding_confirmed": False,
+                        "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+                        "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+                        "model_alias_admitted": False,
+                        "alias_resolution_source": None,
+                        "identity_source": None,
+                        "composed_prompt_sha256": sha256_bytes(prompt_bytes),
+                        "provider_source_receipt_sha256": None,
+                        "provider_source_receipt": None,
+                    }
             if refusal is None and proc.returncode != 0:
                 refusal = "REFUSE_MD_AGENT_PROVIDER_PROCESS"
             if refusal is None and evidence_failure is not None:
@@ -798,9 +1456,35 @@ def _run_one(
                 "format_present": format_ok,
                 "refusal_reason": refusal,
                 "output_sha256": sha256_bytes(body) if exists else None,
+                "output_delivery": output_delivery,
+                "output_format": output_format,
+                "json_valid": json_valid,
+                "json_error": json_error,
+                "cell_field_set_ok": cell_field_set_ok,
+                "cell_missing_fields": cell_missing_fields,
+                "cell_extra_fields": cell_extra_fields,
+                "response_extraction_source": response_extraction_source,
+                "provider_response_sha256": provider_response_sha256,
+                "provider_response_materialized": provider_response_materialized,
+                "controller_materialized_output": provider_response_materialized,
                 "models_observed": evidence["model_observed"],
+                "model_observed_values": evidence.get(
+                    "model_observed_values", evidence["model_observed"]
+                ),
                 "model_observed": evidence["model_observed"][0] if evidence["model_observed"] else None,
                 "model_binding_confirmed": evidence["model_binding_confirmed"],
+                "model_identity_match_kind": evidence.get(
+                    "model_identity_match_kind", _MODEL_MATCH_UNVERIFIED
+                ),
+                "model_match_kind": evidence.get(
+                    "model_match_kind",
+                    evidence.get("model_identity_match_kind", _MODEL_MATCH_UNVERIFIED),
+                ),
+                "model_alias_admitted": bool(evidence.get("model_alias_admitted", False)),
+                "alias_resolution_source": evidence.get("alias_resolution_source"),
+                "model_observed_allowlist": evidence.get(
+                    "model_observed_allowlist", model_observed_allowlist
+                ),
                 "identity_source": evidence["identity_source"],
                 "composed_prompt_sha256": evidence["composed_prompt_sha256"],
                 "provider_source_receipt_sha256": evidence["provider_source_receipt_sha256"],
@@ -810,24 +1494,49 @@ def _run_one(
                 "forbidden_fragments_present": present_forbidden_fragments,
                 "extra_outputs": extra_outputs,
                 "modified_protected_paths": modified_protected,
-                "tool_token_present": token_ok,
-                "skill_tokens_present": skill_ok,
-                "output_preview": text[:4096] if exists and utf8_ok else None,
+                "skill_echo_proved": skill_echo_proved,
+                "mmm_echo_proved": mmm_echo_proved,
+                "tool_echo_proved": tool_echo_proved,
+                "skill_bytes_delivered": skill_bytes_delivered,
+                "skill_read_proved": False,
+                "skill_executed": False,
             }
             attempts.append(row)
             if refusal is None:
-                tool_result_consumed_on_later_attempt = cb_tool_executed
+                tool_result_echo_proved_on_later_attempt = (
+                    cb_tool_executed and tool_echo_proved
+                )
+                attempt_summary = _attempt_receipt_summary(
+                    attempts, accepted_attempt=attempt
+                )
                 return {
                     **hierarchy_surface,
                     "agent_id": agent_id,
                     "agent_path": agent_path,
                     "output_path": output_path,
+                    "output_delivery": output_delivery,
+                    "output_format": output_format,
                     "provider": agent["provider"],
                     "model_requested": agent.get("model_requested"),
                     "provider_request_id": evidence["provider_request_id"],
                     "models_observed": evidence["model_observed"],
+                    "model_observed_values": evidence.get(
+                        "model_observed_values", evidence["model_observed"]
+                    ),
                     "model_observed": evidence["model_observed"][0],
                     "model_binding_confirmed": evidence["model_binding_confirmed"],
+                    "model_identity_match_kind": evidence.get(
+                        "model_identity_match_kind", _MODEL_MATCH_UNVERIFIED
+                    ),
+                    "model_match_kind": evidence.get(
+                        "model_match_kind",
+                        evidence.get("model_identity_match_kind", _MODEL_MATCH_UNVERIFIED),
+                    ),
+                    "model_alias_admitted": bool(evidence.get("model_alias_admitted", False)),
+                    "alias_resolution_source": evidence.get("alias_resolution_source"),
+                    "model_observed_allowlist": evidence.get(
+                        "model_observed_allowlist", model_observed_allowlist
+                    ),
                     "identity_source": evidence["identity_source"],
                     "composed_prompt_sha256": evidence["composed_prompt_sha256"],
                     "provider_source_receipt_sha256": evidence["provider_source_receipt_sha256"],
@@ -836,30 +1545,61 @@ def _run_one(
                     "llm_invoked_tool": False,
                     "tool_request_observed": tool_request_observed,
                     "cb_tool_executed": cb_tool_executed,
-                    "tool_result_consumed_on_later_attempt": tool_result_consumed_on_later_attempt,
+                    "tool_result_echo_proved_on_later_attempt": tool_result_echo_proved_on_later_attempt,
                     "accepted": True,
                     "accepted_attempt": attempt,
+                    **attempt_summary,
                     "delivered_file_sha256": delivered_sha256,
+                    "skill_bytes_delivered": skill_bytes_delivered,
+                    "skill_echo_proved": skill_echo_proved,
+                    "mmm_echo_proved": mmm_echo_proved,
+                    "tool_echo_proved": tool_echo_proved,
+                    "skill_read_proved": False,
+                    "skill_executed": False,
+                    "output_sha256": sha256_bytes(body),
+                    "response_extraction_source": response_extraction_source,
+                    "provider_response_sha256": provider_response_sha256,
+                    "provider_response_materialized": provider_response_materialized,
+                    "controller_materialized_output": provider_response_materialized,
                     "required_fragments": required_fragments,
                     "attempts": attempts,
                     "output_bytes": body,
                 }
             last_error = refusal
+    attempt_summary = _attempt_receipt_summary(attempts, accepted_attempt=None)
     return {
         **hierarchy_surface,
         "agent_id": agent_id,
         "agent_path": agent_path,
         "output_path": output_path,
+        "output_delivery": output_delivery,
+        "output_format": output_format,
         "provider": agent["provider"],
         "model_requested": agent.get("model_requested"),
+        "model_identity_match_kind": _MODEL_MATCH_UNVERIFIED,
+        "model_match_kind": _MODEL_MATCH_UNVERIFIED,
+        "model_alias_admitted": False,
+        "model_observed_allowlist": model_observed_allowlist,
         "accepted": False,
         "accepted_attempt": None,
+        **attempt_summary,
         "delivered_file_sha256": delivered_sha256,
+        "skill_bytes_delivered": skill_bytes_delivered,
+        "skill_echo_proved": False,
+        "mmm_echo_proved": False,
+        "tool_echo_proved": False,
+        "skill_read_proved": False,
+        "skill_executed": False,
+        "output_sha256": None,
+        "response_extraction_source": response_extraction_source,
+        "provider_response_sha256": provider_response_sha256,
+        "provider_response_materialized": provider_response_materialized,
+        "controller_materialized_output": provider_response_materialized,
         "required_fragments": required_fragments,
         "llm_invoked_tool": False,
         "tool_request_observed": tool_request_observed,
         "cb_tool_executed": cb_tool_executed,
-        "tool_result_consumed_on_later_attempt": tool_result_consumed_on_later_attempt,
+        "tool_result_echo_proved_on_later_attempt": tool_result_echo_proved_on_later_attempt,
         "attempts": attempts,
         "terminal_refusal": last_error or "REFUSE_MD_AGENT_MISSING_OUTPUT",
         "output_bytes": b"",
@@ -895,7 +1635,8 @@ def run_md_agent_roster(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str
         "agent_id", "agent_path", "output_path", "provider", "model_requested",
         "fixture_script", "mmm_paths", "skill_paths", "context_paths",
         "required_fragments", "forbidden_fragments", "max_output_bytes", "reasoning_effort", "budget_usd",
-        "max_turns", "runner_path", "bridge_path", "codex_home", "controller_src"
+        "max_turns", "runner_path", "bridge_path", "codex_home", "controller_src",
+        "output_delivery", "output_format", "model_observed_allowlist"
     }
     if any(set(row) - allowed_agent_fields for row in agents):
         raise ZipJobRefusal("REFUSE_MD_AGENT_ROSTER_SCHEMA", "agent_fields")
@@ -927,17 +1668,46 @@ def run_md_agent_roster(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str
         results = list(pool.map(run_row, agents))
     exhausted = [result for result in results if not result["accepted"]]
     if exhausted:
+        refusal_reason_summary: dict[str, int] = {}
+        for result in results:
+            for reason, count in result.get("refusal_reason_summary", {}).items():
+                refusal_reason_summary[reason] = refusal_reason_summary.get(reason, 0) + int(count)
         refusal = {
             **hierarchy_surface,
             "schema": "constraintbox.md-agent-roster-refusal.v1",
             "run_id": run_id,
             "seed": roster_seed,
+            "max_attempts": max_attempts,
             "accepted_agent_ids": [result["agent_id"] for result in results if result["accepted"]],
+            "accepted_attempt_count": sum(
+                int(result.get("accepted_attempts", 0)) for result in results
+            ),
+            "accepted_attempts_consumed": sum(
+                int(result.get("accepted_attempt_count", 0)) for result in results
+            ),
+            "refusal_reason_summary": refusal_reason_summary,
             "exhausted_agents": [
                 {
                     **hierarchy_surface,
                     "agent_id": result["agent_id"],
+                    "output_path": result["output_path"],
                     "terminal_refusal": result["terminal_refusal"],
+                    "cell_missing_fields": sorted(
+                        {
+                            field
+                            for attempt in result.get("attempts", [])
+                            for field in attempt.get("cell_missing_fields", [])
+                        }
+                    ),
+                    "cell_extra_fields": sorted(
+                        {
+                            field
+                            for attempt in result.get("attempts", [])
+                            for field in attempt.get("cell_extra_fields", [])
+                        }
+                    ),
+                    "accepted_attempt_count": result.get("accepted_attempt_count", 0),
+                    "refusal_reason_summary": result.get("refusal_reason_summary", {}),
                     "attempts": result["attempts"],
                 }
                 for result in exhausted
@@ -955,8 +1725,11 @@ def run_md_agent_roster(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str
     for result in results:
         produced[result["output_path"]] = result["output_bytes"]
         receipts.append({k: v for k, v in result.items() if k != "output_bytes"})
-    produced["output/roster_receipt.json"] = canonical_json_bytes(
-        {
+    refusal_reason_summary: dict[str, int] = {}
+    for result in receipts:
+        for reason, count in result.get("refusal_reason_summary", {}).items():
+            refusal_reason_summary[reason] = refusal_reason_summary.get(reason, 0) + int(count)
+    roster_receipt = {
             **hierarchy_surface,
             "schema": RECEIPT_SCHEMA,
             "run_id": run_id,
@@ -965,23 +1738,56 @@ def run_md_agent_roster(task: TaskSpec, workspace: dict[str, bytes]) -> dict[str
             "max_attempts": max_attempts,
             "max_workers": max_workers,
             "accepted_agent_ids": [row["agent_id"] for row in receipts],
+            "accepted_attempt_count": sum(
+                int(row.get("accepted_attempts", 0)) for row in receipts
+            ),
+            "accepted_attempts_consumed": sum(
+                int(row.get("accepted_attempt_count", 0)) for row in receipts
+            ),
+            "attempt_count": sum(int(row.get("attempt_count", 0)) for row in receipts),
+            "refusal_reason_summary": refusal_reason_summary,
             "agents": receipts,
             "execution_authorized_beyond_declared_outputs": False,
             "host_hooks_used": False,
             "mmm_read_proved": False,
             "skill_executed": False,
-            "skill_bytes_consumed": True,
+            "skill_bytes_delivered": all(
+                bool(row.get("skill_bytes_delivered")) for row in receipts
+            ),
+            "skill_echo_proved": all(
+                bool(row.get("skill_echo_proved")) for row in receipts
+            ),
+            "mmm_echo_proved": all(
+                bool(row.get("mmm_echo_proved")) for row in receipts
+            ),
+            "tool_echo_proved": all(
+                bool(row.get("tool_echo_proved")) for row in receipts
+            ),
+            "skill_read_proved": False,
             "llm_invoked_tool": any(bool(row.get("llm_invoked_tool")) for row in receipts),
             "tool_request_observed": any(bool(row.get("tool_request_observed")) for row in receipts),
             "cb_tool_executed": any(bool(row.get("cb_tool_executed")) for row in receipts),
-            "tool_result_consumed_on_later_attempt": any(
-                bool(row.get("tool_result_consumed_on_later_attempt")) for row in receipts
+            "tool_result_echo_proved_on_later_attempt": any(
+                bool(row.get("tool_result_echo_proved_on_later_attempt")) for row in receipts
             ),
             "provider_env_allowlisted": True,
             "promotion_allowed": False,
             "claim_ceiling": CLAIM_CEILING,
-        }
-    )
+    }
+    receipt_ok, missing_fields, extra_fields = _roster_receipt_field_set(roster_receipt)
+    if not receipt_ok:
+        raise ZipJobRefusal(
+            "REFUSE_MD_AGENT_ROSTER_SCHEMA",
+            canonical_json_bytes(
+                {
+                    "schema": "constraintbox.md-agent-roster-schema-refusal.v1",
+                    "reason": "field_set",
+                    "missing_fields": missing_fields,
+                    "extra_fields": extra_fields,
+                }
+            ).decode("ascii"),
+        )
+    produced["output/roster_receipt.json"] = canonical_json_bytes(roster_receipt)
     return produced
 
 

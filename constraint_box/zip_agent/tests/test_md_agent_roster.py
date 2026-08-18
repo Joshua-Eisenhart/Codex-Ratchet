@@ -6,15 +6,50 @@ import zipfile
 
 import pytest
 
+import constraintbox_zip_agent.md_agent_roster as roster_module
+
 from constraintbox_zip_agent.md_agent_roster import (
+    _extract_provider_response,
+    _output_delivery,
     _provider_env,
     _provider_evidence,
+    _run_one,
     build_md_agent_roster_packet,
 )
 from constraintbox_zip_agent.protocol import ZipJobRefusal, sha256_bytes, validate_return_zip
 from constraintbox_zip_agent.runtime import execute_packet
 
 MARKER = "ZIP_MD_AGENT_LIVE"
+
+
+def _response_workspace() -> dict[str, bytes]:
+    tool_token = "a" * 64
+    return {
+        "AGENTS/one.md": b"Return the declared strict output.\n",
+        "REFERENCES/mmm/voice.md": b"particular evidence only\n",
+        "SKILLS/write-finding.md": b"write one bounded finding\n",
+        "input/OBJECT.md": b"bounded object\n",
+        "output/tool_evidence.json": json.dumps(
+            {"schema": "constraintbox.tool-evidence.v1", "canonical_sha256": tool_token}
+        ).encode(),
+    }
+
+
+def _response_agent() -> dict:
+    return {
+        "agent_id": "one",
+        "agent_path": "AGENTS/one.md",
+        "output_path": "output/one.md",
+        "provider": "grok-cli",
+        "model_requested": "grok-4.6",
+        "output_delivery": "provider_response",
+        "mmm_paths": ["REFERENCES/mmm/voice.md"],
+        "skill_paths": ["SKILLS/write-finding.md"],
+        "context_paths": ["input/OBJECT.md"],
+        "required_fragments": ["finding:"],
+        "forbidden_fragments": ["promotion_allowed: true"],
+        "max_output_bytes": 8192,
+    }
 
 
 def _script(body: str) -> str:
@@ -241,7 +276,7 @@ def test_missing_required_format_retries_then_refuses() -> None:
     assert refusal["exhausted_agents"][0]["terminal_refusal"] == "REFUSE_MD_AGENT_FORMAT_MISSING"
     attempt = refusal["exhausted_agents"][0]["attempts"][0]
     assert attempt["missing_fragments"]
-    assert attempt["output_preview"] == "ZIP_MD_AGENT_LIVE\n"
+    assert "output_preview" not in attempt
 
 
 def test_controller_prompt_lists_every_required_fragment() -> None:
@@ -510,12 +545,12 @@ def test_worker_tool_request_requires_later_attempt_to_consume_result() -> None:
     assert receipt["llm_invoked_tool"] is False
     assert receipt["tool_request_observed"] is True
     assert receipt["cb_tool_executed"] is True
-    assert receipt["tool_result_consumed_on_later_attempt"] is True
+    assert receipt["tool_result_echo_proved_on_later_attempt"] is False
     assert receipt["agents"][0]["accepted_attempt"] == 2
     assert receipt["agents"][0]["attempts"][0]["refusal_reason"] == "HOLD_MD_AGENT_TOOL_APPLIED_NEED_REWRITE"
     assert receipt["agents"][0]["llm_invoked_tool"] is False
     assert receipt["agents"][0]["cb_tool_executed"] is True
-    assert receipt["agents"][0]["tool_result_consumed_on_later_attempt"] is True
+    assert receipt["agents"][0]["tool_result_echo_proved_on_later_attempt"] is False
     assert receipt["agents"][1]["llm_invoked_tool"] is False
     assert "tool-token:" in one
 
@@ -712,3 +747,312 @@ def test_live_provider_without_runner_is_held(monkeypatch, tmp_path) -> None:
             timeout_seconds=5,
         )
     assert caught.value.reason_code == "HOLD_PROVIDER_CONTROLLER_UNBOUND"
+
+
+def test_provider_response_extractors_bind_current_adapter_artifacts(tmp_path) -> None:
+    codex_path = (tmp_path / "codex.jsonl").resolve()
+    codex_message = "codex response"
+    codex_path.write_text(
+        json.dumps(
+            {
+                "type": "item.completed",
+                "item": {"type": "agent_message", "text": codex_message},
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    codex_raw = codex_path.read_bytes()
+    body, source, raw_sha = _extract_provider_response(
+        provider="codex-cli",
+        source={
+            "response_path": str(codex_path),
+            "stdout_sha256": sha256_bytes(codex_raw),
+            "agent_messages": [codex_message],
+            "final_agent_message_sha256": sha256_bytes(codex_message.encode()),
+        },
+        work=tmp_path,
+    )
+    assert body == codex_message.encode()
+    assert "agent_message" in source
+    assert raw_sha == sha256_bytes(codex_raw)
+
+    grok_path = (tmp_path / "grok.json").resolve()
+    grok_message = "grok response"
+    grok_path.write_text(
+        json.dumps({"text": grok_message, "stopReason": "end_turn"}),
+        encoding="utf-8",
+    )
+    grok_raw = grok_path.read_bytes()
+    body, source, raw_sha = _extract_provider_response(
+        provider="grok-cli",
+        source={
+            "response_path": str(grok_path),
+            "response_sha256": sha256_bytes(grok_raw),
+            "result_text_sha256": sha256_bytes(grok_message.encode()),
+        },
+        work=tmp_path,
+    )
+    assert body == grok_message.encode()
+    assert source.endswith(":text")
+    assert raw_sha == sha256_bytes(grok_raw)
+
+    claude_path = (tmp_path / "claude.txt").resolve()
+    claude_path.write_text(
+        json.dumps(
+            {
+                "is_error": False,
+                "subtype": "success",
+                "terminal_reason": "completed",
+                "result": "claude response",
+            }
+        ),
+        encoding="utf-8",
+    )
+    body, source, raw_sha = _extract_provider_response(
+        provider="claude-code",
+        source={
+            "nested_output_path": str(claude_path),
+            "nested_output_sha256": sha256_bytes(claude_path.read_bytes()),
+        },
+        work=tmp_path,
+    )
+    assert body == b"claude response"
+    assert source.endswith(":result")
+    assert raw_sha == sha256_bytes(claude_path.read_bytes())
+
+
+def test_provider_response_extractor_refuses_tamper_and_uncontained_path(tmp_path) -> None:
+    response = (tmp_path / "grok.json").resolve()
+    response.write_text(json.dumps({"text": "x", "stopReason": "end_turn"}), encoding="utf-8")
+    with pytest.raises(ZipJobRefusal) as tampered:
+        _extract_provider_response(
+            provider="grok-cli",
+            source={
+                "response_path": str(response),
+                "response_sha256": "0" * 64,
+                "result_text_sha256": sha256_bytes(b"x"),
+            },
+            work=tmp_path,
+        )
+    assert tampered.value.reason_code == "REFUSE_MD_AGENT_PROVIDER_RESPONSE_TAMPER"
+    outside = (tmp_path.parent / "outside-response.json").resolve()
+    outside.write_text(json.dumps({"text": "x", "stopReason": "end_turn"}), encoding="utf-8")
+    with pytest.raises(ZipJobRefusal) as uncontained:
+        _extract_provider_response(
+            provider="grok-cli",
+            source={
+                "response_path": str(outside),
+                "response_sha256": sha256_bytes(outside.read_bytes()),
+                "result_text_sha256": sha256_bytes(b"x"),
+            },
+            work=tmp_path,
+        )
+    assert uncontained.value.reason_code == "REFUSE_MD_AGENT_PROVIDER_RESPONSE_UNCONTAINED"
+
+
+def test_provider_response_is_materialized_by_cb_and_replays(monkeypatch) -> None:
+    workspace = _response_workspace()
+    agent = _response_agent()
+
+    def fake_argv(agent_row, work, prompt_path, **kwargs):
+        prompt_text = prompt_path.read_text(encoding="utf-8")
+        assert "BEGIN DECLARED ZIP INPUTS" in prompt_text
+        assert "bounded object" in prompt_text
+        assert sha256_bytes(workspace["input/OBJECT.md"]) in prompt_text
+        assert "END DECLARED ZIP INPUTS" in prompt_text
+        tool = json.loads((work / "output/tool_evidence.json").read_text())["canonical_sha256"]
+        skill = sha256_bytes((work / "SKILLS/write-finding.md").read_bytes())
+        text = (
+            f"finding: {MARKER}\n"
+            f"tool-token: {tool}\n"
+            f"skill-token: {skill}\n"
+        )
+        response = work / "meta/provider_response.json"
+        response.write_text(json.dumps({"text": text, "stopReason": "end_turn"}), encoding="utf-8")
+        receipt = work / "meta/provider_receipt.json"
+        receipt.write_text("{}", encoding="utf-8")
+        return [roster_module.sys.executable, "-c", "pass"], dict(roster_module.os.environ), receipt
+
+    def fake_evidence(*, evidence_path, request_id, model_requested, prompt, **_kwargs):
+        response = evidence_path.with_name("provider_response.json")
+        raw = response.read_bytes()
+        text = json.loads(raw)["text"]
+        source = {
+            "response_path": str(response.resolve()),
+            "response_sha256": sha256_bytes(raw),
+            "result_text_sha256": sha256_bytes(text.encode()),
+        }
+        return {
+            "provider_request_id": request_id,
+            "model_observed": [model_requested],
+            "model_binding_confirmed": True,
+            "identity_source": "fixture-adapter-receipt",
+            "composed_prompt_sha256": sha256_bytes(prompt),
+            "provider_source_receipt_sha256": sha256_bytes(json.dumps(source, sort_keys=True).encode()),
+            "provider_source_receipt": source,
+        }
+
+    monkeypatch.setattr(roster_module, "_argv", fake_argv)
+    monkeypatch.setattr(roster_module, "_provider_evidence", fake_evidence)
+    first = _run_one(
+        agent=agent,
+        workspace=workspace,
+        shared_paths=[],
+        marker=MARKER,
+        timeout_seconds=10,
+        max_attempts=2,
+        run_id="provider-response-test",
+        roster_seed=7,
+    )
+    second = _run_one(
+        agent=agent,
+        workspace=workspace,
+        shared_paths=[],
+        marker=MARKER,
+        timeout_seconds=10,
+        max_attempts=2,
+        run_id="provider-response-test",
+        roster_seed=7,
+    )
+    assert first["accepted"] is True
+    assert first["output_delivery"] == "provider_response"
+    assert first["provider_response_materialized"] is True
+    assert first["controller_materialized_output"] is True
+    assert first["response_extraction_source"].endswith(":text")
+    assert first["output_sha256"] == second["output_sha256"]
+    assert first["attempts"][0]["provider_response_materialized"] is True
+    assert first["attempts"][0]["controller_materialized_output"] is True
+
+
+def test_provider_response_evidence_failure_retries_then_refuses(monkeypatch) -> None:
+    workspace = _response_workspace()
+    agent = _response_agent()
+
+    def fake_argv(agent_row, work, prompt_path, **kwargs):
+        response = work / "meta/provider_response.json"
+        response.write_text(json.dumps({"text": "unbound", "stopReason": "end_turn"}), encoding="utf-8")
+        receipt = work / "meta/provider_receipt.json"
+        receipt.write_text("{}", encoding="utf-8")
+        return [roster_module.sys.executable, "-c", "pass"], dict(roster_module.os.environ), receipt
+
+    def refuse_evidence(**_kwargs):
+        raise ZipJobRefusal("REFUSE_MD_AGENT_PROVIDER_EVIDENCE", "model mismatch")
+
+    monkeypatch.setattr(roster_module, "_argv", fake_argv)
+    monkeypatch.setattr(roster_module, "_provider_evidence", refuse_evidence)
+    result = _run_one(
+        agent=agent,
+        workspace=workspace,
+        shared_paths=[],
+        marker=MARKER,
+        timeout_seconds=10,
+        max_attempts=2,
+        run_id="provider-response-refusal",
+        roster_seed=9,
+    )
+    assert result["accepted"] is False
+    assert len(result["attempts"]) == 2
+    assert all(
+        attempt["refusal_reason"] == "REFUSE_MD_AGENT_PROVIDER_EVIDENCE"
+        for attempt in result["attempts"]
+    )
+    assert result["provider_response_materialized"] is False
+
+
+def test_model_identity_match_kind_marks_declared_alias_without_rejecting_legacy_route(tmp_path) -> None:
+    prompt = b"exact composed prompt\n"
+    source = {
+        "schema": "constraintbox.grok-cli-receipt.v1",
+        "request_id": "zip-alias-1",
+        "model_requested": "grok-4.6",
+        "models_observed_in_output": ["grok-4.6-build"],
+        "model_binding_confirmed": True,
+        "prompt_sha256": sha256_bytes(prompt),
+        "disposition": "OBSERVED",
+    }
+    receipt_path = tmp_path / "provider.json"
+    receipt_path.write_text(json.dumps(source), encoding="utf-8")
+
+    evidence = _provider_evidence(
+        provider="grok-cli",
+        evidence_path=receipt_path,
+        request_id="zip-alias-1",
+        model_requested="grok-4.6",
+        prompt=prompt,
+        model_observed_allowlist=["grok-4.6-build"],
+    )
+
+    assert evidence["model_binding_confirmed"] is True
+    assert evidence["model_identity_match_kind"] == "declared_alias"
+    assert evidence["model_alias_admitted"] is True
+    assert evidence["alias_resolution_source"] == "invocation.model_observed_allowlist"
+    assert evidence["model_observed_values"] == ["grok-4.6-build"]
+
+
+@pytest.mark.parametrize(
+    "observed",
+    [
+        ["not-sonnet-model"],
+        ["prefix-sonnet-suffix"],
+        ["claude-sonnet-5", "claude-haiku-4-5"],
+    ],
+)
+def test_claude_alias_resolution_rejects_unlisted_or_mixed_observed_models(
+    tmp_path, observed: list[str]
+) -> None:
+    prompt = b"exact composed prompt\n"
+    source = {
+        "schema": "constraintbox.claude-bridge-adapter-receipt.v1",
+        "request_id": "zip-alias-adversarial",
+        "model_requested": "sonnet",
+        "models_observed": observed,
+        "model_binding_confirmed": True,
+        "prompt_sha256": sha256_bytes(prompt),
+        "disposition": "OBSERVED",
+    }
+    receipt_path = tmp_path / "provider.json"
+    receipt_path.write_text(json.dumps(source), encoding="utf-8")
+
+    with pytest.raises(ZipJobRefusal) as caught:
+        _provider_evidence(
+            provider="claude-code",
+            evidence_path=receipt_path,
+            request_id="zip-alias-adversarial",
+            model_requested="sonnet",
+            prompt=prompt,
+        )
+    assert caught.value.reason_code == "REFUSE_MD_AGENT_PROVIDER_EVIDENCE"
+
+
+def test_roster_receipt_separates_skill_delivery_from_read_or_execution() -> None:
+    receipt = _receipt_for(_roster(_agent("one", _ok("one"))))
+    row = receipt["agents"][0]
+
+    assert receipt["skill_bytes_delivered"] is True
+    assert receipt["skill_read_proved"] is False
+    assert receipt["skill_executed"] is False
+    assert receipt["skill_echo_proved"] is False
+    assert row["skill_bytes_delivered"] is True
+    assert row["skill_read_proved"] is False
+    assert row["skill_executed"] is False
+    assert row["skill_echo_proved"] is False
+
+
+def test_roster_receipt_preserves_accepted_attempt_and_refusal_summary() -> None:
+    retry = (
+        "if os.environ.get('CB_ZIP_ATTEMPT') == '1':\n"
+        "    Path('output/one.md').write_text('finding: wrong\\n', encoding='utf-8')\n"
+        "else:\n"
+        + "    " + _ok("one").replace("\n", "\n    ").rstrip()
+        + "\n"
+    )
+    receipt = _receipt_for(_roster(_agent("one", retry)))
+    row = receipt["agents"][0]
+
+    assert row["accepted_attempt"] == 2
+    assert row["accepted_attempt_count"] == 2
+    assert row["accepted_attempts"] == 1
+    assert row["refusal_reason_summary"] == {
+        "REFUSE_MD_AGENT_MARKER_MISSING": 1,
+    }

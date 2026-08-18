@@ -1,0 +1,154 @@
+{
+  "allowed_signals": {
+    "claim-gate": [
+      "PASS",
+      "BLOCKED",
+      "PARKED"
+    ],
+    "proposal-gate": [
+      "PASS",
+      "RETRY",
+      "BLOCKED",
+      "PARKED"
+    ],
+    "proposal-observation": [
+      "OBSERVED",
+      "PARKED"
+    ],
+    "topology-preflight": [
+      "PASS",
+      "BLOCKED",
+      "PARKED"
+    ]
+  },
+  "policy": {
+    "claim_ceiling": "one controller-owned two-attempt untrusted proposal and ClaimGate check; no promotion or hostile-process containment",
+    "entry_node": "topology-preflight",
+    "flow_id": "constraintbox.bounded-proposal-retry-claim.v1",
+    "max_context_bytes": 8192,
+    "max_event_bytes": 65536,
+    "max_receipt_bytes": 524288,
+    "max_retries": 1,
+    "max_steps": 6,
+    "max_visits_per_node": 2,
+    "nodes": [
+      {
+        "hook_id": "bounded-topology-preflight",
+        "node_id": "topology-preflight"
+      },
+      {
+        "hook_id": "bounded-proposal-observation",
+        "node_id": "proposal-observation"
+      },
+      {
+        "hook_id": "bounded-proposal-gate",
+        "node_id": "proposal-gate"
+      },
+      {
+        "hook_id": "bounded-claim-gate",
+        "node_id": "claim-gate"
+      }
+    ],
+    "required_nodes": [
+      "topology-preflight",
+      "proposal-observation",
+      "proposal-gate",
+      "claim-gate"
+    ],
+    "terminal_nodes": [
+      "RELEASED",
+      "BLOCKED",
+      "PARKED",
+      "HOLD"
+    ],
+    "transitions": [
+      {
+        "from_node": "topology-preflight",
+        "signal": "PASS",
+        "to_node": "proposal-observation"
+      },
+      {
+        "from_node": "topology-preflight",
+        "signal": "BLOCKED",
+        "to_node": "BLOCKED"
+      },
+      {
+        "from_node": "topology-preflight",
+        "signal": "PARKED",
+        "to_node": "PARKED"
+      },
+      {
+        "from_node": "topology-preflight",
+        "signal": "HOLD",
+        "to_node": "HOLD"
+      },
+      {
+        "from_node": "proposal-observation",
+        "signal": "OBSERVED",
+        "to_node": "proposal-gate"
+      },
+      {
+        "from_node": "proposal-observation",
+        "signal": "PARKED",
+        "to_node": "PARKED"
+      },
+      {
+        "from_node": "proposal-observation",
+        "signal": "HOLD",
+        "to_node": "HOLD"
+      },
+      {
+        "from_node": "proposal-gate",
+        "signal": "PASS",
+        "to_node": "claim-gate"
+      },
+      {
+        "from_node": "proposal-gate",
+        "signal": "RETRY",
+        "to_node": "proposal-observation"
+      },
+      {
+        "from_node": "proposal-gate",
+        "signal": "BLOCKED",
+        "to_node": "BLOCKED"
+      },
+      {
+        "from_node": "proposal-gate",
+        "signal": "PARKED",
+        "to_node": "PARKED"
+      },
+      {
+        "from_node": "proposal-gate",
+        "signal": "HOLD",
+        "to_node": "HOLD"
+      },
+      {
+        "from_node": "claim-gate",
+        "signal": "PASS",
+        "to_node": "RELEASED"
+      },
+      {
+        "from_node": "claim-gate",
+        "signal": "BLOCKED",
+        "to_node": "BLOCKED"
+      },
+      {
+        "from_node": "claim-gate",
+        "signal": "PARKED",
+        "to_node": "PARKED"
+      },
+      {
+        "from_node": "claim-gate",
+        "signal": "HOLD",
+        "to_node": "HOLD"
+      }
+    ]
+  },
+  "provenance": {
+    "source_module": "constraintbox.proposal_minilev_flow",
+    "source_role": "development_reference_only",
+    "source_sha256": "b242b9be29b60f3c801236e0df69b45c50faa52f6473e5705eab8c054dc39ba8",
+    "source_symbol": "reference_flow_policy+reference_allowed_signals"
+  },
+  "schema": "constraintbox.minilev-reference-policy.v1"
+}

@@ -1,0 +1,283 @@
+{
+  "schema": "constraintbox.strategy-discriminator-wave-input.v1",
+  "wave_id": "cb-strategy-discriminator-wave-v1",
+  "operation": "compare_candidate_order_to_live_profile_order",
+  "target": "strategy-stage-order-v1",
+  "target_bytes": "Compare candidate stage bytes against the current CUMULATIVE_WAVE_SEQUENCE.json profile order.",
+  "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+  "candidate_order": [
+    "cb-maintenance-wave",
+    "cb-context-strategy-wave",
+    "cb-exploration-wave"
+  ],
+  "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+  "live_order": [
+    "cb-maintenance-wave",
+    "cb-context-strategy-wave",
+    "cb-premortem-wave",
+    "cb-repair-wave",
+    "cb-exploration-wave",
+    "verification-closeout"
+  ],
+  "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+  "profile": "light",
+  "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+  "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+  "retained_cumulative_receipt": {
+    "config_schema": "constraintbox.cumulative-wave-sequence.v1",
+    "schema": "constraintbox.cumulative-wave-run.v1",
+    "run_id": "cumulative-hardening-20260818-2",
+    "profile": "light",
+    "runtime": "CB_LIGHT",
+    "status": "LOCKED",
+    "reason_code": "LOCKED_STAGE",
+    "source_binding": {
+      "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+      "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+      "manifest_path": "skills/ACTIVE_WAVES.json",
+      "manifest_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77",
+      "valid": true
+    },
+    "source_binding_after": {
+      "config_path": "constraint_box/integrated_system/config/CUMULATIVE_WAVE_SEQUENCE.json",
+      "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+      "manifest_path": "skills/ACTIVE_WAVES.json",
+      "manifest_sha256": "211931849d0c0c1fa64507c6b505d17570d597058358675d020ecae26d5c1e77",
+      "valid": true
+    },
+    "prefixes": [
+      {
+        "prefix_id": "prefix-1",
+        "rounds": [
+          {
+            "round": 2,
+            "stages": [
+              {
+                "stage_id": "cb-maintenance-wave",
+                "status": "PASS",
+                "executed": true
+              }
+            ]
+          }
+        ],
+        "status": "PASS",
+        "stabilized": true,
+        "stage_ids": [
+          "cb-maintenance-wave"
+        ]
+      },
+      {
+        "prefix_id": "prefix-2",
+        "rounds": [
+          {
+            "round": 2,
+            "stages": [
+              {
+                "stage_id": "cb-maintenance-wave",
+                "status": "PASS",
+                "executed": true
+              },
+              {
+                "stage_id": "cb-context-strategy-wave",
+                "status": "PASS",
+                "executed": true
+              }
+            ]
+          }
+        ],
+        "status": "PASS",
+        "stabilized": true,
+        "stage_ids": [
+          "cb-maintenance-wave",
+          "cb-context-strategy-wave"
+        ]
+      },
+      {
+        "prefix_id": "prefix-3",
+        "status": "LOCKED",
+        "stabilized": false,
+        "blocked_stage_id": "cb-premortem-wave",
+        "stage_ids": [
+          "cb-maintenance-wave",
+          "cb-context-strategy-wave",
+          "cb-premortem-wave"
+        ],
+        "stage_records": [
+          {
+            "stage_id": "cb-maintenance-wave",
+            "status": "NOT_RUN",
+            "reason_code": "PREFIX_STOPPED_AT_LOCKED_STAGE",
+            "executed": false
+          },
+          {
+            "stage_id": "cb-context-strategy-wave",
+            "status": "NOT_RUN",
+            "reason_code": "PREFIX_STOPPED_AT_LOCKED_STAGE",
+            "executed": false
+          },
+          {
+            "stage_id": "cb-premortem-wave",
+            "status": "LOCKED",
+            "reason_code": "LOCKED_NO_PUBLIC_RUNNER_OR_ADMISSION_EVIDENCE",
+            "executed": false
+          }
+        ]
+      }
+    ],
+    "promotion_allowed": false,
+    "selection_count": 6,
+    "receipt_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926"
+  },
+  "retained_cumulative_receipt_sha256": "105e4caa24d79e6db0dfaf435226db9698696f2b426a88fef1f6cb627ea6df01",
+  "retained_cumulative_receipt_self_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926",
+  "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+  "context_epoch": {
+    "schema": "constraintbox.context-epoch.v2",
+    "epoch_id": "epoch-00000001",
+    "epoch_sequence": 1,
+    "epoch_digest": "f738c4f51e103d55f3d3ac7fce7ce50d03649e12ba64e49fe43301927ea8bc65",
+    "parent": {
+      "path": "constraint_box/integrated_system/state/GENESIS.json",
+      "sha256": "29f733a16c274d3f0787794fdb059ff9565b6a2bc1dc9226c142b7a9031b77f7"
+    },
+    "state": "CURRENT",
+    "claim_ceiling": "current context epoch binding only"
+  },
+  "context_epoch_sha256": "83746c5dfed1d02800e37911d27dd6149c19f1759075f6377aa03c1da3832cea",
+  "branch_frontier": {
+    "schema": "constraintbox.strategy-discriminator-branch-frontier.v1",
+    "frontier_id": "strategy-sequence-order-v1",
+    "branch_ids": [
+      "candidate_order",
+      "live_scheduler_order"
+    ],
+    "open_branch_ids": [
+      "candidate_order",
+      "live_scheduler_order"
+    ],
+    "entries": [
+      {
+        "id": "candidate_order",
+        "order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519"
+      },
+      {
+        "id": "live_scheduler_order",
+        "order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802"
+      }
+    ],
+    "state": "OPEN",
+    "claim_ceiling": "order comparison only",
+    "winner_selected": false,
+    "activation_allowed": false,
+    "promotion_allowed": false
+  },
+  "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+  "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f",
+  "child_inputs": {
+    "bind_survivors": {
+      "operation_id": "cb-strategy-discriminator-wave.bind_survivors.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "105e4caa24d79e6db0dfaf435226db9698696f2b426a88fef1f6cb627ea6df01",
+        "retained_cumulative_receipt_self_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "83746c5dfed1d02800e37911d27dd6149c19f1759075f6377aa03c1da3832cea",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": [
+          "candidate_order",
+          "live_profile_order"
+        ],
+        "disagreement": "candidate_order and live_profile_order are the two surviving readings to compare",
+        "probe": {
+          "name": "bind-order-arrays",
+          "finite": true,
+          "cost": 1
+        },
+        "cancelled": false
+      },
+      "cancel_requested": false
+    },
+    "name_exact_disagreement": {
+      "operation_id": "cb-strategy-discriminator-wave.name_exact_disagreement.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "105e4caa24d79e6db0dfaf435226db9698696f2b426a88fef1f6cb627ea6df01",
+        "retained_cumulative_receipt_self_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "83746c5dfed1d02800e37911d27dd6149c19f1759075f6377aa03c1da3832cea",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": [
+          "candidate_order",
+          "live_profile_order"
+        ],
+        "disagreement": "candidate_order differs from live_profile_order at an exact finite index or not",
+        "probe": {
+          "name": "first-difference-index",
+          "finite": true,
+          "cost": 2
+        },
+        "cancelled": false
+      },
+      "cancel_requested": false
+    },
+    "design_finite_observable": {
+      "operation_id": "cb-strategy-discriminator-wave.design_finite_observable.v1",
+      "leaf_operation": "cb-strategy-discriminator-cell.v1",
+      "bindings": {
+        "target_sha256": "b3d270b44313af8dc1a2aeae0cff8ea09fb5677fb6930f76f6f9996d0e40fb3a",
+        "candidate_order_sha256": "f5442735ca90d1694d0cbc19aa3c8ebece18ab0545d042f5e94107fb1f827519",
+        "live_order_sha256": "426758e42d8739b3302cfed20d538826c9a0b54c2a91c8f3055ebe77302cf802",
+        "profile": "light",
+        "config_sha256": "7207a74554f94fe6d14f9d9b12919b5deba7b92b66ecf66bf8ee08e4cfdff091",
+        "retained_cumulative_receipt_sha256": "105e4caa24d79e6db0dfaf435226db9698696f2b426a88fef1f6cb627ea6df01",
+        "retained_cumulative_receipt_self_sha256": "5a4ed40e30e973ae136e07d1e09042d45e9327bd97f3f13e12bb68c7f54d0926",
+        "retained_cumulative_run_id": "cumulative-hardening-20260818-2",
+        "context_epoch_sha256": "83746c5dfed1d02800e37911d27dd6149c19f1759075f6377aa03c1da3832cea",
+        "branch_frontier_sha256": "7ac60664c9ae3d429f36b25734ceb1866bdde779d52883533ed93a2a5088be84",
+        "expected_source_set_sha256": "bb50705d02929a7df4cc77859a2113e1191fa712697949c4b3b730443b05b65f"
+      },
+      "leaf_input": {
+        "schema": "constraintbox.strategy-discriminator.v1",
+        "operation": "cb-strategy-discriminator-cell.v1",
+        "operation_id": "cb-strategy-discriminator-cell.v1",
+        "target": "strategy-stage-order-v1",
+        "strategies": [
+          "candidate_order",
+          "live_profile_order"
+        ],
+        "disagreement": "an exact array and prefix comparison distinguishes MATCH_OBSERVED from HOLD_ORDER_MISMATCH",
+        "probe": {
+          "name": "finite-prefix-compare",
+          "finite": true,
+          "cost": 3
+        },
+        "cancelled": false
+      },
+      "cancel_requested": false
+    }
+  }
+}

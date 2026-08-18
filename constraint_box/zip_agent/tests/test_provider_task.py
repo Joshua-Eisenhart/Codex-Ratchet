@@ -102,6 +102,8 @@ def _request(
         # Live provider adapters are an explicit overlay dependency.  Tests
         # bind the current source tree just as a real request must.
         request["controller_src"] = str(CONTROLLER_SRC)
+    if provider == "claude-code" and model_requested == "sonnet":
+        request["model_observed_allowlist"] = ["claude-sonnet-5"]
     if provider == "fixture-subprocess":
         request["fixture_script"] = script or _script(
             "Path('output/finding.md').write_text('finding: ZIP_PROVIDER_CALL_LIVE\\n', encoding='utf-8')"
@@ -433,9 +435,15 @@ def test_claude_adapter_receipt_is_normalized_into_provider_call(tmp_path: Path)
     assert source["provider"] == "claude-code"
     assert source["model_requested"] == "sonnet"
     assert source["model_observed"] == "claude-sonnet-5"
+    assert source["model_observed_values"] == ["claude-sonnet-5"]
+    assert source["model_observed_allowlist"] == ["claude-sonnet-5"]
+    assert source["model_identity_match_kind"] == "declared_alias"
+    assert source["alias_resolution_source"] == "invocation.model_observed_allowlist"
     assert call["provider_request_id"] == "claude-code-local"
     assert call["model_requested"] == "sonnet"
     assert call["model_observed"] == "claude-sonnet-5"
+    assert call["model_observed_allowlist"] == ["claude-sonnet-5"]
+    assert call["model_identity_match_kind"] == "declared_alias"
     assert call["terminal_state"] == "COMPLETED"
     assert call["source_receipt_sha256"] == sha256_bytes(members["output/source_receipt.json"])
 
@@ -455,6 +463,65 @@ def test_claude_adapter_model_mismatch_holds_without_return_zip(tmp_path: Path) 
         execute_packet(packet)
     assert caught.value.reason_code == "HOLD_PROVIDER_ADAPTER"
     assert "MODEL_BINDING" in caught.value.detail
+
+
+def test_provider_task_alias_without_allowlist_holds(tmp_path: Path) -> None:
+    bridge = _claude_bridge(tmp_path / "claude-bridge.py", observed_model="claude-sonnet-5")
+    request = json.loads(
+        _request(
+            provider="claude-code",
+            model_requested="sonnet",
+            bridge_path=str(bridge),
+            budget_usd=0.1,
+            effort="high",
+        )
+    )
+    request.pop("model_observed_allowlist")
+    with pytest.raises(ZipJobRefusal) as caught:
+        execute_packet(_packet(request=canonical_json_bytes(request)))
+    assert caught.value.reason_code == "HOLD_PROVIDER_ADAPTER"
+    assert "MODEL_BINDING" in caught.value.detail
+
+
+def test_provider_task_alias_allowlist_rejects_arbitrary_observed_id(tmp_path: Path) -> None:
+    bridge = _claude_bridge(tmp_path / "claude-bridge.py", observed_model="not-sonnet-model")
+    request = _request(
+        provider="claude-code",
+        model_requested="sonnet",
+        bridge_path=str(bridge),
+        budget_usd=0.1,
+        effort="high",
+    )
+    with pytest.raises(ZipJobRefusal) as caught:
+        execute_packet(_packet(request=request))
+    assert caught.value.reason_code == "HOLD_PROVIDER_ADAPTER"
+    assert "MODEL_BINDING" in caught.value.detail
+
+
+def test_grok_alias_allowlist_is_required_and_receipted(tmp_path: Path) -> None:
+    runner = _grok_runner(tmp_path / "grok-runner", observed_model="grok-test-build")
+    without = _request(
+        provider="grok-cli",
+        model_requested="grok-test",
+        runner_path=str(runner),
+        max_turns=2,
+    )
+    with pytest.raises(ZipJobRefusal) as caught:
+        execute_packet(_packet(request=without))
+    assert caught.value.reason_code == "REFUSE_PROVIDER_MODEL_MISMATCH"
+
+    with_allowlist = _request(
+        provider="grok-cli",
+        model_requested="grok-test",
+        runner_path=str(runner),
+        max_turns=2,
+        model_observed_allowlist=["grok-test-build"],
+    )
+    result = execute_packet(_packet(request=with_allowlist))
+    source = _json(result.return_zip_bytes, "output/source_receipt.json")
+    assert source["model_identity_match_kind"] == "declared_alias"
+    assert source["alias_resolution_source"] == "invocation.model_observed_allowlist"
+    assert source["model_observed_allowlist"] == ["grok-test-build"]
 
 
 def test_claude_adapter_hold_has_no_declared_finding(tmp_path: Path) -> None:
